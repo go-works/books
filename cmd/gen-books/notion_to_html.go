@@ -201,10 +201,6 @@ func isTodoBlock(block *notionapi.Block) bool {
 }
 
 func (g *HTMLGenerator) genBlockSurrouded(block *notionapi.Block, start, close string) {
-	if isTodoBlock(block) {
-		return
-	}
-
 	g.writeString(start + "\n")
 	g.genInlineBlocks(block.InlineContent)
 	g.level++
@@ -494,6 +490,9 @@ func (g *HTMLGenerator) genBlock(block *notionapi.Block) {
 
 	switch block.Type {
 	case notionapi.BlockText:
+		if isTodoBlock(block) {
+			break
+		}
 		start := `<p>`
 		close := `</p>`
 		g.genBlockSurrouded(block, start, close)
