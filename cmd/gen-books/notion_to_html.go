@@ -186,7 +186,25 @@ func genInlineBlocksText(blocks []*notionapi.InlineBlock) string {
 	return strings.Join(a, "")
 }
 
+// In notion I want to have @TODO lines that are not rendered in html output
+func isTodoBlock(block *notionapi.Block) bool {
+	panicIf(block.Type != notionapi.BlockText, "only supported on '%s' block, called on '%s' block", notionapi.BlockText, block.Type)
+	blocks := block.InlineContent
+	if len(blocks) == 0 {
+		return false
+	}
+	b := blocks[0]
+	if strings.HasPrefix(b.Text, "@TODO") {
+		return true
+	}
+	return false
+}
+
 func (g *HTMLGenerator) genBlockSurrouded(block *notionapi.Block, start, close string) {
+	if isTodoBlock(block) {
+		return
+	}
+
 	g.writeString(start + "\n")
 	g.genInlineBlocks(block.InlineContent)
 	g.level++
@@ -476,7 +494,7 @@ func (g *HTMLGenerator) genBlock(block *notionapi.Block) {
 
 	switch block.Type {
 	case notionapi.BlockText:
-		start := fmt.Sprintf(`<p>`)
+		start := `<p>`
 		close := `</p>`
 		g.genBlockSurrouded(block, start, close)
 	case notionapi.BlockHeader:
