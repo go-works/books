@@ -7,6 +7,7 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"regexp"
 	"sort"
 	"strconv"
 	"strings"
@@ -15,7 +16,6 @@ import (
 	"github.com/essentialbooks/books/pkg/common"
 	"github.com/essentialbooks/books/pkg/kvstore"
 	"github.com/essentialbooks/books/pkg/stackoverflow"
-	"github.com/gomarkdown/markdown"
 	"github.com/kjk/u"
 )
 
@@ -32,10 +32,6 @@ var (
 
 	booksToImport = common.BooksToProcess
 )
-
-func mdToHTML(d []byte) []byte {
-	return markdown.ToHTML(d, nil, nil)
-}
 
 func getTopicsByDocID(docID int) map[int]bool {
 	res := make(map[int]bool)
@@ -261,6 +257,69 @@ func writeIndexTxtMust(path string, topic *Topic) {
 	}
 }
 
+func writeIndexTxtMdMust(path string, topic *Topic) {
+	s := "---\n"
+	s += kvstore.Serialize("Title", topic.Title)
+	s += kvstore.Serialize("Id", strconv.Itoa(topic.Id))
+	s += "---\n"
+	versions := shortenVersion(topic.VersionsJson)
+
+	if !isEmptyString(versions) {
+		s += "## Versions\n"
+		s += versions
+		s += "\n"
+	} else if !isEmptyString(topic.HelloWorldVersionsHtml) {
+		s += "## Versions HTML\n\n"
+		s += topic.HelloWorldVersionsHtml
+		s += "\n"
+	}
+
+	if !isEmptyString(topic.IntroductionMarkdown) {
+		s += "## Introduction\n"
+		s += topic.IntroductionMarkdown
+		s += "\n"
+	} else if !isEmptyString(topic.IntroductionHtml) {
+		s += "## Introduction HTML\n\n"
+		s += topic.IntroductionHtml
+		s += "\n"
+	}
+
+	if !isEmptyString(topic.SyntaxMarkdown) {
+		s += "## Syntax\n"
+		s += topic.SyntaxMarkdown
+		s += "\n"
+	} else if !isEmptyString(topic.SyntaxHtml) {
+		s += "## Syntax HTML\n"
+		s += topic.SyntaxHtml
+		s += "\n"
+	}
+
+	if !isEmptyString(topic.ParametersMarkdown) {
+		s += "## Parameters\n"
+		s += topic.ParametersMarkdown
+	} else if !isEmptyString(topic.ParametersHtml) {
+		s += "## Parameters HTML\n\n"
+		s += topic.ParametersHtml
+		s += "\n"
+	}
+
+	if !isEmptyString(topic.RemarksMarkdown) {
+		s += "## Remarks\n"
+		s += topic.RemarksMarkdown
+	} else if !isEmptyString(topic.RemarksHtml) {
+		s += "## Remarks HTML\n\n"
+		s += topic.RemarksHtml
+		s += "\n"
+	}
+
+	createDirForFileMust(path)
+	err := ioutil.WriteFile(path, []byte(s), 0644)
+	u.PanicIfErr(err)
+	if verbose {
+		fmt.Printf("Wrote %s, %d bytes\n", path, len(s))
+	}
+}
+
 func writeArticleMust(path string, example *Example) {
 	s := kvstore.Serialize("Title", example.Title)
 	s += kvstore.Serialize("Id", strconv.Itoa(example.Id))
@@ -268,6 +327,28 @@ func writeArticleMust(path string, example *Example) {
 	s += kvstore.SerializeLong("Body", example.BodyMarkdown)
 	if isEmptyString(example.BodyMarkdown) {
 		s += kvstore.SerializeLong("BodyHtml", example.BodyHtml)
+	}
+
+	createDirForFileMust(path)
+	err := ioutil.WriteFile(path, []byte(s), 0644)
+	u.PanicIfErr(err)
+	if verbose {
+		fmt.Printf("Wrote %s, %d bytes\n", path, len(s))
+	}
+}
+
+func writeArticleMdMust(path string, example *Example) {
+	var s string
+	if isEmptyString(example.BodyMarkdown) {
+		path = strings.Replace(path, ".md", ".html", -1)
+		s = example.BodyHtml
+	} else {
+		s = "---\n"
+		s += kvstore.Serialize("Title", example.Title)
+		s += kvstore.Serialize("Id", strconv.Itoa(example.Id))
+		s += kvstore.Serialize("Score", strconv.Itoa(example.Score))
+		s += "---\n\n"
+		s += example.BodyMarkdown
 	}
 
 	createDirForFileMust(path)
@@ -315,6 +396,41 @@ func genContributors(bookDstDir string, docID int) {
 	//fmt.Printf("Wrote %s\n", path)
 }
 
+// A list of characters we consider separators in normal strings and replace with our canonical separator - rather than removing.
+var (
+	separators = regexp.MustCompile(`[&_=+:]`)
+
+	dashes = regexp.MustCompile(`[\-]+`)
+	spaces = regexp.MustCompile(`[\ ]+`)
+)
+
+func cleanString(s string, r *regexp.Regexp) string {
+	// Remove any trailing space to avoid ending on -
+	s = strings.Trim(s, " ")
+
+	// Flatten accents first so that if we remove non-ascii we still get a legible name
+	//s = Accents(s)
+
+	// Replace certain joining characters with a dash
+	s = separators.ReplaceAllString(s, " ")
+
+	// Remove all other unrecognised characters - NB we do allow any printable characters
+	s = r.ReplaceAllString(s, "")
+
+	// Remove any multiple spaces caused by replacements above
+	s = spaces.ReplaceAllString(s, " ")
+
+	return s
+}
+
+var illegalName = regexp.MustCompile(`[^[:alnum:]-. ]`)
+
+// limited sanitizing for my limited needs
+// makes sure s can be used as a file name (not a path!)
+func cleanFileName(s string) string {
+	return cleanString(s, illegalName)
+}
+
 func importBook(docTag *DocTag, bookName string) {
 	timeStart := time.Now()
 
@@ -339,8 +455,8 @@ func importBook(docTag *DocTag, bookName string) {
 
 		dirChapter := fmt.Sprintf("%04d-%s", chapter, common.MakeURLSafe(t.Title))
 		dirPath := filepath.Join(bookTopDir, dirChapter)
-		chapterIndexPath := filepath.Join(dirPath, "000-index.md")
-		writeIndexTxtMust(chapterIndexPath, t)
+		chapterIndexPath := filepath.Join(dirPath, fmt.Sprintf("000 %s.md", cleanFileName(t.Title)))
+		writeIndexTxtMdMust(chapterIndexPath, t)
 		//fmt.Printf("%s\n", dirChapter)
 		chapter += 10
 		//fmt.Printf("%s, %d examples (%d), %s\n", t.Title, t.ExampleCount, len(examples), fileName)
@@ -351,9 +467,9 @@ func importBook(docTag *DocTag, bookName string) {
 				emptyExamplexs = append(emptyExamplexs, ex)
 				continue
 			}
-			fileName := fmt.Sprintf("%03d-%s.md", articleNo, common.MakeURLSafe(ex.Title))
+			fileName := fmt.Sprintf("%03d %s.md", articleNo, cleanFileName(ex.Title))
 			path := filepath.Join(dirPath, fileName)
-			writeArticleMust(path, ex)
+			writeArticleMdMust(path, ex)
 			//fmt.Printf("  %s %s '%s'\n", ex.Title, pinnedStr, fileName)
 			//fmt.Printf("  %03d-%s\n", articleNo, fileName)
 			//fmt.Printf("  %s\n", fileName)
