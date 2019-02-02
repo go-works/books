@@ -28,7 +28,7 @@ type Contributor = stackoverflow.Contributor
 var (
 	emptyExamplexs []*Example
 	// if true, prints more information
-	verbose = false
+	verbose = true
 
 	booksToImport = common.BooksToProcess
 )
@@ -257,11 +257,16 @@ func writeIndexTxtMust(path string, topic *Topic) {
 	}
 }
 
-func writeIndexTxtMdMust(path string, topic *Topic) {
-	s := "---\n"
-	s += kvstore.Serialize("Title", topic.Title)
-	s += kvstore.Serialize("Id", strconv.Itoa(topic.Id))
-	s += "---\n"
+func getIndexMd(topic *Topic) []byte {
+	var s string
+
+	if false {
+		s += "---\n"
+		s += kvstore.Serialize("Title", topic.Title)
+		s += kvstore.Serialize("Id", strconv.Itoa(topic.Id))
+		s += "---\n"
+	}
+
 	versions := shortenVersion(topic.VersionsJson)
 
 	if !isEmptyString(versions) {
@@ -311,12 +316,19 @@ func writeIndexTxtMdMust(path string, topic *Topic) {
 		s += topic.RemarksHtml
 		s += "\n"
 	}
+	return []byte(s)
+}
 
+func writeIndexTxtMdMust(path string, topic *Topic, format bool) {
+	d := getIndexMd(topic)
+	if format {
+		d = mdfmt(d, nil)
+	}
 	createDirForFileMust(path)
-	err := ioutil.WriteFile(path, []byte(s), 0644)
+	err := ioutil.WriteFile(path, d, 0644)
 	u.PanicIfErr(err)
 	if verbose {
-		fmt.Printf("Wrote %s, %d bytes\n", path, len(s))
+		fmt.Printf("Wrote %s, %d bytes\n", path, len(d))
 	}
 }
 
@@ -337,25 +349,33 @@ func writeArticleMust(path string, example *Example) {
 	}
 }
 
-func writeArticleMdMust(path string, example *Example) {
+func writeArticleMdMust(path string, example *Example, format bool) {
 	var s string
+	isHTML := false
 	if isEmptyString(example.BodyMarkdown) {
 		path = strings.Replace(path, ".md", ".html", -1)
 		s = example.BodyHtml
+		isHTML = true
 	} else {
-		s = "---\n"
-		s += kvstore.Serialize("Title", example.Title)
-		s += kvstore.Serialize("Id", strconv.Itoa(example.Id))
-		s += kvstore.Serialize("Score", strconv.Itoa(example.Score))
-		s += "---\n\n"
+		if false {
+			s = "---\n"
+			s += kvstore.Serialize("Title", example.Title)
+			s += kvstore.Serialize("Id", strconv.Itoa(example.Id))
+			s += kvstore.Serialize("Score", strconv.Itoa(example.Score))
+			s += "---\n\n"
+		}
 		s += example.BodyMarkdown
+	}
+	d := []byte(s)
+	if !isHTML && format {
+		d = mdfmt(d, nil)
 	}
 
 	createDirForFileMust(path)
-	err := ioutil.WriteFile(path, []byte(s), 0644)
+	err := ioutil.WriteFile(path, d, 0644)
 	u.PanicIfErr(err)
 	if verbose {
-		fmt.Printf("Wrote %s, %d bytes\n", path, len(s))
+		fmt.Printf("Wrote %s, %d bytes\n", path, len(d))
 	}
 }
 
@@ -431,13 +451,18 @@ func cleanFileName(s string) string {
 	return cleanString(s, illegalName)
 }
 
-func importBook(docTag *DocTag, bookName string) {
+func writeBookAsMarkdown(docTag *DocTag, bookName string) {
 	timeStart := time.Now()
 
 	bookNameSafe := common.MakeURLSafe(bookName)
 	bookTopDir := filepath.Join("books", bookNameSafe)
+	bookTopDirOrig := filepath.Join("books", bookNameSafe + "_orig")
 	if pathExists(bookTopDir) {
 		fmt.Printf("Book '%s' has already been imported.\nTo re-import, delete directory '%s'\n", bookName, bookTopDir)
+		os.Exit(1)
+	}
+	if pathExists(bookTopDirOrig) {
+		fmt.Printf("Book '%s' has already been imported.\nTo re-import, delete directory '%s'\n", bookName, bookTopDirOrig)
 		os.Exit(1)
 	}
 
@@ -454,9 +479,19 @@ func importBook(docTag *DocTag, bookName string) {
 		sortExamples(examples)
 
 		dirChapter := fmt.Sprintf("%04d-%s", chapter, common.MakeURLSafe(t.Title))
+
+		dirPathOrig := filepath.Join(bookTopDirOrig, dirChapter)
+		{
+			chapterIndexPath := filepath.Join(dirPathOrig, fmt.Sprintf("000 %s.md", cleanFileName(t.Title)))
+			writeIndexTxtMdMust(chapterIndexPath, t, false)
+		}
+
 		dirPath := filepath.Join(bookTopDir, dirChapter)
-		chapterIndexPath := filepath.Join(dirPath, fmt.Sprintf("000 %s.md", cleanFileName(t.Title)))
-		writeIndexTxtMdMust(chapterIndexPath, t)
+		{
+			chapterIndexPath := filepath.Join(dirPath, fmt.Sprintf("000 %s.md", cleanFileName(t.Title)))
+			writeIndexTxtMdMust(chapterIndexPath, t, true)
+		}
+
 		//fmt.Printf("%s\n", dirChapter)
 		chapter += 10
 		//fmt.Printf("%s, %d examples (%d), %s\n", t.Title, t.ExampleCount, len(examples), fileName)
@@ -468,8 +503,17 @@ func importBook(docTag *DocTag, bookName string) {
 				continue
 			}
 			fileName := fmt.Sprintf("%03d %s.md", articleNo, cleanFileName(ex.Title))
-			path := filepath.Join(dirPath, fileName)
-			writeArticleMdMust(path, ex)
+
+			{
+				path := filepath.Join(dirPathOrig, fileName)
+				writeArticleMdMust(path, ex, false)
+			}
+
+			{
+				path := filepath.Join(dirPath, fileName)
+				writeArticleMdMust(path, ex, true)
+			}
+
 			//fmt.Printf("  %s %s '%s'\n", ex.Title, pinnedStr, fileName)
 			//fmt.Printf("  %03d-%s\n", articleNo, fileName)
 			//fmt.Printf("  %s\n", fileName)
@@ -587,7 +631,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	importBook(doc, bookName)
+	writeBookAsMarkdown(doc, bookName)
 
 	fmt.Printf("Took %s\n", time.Since(timeStart))
 	//printEmptyExamples()
