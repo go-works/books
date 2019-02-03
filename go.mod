@@ -8,7 +8,7 @@ require (
 	github.com/alecthomas/template v0.0.0-20160405071501-a0175ee3bccc
 	github.com/danwakefield/fnmatch v0.0.0-20160403171240-cbb64ac3d964 // indirect
 	github.com/dlclark/regexp2 v1.1.6 // indirect
-	github.com/gomarkdown/markdown v0.0.0-20181009100358-f8a5df142090
+	github.com/gomarkdown/markdown v0.0.0-20181104084050-d1d0edeb5d85
 	github.com/google/shlex v0.0.0-20150127133951-6f45313302b9
 	github.com/kjk/notionapi v0.0.0-20181014095046-e713d8348edd
 	github.com/kjk/siser v0.0.0-20170927035209-f1af2d1a21bb
