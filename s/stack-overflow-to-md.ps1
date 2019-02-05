@@ -9,7 +9,7 @@ Remove-Item -Force -ErrorAction SilentlyContinue ./so-to-md
 go build -o so-to-md.exe ./cmd/stack-overflow-to-md
 exitIfFailed
 
-./so-to-md $args
+./so-to-md.exe $args
 
 Remove-Item -Force -ErrorAction SilentlyContinue ./so-to-md.exe
 Remove-Item -Force -ErrorAction SilentlyContinue ./so-to-md
