@@ -7,12 +7,13 @@ import (
 	"fmt"
 	"go/format"
 	"io"
+	"io/ioutil"
 	"strings"
 
 	md "github.com/gomarkdown/markdown"
 	"github.com/gomarkdown/markdown/ast"
 	"github.com/gomarkdown/markdown/parser"
-	"github.com/mattn/go-runewidth"
+	runewidth "github.com/mattn/go-runewidth"
 )
 
 // TODO: copy indentwriter locally to minimize dependencies
@@ -620,4 +621,19 @@ func mdfmt(src []byte, opts *Options) []byte {
 	r := NewRenderer(opts)
 	output := md.Render(doc, r)
 	return output
+}
+
+func mdfmtFile(path string) error {
+	d, err := ioutil.ReadFile(path)
+	if err != nil {
+		return err
+	}
+	d2 := fixupCodeBlocks(d)
+	if !bytes.Equal(d, d2) {
+		if err = ioutil.WriteFile(path, d2, 0644); err != nil {
+			return err
+		}
+	}
+	// TODO: run node mdfmt/mdfmt.js ${path}
+	return nil
 }

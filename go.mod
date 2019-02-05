@@ -17,6 +17,7 @@ require (
 	github.com/mattn/go-runewidth v0.0.4
 	github.com/sergi/go-diff v1.0.0 // indirect
 	github.com/shurcooL/go v0.0.0-20190121191506-3fef8c783dec
+	github.com/stretchr/testify v1.2.2
 	github.com/tdewolff/minify v2.3.5+incompatible
 	github.com/tdewolff/parse v2.3.3+incompatible // indirect
 	github.com/tdewolff/test v0.0.0-20171106182207-265427085153 // indirect

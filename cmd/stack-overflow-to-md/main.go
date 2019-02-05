@@ -321,15 +321,17 @@ func getIndexMd(topic *Topic) []byte {
 
 func writeIndexTxtMdMust(path string, topic *Topic, format bool) {
 	d := getIndexMd(topic)
-	if format {
-		d = mdfmt(d, nil)
-	}
 	createDirForFileMust(path)
 	err := ioutil.WriteFile(path, d, 0644)
 	u.PanicIfErr(err)
 	if verbose {
 		fmt.Printf("Wrote %s, %d bytes\n", path, len(d))
 	}
+	if !format {
+		return
+	}
+	err = mdfmtFile(path)
+	u.PanicIfErr(err)
 }
 
 func writeArticleMust(path string, example *Example) {
@@ -367,9 +369,6 @@ func writeArticleMdMust(path string, example *Example, format bool) {
 		s += example.BodyMarkdown
 	}
 	d := []byte(s)
-	if !isHTML && format {
-		d = mdfmt(d, nil)
-	}
 
 	createDirForFileMust(path)
 	err := ioutil.WriteFile(path, d, 0644)
@@ -377,6 +376,11 @@ func writeArticleMdMust(path string, example *Example, format bool) {
 	if verbose {
 		fmt.Printf("Wrote %s, %d bytes\n", path, len(d))
 	}
+	if isHTML || !format {
+		return
+	}
+	err = mdfmtFile(path)
+	u.PanicIfErr(err)
 }
 
 func printEmptyExamples() {
@@ -456,13 +460,13 @@ func writeBookAsMarkdown(docTag *DocTag, bookName string) {
 
 	bookNameSafe := common.MakeURLSafe(bookName)
 	bookTopDir := filepath.Join("books", bookNameSafe)
-	bookTopDirOrig := filepath.Join("books", bookNameSafe + "_orig")
+	bookTopDirFmt := filepath.Join("books", bookNameSafe+"_fmt")
 	if pathExists(bookTopDir) {
 		fmt.Printf("Book '%s' has already been imported.\nTo re-import, delete directory '%s'\n", bookName, bookTopDir)
 		os.Exit(1)
 	}
-	if pathExists(bookTopDirOrig) {
-		fmt.Printf("Book '%s' has already been imported.\nTo re-import, delete directory '%s'\n", bookName, bookTopDirOrig)
+	if pathExists(bookTopDirFmt) {
+		fmt.Printf("Book '%s' has already been imported.\nTo re-import, delete directory '%s'\n", bookName, bookTopDirFmt)
 		os.Exit(1)
 	}
 
@@ -480,15 +484,15 @@ func writeBookAsMarkdown(docTag *DocTag, bookName string) {
 
 		dirChapter := fmt.Sprintf("%04d-%s", chapter, common.MakeURLSafe(t.Title))
 
-		dirPathOrig := filepath.Join(bookTopDirOrig, dirChapter)
-		{
-			chapterIndexPath := filepath.Join(dirPathOrig, fmt.Sprintf("000 %s.md", cleanFileName(t.Title)))
-			writeIndexTxtMdMust(chapterIndexPath, t, false)
-		}
-
 		dirPath := filepath.Join(bookTopDir, dirChapter)
 		{
 			chapterIndexPath := filepath.Join(dirPath, fmt.Sprintf("000 %s.md", cleanFileName(t.Title)))
+			writeIndexTxtMdMust(chapterIndexPath, t, false)
+		}
+
+		dirPathFmt := filepath.Join(bookTopDirFmt, dirChapter)
+		{
+			chapterIndexPath := filepath.Join(dirPathFmt, fmt.Sprintf("000 %s.md", cleanFileName(t.Title)))
 			writeIndexTxtMdMust(chapterIndexPath, t, true)
 		}
 
@@ -505,12 +509,12 @@ func writeBookAsMarkdown(docTag *DocTag, bookName string) {
 			fileName := fmt.Sprintf("%03d %s.md", articleNo, cleanFileName(ex.Title))
 
 			{
-				path := filepath.Join(dirPathOrig, fileName)
+				path := filepath.Join(dirPath, fileName)
 				writeArticleMdMust(path, ex, false)
 			}
 
 			{
-				path := filepath.Join(dirPath, fileName)
+				path := filepath.Join(dirPathFmt, fileName)
 				writeArticleMdMust(path, ex, true)
 			}
 
