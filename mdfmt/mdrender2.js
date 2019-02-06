@@ -1,38 +1,53 @@
 "use strict";
 
-var Renderer = require('commonmark/lib/render/renderer.js');
+function Renderer() {}
 
-// Helper function to produce an HTML tag.
-function tag(name, attrs, selfclosing) {
-  if (this.disableTags > 0) {
-    return;
-  }
-  this.buffer += ('<' + name);
-  if (attrs && attrs.length > 0) {
-    var i = 0;
-    var attrib;
-    while ((attrib = attrs[i]) !== undefined) {
-      this.buffer += (' ' + attrib[0] + '="' + attrib[1] + '"');
-      i++;
+function render(ast) {
+  var walker = ast.walker()
+    , event
+    , type;
+
+  this.buffer = '';
+  this.lastOut = '\n';
+
+  while((event = walker.next())) {
+    type = event.node.type;
+    if (this[type]) {
+      this[type](event.node, event.entering);
     }
   }
-  if (selfclosing) {
-    this.buffer += ' /';
-  }
-  this.buffer += '>';
-  this.lastOut = '>';
+  return this.buffer;
 }
+
+function lit(str) {
+  this.buffer += str;
+  this.lastOut = str;
+}
+
+function cr() {
+  if (this.lastOut !== '\n') {
+    this.lit('\n');
+  }
+}
+
+function out(str) {
+  this.lit(str);
+}
+
+Renderer.prototype.render = render;
+Renderer.prototype.out = out;
+Renderer.prototype.lit = lit;
+Renderer.prototype.cr  = cr;
 
 function MdRenderer(options) {
   options = options || {};
-  // by default, soft breaks are rendered as newlines in HTML
-  options.softbreak = options.softbreak || '\n';
-  // set to "<br />" to make them hard breaks
-  // set to " " if you want to ignore line wrapping in source
 
-  this.disableTags = 0;
   this.lastOut = "\n";
   this.options = options;
+
+  // TODO: probably needs to be for each nested level
+  // of list
+  this.listItemNo = 0;
 }
 
 /* Node methods */
@@ -41,168 +56,164 @@ function text(node) {
   this.out(node.literal);
 }
 
-function softbreak() {
-  this.lit(this.options.softbreak);
+function grandParentIsBlockQuote(node) {
+  var gp = node.parent.parent;
+  return ((gp !== null) && gp.type === 'block_quote');
+}
+
+function softbreak(node) {
+  this.lit('\n');
+  if (grandParentIsBlockQuote(node)) {
+    this.lit("> ");
+  }
 }
 
 function linebreak() {
-  this.tag('br', [], true);
+  this.cr();
   this.cr();
 }
 
 function link(node, entering) {
-  var attrs = this.attrs(node);
   if (entering) {
-    attrs.push(['href', this.esc(node.destination, true)]);
-    if (node.title) {
-      attrs.push(['title', this.esc(node.title, true)]);
-    }
-    this.tag('a', attrs);
+    this.lit('[');
   } else {
-    this.tag('/a');
+    this.lit('][' + node.destination + ']');
   }
 }
 
 function image(node, entering) {
   if (entering) {
-    if (this.disableTags === 0) {
-    this.lit('<img src="" alt="');
-    }
-    this.disableTags += 1;
+    this.lit('![');
   } else {
-    this.disableTags -= 1;
-    if (this.disableTags === 0) {
-      if (node.title) {
-        this.lit('" title="' + this.esc(node.title, true));
-      }
-      this.lit('" />');
-    }
+    this.lit('](' + node.destination + ')');
   }
 }
 
 function emph(node, entering) {
-  this.tag(entering ? 'em' : '/em');
+  this.lit("*");
 }
 
 function strong(node, entering) {
-  this.tag(entering ? 'strong' : '/strong');
+  this.lit("**");
 }
 
-function paragraph(node, entering) {
-  var grandparent = node.parent.parent
-    , attrs = this.attrs(node);
+function skipParaNewline(node) {
+  var p = node.parent;
+  if (p === null) {
+    return false;
+  }
+  if (p.type === 'block_quote') {
+    return true;
+  }
+  var grandparent = node.parent.parent;
   if (grandparent !== null &&
     grandparent.type === 'list') {
     if (grandparent.listTight) {
-      return;
+      return true;
     }
   }
+  return false;
+}
+
+function paragraph(node, entering) {
+  if (skipParaNewline(node)) {
+    return;
+  }
   if (entering) {
+    this.lit("\n");
     this.cr();
-    this.tag('p', attrs);
   } else {
-    this.tag('/p');
     this.cr();
+    this.lit("\n");
   }
 }
 
 function heading(node, entering) {
-  var tagname = 'h' + node.level
-    , attrs = this.attrs(node);
   if (entering) {
     this.cr();
-    this.tag(tagname, attrs);
+    for (var i = 0; i < node.level; i++) {
+      this.lit("#")
+    }
+    this.lit(" ");
   } else {
-    this.tag('/' + tagname);
     this.cr();
+    this.lit("\n");
   }
 }
 
 function code(node) {
-  this.tag('code');
-  this.out(node.literal);
-  this.tag('/code');
+  this.lit("`" + node.literal + "`");
 }
 
 function code_block(node) {
-  var info_words = node.info ? node.info.split(/\s+/) : []
-    , attrs = this.attrs(node);
+  var info_words = node.info ? node.info.split(/\s+/) : [];
+  var lang = "";
   if (info_words.length > 0 && info_words[0].length > 0) {
-    attrs.push(['class', 'language-' + this.esc(info_words[0], true)]);
+    lang = info_words[0];
   }
   this.cr();
-  this.tag('pre');
-  this.tag('code', attrs);
+  this.lit("\n```" + lang);
+  this.cr();
   this.out(node.literal);
-  this.tag('/code');
-  this.tag('/pre');
+  this.lit("```\n");
   this.cr();
 }
 
 function thematic_break(node) {
-  var attrs = this.attrs(node);
   this.cr();
-  this.tag('hr', attrs, true);
+  this.lit("\n---\n");
   this.cr();
 }
 
 function block_quote(node, entering) {
-  var attrs = this.attrs(node);
   if (entering) {
     this.cr();
-    this.tag('blockquote', attrs);
-    this.cr();
+    this.lit("> ");
   } else {
-    this.cr();
-    this.tag('/blockquote');
     this.cr();
   }
 }
 
 function list(node, entering) {
-  var tagname = node.listType === 'bullet' ? 'ul' : 'ol'
-    , attrs = this.attrs(node);
-
   if (entering) {
-    var start = node.listStart;
-    if (start !== null && start !== 1) {
-      attrs.push(['start', start.toString()]);
-    }
-    this.cr();
-    this.tag(tagname, attrs);
+    var start = node.listStart || 1;
+    this.listItemNo = start;
     this.cr();
   } else {
-    this.cr();
-    this.tag('/' + tagname);
     this.cr();
   }
 }
 
+function getItemParent(node) {
+  var p = node.parent;
+  if (p.type != 'list') {
+    console.log("item parent is not list but", p.type);
+  }
+  return p;
+}
+
 function item(node, entering) {
-  var attrs = this.attrs(node);
   if (entering) {
-    this.tag('li', attrs);
+    var list = getItemParent(node);
+    this.cr();
+    var start = "* ";
+    if (list.listType !== 'bullet') {
+      start = this.listItemNo + ". ";
+    }
+    this.lit(start);
+    this.listItemNo++;
   } else {
-    this.tag('/li');
     this.cr();
   }
 }
 
 function html_inline(node) {
-  if (this.options.safe) {
-    this.lit('<!-- raw HTML omitted -->');
-  } else {
-    this.lit(node.literal);
-  }
+  this.lit(node.literal);
 }
 
 function html_block(node) {
   this.cr();
-  if (this.options.safe) {
-    this.lit('<!-- raw HTML omitted -->');
-  } else {
-    this.lit(node.literal);
-  }
+  this.lit(node.literal);
   this.cr();
 }
 
@@ -228,19 +239,6 @@ function custom_block(node, entering) {
 
 function out(s) {
   this.lit(this.esc(s, false));
-}
-
-function attrs (node) {
-  var att = [];
-  if (this.options.sourcepos) {
-    var pos = node.sourcepos;
-    if (pos) {
-      att.push(['data-sourcepos', String(pos[0][0]) + ':' +
-        String(pos[0][1]) + '-' + String(pos[1][0]) + ':' +
-        String(pos[1][1])]);
-    }
-  }
-  return att;
 }
 
 function escMd(s) {
@@ -270,9 +268,6 @@ MdRenderer.prototype.custom_inline = custom_inline;
 MdRenderer.prototype.custom_block = custom_block;
 
 MdRenderer.prototype.esc = escMd;
-
 MdRenderer.prototype.out = out;
-MdRenderer.prototype.tag = tag;
-MdRenderer.prototype.attrs = attrs;
 
 module.exports = MdRenderer;
