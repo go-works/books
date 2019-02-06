@@ -8,6 +8,8 @@ import (
 	"go/format"
 	"io"
 	"io/ioutil"
+	"os/exec"
+	"path/filepath"
 	"strings"
 
 	md "github.com/gomarkdown/markdown"
@@ -634,6 +636,11 @@ func mdfmtFile(path string) error {
 			return err
 		}
 	}
-	// TODO: run node mdfmt/mdfmt.js ${path}
-	return nil
+	script := filepath.Join("mdftm", "mdfmt.js")
+	cmd := exec.Command("node", script, path)
+	out, err := cmd.CombinedOutput()
+	if err != nil {
+		return err
+	}
+	return ioutil.WriteFile(path, out, 0644)
 }

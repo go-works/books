@@ -1,170 +1,283 @@
-var Renderer = require('commonmark/lib/render/renderer.js');
+"use strict";
 
-var reXMLTag = /\<[^>]*\>/;
+/*
+TODO:
 
-function MdRenderer(options) {
-    options = options || {};
+Indent of:
+1. item one
+2. item two
+   - sublist
+   - sublist
+*/
 
-    this.disableTags = 0;
-    this.lastOut = "\n";
-
-    this.indentLevel = 0;
-    this.indent = '  ';
-
-    this.options = options;
-}
+function Renderer() { }
 
 function render(ast) {
+  var walker = ast.walker()
+    , event
+    , type;
 
-    this.buffer = '';
+  this.buffer = '';
+  this.lastOut = '\n';
 
-    var attrs;
-    var tagname;
-    var walker = ast.walker();
-    var event, node, entering;
-    var container;
-    var nodetype;
-    var skip;
-    var listStack;
-
-    var options = this.options;
-
-    while ((event = walker.next())) {
-        entering = event.entering;
-        node = event.node;
-        nodetype = node.type;
-
-        container = node.isContainer;
-
-        tagname = nodetype;
-
-        skip = false;
-
-        if (entering) {
-
-            attrs = [];
-
-            switch (nodetype) {
-                case 'document':
-                    skip = true;
-                    break;
-                case 'list':
-                    if (node.listType !== null) {
-                        attrs.push(['type', node.listType.toLowerCase()]);
-                    }
-                    if (node.listStart !== null) {
-                        attrs.push(['start', String(node.listStart)]);
-                    }
-                    if (node.listTight !== null) {
-                        attrs.push(['tight', (node.listTight ? 'true' : 'false')]);
-                    }
-                    var delim = node.listDelimiter;
-                    if (delim !== null) {
-                        var delimword = '';
-                        if (delim === '.') {
-                            delimword = 'period';
-                        } else {
-                            delimword = 'paren';
-                        }
-                        attrs.push(['delimiter', delimword]);
-                    }
-                    break;
-                case 'code_block':
-                    this.cr();
-                    this.out("\n```\n");
-                    if (node.info) {
-                        this.out(node.info);
-                    }
-                    this.out(node.literal);
-                    this.out("```");
-                    this.cr();
-                    skip = true;
-                    break;
-                case 'heading':
-
-                    attrs.push(['level', String(node.level)]);
-                    break;
-                case 'link':
-                case 'image':
-                    attrs.push(['destination', node.destination]);
-                    attrs.push(['title', node.title]);
-                    break;
-                case 'custom_inline':
-                case 'custom_block':
-                    attrs.push(['on_enter', node.onEnter]);
-                    attrs.push(['on_exit', node.onExit]);
-                    break;
-                default:
-                    break;
-            }
-
-            if (!skip) {
-                this.cr();
-                this.out(this.tag(tagname, attrs));
-            }
-
-            if (container) {
-                this.indentLevel += 1;
-            } else {
-                if (!skip) {
-                    var lit = node.literal;
-                    if (lit) {
-                        this.out(" " + this.esc(lit));
-                    }
-                }
-            }
-        } else {
-            this.indentLevel -= 1;
-            this.cr();
-        }
+  while ((event = walker.next())) {
+    type = event.node.type;
+    if (this[type]) {
+      this[type](event.node, event.entering);
     }
-    this.buffer += '\n';
-    return this.buffer;
+  }
+  return this.buffer;
 }
 
-function out(s) {
-    if (this.disableTags > 0) {
-        this.buffer += s.replace(reXMLTag, '');
-    } else {
-        this.buffer += s;
-    }
-    this.lastOut = s;
+function lit(str) {
+  this.buffer += str;
+  this.lastOut = str;
 }
 
 function cr() {
-    if (this.lastOut !== '\n') {
-        this.buffer += '\n';
-        this.lastOut = '\n';
-        for (var i = this.indentLevel; i > 0; i--) {
-            this.buffer += this.indent;
-        }
-    }
+  if (this.lastOut !== '\n') {
+    this.lit('\n');
+  }
 }
 
-// Helper function to produce an XML tag.
-function tag(name, attrs) {
-    var result = name;
-    if (attrs && attrs.length > 0) {
-        var i = 0;
-        var attrib;
-        while ((attrib = attrs[i]) !== undefined) {
-            result += ' ' + attrib[0] + '="' + this.esc(attrib[1]) + '"';
-            i++;
-        }
+function out(str) {
+  this.lit(str);
+}
+
+Renderer.prototype.render = render;
+Renderer.prototype.out = out;
+Renderer.prototype.lit = lit;
+Renderer.prototype.cr = cr;
+
+function MdRenderer(options) {
+  options = options || {};
+
+  this.lastOut = "\n";
+  this.options = options;
+
+  // TODO: probably needs to be for each nested level
+  // of list
+  this.listItemNo = 0;
+}
+
+/* Node methods */
+
+function text(node) {
+  this.out(node.literal);
+}
+
+function grandParentIsBlockQuote(node) {
+  var gp = node.parent.parent;
+  return ((gp !== null) && gp.type === 'block_quote');
+}
+
+function softbreak(node) {
+  this.lit('\n');
+  if (grandParentIsBlockQuote(node)) {
+    this.lit("> ");
+  }
+}
+
+function linebreak() {
+  this.lit("\n");
+  this.cr();
+}
+
+function link(node, entering) {
+  if (entering) {
+    this.lit('[');
+  } else {
+    this.lit('](' + node.destination + ')');
+  }
+}
+
+function image(node, entering) {
+  if (entering) {
+    this.lit('![');
+  } else {
+    this.lit('](' + node.destination + ')');
+  }
+}
+
+function emph(node, entering) {
+  this.lit("*");
+}
+
+function strong(node, entering) {
+  this.lit("**");
+}
+
+function skipParaNewline(node) {
+  var p = node.parent;
+  if (p === null) {
+    return false;
+  }
+  if (p.type === 'block_quote') {
+    return true;
+  }
+  var grandparent = node.parent.parent;
+  if (grandparent !== null &&
+    grandparent.type === 'list') {
+    if (grandparent.listTight) {
+      return true;
     }
-    return result;
+  }
+  return false;
+}
+
+function paragraph(node, entering) {
+  if (skipParaNewline(node)) {
+    return;
+  }
+  if (entering) {
+    this.lit("\n");
+    this.cr();
+  } else {
+    this.cr();
+    this.lit("\n");
+  }
+}
+
+function heading(node, entering) {
+  if (entering) {
+    this.cr();
+    for (var i = 0; i < node.level; i++) {
+      this.lit("#")
+    }
+    this.lit(" ");
+  } else {
+    this.cr();
+    this.lit("\n");
+  }
+}
+
+function code(node) {
+  this.lit("`" + node.literal + "`");
+}
+
+function code_block(node) {
+  var info_words = node.info ? node.info.split(/\s+/) : [];
+  var lang = "";
+  if (info_words.length > 0 && info_words[0].length > 0) {
+    lang = info_words[0];
+  }
+  this.cr();
+  this.lit("\n```" + lang);
+  this.cr();
+  this.out(node.literal);
+  this.lit("```\n");
+  this.cr();
+}
+
+function thematic_break(node) {
+  this.cr();
+  this.lit("\n---\n");
+  this.cr();
+}
+
+function block_quote(node, entering) {
+  if (entering) {
+    this.cr();
+    this.lit("> ");
+  } else {
+    this.cr();
+  }
+}
+
+function list(node, entering) {
+  if (entering) {
+    var start = node.listStart || 1;
+    this.listItemNo = start;
+    this.cr();
+  } else {
+    this.cr();
+  }
+}
+
+function getItemParent(node) {
+  var p = node.parent;
+  if (p.type != 'list') {
+    console.log("item parent is not list but", p.type);
+  }
+  return p;
+}
+
+function item(node, entering) {
+  if (entering) {
+    var list = getItemParent(node);
+    this.cr();
+    var start = "* ";
+    if (list.listType !== 'bullet') {
+      start = this.listItemNo + ". ";
+    }
+    this.lit(start);
+    this.listItemNo++;
+  } else {
+    this.cr();
+  }
+}
+
+function html_inline(node) {
+  this.lit(node.literal);
+}
+
+function html_block(node) {
+  this.cr();
+  this.lit(node.literal);
+  this.cr();
+}
+
+function custom_inline(node, entering) {
+  if (entering && node.onEnter) {
+    this.lit(node.onEnter);
+  } else if (!entering && node.onExit) {
+    this.lit(node.onExit);
+  }
+}
+
+function custom_block(node, entering) {
+  this.cr();
+  if (entering && node.onEnter) {
+    this.lit(node.onEnter);
+  } else if (!entering && node.onExit) {
+    this.lit(node.onExit);
+  }
+  this.cr();
+}
+
+/* Helper methods */
+
+function out(s) {
+  this.lit(this.esc(s, false));
 }
 
 function escMd(s) {
-    return s;
+  return s;
 }
 
-// quick browser-compatible inheritance
 MdRenderer.prototype = Object.create(Renderer.prototype);
-MdRenderer.prototype.render = render;
-MdRenderer.prototype.out = out;
-MdRenderer.prototype.cr = cr;
-MdRenderer.prototype.tag = tag;
+
+MdRenderer.prototype.text = text;
+MdRenderer.prototype.html_inline = html_inline;
+MdRenderer.prototype.html_block = html_block;
+MdRenderer.prototype.softbreak = softbreak;
+MdRenderer.prototype.linebreak = linebreak;
+MdRenderer.prototype.link = link;
+MdRenderer.prototype.image = image;
+MdRenderer.prototype.emph = emph;
+MdRenderer.prototype.strong = strong;
+MdRenderer.prototype.paragraph = paragraph;
+MdRenderer.prototype.heading = heading;
+MdRenderer.prototype.code = code;
+MdRenderer.prototype.code_block = code_block;
+MdRenderer.prototype.thematic_break = thematic_break;
+MdRenderer.prototype.block_quote = block_quote;
+MdRenderer.prototype.list = list;
+MdRenderer.prototype.item = item;
+MdRenderer.prototype.custom_inline = custom_inline;
+MdRenderer.prototype.custom_block = custom_block;
+
 MdRenderer.prototype.esc = escMd;
+MdRenderer.prototype.out = out;
 
 module.exports = MdRenderer;

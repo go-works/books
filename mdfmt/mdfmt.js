@@ -2,7 +2,7 @@
 
 var fs = require('fs');
 var commonmark = require('commonmark/lib/index.js');
-var MdRenderer = require('./mdrender2.js');
+var MdRenderer = require('./mdrender.js');
 
 var parser = new commonmark.Parser({ smart: true });
 
