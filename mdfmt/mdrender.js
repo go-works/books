@@ -10,7 +10,11 @@ Indent of:
    - sublist
 */
 
-function Renderer() { }
+function MdRenderer() {
+  // TODO: probably needs to be for each nested level
+  // of list
+  this.listItemNo = 0;
+}
 
 function render(ast) {
   var walker = ast.walker()
@@ -18,7 +22,6 @@ function render(ast) {
     , type;
 
   this.buffer = '';
-  this.lastOut = '\n';
 
   while ((event = walker.next())) {
     type = event.node.type;
@@ -31,36 +34,19 @@ function render(ast) {
 
 function lit(str) {
   this.buffer += str;
-  this.lastOut = str;
+}
+
+function canPutCr(buf) {
+  var n = buf.length;
+  var nl = (n >= 2) && (buf[n - 1] == '\n') && (buf[n - 2] == '\n');
+  return !nl;
 }
 
 function cr() {
-  if (this.lastOut !== '\n') {
+  if (canPutCr(this.buffer)) {
     this.lit('\n');
   }
 }
-
-function out(str) {
-  this.lit(str);
-}
-
-Renderer.prototype.render = render;
-Renderer.prototype.out = out;
-Renderer.prototype.lit = lit;
-Renderer.prototype.cr = cr;
-
-function MdRenderer(options) {
-  options = options || {};
-
-  this.lastOut = "\n";
-  this.options = options;
-
-  // TODO: probably needs to be for each nested level
-  // of list
-  this.listItemNo = 0;
-}
-
-/* Node methods */
 
 function text(node) {
   this.out(node.literal);
@@ -72,14 +58,14 @@ function grandParentIsBlockQuote(node) {
 }
 
 function softbreak(node) {
-  this.lit('\n');
+  this.cr();
   if (grandParentIsBlockQuote(node)) {
     this.lit("> ");
   }
 }
 
 function linebreak() {
-  this.lit("\n");
+  this.cr();
   this.cr();
 }
 
@@ -130,11 +116,11 @@ function paragraph(node, entering) {
     return;
   }
   if (entering) {
-    this.lit("\n");
+    this.cr();
     this.cr();
   } else {
     this.cr();
-    this.lit("\n");
+    this.cr();
   }
 }
 
@@ -147,7 +133,7 @@ function heading(node, entering) {
     this.lit(" ");
   } else {
     this.cr();
-    this.lit("\n");
+    this.cr();
   }
 }
 
@@ -162,16 +148,20 @@ function code_block(node) {
     lang = info_words[0];
   }
   this.cr();
-  this.lit("\n```" + lang);
+  this.cr();
+  this.lit("```" + lang);
   this.cr();
   this.out(node.literal);
-  this.lit("```\n");
+  this.lit("```");
+  this.cr();
   this.cr();
 }
 
 function thematic_break(node) {
   this.cr();
-  this.lit("\n---\n");
+  this.cr();
+  this.lit("---");
+  this.cr();
   this.cr();
 }
 
@@ -225,6 +215,7 @@ function html_block(node) {
   this.cr();
   this.lit(node.literal);
   this.cr();
+  this.cr();
 }
 
 function custom_inline(node, entering) {
@@ -255,8 +246,11 @@ function escMd(s) {
   return s;
 }
 
-MdRenderer.prototype = Object.create(Renderer.prototype);
-
+MdRenderer.prototype.render = render;
+MdRenderer.prototype.lit = lit;
+MdRenderer.prototype.cr = cr;
+MdRenderer.prototype.esc = escMd;
+MdRenderer.prototype.out = out;
 MdRenderer.prototype.text = text;
 MdRenderer.prototype.html_inline = html_inline;
 MdRenderer.prototype.html_block = html_block;
@@ -276,8 +270,5 @@ MdRenderer.prototype.list = list;
 MdRenderer.prototype.item = item;
 MdRenderer.prototype.custom_inline = custom_inline;
 MdRenderer.prototype.custom_block = custom_block;
-
-MdRenderer.prototype.esc = escMd;
-MdRenderer.prototype.out = out;
 
 module.exports = MdRenderer;
