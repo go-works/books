@@ -56,6 +56,46 @@ var age = GetAge(dateOfBirth);
 //the above calls the function GetAge passing parameter dateOfBirth.
 ~~~
 `
+
+	s4 = `
+    var age = GetAge(dateOfBirth);
+
+    //the above calls the function GetAge passing parameter dateOfBirth.
+
+t
+`
+	exp4 = `
+~~~
+var age = GetAge(dateOfBirth);
+
+//the above calls the function GetAge passing parameter dateOfBirth.
+~~~
+
+t
+`
+
+	s5 = `
+    var age = GetAge(dateOfBirth);
+    var age = GetAge(dateOfBirth);
+
+
+    //the above calls the function GetAge passing parameter dateOfBirth.
+
+bah
+
+`
+	exp5 = `
+~~~
+var age = GetAge(dateOfBirth);
+var age = GetAge(dateOfBirth);
+~~~
+
+
+    //the above calls the function GetAge passing parameter dateOfBirth.
+
+bah
+
+`
 )
 
 func TestFixupCodeBlock(t *testing.T) {
@@ -68,4 +108,6 @@ func TestFixupCodeBlock(t *testing.T) {
 	f(s1, exp1)
 	f(s2, exp2)
 	f(s3, exp3)
+	f(s4, exp4)
+	f(s5, exp5)
 }

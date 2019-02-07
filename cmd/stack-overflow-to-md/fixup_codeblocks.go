@@ -6,8 +6,17 @@ import (
 	"github.com/essentialbooks/books/pkg/common"
 )
 
-func isMaybeCodeBlock(s string) bool {
-	return strings.HasPrefix(s, "    ")
+func isMaybeCodeBlock(s string, buffered []string) bool {
+	if strings.HasPrefix(s, "    ") {
+		return true
+	}
+	// a single empty line in the middle
+	n := len(buffered)
+	if n == 0 {
+		return false
+	}
+	lastWasEmpty := buffered[n-1] == ""
+	return s == "" && !lastWasEmpty
 }
 
 func calcIndent(s string) int {
@@ -23,12 +32,21 @@ func calcIndent(s string) int {
 }
 
 func addBuffered(a []string, buffered []string) []string {
-	if len(buffered) == 0 {
+	n := len(buffered)
+	if n == 0 {
 		return a
 	}
-	if len(buffered) == 1 {
+	if n == 1 {
 		// TODO: should this be wrapped in? Those happen.
 		return append(a, buffered[0])
+	}
+	lastWasEmpty := buffered[n-1] == ""
+	if lastWasEmpty {
+		if n == 2 {
+			// single code line followed by single empty line
+			return append(a, buffered...)
+		}
+		buffered = buffered[:n-1]
 	}
 
 	firstIndent := calcIndent(buffered[0])
@@ -42,6 +60,9 @@ func addBuffered(a []string, buffered []string) []string {
 		a = append(a, s)
 	}
 	a = append(a, "```")
+	if lastWasEmpty {
+		a = append(a, "")
+	}
 	return a
 }
 
@@ -54,7 +75,7 @@ func fixupCodeBlocks(d []byte) []byte {
 	var newLines []string
 	var buffered []string
 	for _, line := range lines {
-		if isMaybeCodeBlock(line) {
+		if isMaybeCodeBlock(line, buffered) {
 			buffered = append(buffered, line)
 			continue
 		}
