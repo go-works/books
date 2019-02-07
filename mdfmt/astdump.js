@@ -4,7 +4,7 @@ var fs = require('fs');
 var commonmark = require('commonmark/lib/index.js');
 var AstRenderer = require('./astrender.js');
 
-var parser = new commonmark.Parser({ smart: true });
+var parser = new commonmark.Parser();
 
 var astrenderer = new AstRenderer();
 

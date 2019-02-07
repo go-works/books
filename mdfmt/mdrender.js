@@ -54,7 +54,7 @@ function text(node) {
 
 function grandParentIsBlockQuote(node) {
   var gp = node.parent.parent;
-  return ((gp !== null) && gp.type === 'block_quote');
+  return gp !== null && gp.type === 'block_quote';
 }
 
 function softbreak(node) {
