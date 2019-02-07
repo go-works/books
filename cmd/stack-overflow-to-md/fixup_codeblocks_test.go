@@ -45,6 +45,17 @@ blast
 var age = GetAge(dateOfBirth);
 //the above calls the function GetAge passing parameter dateOfBirth.
 ~~~`
+
+	s3 = `
+      var age = GetAge(dateOfBirth);
+      //the above calls the function GetAge passing parameter dateOfBirth.
+`
+	exp3 = `
+~~~
+var age = GetAge(dateOfBirth);
+//the above calls the function GetAge passing parameter dateOfBirth.
+~~~
+`
 )
 
 func TestFixupCodeBlock(t *testing.T) {
@@ -56,4 +67,5 @@ func TestFixupCodeBlock(t *testing.T) {
 	}
 	f(s1, exp1)
 	f(s2, exp2)
+	f(s3, exp3)
 }

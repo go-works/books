@@ -10,16 +10,35 @@ func isMaybeCodeBlock(s string) bool {
 	return strings.HasPrefix(s, "    ")
 }
 
+func calcIndent(s string) int {
+	n := 0
+	for i := range s {
+		if s[i] == ' ' {
+			n++
+		} else {
+			break
+		}
+	}
+	return n
+}
+
 func addBuffered(a []string, buffered []string) []string {
 	if len(buffered) == 0 {
 		return a
 	}
 	if len(buffered) == 1 {
+		// TODO: should this be wrapped in? Those happen.
 		return append(a, buffered[0])
 	}
+
+	firstIndent := calcIndent(buffered[0])
 	a = append(a, "```")
 	for _, s := range buffered {
-		s = s[4:]
+		indent := calcIndent(s)
+		if indent > firstIndent {
+			indent = firstIndent
+		}
+		s = s[indent:]
 		a = append(a, s)
 	}
 	a = append(a, "```")
