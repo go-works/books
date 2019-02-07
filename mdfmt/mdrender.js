@@ -1,274 +1,149 @@
-"use strict";
-
-/*
-TODO:
-
-Indent of:
-1. item one
-2. item two
-   - sublist
-   - sublist
-*/
-
-function MdRenderer() {
-  // TODO: probably needs to be for each nested level
-  // of list
-  this.listItemNo = 0;
-}
-
-function render(ast) {
-  var walker = ast.walker()
-    , event
-    , type;
-
-  this.buffer = '';
-
-  while ((event = walker.next())) {
-    type = event.node.type;
-    if (this[type]) {
-      this[type](event.node, event.entering);
+// add up to 2 \n at the end of the buffer
+function nl(buf) {
+    const n = buf.length;
+    if (n < 2) {
+        return buf;
     }
-  }
-  return this.buffer;
+    if (buf[n - 1] != '\n') {
+        return buf + "\n\n";
+    }
+    if (buf[n - 2] != '\n') {
+        return buf + "\n";
+    }
+    return buf;
 }
 
-function lit(str) {
-  this.buffer += str;
+const needEscapingList = ["\\", "'", "*", "_", "{", "}", "[", "]", "(", ")", "#", "+", "-", ">", "<", "!"];
+function needsEscaping(s) {
+    if (needEscapingList.includes(s)) {
+        return true;
+    }
+    return false;
 }
 
-function canPutCr(buf) {
-  var n = buf.length;
-  var nl = (n >= 2) && (buf[n - 1] == '\n') && (buf[n - 2] == '\n');
-  return !nl;
+function esc(s) {
+    if (needsEscaping(s)) {
+        return "\\" + s;
+    }
+    // TODO: if s is "." we should escape if it follows a number
+    return s;
 }
 
-function cr() {
-  if (canPutCr(this.buffer)) {
-    this.lit('\n');
-  }
-}
-
-function text(node) {
-  this.out(node.literal);
+// returns true if should skip newline on entering a container
+function skipEnterNl(node) {
+    const p = node.parent;
+    if (p.type === 'item' || p.type === "block_quote") {
+        return true;
+    }
+    return false;
 }
 
 function grandParentIsBlockQuote(node) {
-  var gp = node.parent.parent;
-  return gp !== null && gp.type === 'block_quote';
+    var gp = node.parent.parent;
+    return ((gp !== null) && gp.type === 'block_quote');
 }
 
-function softbreak(node) {
-  this.cr();
-  if (grandParentIsBlockQuote(node)) {
-    this.lit("> ");
-  }
-}
+function mdrender(ast) {
+    let buf = '';
+    let listItemNoStack = [];
 
-function linebreak() {
-  this.cr();
-  this.cr();
-}
+    const walker = ast.walker();
+    while ((event = walker.next())) {
+        const entering = event.entering;
+        const node = event.node;
+        const t = node.type;
+        if (t === 'document') {
+            continue;
+        }
 
-function link(node, entering) {
-  if (entering) {
-    this.lit('[');
-  } else {
-    this.lit('](' + node.destination + ')');
-  }
-}
+        if (t === 'emph') {
+            buf += "*";
+            continue;
+        } else if (t === 'strong') {
+            buf += "**";
+            continue;
+        } else if (t === 'text') {
+            buf += esc(node.literal);
+            continue;
+        } else if (t === 'code') {
+            buf += "`" + esc(node.literal) + "`";
+            continue;
+        } else if (t === 'html_inline') {
+            buf + node.literal;
+            continue;
+        } else if (t == "link" || t === "image") {
+            if (entering) {
+                if (t === "image") {
+                    buf += "!";
+                }
+                buf += '['
+            } else {
+                buf += '](' + (node.destination || "");
+                if (node.title) {
+                    buf += ' "' + node.title + '"';
+                }
+                buf += ')';
+            }
+            continue;
+        } else if (t === "linebreak") {
+            buf = nl(buf);
+            continue;
+        } else if (t === "softbreak") {
+            buf += "\n";
+            if (grandParentIsBlockQuote(node)) {
+                buf += "> ";
+            }
+            continue;
+        } else if (t === "hardbreak") {
+            // https://spec.commonmark.org/0.28/#hard-line-breaks
+            buf += "  \n";
+        }
 
-function image(node, entering) {
-  if (entering) {
-    this.lit('![');
-  } else {
-    this.lit('](' + node.destination + ')');
-  }
-}
-
-function emph(node, entering) {
-  this.lit("*");
-}
-
-function strong(node, entering) {
-  this.lit("**");
-}
-
-function skipParaNewline(node) {
-  var p = node.parent;
-  if (p === null) {
-    return false;
-  }
-  if (p.type === 'block_quote') {
-    return true;
-  }
-  var grandparent = node.parent.parent;
-  if (grandparent !== null &&
-    grandparent.type === 'list') {
-    if (grandparent.listTight) {
-      return true;
+        if (entering) {
+            if (node.isContainer) {
+                if (!skipEnterNl(node)) {
+                    buf = nl(buf);
+                }
+            }
+            if (t === "thematic_break") {
+                buf += "---";
+            } else if (t === "code_block") {
+                buf += "```" + (node.info || "") + "\n";
+                buf += node.literal;
+                buf += "```\n"
+            } else if (t === "html_block") {
+                buf += node.literal;
+                buf += "\n";
+            } else if (t === 'list') {
+                const start = node.listStart || 1;
+                listItemNoStack.push(start);
+            } else if (t === "item") {
+                const list = node.parent;
+                let start = "* ";
+                const idx = listItemNoStack.length - 1;
+                if (list.listType !== 'bullet') {
+                    start = listItemNoStack[idx] + ". ";
+                }
+                listItemNoStack[idx] = listItemNoStack[idx] + 1;
+                buf += start;
+            } else if (t === 'heading') {
+                for (var i = 0; i < node.level; i++) {
+                    buf += "#"
+                }
+                buf += " ";
+            } else if (t === 'block_quote') {
+                buf += "> ";
+            }
+        } else {
+            if (t === 'list') {
+                listItemNoStack.pop();
+            }
+            // only happens for containers
+            buf = nl(buf);
+        }
     }
-  }
-  return false;
+
+    return buf;
 }
 
-function paragraph(node, entering) {
-  if (skipParaNewline(node)) {
-    return;
-  }
-  if (entering) {
-    this.cr();
-    this.cr();
-  } else {
-    this.cr();
-    this.cr();
-  }
-}
-
-function heading(node, entering) {
-  if (entering) {
-    this.cr();
-    for (var i = 0; i < node.level; i++) {
-      this.lit("#")
-    }
-    this.lit(" ");
-  } else {
-    this.cr();
-    this.cr();
-  }
-}
-
-function code(node) {
-  this.lit("`" + node.literal + "`");
-}
-
-function code_block(node) {
-  var info_words = node.info ? node.info.split(/\s+/) : [];
-  var lang = "";
-  if (info_words.length > 0 && info_words[0].length > 0) {
-    lang = info_words[0];
-  }
-  this.cr();
-  this.cr();
-  this.lit("```" + lang);
-  this.cr();
-  this.out(node.literal);
-  this.lit("```");
-  this.cr();
-  this.cr();
-}
-
-function thematic_break(node) {
-  this.cr();
-  this.cr();
-  this.lit("---");
-  this.cr();
-  this.cr();
-}
-
-function block_quote(node, entering) {
-  if (entering) {
-    this.cr();
-    this.lit("> ");
-  } else {
-    this.cr();
-  }
-}
-
-function list(node, entering) {
-  if (entering) {
-    var start = node.listStart || 1;
-    this.listItemNo = start;
-    this.cr();
-  } else {
-    this.cr();
-  }
-}
-
-function getItemParent(node) {
-  var p = node.parent;
-  if (p.type != 'list') {
-    console.log("item parent is not list but", p.type);
-  }
-  return p;
-}
-
-function item(node, entering) {
-  if (entering) {
-    var list = getItemParent(node);
-    this.cr();
-    var start = "* ";
-    if (list.listType !== 'bullet') {
-      start = this.listItemNo + ". ";
-    }
-    this.lit(start);
-    this.listItemNo++;
-  } else {
-    this.cr();
-  }
-}
-
-function html_inline(node) {
-  this.lit(node.literal);
-}
-
-function html_block(node) {
-  this.cr();
-  this.lit(node.literal);
-  this.cr();
-  this.cr();
-}
-
-function custom_inline(node, entering) {
-  if (entering && node.onEnter) {
-    this.lit(node.onEnter);
-  } else if (!entering && node.onExit) {
-    this.lit(node.onExit);
-  }
-}
-
-function custom_block(node, entering) {
-  this.cr();
-  if (entering && node.onEnter) {
-    this.lit(node.onEnter);
-  } else if (!entering && node.onExit) {
-    this.lit(node.onExit);
-  }
-  this.cr();
-}
-
-/* Helper methods */
-
-function out(s) {
-  this.lit(this.esc(s, false));
-}
-
-function escMd(s) {
-  return s;
-}
-
-MdRenderer.prototype.render = render;
-MdRenderer.prototype.lit = lit;
-MdRenderer.prototype.cr = cr;
-MdRenderer.prototype.esc = escMd;
-MdRenderer.prototype.out = out;
-MdRenderer.prototype.text = text;
-MdRenderer.prototype.html_inline = html_inline;
-MdRenderer.prototype.html_block = html_block;
-MdRenderer.prototype.softbreak = softbreak;
-MdRenderer.prototype.linebreak = linebreak;
-MdRenderer.prototype.link = link;
-MdRenderer.prototype.image = image;
-MdRenderer.prototype.emph = emph;
-MdRenderer.prototype.strong = strong;
-MdRenderer.prototype.paragraph = paragraph;
-MdRenderer.prototype.heading = heading;
-MdRenderer.prototype.code = code;
-MdRenderer.prototype.code_block = code_block;
-MdRenderer.prototype.thematic_break = thematic_break;
-MdRenderer.prototype.block_quote = block_quote;
-MdRenderer.prototype.list = list;
-MdRenderer.prototype.item = item;
-MdRenderer.prototype.custom_inline = custom_inline;
-MdRenderer.prototype.custom_block = custom_block;
-
-module.exports = MdRenderer;
+module.exports = mdrender;
