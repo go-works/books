@@ -8,7 +8,7 @@ import (
 )
 
 var (
-	s = ` 8. This is the code in the Text Editor:
+	s1 = ` 8. This is the code in the Text Editor:
 
 
     using System;
@@ -22,7 +22,7 @@ foo
     not code
 blast
 `
-	exp = ` 8. This is the code in the Text Editor:
+	exp1 = ` 8. This is the code in the Text Editor:
 
 
 ~~~
@@ -38,11 +38,22 @@ foo
     not code
 blast
 `
+
+	s2 = `    var age = GetAge(dateOfBirth);
+    //the above calls the function GetAge passing parameter dateOfBirth.`
+	exp2 = `~~~
+var age = GetAge(dateOfBirth);
+//the above calls the function GetAge passing parameter dateOfBirth.
+~~~`
 )
 
 func TestFixupCodeBlock(t *testing.T) {
-	gotBytes := fixupCodeBlocks([]byte(s))
-	got := string(gotBytes)
-	got = strings.Replace(got, "```", "~~~", -1)
-	assert.Equal(t, exp, got)
+	f := func(s, exp string) {
+		gotBytes := fixupCodeBlocks([]byte(s))
+		got := string(gotBytes)
+		got = strings.Replace(got, "```", "~~~", -1)
+		assert.Equal(t, exp, got)
+	}
+	f(s1, exp1)
+	f(s2, exp2)
 }

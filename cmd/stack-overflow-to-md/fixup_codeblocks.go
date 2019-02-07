@@ -43,6 +43,7 @@ func fixupCodeBlocks(d []byte) []byte {
 		buffered = nil
 		newLines = append(newLines, line)
 	}
+	newLines = addBuffered(newLines, buffered)
 	s := strings.Join(newLines, "\n")
 	return []byte(s)
 }
