@@ -61,6 +61,10 @@ func parseFlags() {
 
 	flag.Parse()
 
+	if flgRedownloadOne != "" {
+		flgRedownloadOne = extractNotionIDFromURL(flgRedownloadOne)
+	}
+
 	if flgAnalytics != "" {
 		googleAnalyticsTmpl := `<script async src="https://www.googletagmanager.com/gtag/js?id=%s"></script>
 		<script>

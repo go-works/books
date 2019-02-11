@@ -54,6 +54,9 @@ func isValidNotionID(id string) bool {
 // https://www.notion.so/c674bebe8adf44d18c3a36cc18c131e2
 // returns "" if didn't detect valid notion id in the url
 func extractNotionIDFromURL(uri string) string {
+	if isValidNotionID(normalizeID(uri)) {
+		return uri
+	}
 	trimmed := strings.TrimPrefix(uri, "https://www.notion.so/")
 	if uri == trimmed {
 		return ""
@@ -101,7 +104,7 @@ func (g *HTMLGenerator) getURLAndTitleForBlock(block *notionapi.Block) (string, 
 func findPageByID(book *Book, id string) *Page {
 	pages := book.GetAllPages()
 	for _, page := range pages {
-		if strings.EqualFold(page.ID, id) {
+		if strings.EqualFold(page.getID(), id) {
 			return page
 		}
 	}
@@ -116,7 +119,7 @@ func (g *HTMLGenerator) reportIfInvalidLink(uri string) {
 	if strings.HasPrefix(uri, "http") {
 		return
 	}
-	pageID := normalizeID(g.page.ID)
+	pageID := normalizeID(g.page.getID())
 	fmt.Printf("Found invalid link '%s' in page https://notion.so/%s", uri, pageID)
 	destPage := findPageByID(g.book, uri)
 	if destPage != nil {

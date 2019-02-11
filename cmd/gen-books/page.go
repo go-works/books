@@ -15,6 +15,17 @@ type HeadingInfo struct {
 	ID   string
 }
 
+// MetaValue describes a single page metadata value
+// Meta tags are text blocks at the start of a page
+// in the format: "$foo bar" or "@foo bar"
+// "foo" is the name, "bar" is the value
+// Two forms for legacy reasons
+// those are not rendered in HTML
+type MetaValue struct {
+	Key   string
+	Value string
+}
+
 // Page represents a single page in a book
 type Page struct {
 	NotionPage *notionapi.Page
@@ -26,10 +37,12 @@ type Page struct {
 
 	// meta information extracted from page blocks
 	NotionID string
+
 	// for legacy pages this is an id. Might be used for redirects
-	ID              string
-	StackOverflowID string
-	Search          []string // was SearchSynonyms
+	//ID              string
+	//StackOverflowID string
+	//Search          []string // was SearchSynonyms
+	Metadata []*MetaValue
 
 	// extracted from embed blocks
 	SourceFiles []*SourceFile
@@ -45,6 +58,57 @@ type Page struct {
 	// TODO: those should come from notion_cache and downloaded during download
 	// step to notion_cache
 	images []string
+}
+
+var knownMetaKeys = map[string]bool{
+	"id":     true,
+	"soid":   true,
+	"search": true,
+	"score":  true,
+	"draft":  true,
+	"todo":   true,
+}
+
+func isKnownMeta(s string) bool {
+	return knownMetaKeys[s]
+}
+
+func (p *Page) findMeta(key string) string {
+	for _, mv := range p.Metadata {
+		if mv.Key == key {
+			return mv.Value
+		}
+	}
+	return ""
+}
+
+func (p *Page) hasMeta(key string) bool {
+	for _, mv := range p.Metadata {
+		if mv.Key == key {
+			return true
+		}
+	}
+	return false
+}
+
+func (p *Page) getID() string {
+	return p.findMeta("id")
+}
+
+func (p *Page) getSearch() []string {
+	s := p.findMeta("search")
+	if s != "" {
+		return nil
+	}
+	a := strings.Split(s, ",")
+	for i, s := range a {
+		a[i] = strings.TrimSpace(s)
+	}
+	return a
+}
+
+func (p *Page) isDraft() bool {
+	return p.hasMeta("draft") || p.hasMeta("todo")
 }
 
 // Siblings returns siblings of the page, to easily generate toc
@@ -158,15 +222,13 @@ func getSubPages(page *notionapi.Page, pageIDToPage map[string]*notionapi.Page) 
 	return res
 }
 
-// MetaValue represents a single key: value meta-value
-type MetaValue struct {
-	Key   string
-	Value string
-}
-
 // returns nil if this is not a meta-value block
 // meta-value block is a plain text block in format:
-// $key: value e.g. `$Id: 59`
+// $key: value
+// or:
+// @key value
+// e.g. `$Id: 59` or `@Draft`
+// We strip the '$' or '@'
 func extractMetaValueFromBlock(block *notionapi.Block) *MetaValue {
 	if block.Type != notionapi.BlockText {
 		return nil
@@ -185,15 +247,21 @@ func extractMetaValueFromBlock(block *notionapi.Block) *MetaValue {
 	if len(s) < 4 {
 		return nil
 	}
-	if s[0] != '$' {
+	isMeta := s[0] == '$' || s[0] == '@'
+	if !isMeta {
 		return nil
 	}
-	parts := strings.SplitN(s, ":", 2)
-	if len(parts) != 2 {
-		return nil
+	s = s[1:]
+	keyEnd := strings.Index(s, ":")
+	if keyEnd == -1 {
+		keyEnd = strings.Index(s, " ")
 	}
-	key := strings.ToLower(strings.TrimSpace(parts[0]))
-	value := strings.TrimSpace(parts[1])
+	key := s
+	value := ""
+	if keyEnd != -1 {
+		key = strings.TrimSpace(strings.ToLower(s[:keyEnd]))
+		value = strings.TrimSpace(s[keyEnd+1:])
+	}
 	return &MetaValue{key, value}
 }
 
@@ -234,26 +302,15 @@ func extractMeta(p *Page) {
 	for idx, block := range page.Root.Content {
 		mv := extractMetaValueFromBlock(block)
 		if mv == nil {
-			continue
+			break
 		}
-		toRemove[idx] = true
 		page.Root.Content[idx] = nil
-		// fmt.Printf("'%s' = '%s'\n", mv.Key, mv.Value)
-		switch mv.Key {
-		case "$id":
-			p.ID = mv.Value
-		case "$soid":
-			p.StackOverflowID = mv.Value
-		case "$search":
-			p.Search = strings.Split(mv.Value, ",")
-			for i, s := range p.Search {
-				p.Search[i] = strings.TrimSpace(s)
-			}
-		case "$score":
-			// ignore
-		default:
-			panicIf(true, "unknown key '%s' in page with id %s", mv.Key, normalizeID(page.ID))
+		toRemove[idx] = true
+		if !isKnownMeta(mv.Key) {
+			uri := "https://notion.so/" + normalizeID(page.ID)
+			fmt.Printf("Unknown meta value '%s' = '%s' in page %s\n", mv.Key, mv.Value, uri)
 		}
+		p.Metadata = append(p.Metadata, mv)
 	}
 	removeBlocks(page, toRemove)
 }
@@ -273,6 +330,10 @@ func bookPageFromNotionPage(book *Book, page *notionapi.Page) *Page {
 
 	for _, subPage := range subPages {
 		bookPage := bookPageFromNotionPage(book, subPage)
+		if !flgPreview && bookPage.isDraft() {
+			fmt.Printf("skipping draft page %s '%s'\n", bookPage.NotionID, bookPage.Title)
+			continue
+		}
 		bookPage.Book = book
 		res.Pages = append(res.Pages, bookPage)
 	}

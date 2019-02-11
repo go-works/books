@@ -59,7 +59,7 @@ func genBookTOCSearchMust(book *Book) {
 			title := strings.TrimSpace(article.Title)
 			uri := article.URLLastPath()
 			tocItem = []interface{}{false, uri, chapIdx, -1, title}
-			for _, syn := range article.Search {
+			for _, syn := range article.getSearch() {
 				tocItem = append(tocItem, syn)
 			}
 			toc = append(toc, tocItem)
