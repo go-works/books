@@ -8,15 +8,12 @@ require (
 	github.com/alecthomas/template v0.0.0-20160405071501-a0175ee3bccc
 	github.com/danwakefield/fnmatch v0.0.0-20160403171240-cbb64ac3d964 // indirect
 	github.com/dlclark/regexp2 v1.1.6 // indirect
-	github.com/gomarkdown/markdown v0.0.0-20181104084050-d1d0edeb5d85
 	github.com/google/shlex v0.0.0-20150127133951-6f45313302b9
-	github.com/kjk/notionapi v0.0.0-20181014095046-e713d8348edd
+	github.com/kjk/notionapi v0.0.0-20190201233602-ddf1f774f988
 	github.com/kjk/siser v0.0.0-20170927035209-f1af2d1a21bb
 	github.com/kjk/u v0.0.0-20170711051841-93181be023c9
 	github.com/mattn/go-isatty v0.0.4 // indirect
-	github.com/mattn/go-runewidth v0.0.4
 	github.com/sergi/go-diff v1.0.0 // indirect
-	github.com/shurcooL/go v0.0.0-20190121191506-3fef8c783dec
 	github.com/stretchr/testify v1.2.2
 	github.com/tdewolff/minify v2.3.5+incompatible
 	github.com/tdewolff/parse v2.3.3+incompatible // indirect
