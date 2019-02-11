@@ -13,7 +13,9 @@
       "879faa31-c357-440a-ba2e-5e0b2dbc9d1a",
       "009474d9-407d-4be5-bb43-b55429c8887d",
       "7e2ed7ca-7715-4a38-94f3-adc1ba7318d9",
-      "3fe7678a-36b1-45da-ac79-abc74efeab8f"
+      "3fe7678a-36b1-45da-ac79-abc74efeab8f",
+      "9e0b8019-4458-4233-bc96-3481c2cca02e",
+      "b8ba90fa-280a-4c3d-ad6e-cb8708f3b926"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1532156076172,
@@ -24,7 +26,7 @@
     "id": "1c780581-00ed-4b45-aab9-461f69c05ecd",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539839823673,
+    "last_edited_time": 1545690415350,
     "parent_id": "41f795bf-701d-4784-b319-7349cdb8f2de",
     "parent_table": "block",
     "properties": {
@@ -35,7 +37,7 @@
       ]
     },
     "type": "page",
-    "version": 25,
+    "version": 29,
     "content_resolved": [
       {
         "alive": true,
@@ -269,21 +271,21 @@
         "id": "879faa31-c357-440a-ba2e-5e0b2dbc9d1a",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1532156076171,
+        "last_edited_time": 1545689049574,
         "parent_id": "1c780581-00ed-4b45-aab9-461f69c05ecd",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "Mutex is not recursive"
+              "Mutex is not recursive (aka re-entrant)"
             ]
           ]
         },
         "type": "sub_header",
-        "version": 1,
+        "version": 43,
         "inline_content": [
           {
-            "Text": "Mutex is not recursive"
+            "Text": "Mutex is not recursive (aka re-entrant)"
           }
         ]
       },
@@ -337,7 +339,7 @@
         "id": "7e2ed7ca-7715-4a38-94f3-adc1ba7318d9",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1532156076172,
+        "last_edited_time": 1545689090967,
         "parent_id": "1c780581-00ed-4b45-aab9-461f69c05ecd",
         "parent_table": "block",
         "properties": {
@@ -354,7 +356,7 @@
               ]
             ],
             [
-              " is non-recursive. If the same goroutine calls "
+              " is non-recursive. Calling "
             ],
             [
               "Lock",
@@ -365,12 +367,12 @@
               ]
             ],
             [
-              " twice on the same mutex, the program will deadlock."
+              " twice in the same goroutine  will deadlock."
             ]
           ]
         },
         "type": "text",
-        "version": 1,
+        "version": 67,
         "inline_content": [
           {
             "Text": "In Go "
@@ -380,14 +382,14 @@
             "AttrFlags": 2
           },
           {
-            "Text": " is non-recursive. If the same goroutine calls "
+            "Text": " is non-recursive. Calling "
           },
           {
             "Text": "Lock",
             "AttrFlags": 2
           },
           {
-            "Text": " twice on the same mutex, the program will deadlock."
+            "Text": " twice in the same goroutine  will deadlock."
           }
         ]
       },
@@ -397,11 +399,85 @@
         "created_time": 1539839823673,
         "id": "3fe7678a-36b1-45da-ac79-abc74efeab8f",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539839823673,
+        "last_edited_time": 1545690349608,
         "parent_id": "1c780581-00ed-4b45-aab9-461f69c05ecd",
         "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "go vet",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " will warn you about copying mutexes. Here's an example warning:"
+            ]
+          ]
+        },
         "type": "text",
-        "version": 4
+        "version": 224,
+        "inline_content": [
+          {
+            "Text": "go vet",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " will warn you about copying mutexes. Here's an example warning:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1545690349837,
+        "id": "9e0b8019-4458-4233-bc96-3481c2cca02e",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1545690437784,
+        "parent_id": "1c780581-00ed-4b45-aab9-461f69c05ecd",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Shell"
+            ]
+          ],
+          "title": [
+            [
+              "\u003e go vet\n# github.com/ravendb/ravendb-go-client\n.\\document_conventions.go:151: assignment copies lock value to res: ravendb.DocumentConventions contains sync.Mutex"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 36,
+        "code": "\u003e go vet\n# github.com/ravendb/ravendb-go-client\n.\\document_conventions.go:151: assignment copies lock value to res: ravendb.DocumentConventions contains sync.Mutex",
+        "code_language": "Shell"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1545690415350,
+        "id": "b8ba90fa-280a-4c3d-ad6e-cb8708f3b926",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1545690456669,
+        "parent_id": "1c780581-00ed-4b45-aab9-461f69c05ecd",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "@TODO: link to go vet chapter"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 66,
+        "inline_content": [
+          {
+            "Text": "@TODO: link to go vet chapter"
+          }
+        ]
       }
     ],
     "title": "Mutex gotchas",
@@ -425,7 +501,7 @@
       "onboarding_completed": true,
       "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
       "time_zone": "America/Los_Angeles",
-      "version": 10
+      "version": 18
     }
   ],
   "Tables": null
