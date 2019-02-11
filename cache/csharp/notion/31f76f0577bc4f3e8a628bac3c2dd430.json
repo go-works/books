@@ -1,0 +1,109 @@
+{
+  "ID": "31f76f05-77bc-4f3e-8a62-8bac3c2dd430",
+  "Root": {
+    "alive": true,
+    "content": [
+      "e200a833-9a17-4742-b905-4413c955f05f",
+      "c8faf7fd-54fb-4a7b-9952-e77bb476e044"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1549529379292,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "31f76f05-77bc-4f3e-8a62-8bac3c2dd430",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1549789740000,
+    "parent_id": "c773038a-67ca-41d2-8a80-636f6fb881dc",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Controlling access to a variable in a Parallel.For loop"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549529379289,
+        "id": "e200a833-9a17-4742-b905-4413c955f05f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549789740000,
+        "parent_id": "31f76f05-77bc-4f3e-8a62-8bac3c2dd430",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "using System;\nusing System.Threading;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    static void Main( string[] args )\n    {\n        object sync = new object();\n        int sum = 0;\n        Parallel.For( 1, 1000, ( i ) =\u003e {\n            lock( sync ) sum = sum + i; // lock is necessary\n\n            // As a practical matter, ensure this `parallel for` executes\n            // on multiple threads by simulating a lengthy operation.\n            Thread.Sleep( 1 );\n        } );\n        Console.WriteLine( \"Correct answer should be 499500.  sum is: {0}\", sum );\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "using System;\nusing System.Threading;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    static void Main( string[] args )\n    {\n        object sync = new object();\n        int sum = 0;\n        Parallel.For( 1, 1000, ( i ) =\u003e {\n            lock( sync ) sum = sum + i; // lock is necessary\n\n            // As a practical matter, ensure this `parallel for` executes\n            // on multiple threads by simulating a lengthy operation.\n            Thread.Sleep( 1 );\n        } );\n        Console.WriteLine( \"Correct answer should be 499500.  sum is: {0}\", sum );\n    }\n}",
+        "code_language": "C#"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549529379292,
+        "id": "c8faf7fd-54fb-4a7b-9952-e77bb476e044",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549529379292,
+        "parent_id": "31f76f05-77bc-4f3e-8a62-8bac3c2dd430",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "It is not sufficient to just do sum = sum + i without the lock because the read-modify-write operation is not atomic. A thread will overwrite any external modifications to sum that occur after it has read the current value of sum, but before it stores the modified value of sum + i back into sum."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "It is not sufficient to just do sum = sum + i without the lock because the read-modify-write operation is not atomic. A thread will overwrite any external modifications to sum that occur after it has read the current value of sum, but before it stores the modified value of sum + i back into sum."
+          }
+        ]
+      }
+    ],
+    "title": "Controlling access to a variable in a Parallel.For loop",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

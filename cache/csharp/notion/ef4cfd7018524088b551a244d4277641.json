@@ -1,0 +1,421 @@
+{
+  "ID": "ef4cfd70-1852-4088-b551-a244d4277641",
+  "Root": {
+    "alive": true,
+    "content": [
+      "d32e2c84-1382-4b52-9471-83d8a3272d5f",
+      "5aea9358-b81d-4b12-96c6-007a76322e92",
+      "b35c08c3-4868-4161-a316-46f69ae166c5",
+      "fcc44ff2-1cdc-4305-9d57-1f99119f9f6c",
+      "8585349b-7aa8-4d48-972e-b20427470bb8",
+      "be225da5-0dcc-484a-99bb-2829fa17d47b",
+      "129a56c6-3316-46de-afef-f0727dfddfd4",
+      "0798aa85-ee01-4314-9a5e-daeba15c4a41",
+      "bfa493fa-d63a-4de4-9aa0-87b46cfc2a06",
+      "28b7dda5-5bc5-4d86-99fe-914acaa1a9bd",
+      "62b02bf7-1a21-4ca4-ae3c-c1fafd103e4f",
+      "e74ae363-e023-410f-8bff-56e69b9e0d45"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1549527187364,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "ef4cfd70-1852-4088-b551-a244d4277641",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1549785720000,
+    "parent_id": "815daf49-ac2a-4123-8b19-67aa9afb3da8",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Safe invoke multicast delegate"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527187360,
+        "id": "d32e2c84-1382-4b52-9471-83d8a3272d5f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527187360,
+        "parent_id": "ef4cfd70-1852-4088-b551-a244d4277641",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Ever wanted to call a multicast delegate but you want the entire invokation list to be called even if an exception occurs in any in the chain. Then you are in luck, I have created an extension method that does just that, throwing an "
+            ],
+            [
+              "AggregateException",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " only after execution of the entire list completes:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Ever wanted to call a multicast delegate but you want the entire invokation list to be called even if an exception occurs in any in the chain. Then you are in luck, I have created an extension method that does just that, throwing an "
+          },
+          {
+            "Text": "AggregateException",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " only after execution of the entire list completes:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527187362,
+        "id": "5aea9358-b81d-4b12-96c6-007a76322e92",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527187362,
+        "parent_id": "ef4cfd70-1852-4088-b551-a244d4277641",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public static class DelegateExtensions\n{\n    public static void SafeInvoke(this Delegate del,params object[] args)\n    {\n        var exceptions = new List\u003cException\u003e();"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public static class DelegateExtensions\n{\n    public static void SafeInvoke(this Delegate del,params object[] args)\n    {\n        var exceptions = new List\u003cException\u003e();",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527187363,
+        "id": "b35c08c3-4868-4161-a316-46f69ae166c5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527187363,
+        "parent_id": "ef4cfd70-1852-4088-b551-a244d4277641",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "foreach (var handler in del.GetInvocationList())\n        {\n            try\n            {\n                handler.Method.Invoke(handler.Target, args);\n            }\n            catch (Exception ex)\n            {\n                exceptions.Add(ex);\n            }\n        }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "foreach (var handler in del.GetInvocationList())\n        {\n            try\n            {\n                handler.Method.Invoke(handler.Target, args);\n            }\n            catch (Exception ex)\n            {\n                exceptions.Add(ex);\n            }\n        }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527187363,
+        "id": "fcc44ff2-1cdc-4305-9d57-1f99119f9f6c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527187363,
+        "parent_id": "ef4cfd70-1852-4088-b551-a244d4277641",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "if(exceptions.Any())\n        {\n            throw new AggregateException(exceptions);\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "if(exceptions.Any())\n        {\n            throw new AggregateException(exceptions);\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527187363,
+        "id": "8585349b-7aa8-4d48-972e-b20427470bb8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527187363,
+        "parent_id": "ef4cfd70-1852-4088-b551-a244d4277641",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class Test\n{\n    public delegate void SampleDelegate();"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class Test\n{\n    public delegate void SampleDelegate();",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527187363,
+        "id": "be225da5-0dcc-484a-99bb-2829fa17d47b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527187363,
+        "parent_id": "ef4cfd70-1852-4088-b551-a244d4277641",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public void Run()\n    {\n        SampleDelegate delegateInstance = this.Target2;\n        delegateInstance += this.Target1;"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public void Run()\n    {\n        SampleDelegate delegateInstance = this.Target2;\n        delegateInstance += this.Target1;",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527187363,
+        "id": "129a56c6-3316-46de-afef-f0727dfddfd4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527187363,
+        "parent_id": "ef4cfd70-1852-4088-b551-a244d4277641",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "try\n        {\n            delegateInstance.SafeInvoke();\n        } \n        catch(AggregateException ex)\n        {\n            // Do any exception handling here\n        }\n    }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "try\n        {\n            delegateInstance.SafeInvoke();\n        } \n        catch(AggregateException ex)\n        {\n            // Do any exception handling here\n        }\n    }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527187363,
+        "id": "0798aa85-ee01-4314-9a5e-daeba15c4a41",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527187363,
+        "parent_id": "ef4cfd70-1852-4088-b551-a244d4277641",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "private void Target1()\n    {\n        Console.WriteLine(\"Target 1 executed\");\n    }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "private void Target1()\n    {\n        Console.WriteLine(\"Target 1 executed\");\n    }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527187363,
+        "id": "bfa493fa-d63a-4de4-9aa0-87b46cfc2a06",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527187363,
+        "parent_id": "ef4cfd70-1852-4088-b551-a244d4277641",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "private void Target2()\n    {\n        Console.WriteLine(\"Target 2 executed\");\n        throw new Exception();\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "private void Target2()\n    {\n        Console.WriteLine(\"Target 2 executed\");\n        throw new Exception();\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527187363,
+        "id": "28b7dda5-5bc5-4d86-99fe-914acaa1a9bd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527187363,
+        "parent_id": "ef4cfd70-1852-4088-b551-a244d4277641",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This outputs:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This outputs:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527187363,
+        "id": "62b02bf7-1a21-4ca4-ae3c-c1fafd103e4f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527187363,
+        "parent_id": "ef4cfd70-1852-4088-b551-a244d4277641",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "Target 2 executed\nTarget 1 executed"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "Target 2 executed\nTarget 1 executed",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527187364,
+        "id": "e74ae363-e023-410f-8bff-56e69b9e0d45",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527187364,
+        "parent_id": "ef4cfd70-1852-4088-b551-a244d4277641",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Invoking directly, without "
+            ],
+            [
+              "SaveInvoke",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", would only execute Target 2."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Invoking directly, without "
+          },
+          {
+            "Text": "SaveInvoke",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", would only execute Target 2."
+          }
+        ]
+      }
+    ],
+    "title": "Safe invoke multicast delegate",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

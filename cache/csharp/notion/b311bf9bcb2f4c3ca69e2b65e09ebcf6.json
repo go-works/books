@@ -1,0 +1,237 @@
+{
+  "ID": "b311bf9b-cb2f-4c3c-a69e-2b65e09ebcf6",
+  "Root": {
+    "alive": true,
+    "content": [
+      "d9566cc8-6659-4c79-9345-6140280a12c4",
+      "3963348f-a0df-4abb-b69a-32b7daab89f6",
+      "b3cff396-297f-4a03-b452-9bf04248b2d7",
+      "1375151a-0e03-4939-9aba-67add94c826e",
+      "ad7efeef-974f-4809-9076-80fc243634df",
+      "690a6b67-797c-4391-af0f-b84c3c639efe"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1549527301348,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "b311bf9b-cb2f-4c3c-a69e-2b65e09ebcf6",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1549786080000,
+    "parent_id": "0772a9e8-ab55-46c8-8848-6042b5dca448",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Basic UDP Client"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527301347,
+        "id": "d9566cc8-6659-4c79-9345-6140280a12c4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527301347,
+        "parent_id": "b311bf9b-cb2f-4c3c-a69e-2b65e09ebcf6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This code example creates a UDP client then sends “Hello World” across the network to the intended recipient. A listener does not have to be active, as UDP Is connectionless and will broadcast the message regardless. Once the message is sent, the clients work is done."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This code example creates a UDP client then sends “Hello World” across the network to the intended recipient. A listener does not have to be active, as UDP Is connectionless and will broadcast the message regardless. Once the message is sent, the clients work is done."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527301348,
+        "id": "3963348f-a0df-4abb-b69a-32b7daab89f6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527301348,
+        "parent_id": "b311bf9b-cb2f-4c3c-a69e-2b65e09ebcf6",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "byte[] data = Encoding.ASCII.GetBytes(\"Hello World\");\nstring ipAddress = \"192.168.1.141\";\nstring sendPort = 55600;\ntry\n{\n     using (var client = new UdpClient())\n     {\n         IPEndPoint ep = new IPEndPoint(IPAddress.Parse(ipAddress), sendPort);\n         client.Connect(ep);\n         client.Send(data, data.Length);\n     }\n}\ncatch (Exception ex)\n{\n     Console.WriteLine(ex.ToString());\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "byte[] data = Encoding.ASCII.GetBytes(\"Hello World\");\nstring ipAddress = \"192.168.1.141\";\nstring sendPort = 55600;\ntry\n{\n     using (var client = new UdpClient())\n     {\n         IPEndPoint ep = new IPEndPoint(IPAddress.Parse(ipAddress), sendPort);\n         client.Connect(ep);\n         client.Send(data, data.Length);\n     }\n}\ncatch (Exception ex)\n{\n     Console.WriteLine(ex.ToString());\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527301348,
+        "id": "b3cff396-297f-4a03-b452-9bf04248b2d7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527301348,
+        "parent_id": "b311bf9b-cb2f-4c3c-a69e-2b65e09ebcf6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Below is an example of a UDP listener to complement the above client. It will constantly sit and listen for traffic on a given port and simply write that data to the console. This example contains a control flag ‘"
+            ],
+            [
+              "done",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "’ that is not set internally and relies on something to set this to allow for ending the listener and exiting."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Below is an example of a UDP listener to complement the above client. It will constantly sit and listen for traffic on a given port and simply write that data to the console. This example contains a control flag ‘"
+          },
+          {
+            "Text": "done",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "’ that is not set internally and relies on something to set this to allow for ending the listener and exiting."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527301348,
+        "id": "1375151a-0e03-4939-9aba-67add94c826e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527301348,
+        "parent_id": "b311bf9b-cb2f-4c3c-a69e-2b65e09ebcf6",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "bool done = false;\nint listenPort = 55600;\nusing(UdpClinet listener = new UdpClient(listenPort))\n{\n    IPEndPoint listenEndPoint = new IPEndPoint(IPAddress.Any, listenPort);\n    while(!done)\n    {\n        byte[] receivedData = listener.Receive(ref listenPort);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "bool done = false;\nint listenPort = 55600;\nusing(UdpClinet listener = new UdpClient(listenPort))\n{\n    IPEndPoint listenEndPoint = new IPEndPoint(IPAddress.Any, listenPort);\n    while(!done)\n    {\n        byte[] receivedData = listener.Receive(ref listenPort);",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527301348,
+        "id": "ad7efeef-974f-4809-9076-80fc243634df",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527301348,
+        "parent_id": "b311bf9b-cb2f-4c3c-a69e-2b65e09ebcf6",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "Console.WriteLine(\"Received broadcast message from client {0}\", listenEndPoint.ToString());"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "Console.WriteLine(\"Received broadcast message from client {0}\", listenEndPoint.ToString());",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527301348,
+        "id": "690a6b67-797c-4391-af0f-b84c3c639efe",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527301348,
+        "parent_id": "b311bf9b-cb2f-4c3c-a69e-2b65e09ebcf6",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "Console.WriteLine(\"Decoded data is:\");\n        Console.WriteLine(Encoding.ASCII.GetString(receivedData)); //should be \"Hello World\" sent from above client\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "Console.WriteLine(\"Decoded data is:\");\n        Console.WriteLine(Encoding.ASCII.GetString(receivedData)); //should be \"Hello World\" sent from above client\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Basic UDP Client",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

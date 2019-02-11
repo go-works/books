@@ -1,0 +1,391 @@
+{
+  "ID": "ddc7dfec-535e-4f48-8f08-413cf9f65939",
+  "Root": {
+    "alive": true,
+    "content": [
+      "958bb6d1-d961-441b-9917-7e82d62a4cc8",
+      "d3d8df48-c27a-4b81-b87b-af764b21d5ae",
+      "1cff7833-cdc2-4131-aa75-1c06baf913fd",
+      "912936ca-2190-4df1-be87-dc278ddfa1e7",
+      "7b6bff14-7248-495d-bca1-9086e53f1d65",
+      "b3daf726-d3a9-43fe-b3bf-52b247ab40da",
+      "dbb49e3e-3445-4dc6-89a1-5b371fd7c1ea",
+      "f61a1335-c6bf-4b55-ab4b-f99ac57b3256",
+      "3437d6d3-a432-4132-bca9-6e3037c58388"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1549527144256,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "ddc7dfec-535e-4f48-8f08-413cf9f65939",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1549622700000,
+    "parent_id": "9b304904-2267-43ba-a97e-7fc56fa64c3c",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Disposing of the Singleton instance when it is no longer needed"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527144252,
+        "id": "958bb6d1-d961-441b-9917-7e82d62a4cc8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527144252,
+        "parent_id": "ddc7dfec-535e-4f48-8f08-413cf9f65939",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Most examples show instantiating and holding a "
+            ],
+            [
+              "LazySingleton",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " object until the owning application has terminated, even if that object is no longer needed by the application. A solution to this is to implement "
+            ],
+            [
+              "IDisposable",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and set the object instance to null as follows:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Most examples show instantiating and holding a "
+          },
+          {
+            "Text": "LazySingleton",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " object until the owning application has terminated, even if that object is no longer needed by the application. A solution to this is to implement "
+          },
+          {
+            "Text": "IDisposable",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and set the object instance to null as follows:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527144255,
+        "id": "d3d8df48-c27a-4b81-b87b-af764b21d5ae",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527144255,
+        "parent_id": "ddc7dfec-535e-4f48-8f08-413cf9f65939",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class LazySingleton : IDisposable\n{\n    private static volatile Lazy\u003cLazySingleton\u003e _instance;\n    private static volatile int _instanceCount = 0;\n    private bool _alreadyDisposed = false;"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class LazySingleton : IDisposable\n{\n    private static volatile Lazy\u003cLazySingleton\u003e _instance;\n    private static volatile int _instanceCount = 0;\n    private bool _alreadyDisposed = false;",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527144255,
+        "id": "1cff7833-cdc2-4131-aa75-1c06baf913fd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527144255,
+        "parent_id": "ddc7dfec-535e-4f48-8f08-413cf9f65939",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public static LazySingleton Instance\n{\n    get\n    {\n        if (_instance == null)\n            _instance = new Lazy\u003cLazySingleton\u003e(() =\u003e new LazySingleton());\n        _instanceCount++;\n        return _instance.Value;\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public static LazySingleton Instance\n{\n    get\n    {\n        if (_instance == null)\n            _instance = new Lazy\u003cLazySingleton\u003e(() =\u003e new LazySingleton());\n        _instanceCount++;\n        return _instance.Value;\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527144255,
+        "id": "912936ca-2190-4df1-be87-dc278ddfa1e7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527144255,
+        "parent_id": "ddc7dfec-535e-4f48-8f08-413cf9f65939",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "private LazySingleton() { }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "private LazySingleton() { }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527144256,
+        "id": "7b6bff14-7248-495d-bca1-9086e53f1d65",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527144256,
+        "parent_id": "ddc7dfec-535e-4f48-8f08-413cf9f65939",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Public implementation of Dispose pattern callable by consumers.\npublic void Dispose()\n{ \n    if (--_instanceCount == 0) // No more references to this object.\n    {       \n       Dispose(true);\n       GC.SuppressFinalize(this);           \n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Public implementation of Dispose pattern callable by consumers.\npublic void Dispose()\n{ \n    if (--_instanceCount == 0) // No more references to this object.\n    {       \n       Dispose(true);\n       GC.SuppressFinalize(this);           \n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527144256,
+        "id": "b3daf726-d3a9-43fe-b3bf-52b247ab40da",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527144256,
+        "parent_id": "ddc7dfec-535e-4f48-8f08-413cf9f65939",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Protected implementation of Dispose pattern.\nprotected virtual void Dispose(bool disposing)\n{\n    if (_alreadyDisposed) return; \n  \n    if (disposing) \n    {\n        _instance = null; // Allow GC to dispose of this instance.\n        // Free any other managed objects here.\n    }\n  \n    // Free any unmanaged objects here.\n    _alreadyDisposed = true;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Protected implementation of Dispose pattern.\nprotected virtual void Dispose(bool disposing)\n{\n    if (_alreadyDisposed) return; \n  \n    if (disposing) \n    {\n        _instance = null; // Allow GC to dispose of this instance.\n        // Free any other managed objects here.\n    }\n  \n    // Free any unmanaged objects here.\n    _alreadyDisposed = true;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527144256,
+        "id": "dbb49e3e-3445-4dc6-89a1-5b371fd7c1ea",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527144256,
+        "parent_id": "ddc7dfec-535e-4f48-8f08-413cf9f65939",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The above code disposes of the instance prior to application termination but only if consumers call "
+            ],
+            [
+              "Dispose()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " on the object after every use. Since there is no guarantee that this will happen or a way to force it, there is also no guarantee that the instance will ever be disposed. But if this class is being used internally then it’s easier to ensure that the "
+            ],
+            [
+              "Dispose()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method is being called after each use. An example follows:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The above code disposes of the instance prior to application termination but only if consumers call "
+          },
+          {
+            "Text": "Dispose()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " on the object after every use. Since there is no guarantee that this will happen or a way to force it, there is also no guarantee that the instance will ever be disposed. But if this class is being used internally then it’s easier to ensure that the "
+          },
+          {
+            "Text": "Dispose()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method is being called after each use. An example follows:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527144256,
+        "id": "f61a1335-c6bf-4b55-ab4b-f99ac57b3256",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527144256,
+        "parent_id": "ddc7dfec-535e-4f48-8f08-413cf9f65939",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class Program\n{\n    public static void Main()\n    {\n        using (var instance = LazySingleton.Instance)\n        {\n            // Do work with instance\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class Program\n{\n    public static void Main()\n    {\n        using (var instance = LazySingleton.Instance)\n        {\n            // Do work with instance\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527144256,
+        "id": "3437d6d3-a432-4132-bca9-6e3037c58388",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527144256,
+        "parent_id": "ddc7dfec-535e-4f48-8f08-413cf9f65939",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Please note that this example is "
+            ],
+            [
+              "not thread-safe",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Please note that this example is "
+          },
+          {
+            "Text": "not thread-safe",
+            "AttrFlags": 1
+          },
+          {
+            "Text": "."
+          }
+        ]
+      }
+    ],
+    "title": "Disposing of the Singleton instance when it is no longer needed",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

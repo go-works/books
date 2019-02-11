@@ -1,0 +1,513 @@
+{
+  "ID": "974217d2-743c-416c-868f-3b32f16a2f4c",
+  "Root": {
+    "alive": true,
+    "content": [
+      "b6f5e999-40ca-4316-a698-04fdd55db00f",
+      "3c631249-30e9-4ca8-b176-0f87c8ffe25c",
+      "10fd1dae-d87a-42d4-9003-330b6035d6a6",
+      "5df78ce6-8fa7-48c1-9dec-5b76a5e49180",
+      "a8c1fe66-0cd3-4bda-8c07-ff86fd38a4ce",
+      "117d44d8-96e4-406e-824c-3731d841ecd9",
+      "1ef106cd-c3ac-4fd4-8f2e-620320be421c",
+      "4ef6de1f-341e-4fb2-a712-014b6b1cb5d4",
+      "ee58c4d3-45ff-40c2-9c62-5e06bd98c4fe",
+      "5f296c6a-0017-4d23-92da-9c0bb5508815",
+      "319c13c4-b201-433d-b7a4-e9425ab81c9e",
+      "64dc33d7-843b-43ce-8ffa-9baa1d0b5035",
+      "59a736b0-e6a9-4e47-a3c4-d0dd538a1643"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1549525278273,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "974217d2-743c-416c-868f-3b32f16a2f4c",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1549612920000,
+    "parent_id": "3367ad51-2d2f-44db-b5a0-5d201dfd7ee1",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Base class with recursive type specification"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 12,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525278268,
+        "id": "b6f5e999-40ca-4316-a698-04fdd55db00f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525278268,
+        "parent_id": "974217d2-743c-416c-868f-3b32f16a2f4c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "One time definition of a generic base class with recursive type specifier. Each node has one parent and multiple children."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "One time definition of a generic base class with recursive type specifier. Each node has one parent and multiple children."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525278270,
+        "id": "3c631249-30e9-4ca8-b176-0f87c8ffe25c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549612920000,
+        "parent_id": "974217d2-743c-416c-868f-3b32f16a2f4c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "/// \u003csummary\u003e\n/// Generic base class for a tree structure\n/// \u003c/summary\u003e\n/// \u003ctypeparam name=\"T\"\u003eThe node type of the tree\u003c/typeparam\u003e\npublic abstract class Tree\u003cT\u003e where T : Tree\u003cT\u003e\n{\n    /// \u003csummary\u003e\n    /// Constructor sets the parent node and adds this node to the parent's child nodes\n    /// \u003c/summary\u003e\n    /// \u003cparam name=\"parent\"\u003eThe parent node or null if a root\u003c/param\u003e\n    protected Tree(T parent)\n    {\n        this.Parent=parent;\n        this.Children=new List\u003cT\u003e();\n        if(parent!=null)\n        {\n            parent.Children.Add(this as T);\n        }\n    }\n    public T Parent { get; private set; }\n    public List\u003cT\u003e Children { get; private set; }\n    public bool IsRoot { get { return Parent==null; } }\n    public bool IsLeaf { get { return Children.Count==0; } }\n    /// \u003csummary\u003e\n    /// Returns the number of hops to the root object\n    /// \u003c/summary\u003e\n    public int Level { get { return IsRoot ? 0 : Parent.Level+1; } }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "/// \u003csummary\u003e\n/// Generic base class for a tree structure\n/// \u003c/summary\u003e\n/// \u003ctypeparam name=\"T\"\u003eThe node type of the tree\u003c/typeparam\u003e\npublic abstract class Tree\u003cT\u003e where T : Tree\u003cT\u003e\n{\n    /// \u003csummary\u003e\n    /// Constructor sets the parent node and adds this node to the parent's child nodes\n    /// \u003c/summary\u003e\n    /// \u003cparam name=\"parent\"\u003eThe parent node or null if a root\u003c/param\u003e\n    protected Tree(T parent)\n    {\n        this.Parent=parent;\n        this.Children=new List\u003cT\u003e();\n        if(parent!=null)\n        {\n            parent.Children.Add(this as T);\n        }\n    }\n    public T Parent { get; private set; }\n    public List\u003cT\u003e Children { get; private set; }\n    public bool IsRoot { get { return Parent==null; } }\n    public bool IsLeaf { get { return Children.Count==0; } }\n    /// \u003csummary\u003e\n    /// Returns the number of hops to the root object\n    /// \u003c/summary\u003e\n    public int Level { get { return IsRoot ? 0 : Parent.Level+1; } }\n}",
+        "code_language": "C#"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525278272,
+        "id": "10fd1dae-d87a-42d4-9003-330b6035d6a6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525278272,
+        "parent_id": "974217d2-743c-416c-868f-3b32f16a2f4c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The above can be re-used every time a tree hierarchy of objects needs to be defined. The node object in the tree has to inherit from the base class with"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The above can be re-used every time a tree hierarchy of objects needs to be defined. The node object in the tree has to inherit from the base class with"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525278272,
+        "id": "5df78ce6-8fa7-48c1-9dec-5b76a5e49180",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549612920000,
+        "parent_id": "974217d2-743c-416c-868f-3b32f16a2f4c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "public class MyNode : Tree\u003cMyNode\u003e\n{\n    // stuff\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "public class MyNode : Tree\u003cMyNode\u003e\n{\n    // stuff\n}",
+        "code_language": "C#"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525278272,
+        "id": "a8c1fe66-0cd3-4bda-8c07-ff86fd38a4ce",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525278272,
+        "parent_id": "974217d2-743c-416c-868f-3b32f16a2f4c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "each node class knows where it is in the hierarchy, what the parent object is as well as what the children objects are. Several built in types use a tree structure, like "
+            ],
+            [
+              "Control",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " or "
+            ],
+            [
+              "XmlElement",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and the above "
+            ],
+            [
+              "Tree\u003cT\u003e",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " can be used as a base class of "
+            ],
+            [
+              "any",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " type in your code."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "each node class knows where it is in the hierarchy, what the parent object is as well as what the children objects are. Several built in types use a tree structure, like "
+          },
+          {
+            "Text": "Control",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " or "
+          },
+          {
+            "Text": "XmlElement",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and the above "
+          },
+          {
+            "Text": "Tree\u003cT\u003e",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " can be used as a base class of "
+          },
+          {
+            "Text": "any",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " type in your code."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525278272,
+        "id": "117d44d8-96e4-406e-824c-3731d841ecd9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525278272,
+        "parent_id": "974217d2-743c-416c-868f-3b32f16a2f4c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "For example, to create a hierarchy of parts where the total weight is calculated from the weight of "
+            ],
+            [
+              "all",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " the children, do the following:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "For example, to create a hierarchy of parts where the total weight is calculated from the weight of "
+          },
+          {
+            "Text": "all",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " the children, do the following:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525278272,
+        "id": "1ef106cd-c3ac-4fd4-8f2e-620320be421c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549612920000,
+        "parent_id": "974217d2-743c-416c-868f-3b32f16a2f4c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "public class Part : Tree\u003cPart\u003e\n{\n    public static readonly Part Empty = new Part(null) { Weight=0 };\n    public Part(Part parent) : base(parent) { }\n    public Part Add(float weight)\n    {\n        return new Part(this) { Weight=weight };\n    }\n    public float Weight { get; set; }\n\n\t\tpublic float TotalWeight { get { return Weight+Children.Sum((part) =\u003e part.TotalWeight); } }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 8,
+        "code": "public class Part : Tree\u003cPart\u003e\n{\n    public static readonly Part Empty = new Part(null) { Weight=0 };\n    public Part(Part parent) : base(parent) { }\n    public Part Add(float weight)\n    {\n        return new Part(this) { Weight=weight };\n    }\n    public float Weight { get; set; }\n\n\t\tpublic float TotalWeight { get { return Weight+Children.Sum((part) =\u003e part.TotalWeight); } }\n}",
+        "code_language": "C#"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525278273,
+        "id": "4ef6de1f-341e-4fb2-a712-014b6b1cb5d4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525278273,
+        "parent_id": "974217d2-743c-416c-868f-3b32f16a2f4c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "to be used as"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "to be used as"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525278273,
+        "id": "ee58c4d3-45ff-40c2-9c62-5e06bd98c4fe",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549612920000,
+        "parent_id": "974217d2-743c-416c-868f-3b32f16a2f4c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "// [Q:2.5] -- [P:4.2] -- [R:0.4]\n//    \\\n//      - [Z:0.8]\nvar Q = Part.Empty.Add(2.5f);\nvar P = Q.Add(4.2f);\nvar R = P.Add(0.4f);\nvar Z = Q.Add(0.9f);\n\n// 2.5+(4.2+0.4)+0.9 = 8.0\nfloat weight = Q.TotalWeight;"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "// [Q:2.5] -- [P:4.2] -- [R:0.4]\n//    \\\n//      - [Z:0.8]\nvar Q = Part.Empty.Add(2.5f);\nvar P = Q.Add(4.2f);\nvar R = P.Add(0.4f);\nvar Z = Q.Add(0.9f);\n\n// 2.5+(4.2+0.4)+0.9 = 8.0\nfloat weight = Q.TotalWeight;",
+        "code_language": "C#"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525278273,
+        "id": "5f296c6a-0017-4d23-92da-9c0bb5508815",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525278273,
+        "parent_id": "974217d2-743c-416c-868f-3b32f16a2f4c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Another example would in the definition of relative coordinate frames. In this case the true position of the coordinate frame depends on the positions of "
+            ],
+            [
+              "all",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " the parent coordinate frames."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Another example would in the definition of relative coordinate frames. In this case the true position of the coordinate frame depends on the positions of "
+          },
+          {
+            "Text": "all",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " the parent coordinate frames."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525278273,
+        "id": "319c13c4-b201-433d-b7a4-e9425ab81c9e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549612920000,
+        "parent_id": "974217d2-743c-416c-868f-3b32f16a2f4c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "public class RelativeCoordinate : Tree\u003cRelativeCoordinate\u003e\n{\n    public static readonly RelativeCoordinate Start = new RelativeCoordinate(null, PointF.Empty) { };\n    public RelativeCoordinate(RelativeCoordinate parent, PointF local_position)\n        : base(parent)\n    {\n        this.LocalPosition=local_position;\n    }\n    public PointF LocalPosition { get; set; }\n    public PointF GlobalPosition\n    {\n        get\n        {\n            if(IsRoot) return LocalPosition;\n            var parent_pos = Parent.GlobalPosition;\n            return new PointF(parent_pos.X+LocalPosition.X, parent_pos.Y+LocalPosition.Y);\n        }\n    }\n    public float TotalDistance\n    {\n        get\n        {\n            float dist = (float)Math.Sqrt(LocalPosition.X*LocalPosition.X+LocalPosition.Y*LocalPosition.Y);\n            return IsRoot ? dist : Parent.TotalDistance+dist;\n        }\n    }\n    public RelativeCoordinate Add(PointF local_position)\n    {\n        return new RelativeCoordinate(this, local_position);\n    }\n    public RelativeCoordinate Add(float x, float y)\n    {\n        return Add(new PointF(x, y));\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "public class RelativeCoordinate : Tree\u003cRelativeCoordinate\u003e\n{\n    public static readonly RelativeCoordinate Start = new RelativeCoordinate(null, PointF.Empty) { };\n    public RelativeCoordinate(RelativeCoordinate parent, PointF local_position)\n        : base(parent)\n    {\n        this.LocalPosition=local_position;\n    }\n    public PointF LocalPosition { get; set; }\n    public PointF GlobalPosition\n    {\n        get\n        {\n            if(IsRoot) return LocalPosition;\n            var parent_pos = Parent.GlobalPosition;\n            return new PointF(parent_pos.X+LocalPosition.X, parent_pos.Y+LocalPosition.Y);\n        }\n    }\n    public float TotalDistance\n    {\n        get\n        {\n            float dist = (float)Math.Sqrt(LocalPosition.X*LocalPosition.X+LocalPosition.Y*LocalPosition.Y);\n            return IsRoot ? dist : Parent.TotalDistance+dist;\n        }\n    }\n    public RelativeCoordinate Add(PointF local_position)\n    {\n        return new RelativeCoordinate(this, local_position);\n    }\n    public RelativeCoordinate Add(float x, float y)\n    {\n        return Add(new PointF(x, y));\n    }\n}",
+        "code_language": "C#"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525278273,
+        "id": "64dc33d7-843b-43ce-8ffa-9baa1d0b5035",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525278273,
+        "parent_id": "974217d2-743c-416c-868f-3b32f16a2f4c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "to be used as"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "to be used as"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525278273,
+        "id": "59a736b0-e6a9-4e47-a3c4-d0dd538a1643",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549612920000,
+        "parent_id": "974217d2-743c-416c-868f-3b32f16a2f4c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "// Define the following coordinate system hierarchy\n//\n// o--\u003e [A1] --+--\u003e [B1] -----\u003e [C1]\n//             |     \n//             +--\u003e [B2] --+--\u003e [C2]\n//                         |\n//                         +--\u003e [C3]\n\nvar A1 = RelativeCoordinate.Start;\nvar B1 = A1.Add(100, 20);\nvar B2 = A1.Add(160, 10);\n\nvar C1 = B1.Add(120, -40);\nvar C2 = B2.Add(80, -20);\nvar C3 = B2.Add(60, -30);\n\ndouble dist1 = C1.TotalDistance;"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "// Define the following coordinate system hierarchy\n//\n// o--\u003e [A1] --+--\u003e [B1] -----\u003e [C1]\n//             |     \n//             +--\u003e [B2] --+--\u003e [C2]\n//                         |\n//                         +--\u003e [C3]\n\nvar A1 = RelativeCoordinate.Start;\nvar B1 = A1.Add(100, 20);\nvar B2 = A1.Add(160, 10);\n\nvar C1 = B1.Add(120, -40);\nvar C2 = B2.Add(80, -20);\nvar C3 = B2.Add(60, -30);\n\ndouble dist1 = C1.TotalDistance;",
+        "code_language": "C#"
+      }
+    ],
+    "title": "Base class with recursive type specification",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

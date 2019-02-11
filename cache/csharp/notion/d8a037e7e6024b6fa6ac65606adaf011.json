@@ -1,0 +1,292 @@
+{
+  "ID": "d8a037e7-e602-4b6f-a6ac-65606adaf011",
+  "Root": {
+    "alive": true,
+    "content": [
+      "1d3bfa85-9368-4a46-a08c-83f125159341",
+      "62a88814-f365-47fb-8649-34ca982aa198",
+      "52151335-6f0f-4304-929d-dbfbf313809d",
+      "502478bc-5ee8-4b8d-b147-2bdb167f3554",
+      "802ab2d0-5f33-4c0c-94b6-de5ef2a38746",
+      "c6ff4434-f54c-441b-96bf-16159181d7dd",
+      "a7e4b576-e92d-4fb7-893a-ca9df6968c87"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1549530363385,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "d8a037e7-e602-4b6f-a6ac-65606adaf011",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1549789560000,
+    "parent_id": "1298a931-d39e-4065-9767-f9bdea87d202",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Pseudocode for asyncawait keywords"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549530363383,
+        "id": "1d3bfa85-9368-4a46-a08c-83f125159341",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549530363383,
+        "parent_id": "d8a037e7-e602-4b6f-a6ac-65606adaf011",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Consider a simple asynchronous method:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Consider a simple asynchronous method:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549530363384,
+        "id": "62a88814-f365-47fb-8649-34ca982aa198",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549530363384,
+        "parent_id": "d8a037e7-e602-4b6f-a6ac-65606adaf011",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "async Task Foo()\n{\n    Bar();\n    await Baz();\n    Qux();\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "async Task Foo()\n{\n    Bar();\n    await Baz();\n    Qux();\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549530363384,
+        "id": "52151335-6f0f-4304-929d-dbfbf313809d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549530363384,
+        "parent_id": "d8a037e7-e602-4b6f-a6ac-65606adaf011",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Simplifying, we can say that this code actually means the following:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Simplifying, we can say that this code actually means the following:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549530363384,
+        "id": "502478bc-5ee8-4b8d-b147-2bdb167f3554",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549530363384,
+        "parent_id": "d8a037e7-e602-4b6f-a6ac-65606adaf011",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "Task Foo()\n{\n    Bar();\n    Task t = Baz();\n    var context = SynchronizationContext.Current;\n    t.ContinueWith(task) =\u003e\n    {\n        if (context == null)\n            Qux();\n        else\n            context.Post((obj) =\u003e Qux(), null);\n    }, TaskScheduler.Current);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "Task Foo()\n{\n    Bar();\n    Task t = Baz();\n    var context = SynchronizationContext.Current;\n    t.ContinueWith(task) =\u003e\n    {\n        if (context == null)\n            Qux();\n        else\n            context.Post((obj) =\u003e Qux(), null);\n    }, TaskScheduler.Current);",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549530363384,
+        "id": "802ab2d0-5f33-4c0c-94b6-de5ef2a38746",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549530363384,
+        "parent_id": "d8a037e7-e602-4b6f-a6ac-65606adaf011",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "return t;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "return t;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549530363384,
+        "id": "c6ff4434-f54c-441b-96bf-16159181d7dd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549530363384,
+        "parent_id": "d8a037e7-e602-4b6f-a6ac-65606adaf011",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "It means that "
+            ],
+            [
+              "async",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "/"
+            ],
+            [
+              "await",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " keywords use current synchronization context if it exists. I.e. you can write library code that would work correctly in UI, Web, and Console applications."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "It means that "
+          },
+          {
+            "Text": "async",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "/"
+          },
+          {
+            "Text": "await",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " keywords use current synchronization context if it exists. I.e. you can write library code that would work correctly in UI, Web, and Console applications."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549530363385,
+        "id": "a7e4b576-e92d-4fb7-893a-ca9df6968c87",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549530363385,
+        "parent_id": "d8a037e7-e602-4b6f-a6ac-65606adaf011",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Source article",
+              [
+                [
+                  "a",
+                  "https://blogs.msdn.microsoft.com/pfxteam/2012/01/20/await-synchronizationcontext-and-console-apps/"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Source article",
+            "Link": "https://blogs.msdn.microsoft.com/pfxteam/2012/01/20/await-synchronizationcontext-and-console-apps/"
+          },
+          {
+            "Text": "."
+          }
+        ]
+      }
+    ],
+    "title": "Pseudocode for asyncawait keywords",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

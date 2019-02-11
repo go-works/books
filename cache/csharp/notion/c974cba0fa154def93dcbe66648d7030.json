@@ -1,0 +1,137 @@
+{
+  "ID": "c974cba0-fa15-4def-93dc-be66648d7030",
+  "Root": {
+    "alive": true,
+    "content": [
+      "8d56f4ba-f6ea-43fa-a370-7e8799db4656",
+      "32e620ee-2b8e-4eef-83e2-ccf246f72ca6",
+      "87d4b658-2ee9-48b1-bdb3-157e7b7022cd"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1549527341383,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "c974cba0-fa15-4def-93dc-be66648d7030",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1549616580000,
+    "parent_id": "0393cbbb-eb0f-4444-96fc-721fdf656e0e",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Checking if one array contains another array"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527341380,
+        "id": "8d56f4ba-f6ea-43fa-a370-7e8799db4656",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527341380,
+        "parent_id": "c974cba0-fa15-4def-93dc-be66648d7030",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public static class ArrayHelpers\n{\n    public static bool Contains\u003cT\u003e(this T[] array, T[] candidate)\n    {\n        if (IsEmptyLocate(array, candidate))\n            return false;\n\n        if (candidate.Length \u003e array.Length)\n            return false;\n\n        for (int a = 0; a \u003c= array.Length - candidate.Length; a++)\n        {\n            if (array[a].Equals(candidate[0]))\n            {\n                int i = 0;\n                for (; i \u003c candidate.Length; i++)\n                {\n                    if (false == array[a + i].Equals(candidate[i]))\n                        break;\n                }\n                if (i == candidate.Length)\n                    return true;\n            }\n        }\n        return false;\n    }\n\n    static bool IsEmptyLocate\u003cT\u003e(T[] array, T[] candidate)\n    {\n        return array == null\n            || candidate == null\n            || array.Length == 0\n            || candidate.Length == 0\n            || candidate.Length \u003e array.Length;\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public static class ArrayHelpers\n{\n    public static bool Contains\u003cT\u003e(this T[] array, T[] candidate)\n    {\n        if (IsEmptyLocate(array, candidate))\n            return false;\n\n        if (candidate.Length \u003e array.Length)\n            return false;\n\n        for (int a = 0; a \u003c= array.Length - candidate.Length; a++)\n        {\n            if (array[a].Equals(candidate[0]))\n            {\n                int i = 0;\n                for (; i \u003c candidate.Length; i++)\n                {\n                    if (false == array[a + i].Equals(candidate[i]))\n                        break;\n                }\n                if (i == candidate.Length)\n                    return true;\n            }\n        }\n        return false;\n    }\n\n    static bool IsEmptyLocate\u003cT\u003e(T[] array, T[] candidate)\n    {\n        return array == null\n            || candidate == null\n            || array.Length == 0\n            || candidate.Length == 0\n            || candidate.Length \u003e array.Length;\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527341383,
+        "id": "32e620ee-2b8e-4eef-83e2-ccf246f72ca6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527341383,
+        "parent_id": "c974cba0-fa15-4def-93dc-be66648d7030",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "/// Sample"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "/// Sample"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527341383,
+        "id": "87d4b658-2ee9-48b1-bdb3-157e7b7022cd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527341383,
+        "parent_id": "c974cba0-fa15-4def-93dc-be66648d7030",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "byte[] EndOfStream = Encoding.ASCII.GetBytes(\"---3141592---\");\nbyte[] FakeReceivedFromStream = Encoding.ASCII.GetBytes(\"Hello, world!!!---3141592---\");\nif (FakeReceivedFromStream.Contains(EndOfStream))\n{\n    Console.WriteLine(\"Message received\");\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "byte[] EndOfStream = Encoding.ASCII.GetBytes(\"---3141592---\");\nbyte[] FakeReceivedFromStream = Encoding.ASCII.GetBytes(\"Hello, world!!!---3141592---\");\nif (FakeReceivedFromStream.Contains(EndOfStream))\n{\n    Console.WriteLine(\"Message received\");\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Checking if one array contains another array",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

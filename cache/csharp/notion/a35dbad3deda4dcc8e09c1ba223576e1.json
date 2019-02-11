@@ -1,0 +1,195 @@
+{
+  "ID": "a35dbad3-deda-4dcc-8e09-c1ba223576e1",
+  "Root": {
+    "alive": true,
+    "content": [
+      "2a65fa62-a788-46a1-ab9a-a2e2f48f1ad4",
+      "dd186e24-7354-46ad-b86d-822a46a153f2",
+      "9153af57-b10a-4205-8e3f-d8039687a11f",
+      "8a76b1be-015e-4f61-af85-a25587c52a59",
+      "7e9ab0ae-4b1b-4a7a-a5c6-9211cfb5e702"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1549530103542,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "a35dbad3-deda-4dcc-8e09-c1ba223576e1",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1549622760000,
+    "parent_id": "3bfa5008-c262-4959-8331-361cc5d24a98",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Dependency injection using MEF"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549530103540,
+        "id": "2a65fa62-a788-46a1-ab9a-a2e2f48f1ad4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549530103540,
+        "parent_id": "a35dbad3-deda-4dcc-8e09-c1ba223576e1",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public interface ILogger\n{\n    void Log(string message);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public interface ILogger\n{\n    void Log(string message);\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549530103542,
+        "id": "dd186e24-7354-46ad-b86d-822a46a153f2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549530103542,
+        "parent_id": "a35dbad3-deda-4dcc-8e09-c1ba223576e1",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "[Export(typeof(ILogger))]\n[ExportMetadata(\"Name\", \"Console\")]  \npublic class ConsoleLogger:ILogger\n{\n    public void Log(string message)\n    {\n        Console.WriteLine(message);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "[Export(typeof(ILogger))]\n[ExportMetadata(\"Name\", \"Console\")]  \npublic class ConsoleLogger:ILogger\n{\n    public void Log(string message)\n    {\n        Console.WriteLine(message);\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549530103542,
+        "id": "9153af57-b10a-4205-8e3f-d8039687a11f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549530103542,
+        "parent_id": "a35dbad3-deda-4dcc-8e09-c1ba223576e1",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "[Export(typeof(ILogger))]\n[ExportMetadata(\"Name\", \"File\")]  \npublic class FileLogger:ILogger\n{\n    public void Log(string message)\n    {\n        //Write the message to file\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "[Export(typeof(ILogger))]\n[ExportMetadata(\"Name\", \"File\")]  \npublic class FileLogger:ILogger\n{\n    public void Log(string message)\n    {\n        //Write the message to file\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549530103542,
+        "id": "8a76b1be-015e-4f61-af85-a25587c52a59",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549530103542,
+        "parent_id": "a35dbad3-deda-4dcc-8e09-c1ba223576e1",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class User\n{  \n    private readonly ILogger logger;\n    public User(ILogger logger)   \n    {\n        this.logger = logger;\n    }\n    public void LogUser(string message)\n    {\n        logger.Log(message)  ;\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class User\n{  \n    private readonly ILogger logger;\n    public User(ILogger logger)   \n    {\n        this.logger = logger;\n    }\n    public void LogUser(string message)\n    {\n        logger.Log(message)  ;\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549530103542,
+        "id": "7e9ab0ae-4b1b-4a7a-a5c6-9211cfb5e702",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549530103542,
+        "parent_id": "a35dbad3-deda-4dcc-8e09-c1ba223576e1",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public interface ILoggerMetaData\n{\n    string Name { get; }\n}\n\ninternal class Program\n{\n    private CompositionContainer _container;\n    \n    [ImportMany]\n    private IEnumerable\u003cLazy\u003cILogger, ILoggerMetaData\u003e\u003e _loggers;\n    \n    private static void Main()\n    {            \n        ComposeLoggers();\n        Lazy\u003cILogger, ILoggerMetaData\u003e loggerNameAndLoggerMapping = _ loggers.First((n) =\u003e ((n.Metadata.Name.ToUpper() ==\"Console\"));\n        ILogger logger= loggerNameAndLoggerMapping.Value\n        var user = new User(logger);\n        user.LogUser(\"user name\");\n    }\n    \n    private void ComposeLoggers()\n    {\n        //An aggregate catalog that combines multiple catalogs\n        var catalog = new AggregateCatalog();\n        string loggersDllDirectory =Path.Combine(Utilities.GetApplicationDirectory(), \"Loggers\");\n        if (!Directory.Exists(loggersDllDirectory ))\n        {\n            Directory.CreateDirectory(loggersDllDirectory );\n        }\n        //Adds all the parts found in the same assembly as the PluginManager class\n        catalog.Catalogs.Add(new AssemblyCatalog(typeof(Program).Assembly));\n        catalog.Catalogs.Add(new DirectoryCatalog(loggersDllDirectory ));\n        \n        //Create the CompositionContainer with the parts in the catalog\n        _container = new CompositionContainer(catalog);\n        \n        //Fill the imports of this object\n        try\n        {\n            this._container.ComposeParts(this);\n        }\n        catch (CompositionException compositionException)\n        {\n            throw new CompositionException(compositionException.Message);\n        }\n    } \n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public interface ILoggerMetaData\n{\n    string Name { get; }\n}\n\ninternal class Program\n{\n    private CompositionContainer _container;\n    \n    [ImportMany]\n    private IEnumerable\u003cLazy\u003cILogger, ILoggerMetaData\u003e\u003e _loggers;\n    \n    private static void Main()\n    {            \n        ComposeLoggers();\n        Lazy\u003cILogger, ILoggerMetaData\u003e loggerNameAndLoggerMapping = _ loggers.First((n) =\u003e ((n.Metadata.Name.ToUpper() ==\"Console\"));\n        ILogger logger= loggerNameAndLoggerMapping.Value\n        var user = new User(logger);\n        user.LogUser(\"user name\");\n    }\n    \n    private void ComposeLoggers()\n    {\n        //An aggregate catalog that combines multiple catalogs\n        var catalog = new AggregateCatalog();\n        string loggersDllDirectory =Path.Combine(Utilities.GetApplicationDirectory(), \"Loggers\");\n        if (!Directory.Exists(loggersDllDirectory ))\n        {\n            Directory.CreateDirectory(loggersDllDirectory );\n        }\n        //Adds all the parts found in the same assembly as the PluginManager class\n        catalog.Catalogs.Add(new AssemblyCatalog(typeof(Program).Assembly));\n        catalog.Catalogs.Add(new DirectoryCatalog(loggersDllDirectory ));\n        \n        //Create the CompositionContainer with the parts in the catalog\n        _container = new CompositionContainer(catalog);\n        \n        //Fill the imports of this object\n        try\n        {\n            this._container.ComposeParts(this);\n        }\n        catch (CompositionException compositionException)\n        {\n            throw new CompositionException(compositionException.Message);\n        }\n    } \n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Dependency injection using MEF",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

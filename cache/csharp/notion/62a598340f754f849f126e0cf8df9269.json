@@ -1,0 +1,195 @@
+{
+  "ID": "62a59834-0f75-4f84-9f12-6e0cf8df9269",
+  "Root": {
+    "alive": true,
+    "content": [
+      "83d02362-f942-4709-8e14-64107231bac8",
+      "06164ae2-4133-48ff-bf49-0a8c09ee2fb5",
+      "664125ca-25dd-4f58-852a-a45ade181fdd",
+      "1f443e85-2a96-4f30-8b7c-21910c0eaff8",
+      "305656f9-4d68-401f-8831-bb9378f66a3d"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1549527034498,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "62a59834-0f75-4f84-9f12-6e0cf8df9269",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1549789680000,
+    "parent_id": "91106db6-78bc-4ff0-875f-edacdc1e0312",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Async version of PingUrl"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527034495,
+        "id": "83d02362-f942-4709-8e14-64107231bac8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527034495,
+        "parent_id": "62a59834-0f75-4f84-9f12-6e0cf8df9269",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "static void Main(string[] args)\n    {\n        string url = \"www.stackoverflow.com\";\n        var pingTask = PingUrlAsync(url);\n        Console.WriteLine($\"Waiting for response from {url}\");\n        Task.WaitAll(pingTask);            \n        Console.WriteLine(pingTask.Result);\n    }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "static void Main(string[] args)\n    {\n        string url = \"www.stackoverflow.com\";\n        var pingTask = PingUrlAsync(url);\n        Console.WriteLine($\"Waiting for response from {url}\");\n        Task.WaitAll(pingTask);            \n        Console.WriteLine(pingTask.Result);\n    }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527034497,
+        "id": "06164ae2-4133-48ff-bf49-0a8c09ee2fb5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527034497,
+        "parent_id": "62a59834-0f75-4f84-9f12-6e0cf8df9269",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "static async Task\u003cstring\u003e PingUrlAsync(string url)\n    {\n        string response = string.Empty;\n        var ping = new System.Net.NetworkInformation.Ping();"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "static async Task\u003cstring\u003e PingUrlAsync(string url)\n    {\n        string response = string.Empty;\n        var ping = new System.Net.NetworkInformation.Ping();",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527034497,
+        "id": "664125ca-25dd-4f58-852a-a45ade181fdd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527034497,
+        "parent_id": "62a59834-0f75-4f84-9f12-6e0cf8df9269",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var result = await ping.SendPingAsync(url);\n\n        await Task.Delay(5000); //simulate slow internet"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var result = await ping.SendPingAsync(url);\n\n        await Task.Delay(5000); //simulate slow internet",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527034498,
+        "id": "1f443e85-2a96-4f30-8b7c-21910c0eaff8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527034498,
+        "parent_id": "62a59834-0f75-4f84-9f12-6e0cf8df9269",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "if (result.Status == System.Net.NetworkInformation.IPStatus.Success)\n        {\n            response = $\"{url} is online\";\n        }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "if (result.Status == System.Net.NetworkInformation.IPStatus.Success)\n        {\n            response = $\"{url} is online\";\n        }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527034498,
+        "id": "305656f9-4d68-401f-8831-bb9378f66a3d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527034498,
+        "parent_id": "62a59834-0f75-4f84-9f12-6e0cf8df9269",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "return response;\n    }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "return response;\n    }",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Async version of PingUrl",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

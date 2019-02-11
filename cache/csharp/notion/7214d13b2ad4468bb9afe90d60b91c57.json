@@ -1,0 +1,229 @@
+{
+  "ID": "7214d13b-2ad4-468b-b9af-e90d60b91c57",
+  "Root": {
+    "alive": true,
+    "content": [
+      "6af4d464-1d8d-4fbd-86c2-00acdd0b3c76",
+      "33357298-2ddd-4d19-986d-9c9c59eb8280",
+      "02de6744-3cd8-4c69-86e3-2e400ad72582",
+      "8183458b-b9bf-4883-929d-0d0829233a68",
+      "764b25a3-ff8b-4dd2-8d25-aae94812b9bc"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1549527883384,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "7214d13b-2ad4-468b-b9af-e90d60b91c57",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1549626120000,
+    "parent_id": "7c9f5ce4-12a1-4115-98ff-cdbe26ce2b63",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "In a class with managed and unmanaged resources"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527883380,
+        "id": "6af4d464-1d8d-4fbd-86c2-00acdd0b3c76",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527883380,
+        "parent_id": "7214d13b-2ad4-468b-b9af-e90d60b91c57",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "It’s important to let finalization ignore managed resources. The finalizer runs on another thread – it’s possible that the managed objects don’t exist anymore by the time the finalizer runs. Implementing a protected "
+            ],
+            [
+              "Dispose(bool)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method is a common practice to ensure managed resources do not have their "
+            ],
+            [
+              "Dispose",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method called from a finalizer."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "It’s important to let finalization ignore managed resources. The finalizer runs on another thread – it’s possible that the managed objects don’t exist anymore by the time the finalizer runs. Implementing a protected "
+          },
+          {
+            "Text": "Dispose(bool)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method is a common practice to ensure managed resources do not have their "
+          },
+          {
+            "Text": "Dispose",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method called from a finalizer."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527883383,
+        "id": "33357298-2ddd-4d19-986d-9c9c59eb8280",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527883383,
+        "parent_id": "7214d13b-2ad4-468b-b9af-e90d60b91c57",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class ManagedAndUnmanagedObject : IDisposable\n{\n    private SqlConnection sqlConnection = new SqlConnection();\n    private UnmanagedHandle unmanagedHandle = Win32.SomeUnmanagedResource();\n    private bool disposed;"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class ManagedAndUnmanagedObject : IDisposable\n{\n    private SqlConnection sqlConnection = new SqlConnection();\n    private UnmanagedHandle unmanagedHandle = Win32.SomeUnmanagedResource();\n    private bool disposed;",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527883384,
+        "id": "02de6744-3cd8-4c69-86e3-2e400ad72582",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527883384,
+        "parent_id": "7214d13b-2ad4-468b-b9af-e90d60b91c57",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public void Dispose()\n    {\n        Dispose(true); // client called dispose\n        GC.SuppressFinalize(this); // tell the GC to not execute the Finalizer\n    }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public void Dispose()\n    {\n        Dispose(true); // client called dispose\n        GC.SuppressFinalize(this); // tell the GC to not execute the Finalizer\n    }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527883384,
+        "id": "8183458b-b9bf-4883-929d-0d0829233a68",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527883384,
+        "parent_id": "7214d13b-2ad4-468b-b9af-e90d60b91c57",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "protected virtual void Dispose(bool disposeManaged)\n    {\n        if (!disposed)\n        {\n            if (disposeManaged)\n            {\n                if (sqlConnection != null)\n                {\n                    sqlConnection.Dispose();\n                }\n            }\n\n            unmanagedHandle.Release();"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "protected virtual void Dispose(bool disposeManaged)\n    {\n        if (!disposed)\n        {\n            if (disposeManaged)\n            {\n                if (sqlConnection != null)\n                {\n                    sqlConnection.Dispose();\n                }\n            }\n\n            unmanagedHandle.Release();",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527883384,
+        "id": "764b25a3-ff8b-4dd2-8d25-aae94812b9bc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527883384,
+        "parent_id": "7214d13b-2ad4-468b-b9af-e90d60b91c57",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "disposed = true;\n        }\n    }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "disposed = true;\n        }\n    }",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "In a class with managed and unmanaged resources",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

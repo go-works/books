@@ -1,0 +1,197 @@
+{
+  "ID": "d8608e5e-be8b-4399-baba-c48876b033b4",
+  "Root": {
+    "alive": true,
+    "content": [
+      "a13a35c5-2459-4356-b188-e2a5aac623f5",
+      "433866e6-865e-47d0-82ad-00e2954a17bf",
+      "cac4df67-7257-4467-a4d8-7ee2cf8d6f7f",
+      "b02afdd9-5974-4eaf-b10a-d4908fd0c4a5"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1549529268379,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "d8608e5e-be8b-4399-baba-c48876b033b4",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1549789440000,
+    "parent_id": "bb2a9e83-3d07-454f-b663-d217cc7d9031",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Task run and forget extension"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549529268376,
+        "id": "a13a35c5-2459-4356-b188-e2a5aac623f5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549529268376,
+        "parent_id": "d8608e5e-be8b-4399-baba-c48876b033b4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In certain cases (e.g. logging) it might be useful to run task and do not await for the result. The following extension allows to run task and continue execution of the rest code:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In certain cases (e.g. logging) it might be useful to run task and do not await for the result. The following extension allows to run task and continue execution of the rest code:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549529268378,
+        "id": "433866e6-865e-47d0-82ad-00e2954a17bf",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549789440000,
+        "parent_id": "d8608e5e-be8b-4399-baba-c48876b033b4",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "public static class TaskExtensions\n{\n    public static async void RunAndForget(\n        this Task task, Action\u003cException\u003e onException = null)\n    {\n        try\n        {\n            await task;\n        }\n        catch (Exception ex)\n        {\n            onException?.Invoke(ex);\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "public static class TaskExtensions\n{\n    public static async void RunAndForget(\n        this Task task, Action\u003cException\u003e onException = null)\n    {\n        try\n        {\n            await task;\n        }\n        catch (Exception ex)\n        {\n            onException?.Invoke(ex);\n        }\n    }\n}",
+        "code_language": "C#"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549529268378,
+        "id": "cac4df67-7257-4467-a4d8-7ee2cf8d6f7f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549529268378,
+        "parent_id": "d8608e5e-be8b-4399-baba-c48876b033b4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The result is awaited only inside the extension method. Since "
+            ],
+            [
+              "async",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "/"
+            ],
+            [
+              "await",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is used, it is possible to catch an exception and call an optional method for handling it."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The result is awaited only inside the extension method. Since "
+          },
+          {
+            "Text": "async",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "/"
+          },
+          {
+            "Text": "await",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is used, it is possible to catch an exception and call an optional method for handling it."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549529268379,
+        "id": "b02afdd9-5974-4eaf-b10a-d4908fd0c4a5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549529268379,
+        "parent_id": "d8608e5e-be8b-4399-baba-c48876b033b4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "An example how to use the extension:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "An example how to use the extension:"
+          }
+        ]
+      }
+    ],
+    "title": "Task run and forget extension",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

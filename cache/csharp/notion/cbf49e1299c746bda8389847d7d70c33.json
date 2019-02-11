@@ -1,0 +1,330 @@
+{
+  "ID": "cbf49e12-99c7-46bd-a838-9847d7d70c33",
+  "Root": {
+    "alive": true,
+    "content": [
+      "ab8be904-bf24-4131-92ed-7a9291f61a8f",
+      "22482c23-ea85-4c7d-b917-bdfc5c4759f6",
+      "9d09fff5-9b3c-4494-9905-69cdf1d0b9a9",
+      "5381ba38-2570-4cb7-8916-8998524cc669",
+      "d20f6d70-4151-4ea8-a135-19f3b148cf4b",
+      "b6aa4472-cfae-447b-a7fd-3381be5c596d"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1549525201485,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "cbf49e12-99c7-46bd-a838-9847d7d70c33",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1549626240000,
+    "parent_id": "e46b0a90-d1e1-4de7-8d79-875641b9f824",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Get the members of a type"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 9,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525201479,
+        "id": "ab8be904-bf24-4131-92ed-7a9291f61a8f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549626180000,
+        "parent_id": "cbf49e12-99c7-46bd-a838-9847d7d70c33",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "using System;\nusing System.Reflection;\nusing System.Linq;\n                \npublic class Program\n{\n  public static void Main()\n  {\n    var members = typeof(object)\n                    .GetMembers(BindingFlags.Public |\n                                BindingFlags.Static |\n                                BindingFlags.Instance);\n    \n    foreach (var member in members)\n    {\n      bool inherited = member.DeclaringType.Equals( typeof(object).Name );\n      Console.WriteLine($\"{member.Name} is a {member.MemberType}, \" +\n                        $\"it has {(inherited ? \"\":\"not\")} been inherited.\");\n    }\n  }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "using System;\nusing System.Reflection;\nusing System.Linq;\n                \npublic class Program\n{\n  public static void Main()\n  {\n    var members = typeof(object)\n                    .GetMembers(BindingFlags.Public |\n                                BindingFlags.Static |\n                                BindingFlags.Instance);\n    \n    foreach (var member in members)\n    {\n      bool inherited = member.DeclaringType.Equals( typeof(object).Name );\n      Console.WriteLine($\"{member.Name} is a {member.MemberType}, \" +\n                        $\"it has {(inherited ? \"\":\"not\")} been inherited.\");\n    }\n  }\n}",
+        "code_language": "C#"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525201482,
+        "id": "22482c23-ea85-4c7d-b917-bdfc5c4759f6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525201482,
+        "parent_id": "cbf49e12-99c7-46bd-a838-9847d7d70c33",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Output ("
+            ],
+            [
+              "see note about output order further down",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              "):"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Output ("
+          },
+          {
+            "Text": "see note about output order further down",
+            "AttrFlags": 4
+          },
+          {
+            "Text": "):"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525201482,
+        "id": "9d09fff5-9b3c-4494-9905-69cdf1d0b9a9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549626240000,
+        "parent_id": "cbf49e12-99c7-46bd-a838-9847d7d70c33",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "GetType is a Method, it has not been inherited.\nGetHashCode is a Method, it has not been inherited.\nToString is a Method, it has not been inherited.\nEquals is a Method, it has not been inherited.\nEquals is a Method, it has not been inherited.\nReferenceEquals is a Method, it has not been inherited.\n.ctor is a Constructor, it has not been inherited."
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 5,
+        "code": "GetType is a Method, it has not been inherited.\nGetHashCode is a Method, it has not been inherited.\nToString is a Method, it has not been inherited.\nEquals is a Method, it has not been inherited.\nEquals is a Method, it has not been inherited.\nReferenceEquals is a Method, it has not been inherited.\n.ctor is a Constructor, it has not been inherited.",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525201482,
+        "id": "5381ba38-2570-4cb7-8916-8998524cc669",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525201482,
+        "parent_id": "cbf49e12-99c7-46bd-a838-9847d7d70c33",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "We can also use the "
+            ],
+            [
+              "GetMembers()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " without passing any "
+            ],
+            [
+              "BindingFlags",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". This will return "
+            ],
+            [
+              "all",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " public members of that specific type."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "We can also use the "
+          },
+          {
+            "Text": "GetMembers()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " without passing any "
+          },
+          {
+            "Text": "BindingFlags",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". This will return "
+          },
+          {
+            "Text": "all",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " public members of that specific type."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525201482,
+        "id": "d20f6d70-4151-4ea8-a135-19f3b148cf4b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525201482,
+        "parent_id": "cbf49e12-99c7-46bd-a838-9847d7d70c33",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "One thing to note that "
+            ],
+            [
+              "GetMembers",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " does not return the members in any particular order, so never rely on the order that "
+            ],
+            [
+              "GetMembers",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " returns you."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "One thing to note that "
+          },
+          {
+            "Text": "GetMembers",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " does not return the members in any particular order, so never rely on the order that "
+          },
+          {
+            "Text": "GetMembers",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " returns you."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525201485,
+        "id": "b6aa4472-cfae-447b-a7fd-3381be5c596d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525201485,
+        "parent_id": "cbf49e12-99c7-46bd-a838-9847d7d70c33",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "View Demo",
+              [
+                [
+                  "a",
+                  "https://dotnetfiddle.net/bJczwn"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "View Demo",
+            "Link": "https://dotnetfiddle.net/bJczwn"
+          }
+        ]
+      }
+    ],
+    "title": "Get the members of a type",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

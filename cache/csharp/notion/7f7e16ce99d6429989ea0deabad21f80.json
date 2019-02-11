@@ -1,0 +1,215 @@
+{
+  "ID": "7f7e16ce-99d6-4299-89ea-0deabad21f80",
+  "Root": {
+    "alive": true,
+    "content": [
+      "4839c861-2508-4678-b567-f56dd257a4dd",
+      "e32b2b11-0edc-4291-aacf-d0deaa4b69cc",
+      "4f732746-c61c-420a-8148-d683dede37ba",
+      "2a8de7d6-cc8a-4efc-9858-249009045480",
+      "3e5e97e5-0438-4c43-af08-ac1ca8291054",
+      "88c1a855-327a-4f0c-b4f3-b4ab561b76ae"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1549530236278,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "7f7e16ce-99d6-4299-89ea-0deabad21f80",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1549628160000,
+    "parent_id": "d2786b82-24ad-4c4e-b5a8-5ef23d9feee9",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "GetExpression Private overload"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549530236275,
+        "id": "4839c861-2508-4678-b567-f56dd257a4dd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549530236275,
+        "parent_id": "7f7e16ce-99d6-4299-89ea-0deabad21f80",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "For one filter:"
+            ]
+          ]
+        },
+        "type": "header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "For one filter:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549530236278,
+        "id": "e32b2b11-0edc-4291-aacf-d0deaa4b69cc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549530236278,
+        "parent_id": "7f7e16ce-99d6-4299-89ea-0deabad21f80",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Here is where the query is created, it receives a expression parameter and a filter."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Here is where the query is created, it receives a expression parameter and a filter."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549530236278,
+        "id": "4f732746-c61c-420a-8148-d683dede37ba",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549530236278,
+        "parent_id": "7f7e16ce-99d6-4299-89ea-0deabad21f80",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "private static Expression GetExpression\u003cT\u003e(ParameterExpression param, QueryFilter queryFilter)\n{\n    // Represents accessing a field or property, so here we are accessing for example:\n    // the property \"Name\" of the entity\n    MemberExpression member = Expression.Property(param, queryFilter.PropertyName);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "private static Expression GetExpression\u003cT\u003e(ParameterExpression param, QueryFilter queryFilter)\n{\n    // Represents accessing a field or property, so here we are accessing for example:\n    // the property \"Name\" of the entity\n    MemberExpression member = Expression.Property(param, queryFilter.PropertyName);",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549530236278,
+        "id": "2a8de7d6-cc8a-4efc-9858-249009045480",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549530236278,
+        "parent_id": "7f7e16ce-99d6-4299-89ea-0deabad21f80",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "//Represents an expression that has a constant value, so here we are accessing for example:\n    // the values of the Property \"Name\".\n    // Also for clarity sake the GetConstant will be explained in another example.\n    ConstantExpression constant = GetConstant(member.Type, queryFilter.Value);\n\n    // With these two, now I can build the expression\n    // every operator has it one way to call, so the switch will do.\n    switch (queryFilter.Operator)\n    {\n        case Operator.Equals:\n            return Expression.Equal(member, constant);\n\n        case Operator.Contains:\n            return Expression.Call(member, ContainsMethod, constant);\n\n        case Operator.GreaterThan:\n            return Expression.GreaterThan(member, constant);\n\n        case Operator.GreaterThanOrEqual:\n            return Expression.GreaterThanOrEqual(member, constant);\n\n        case Operator.LessThan:\n            return Expression.LessThan(member, constant);\n\n        case Operator.LessThanOrEqualTo:\n            return Expression.LessThanOrEqual(member, constant);\n\n        case Operator.StartsWith:\n            return Expression.Call(member, StartsWithMethod, constant);\n\n        case Operator.EndsWith:\n            return Expression.Call(member, EndsWithMethod, constant);\n    }\n\n    return null;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "//Represents an expression that has a constant value, so here we are accessing for example:\n    // the values of the Property \"Name\".\n    // Also for clarity sake the GetConstant will be explained in another example.\n    ConstantExpression constant = GetConstant(member.Type, queryFilter.Value);\n\n    // With these two, now I can build the expression\n    // every operator has it one way to call, so the switch will do.\n    switch (queryFilter.Operator)\n    {\n        case Operator.Equals:\n            return Expression.Equal(member, constant);\n\n        case Operator.Contains:\n            return Expression.Call(member, ContainsMethod, constant);\n\n        case Operator.GreaterThan:\n            return Expression.GreaterThan(member, constant);\n\n        case Operator.GreaterThanOrEqual:\n            return Expression.GreaterThanOrEqual(member, constant);\n\n        case Operator.LessThan:\n            return Expression.LessThan(member, constant);\n\n        case Operator.LessThanOrEqualTo:\n            return Expression.LessThanOrEqual(member, constant);\n\n        case Operator.StartsWith:\n            return Expression.Call(member, StartsWithMethod, constant);\n\n        case Operator.EndsWith:\n            return Expression.Call(member, EndsWithMethod, constant);\n    }\n\n    return null;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549530236278,
+        "id": "3e5e97e5-0438-4c43-af08-ac1ca8291054",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549530236278,
+        "parent_id": "7f7e16ce-99d6-4299-89ea-0deabad21f80",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "For two filters:"
+            ]
+          ]
+        },
+        "type": "header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "For two filters:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549530236278,
+        "id": "88c1a855-327a-4f0c-b4f3-b4ab561b76ae",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549530236278,
+        "parent_id": "7f7e16ce-99d6-4299-89ea-0deabad21f80",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "It returns the BinaryExpresion instance instead of the simple Expression."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "It returns the BinaryExpresion instance instead of the simple Expression."
+          }
+        ]
+      }
+    ],
+    "title": "GetExpression Private overload",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

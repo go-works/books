@@ -1,0 +1,205 @@
+{
+  "ID": "247e07e9-a86f-44f5-9ab8-e277e2312b1d",
+  "Root": {
+    "alive": true,
+    "content": [
+      "032dd35e-58c0-4300-b049-ca1583e15635",
+      "c1b1b9fa-f852-4e12-8944-de28925d7d81",
+      "5804045d-707f-47a6-87f6-ae255db9b6a3",
+      "a25100d8-4e6e-4e04-9c4e-080bbfd75153",
+      "377f8e22-2775-4101-8795-5866f2f42c3f"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1549525790490,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "247e07e9-a86f-44f5-9ab8-e277e2312b1d",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1549789260000,
+    "parent_id": "690c8bdb-4161-40ee-ae39-db6ce423d3b9",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "01Avoiding Reading and Writing Data Simultaneously"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525790489,
+        "id": "032dd35e-58c0-4300-b049-ca1583e15635",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525790489,
+        "parent_id": "247e07e9-a86f-44f5-9ab8-e277e2312b1d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Sometimes, you want your threads to simultaneously share data. When this happens it is important to be aware of the code and lock any parts that could go wrong. A simple example of two threads counting is shown below."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Sometimes, you want your threads to simultaneously share data. When this happens it is important to be aware of the code and lock any parts that could go wrong. A simple example of two threads counting is shown below."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525790489,
+        "id": "c1b1b9fa-f852-4e12-8944-de28925d7d81",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525790489,
+        "parent_id": "247e07e9-a86f-44f5-9ab8-e277e2312b1d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Here is some dangerous (incorrect) code:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Here is some dangerous (incorrect) code:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525790489,
+        "id": "5804045d-707f-47a6-87f6-ae255db9b6a3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549789260000,
+        "parent_id": "247e07e9-a86f-44f5-9ab8-e277e2312b1d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "using System.Threading;\n\nclass MainClass \n{    \n    static int count { get; set; }\n\n    static void Main() \n    {\n        for (int i = 1; i \u003c= 2; i++)\n        {\n            var thread = new Thread(ThreadMethod);\n            thread.Start(i);\n            Thread.Sleep(500);\n        }\n    }\n\n    static void ThreadMethod(object threadNumber) \n    {\n        while (true)\n        {\n            var temp = count;\n            System.Console.WriteLine(\"Thread \" + threadNumber + \": Reading the value of count.\");\n            Thread.Sleep(1000);\n            count = temp + 1;\n            System.Console.WriteLine(\"Thread \" + threadNumber + \": Incrementing the value of count to:\" + count);\n            Thread.Sleep(1000);\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "using System.Threading;\n\nclass MainClass \n{    \n    static int count { get; set; }\n\n    static void Main() \n    {\n        for (int i = 1; i \u003c= 2; i++)\n        {\n            var thread = new Thread(ThreadMethod);\n            thread.Start(i);\n            Thread.Sleep(500);\n        }\n    }\n\n    static void ThreadMethod(object threadNumber) \n    {\n        while (true)\n        {\n            var temp = count;\n            System.Console.WriteLine(\"Thread \" + threadNumber + \": Reading the value of count.\");\n            Thread.Sleep(1000);\n            count = temp + 1;\n            System.Console.WriteLine(\"Thread \" + threadNumber + \": Incrementing the value of count to:\" + count);\n            Thread.Sleep(1000);\n        }\n    }\n}",
+        "code_language": "C#"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525790489,
+        "id": "a25100d8-4e6e-4e04-9c4e-080bbfd75153",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525790489,
+        "parent_id": "247e07e9-a86f-44f5-9ab8-e277e2312b1d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "You’ll notice, instead of counting 1,2,3,4,5… we count 1,1,2,2,3…"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "You’ll notice, instead of counting 1,2,3,4,5… we count 1,1,2,2,3…"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525790490,
+        "id": "377f8e22-2775-4101-8795-5866f2f42c3f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525790490,
+        "parent_id": "247e07e9-a86f-44f5-9ab8-e277e2312b1d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To fix this problem, we need to "
+            ],
+            [
+              "lock",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " the value of count, so that multiple different threads cannot read and write to it at the same time. With the addition of a lock and a key, we can prevent the threads from accessing the data simultaneously."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To fix this problem, we need to "
+          },
+          {
+            "Text": "lock",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " the value of count, so that multiple different threads cannot read and write to it at the same time. With the addition of a lock and a key, we can prevent the threads from accessing the data simultaneously."
+          }
+        ]
+      }
+    ],
+    "title": "01Avoiding Reading and Writing Data Simultaneously",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

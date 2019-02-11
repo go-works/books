@@ -1,0 +1,109 @@
+{
+  "ID": "efaea45f-e9cf-46b8-94cf-a8ba6023c8fa",
+  "Root": {
+    "alive": true,
+    "content": [
+      "77727083-cf9a-4d52-be18-b0f92c9e1bee",
+      "96cdff40-51b0-416c-8719-e17262fd94af"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1549528364300,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "efaea45f-e9cf-46b8-94cf-a8ba6023c8fa",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1549624200000,
+    "parent_id": "d6ab87f3-3105-4532-8f9a-1b47bf70d308",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Recursively describe an object structure"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549528364297,
+        "id": "77727083-cf9a-4d52-be18-b0f92c9e1bee",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549528364297,
+        "parent_id": "efaea45f-e9cf-46b8-94cf-a8ba6023c8fa",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Recursion is when a method calls itself. Preferably it will do so until a specific condition is met and then it will exit the method normally, returning to the point from which the method was called. If not, a stack overflow exception might occur due to too many recursive calls."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Recursion is when a method calls itself. Preferably it will do so until a specific condition is met and then it will exit the method normally, returning to the point from which the method was called. If not, a stack overflow exception might occur due to too many recursive calls."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549528364300,
+        "id": "96cdff40-51b0-416c-8719-e17262fd94af",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549624200000,
+        "parent_id": "efaea45f-e9cf-46b8-94cf-a8ba6023c8fa",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "/// \u003csummary\u003e\n/// Create an object structure the code can recursively describe\n/// \u003c/summary\u003e\npublic class Root\n{\n    public string Name { get; set; }\n    public ChildOne Child { get; set; }\n}\npublic class ChildOne\n{\n    public string ChildOneName { get; set; }\n    public ChildTwo Child { get; set; }\n}\npublic class ChildTwo\n{\n    public string ChildTwoName { get; set; }\n}\n/// \u003csummary\u003e\n/// The console application with the recursive function DescribeTypeOfObject\n/// \u003c/summary\u003e\npublic class Program\n{\n    static void Main(string[] args)\n    {\n        // point A, we call the function with type 'Root'\n        DescribeTypeOfObject(typeof(Root));\n        Console.WriteLine(\"Press a key to exit\");\n        Console.ReadKey();\n    }\n\n    static void DescribeTypeOfObject(Type type)\n    {\n        // get all properties of this type\n        Console.WriteLine($\"Describing type {type.Name}\");\n        PropertyInfo[] propertyInfos = type.GetProperties();\n        foreach (PropertyInfo pi in propertyInfos)\n        {\n            Console.WriteLine($\"Has property {pi.Name} of type {pi.PropertyType.Name}\");\n            // is a custom class type? describe it too\n            if (pi.PropertyType.IsClass \u0026\u0026 !pi.PropertyType.FullName.StartsWith(\"System.\"))\n            {\n                // point B, we call the function type this property\n                DescribeTypeOfObject(pi.PropertyType);\n            }\n        }\n        // done with all properties\n        // we return to the point where we were called\n        // point A for the first call\n        // point B for all properties of type custom class\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "/// \u003csummary\u003e\n/// Create an object structure the code can recursively describe\n/// \u003c/summary\u003e\npublic class Root\n{\n    public string Name { get; set; }\n    public ChildOne Child { get; set; }\n}\npublic class ChildOne\n{\n    public string ChildOneName { get; set; }\n    public ChildTwo Child { get; set; }\n}\npublic class ChildTwo\n{\n    public string ChildTwoName { get; set; }\n}\n/// \u003csummary\u003e\n/// The console application with the recursive function DescribeTypeOfObject\n/// \u003c/summary\u003e\npublic class Program\n{\n    static void Main(string[] args)\n    {\n        // point A, we call the function with type 'Root'\n        DescribeTypeOfObject(typeof(Root));\n        Console.WriteLine(\"Press a key to exit\");\n        Console.ReadKey();\n    }\n\n    static void DescribeTypeOfObject(Type type)\n    {\n        // get all properties of this type\n        Console.WriteLine($\"Describing type {type.Name}\");\n        PropertyInfo[] propertyInfos = type.GetProperties();\n        foreach (PropertyInfo pi in propertyInfos)\n        {\n            Console.WriteLine($\"Has property {pi.Name} of type {pi.PropertyType.Name}\");\n            // is a custom class type? describe it too\n            if (pi.PropertyType.IsClass \u0026\u0026 !pi.PropertyType.FullName.StartsWith(\"System.\"))\n            {\n                // point B, we call the function type this property\n                DescribeTypeOfObject(pi.PropertyType);\n            }\n        }\n        // done with all properties\n        // we return to the point where we were called\n        // point A for the first call\n        // point B for all properties of type custom class\n    }\n}",
+        "code_language": "C#"
+      }
+    ],
+    "title": "Recursively describe an object structure",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

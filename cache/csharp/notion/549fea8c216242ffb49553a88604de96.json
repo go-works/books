@@ -1,0 +1,253 @@
+{
+  "ID": "549fea8c-2162-42ff-b495-53a88604de96",
+  "Root": {
+    "alive": true,
+    "content": [
+      "a857dd67-5101-46a1-9e37-d47fc0707da2",
+      "c5de31ae-b37f-44ac-a958-5025323bf0be",
+      "d1662891-508b-4f45-8411-4e1e0a226fd7",
+      "3a4ab743-fa0a-40e8-a070-66ac35381805",
+      "67c930c0-2001-45ec-bd89-7876036bbfb5",
+      "7dd66ddf-2d8c-432e-8f45-b31198f0f883"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1549530389733,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "549fea8c-2162-42ff-b495-53a88604de96",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1549790700000,
+    "parent_id": "ca82249a-e8bd-4017-a1a3-da741fa4b29b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Implementing ICloneable in a struct"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549530389730,
+        "id": "a857dd67-5101-46a1-9e37-d47fc0707da2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549530389730,
+        "parent_id": "549fea8c-2162-42ff-b495-53a88604de96",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The implementation of ICloneable for a struct is not generally needed because structs do a memberwise copy with the assignment operator "
+            ],
+            [
+              "=",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". But the design might require the implementation of another interface that inherits from "
+            ],
+            [
+              "ICloneable",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The implementation of ICloneable for a struct is not generally needed because structs do a memberwise copy with the assignment operator "
+          },
+          {
+            "Text": "=",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". But the design might require the implementation of another interface that inherits from "
+          },
+          {
+            "Text": "ICloneable",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549530389732,
+        "id": "c5de31ae-b37f-44ac-a958-5025323bf0be",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549530389732,
+        "parent_id": "549fea8c-2162-42ff-b495-53a88604de96",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Another reason would be if the struct contains a reference type (or an array) which would need copying also."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Another reason would be if the struct contains a reference type (or an array) which would need copying also."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549530389732,
+        "id": "d1662891-508b-4f45-8411-4e1e0a226fd7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549530389732,
+        "parent_id": "549fea8c-2162-42ff-b495-53a88604de96",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Structs are recommended to be immutable objects\n[ImmutableObject(true)]\npublic struct Person : ICloneable\n{\n    // Contents of class\n    public string Name { get; private set; }\n    public int Age { get; private set; }\n    // Constructor\n    public Person(string name, int age)\n    {\n        this.Name=name;\n        this.Age=age;\n    }\n    // Copy Constructor\n    public Person(Person other)\n    {\n        // The assignment operator copies all members\n        this=other;\n    }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Structs are recommended to be immutable objects\n[ImmutableObject(true)]\npublic struct Person : ICloneable\n{\n    // Contents of class\n    public string Name { get; private set; }\n    public int Age { get; private set; }\n    // Constructor\n    public Person(string name, int age)\n    {\n        this.Name=name;\n        this.Age=age;\n    }\n    // Copy Constructor\n    public Person(Person other)\n    {\n        // The assignment operator copies all members\n        this=other;\n    }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549530389733,
+        "id": "3a4ab743-fa0a-40e8-a070-66ac35381805",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549530389733,
+        "parent_id": "549fea8c-2162-42ff-b495-53a88604de96",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#region ICloneable Members\n    // Type safe Clone\n    public Person Clone() { return new Person(this); }\n    // ICloneable implementation\n    object ICloneable.Clone()\n    {\n        return Clone();\n    }\n    #endregion\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#region ICloneable Members\n    // Type safe Clone\n    public Person Clone() { return new Person(this); }\n    // ICloneable implementation\n    object ICloneable.Clone()\n    {\n        return Clone();\n    }\n    #endregion\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549530389733,
+        "id": "67c930c0-2001-45ec-bd89-7876036bbfb5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549530389733,
+        "parent_id": "549fea8c-2162-42ff-b495-53a88604de96",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Later to be used as follows:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Later to be used as follows:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549530389733,
+        "id": "7dd66ddf-2d8c-432e-8f45-b31198f0f883",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549530389733,
+        "parent_id": "549fea8c-2162-42ff-b495-53a88604de96",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "static void Main(string[] args)\n{\n    Person bob=new Person(\"Bob\", 25);\n    Person bob_clone=bob.Clone();\n    Debug.Assert(bob_clone.Name==bob.Name);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "static void Main(string[] args)\n{\n    Person bob=new Person(\"Bob\", 25);\n    Person bob_clone=bob.Clone();\n    Debug.Assert(bob_clone.Name==bob.Name);\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Implementing ICloneable in a struct",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

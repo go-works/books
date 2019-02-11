@@ -46,6 +46,13 @@ var (
 			// https://www.notion.so/2cab1ed2b7a44584b56b0d3ca9b80185
 			NotionStartPageID: "2cab1ed2b7a44584b56b0d3ca9b80185",
 		},
+		&Book{
+			Title: "C#",
+			TitleLong: "Essential C#",
+			Dir: "csharp",
+			// https://www.notion.so/kjkpublic/Essential-C-896da5248e65414ab645dd45985879a1
+			NotionStartPageID: "896da5248e65414ab645dd45985879a1",
+		},
 	}
 )
 

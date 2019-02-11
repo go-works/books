@@ -1,0 +1,181 @@
+{
+  "ID": "7f139db4-147e-4277-8776-a3af77fe07a2",
+  "Root": {
+    "alive": true,
+    "content": [
+      "dcde41c0-9213-44d6-9044-6a8c3e47d933",
+      "80086189-6b11-4cf0-9417-9a10f4d7df4c",
+      "8c8a0e25-784b-44a2-9c7b-d81d1cb499b9",
+      "83391449-52d2-42d2-a2bf-246ca325241c"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1549526165318,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "7f139db4-147e-4277-8776-a3af77fe07a2",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1549615740000,
+    "parent_id": "88c86302-2982-4e71-8e49-bcc2f620df46",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Getting x characters from the right side of a string"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 9,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549526165317,
+        "id": "dcde41c0-9213-44d6-9044-6a8c3e47d933",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549526165317,
+        "parent_id": "7f139db4-147e-4277-8776-a3af77fe07a2",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Visual Basic has Left, Right, and Mid functions that returns characters from the Left, Right, and Middle of a string. These methods does not exist in C#, but can be implemented with "
+            ],
+            [
+              "Substring()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". They can be implemented as an extension methods like the following:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Visual Basic has Left, Right, and Mid functions that returns characters from the Left, Right, and Middle of a string. These methods does not exist in C#, but can be implemented with "
+          },
+          {
+            "Text": "Substring()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". They can be implemented as an extension methods like the following:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549526165317,
+        "id": "80086189-6b11-4cf0-9417-9a10f4d7df4c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549526165317,
+        "parent_id": "7f139db4-147e-4277-8776-a3af77fe07a2",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public static class StringExtensions\n   {\n      /// \u003csummary\u003e\n      /// VB Left function\n      /// \u003c/summary\u003e\n      /// \u003cparam name=\"stringparam\"\u003e\u003c/param\u003e\n      /// \u003cparam name=\"numchars\"\u003e\u003c/param\u003e\n      /// \u003creturns\u003eLeft-most numchars characters\u003c/returns\u003e\n      public static string Left( this string stringparam, int numchars )\n      {\n         // Handle possible Null or numeric stringparam being passed\n         stringparam += string.Empty;\n    \n         // Handle possible negative numchars being passed\n         numchars = Math.Abs( numchars );\n    \n         // Validate numchars parameter        \n         if (numchars \u003e stringparam.Length)\n            numchars = stringparam.Length;\n    \n         return stringparam.Substring( 0, numchars );\n      }\n    \n      /// \u003csummary\u003e\n      /// VB Right function\n      /// \u003c/summary\u003e\n      /// \u003cparam name=\"stringparam\"\u003e\u003c/param\u003e\n      /// \u003cparam name=\"numchars\"\u003e\u003c/param\u003e\n      /// \u003creturns\u003eRight-most numchars characters\u003c/returns\u003e\n      public static string Right( this string stringparam, int numchars )\n      {\n         // Handle possible Null or numeric stringparam being passed\n         stringparam += string.Empty;\n    \n         // Handle possible negative numchars being passed\n         numchars = Math.Abs( numchars );\n    \n         // Validate numchars parameter        \n         if (numchars \u003e stringparam.Length)\n            numchars = stringparam.Length;\n    \n         return stringparam.Substring( stringparam.Length - numchars );\n      }\n    \n      /// \u003csummary\u003e\n      /// VB Mid function - to end of string\n      /// \u003c/summary\u003e\n      /// \u003cparam name=\"stringparam\"\u003e\u003c/param\u003e\n      /// \u003cparam name=\"startIndex\"\u003eVB-Style startindex, 1st char startindex = 1\u003c/param\u003e\n      /// \u003creturns\u003eBalance of string beginning at startindex character\u003c/returns\u003e\n      public static string Mid( this string stringparam, int startindex )\n      {\n         // Handle possible Null or numeric stringparam being passed\n         stringparam += string.Empty;\n    \n         // Handle possible negative startindex being passed\n         startindex = Math.Abs( startindex );\n    \n         // Validate numchars parameter        \n         if (startindex \u003e stringparam.Length)\n            startindex = stringparam.Length;\n         \n         // C# strings are zero-based, convert passed startindex\n         return stringparam.Substring( startindex - 1 );\n      }\n    \n      /// \u003csummary\u003e\n      /// VB Mid function - for number of characters\n      /// \u003c/summary\u003e\n      /// \u003cparam name=\"stringparam\"\u003e\u003c/param\u003e\n      /// \u003cparam name=\"startIndex\"\u003eVB-Style startindex, 1st char startindex = 1\u003c/param\u003e\n      /// \u003cparam name=\"numchars\"\u003enumber of characters to return\u003c/param\u003e\n      /// \u003creturns\u003eBalance of string beginning at startindex character\u003c/returns\u003e\n      public static string Mid( this string stringparam, int startindex, int numchars)\n      {\n         // Handle possible Null or numeric stringparam being passed\n         stringparam += string.Empty;\n    \n         // Handle possible negative startindex being passed\n         startindex = Math.Abs( startindex );\n    \n         // Handle possible negative numchars being passed\n         numchars = Math.Abs( numchars );\n    \n         // Validate numchars parameter        \n         if (startindex \u003e stringparam.Length)\n            startindex = stringparam.Length;\n    \n         // C# strings are zero-based, convert passed startindex\n         return stringparam.Substring( startindex - 1, numchars );\n\n       }\n    }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public static class StringExtensions\n   {\n      /// \u003csummary\u003e\n      /// VB Left function\n      /// \u003c/summary\u003e\n      /// \u003cparam name=\"stringparam\"\u003e\u003c/param\u003e\n      /// \u003cparam name=\"numchars\"\u003e\u003c/param\u003e\n      /// \u003creturns\u003eLeft-most numchars characters\u003c/returns\u003e\n      public static string Left( this string stringparam, int numchars )\n      {\n         // Handle possible Null or numeric stringparam being passed\n         stringparam += string.Empty;\n    \n         // Handle possible negative numchars being passed\n         numchars = Math.Abs( numchars );\n    \n         // Validate numchars parameter        \n         if (numchars \u003e stringparam.Length)\n            numchars = stringparam.Length;\n    \n         return stringparam.Substring( 0, numchars );\n      }\n    \n      /// \u003csummary\u003e\n      /// VB Right function\n      /// \u003c/summary\u003e\n      /// \u003cparam name=\"stringparam\"\u003e\u003c/param\u003e\n      /// \u003cparam name=\"numchars\"\u003e\u003c/param\u003e\n      /// \u003creturns\u003eRight-most numchars characters\u003c/returns\u003e\n      public static string Right( this string stringparam, int numchars )\n      {\n         // Handle possible Null or numeric stringparam being passed\n         stringparam += string.Empty;\n    \n         // Handle possible negative numchars being passed\n         numchars = Math.Abs( numchars );\n    \n         // Validate numchars parameter        \n         if (numchars \u003e stringparam.Length)\n            numchars = stringparam.Length;\n    \n         return stringparam.Substring( stringparam.Length - numchars );\n      }\n    \n      /// \u003csummary\u003e\n      /// VB Mid function - to end of string\n      /// \u003c/summary\u003e\n      /// \u003cparam name=\"stringparam\"\u003e\u003c/param\u003e\n      /// \u003cparam name=\"startIndex\"\u003eVB-Style startindex, 1st char startindex = 1\u003c/param\u003e\n      /// \u003creturns\u003eBalance of string beginning at startindex character\u003c/returns\u003e\n      public static string Mid( this string stringparam, int startindex )\n      {\n         // Handle possible Null or numeric stringparam being passed\n         stringparam += string.Empty;\n    \n         // Handle possible negative startindex being passed\n         startindex = Math.Abs( startindex );\n    \n         // Validate numchars parameter        \n         if (startindex \u003e stringparam.Length)\n            startindex = stringparam.Length;\n         \n         // C# strings are zero-based, convert passed startindex\n         return stringparam.Substring( startindex - 1 );\n      }\n    \n      /// \u003csummary\u003e\n      /// VB Mid function - for number of characters\n      /// \u003c/summary\u003e\n      /// \u003cparam name=\"stringparam\"\u003e\u003c/param\u003e\n      /// \u003cparam name=\"startIndex\"\u003eVB-Style startindex, 1st char startindex = 1\u003c/param\u003e\n      /// \u003cparam name=\"numchars\"\u003enumber of characters to return\u003c/param\u003e\n      /// \u003creturns\u003eBalance of string beginning at startindex character\u003c/returns\u003e\n      public static string Mid( this string stringparam, int startindex, int numchars)\n      {\n         // Handle possible Null or numeric stringparam being passed\n         stringparam += string.Empty;\n    \n         // Handle possible negative startindex being passed\n         startindex = Math.Abs( startindex );\n    \n         // Handle possible negative numchars being passed\n         numchars = Math.Abs( numchars );\n    \n         // Validate numchars parameter        \n         if (startindex \u003e stringparam.Length)\n            startindex = stringparam.Length;\n    \n         // C# strings are zero-based, convert passed startindex\n         return stringparam.Substring( startindex - 1, numchars );\n\n       }\n    }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549526165317,
+        "id": "8c8a0e25-784b-44a2-9c7b-d81d1cb499b9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549526165317,
+        "parent_id": "7f139db4-147e-4277-8776-a3af77fe07a2",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This extension method can be used as follows:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This extension method can be used as follows:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549526165318,
+        "id": "83391449-52d2-42d2-a2bf-246ca325241c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549526165318,
+        "parent_id": "7f139db4-147e-4277-8776-a3af77fe07a2",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "string myLongString = \"Hello World!\";\nstring myShortString = myLongString.Right(6);  // \"World!\"\nstring myLeftString = myLongString.Left(5);    // \"Hello\"\nstring myMidString1 = myLongString.Left(4);    // \"lo World\"\nstring myMidString2 = myLongString.Left(2,3);    // \"ell\""
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "string myLongString = \"Hello World!\";\nstring myShortString = myLongString.Right(6);  // \"World!\"\nstring myLeftString = myLongString.Left(5);    // \"Hello\"\nstring myMidString1 = myLongString.Left(4);    // \"lo World\"\nstring myMidString2 = myLongString.Left(2,3);    // \"ell\"",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Getting x characters from the right side of a string",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

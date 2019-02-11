@@ -1,0 +1,247 @@
+{
+  "ID": "7db384cf-1bb8-40b5-bf43-9ff3b5c9134b",
+  "Root": {
+    "alive": true,
+    "content": [
+      "a4a8d6ed-7752-454c-8480-705107894015",
+      "a4049c46-5c62-41a7-8e79-07a7b77e21a4",
+      "9a3b88d3-23c3-4842-b438-55cb16433433",
+      "67a8e6f8-3338-490d-af98-6b1dcf9d044d",
+      "b6d85168-971b-4724-8f67-0fabf501848c",
+      "eeb78bec-2fa4-4350-8cdf-49661e77ecd9",
+      "4b2c5d55-8b78-4f2d-8c05-fca55be78423"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1549526288319,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "7db384cf-1bb8-40b5-bf43-9ff3b5c9134b",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1549615560000,
+    "parent_id": "fcad10e9-6cd3-4947-9888-c2e41201d14c",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Create a custom format provider"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549526288316,
+        "id": "a4a8d6ed-7752-454c-8480-705107894015",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549526288316,
+        "parent_id": "7db384cf-1bb8-40b5-bf43-9ff3b5c9134b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class CustomFormat : IFormatProvider, ICustomFormatter\n{\n    public string Format(string format, object arg, IFormatProvider formatProvider)\n    {\n        if (!this.Equals(formatProvider))\n        {\n            return null;\n        }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class CustomFormat : IFormatProvider, ICustomFormatter\n{\n    public string Format(string format, object arg, IFormatProvider formatProvider)\n    {\n        if (!this.Equals(formatProvider))\n        {\n            return null;\n        }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549526288318,
+        "id": "a4049c46-5c62-41a7-8e79-07a7b77e21a4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549526288318,
+        "parent_id": "7db384cf-1bb8-40b5-bf43-9ff3b5c9134b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "if (format == \"Reverse\")\n        {\n            return String.Join(\"\", arg.ToString().Reverse());\n        }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "if (format == \"Reverse\")\n        {\n            return String.Join(\"\", arg.ToString().Reverse());\n        }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549526288319,
+        "id": "9a3b88d3-23c3-4842-b438-55cb16433433",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549526288319,
+        "parent_id": "7db384cf-1bb8-40b5-bf43-9ff3b5c9134b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "return arg.ToString();\n    }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "return arg.ToString();\n    }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549526288319,
+        "id": "67a8e6f8-3338-490d-af98-6b1dcf9d044d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549526288319,
+        "parent_id": "7db384cf-1bb8-40b5-bf43-9ff3b5c9134b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public object GetFormat(Type formatType)\n    {\n        return formatType==typeof(ICustomFormatter) ? this:null;\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public object GetFormat(Type formatType)\n    {\n        return formatType==typeof(ICustomFormatter) ? this:null;\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549526288319,
+        "id": "b6d85168-971b-4724-8f67-0fabf501848c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549526288319,
+        "parent_id": "7db384cf-1bb8-40b5-bf43-9ff3b5c9134b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Usage:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Usage:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549526288319,
+        "id": "eeb78bec-2fa4-4350-8cdf-49661e77ecd9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549526288319,
+        "parent_id": "7db384cf-1bb8-40b5-bf43-9ff3b5c9134b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "String.Format(new CustomFormat(), \"-\u003e {0:Reverse} \u003c-\", \"Hello World\");"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "String.Format(new CustomFormat(), \"-\u003e {0:Reverse} \u003c-\", \"Hello World\");",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549526288319,
+        "id": "4b2c5d55-8b78-4f2d-8c05-fca55be78423",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549526288319,
+        "parent_id": "7db384cf-1bb8-40b5-bf43-9ff3b5c9134b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Output:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Output:"
+          }
+        ]
+      }
+    ],
+    "title": "Create a custom format provider",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

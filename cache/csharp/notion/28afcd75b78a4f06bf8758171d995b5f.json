@@ -1,0 +1,135 @@
+{
+  "ID": "28afcd75-b78a-4f06-bf87-58171d995b5f",
+  "Root": {
+    "alive": true,
+    "content": [
+      "527f1392-bb72-4eae-9a89-0bbf6a84746b",
+      "c8160c25-24ab-4f5a-bd7d-a2c39ff24fee",
+      "b2599b77-4e41-41cb-872e-571940dd8a89"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1549526712927,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "28afcd75-b78a-4f06-bf87-58171d995b5f",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1549621860000,
+    "parent_id": "e99b1414-411b-440a-a7eb-eb6a3731ac76",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Handling Specific Types Unknown at Compile Time"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549526712925,
+        "id": "527f1392-bb72-4eae-9a89-0bbf6a84746b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549526712925,
+        "parent_id": "28afcd75-b78a-4f06-bf87-58171d995b5f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The following output equivalent results:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The following output equivalent results:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549526712927,
+        "id": "c8160c25-24ab-4f5a-bd7d-a2c39ff24fee",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549526712927,
+        "parent_id": "28afcd75-b78a-4f06-bf87-58171d995b5f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class IfElseExample\n{\n    public string DebugToString(object a)\n    {\n        if (a is StringBuilder)\n        {\n            return DebugToStringInternal(a as StringBuilder);\n        }\n        else if (a is List\u003cstring\u003e)\n        {\n            return DebugToStringInternal(a as List\u003cstring\u003e);\n        }\n        else\n        {\n            return a.ToString();\n        }\n    }\n\n    private string DebugToStringInternal(object a)\n    {\n        // Fall Back\n        return a.ToString();\n    }\n\n    private string DebugToStringInternal(StringBuilder sb)\n    {\n        return $\"StringBuilder - Capacity: {sb.Capacity}, MaxCapacity: {sb.MaxCapacity}, Value: {sb.ToString()}\";\n    }\n\n    private string DebugToStringInternal(List\u003cstring\u003e list)\n    {\n        return $\"List\u003cstring\u003e - Count: {list.Count}, Value: {Environment.NewLine + \"\\t\" + string.Join(Environment.NewLine + \"\\t\", list.ToArray())}\";\n    }\n}\n\nclass DynamicExample\n{\n    public string DebugToString(object a)\n    {\n        return DebugToStringInternal((dynamic)a);\n    }\n\n    private string DebugToStringInternal(object a)\n    {\n        // Fall Back\n        return a.ToString();\n    }\n\n    private string DebugToStringInternal(StringBuilder sb)\n    {\n        return $\"StringBuilder - Capacity: {sb.Capacity}, MaxCapacity: {sb.MaxCapacity}, Value: {sb.ToString()}\";\n    }\n\n    private string DebugToStringInternal(List\u003cstring\u003e list)\n    {\n        return $\"List\u003cstring\u003e - Count: {list.Count}, Value: {Environment.NewLine + \"\\t\" + string.Join(Environment.NewLine + \"\\t\", list.ToArray())}\";\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class IfElseExample\n{\n    public string DebugToString(object a)\n    {\n        if (a is StringBuilder)\n        {\n            return DebugToStringInternal(a as StringBuilder);\n        }\n        else if (a is List\u003cstring\u003e)\n        {\n            return DebugToStringInternal(a as List\u003cstring\u003e);\n        }\n        else\n        {\n            return a.ToString();\n        }\n    }\n\n    private string DebugToStringInternal(object a)\n    {\n        // Fall Back\n        return a.ToString();\n    }\n\n    private string DebugToStringInternal(StringBuilder sb)\n    {\n        return $\"StringBuilder - Capacity: {sb.Capacity}, MaxCapacity: {sb.MaxCapacity}, Value: {sb.ToString()}\";\n    }\n\n    private string DebugToStringInternal(List\u003cstring\u003e list)\n    {\n        return $\"List\u003cstring\u003e - Count: {list.Count}, Value: {Environment.NewLine + \"\\t\" + string.Join(Environment.NewLine + \"\\t\", list.ToArray())}\";\n    }\n}\n\nclass DynamicExample\n{\n    public string DebugToString(object a)\n    {\n        return DebugToStringInternal((dynamic)a);\n    }\n\n    private string DebugToStringInternal(object a)\n    {\n        // Fall Back\n        return a.ToString();\n    }\n\n    private string DebugToStringInternal(StringBuilder sb)\n    {\n        return $\"StringBuilder - Capacity: {sb.Capacity}, MaxCapacity: {sb.MaxCapacity}, Value: {sb.ToString()}\";\n    }\n\n    private string DebugToStringInternal(List\u003cstring\u003e list)\n    {\n        return $\"List\u003cstring\u003e - Count: {list.Count}, Value: {Environment.NewLine + \"\\t\" + string.Join(Environment.NewLine + \"\\t\", list.ToArray())}\";\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549526712927,
+        "id": "b2599b77-4e41-41cb-872e-571940dd8a89",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549526712927,
+        "parent_id": "28afcd75-b78a-4f06-bf87-58171d995b5f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The advantage to the dynamic, is adding a new Type to handle just requires adding an overload of DebugToStringInternal of the new type. Also eliminates the need to manually cast it to the type as well."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The advantage to the dynamic, is adding a new Type to handle just requires adding an overload of DebugToStringInternal of the new type. Also eliminates the need to manually cast it to the type as well."
+          }
+        ]
+      }
+    ],
+    "title": "Handling Specific Types Unknown at Compile Time",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

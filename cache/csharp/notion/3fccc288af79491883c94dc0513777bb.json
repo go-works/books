@@ -1,0 +1,731 @@
+{
+  "ID": "3fccc288-af79-4918-83c9-4dc0513777bb",
+  "Root": {
+    "alive": true,
+    "content": [
+      "aca79db0-27d1-46b6-998c-f19c728a234b",
+      "9365f9b4-674f-4c81-be42-77fc04c122c8",
+      "4fea638e-c27c-4cef-9e1f-8ad12e188357",
+      "5a051c18-8567-41ce-bcab-5b9dfa5d379a",
+      "0b616fe6-a045-4d4a-a10b-bbca457dc5f0",
+      "7d4e1836-b1f4-46c8-93db-1cc6be575d80",
+      "9fea9845-c683-4057-950f-594dd4e0ba78",
+      "59326236-1f40-4526-9817-47ab371143d6",
+      "f6fe7558-27e0-42f6-9d4b-09cec4f36ff9",
+      "4920f342-0109-4f2e-906b-22fce03dcfe9"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1549525932370,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "3fccc288-af79-4918-83c9-4dc0513777bb",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1549790040000,
+    "parent_id": "867a03bf-215a-491d-9311-455a673a589d",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Lazy Evaluation Example Fibonacci Numbers"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525932364,
+        "id": "aca79db0-27d1-46b6-998c-f19c728a234b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525932364,
+        "parent_id": "3fccc288-af79-4918-83c9-4dc0513777bb",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "using System;\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Numerics; // also add reference to System.Numberics\n\nnamespace ConsoleApplication33\n{\n    class Program\n    {\n        private static IEnumerable\u003cBigInteger\u003e Fibonacci()\n        {\n            BigInteger prev = 0;\n            BigInteger current = 1;\n            while (true)\n            {\n                yield return current;\n                var next = prev + current;\n                prev = current;\n                current = next;\n            }\n        }\n\n        static void Main()\n        {\n            // print Fibonacci numbers from 10001 to 10010\n            var numbers = Fibonacci().Skip(10000).Take(10).ToArray();\n            Console.WriteLine(string.Join(Environment.NewLine, numbers));\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "using System;\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Numerics; // also add reference to System.Numberics\n\nnamespace ConsoleApplication33\n{\n    class Program\n    {\n        private static IEnumerable\u003cBigInteger\u003e Fibonacci()\n        {\n            BigInteger prev = 0;\n            BigInteger current = 1;\n            while (true)\n            {\n                yield return current;\n                var next = prev + current;\n                prev = current;\n                current = next;\n            }\n        }\n\n        static void Main()\n        {\n            // print Fibonacci numbers from 10001 to 10010\n            var numbers = Fibonacci().Skip(10000).Take(10).ToArray();\n            Console.WriteLine(string.Join(Environment.NewLine, numbers));\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525932367,
+        "id": "9365f9b4-674f-4c81-be42-77fc04c122c8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525932367,
+        "parent_id": "3fccc288-af79-4918-83c9-4dc0513777bb",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "How it works under the hood (I recommend to decompile resulting .exe file in IL Disaambler tool):"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "How it works under the hood (I recommend to decompile resulting .exe file in IL Disaambler tool):"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525932367,
+        "id": "4fea638e-c27c-4cef-9e1f-8ad12e188357",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525932367,
+        "parent_id": "3fccc288-af79-4918-83c9-4dc0513777bb",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "C# compiler generates a class implementing "
+            ],
+            [
+              "IEnumerable\u003cBigInteger\u003e",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "IEnumerator\u003cBigInteger\u003e",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " ("
+            ],
+            [
+              "\u003cFibonacci\u003ed__0",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " in ildasm)."
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "C# compiler generates a class implementing "
+          },
+          {
+            "Text": "IEnumerable\u003cBigInteger\u003e",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "IEnumerator\u003cBigInteger\u003e",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " ("
+          },
+          {
+            "Text": "\u003cFibonacci\u003ed__0",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " in ildasm)."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525932368,
+        "id": "5a051c18-8567-41ce-bcab-5b9dfa5d379a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525932368,
+        "parent_id": "3fccc288-af79-4918-83c9-4dc0513777bb",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This class implements a state machine. State consists of current position in method and values of local variables."
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This class implements a state machine. State consists of current position in method and values of local variables."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525932368,
+        "id": "0b616fe6-a045-4d4a-a10b-bbca457dc5f0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525932368,
+        "parent_id": "3fccc288-af79-4918-83c9-4dc0513777bb",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The most interesting code are in "
+            ],
+            [
+              "bool IEnumerator.MoveNext()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method. Basically, what "
+            ],
+            [
+              "MoveNext()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " do:"
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The most interesting code are in "
+          },
+          {
+            "Text": "bool IEnumerator.MoveNext()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method. Basically, what "
+          },
+          {
+            "Text": "MoveNext()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " do:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525932368,
+        "id": "7d4e1836-b1f4-46c8-93db-1cc6be575d80",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525932368,
+        "parent_id": "3fccc288-af79-4918-83c9-4dc0513777bb",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Restores current state. Variables like "
+            ],
+            [
+              "prev",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "current",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " become fields in our class ("
+            ],
+            [
+              "\u003ccurrent\u003e5__2",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "\u003cprev\u003e5__1",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " in ildasm). In our method we have two positions ("
+            ],
+            [
+              "\u003c\u003e1__state",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "): first at the opening curly brace, second at "
+            ],
+            [
+              "yield return",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Restores current state. Variables like "
+          },
+          {
+            "Text": "prev",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "current",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " become fields in our class ("
+          },
+          {
+            "Text": "\u003ccurrent\u003e5__2",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "\u003cprev\u003e5__1",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " in ildasm). In our method we have two positions ("
+          },
+          {
+            "Text": "\u003c\u003e1__state",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "): first at the opening curly brace, second at "
+          },
+          {
+            "Text": "yield return",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525932369,
+        "id": "9fea9845-c683-4057-950f-594dd4e0ba78",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525932369,
+        "parent_id": "3fccc288-af79-4918-83c9-4dc0513777bb",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Executes code until next "
+            ],
+            [
+              "yield return",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " or "
+            ],
+            [
+              "yield break",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "/"
+            ],
+            [
+              "\\}",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Executes code until next "
+          },
+          {
+            "Text": "yield return",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " or "
+          },
+          {
+            "Text": "yield break",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "/"
+          },
+          {
+            "Text": "\\}",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525932369,
+        "id": "59326236-1f40-4526-9817-47ab371143d6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525932369,
+        "parent_id": "3fccc288-af79-4918-83c9-4dc0513777bb",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "For "
+            ],
+            [
+              "yield return",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " resulting value is saved, so "
+            ],
+            [
+              "Current",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " property can return it. "
+            ],
+            [
+              "true",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is returned. At this point current state is saved again for the next "
+            ],
+            [
+              "MoveNext",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " invocation."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "For "
+          },
+          {
+            "Text": "yield return",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " resulting value is saved, so "
+          },
+          {
+            "Text": "Current",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " property can return it. "
+          },
+          {
+            "Text": "true",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is returned. At this point current state is saved again for the next "
+          },
+          {
+            "Text": "MoveNext",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " invocation."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525932369,
+        "id": "f6fe7558-27e0-42f6-9d4b-09cec4f36ff9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525932369,
+        "parent_id": "3fccc288-af79-4918-83c9-4dc0513777bb",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "For "
+            ],
+            [
+              "yield break",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "/"
+            ],
+            [
+              "\\}",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method just returns "
+            ],
+            [
+              "false",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " meaning iteration is done."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "For "
+          },
+          {
+            "Text": "yield break",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "/"
+          },
+          {
+            "Text": "\\}",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method just returns "
+          },
+          {
+            "Text": "false",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " meaning iteration is done."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525932370,
+        "id": "4920f342-0109-4f2e-906b-22fce03dcfe9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525932370,
+        "parent_id": "3fccc288-af79-4918-83c9-4dc0513777bb",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Also note, that 10001th number is 468 bytes long. State machine only saves "
+            ],
+            [
+              "current",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "prev",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " variables as fields. While if we would like to save all numbers in the sequence from the first to the 10000th, the consumed memory size will be over 4 megabytes. So lazy evaluation, if properly used, can reduce memory footprint in some cases."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Also note, that 10001th number is 468 bytes long. State machine only saves "
+          },
+          {
+            "Text": "current",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "prev",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " variables as fields. While if we would like to save all numbers in the sequence from the first to the 10000th, the consumed memory size will be over 4 megabytes. So lazy evaluation, if properly used, can reduce memory footprint in some cases."
+          }
+        ]
+      }
+    ],
+    "title": "Lazy Evaluation Example Fibonacci Numbers",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

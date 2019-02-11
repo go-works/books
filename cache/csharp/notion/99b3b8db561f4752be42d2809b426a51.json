@@ -1,0 +1,398 @@
+{
+  "ID": "99b3b8db-561f-4752-be42-d2809b426a51",
+  "Root": {
+    "alive": true,
+    "content": [
+      "9ec54106-ec70-428a-8b69-315257671b8c",
+      "29e0b973-d9b8-415c-bdc4-897054b7fd5c",
+      "c37dd9ad-ac76-41b4-800d-675580bc74eb",
+      "ea10fd3a-b6cf-449b-8869-ab1e72303a7d",
+      "f8ee62ec-6e9c-4023-9d08-805457fbc1f6",
+      "c9dec003-173c-4581-a7c5-471ab709e30c",
+      "ea726dca-b2e7-4f6a-b555-698305425fb9",
+      "8ec84ec6-31a2-4a39-bd79-5d13306bd5ac",
+      "8aca0407-6197-4469-9fc8-6510d0fc1f23",
+      "9fef66d5-6c95-4f7b-8950-2849f90d4968",
+      "3e97cca2-d720-4c87-98f4-89ce594b4c47"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1549524688368,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "99b3b8db-561f-4752-be42-d2809b426a51",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1549614960000,
+    "parent_id": "190506d8-ff9f-4443-bbce-bdb69e483555",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Using Extension methods to build new collection types e.g. DictList"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549524688362,
+        "id": "9ec54106-ec70-428a-8b69-315257671b8c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549524688362,
+        "parent_id": "99b3b8db-561f-4752-be42-d2809b426a51",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "You can create extension methods to improve usability for nested collections like a "
+            ],
+            [
+              "Dictionary",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " with a "
+            ],
+            [
+              "List\u003cT\u003e",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " value."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "You can create extension methods to improve usability for nested collections like a "
+          },
+          {
+            "Text": "Dictionary",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " with a "
+          },
+          {
+            "Text": "List\u003cT\u003e",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " value."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549524688365,
+        "id": "29e0b973-d9b8-415c-bdc4-897054b7fd5c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549524688365,
+        "parent_id": "99b3b8db-561f-4752-be42-d2809b426a51",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Consider the following extension methods:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Consider the following extension methods:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549524688365,
+        "id": "c37dd9ad-ac76-41b4-800d-675580bc74eb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549524688365,
+        "parent_id": "99b3b8db-561f-4752-be42-d2809b426a51",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public static class DictListExtensions\n{\n    public static void Add\u003cTKey, TValue, TCollection\u003e(this Dictionary\u003cTKey, TCollection\u003e dict, TKey key, TValue value)\n            where TCollection : ICollection\u003cTValue\u003e, new()\n    {\n        TCollection list;\n        if (!dict.TryGetValue(key, out list))\n        {\n            list = new TCollection();\n            dict.Add(key, list);\n        }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public static class DictListExtensions\n{\n    public static void Add\u003cTKey, TValue, TCollection\u003e(this Dictionary\u003cTKey, TCollection\u003e dict, TKey key, TValue value)\n            where TCollection : ICollection\u003cTValue\u003e, new()\n    {\n        TCollection list;\n        if (!dict.TryGetValue(key, out list))\n        {\n            list = new TCollection();\n            dict.Add(key, list);\n        }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549524688366,
+        "id": "ea10fd3a-b6cf-449b-8869-ab1e72303a7d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549524688366,
+        "parent_id": "99b3b8db-561f-4752-be42-d2809b426a51",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "list.Add(value);\n    }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "list.Add(value);\n    }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549524688366,
+        "id": "f8ee62ec-6e9c-4023-9d08-805457fbc1f6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549524688366,
+        "parent_id": "99b3b8db-561f-4752-be42-d2809b426a51",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public static bool Remove\u003cTKey, TValue, TCollection\u003e(this Dictionary\u003cTKey, TCollection\u003e dict, TKey key, TValue value)\n        where TCollection : ICollection\u003cTValue\u003e\n    {\n        TCollection list;\n        if (!dict.TryGetValue(key, out list))\n        {\n            return false;\n        }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public static bool Remove\u003cTKey, TValue, TCollection\u003e(this Dictionary\u003cTKey, TCollection\u003e dict, TKey key, TValue value)\n        where TCollection : ICollection\u003cTValue\u003e\n    {\n        TCollection list;\n        if (!dict.TryGetValue(key, out list))\n        {\n            return false;\n        }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549524688366,
+        "id": "c9dec003-173c-4581-a7c5-471ab709e30c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549524688366,
+        "parent_id": "99b3b8db-561f-4752-be42-d2809b426a51",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var ret = list.Remove(value);\n        if (list.Count == 0)\n        {\n            dict.Remove(key);\n        }\n        return ret;\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var ret = list.Remove(value);\n        if (list.Count == 0)\n        {\n            dict.Remove(key);\n        }\n        return ret;\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549524688366,
+        "id": "ea726dca-b2e7-4f6a-b555-698305425fb9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549524688366,
+        "parent_id": "99b3b8db-561f-4752-be42-d2809b426a51",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "you can use the extension methods as follows:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "you can use the extension methods as follows:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549524688366,
+        "id": "8ec84ec6-31a2-4a39-bd79-5d13306bd5ac",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549524688366,
+        "parent_id": "99b3b8db-561f-4752-be42-d2809b426a51",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var dictList = new Dictionary\u003cstring, List\u003cint\u003e\u003e();"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var dictList = new Dictionary\u003cstring, List\u003cint\u003e\u003e();",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549524688366,
+        "id": "8aca0407-6197-4469-9fc8-6510d0fc1f23",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549524688366,
+        "parent_id": "99b3b8db-561f-4752-be42-d2809b426a51",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "dictList.Add(\"example\", 5);\ndictList.Add(\"example\", 10);\ndictList.Add(\"example\", 15);\n\nConsole.WriteLine(String.Join(\", \", dictList[\"example\"])); // 5, 10, 15"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "dictList.Add(\"example\", 5);\ndictList.Add(\"example\", 10);\ndictList.Add(\"example\", 15);\n\nConsole.WriteLine(String.Join(\", \", dictList[\"example\"])); // 5, 10, 15",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549524688366,
+        "id": "9fef66d5-6c95-4f7b-8950-2849f90d4968",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549524688366,
+        "parent_id": "99b3b8db-561f-4752-be42-d2809b426a51",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "dictList.Remove(\"example\", 5);\ndictList.Remove(\"example\", 10);\n\nConsole.WriteLine(String.Join(\", \", dictList[\"example\"])); // 15\n\ndictList.Remove(\"example\", 15);\n\nConsole.WriteLine(dictList.ContainsKey(\"example\")); // False"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "dictList.Remove(\"example\", 5);\ndictList.Remove(\"example\", 10);\n\nConsole.WriteLine(String.Join(\", \", dictList[\"example\"])); // 15\n\ndictList.Remove(\"example\", 15);\n\nConsole.WriteLine(dictList.ContainsKey(\"example\")); // False",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549524688368,
+        "id": "3e97cca2-d720-4c87-98f4-89ce594b4c47",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549524688368,
+        "parent_id": "99b3b8db-561f-4752-be42-d2809b426a51",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "View Demo",
+              [
+                [
+                  "a",
+                  "https://dotnetfiddle.net/UbdQuC"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "View Demo",
+            "Link": "https://dotnetfiddle.net/UbdQuC"
+          }
+        ]
+      }
+    ],
+    "title": "Using Extension methods to build new collection types e.g. DictList",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

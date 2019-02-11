@@ -1,0 +1,209 @@
+{
+  "ID": "952ffcae-0560-4287-bda5-540b0cd77e7e",
+  "Root": {
+    "alive": true,
+    "content": [
+      "b48a5fa2-1392-431c-9609-5a2718318dce",
+      "70412b6c-5931-4dad-ba8a-c6e7980240e3",
+      "6f1b24fb-1b6e-4743-bf46-d16a795a330d",
+      "02bc0e49-9126-482c-aa0c-8765a47614ba",
+      "ee27a171-d97a-4b8a-b068-c802aebbab46"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1549527074335,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "952ffcae-0560-4287-bda5-540b0cd77e7e",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1549785600000,
+    "parent_id": "e6aa0aec-4ba5-4a47-985c-61bac82027f0",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Reading an attribute from interface"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527074331,
+        "id": "b48a5fa2-1392-431c-9609-5a2718318dce",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527074331,
+        "parent_id": "952ffcae-0560-4287-bda5-540b0cd77e7e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "There is no simple way to obtain attributes from an interface, since classes does not inherit attributes from an interface. Whenever implementing an interface or overriding members in a derived class, you need to re-declare the attributes. So in the example below output would be "
+            ],
+            [
+              "True",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " in all three cases."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "There is no simple way to obtain attributes from an interface, since classes does not inherit attributes from an interface. Whenever implementing an interface or overriding members in a derived class, you need to re-declare the attributes. So in the example below output would be "
+          },
+          {
+            "Text": "True",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " in all three cases."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527074334,
+        "id": "70412b6c-5931-4dad-ba8a-c6e7980240e3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527074334,
+        "parent_id": "952ffcae-0560-4287-bda5-540b0cd77e7e",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "using System;\nusing System.Linq;\nusing System.Reflection;"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "using System;\nusing System.Linq;\nusing System.Reflection;",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527074334,
+        "id": "6f1b24fb-1b6e-4743-bf46-d16a795a330d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527074334,
+        "parent_id": "952ffcae-0560-4287-bda5-540b0cd77e7e",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "namespace InterfaceAttributesDemo {\n    \n    [AttributeUsage(AttributeTargets.Interface, Inherited = true)]\n    class MyCustomAttribute : Attribute {\n        public string Text { get; set; }\n    }\n    \n    [MyCustomAttribute(Text = \"Hello from interface attribute\")]\n    interface IMyClass {\n        void MyMethod();\n    }\n    \n    class MyClass : IMyClass {\n        public void MyMethod() { }\n    }\n    \n    public class Program {\n        public static void Main(string[] args) {\n            GetInterfaceAttributeDemo();\n        }\n        \n        private static void GetInterfaceAttributeDemo() {\n            var attribute1 = (MyCustomAttribute) typeof(MyClass).GetCustomAttribute(typeof(MyCustomAttribute), true);\n            Console.WriteLine(attribute1 == null); // True\n            \n            var attribute2 = typeof(MyClass).GetCustomAttributes(true).OfType\u003cMyCustomAttribute\u003e().SingleOrDefault();\n            Console.WriteLine(attribute2 == null); // True\n            \n            var attribute3 = typeof(MyClass).GetCustomAttribute\u003cMyCustomAttribute\u003e(true);\n            Console.WriteLine(attribute3 == null); // True\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "namespace InterfaceAttributesDemo {\n    \n    [AttributeUsage(AttributeTargets.Interface, Inherited = true)]\n    class MyCustomAttribute : Attribute {\n        public string Text { get; set; }\n    }\n    \n    [MyCustomAttribute(Text = \"Hello from interface attribute\")]\n    interface IMyClass {\n        void MyMethod();\n    }\n    \n    class MyClass : IMyClass {\n        public void MyMethod() { }\n    }\n    \n    public class Program {\n        public static void Main(string[] args) {\n            GetInterfaceAttributeDemo();\n        }\n        \n        private static void GetInterfaceAttributeDemo() {\n            var attribute1 = (MyCustomAttribute) typeof(MyClass).GetCustomAttribute(typeof(MyCustomAttribute), true);\n            Console.WriteLine(attribute1 == null); // True\n            \n            var attribute2 = typeof(MyClass).GetCustomAttributes(true).OfType\u003cMyCustomAttribute\u003e().SingleOrDefault();\n            Console.WriteLine(attribute2 == null); // True\n            \n            var attribute3 = typeof(MyClass).GetCustomAttribute\u003cMyCustomAttribute\u003e(true);\n            Console.WriteLine(attribute3 == null); // True\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527074334,
+        "id": "02bc0e49-9126-482c-aa0c-8765a47614ba",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527074334,
+        "parent_id": "952ffcae-0560-4287-bda5-540b0cd77e7e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "One way to retrieve interface attributes is to search for them through all the interfaces implemented by a class."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "One way to retrieve interface attributes is to search for them through all the interfaces implemented by a class."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549527074334,
+        "id": "ee27a171-d97a-4b8a-b068-c802aebbab46",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549527074334,
+        "parent_id": "952ffcae-0560-4287-bda5-540b0cd77e7e",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var attribute = typeof(MyClass).GetInterfaces().SelectMany(x =\u003e x.GetCustomAttributes().OfType\u003cMyCustomAttribute\u003e()).SingleOrDefault();\nConsole.WriteLine(attribute == null); // False\nConsole.WriteLine(attribute.Text); // Hello from interface attribute"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var attribute = typeof(MyClass).GetInterfaces().SelectMany(x =\u003e x.GetCustomAttributes().OfType\u003cMyCustomAttribute\u003e()).SingleOrDefault();\nConsole.WriteLine(attribute == null); // False\nConsole.WriteLine(attribute.Text); // Hello from interface attribute",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Reading an attribute from interface",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

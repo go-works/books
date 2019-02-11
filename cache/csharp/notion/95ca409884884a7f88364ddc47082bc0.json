@@ -1,0 +1,325 @@
+{
+  "ID": "95ca4098-8488-4a7f-8836-4ddc47082bc0",
+  "Root": {
+    "alive": true,
+    "content": [
+      "0fa95eae-4752-47c9-b149-b0add60be45f",
+      "9cc9b41f-6209-47a7-8868-7e3864419c8f",
+      "8b4030cb-5fb3-4e53-99f3-8482e58dff6f",
+      "8e7cbe57-7be6-4f25-a6ff-180cdd333746",
+      "7db49d50-ccbf-49ae-8a7e-d360a17203ad",
+      "511b1c01-6a0e-490e-89e8-86a5ab5f5e5b"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1549525204271,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "95ca4098-8488-4a7f-8836-4ddc47082bc0",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1549626300000,
+    "parent_id": "e46b0a90-d1e1-4de7-8d79-875641b9f824",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Get a Strongly-Typed Delegate to a Method or Property via Reflection"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 6,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525204268,
+        "id": "0fa95eae-4752-47c9-b149-b0add60be45f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525204268,
+        "parent_id": "95ca4098-8488-4a7f-8836-4ddc47082bc0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "When performance is a concern, invoking a method via reflection (i.e. via the "
+            ],
+            [
+              "MethodInfo.Invoke",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method) is not ideal. However, it is relatively straightforward to obtain a more performant strongly-typed delegate using the "
+            ],
+            [
+              "Delegate.CreateDelegate",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " function. The performance penalty for using reflection is incurred only during the delegate-creation process. Once the delegate is created, there is little-to-no performance penalty for invoking it:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "When performance is a concern, invoking a method via reflection (i.e. via the "
+          },
+          {
+            "Text": "MethodInfo.Invoke",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method) is not ideal. However, it is relatively straightforward to obtain a more performant strongly-typed delegate using the "
+          },
+          {
+            "Text": "Delegate.CreateDelegate",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " function. The performance penalty for using reflection is incurred only during the delegate-creation process. Once the delegate is created, there is little-to-no performance penalty for invoking it:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525204270,
+        "id": "9cc9b41f-6209-47a7-8868-7e3864419c8f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549626300000,
+        "parent_id": "95ca4098-8488-4a7f-8836-4ddc47082bc0",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "// Get a MethodInfo for the Math.Max(int, int) method...\nvar maxMethod = typeof(Math).GetMethod(\"Max\", new Type[] { typeof(int), typeof(int) });\n// Now get a strongly-typed delegate for Math.Max(int, int)...\nvar stronglyTypedDelegate = (Func\u003cint, int, int\u003e)Delegate.CreateDelegate(typeof(Func\u003cint, int, int\u003e), null, maxMethod);\n// Invoke the Math.Max(int, int) method using the strongly-typed delegate...\nConsole.WriteLine(\"Max of 3 and 5 is: {0}\", stronglyTypedDelegate(3, 5));"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "// Get a MethodInfo for the Math.Max(int, int) method...\nvar maxMethod = typeof(Math).GetMethod(\"Max\", new Type[] { typeof(int), typeof(int) });\n// Now get a strongly-typed delegate for Math.Max(int, int)...\nvar stronglyTypedDelegate = (Func\u003cint, int, int\u003e)Delegate.CreateDelegate(typeof(Func\u003cint, int, int\u003e), null, maxMethod);\n// Invoke the Math.Max(int, int) method using the strongly-typed delegate...\nConsole.WriteLine(\"Max of 3 and 5 is: {0}\", stronglyTypedDelegate(3, 5));",
+        "code_language": "C#"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525204271,
+        "id": "8b4030cb-5fb3-4e53-99f3-8482e58dff6f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525204271,
+        "parent_id": "95ca4098-8488-4a7f-8836-4ddc47082bc0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This technique can be extended to properties as well. If we have a class named "
+            ],
+            [
+              "MyClass",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " with an "
+            ],
+            [
+              "int",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " property named "
+            ],
+            [
+              "MyIntProperty",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", the code to get a strongly-typed getter would be (the following example assumes ‘target’ is a valid instance of "
+            ],
+            [
+              "MyClass",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "):"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This technique can be extended to properties as well. If we have a class named "
+          },
+          {
+            "Text": "MyClass",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " with an "
+          },
+          {
+            "Text": "int",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " property named "
+          },
+          {
+            "Text": "MyIntProperty",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", the code to get a strongly-typed getter would be (the following example assumes ‘target’ is a valid instance of "
+          },
+          {
+            "Text": "MyClass",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "):"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525204271,
+        "id": "8e7cbe57-7be6-4f25-a6ff-180cdd333746",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549626300000,
+        "parent_id": "95ca4098-8488-4a7f-8836-4ddc47082bc0",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "// Get a MethodInfo for the MyClass.MyIntProperty getter...\nvar theProperty = typeof(MyClass).GetProperty(\"MyIntProperty\");\nvar theGetter = theProperty.GetGetMethod();\n// Now get a strongly-typed delegate for MyIntProperty that can be executed against any MyClass instance...\nvar stronglyTypedGetter = (Func\u003cMyClass, int\u003e)Delegate.CreateDelegate(typeof(Func\u003cMyClass, int\u003e), theGetter);\n// Invoke the MyIntProperty getter against MyClass instance 'target'...\nConsole.WriteLine(\"target.MyIntProperty is: {0}\", stronglyTypedGetter(target));"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "// Get a MethodInfo for the MyClass.MyIntProperty getter...\nvar theProperty = typeof(MyClass).GetProperty(\"MyIntProperty\");\nvar theGetter = theProperty.GetGetMethod();\n// Now get a strongly-typed delegate for MyIntProperty that can be executed against any MyClass instance...\nvar stronglyTypedGetter = (Func\u003cMyClass, int\u003e)Delegate.CreateDelegate(typeof(Func\u003cMyClass, int\u003e), theGetter);\n// Invoke the MyIntProperty getter against MyClass instance 'target'...\nConsole.WriteLine(\"target.MyIntProperty is: {0}\", stronglyTypedGetter(target));",
+        "code_language": "C#"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525204271,
+        "id": "7db49d50-ccbf-49ae-8a7e-d360a17203ad",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549525204271,
+        "parent_id": "95ca4098-8488-4a7f-8836-4ddc47082bc0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "…and the same can be done for the setter:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "…and the same can be done for the setter:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525204271,
+        "id": "511b1c01-6a0e-490e-89e8-86a5ab5f5e5b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549626300000,
+        "parent_id": "95ca4098-8488-4a7f-8836-4ddc47082bc0",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "// Get a MethodInfo for the MyClass.MyIntProperty setter...\nvar theProperty = typeof(MyClass).GetProperty(\"MyIntProperty\");\nvar theSetter = theProperty.GetSetMethod();\n// Now get a strongly-typed delegate for MyIntProperty that can be executed against any MyClass instance...\nvar stronglyTypedSetter = (Action\u003cMyClass, int\u003e)Delegate.CreateDelegate(typeof(Action\u003cMyClass, int\u003e), theSetter);\n// Set MyIntProperty to 5...\nstronglyTypedSetter(target, 5);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "// Get a MethodInfo for the MyClass.MyIntProperty setter...\nvar theProperty = typeof(MyClass).GetProperty(\"MyIntProperty\");\nvar theSetter = theProperty.GetSetMethod();\n// Now get a strongly-typed delegate for MyIntProperty that can be executed against any MyClass instance...\nvar stronglyTypedSetter = (Action\u003cMyClass, int\u003e)Delegate.CreateDelegate(typeof(Action\u003cMyClass, int\u003e), theSetter);\n// Set MyIntProperty to 5...\nstronglyTypedSetter(target, 5);",
+        "code_language": "C#"
+      }
+    ],
+    "title": "Get a Strongly-Typed Delegate to a Method or Property via Reflection",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}
