@@ -61,12 +61,15 @@ type Page struct {
 }
 
 var knownMetaKeys = map[string]bool{
-	"id":     true,
-	"soid":   true,
-	"search": true,
-	"score":  true,
-	"draft":  true,
-	"todo":   true,
+	"id":          true, // id, obsolete
+	"soid":        true, // stack overflow id, obsolete
+	"search":      true, // additional search terms
+	"score":       true, // stack overflow score
+	"draft":       true, // draft is hidden from public view
+	"todo":        true, // todo is hidden from public view
+	"note":        true, // for leaving notes to myself
+	"desc":        true, // for SEO (meant to go into "description" meta tag)
+	"description": true, // same as "desc"
 }
 
 func isKnownMeta(s string) bool {
