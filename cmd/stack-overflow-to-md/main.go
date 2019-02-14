@@ -302,6 +302,7 @@ func getIndexMd(topic *Topic) []byte {
 	if !isEmptyString(topic.ParametersMarkdown) {
 		s += "## Parameters\n"
 		s += topic.ParametersMarkdown
+		s += "\n"
 	} else if !isEmptyString(topic.ParametersHtml) {
 		s += "## Parameters HTML\n\n"
 		s += topic.ParametersHtml
@@ -311,6 +312,7 @@ func getIndexMd(topic *Topic) []byte {
 	if !isEmptyString(topic.RemarksMarkdown) {
 		s += "## Remarks\n"
 		s += topic.RemarksMarkdown
+		s += "\n"
 	} else if !isEmptyString(topic.RemarksHtml) {
 		s += "## Remarks HTML\n\n"
 		s += topic.RemarksHtml
