@@ -87,9 +87,16 @@ func loadPageFromCache(b *Book, pageID string) *notionapi.Page {
 }
 
 // I got "connection reset by peer" error once so retry download 3 times, with a short sleep in-between
-func downloadPageRetry(c *notionapi.Client, pageID string) (*notionapi.Page, error) {
-	var res *notionapi.Page
-	var err error
+func downloadPageRetry(c *notionapi.Client, pageID string) (res *notionapi.Page, err error) {
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Printf("\nRecovered with %v\n", r)
+			fmt.Printf("PageID: %s\n\n", pageID)
+			res = nil
+			err = fmt.Errorf("crashed trying to downlaod page %s", pageID)
+		}
+	}()
+
 	for i := 0; i < 3; i++ {
 		if i > 0 {
 			fmt.Printf("Download %s failed with '%s'\n", pageID, err)
@@ -97,10 +104,10 @@ func downloadPageRetry(c *notionapi.Client, pageID string) (*notionapi.Page, err
 		}
 		res, err = c.DownloadPage(pageID)
 		if err == nil {
-			return res, nil
+			return
 		}
 	}
-	return nil, err
+	return
 }
 
 func downloadAndCachePage(b *Book, c *notionapi.Client, pageID string) (*notionapi.Page, error) {

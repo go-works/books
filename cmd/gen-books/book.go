@@ -14,9 +14,8 @@ import (
 type Book struct {
 	//FileNameBase string // TODO: possibly not needed
 
-	Title     string // "Essential Go", "Essential jQuery" etcc
+	Title     string // "Go", "jQuery" etcc
 	titleSafe string
-	// TODO: remove TitleLong since Title is the same
 	TitleLong string // "Essential Go", "Essential jQuery" etc.
 
 	NotionStartPageID string
@@ -36,6 +35,10 @@ type Book struct {
 	tocData []byte
 	// url of combined tocData and app.js
 	AppJSURL string
+
+	// name of a file in covers/ directory
+	// e.g. Python.png
+	CoverImageName string
 
 	// cache related
 	cachedOutputFiles       []*cachedOutputFile
@@ -116,8 +119,8 @@ func (b *Book) ShareOnTwitterText() string {
 
 // CoverURL returns url to cover image
 func (b *Book) CoverURL() string {
-	coverName := langToCover[b.titleSafe]
-	return fmt.Sprintf("/covers/%s.png", coverName)
+	panicIf(b.CoverImageName == "")
+	return fmt.Sprintf("/covers/%s.png", b.CoverImageName)
 }
 
 // CoverFullURL returns a URL for the cover including host
@@ -127,8 +130,8 @@ func (b *Book) CoverFullURL() string {
 
 // CoverTwitterFullURL returns a URL for the cover including host
 func (b *Book) CoverTwitterFullURL() string {
-	coverName := langToCover[b.titleSafe]
-	coverURL := fmt.Sprintf("/covers/twitter/%s.png", coverName)
+	panicIf(b.CoverImageName == "")
+	coverURL := fmt.Sprintf("/covers/twitter/%s.png", b.CoverImageName)
 	return urlJoin(siteBaseURL, coverURL)
 }
 

@@ -38,21 +38,35 @@ var (
 )
 
 var (
+	bookGo = 		&Book{
+		Title:     "Go",
+		TitleLong: "Essential Go",
+		Dir:       "go",
+		CoverImageName: "Go.png",
+		// https://www.notion.so/2cab1ed2b7a44584b56b0d3ca9b80185
+		NotionStartPageID: "2cab1ed2b7a44584b56b0d3ca9b80185",
+	}
+	bookCsharp = 		&Book{
+		Title: "C#",
+		TitleLong: "Essential C#",
+		Dir: "csharp",
+		CoverImageName: "CSharp.png",
+		// https://www.notion.so/kjkpublic/Essential-C-896da5248e65414ab645dd45985879a1
+		NotionStartPageID: "896da5248e65414ab645dd45985879a1",
+	}
+	bookPython = &Book{
+		Title: "Python",
+		TitleLong: "Essential Python",
+		Dir: "python",
+		CoverImageName: "Python.png",
+		// https://www.notion.so/kjkpublic/Essential-Python-12e6f78e68a5497290c96e1365ae6259
+		NotionStartPageID: "12e6f78e68a5497290c96e1365ae6259",
+	}
+)
+
+var (
 	books = []*Book{
-		&Book{
-			Title:     "Go",
-			TitleLong: "Essential Go",
-			Dir:       "go",
-			// https://www.notion.so/2cab1ed2b7a44584b56b0d3ca9b80185
-			NotionStartPageID: "2cab1ed2b7a44584b56b0d3ca9b80185",
-		},
-		&Book{
-			Title: "C#",
-			TitleLong: "Essential C#",
-			Dir: "csharp",
-			// https://www.notion.so/kjkpublic/Essential-C-896da5248e65414ab645dd45985879a1
-			NotionStartPageID: "896da5248e65414ab645dd45985879a1",
-		},
+		bookGo, bookCsharp, bookPython,
 	}
 )
 
@@ -240,6 +254,12 @@ func isNotionCachedInDir(dir string, id string) bool {
 func findBookFromCachedPageID(id string) *Book {
 	files, err := ioutil.ReadDir("cache")
 	panicIfErr(err)
+	for _, book := range books {
+		if book.NotionStartPageID == id {
+			return book
+		}
+	}
+
 	for _, fi := range files {
 		if !fi.IsDir() {
 			continue
