@@ -10,9 +10,9 @@
       "7d10a2e5-e29b-43ad-810c-c0774447727e",
       "f0d3f4c2-21f5-40a4-a485-d011b7e0b3f5",
       "2436a2b9-011d-4276-8010-ce0f2ae11a9e",
-      "9d9fb5c6-2c46-4193-a84b-2d00f0a71108",
       "d2c8b30d-dbb5-4f86-8489-d2b82d4103b0",
-      "bc4fd550-6827-4189-a16d-5cffe54e5082"
+      "bc4fd550-6827-4189-a16d-5cffe54e5082",
+      "b390a3e1-64c1-4ae5-9273-84c4b8006984"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549530365580,
@@ -23,7 +23,7 @@
     "id": "5e0f2a1d-13b0-4224-9918-c622113048a1",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549789560000,
+    "last_edited_time": 1550224380000,
     "parent_id": "1298a931-d39e-4065-9767-f9bdea87d202",
     "parent_table": "block",
     "properties": {
@@ -34,7 +34,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 11,
     "content_resolved": [
       {
         "alive": true,
@@ -68,13 +68,13 @@
         "id": "19ec2151-c89b-4a8b-9ffa-1f4056a1dba1",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530365577,
+        "last_edited_time": 1550224380000,
         "parent_id": "5e0f2a1d-13b0-4224-9918-c622113048a1",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -84,9 +84,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "private void button1_Click(object sender, EventArgs e)\n{\n    label1.Text = RunTooLong();\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -163,13 +163,13 @@
         "id": "7d10a2e5-e29b-43ad-810c-c0774447727e",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530365578,
+        "last_edited_time": 1550224380000,
         "parent_id": "5e0f2a1d-13b0-4224-9918-c622113048a1",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -179,9 +179,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "private void button1_Click(object sender, EventArgs e)\n{\n    Task.Run(() =\u003e label1.Text = RunTooLong());\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -234,52 +234,25 @@
         "id": "2436a2b9-011d-4276-8010-ce0f2ae11a9e",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530365579,
+        "last_edited_time": 1550224380000,
         "parent_id": "5e0f2a1d-13b0-4224-9918-c622113048a1",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "private void button1_Click(object sender, EventArgs e)\n{\n    Task.Run(() =\u003e\n    {\n        var label1Text = RunTooLong();"
+              "private void button1_Click(object sender, EventArgs e)\n{\n    Task.Run(() =\u003e\n    {\n        var label1Text = RunTooLong();\n\n        if (label1.InvokeRequired)\n            lable1.BeginInvoke((Action) delegate() { label1.Text = label1Text; });\n        else\n            label1.Text = label1Text;\n    });\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "private void button1_Click(object sender, EventArgs e)\n{\n    Task.Run(() =\u003e\n    {\n        var label1Text = RunTooLong();",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530365580,
-        "id": "9d9fb5c6-2c46-4193-a84b-2d00f0a71108",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530365580,
-        "parent_id": "5e0f2a1d-13b0-4224-9918-c622113048a1",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "if (label1.InvokeRequired)\n            lable1.BeginInvoke((Action) delegate() { label1.Text = label1Text; });\n        else\n            label1.Text = label1Text;\n    });\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "if (label1.InvokeRequired)\n            lable1.BeginInvoke((Action) delegate() { label1.Text = label1Text; });\n        else\n            label1.Text = label1Text;\n    });\n}",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "private void button1_Click(object sender, EventArgs e)\n{\n    Task.Run(() =\u003e\n    {\n        var label1Text = RunTooLong();\n\n        if (label1.InvokeRequired)\n            lable1.BeginInvoke((Action) delegate() { label1.Text = label1Text; });\n        else\n            label1.Text = label1Text;\n    });\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -336,13 +309,13 @@
         "id": "bc4fd550-6827-4189-a16d-5cffe54e5082",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530365580,
+        "last_edited_time": 1550224380000,
         "parent_id": "5e0f2a1d-13b0-4224-9918-c622113048a1",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -352,9 +325,21 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "private void button1_Click(object sender, EventArgs e)\n{\n    Task.Run(() =\u003e\n    {\n        var label1Text = RunTooLong();\n        SynchronizationContext.Current.Post((obj) =\u003e\n        {\n            label1.Text = label1    Text);\n        }, null);\n    });\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550224380000,
+        "id": "b390a3e1-64c1-4ae5-9273-84c4b8006984",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550224380000,
+        "parent_id": "5e0f2a1d-13b0-4224-9918-c622113048a1",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "Why SynchronizationContext is so important",

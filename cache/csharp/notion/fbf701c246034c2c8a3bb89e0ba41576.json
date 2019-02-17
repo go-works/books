@@ -16,25 +16,8 @@
       "8444e25c-6c5e-4f82-bf5f-ad3c1010a1e3",
       "65425923-af41-4d06-8fd6-d1ec7fa9ba3b",
       "122209c9-829e-423d-ae41-5fde91340c34",
-      "1948b5db-3a33-4638-8904-5f1e85b96d48",
-      "b713a6b9-7456-42fd-8fd4-6670f72036ee",
-      "82082db2-40a3-4a5f-8c8a-7bebc49be494",
-      "feef207c-3813-41d9-a103-3a532a60a591",
-      "8c1d5fb4-b6c7-401b-b1c9-54b6e5a61738",
       "cb741395-5b1c-46be-9cc1-7247f1b9fc27",
       "d8c48df5-b4f8-4edf-838f-360cd3eb2267",
-      "bb5f8f5b-88ad-47a3-a59e-513d6cdeb97a",
-      "931be5a7-d08f-42f4-b5dd-68524be58570",
-      "516fdfca-1c63-4c28-9d99-f79450730b55",
-      "3bb1b0cd-041b-409b-b5ee-d7338ac57c0c",
-      "8f87ed5f-751b-4683-ba6d-8358413d626c",
-      "67c82d59-98eb-41a6-8c49-7b61ee3538ae",
-      "efb71fa3-97d6-4983-aa83-46f6e44c79fa",
-      "95dcc73f-9d22-4b04-abf8-0ec910e885c4",
-      "a0e7e49f-2db7-4be1-86ef-08ec17c3098b",
-      "78175b15-fb4d-4bd6-9fe4-f44ab275846e",
-      "2e54bb9d-8477-47c6-8701-c5eed32fafa1",
-      "b68a3dc7-69bd-42cd-a4c5-713b7ebebe46",
       "c114c82b-1fa6-4028-a81f-d37935e0d0e6",
       "3fce408c-3626-4748-b19a-97e9421c066d",
       "eb7f747d-035e-4e9d-b674-bf238761a1f2",
@@ -49,7 +32,7 @@
     "id": "fbf701c2-4603-4c2c-8a3b-b89e0ba41576",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549791000000,
+    "last_edited_time": 1550225220000,
     "parent_id": "a009735c-8be2-4499-92fb-e2cf4bcb684b",
     "parent_table": "block",
     "properties": {
@@ -60,7 +43,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 27,
     "content_resolved": [
       {
         "alive": true,
@@ -426,160 +409,25 @@
         "id": "122209c9-829e-423d-ae41-5fde91340c34",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530551640,
+        "last_edited_time": 1550225160000,
         "parent_id": "fbf701c2-4603-4c2c-8a3b-b89e0ba41576",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public interface ITarget\n{\n    void MethodA();\n}"
+              "public interface ITarget\n{\n    void MethodA();\n}\n\npublic class Adaptee\n{\n    public void MethodB()\n    {\n        Console.WriteLine(\"MethodB() is called\");\n    }\n}\n\npublic class Client\n{\n    private ITarget target;\n\n    public Client(ITarget target)\n    {\n        this.target = target;\n    }\n\n    public void MakeRequest()\n    {\n        target.MethodA();\n    }\n}  \n\npublic class Adapter : Adaptee, ITarget\n{\n    public void MethodA()\n    {\n        MethodB();\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public interface ITarget\n{\n    void MethodA();\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530551640,
-        "id": "1948b5db-3a33-4638-8904-5f1e85b96d48",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530551640,
-        "parent_id": "fbf701c2-4603-4c2c-8a3b-b89e0ba41576",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public class Adaptee\n{\n    public void MethodB()\n    {\n        Console.WriteLine(\"MethodB() is called\");\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public class Adaptee\n{\n    public void MethodB()\n    {\n        Console.WriteLine(\"MethodB() is called\");\n    }\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530551640,
-        "id": "b713a6b9-7456-42fd-8fd4-6670f72036ee",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530551640,
-        "parent_id": "fbf701c2-4603-4c2c-8a3b-b89e0ba41576",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public class Client\n{\n    private ITarget target;"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public class Client\n{\n    private ITarget target;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530551641,
-        "id": "82082db2-40a3-4a5f-8c8a-7bebc49be494",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530551641,
-        "parent_id": "fbf701c2-4603-4c2c-8a3b-b89e0ba41576",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public Client(ITarget target)\n    {\n        this.target = target;\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public Client(ITarget target)\n    {\n        this.target = target;\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530551641,
-        "id": "feef207c-3813-41d9-a103-3a532a60a591",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530551641,
-        "parent_id": "fbf701c2-4603-4c2c-8a3b-b89e0ba41576",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public void MakeRequest()\n    {\n        target.MethodA();\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public void MakeRequest()\n    {\n        target.MethodA();\n    }\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530551641,
-        "id": "8c1d5fb4-b6c7-401b-b1c9-54b6e5a61738",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530551641,
-        "parent_id": "fbf701c2-4603-4c2c-8a3b-b89e0ba41576",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public class Adapter : Adaptee, ITarget\n{\n    public void MethodA()\n    {\n        MethodB();\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public class Adapter : Adaptee, ITarget\n{\n    public void MethodA()\n    {\n        MethodB();\n    }\n}",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "public interface ITarget\n{\n    void MethodA();\n}\n\npublic class Adaptee\n{\n    public void MethodB()\n    {\n        Console.WriteLine(\"MethodB() is called\");\n    }\n}\n\npublic class Client\n{\n    private ITarget target;\n\n    public Client(ITarget target)\n    {\n        this.target = target;\n    }\n\n    public void MakeRequest()\n    {\n        target.MethodA();\n    }\n}  \n\npublic class Adapter : Adaptee, ITarget\n{\n    public void MethodA()\n    {\n        MethodB();\n    }\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -619,349 +467,25 @@
         "id": "d8c48df5-b4f8-4edf-838f-360cd3eb2267",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530551641,
+        "last_edited_time": 1550225220000,
         "parent_id": "fbf701c2-4603-4c2c-8a3b-b89e0ba41576",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "/// \u003csummary\u003e\n///  Interface: This is the interface which is used by the client to achieve functionality.\n/// \u003c/summary\u003e\npublic interface ITarget\n{\n    List\u003cstring\u003e GetEmployeeList();\n}"
+              "/// \u003csummary\u003e\n///  Interface: This is the interface which is used by the client to achieve functionality.\n/// \u003c/summary\u003e\npublic interface ITarget\n{\n    List\u003cstring\u003e GetEmployeeList();\n}\n\n/// \u003csummary\u003e\n/// Adaptee: This is the functionality which the client desires but its interface is not compatible with the client.\n/// \u003c/summary\u003e\npublic class CompanyEmplyees\n{\n    public string[][] GetEmployees()\n    {\n        string[][] employees = new string[4][];\n\n        employees[0] = new string[] { \"100\", \"Deepak\", \"Team Leader\" };\n        employees[1] = new string[] { \"101\", \"Rohit\", \"Developer\" };\n        employees[2] = new string[] { \"102\", \"Gautam\", \"Developer\" };\n        employees[3] = new string[] { \"103\", \"Dev\", \"Tester\" };\n\n        return employees;\n    }\n}\n\n/// \u003csummary\u003e\n/// Client: This is the class which wants to achieve some functionality by using the adaptee’s code (list of employees).\n/// \u003c/summary\u003e\npublic class ThirdPartyBillingSystem\n{\n    /* \n     * This class is from a thirt party and you do'n have any control over it. \n     * But it requires a Emplyee list to do its work\n     */\n\n    private ITarget employeeSource;\n\n    public ThirdPartyBillingSystem(ITarget employeeSource)\n    {\n        this.employeeSource = employeeSource;\n    }\n\n    public void ShowEmployeeList()\n    {\n        // call the clietn list in the interface\n        List\u003cstring\u003e employee = employeeSource.GetEmployeeList();\n\n        Console.WriteLine(\"######### Employee List ##########\");\n        foreach (var item in employee)\n        {\n            Console.Write(item);\n        }\n\n    }\n}\n\n/// \u003csummary\u003e\n/// Adapter: This is the class which would implement ITarget and would call the Adaptee code which the client wants to call.\n/// \u003c/summary\u003e\npublic class EmployeeAdapter : CompanyEmplyees, ITarget\n{\n    public List\u003cstring\u003e GetEmployeeList()\n    {\n        List\u003cstring\u003e employeeList = new List\u003cstring\u003e();\n        string[][] employees = GetEmployees();\n        foreach (string[] employee in employees)\n        {\n            employeeList.Add(employee[0]);\n            employeeList.Add(\",\");\n            employeeList.Add(employee[1]);\n            employeeList.Add(\",\");\n            employeeList.Add(employee[2]);\n            employeeList.Add(\"\\n\");\n        }\n\n        return employeeList;\n    }\n}\n\n/// \n/// Demo\n/// \nclass Programs\n{\n    static void Main(string[] args)\n    {\n        ITarget Itarget = new EmployeeAdapter();\n        ThirdPartyBillingSystem client = new ThirdPartyBillingSystem(Itarget);\n        client.ShowEmployeeList();\n        Console.ReadKey();\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "/// \u003csummary\u003e\n///  Interface: This is the interface which is used by the client to achieve functionality.\n/// \u003c/summary\u003e\npublic interface ITarget\n{\n    List\u003cstring\u003e GetEmployeeList();\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530551641,
-        "id": "bb5f8f5b-88ad-47a3-a59e-513d6cdeb97a",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530551641,
-        "parent_id": "fbf701c2-4603-4c2c-8a3b-b89e0ba41576",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "/// \u003csummary\u003e\n/// Adaptee: This is the functionality which the client desires but its interface is not compatible with the client.\n/// \u003c/summary\u003e\npublic class CompanyEmplyees\n{\n    public string[][] GetEmployees()\n    {\n        string[][] employees = new string[4][];"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "/// \u003csummary\u003e\n/// Adaptee: This is the functionality which the client desires but its interface is not compatible with the client.\n/// \u003c/summary\u003e\npublic class CompanyEmplyees\n{\n    public string[][] GetEmployees()\n    {\n        string[][] employees = new string[4][];",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530551641,
-        "id": "931be5a7-d08f-42f4-b5dd-68524be58570",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530551641,
-        "parent_id": "fbf701c2-4603-4c2c-8a3b-b89e0ba41576",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "employees[0] = new string[] { \"100\", \"Deepak\", \"Team Leader\" };\n        employees[1] = new string[] { \"101\", \"Rohit\", \"Developer\" };\n        employees[2] = new string[] { \"102\", \"Gautam\", \"Developer\" };\n        employees[3] = new string[] { \"103\", \"Dev\", \"Tester\" };"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "employees[0] = new string[] { \"100\", \"Deepak\", \"Team Leader\" };\n        employees[1] = new string[] { \"101\", \"Rohit\", \"Developer\" };\n        employees[2] = new string[] { \"102\", \"Gautam\", \"Developer\" };\n        employees[3] = new string[] { \"103\", \"Dev\", \"Tester\" };",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530551641,
-        "id": "516fdfca-1c63-4c28-9d99-f79450730b55",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530551641,
-        "parent_id": "fbf701c2-4603-4c2c-8a3b-b89e0ba41576",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "return employees;\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "return employees;\n    }\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530551641,
-        "id": "3bb1b0cd-041b-409b-b5ee-d7338ac57c0c",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530551641,
-        "parent_id": "fbf701c2-4603-4c2c-8a3b-b89e0ba41576",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "/// \u003csummary\u003e\n/// Client: This is the class which wants to achieve some functionality by using the adaptee’s code (list of employees).\n/// \u003c/summary\u003e\npublic class ThirdPartyBillingSystem\n{\n    /* \n     * This class is from a thirt party and you do'n have any control over it. \n     * But it requires a Emplyee list to do its work\n     */"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "/// \u003csummary\u003e\n/// Client: This is the class which wants to achieve some functionality by using the adaptee’s code (list of employees).\n/// \u003c/summary\u003e\npublic class ThirdPartyBillingSystem\n{\n    /* \n     * This class is from a thirt party and you do'n have any control over it. \n     * But it requires a Emplyee list to do its work\n     */",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530551641,
-        "id": "8f87ed5f-751b-4683-ba6d-8358413d626c",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530551641,
-        "parent_id": "fbf701c2-4603-4c2c-8a3b-b89e0ba41576",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "private ITarget employeeSource;"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "private ITarget employeeSource;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530551641,
-        "id": "67c82d59-98eb-41a6-8c49-7b61ee3538ae",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530551641,
-        "parent_id": "fbf701c2-4603-4c2c-8a3b-b89e0ba41576",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public ThirdPartyBillingSystem(ITarget employeeSource)\n    {\n        this.employeeSource = employeeSource;\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public ThirdPartyBillingSystem(ITarget employeeSource)\n    {\n        this.employeeSource = employeeSource;\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530551641,
-        "id": "efb71fa3-97d6-4983-aa83-46f6e44c79fa",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530551641,
-        "parent_id": "fbf701c2-4603-4c2c-8a3b-b89e0ba41576",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public void ShowEmployeeList()\n    {\n        // call the clietn list in the interface\n        List\u003cstring\u003e employee = employeeSource.GetEmployeeList();"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public void ShowEmployeeList()\n    {\n        // call the clietn list in the interface\n        List\u003cstring\u003e employee = employeeSource.GetEmployeeList();",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530551642,
-        "id": "95dcc73f-9d22-4b04-abf8-0ec910e885c4",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530551642,
-        "parent_id": "fbf701c2-4603-4c2c-8a3b-b89e0ba41576",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "Console.WriteLine(\"######### Employee List ##########\");\n        foreach (var item in employee)\n        {\n            Console.Write(item);\n        }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "Console.WriteLine(\"######### Employee List ##########\");\n        foreach (var item in employee)\n        {\n            Console.Write(item);\n        }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530551642,
-        "id": "a0e7e49f-2db7-4be1-86ef-08ec17c3098b",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530551642,
-        "parent_id": "fbf701c2-4603-4c2c-8a3b-b89e0ba41576",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "}\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "}\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530551642,
-        "id": "78175b15-fb4d-4bd6-9fe4-f44ab275846e",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530551642,
-        "parent_id": "fbf701c2-4603-4c2c-8a3b-b89e0ba41576",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "/// \u003csummary\u003e\n/// Adapter: This is the class which would implement ITarget and would call the Adaptee code which the client wants to call.\n/// \u003c/summary\u003e\npublic class EmployeeAdapter : CompanyEmplyees, ITarget\n{\n    public List\u003cstring\u003e GetEmployeeList()\n    {\n        List\u003cstring\u003e employeeList = new List\u003cstring\u003e();\n        string[][] employees = GetEmployees();\n        foreach (string[] employee in employees)\n        {\n            employeeList.Add(employee[0]);\n            employeeList.Add(\",\");\n            employeeList.Add(employee[1]);\n            employeeList.Add(\",\");\n            employeeList.Add(employee[2]);\n            employeeList.Add(\"\\n\");\n        }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "/// \u003csummary\u003e\n/// Adapter: This is the class which would implement ITarget and would call the Adaptee code which the client wants to call.\n/// \u003c/summary\u003e\npublic class EmployeeAdapter : CompanyEmplyees, ITarget\n{\n    public List\u003cstring\u003e GetEmployeeList()\n    {\n        List\u003cstring\u003e employeeList = new List\u003cstring\u003e();\n        string[][] employees = GetEmployees();\n        foreach (string[] employee in employees)\n        {\n            employeeList.Add(employee[0]);\n            employeeList.Add(\",\");\n            employeeList.Add(employee[1]);\n            employeeList.Add(\",\");\n            employeeList.Add(employee[2]);\n            employeeList.Add(\"\\n\");\n        }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530551642,
-        "id": "2e54bb9d-8477-47c6-8701-c5eed32fafa1",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530551642,
-        "parent_id": "fbf701c2-4603-4c2c-8a3b-b89e0ba41576",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "return employeeList;\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "return employeeList;\n    }\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530551642,
-        "id": "b68a3dc7-69bd-42cd-a4c5-713b7ebebe46",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530551642,
-        "parent_id": "fbf701c2-4603-4c2c-8a3b-b89e0ba41576",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "/// \n/// Demo\n/// \nclass Programs\n{\n    static void Main(string[] args)\n    {\n        ITarget Itarget = new EmployeeAdapter();\n        ThirdPartyBillingSystem client = new ThirdPartyBillingSystem(Itarget);\n        client.ShowEmployeeList();\n        Console.ReadKey();\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "/// \n/// Demo\n/// \nclass Programs\n{\n    static void Main(string[] args)\n    {\n        ITarget Itarget = new EmployeeAdapter();\n        ThirdPartyBillingSystem client = new ThirdPartyBillingSystem(Itarget);\n        client.ShowEmployeeList();\n        Console.ReadKey();\n    }\n}",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "/// \u003csummary\u003e\n///  Interface: This is the interface which is used by the client to achieve functionality.\n/// \u003c/summary\u003e\npublic interface ITarget\n{\n    List\u003cstring\u003e GetEmployeeList();\n}\n\n/// \u003csummary\u003e\n/// Adaptee: This is the functionality which the client desires but its interface is not compatible with the client.\n/// \u003c/summary\u003e\npublic class CompanyEmplyees\n{\n    public string[][] GetEmployees()\n    {\n        string[][] employees = new string[4][];\n\n        employees[0] = new string[] { \"100\", \"Deepak\", \"Team Leader\" };\n        employees[1] = new string[] { \"101\", \"Rohit\", \"Developer\" };\n        employees[2] = new string[] { \"102\", \"Gautam\", \"Developer\" };\n        employees[3] = new string[] { \"103\", \"Dev\", \"Tester\" };\n\n        return employees;\n    }\n}\n\n/// \u003csummary\u003e\n/// Client: This is the class which wants to achieve some functionality by using the adaptee’s code (list of employees).\n/// \u003c/summary\u003e\npublic class ThirdPartyBillingSystem\n{\n    /* \n     * This class is from a thirt party and you do'n have any control over it. \n     * But it requires a Emplyee list to do its work\n     */\n\n    private ITarget employeeSource;\n\n    public ThirdPartyBillingSystem(ITarget employeeSource)\n    {\n        this.employeeSource = employeeSource;\n    }\n\n    public void ShowEmployeeList()\n    {\n        // call the clietn list in the interface\n        List\u003cstring\u003e employee = employeeSource.GetEmployeeList();\n\n        Console.WriteLine(\"######### Employee List ##########\");\n        foreach (var item in employee)\n        {\n            Console.Write(item);\n        }\n\n    }\n}\n\n/// \u003csummary\u003e\n/// Adapter: This is the class which would implement ITarget and would call the Adaptee code which the client wants to call.\n/// \u003c/summary\u003e\npublic class EmployeeAdapter : CompanyEmplyees, ITarget\n{\n    public List\u003cstring\u003e GetEmployeeList()\n    {\n        List\u003cstring\u003e employeeList = new List\u003cstring\u003e();\n        string[][] employees = GetEmployees();\n        foreach (string[] employee in employees)\n        {\n            employeeList.Add(employee[0]);\n            employeeList.Add(\",\");\n            employeeList.Add(employee[1]);\n            employeeList.Add(\",\");\n            employeeList.Add(employee[2]);\n            employeeList.Add(\"\\n\");\n        }\n\n        return employeeList;\n    }\n}\n\n/// \n/// Demo\n/// \nclass Programs\n{\n    static void Main(string[] args)\n    {\n        ITarget Itarget = new EmployeeAdapter();\n        ThirdPartyBillingSystem client = new ThirdPartyBillingSystem(Itarget);\n        client.ShowEmployeeList();\n        Console.ReadKey();\n    }\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,

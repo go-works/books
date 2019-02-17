@@ -8,9 +8,7 @@
       "8516c39a-605f-4860-868e-5e850f1c85b7",
       "1b74c35a-6ed0-4484-b076-fcef628c6a24",
       "3e20d035-0994-4fc7-9af4-3a9718bc497b",
-      "ae846f62-6b3f-457b-b5d9-a8856b73ee4c",
-      "526cae32-18bc-439b-9e0b-7b5409964fc9",
-      "a170297e-73d0-46e4-b459-b3046739d032"
+      "6a0e6b6d-0077-48ac-b354-d97f294e19bd"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549529267544,
@@ -21,7 +19,7 @@
     "id": "06457a58-ec57-433d-b4e3-68ada902b3b9",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549789440000,
+    "last_edited_time": 1550217600000,
     "parent_id": "bb2a9e83-3d07-454f-b663-d217cc7d9031",
     "parent_table": "block",
     "properties": {
@@ -32,7 +30,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 13,
     "content_resolved": [
       {
         "alive": true,
@@ -215,106 +213,37 @@
         "id": "3e20d035-0994-4fc7-9af4-3a9718bc497b",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529267544,
+        "last_edited_time": 1550217600000,
         "parent_id": "06457a58-ec57-433d-b4e3-68ada902b3b9",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "int ret;\nThread t= new Thread(() =\u003e \n{\n    Console.WriteLine(\"Start TimeintensiveMethod.\");"
+              "int ret;\nThread t= new Thread(() =\u003e \n{\n    Console.WriteLine(\"Start TimeintensiveMethod.\");\n\n    // Do some time intensive calculations...\n    using (StreamReader reader = new StreamReader(file))\n    {\n        string s = reader.ReadToEnd();\n\n        for (int i = 0; i \u003c 10000; i++)\n            s.GetHashCode();\n    }\n    Console.WriteLine(\"End TimeintensiveMethod.\");\n\n    // return something to demonstrate the coolness of await-async\n    ret = new Random().Next(100);\n});\n\nt.Start();\nt.Join(1000);\nConsole.Writeline(\"Count: \" + ret);"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "int ret;\nThread t= new Thread(() =\u003e \n{\n    Console.WriteLine(\"Start TimeintensiveMethod.\");",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "int ret;\nThread t= new Thread(() =\u003e \n{\n    Console.WriteLine(\"Start TimeintensiveMethod.\");\n\n    // Do some time intensive calculations...\n    using (StreamReader reader = new StreamReader(file))\n    {\n        string s = reader.ReadToEnd();\n\n        for (int i = 0; i \u003c 10000; i++)\n            s.GetHashCode();\n    }\n    Console.WriteLine(\"End TimeintensiveMethod.\");\n\n    // return something to demonstrate the coolness of await-async\n    ret = new Random().Next(100);\n});\n\nt.Start();\nt.Join(1000);\nConsole.Writeline(\"Count: \" + ret);",
+        "code_language": "C#"
       },
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549529267544,
-        "id": "ae846f62-6b3f-457b-b5d9-a8856b73ee4c",
-        "ignore_block_count": true,
+        "created_time": 1550217600000,
+        "id": "6a0e6b6d-0077-48ac-b354-d97f294e19bd",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529267544,
+        "last_edited_time": 1550217600000,
         "parent_id": "06457a58-ec57-433d-b4e3-68ada902b3b9",
         "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// Do some time intensive calculations...\n    using (StreamReader reader = new StreamReader(file))\n    {\n        string s = reader.ReadToEnd();"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// Do some time intensive calculations...\n    using (StreamReader reader = new StreamReader(file))\n    {\n        string s = reader.ReadToEnd();",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549529267544,
-        "id": "526cae32-18bc-439b-9e0b-7b5409964fc9",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529267544,
-        "parent_id": "06457a58-ec57-433d-b4e3-68ada902b3b9",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "for (int i = 0; i \u003c 10000; i++)\n            s.GetHashCode();\n    }\n    Console.WriteLine(\"End TimeintensiveMethod.\");"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "for (int i = 0; i \u003c 10000; i++)\n            s.GetHashCode();\n    }\n    Console.WriteLine(\"End TimeintensiveMethod.\");",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549529267544,
-        "id": "a170297e-73d0-46e4-b459-b3046739d032",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529267544,
-        "parent_id": "06457a58-ec57-433d-b4e3-68ada902b3b9",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// return something to demonstrate the coolness of await-async\n    ret = new Random().Next(100);\n});"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// return something to demonstrate the coolness of await-async\n    ret = new Random().Next(100);\n});",
-        "code_language": "Plain Text"
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "Thread",

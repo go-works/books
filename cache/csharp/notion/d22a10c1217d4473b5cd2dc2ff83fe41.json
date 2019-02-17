@@ -6,10 +6,6 @@
       "fbe3ef1a-7fd2-4502-a283-c374313ba58a",
       "2f287639-7db7-46e0-8a1c-71e86e4945b7",
       "c29be769-b77c-4b00-bfd9-862bb32ff60e",
-      "6d7119f7-1d48-4abc-822b-aaa27c0911c4",
-      "a66e3114-a624-42ac-86ac-e502a9a896e9",
-      "37d1fbf2-db0d-4fda-8136-2260159ce77a",
-      "51d44898-bc94-4587-ab0e-59c864782a29",
       "0dd52da9-0f91-4a6a-85cf-3cea1d99b8aa",
       "bbbe5271-c75e-44c5-8024-c178bce62da3",
       "3e37692d-590c-46db-94e7-bbb6d852d929",
@@ -25,7 +21,7 @@
     "id": "d22a10c1-217d-4473-b5cd-2dc2ff83fe41",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549612200000,
+    "last_edited_time": 1550046000000,
     "parent_id": "625ceab9-a31c-417d-842a-19793514588c",
     "parent_table": "block",
     "properties": {
@@ -36,7 +32,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 15,
     "content_resolved": [
       {
         "alive": true,
@@ -113,133 +109,25 @@
         "id": "c29be769-b77c-4b00-bfd9-862bb32ff60e",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525356344,
+        "last_edited_time": 1550046000000,
         "parent_id": "d22a10c1-217d-4473-b5cd-2dc2ff83fe41",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public static class SSLContext\n{\n    // define the delegate to inject\n    public delegate void TunnelRoutine(BinaryReader sslReader, BinaryWriter sslWriter);"
+              "public static class SSLContext\n{\n    // define the delegate to inject\n    public delegate void TunnelRoutine(BinaryReader sslReader, BinaryWriter sslWriter);\n\n    // this allows the routine to be executed under SSL\n    public static void ClientTunnel(TcpClient tcpClient, TunnelRoutine routine)\n    {\n        using (SslStream sslStream = new SslStream(tcpClient.GetStream(), true, _validate))\n        {\n            sslStream.AuthenticateAsClient(HOSTNAME, null, SslProtocols.Tls, false);\n\n            if (!sslStream.IsAuthenticated)\n            {\n                throw new SecurityException(\"SSL tunnel not authenticated\");\n            }\n\n            if (!sslStream.IsEncrypted)\n            {\n                throw new SecurityException(\"SSL tunnel not encrypted\");\n            }\n\n            using (BinaryReader sslReader = new BinaryReader(sslStream))\n            using (BinaryWriter sslWriter = new BinaryWriter(sslStream))\n            {\n                routine(sslReader, sslWriter);\n            }\n        }\n    }\n}\n"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public static class SSLContext\n{\n    // define the delegate to inject\n    public delegate void TunnelRoutine(BinaryReader sslReader, BinaryWriter sslWriter);",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525356344,
-        "id": "6d7119f7-1d48-4abc-822b-aaa27c0911c4",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525356344,
-        "parent_id": "d22a10c1-217d-4473-b5cd-2dc2ff83fe41",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// this allows the routine to be executed under SSL\n    public static void ClientTunnel(TcpClient tcpClient, TunnelRoutine routine)\n    {\n        using (SslStream sslStream = new SslStream(tcpClient.GetStream(), true, _validate))\n        {\n            sslStream.AuthenticateAsClient(HOSTNAME, null, SslProtocols.Tls, false);"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// this allows the routine to be executed under SSL\n    public static void ClientTunnel(TcpClient tcpClient, TunnelRoutine routine)\n    {\n        using (SslStream sslStream = new SslStream(tcpClient.GetStream(), true, _validate))\n        {\n            sslStream.AuthenticateAsClient(HOSTNAME, null, SslProtocols.Tls, false);",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525356344,
-        "id": "a66e3114-a624-42ac-86ac-e502a9a896e9",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525356344,
-        "parent_id": "d22a10c1-217d-4473-b5cd-2dc2ff83fe41",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "if (!sslStream.IsAuthenticated)\n            {\n                throw new SecurityException(\"SSL tunnel not authenticated\");\n            }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "if (!sslStream.IsAuthenticated)\n            {\n                throw new SecurityException(\"SSL tunnel not authenticated\");\n            }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525356344,
-        "id": "37d1fbf2-db0d-4fda-8136-2260159ce77a",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525356344,
-        "parent_id": "d22a10c1-217d-4473-b5cd-2dc2ff83fe41",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "if (!sslStream.IsEncrypted)\n            {\n                throw new SecurityException(\"SSL tunnel not encrypted\");\n            }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "if (!sslStream.IsEncrypted)\n            {\n                throw new SecurityException(\"SSL tunnel not encrypted\");\n            }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525356344,
-        "id": "51d44898-bc94-4587-ab0e-59c864782a29",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525356344,
-        "parent_id": "d22a10c1-217d-4473-b5cd-2dc2ff83fe41",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "using (BinaryReader sslReader = new BinaryReader(sslStream))\n            using (BinaryWriter sslWriter = new BinaryWriter(sslStream))\n            {\n                routine(sslReader, sslWriter);\n            }\n        }\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "using (BinaryReader sslReader = new BinaryReader(sslStream))\n            using (BinaryWriter sslWriter = new BinaryWriter(sslStream))\n            {\n                routine(sslReader, sslWriter);\n            }\n        }\n    }\n}",
-        "code_language": "Plain Text"
+        "version": 15,
+        "code": "public static class SSLContext\n{\n    // define the delegate to inject\n    public delegate void TunnelRoutine(BinaryReader sslReader, BinaryWriter sslWriter);\n\n    // this allows the routine to be executed under SSL\n    public static void ClientTunnel(TcpClient tcpClient, TunnelRoutine routine)\n    {\n        using (SslStream sslStream = new SslStream(tcpClient.GetStream(), true, _validate))\n        {\n            sslStream.AuthenticateAsClient(HOSTNAME, null, SslProtocols.Tls, false);\n\n            if (!sslStream.IsAuthenticated)\n            {\n                throw new SecurityException(\"SSL tunnel not authenticated\");\n            }\n\n            if (!sslStream.IsEncrypted)\n            {\n                throw new SecurityException(\"SSL tunnel not encrypted\");\n            }\n\n            using (BinaryReader sslReader = new BinaryReader(sslStream))\n            using (BinaryWriter sslWriter = new BinaryWriter(sslStream))\n            {\n                routine(sslReader, sslWriter);\n            }\n        }\n    }\n}\n",
+        "code_language": "C#"
       },
       {
         "alive": true,

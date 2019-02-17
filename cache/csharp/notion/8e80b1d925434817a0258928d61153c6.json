@@ -6,14 +6,8 @@
       "35656e03-4ffd-4a45-aad4-c0afe0b668c1",
       "3ea50917-78e7-4d96-a97b-a1a2e0ccd232",
       "e909ba05-f7d3-4fe6-a2c7-e40c15938801",
-      "996701c1-8741-411d-bc97-d808355196a7",
       "cabaf8fb-d497-45d4-83dc-44229e4e8534",
-      "34f8ca4d-aaf5-4722-8cc5-72c37e94336f",
-      "d98ce973-c31d-4848-b6d6-1122883b4f84",
-      "84947007-43d1-44cb-85b9-daca0ffbef6f",
-      "9628f11e-03b1-438c-a841-9a11b970319b",
-      "6936f7ce-e1f1-4a46-9b8a-da8d402ba825",
-      "a22c1539-3404-4e6c-b654-be7892bb6465"
+      "34f8ca4d-aaf5-4722-8cc5-72c37e94336f"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549524863268,
@@ -24,7 +18,7 @@
     "id": "8e80b1d9-2543-4817-a025-8928d61153c6",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549614660000,
+    "last_edited_time": 1549939260000,
     "parent_id": "307cbc92-1d45-43c5-9927-7963d630a818",
     "parent_table": "block",
     "properties": {
@@ -35,7 +29,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 15,
     "content_resolved": [
       {
         "alive": true,
@@ -166,52 +160,25 @@
         "id": "e909ba05-f7d3-4fe6-a2c7-e40c15938801",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524863267,
+        "last_edited_time": 1549939260000,
         "parent_id": "8e80b1d9-2543-4817-a025-8928d61153c6",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public class CollectionWithAdd : IEnumerable\n{\n    public void Add\u003cT\u003e(T item)\n    {\n        Console.WriteLine(\"Item added with instance add method: \" + item);\n    }"
+              "public class CollectionWithAdd : IEnumerable\n{\n    public void Add\u003cT\u003e(T item)\n    {\n        Console.WriteLine(\"Item added with instance add method: \" + item);\n    }\n\n    public IEnumerator GetEnumerator()\n    {\n        // Some implementation here\n    }\n}\n\npublic class CollectionWithoutAdd : IEnumerable\n{\n    public IEnumerator GetEnumerator()\n    {\n        // Some implementation here\n    }\n}\n\npublic static class Extensions\n{\n    public static void Add\u003cT\u003e(this CollectionWithoutAdd collection, T item)\n    {\n        Console.WriteLine(\"Item added with extension add method: \" + item);\n    }\n}\n\npublic class Program\n{\n    public static void Main()\n    {\n        var collection1 = new CollectionWithAdd{1,2,3}; // Valid in all C# versions\n        var collection2 = new CollectionWithoutAdd{4,5,6}; // Valid only since C# 6\n    }\n}\n"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public class CollectionWithAdd : IEnumerable\n{\n    public void Add\u003cT\u003e(T item)\n    {\n        Console.WriteLine(\"Item added with instance add method: \" + item);\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524863267,
-        "id": "996701c1-8741-411d-bc97-d808355196a7",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524863267,
-        "parent_id": "8e80b1d9-2543-4817-a025-8928d61153c6",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public IEnumerator GetEnumerator()\n    {\n        // Some implementation here\n    }\n}\n\npublic class CollectionWithoutAdd : IEnumerable\n{\n    public IEnumerator GetEnumerator()\n    {\n        // Some implementation here\n    }\n}\n\npublic static class Extensions\n{\n    public static void Add\u003cT\u003e(this CollectionWithoutAdd collection, T item)\n    {\n        Console.WriteLine(\"Item added with extension add method: \" + item);\n    }\n}\n\npublic class Program\n{\n    public static void Main()\n    {\n        var collection1 = new CollectionWithAdd{1,2,3}; // Valid in all C# versions\n        var collection2 = new CollectionWithoutAdd{4,5,6}; // Valid only since C# 6\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public IEnumerator GetEnumerator()\n    {\n        // Some implementation here\n    }\n}\n\npublic class CollectionWithoutAdd : IEnumerable\n{\n    public IEnumerator GetEnumerator()\n    {\n        // Some implementation here\n    }\n}\n\npublic static class Extensions\n{\n    public static void Add\u003cT\u003e(this CollectionWithoutAdd collection, T item)\n    {\n        Console.WriteLine(\"Item added with extension add method: \" + item);\n    }\n}\n\npublic class Program\n{\n    public static void Main()\n    {\n        var collection1 = new CollectionWithAdd{1,2,3}; // Valid in all C# versions\n        var collection2 = new CollectionWithoutAdd{4,5,6}; // Valid only since C# 6\n    }\n}",
-        "code_language": "Plain Text"
+        "version": 8,
+        "code": "public class CollectionWithAdd : IEnumerable\n{\n    public void Add\u003cT\u003e(T item)\n    {\n        Console.WriteLine(\"Item added with instance add method: \" + item);\n    }\n\n    public IEnumerator GetEnumerator()\n    {\n        // Some implementation here\n    }\n}\n\npublic class CollectionWithoutAdd : IEnumerable\n{\n    public IEnumerator GetEnumerator()\n    {\n        // Some implementation here\n    }\n}\n\npublic static class Extensions\n{\n    public static void Add\u003cT\u003e(this CollectionWithoutAdd collection, T item)\n    {\n        Console.WriteLine(\"Item added with extension add method: \" + item);\n    }\n}\n\npublic class Program\n{\n    public static void Main()\n    {\n        var collection1 = new CollectionWithAdd{1,2,3}; // Valid in all C# versions\n        var collection2 = new CollectionWithoutAdd{4,5,6}; // Valid only since C# 6\n    }\n}\n",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -245,146 +212,21 @@
         "id": "34f8ca4d-aaf5-4722-8cc5-72c37e94336f",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524863267,
+        "last_edited_time": 1549939260000,
         "parent_id": "8e80b1d9-2543-4817-a025-8928d61153c6",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "Item added with instance add method: 1"
+              "Item added with instance add method: 1\nItem added with instance add method: 2\nItem added with instance add method: 3\nItem added with extension add method: 4\nItem added with extension add method: 5\nItem added with extension add method: 6"
             ]
           ]
         },
         "type": "quote",
-        "version": 1,
+        "version": 12,
         "inline_content": [
           {
-            "Text": "Item added with instance add method: 1"
-          }
-        ]
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524863267,
-        "id": "d98ce973-c31d-4848-b6d6-1122883b4f84",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524863267,
-        "parent_id": "8e80b1d9-2543-4817-a025-8928d61153c6",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "Item added with instance add method: 2"
-            ]
-          ]
-        },
-        "type": "text",
-        "version": 1,
-        "inline_content": [
-          {
-            "Text": "Item added with instance add method: 2"
-          }
-        ]
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524863267,
-        "id": "84947007-43d1-44cb-85b9-daca0ffbef6f",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524863267,
-        "parent_id": "8e80b1d9-2543-4817-a025-8928d61153c6",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "Item added with instance add method: 3"
-            ]
-          ]
-        },
-        "type": "text",
-        "version": 1,
-        "inline_content": [
-          {
-            "Text": "Item added with instance add method: 3"
-          }
-        ]
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524863267,
-        "id": "9628f11e-03b1-438c-a841-9a11b970319b",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524863267,
-        "parent_id": "8e80b1d9-2543-4817-a025-8928d61153c6",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "Item added with extension add method: 4"
-            ]
-          ]
-        },
-        "type": "text",
-        "version": 1,
-        "inline_content": [
-          {
-            "Text": "Item added with extension add method: 4"
-          }
-        ]
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524863267,
-        "id": "6936f7ce-e1f1-4a46-9b8a-da8d402ba825",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524863267,
-        "parent_id": "8e80b1d9-2543-4817-a025-8928d61153c6",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "Item added with extension add method: 5"
-            ]
-          ]
-        },
-        "type": "text",
-        "version": 1,
-        "inline_content": [
-          {
-            "Text": "Item added with extension add method: 5"
-          }
-        ]
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524863268,
-        "id": "a22c1539-3404-4e6c-b654-be7892bb6465",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524863268,
-        "parent_id": "8e80b1d9-2543-4817-a025-8928d61153c6",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "Item added with extension add method: 6"
-            ]
-          ]
-        },
-        "type": "text",
-        "version": 1,
-        "inline_content": [
-          {
-            "Text": "Item added with extension add method: 6"
+            "Text": "Item added with instance add method: 1\nItem added with instance add method: 2\nItem added with instance add method: 3\nItem added with extension add method: 4\nItem added with extension add method: 5\nItem added with extension add method: 6"
           }
         ]
       }

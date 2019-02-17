@@ -5,21 +5,12 @@
     "content": [
       "c761f248-911f-4e76-9215-eaa40eca1fa9",
       "9450f7f9-a78a-4132-9b32-5edf2862b376",
-      "e66a8392-18ee-4b92-bbb1-844b1214ce1f",
-      "57415f04-1398-4fa1-89ea-8e93895304aa",
-      "5a277094-dc2b-4ede-a03c-b48b50bf1474",
-      "2fc4dd49-420e-4108-8d1b-f44a2a28a4d4",
-      "b408c91b-e96d-49bf-99c6-96b3301afaeb",
       "fa6d3881-ba65-40fe-b03b-206c229a8a70",
       "da8cb360-b8c4-4af2-9e7b-be17929cb226",
       "6891571c-c789-4fcf-98cd-8ba367bc0887",
       "e0be9944-4bd9-4fdb-ad7a-78d7a018ae89",
-      "a2da511a-a0ed-4197-b234-97bce034e5a0",
-      "baa5fed5-c7a8-437f-8984-bde60e469970",
-      "770c0aec-85af-44ef-b1d9-d869f7390bf7",
       "0bac62f8-63b1-4d8c-8251-4c9f6747283d",
       "7c1929ba-9c77-4840-bf59-d998c07bd08c",
-      "2085f62f-fffe-47de-b9cf-80dedeb966e9",
       "4a719f95-1ee4-46bc-8485-562f12d3f406"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -31,7 +22,7 @@
     "id": "ad908bd9-a4b3-4e5e-94fd-82eba3681b71",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549613340000,
+    "last_edited_time": 1550043660000,
     "parent_id": "6bc8984c-0999-42e1-a500-ace83190c171",
     "parent_table": "block",
     "properties": {
@@ -42,7 +33,7 @@
       ]
     },
     "type": "page",
-    "version": 10,
+    "version": 21,
     "content_resolved": [
       {
         "alive": true,
@@ -76,7 +67,7 @@
         "id": "9450f7f9-a78a-4132-9b32-5edf2862b376",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549613340000,
+        "last_edited_time": 1550043600000,
         "parent_id": "ad908bd9-a4b3-4e5e-94fd-82eba3681b71",
         "parent_table": "block",
         "properties": {
@@ -87,149 +78,14 @@
           ],
           "title": [
             [
-              "interface IType;\ninterface IAnotherType;"
+              "interface IType;\ninterface IAnotherType;\n\n// T must be a subtype of IType\ninterface IGeneric\u003cT\u003e\n    where T : IType\n{\n}\n\n// T must be a subtype of IType\nclass Generic\u003cT\u003e\n    where T : IType\n{\n}\n\nclass NonGeneric\n{\n    // T must be a subtype of IType\n    public void DoSomething\u003cT\u003e(T arg)\n        where T : IType\n    {\n    }\n}\n\n// Valid definitions and expressions:\nclass Type : IType { }\nclass Sub : IGeneric\u003cType\u003e { }\nclass Sub : Generic\u003cType\u003e { }\nnew NonGeneric().DoSomething(new Type());\n\n// Invalid definitions and expressions:\nclass AnotherType : IAnotherType { }\nclass Sub : IGeneric\u003cAnotherType\u003e { }\nclass Sub : Generic\u003cAnotherType\u003e { }\nnew NonGeneric().DoSomething(new AnotherType());\n"
             ]
           ]
         },
         "type": "code",
-        "version": 3,
-        "code": "interface IType;\ninterface IAnotherType;",
+        "version": 9,
+        "code": "interface IType;\ninterface IAnotherType;\n\n// T must be a subtype of IType\ninterface IGeneric\u003cT\u003e\n    where T : IType\n{\n}\n\n// T must be a subtype of IType\nclass Generic\u003cT\u003e\n    where T : IType\n{\n}\n\nclass NonGeneric\n{\n    // T must be a subtype of IType\n    public void DoSomething\u003cT\u003e(T arg)\n        where T : IType\n    {\n    }\n}\n\n// Valid definitions and expressions:\nclass Type : IType { }\nclass Sub : IGeneric\u003cType\u003e { }\nclass Sub : Generic\u003cType\u003e { }\nnew NonGeneric().DoSomething(new Type());\n\n// Invalid definitions and expressions:\nclass AnotherType : IAnotherType { }\nclass Sub : IGeneric\u003cAnotherType\u003e { }\nclass Sub : Generic\u003cAnotherType\u003e { }\nnew NonGeneric().DoSomething(new AnotherType());\n",
         "code_language": "C#"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525128225,
-        "id": "e66a8392-18ee-4b92-bbb1-844b1214ce1f",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525128225,
-        "parent_id": "ad908bd9-a4b3-4e5e-94fd-82eba3681b71",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// T must be a subtype of IType\ninterface IGeneric\u003cT\u003e\n    where T : IType\n{\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// T must be a subtype of IType\ninterface IGeneric\u003cT\u003e\n    where T : IType\n{\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525128226,
-        "id": "57415f04-1398-4fa1-89ea-8e93895304aa",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525128226,
-        "parent_id": "ad908bd9-a4b3-4e5e-94fd-82eba3681b71",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// T must be a subtype of IType\nclass Generic\u003cT\u003e\n    where T : IType\n{\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// T must be a subtype of IType\nclass Generic\u003cT\u003e\n    where T : IType\n{\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525128226,
-        "id": "5a277094-dc2b-4ede-a03c-b48b50bf1474",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525128226,
-        "parent_id": "ad908bd9-a4b3-4e5e-94fd-82eba3681b71",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "class NonGeneric\n{\n    // T must be a subtype of IType\n    public void DoSomething\u003cT\u003e(T arg)\n        where T : IType\n    {\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "class NonGeneric\n{\n    // T must be a subtype of IType\n    public void DoSomething\u003cT\u003e(T arg)\n        where T : IType\n    {\n    }\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525128226,
-        "id": "2fc4dd49-420e-4108-8d1b-f44a2a28a4d4",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525128226,
-        "parent_id": "ad908bd9-a4b3-4e5e-94fd-82eba3681b71",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// Valid definitions and expressions:\nclass Type : IType { }\nclass Sub : IGeneric\u003cType\u003e { }\nclass Sub : Generic\u003cType\u003e { }\nnew NonGeneric().DoSomething(new Type());"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// Valid definitions and expressions:\nclass Type : IType { }\nclass Sub : IGeneric\u003cType\u003e { }\nclass Sub : Generic\u003cType\u003e { }\nnew NonGeneric().DoSomething(new Type());",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525128226,
-        "id": "b408c91b-e96d-49bf-99c6-96b3301afaeb",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525128226,
-        "parent_id": "ad908bd9-a4b3-4e5e-94fd-82eba3681b71",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// Invalid definitions and expressions:\nclass AnotherType : IAnotherType { }\nclass Sub : IGeneric\u003cAnotherType\u003e { }\nclass Sub : Generic\u003cAnotherType\u003e { }\nnew NonGeneric().DoSomething(new AnotherType());"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// Invalid definitions and expressions:\nclass AnotherType : IAnotherType { }\nclass Sub : IGeneric\u003cAnotherType\u003e { }\nclass Sub : Generic\u003cAnotherType\u003e { }\nnew NonGeneric().DoSomething(new AnotherType());",
-        "code_language": "Plain Text"
       },
       {
         "alive": true,
@@ -315,106 +171,25 @@
         "id": "e0be9944-4bd9-4fdb-ad7a-78d7a018ae89",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525128226,
+        "last_edited_time": 1550043660000,
         "parent_id": "ad908bd9-a4b3-4e5e-94fd-82eba3681b71",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "class A { /* ... */ }\nclass B { /* ... */ }"
+              "class A { /* ... */ }\nclass B { /* ... */ }\n\ninterface I1 { }\ninterface I2 { }\n\nclass Generic\u003cT\u003e\n    where T : A, I1, I2\n{\n}\n\nclass Generic2\u003cT\u003e\n    where T : A, B //Compilation error\n{\n}\n"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "class A { /* ... */ }\nclass B { /* ... */ }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525128226,
-        "id": "a2da511a-a0ed-4197-b234-97bce034e5a0",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525128226,
-        "parent_id": "ad908bd9-a4b3-4e5e-94fd-82eba3681b71",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "interface I1 { }\ninterface I2 { }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "interface I1 { }\ninterface I2 { }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525128226,
-        "id": "baa5fed5-c7a8-437f-8984-bde60e469970",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525128226,
-        "parent_id": "ad908bd9-a4b3-4e5e-94fd-82eba3681b71",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "class Generic\u003cT\u003e\n    where T : A, I1, I2\n{\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "class Generic\u003cT\u003e\n    where T : A, I1, I2\n{\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525128227,
-        "id": "770c0aec-85af-44ef-b1d9-d869f7390bf7",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525128227,
-        "parent_id": "ad908bd9-a4b3-4e5e-94fd-82eba3681b71",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "class Generic2\u003cT\u003e\n    where T : A, B //Compilation error\n{\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "class Generic2\u003cT\u003e\n    where T : A, B //Compilation error\n{\n}",
-        "code_language": "Plain Text"
+        "version": 8,
+        "code": "class A { /* ... */ }\nclass B { /* ... */ }\n\ninterface I1 { }\ninterface I2 { }\n\nclass Generic\u003cT\u003e\n    where T : A, I1, I2\n{\n}\n\nclass Generic2\u003cT\u003e\n    where T : A, B //Compilation error\n{\n}\n",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -448,52 +223,25 @@
         "id": "7c1929ba-9c77-4840-bf59-d998c07bd08c",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525128227,
+        "last_edited_time": 1550043660000,
         "parent_id": "ad908bd9-a4b3-4e5e-94fd-82eba3681b71",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "class Generic\u003cT\u003e\n    where T : A, I1\n{\n}"
+              "class Generic\u003cT\u003e\n    where T : A, I1\n{\n}\n\nclass Generic2\u003cT\u003e\n    where T : I1, A //Compilation error\n{\n}\n"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "class Generic\u003cT\u003e\n    where T : A, I1\n{\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525128227,
-        "id": "2085f62f-fffe-47de-b9cf-80dedeb966e9",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525128227,
-        "parent_id": "ad908bd9-a4b3-4e5e-94fd-82eba3681b71",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "class Generic2\u003cT\u003e\n    where T : I1, A //Compilation error\n{\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "class Generic2\u003cT\u003e\n    where T : I1, A //Compilation error\n{\n}",
-        "code_language": "Plain Text"
+        "version": 8,
+        "code": "class Generic\u003cT\u003e\n    where T : A, I1\n{\n}\n\nclass Generic2\u003cT\u003e\n    where T : I1, A //Compilation error\n{\n}\n",
+        "code_language": "C#"
       },
       {
         "alive": true,

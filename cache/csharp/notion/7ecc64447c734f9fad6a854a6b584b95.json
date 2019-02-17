@@ -3,7 +3,8 @@
   "Root": {
     "alive": true,
     "content": [
-      "a6d3f5b0-932a-4dd1-bacf-b344da1b8103"
+      "a6d3f5b0-932a-4dd1-bacf-b344da1b8103",
+      "b1aca88d-dc72-4082-8c71-94a465f5aab5"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549527300283,
@@ -14,7 +15,7 @@
     "id": "7ecc6444-7c73-4f9f-ad6a-854a6b584b95",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549786020000,
+    "last_edited_time": 1550202300000,
     "parent_id": "0772a9e8-ab55-46c8-8848-6042b5dca448",
     "parent_table": "block",
     "properties": {
@@ -25,7 +26,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 12,
     "content_resolved": [
       {
         "alive": true,
@@ -87,6 +88,32 @@
             "Text": " in conjunction with a TcpClient."
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550202305647,
+        "id": "b1aca88d-dc72-4082-8c71-94a465f5aab5",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550202300000,
+        "parent_id": "7ecc6444-7c73-4f9f-ad6a-854a6b584b95",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "// Declare Variables\nstring host = \"stackoverflow.com\";\nint port = 9999;\nint timeout = 5000;\n\n// Create TCP client and connect\n// Then get the netstream and pass it\n// To our StreamWriter and StreamReader\nusing (var client = new TcpClient())\nusing (var netstream = client.GetStream()) \nusing (var writer = new StreamWriter(netstream))\nusing (var reader = new StreamReader(netstream))\n{\n    // Asynchronsly attempt to connect to server\n    await client.ConnectAsync(host, port);\n    \n    // AutoFlush the StreamWriter\n    // so we don't go over the buffer\n    writer.AutoFlush = true;\n    \n    // Optionally set a timeout\n    netstream.ReadTimeout = timeout;\n\n    // Write a message over the TCP Connection\n    string message = \"Hello World!\";\n    await writer.WriteLineAsync(message);\n    \n    // Read server response\n    string response = await reader.ReadLineAsync();\n    Console.WriteLine(string.Format($\"Server: {response}\"));                \n}\n// The client and stream will close as control exits\n// the using block (Equivilent but safer than calling Close();"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 8,
+        "code": "// Declare Variables\nstring host = \"stackoverflow.com\";\nint port = 9999;\nint timeout = 5000;\n\n// Create TCP client and connect\n// Then get the netstream and pass it\n// To our StreamWriter and StreamReader\nusing (var client = new TcpClient())\nusing (var netstream = client.GetStream()) \nusing (var writer = new StreamWriter(netstream))\nusing (var reader = new StreamReader(netstream))\n{\n    // Asynchronsly attempt to connect to server\n    await client.ConnectAsync(host, port);\n    \n    // AutoFlush the StreamWriter\n    // so we don't go over the buffer\n    writer.AutoFlush = true;\n    \n    // Optionally set a timeout\n    netstream.ReadTimeout = timeout;\n\n    // Write a message over the TCP Connection\n    string message = \"Hello World!\";\n    await writer.WriteLineAsync(message);\n    \n    // Read server response\n    string response = await reader.ReadLineAsync();\n    Console.WriteLine(string.Format($\"Server: {response}\"));                \n}\n// The client and stream will close as control exits\n// the using block (Equivilent but safer than calling Close();",
+        "code_language": "C#"
       }
     ],
     "title": "Async TCP Client",

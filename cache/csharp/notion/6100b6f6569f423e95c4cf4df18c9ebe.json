@@ -4,7 +4,8 @@
     "alive": true,
     "content": [
       "a28a828f-ecca-4921-bfdd-a3a716803c32",
-      "47436ed8-3d97-4d83-9e7e-3942cbb91d24"
+      "47436ed8-3d97-4d83-9e7e-3942cbb91d24",
+      "80b877de-3709-4762-9726-9bd6e1e37089"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549525352239,
@@ -15,7 +16,7 @@
     "id": "6100b6f6-569f-423e-95c4-cf4df18c9ebe",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549612140000,
+    "last_edited_time": 1550045760000,
     "parent_id": "625ceab9-a31c-417d-842a-19793514588c",
     "parent_table": "block",
     "properties": {
@@ -26,7 +27,7 @@
       ]
     },
     "type": "page",
-    "version": 9,
+    "version": 11,
     "content_resolved": [
       {
         "alive": true,
@@ -132,7 +133,7 @@
         "id": "47436ed8-3d97-4d83-9e7e-3942cbb91d24",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549612140000,
+        "last_edited_time": 1550045760000,
         "parent_id": "6100b6f6-569f-423e-95c4-cf4df18c9ebe",
         "parent_table": "block",
         "properties": {
@@ -143,14 +144,26 @@
           ],
           "title": [
             [
-              "DisposableObject TryOpenFile()\n{\n    return null;\n}\n\n// disposable is null here, but this does not throw an exception \nusing (var disposable = TryOpenFile())\n{\n    // this will throw a NullReferenceException because disposable is null\n    disposable.DoSomething();"
+              "DisposableObject TryOpenFile()\n{\n    return null;\n}\n\n// disposable is null here, but this does not throw an exception \nusing (var disposable = TryOpenFile())\n{\n    // this will throw a NullReferenceException because disposable is null\n    disposable.DoSomething(); \n\n    if(disposable != null)\n    {\n        // here we are safe because disposable has been checked for null\n        disposable.DoSomething();\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 6,
-        "code": "DisposableObject TryOpenFile()\n{\n    return null;\n}\n\n// disposable is null here, but this does not throw an exception \nusing (var disposable = TryOpenFile())\n{\n    // this will throw a NullReferenceException because disposable is null\n    disposable.DoSomething();",
+        "version": 13,
+        "code": "DisposableObject TryOpenFile()\n{\n    return null;\n}\n\n// disposable is null here, but this does not throw an exception \nusing (var disposable = TryOpenFile())\n{\n    // this will throw a NullReferenceException because disposable is null\n    disposable.DoSomething(); \n\n    if(disposable != null)\n    {\n        // here we are safe because disposable has been checked for null\n        disposable.DoSomething();\n    }\n}",
         "code_language": "C#"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550045760000,
+        "id": "80b877de-3709-4762-9726-9bd6e1e37089",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550045760000,
+        "parent_id": "6100b6f6-569f-423e-95c4-cf4df18c9ebe",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "Using statements are null-safe",

@@ -11,8 +11,8 @@
       "0b8aae50-cf1a-4c70-8b3e-e735825bd0c3",
       "8384f60c-b464-44ad-a7a6-d3b5c0e8a436",
       "d5877b9d-317d-4f8a-8fca-17b68fe2d6cb",
-      "6f249a32-74c0-4637-bf4b-08f2ddbb33db",
-      "09023e88-23a1-4b2f-883c-25c4889f77af"
+      "09023e88-23a1-4b2f-883c-25c4889f77af",
+      "6f249a32-74c0-4637-bf4b-08f2ddbb33db"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549525018231,
@@ -23,7 +23,7 @@
     "id": "5e684b7a-6525-4c38-9890-7f574a238b83",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549613880000,
+    "last_edited_time": 1549940940000,
     "parent_id": "1cef0e56-e2c1-46b9-9c66-002b53d2c779",
     "parent_table": "block",
     "properties": {
@@ -34,7 +34,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 15,
     "content_resolved": [
       {
         "alive": true,
@@ -123,13 +123,13 @@
         "id": "0f4fce60-0d7b-478f-a8a6-88f19425a002",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525018230,
+        "last_edited_time": 1549940940000,
         "parent_id": "5e684b7a-6525-4c38-9890-7f574a238b83",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -139,9 +139,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "using System;\nusing System.Dynamic;\n\ndynamic info = new ExpandoObject();\ninfo.Id = 123;\ninfo.Another = 456;\n\nConsole.WriteLine(info.Another);\n// 456\n\nConsole.WriteLine(info.DoesntExist);\n// Throws RuntimeBinderException",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -193,13 +193,13 @@
         "id": "e08d5faf-e5ef-4e81-9df4-4362ee1c5925",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525018230,
+        "last_edited_time": 1549940940000,
         "parent_id": "5e684b7a-6525-4c38-9890-7f574a238b83",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -209,9 +209,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "try\n{\n    string json = @\"{ x : 10, y : \"\"ho\"\"}\";\n    dynamic deserializedJson = JsonConvert.DeserializeObject(json);\n    int x = deserializedJson.x;\n    string y = deserializedJson.y;\n    // int z = deserializedJson.z; // throws RuntimeBinderException\n}\ncatch (RuntimeBinderException e)\n{\n    // This exception is thrown when a property\n    // that wasn't assigned to a dynamic variable is used\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -263,13 +263,13 @@
         "id": "0b8aae50-cf1a-4c70-8b3e-e735825bd0c3",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525018231,
+        "last_edited_time": 1549940940000,
         "parent_id": "5e684b7a-6525-4c38-9890-7f574a238b83",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -279,9 +279,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "static class StringExtensions\n{\n    public static string SayHello(this string s) =\u003e $\"Hello {s}!\";\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -315,52 +315,25 @@
         "id": "d5877b9d-317d-4f8a-8fca-17b68fe2d6cb",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525018231,
+        "last_edited_time": 1549940940000,
         "parent_id": "5e684b7a-6525-4c38-9890-7f574a238b83",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "var person = \"Person\";\nConsole.WriteLine(person.SayHello());"
+              "var person = \"Person\";\nConsole.WriteLine(person.SayHello());\n\ndynamic manager = \"Manager\";\nConsole.WriteLine(manager.SayHello()); // RuntimeBinderException"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "var person = \"Person\";\nConsole.WriteLine(person.SayHello());",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525018231,
-        "id": "6f249a32-74c0-4637-bf4b-08f2ddbb33db",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525018231,
-        "parent_id": "5e684b7a-6525-4c38-9890-7f574a238b83",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "dynamic manager = \"Manager\";\nConsole.WriteLine(manager.SayHello()); // RuntimeBinderException"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "dynamic manager = \"Manager\";\nConsole.WriteLine(manager.SayHello()); // RuntimeBinderException",
-        "code_language": "Plain Text"
+        "version": 6,
+        "code": "var person = \"Person\";\nConsole.WriteLine(person.SayHello());\n\ndynamic manager = \"Manager\";\nConsole.WriteLine(manager.SayHello()); // RuntimeBinderException",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -404,6 +377,33 @@
             "Text": ". The workaround for this will be to call the extension method via the static class:"
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549525018231,
+        "id": "6f249a32-74c0-4637-bf4b-08f2ddbb33db",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549940940000,
+        "parent_id": "5e684b7a-6525-4c38-9890-7f574a238b83",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "var helloManager = StringExtensions.SayHello(manager);\nConsole.WriteLine(helloManager);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 11,
+        "code": "var helloManager = StringExtensions.SayHello(manager);\nConsole.WriteLine(helloManager);",
+        "code_language": "C#"
       }
     ],
     "title": "dynamic",

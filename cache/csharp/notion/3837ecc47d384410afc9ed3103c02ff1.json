@@ -25,7 +25,7 @@
     "id": "3837ecc4-7d38-4410-afc9-ed3103c02ff1",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549791060000,
+    "last_edited_time": 1550223360000,
     "parent_id": "d0852dd6-2ee4-4d9e-af08-4f050ff9f517",
     "parent_table": "block",
     "properties": {
@@ -36,7 +36,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 9,
     "content_resolved": [
       {
         "alive": true,
@@ -138,13 +138,13 @@
         "id": "8d652fab-5649-48fb-a16c-d6afea9e3228",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530150307,
+        "last_edited_time": 1550223360000,
         "parent_id": "3837ecc4-7d38-4410-afc9-ed3103c02ff1",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -154,9 +154,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "public interface IDevice\n{\n    int Measure();\n    void TurnOff();\n    void TurnOn();\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -208,13 +208,13 @@
         "id": "e18b3153-2fbe-4340-a940-b9b793410fcd",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530150307,
+        "last_edited_time": 1550223360000,
         "parent_id": "3837ecc4-7d38-4410-afc9-ed3103c02ff1",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -224,9 +224,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "public class AmMeter : IDevice\n{\n    private Random r = null;\n    public AmMeter()\n    {\n        r = new Random();\n    }\n    public int Measure() { return r.Next(-25, 60); }\n    public void TurnOff() { Console.WriteLine(\"AmMeter flashes lights saying good bye!\"); }\n    public void TurnOn() { Console.WriteLine(\"AmMeter turns on...\"); }\n}\npublic class OhmMeter : IDevice\n{\n    private Random r = null;\n    public OhmMeter()\n    {\n        r = new Random();\n    }\n    public int Measure() { return r.Next(0, 1000000); }\n    public void TurnOff() { Console.WriteLine(\"OhmMeter flashes lights saying good bye!\"); }\n    public void TurnOn() { Console.WriteLine(\"OhmMeter turns on...\"); }\n}\npublic class VoltMeter : IDevice\n{\n    private Random r = null;\n    public VoltMeter()\n    {\n        r = new Random();\n    }\n    public int Measure() { return r.Next(-230, 230); }\n    public void TurnOff() { Console.WriteLine(\"VoltMeter flashes lights saying good bye!\"); }\n    public void TurnOn() { Console.WriteLine(\"VoltMeter turns on...\"); }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -278,13 +278,13 @@
         "id": "eb45ee72-471a-480b-b400-0d6ecad7f961",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530150307,
+        "last_edited_time": 1550223360000,
         "parent_id": "3837ecc4-7d38-4410-afc9-ed3103c02ff1",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -294,9 +294,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "public enum Device\n{\n    AM,\n    VOLT,\n    OHM\n}\npublic class DeviceFactory\n{\n    public static IDevice CreateDevice(Device d)\n    {\n        switch(d)\n        {\n            case Device.AM: return new AmMeter();\n            case Device.VOLT: return new VoltMeter();\n            case Device.OHM: return new OhmMeter();\n            default: return new AmMeter();\n        }\n    }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -330,13 +330,13 @@
         "id": "9cc7e992-8a97-45b6-9d78-4d8fee8ed316",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530150307,
+        "last_edited_time": 1550223360000,
         "parent_id": "3837ecc4-7d38-4410-afc9-ed3103c02ff1",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -346,9 +346,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "public class Program\n{\n    static void Main(string[] args)\n    {\n        IDevice device = DeviceFactory.CreateDevice(Device.AM);\n        device.TurnOn();\n        Console.WriteLine(device.Measure());\n        Console.WriteLine(device.Measure());\n        Console.WriteLine(device.Measure());\n        Console.WriteLine(device.Measure());\n        Console.WriteLine(device.Measure());\n        device.TurnOff();\n        Console.WriteLine();\n\n        device = DeviceFactory.CreateDevice(Device.VOLT);\n        device.TurnOn();\n        Console.WriteLine(device.Measure());\n        Console.WriteLine(device.Measure());\n        Console.WriteLine(device.Measure());\n        Console.WriteLine(device.Measure());\n        Console.WriteLine(device.Measure());\n        device.TurnOff();\n        Console.WriteLine();\n\n        device = DeviceFactory.CreateDevice(Device.OHM);\n        device.TurnOn();\n        Console.WriteLine(device.Measure());\n        Console.WriteLine(device.Measure());\n        Console.WriteLine(device.Measure());\n        Console.WriteLine(device.Measure());\n        Console.WriteLine(device.Measure());\n        device.TurnOff();\n        Console.WriteLine();\n    }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,

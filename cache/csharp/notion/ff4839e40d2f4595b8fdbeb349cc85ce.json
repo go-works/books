@@ -3,7 +3,8 @@
   "Root": {
     "alive": true,
     "content": [
-      "6b1c15c1-8bd5-41e2-8f41-34b5f6fdf55c"
+      "6b1c15c1-8bd5-41e2-8f41-34b5f6fdf55c",
+      "2842dd1b-42b8-4827-b1b1-3bce73b220d4"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549525791413,
@@ -14,7 +15,7 @@
     "id": "ff4839e4-0d2f-4595-b8fd-beb349cc85ce",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549789260000,
+    "last_edited_time": 1550112960000,
     "parent_id": "690c8bdb-4161-40ee-ae39-db6ce423d3b9",
     "parent_table": "block",
     "properties": {
@@ -25,7 +26,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 12,
     "content_resolved": [
       {
         "alive": true,
@@ -51,6 +52,32 @@
             "Text": "If you have a foreach loop that you want to speed up and you don’t mind what order the output is in, you can convert it to a parallel foreach loop by doing the following:"
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550112988097,
+        "id": "2842dd1b-42b8-4827-b1b1-3bce73b220d4",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550112960000,
+        "parent_id": "ff4839e4-0d2f-4595-b8fd-beb349cc85ce",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "using System;\nusing System.Threading;\nusing System.Threading.Tasks;\n\npublic class MainClass {\n\n    public static void Main() {\n        int[] Numbers = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };\n        // Single-threaded\n        Console.WriteLine(\"Normal foreach loop: \");\n        foreach (var number in Numbers) {\n            Console.WriteLine(longCalculation(number));\n        }\n        // This is the Parallel (Multi-threaded solution)\n        Console.WriteLine(\"Parallel foreach loop: \");\n        Parallel.ForEach(Numbers, number =\u003e {\n            Console.WriteLine(longCalculation(number));\n        });\n    }\n\n    private static int longCalculation(int number) {\n        Thread.Sleep(1000); // Sleep to simulate a long calculation\n        return number * number;\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 9,
+        "code": "using System;\nusing System.Threading;\nusing System.Threading.Tasks;\n\npublic class MainClass {\n\n    public static void Main() {\n        int[] Numbers = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };\n        // Single-threaded\n        Console.WriteLine(\"Normal foreach loop: \");\n        foreach (var number in Numbers) {\n            Console.WriteLine(longCalculation(number));\n        }\n        // This is the Parallel (Multi-threaded solution)\n        Console.WriteLine(\"Parallel foreach loop: \");\n        Parallel.ForEach(Numbers, number =\u003e {\n            Console.WriteLine(longCalculation(number));\n        });\n    }\n\n    private static int longCalculation(int number) {\n        Thread.Sleep(1000); // Sleep to simulate a long calculation\n        return number * number;\n    }\n}",
+        "code_language": "C#"
       }
     ],
     "title": "Parallel.ForEach Loop",

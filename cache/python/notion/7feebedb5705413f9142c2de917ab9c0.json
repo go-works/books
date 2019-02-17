@@ -1,0 +1,163 @@
+{
+  "ID": "7feebedb-5705-413f-9142-c2de917ab9c0",
+  "Root": {
+    "alive": true,
+    "content": [
+      "da6f719a-8545-424f-b8b1-7164c30b2ee2",
+      "cf0da754-5199-49e2-963e-378c472ac470",
+      "0e4d6e03-0dd8-4f55-a4c3-5e74922fc674",
+      "0868fbce-3488-4596-a911-d4f56ba28986"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550356778444,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "7feebedb-5705-413f-9142-c2de917ab9c0",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550357220000,
+    "parent_id": "36ec32ec-9810-403d-8744-950ef6ffd6e0",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Raw Sockets on Linux"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550356778441,
+        "id": "da6f719a-8545-424f-b8b1-7164c30b2ee2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550356778441,
+        "parent_id": "7feebedb-5705-413f-9142-c2de917ab9c0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "First you disable your network card’s automatic checksumming:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "First you disable your network card’s automatic checksumming:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550356778444,
+        "id": "cf0da754-5199-49e2-963e-378c472ac470",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550357220000,
+        "parent_id": "7feebedb-5705-413f-9142-c2de917ab9c0",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Shell"
+            ]
+          ],
+          "title": [
+            [
+              "sudo ethtool -K eth1 tx off"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "sudo ethtool -K eth1 tx off",
+        "code_language": "Shell"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550356778444,
+        "id": "0e4d6e03-0dd8-4f55-a4c3-5e74922fc674",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550356778444,
+        "parent_id": "7feebedb-5705-413f-9142-c2de917ab9c0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Then send your packet, using a SOCK_RAW socket:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Then send your packet, using a SOCK_RAW socket:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550356778444,
+        "id": "0868fbce-3488-4596-a911-d4f56ba28986",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550357220000,
+        "parent_id": "7feebedb-5705-413f-9142-c2de917ab9c0",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Shell"
+            ]
+          ],
+          "title": [
+            [
+              "#!/usr/bin/env python\nfrom socket import socket, AF_PACKET, SOCK_RAW\ns = socket(AF_PACKET, SOCK_RAW)\ns.bind((\"eth1\", 0))\n\n# We're putting together an ethernet frame here, \n# but you could have anything you want instead\n# Have a look at the 'struct' module for more \n# flexible packing/unpacking of binary data\n# and 'binascii' for 32 bit CRC\nsrc_addr = \"\\x01\\x02\\x03\\x04\\x05\\x06\"\ndst_addr = \"\\x01\\x02\\x03\\x04\\x05\\x06\"\npayload = (\"[\"*30)+\"PAYLOAD\"+(\"]\"*30)\nchecksum = \"\\x1a\\x2b\\x3c\\x4d\"\nethertype = \"\\x08\\x01\"\n\ns.send(dst_addr+src_addr+ethertype+payload+checksum)"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 4,
+        "code": "#!/usr/bin/env python\nfrom socket import socket, AF_PACKET, SOCK_RAW\ns = socket(AF_PACKET, SOCK_RAW)\ns.bind((\"eth1\", 0))\n\n# We're putting together an ethernet frame here, \n# but you could have anything you want instead\n# Have a look at the 'struct' module for more \n# flexible packing/unpacking of binary data\n# and 'binascii' for 32 bit CRC\nsrc_addr = \"\\x01\\x02\\x03\\x04\\x05\\x06\"\ndst_addr = \"\\x01\\x02\\x03\\x04\\x05\\x06\"\npayload = (\"[\"*30)+\"PAYLOAD\"+(\"]\"*30)\nchecksum = \"\\x1a\\x2b\\x3c\\x4d\"\nethertype = \"\\x08\\x01\"\n\ns.send(dst_addr+src_addr+ethertype+payload+checksum)",
+        "code_language": "Shell"
+      }
+    ],
+    "title": "Raw Sockets on Linux",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

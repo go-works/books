@@ -3,7 +3,8 @@
   "Root": {
     "alive": true,
     "content": [
-      "76315c70-850a-4b03-b1fd-e540f74e27f4"
+      "76315c70-850a-4b03-b1fd-e540f74e27f4",
+      "badf0d1c-cf1a-43aa-8b85-88fbe0cbabdb"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549524690365,
@@ -14,7 +15,7 @@
     "id": "8f64fd23-1362-417f-8861-bb0b52ebf0b1",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549615020000,
+    "last_edited_time": 1549876440000,
     "parent_id": "190506d8-ff9f-4443-bbce-bdb69e483555",
     "parent_table": "block",
     "properties": {
@@ -25,7 +26,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 13,
     "content_resolved": [
       {
         "alive": true,
@@ -34,23 +35,49 @@
         "id": "76315c70-850a-4b03-b1fd-e540f74e27f4",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524690365,
+        "last_edited_time": 1549876440000,
         "parent_id": "8f64fd23-1362-417f-8861-bb0b52ebf0b1",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "Consider using Extension Methods as Functions which wrap other code, here’s a great example that uses both a static method and and extension method to wrap the Try Catch construct. Make your code Bullet Proof…"
+              "Consider using Extension Methods as Functions which wrap other code, here’s a great example that uses both a static method and and extension method to wrap the Try Catch construct"
             ]
           ]
         },
         "type": "text",
-        "version": 1,
+        "version": 3,
         "inline_content": [
           {
-            "Text": "Consider using Extension Methods as Functions which wrap other code, here’s a great example that uses both a static method and and extension method to wrap the Try Catch construct. Make your code Bullet Proof…"
+            "Text": "Consider using Extension Methods as Functions which wrap other code, here’s a great example that uses both a static method and and extension method to wrap the Try Catch construct"
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549876440742,
+        "id": "badf0d1c-cf1a-43aa-8b85-88fbe0cbabdb",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549876440000,
+        "parent_id": "8f64fd23-1362-417f-8861-bb0b52ebf0b1",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "using System;\nusing System.Diagnostics;\n\nnamespace Samples\n{\n    /// \u003csummary\u003e\n    /// Wraps a try catch statement as a static helper which uses \n    /// Extension methods for the exception\n    /// \u003c/summary\u003e\n    public static class Bullet\n    {\n        /// \u003csummary\u003e\n        /// Wrapper for Try Catch Statement\n        /// \u003c/summary\u003e\n        /// \u003cparam name=\"code\"\u003eCall back for code\u003c/param\u003e\n        /// \u003cparam name=\"error\"\u003eAlready handled and logged exception\u003c/param\u003e\n        public static void Proof(Action code, Action\u003cException\u003e error)\n        {\n            try\n            {\n                code();\n            }\n            catch (Exception iox)\n            {\n                //extension method used here\n                iox.Log(\"BP2200-ERR-Unexpected Error\");\n                //callback, exception already handled and logged\n                error(iox);\n            }\n        }\n        /// \u003csummary\u003e\n        /// Example of a logging method helper, this is the extension method\n        /// \u003c/summary\u003e\n        /// \u003cparam name=\"error\"\u003eThe Exception to log\u003c/param\u003e\n        /// \u003cparam name=\"messageID\"\u003eA unique error ID header\u003c/param\u003e\n        public static void Log(this Exception error, string messageID)\n        {\n            Trace.WriteLine(messageID);\n            Trace.WriteLine(error.Message);\n            Trace.WriteLine(error.StackTrace);\n            Trace.WriteLine(\"\");\n        }\n    }\n    /// \u003csummary\u003e\n    /// Shows how to use both the wrapper and extension methods.\n    /// \u003c/summary\u003e\n    public class UseBulletProofing\n    {\n        public UseBulletProofing()\n        {\n            var ok = false;\n            var result = DoSomething();\n            if (!result.Contains(\"ERR\"))\n            {\n                ok = true;\n                DoSomethingElse();\n            }\n        }\n\n        /// \u003csummary\u003e\n        /// How to use Bullet Proofing in your code.\n        /// \u003c/summary\u003e\n        /// \u003creturns\u003eA string\u003c/returns\u003e\n        public string DoSomething()\n        {\n            string result = string.Empty;\n            //Note that the Bullet.Proof method forces this construct.\n            Bullet.Proof(() =\u003e\n            {\n                //this is the code callback\n                result = \"DST5900-INF-No Exceptions in this code\";\n            }, error =\u003e\n            {\n                //error is the already logged and handled exception\n                //determine the base result\n                result = \"DTS6200-ERR-An exception happened look at console log\";\n                if (error.Message.Contains(\"SomeMarker\"))\n                {\n                    //filter the result for Something within the exception message\n                    result = \"DST6500-ERR-Some marker was found in the exception\";\n                }\n            });\n            return result;\n        }\n\n        /// \u003csummary\u003e\n        /// Next step in workflow\n        /// \u003c/summary\u003e\n        public void DoSomethingElse()\n        {\n            //Only called if no exception was thrown before\n        }\n    }\n}\n"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 9,
+        "code": "using System;\nusing System.Diagnostics;\n\nnamespace Samples\n{\n    /// \u003csummary\u003e\n    /// Wraps a try catch statement as a static helper which uses \n    /// Extension methods for the exception\n    /// \u003c/summary\u003e\n    public static class Bullet\n    {\n        /// \u003csummary\u003e\n        /// Wrapper for Try Catch Statement\n        /// \u003c/summary\u003e\n        /// \u003cparam name=\"code\"\u003eCall back for code\u003c/param\u003e\n        /// \u003cparam name=\"error\"\u003eAlready handled and logged exception\u003c/param\u003e\n        public static void Proof(Action code, Action\u003cException\u003e error)\n        {\n            try\n            {\n                code();\n            }\n            catch (Exception iox)\n            {\n                //extension method used here\n                iox.Log(\"BP2200-ERR-Unexpected Error\");\n                //callback, exception already handled and logged\n                error(iox);\n            }\n        }\n        /// \u003csummary\u003e\n        /// Example of a logging method helper, this is the extension method\n        /// \u003c/summary\u003e\n        /// \u003cparam name=\"error\"\u003eThe Exception to log\u003c/param\u003e\n        /// \u003cparam name=\"messageID\"\u003eA unique error ID header\u003c/param\u003e\n        public static void Log(this Exception error, string messageID)\n        {\n            Trace.WriteLine(messageID);\n            Trace.WriteLine(error.Message);\n            Trace.WriteLine(error.StackTrace);\n            Trace.WriteLine(\"\");\n        }\n    }\n    /// \u003csummary\u003e\n    /// Shows how to use both the wrapper and extension methods.\n    /// \u003c/summary\u003e\n    public class UseBulletProofing\n    {\n        public UseBulletProofing()\n        {\n            var ok = false;\n            var result = DoSomething();\n            if (!result.Contains(\"ERR\"))\n            {\n                ok = true;\n                DoSomethingElse();\n            }\n        }\n\n        /// \u003csummary\u003e\n        /// How to use Bullet Proofing in your code.\n        /// \u003c/summary\u003e\n        /// \u003creturns\u003eA string\u003c/returns\u003e\n        public string DoSomething()\n        {\n            string result = string.Empty;\n            //Note that the Bullet.Proof method forces this construct.\n            Bullet.Proof(() =\u003e\n            {\n                //this is the code callback\n                result = \"DST5900-INF-No Exceptions in this code\";\n            }, error =\u003e\n            {\n                //error is the already logged and handled exception\n                //determine the base result\n                result = \"DTS6200-ERR-An exception happened look at console log\";\n                if (error.Message.Contains(\"SomeMarker\"))\n                {\n                    //filter the result for Something within the exception message\n                    result = \"DST6500-ERR-Some marker was found in the exception\";\n                }\n            });\n            return result;\n        }\n\n        /// \u003csummary\u003e\n        /// Next step in workflow\n        /// \u003c/summary\u003e\n        public void DoSomethingElse()\n        {\n            //Only called if no exception was thrown before\n        }\n    }\n}\n",
+        "code_language": "C#"
       }
     ],
     "title": "Using Extension methods with Static methods and Callbacks",

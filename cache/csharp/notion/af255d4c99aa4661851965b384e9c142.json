@@ -13,7 +13,8 @@
       "1fe01be6-c576-4e7c-93a4-fea33f75cba4",
       "425593ef-28ac-44c3-91ba-74c42f1f0c89",
       "7554f984-dd29-4b44-99b3-00e5a15adb9c",
-      "cdef623c-25e7-4fab-8f45-722b5fb58895"
+      "cdef623c-25e7-4fab-8f45-722b5fb58895",
+      "c6b1d175-eff8-447d-915f-fd6b6629412c"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549527429268,
@@ -24,7 +25,7 @@
     "id": "af255d4c-99aa-4661-8519-65b384e9c142",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549786440000,
+    "last_edited_time": 1550204040000,
     "parent_id": "e1164248-76e7-4fcf-b50a-c159629a4541",
     "parent_table": "block",
     "properties": {
@@ -35,7 +36,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 10,
     "content_resolved": [
       {
         "alive": true,
@@ -354,25 +355,37 @@
         "id": "cdef623c-25e7-4fab-8f45-722b5fb58895",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527429268,
+        "last_edited_time": 1550204040000,
         "parent_id": "af255d4c-99aa-4661-8519-65b384e9c142",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "using System;\n    \n    using System.Diagnostics;\n    \n    using System.Web.Mvc;\n    \n    \n    \n    namespace WebApplication1\n    {\n    \n        public class MyFirstCustomFilter : ActionFilterAttribute\n        {\n            public override void OnResultExecuting(ResultExecutingContext filterContext)\n            {\n                //You may fetch data from database here \n                filterContext.Controller.ViewBag.GreetMesssage = \"Hello Foo\";\n                base.OnResultExecuting(filterContext);\n            }\n    \n            public override void OnActionExecuting(ActionExecutingContext filterContext)\n            {\n                var controllerName = filterContext.RouteData.Values[\"controller\"];\n                var actionName = filterContext.RouteData.Values[\"action\"];\n                var message = String.Format(\"{0} controller:{1} action:{2}\", \"onactionexecuting\", controllerName, actionName);\n                Debug.WriteLine(message, \"Action Filter Log\");\n                base.OnActionExecuting(filterContext);\n            }\n        }\n    }"
+              "using System;\nusing System.Diagnostics;\nusing System.Web.Mvc;\n\nnamespace WebApplication1\n{\n\n    public class MyFirstCustomFilter : ActionFilterAttribute\n    {\n        public override void OnResultExecuting(ResultExecutingContext filterContext)\n        {\n            //You may fetch data from database here \n            filterContext.Controller.ViewBag.GreetMesssage = \"Hello Foo\";\n            base.OnResultExecuting(filterContext);\n        }\n\n        public override void OnActionExecuting(ActionExecutingContext filterContext)\n        {\n            var controllerName = filterContext.RouteData.Values[\"controller\"];\n            var actionName = filterContext.RouteData.Values[\"action\"];\n            var message = String.Format(\"{0} controller:{1} action:{2}\", \"onactionexecuting\", controllerName, actionName);\n            Debug.WriteLine(message, \"Action Filter Log\");\n            base.OnActionExecuting(filterContext);\n        }\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "using System;\n    \n    using System.Diagnostics;\n    \n    using System.Web.Mvc;\n    \n    \n    \n    namespace WebApplication1\n    {\n    \n        public class MyFirstCustomFilter : ActionFilterAttribute\n        {\n            public override void OnResultExecuting(ResultExecutingContext filterContext)\n            {\n                //You may fetch data from database here \n                filterContext.Controller.ViewBag.GreetMesssage = \"Hello Foo\";\n                base.OnResultExecuting(filterContext);\n            }\n    \n            public override void OnActionExecuting(ActionExecutingContext filterContext)\n            {\n                var controllerName = filterContext.RouteData.Values[\"controller\"];\n                var actionName = filterContext.RouteData.Values[\"action\"];\n                var message = String.Format(\"{0} controller:{1} action:{2}\", \"onactionexecuting\", controllerName, actionName);\n                Debug.WriteLine(message, \"Action Filter Log\");\n                base.OnActionExecuting(filterContext);\n            }\n        }\n    }",
-        "code_language": "Plain Text"
+        "version": 13,
+        "code": "using System;\nusing System.Diagnostics;\nusing System.Web.Mvc;\n\nnamespace WebApplication1\n{\n\n    public class MyFirstCustomFilter : ActionFilterAttribute\n    {\n        public override void OnResultExecuting(ResultExecutingContext filterContext)\n        {\n            //You may fetch data from database here \n            filterContext.Controller.ViewBag.GreetMesssage = \"Hello Foo\";\n            base.OnResultExecuting(filterContext);\n        }\n\n        public override void OnActionExecuting(ActionExecutingContext filterContext)\n        {\n            var controllerName = filterContext.RouteData.Values[\"controller\"];\n            var actionName = filterContext.RouteData.Values[\"action\"];\n            var message = String.Format(\"{0} controller:{1} action:{2}\", \"onactionexecuting\", controllerName, actionName);\n            Debug.WriteLine(message, \"Action Filter Log\");\n            base.OnActionExecuting(filterContext);\n        }\n    }\n}",
+        "code_language": "C#"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550204040000,
+        "id": "c6b1d175-eff8-447d-915f-fd6b6629412c",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550204040000,
+        "parent_id": "af255d4c-99aa-4661-8519-65b384e9c142",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "Custom Action Filters",

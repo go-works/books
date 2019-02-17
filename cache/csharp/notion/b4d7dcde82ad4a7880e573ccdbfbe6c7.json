@@ -5,10 +5,6 @@
     "content": [
       "d64cca48-aba0-462c-b777-ce25b62582a0",
       "6f35caf2-f591-4c25-8aef-ff98823688a5",
-      "9fbc790c-2c9e-4ffc-b948-b6e6cb9e42c7",
-      "9d9655a4-b631-45b6-8cbc-cbf7ac388bc9",
-      "c7f3da4f-aefe-4d0d-b804-08decf3b66e6",
-      "231b8f30-b10d-4038-aa85-f61463d57ced",
       "8cdca35a-b693-48a8-b9e1-12cf8b028046",
       "6ff26381-bb88-49c3-84e8-4a73548141e0",
       "19542a56-0daa-4309-9a10-a40807d4bbc5",
@@ -29,7 +25,7 @@
     "id": "b4d7dcde-82ad-4a78-80e5-73ccdbfbe6c7",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549612560000,
+    "last_edited_time": 1550044980000,
     "parent_id": "3367ad51-2d2f-44db-b5a0-5d201dfd7ee1",
     "parent_table": "block",
     "properties": {
@@ -40,7 +36,7 @@
       ]
     },
     "type": "page",
-    "version": 9,
+    "version": 14,
     "content_resolved": [
       {
         "alive": true,
@@ -74,7 +70,7 @@
         "id": "6f35caf2-f591-4c25-8aef-ff98823688a5",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549612560000,
+        "last_edited_time": 1550044980000,
         "parent_id": "b4d7dcde-82ad-4a78-80e5-73ccdbfbe6c7",
         "parent_table": "block",
         "properties": {
@@ -85,122 +81,14 @@
           ],
           "title": [
             [
-              "interface IChauffeur \n{\n    string Drive();\n}"
+              "interface IChauffeur \n{\n    string Drive();\n}\n\ninterface IGolfPlayer\n{\n    string Drive();\n}\n\nclass GolfingChauffeur : IChauffeur, IGolfPlayer \n{\n    public string Drive()\n    {\n        return \"Vroom!\";\n    }\n\n    string IGolfPlayer.Drive()\n    {\n        return \"Took a swing...\";\n    }\n}\n\n\nGolfingChauffeur obj = new GolfingChauffeur();\nIChauffeur chauffeur = obj;\nIGolfPlayer golfer = obj;\n\nConsole.WriteLine(obj.Drive()); // Vroom!\nConsole.WriteLine(chauffeur.Drive()); // Vroom!\nConsole.WriteLine(golfer.Drive()); // Took a swing...\n"
             ]
           ]
         },
         "type": "code",
-        "version": 3,
-        "code": "interface IChauffeur \n{\n    string Drive();\n}",
+        "version": 9,
+        "code": "interface IChauffeur \n{\n    string Drive();\n}\n\ninterface IGolfPlayer\n{\n    string Drive();\n}\n\nclass GolfingChauffeur : IChauffeur, IGolfPlayer \n{\n    public string Drive()\n    {\n        return \"Vroom!\";\n    }\n\n    string IGolfPlayer.Drive()\n    {\n        return \"Took a swing...\";\n    }\n}\n\n\nGolfingChauffeur obj = new GolfingChauffeur();\nIChauffeur chauffeur = obj;\nIGolfPlayer golfer = obj;\n\nConsole.WriteLine(obj.Drive()); // Vroom!\nConsole.WriteLine(chauffeur.Drive()); // Vroom!\nConsole.WriteLine(golfer.Drive()); // Took a swing...\n",
         "code_language": "C#"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525268481,
-        "id": "9fbc790c-2c9e-4ffc-b948-b6e6cb9e42c7",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525268481,
-        "parent_id": "b4d7dcde-82ad-4a78-80e5-73ccdbfbe6c7",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "interface IGolfPlayer\n{\n    string Drive();\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "interface IGolfPlayer\n{\n    string Drive();\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525268481,
-        "id": "9d9655a4-b631-45b6-8cbc-cbf7ac388bc9",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525268481,
-        "parent_id": "b4d7dcde-82ad-4a78-80e5-73ccdbfbe6c7",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "class GolfingChauffeur : IChauffeur, IGolfPlayer \n{\n    public string Drive()\n    {\n        return \"Vroom!\";\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "class GolfingChauffeur : IChauffeur, IGolfPlayer \n{\n    public string Drive()\n    {\n        return \"Vroom!\";\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525268481,
-        "id": "c7f3da4f-aefe-4d0d-b804-08decf3b66e6",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525268481,
-        "parent_id": "b4d7dcde-82ad-4a78-80e5-73ccdbfbe6c7",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "string IGolfPlayer.Drive()\n    {\n        return \"Took a swing...\";\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "string IGolfPlayer.Drive()\n    {\n        return \"Took a swing...\";\n    }\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525268481,
-        "id": "231b8f30-b10d-4038-aa85-f61463d57ced",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525268481,
-        "parent_id": "b4d7dcde-82ad-4a78-80e5-73ccdbfbe6c7",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "GolfingChauffeur obj = new GolfingChauffeur();\nIChauffeur chauffeur = obj;\nIGolfPlayer golfer = obj;\n\nConsole.WriteLine(obj.Drive()); // Vroom!\nConsole.WriteLine(chauffeur.Drive()); // Vroom!\nConsole.WriteLine(golfer.Drive()); // Took a swing..."
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "GolfingChauffeur obj = new GolfingChauffeur();\nIChauffeur chauffeur = obj;\nIGolfPlayer golfer = obj;\n\nConsole.WriteLine(obj.Drive()); // Vroom!\nConsole.WriteLine(chauffeur.Drive()); // Vroom!\nConsole.WriteLine(golfer.Drive()); // Took a swing...",
-        "code_language": "Plain Text"
       },
       {
         "alive": true,

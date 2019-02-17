@@ -7,7 +7,6 @@
       "aac5e803-7787-45af-a2df-3c3b503561eb",
       "095781af-3949-4f71-af9c-85c0b7d660df",
       "1cdeb9d6-48c0-4f50-90cb-1242a79f8796",
-      "ef9d9284-b6d7-411a-ade8-0d5904980697",
       "cd3fa2ab-c464-4ef4-b90d-e71f86edefb7",
       "60c1b825-f809-44d7-b8b8-4d27f864989c",
       "fcb0db53-7d28-4b79-b881-00774b619f09"
@@ -21,18 +20,18 @@
     "id": "b4079ea1-fab5-4228-8556-5fa57e099157",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549798500000,
+    "last_edited_time": 1550215200000,
     "parent_id": "2b5c894c-d50a-418f-a811-3b61a23cdead",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "Import function from unmanaged C DLL"
+          "Import function from unmanaged C++ DLL"
         ]
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 13,
     "content_resolved": [
       {
         "alive": true,
@@ -84,13 +83,13 @@
         "id": "aac5e803-7787-45af-a2df-3c3b503561eb",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528914707,
+        "last_edited_time": 1550215140000,
         "parent_id": "b4079ea1-fab5-4228-8556-5fa57e099157",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -100,9 +99,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "extern \"C\" __declspec(dllexport) int __stdcall add(int a, int b)\n{\n    return a + b;\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -136,52 +135,25 @@
         "id": "1cdeb9d6-48c0-4f50-90cb-1242a79f8796",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528914708,
+        "last_edited_time": 1550215200000,
         "parent_id": "b4079ea1-fab5-4228-8556-5fa57e099157",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "class Program\n{\n    // This line will import the C++ method.\n    // The name specified in the DllImport attribute must be the DLL name.\n    // The names of parameters are unimportant, but the types must be correct.\n    [DllImport(\"myDLL.dll\")]\n    private static extern int add(int left, int right);"
+              "class Program\n{\n    // This line will import the C++ method.\n    // The name specified in the DllImport attribute must be the DLL name.\n    // The names of parameters are unimportant, but the types must be correct.\n    [DllImport(\"myDLL.dll\")]\n    private static extern int add(int left, int right);\n\n    static void Main(string[] args)\n    {\n        //The extern method can be called just as any other C# method.\n        Console.WriteLine(add(1, 2));\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "class Program\n{\n    // This line will import the C++ method.\n    // The name specified in the DllImport attribute must be the DLL name.\n    // The names of parameters are unimportant, but the types must be correct.\n    [DllImport(\"myDLL.dll\")]\n    private static extern int add(int left, int right);",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528914708,
-        "id": "ef9d9284-b6d7-411a-ade8-0d5904980697",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528914708,
-        "parent_id": "b4079ea1-fab5-4228-8556-5fa57e099157",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "static void Main(string[] args)\n    {\n        //The extern method can be called just as any other C# method.\n        Console.WriteLine(add(1, 2));\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "static void Main(string[] args)\n    {\n        //The extern method can be called just as any other C# method.\n        Console.WriteLine(add(1, 2));\n    }\n}",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "class Program\n{\n    // This line will import the C++ method.\n    // The name specified in the DllImport attribute must be the DLL name.\n    // The names of parameters are unimportant, but the types must be correct.\n    [DllImport(\"myDLL.dll\")]\n    private static extern int add(int left, int right);\n\n    static void Main(string[] args)\n    {\n        //The extern method can be called just as any other C# method.\n        Console.WriteLine(add(1, 2));\n    }\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -352,7 +324,7 @@
         ]
       }
     ],
-    "title": "Import function from unmanaged C DLL",
+    "title": "Import function from unmanaged C++ DLL",
     "format_page": {
       "page_cover": "",
       "page_cover_position": 0,

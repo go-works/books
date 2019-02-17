@@ -5,16 +5,11 @@
     "content": [
       "f2e1a5b9-c710-4e02-8880-15d7958e4602",
       "5bccd20d-26e2-4011-a426-834cbd54f20e",
-      "fa5c5c6a-e507-4a4d-9cdf-4d4eb37285eb",
       "a38cd679-2f72-435c-b6a6-101bb84f0916",
       "01c94dd9-ba6e-45c1-8b52-429c59a12ced",
-      "babc3ac7-8cef-4527-bce6-4b409fc7d54c",
-      "33ecaec8-8ba7-4bd4-91df-f6541cd8ac03",
       "c56d7efc-0c3a-4e3e-bee7-f41e242b5bc7",
       "a403e224-35aa-428f-8b24-8389264e6fcb",
-      "157fe966-7015-41b6-844e-234574ff27d2",
-      "071f5630-ec29-43a9-a771-4b6288d60dc5",
-      "689b9432-857d-40a2-9b0f-1899bebab392"
+      "157fe966-7015-41b6-844e-234574ff27d2"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549528691378,
@@ -25,7 +20,7 @@
     "id": "32255ca0-4e89-4964-b44c-505ae69364a2",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549628400000,
+    "last_edited_time": 1550213820000,
     "parent_id": "02596620-bd43-43b9-90d4-6361c30f0061",
     "parent_table": "block",
     "properties": {
@@ -36,7 +31,7 @@
       ]
     },
     "type": "page",
-    "version": 5,
+    "version": 12,
     "content_resolved": [
       {
         "alive": true,
@@ -88,52 +83,25 @@
         "id": "5bccd20d-26e2-4011-a426-834cbd54f20e",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528691377,
+        "last_edited_time": 1550213760000,
         "parent_id": "32255ca0-4e89-4964-b44c-505ae69364a2",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public class NotifyPropertyChangedBase : INotifyPropertyChanged\n{\n    protected void RaisePropertyChanged([CallerMemberName] string propertyName = null) =\u003e\n    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));\n    \n    public event PropertyChangedEventHandler PropertyChanged;"
+              "public class NotifyPropertyChangedBase : INotifyPropertyChanged\n{\n    protected void RaisePropertyChanged([CallerMemberName] string propertyName = null) =\u003e\n    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));\n    \n    public event PropertyChangedEventHandler PropertyChanged;\n\n    public virtual bool Set\u003cT\u003e(ref T field, T value, [CallerMemberName] string propertyName = null)\n    {\n        if (Equals(field, value))\n            return false;\n        storage = value;\n        RaisePropertyChanged(propertyName);\n        return true;\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public class NotifyPropertyChangedBase : INotifyPropertyChanged\n{\n    protected void RaisePropertyChanged([CallerMemberName] string propertyName = null) =\u003e\n    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));\n    \n    public event PropertyChangedEventHandler PropertyChanged;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528691377,
-        "id": "fa5c5c6a-e507-4a4d-9cdf-4d4eb37285eb",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528691377,
-        "parent_id": "32255ca0-4e89-4964-b44c-505ae69364a2",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public virtual bool Set\u003cT\u003e(ref T field, T value, [CallerMemberName] string propertyName = null)\n    {\n        if (Equals(field, value))\n            return false;\n        storage = value;\n        RaisePropertyChanged(propertyName);\n        return true;\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public virtual bool Set\u003cT\u003e(ref T field, T value, [CallerMemberName] string propertyName = null)\n    {\n        if (Equals(field, value))\n            return false;\n        storage = value;\n        RaisePropertyChanged(propertyName);\n        return true;\n    }\n}",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "public class NotifyPropertyChangedBase : INotifyPropertyChanged\n{\n    protected void RaisePropertyChanged([CallerMemberName] string propertyName = null) =\u003e\n    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));\n    \n    public event PropertyChangedEventHandler PropertyChanged;\n\n    public virtual bool Set\u003cT\u003e(ref T field, T value, [CallerMemberName] string propertyName = null)\n    {\n        if (Equals(field, value))\n            return false;\n        storage = value;\n        RaisePropertyChanged(propertyName);\n        return true;\n    }\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -167,79 +135,25 @@
         "id": "01c94dd9-ba6e-45c1-8b52-429c59a12ced",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528691377,
+        "last_edited_time": 1550213820000,
         "parent_id": "32255ca0-4e89-4964-b44c-505ae69364a2",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public class SomeViewModel : NotifyPropertyChangedBase\n{\n    private string _foo;\n    private int _bar;"
+              "public class SomeViewModel : NotifyPropertyChangedBase\n{\n    private string _foo;\n    private int _bar;\n\n    public string Foo\n    {\n        get { return _foo; }\n        set { Set(ref _foo, value); }\n    }\n\n    public int Bar\n    {\n        get { return _bar; }\n        set { Set(ref _bar, value); }\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public class SomeViewModel : NotifyPropertyChangedBase\n{\n    private string _foo;\n    private int _bar;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528691377,
-        "id": "babc3ac7-8cef-4527-bce6-4b409fc7d54c",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528691377,
-        "parent_id": "32255ca0-4e89-4964-b44c-505ae69364a2",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public string Foo\n    {\n        get { return _foo; }\n        set { Set(ref _foo, value); }\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public string Foo\n    {\n        get { return _foo; }\n        set { Set(ref _foo, value); }\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528691377,
-        "id": "33ecaec8-8ba7-4bd4-91df-f6541cd8ac03",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528691377,
-        "parent_id": "32255ca0-4e89-4964-b44c-505ae69364a2",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public int Bar\n    {\n        get { return _bar; }\n        set { Set(ref _bar, value); }\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public int Bar\n    {\n        get { return _bar; }\n        set { Set(ref _bar, value); }\n    }\n}",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "public class SomeViewModel : NotifyPropertyChangedBase\n{\n    private string _foo;\n    private int _bar;\n\n    public string Foo\n    {\n        get { return _foo; }\n        set { Set(ref _foo, value); }\n    }\n\n    public int Bar\n    {\n        get { return _bar; }\n        set { Set(ref _bar, value); }\n    }\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -316,79 +230,25 @@
         "id": "157fe966-7015-41b6-844e-234574ff27d2",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528691378,
+        "last_edited_time": 1550213820000,
         "parent_id": "32255ca0-4e89-4964-b44c-505ae69364a2",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public class SomeListener\n{\n    public SomeListener()\n    {\n        _vm = new SomeViewModel();\n        _vm.PropertyChanged += OnViewModelPropertyChanged;\n    }"
+              "public class SomeListener\n{\n    public SomeListener()\n    {\n        _vm = new SomeViewModel();\n        _vm.PropertyChanged += OnViewModelPropertyChanged;\n    }\n\n    private void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)\n    {\n        Console.WriteLine($\"Property {e.PropertyName} was changed.\");\n    }\n\n    private readonly SomeViewModel _vm;\n\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public class SomeListener\n{\n    public SomeListener()\n    {\n        _vm = new SomeViewModel();\n        _vm.PropertyChanged += OnViewModelPropertyChanged;\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528691378,
-        "id": "071f5630-ec29-43a9-a771-4b6288d60dc5",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528691378,
-        "parent_id": "32255ca0-4e89-4964-b44c-505ae69364a2",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "private void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)\n    {\n        Console.WriteLine($\"Property {e.PropertyName} was changed.\");\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "private void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)\n    {\n        Console.WriteLine($\"Property {e.PropertyName} was changed.\");\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528691378,
-        "id": "689b9432-857d-40a2-9b0f-1899bebab392",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528691378,
-        "parent_id": "32255ca0-4e89-4964-b44c-505ae69364a2",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "private readonly SomeViewModel _vm;"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "private readonly SomeViewModel _vm;",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "public class SomeListener\n{\n    public SomeListener()\n    {\n        _vm = new SomeViewModel();\n        _vm.PropertyChanged += OnViewModelPropertyChanged;\n    }\n\n    private void OnViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)\n    {\n        Console.WriteLine($\"Property {e.PropertyName} was changed.\");\n    }\n\n    private readonly SomeViewModel _vm;\n\n}",
+        "code_language": "C#"
       }
     ],
     "title": "INotifyPropertyChanged With Generic Set Method",

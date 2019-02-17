@@ -3,10 +3,7 @@
   "Root": {
     "alive": true,
     "content": [
-      "f5499fa6-a190-4b61-bc84-62724ac10881",
-      "7be95091-7585-4761-be66-86e2e7b38d57",
-      "94a14069-be56-4c2e-a4a4-1770e54e8e89",
-      "2cb54737-541b-43d9-a65e-385a166218c6"
+      "f5499fa6-a190-4b61-bc84-62724ac10881"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549525793211,
@@ -17,7 +14,7 @@
     "id": "354ff081-d9c0-4ada-96cd-b8e82a7683c5",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549789320000,
+    "last_edited_time": 1550113020000,
     "parent_id": "690c8bdb-4161-40ee-ae39-db6ce423d3b9",
     "parent_table": "block",
     "properties": {
@@ -28,7 +25,7 @@
       ]
     },
     "type": "page",
-    "version": 9,
+    "version": 13,
     "content_resolved": [
       {
         "alive": true,
@@ -37,106 +34,25 @@
         "id": "f5499fa6-a190-4b61-bc84-62724ac10881",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525793209,
+        "last_edited_time": 1550113020000,
         "parent_id": "354ff081-d9c0-4ada-96cd-b8e82a7683c5",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "class Program\n{\n    static void Main(string[] args)\n    {\n        // Create 2 thread objects.  We're using delegates because we need to pass \n        // parameters to the threads.  \n        var thread1 = new Thread(new ThreadStart(() =\u003e PerformAction(1)));\n        var thread2 = new Thread(new ThreadStart(() =\u003e PerformAction(2)));"
+              "class Program\n{\n    static void Main(string[] args)\n    {\n        // Create 2 thread objects.  We're using delegates because we need to pass \n        // parameters to the threads.  \n        var thread1 = new Thread(new ThreadStart(() =\u003e PerformAction(1)));\n        var thread2 = new Thread(new ThreadStart(() =\u003e PerformAction(2)));\n\n        // Start the threads running \n        thread1.Start();\n        // NB: as soon as the above line kicks off the thread, the next line starts; \n        // even if thread1 is still processing.\n        thread2.Start();\n\n        // Wait for thread1 to complete before continuing\n        thread1.Join();\n        // Wait for thread2 to complete before continuing\n        thread2.Join();\n\n        Console.WriteLine(\"Done\");\n        Console.ReadKey();\n    }\n\n    // Simple method to help demonstrate the threads running in parallel.\n    static void PerformAction(int id)\n    {\n        var rnd = new Random(id);\n        for (int i = 0; i \u003c 100; i++)\n        {\n            Console.WriteLine(\"Thread: {0}: {1}\", id, i);\n            Thread.Sleep(rnd.Next(0, 1000));\n        }\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "class Program\n{\n    static void Main(string[] args)\n    {\n        // Create 2 thread objects.  We're using delegates because we need to pass \n        // parameters to the threads.  \n        var thread1 = new Thread(new ThreadStart(() =\u003e PerformAction(1)));\n        var thread2 = new Thread(new ThreadStart(() =\u003e PerformAction(2)));",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525793211,
-        "id": "7be95091-7585-4761-be66-86e2e7b38d57",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525793211,
-        "parent_id": "354ff081-d9c0-4ada-96cd-b8e82a7683c5",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// Start the threads running \n        thread1.Start();\n        // NB: as soon as the above line kicks off the thread, the next line starts; \n        // even if thread1 is still processing.\n        thread2.Start();"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// Start the threads running \n        thread1.Start();\n        // NB: as soon as the above line kicks off the thread, the next line starts; \n        // even if thread1 is still processing.\n        thread2.Start();",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525793211,
-        "id": "94a14069-be56-4c2e-a4a4-1770e54e8e89",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525793211,
-        "parent_id": "354ff081-d9c0-4ada-96cd-b8e82a7683c5",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// Wait for thread1 to complete before continuing\n        thread1.Join();\n        // Wait for thread2 to complete before continuing\n        thread2.Join();"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// Wait for thread1 to complete before continuing\n        thread1.Join();\n        // Wait for thread2 to complete before continuing\n        thread2.Join();",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525793211,
-        "id": "2cb54737-541b-43d9-a65e-385a166218c6",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525793211,
-        "parent_id": "354ff081-d9c0-4ada-96cd-b8e82a7683c5",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "Console.WriteLine(\"Done\");\n        Console.ReadKey();\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "Console.WriteLine(\"Done\");\n        Console.ReadKey();\n    }",
-        "code_language": "Plain Text"
+        "version": 9,
+        "code": "class Program\n{\n    static void Main(string[] args)\n    {\n        // Create 2 thread objects.  We're using delegates because we need to pass \n        // parameters to the threads.  \n        var thread1 = new Thread(new ThreadStart(() =\u003e PerformAction(1)));\n        var thread2 = new Thread(new ThreadStart(() =\u003e PerformAction(2)));\n\n        // Start the threads running \n        thread1.Start();\n        // NB: as soon as the above line kicks off the thread, the next line starts; \n        // even if thread1 is still processing.\n        thread2.Start();\n\n        // Wait for thread1 to complete before continuing\n        thread1.Join();\n        // Wait for thread2 to complete before continuing\n        thread2.Join();\n\n        Console.WriteLine(\"Done\");\n        Console.ReadKey();\n    }\n\n    // Simple method to help demonstrate the threads running in parallel.\n    static void PerformAction(int id)\n    {\n        var rnd = new Random(id);\n        for (int i = 0; i \u003c 100; i++)\n        {\n            Console.WriteLine(\"Thread: {0}: {1}\", id, i);\n            Thread.Sleep(rnd.Next(0, 1000));\n        }\n    }\n}",
+        "code_language": "C#"
       }
     ],
     "title": "Simple Complete Threading Demo",

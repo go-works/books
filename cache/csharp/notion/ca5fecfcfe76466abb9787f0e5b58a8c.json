@@ -3,14 +3,8 @@
   "Root": {
     "alive": true,
     "content": [
-      "9b2cc84b-e99a-43f4-82a9-4b44c5f3b865",
-      "a755cb72-0726-459f-b044-2cb70e49d7e9",
-      "6a599a01-305b-4073-91c9-f1da21a35543",
-      "66aef7cc-13be-45af-8799-e9944add9b9a",
-      "39b9ca58-d082-465f-9b5a-f88f29c03d90",
-      "8484adb8-1e15-4100-a344-08721170de2e",
-      "a7c97692-6d63-4d84-86b0-ad130ae7c464",
-      "03ff929a-d88c-4c34-b1a6-7cb9c59920de"
+      "a07f2098-9f2f-4afb-be70-0fa5c369545f",
+      "d177e115-cac1-406d-8e80-1afa1c1b57b3"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549530475659,
@@ -21,7 +15,7 @@
     "id": "ca5fecfc-fe76-466a-bb97-87f0e5b58a8c",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549786320000,
+    "last_edited_time": 1550224860000,
     "parent_id": "e5e846e8-325c-4436-adf5-67186f1e4a66",
     "parent_table": "block",
     "properties": {
@@ -32,16 +26,15 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 21,
     "content_resolved": [
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530475656,
-        "id": "9b2cc84b-e99a-43f4-82a9-4b44c5f3b865",
-        "ignore_block_count": true,
+        "created_time": 1550224872516,
+        "id": "a07f2098-9f2f-4afb-be70-0fa5c369545f",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549786320000,
+        "last_edited_time": 1550224860000,
         "parent_id": "ca5fecfc-fe76-466a-bb97-87f0e5b58a8c",
         "parent_table": "block",
         "properties": {
@@ -52,203 +45,26 @@
           ],
           "title": [
             [
-              "public class NetworkConnection : IDisposable\n    {\n        string _networkName;\n\n        public NetworkConnection(string networkName,\n            NetworkCredential credentials)\n        {\n            _networkName = networkName;\n\n            var netResource = new NetResource()\n            {\n                Scope = ResourceScope.GlobalNetwork,\n                ResourceType = ResourceType.Disk,\n                DisplayType = ResourceDisplaytype.Share,\n                RemoteName = networkName\n            };\n\n            var userName = string.IsNullOrEmpty(credentials.Domain)\n                ? credentials.UserName\n                : string.Format(@\"{0}\\{1}\", credentials.Domain, credentials.UserName);\n\n            var result = WNetAddConnection2(\n                netResource,\n                credentials.Password,\n                userName,\n                0);\n\n            if (result != 0)\n            {\n                throw new Win32Exception(result);\n            }\n        }\n\n    ~NetworkConnection()\n    {\n        Dispose(false);\n    }"
+              "public class NetworkConnection : IDisposable\n  {\n      string _networkName;\n\n      public NetworkConnection(string networkName,\n          NetworkCredential credentials)\n      {\n          _networkName = networkName;\n\n          var netResource = new NetResource()\n          {\n              Scope = ResourceScope.GlobalNetwork,\n              ResourceType = ResourceType.Disk,\n              DisplayType = ResourceDisplaytype.Share,\n              RemoteName = networkName\n          };\n\n          var userName = string.IsNullOrEmpty(credentials.Domain)\n              ? credentials.UserName\n              : string.Format(@\"{0}\\{1}\", credentials.Domain, credentials.UserName);\n\n          var result = WNetAddConnection2(\n              netResource,\n              credentials.Password,\n              userName,\n              0);\n\n          if (result != 0)\n          {\n              throw new Win32Exception(result);\n          }\n      }\n\n  ~NetworkConnection()\n  {\n      Dispose(false);\n  }\n\n  public void Dispose()\n  {\n      Dispose(true);\n      GC.SuppressFinalize(this);\n  }\n\n  protected virtual void Dispose(bool disposing)\n  {\n      WNetCancelConnection2(_networkName, 0, true);\n  }\n\n  [DllImport(\"mpr.dll\")]\n  private static extern int WNetAddConnection2(NetResource netResource,\n      string password, string username, int flags);\n\n  [DllImport(\"mpr.dll\")]\n  private static extern int WNetCancelConnection2(string name, int flags,\n      bool force);\n}\n\n[StructLayout(LayoutKind.Sequential)]\npublic class NetResource\n{\n  public ResourceScope Scope;\n  public ResourceType ResourceType;\n  public ResourceDisplaytype DisplayType;\n  public int Usage;\n  public string LocalName;\n  public string RemoteName;\n  public string Comment;\n  public string Provider;\n}\n\npublic enum ResourceScope : int\n{\n  Connected = 1,\n  GlobalNetwork,\n  Remembered,\n  Recent,\n  Context\n};\n\npublic enum ResourceType : int\n{\n  Any = 0,\n  Disk = 1,\n  Print = 2,\n  Reserved = 8,\n}\n\npublic enum ResourceDisplaytype : int\n{\n  Generic = 0x0,\n  Domain = 0x01,\n  Server = 0x02,\n  Share = 0x03,\n  File = 0x04,\n  Group = 0x05,\n  Network = 0x06,\n  Root = 0x07,\n  Shareadmin = 0x08,\n  Directory = 0x09,\n  Tree = 0x0a,\n  Ndscontainer = 0x0b\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 3,
-        "code": "public class NetworkConnection : IDisposable\n    {\n        string _networkName;\n\n        public NetworkConnection(string networkName,\n            NetworkCredential credentials)\n        {\n            _networkName = networkName;\n\n            var netResource = new NetResource()\n            {\n                Scope = ResourceScope.GlobalNetwork,\n                ResourceType = ResourceType.Disk,\n                DisplayType = ResourceDisplaytype.Share,\n                RemoteName = networkName\n            };\n\n            var userName = string.IsNullOrEmpty(credentials.Domain)\n                ? credentials.UserName\n                : string.Format(@\"{0}\\{1}\", credentials.Domain, credentials.UserName);\n\n            var result = WNetAddConnection2(\n                netResource,\n                credentials.Password,\n                userName,\n                0);\n\n            if (result != 0)\n            {\n                throw new Win32Exception(result);\n            }\n        }\n\n    ~NetworkConnection()\n    {\n        Dispose(false);\n    }",
+        "version": 12,
+        "code": "public class NetworkConnection : IDisposable\n  {\n      string _networkName;\n\n      public NetworkConnection(string networkName,\n          NetworkCredential credentials)\n      {\n          _networkName = networkName;\n\n          var netResource = new NetResource()\n          {\n              Scope = ResourceScope.GlobalNetwork,\n              ResourceType = ResourceType.Disk,\n              DisplayType = ResourceDisplaytype.Share,\n              RemoteName = networkName\n          };\n\n          var userName = string.IsNullOrEmpty(credentials.Domain)\n              ? credentials.UserName\n              : string.Format(@\"{0}\\{1}\", credentials.Domain, credentials.UserName);\n\n          var result = WNetAddConnection2(\n              netResource,\n              credentials.Password,\n              userName,\n              0);\n\n          if (result != 0)\n          {\n              throw new Win32Exception(result);\n          }\n      }\n\n  ~NetworkConnection()\n  {\n      Dispose(false);\n  }\n\n  public void Dispose()\n  {\n      Dispose(true);\n      GC.SuppressFinalize(this);\n  }\n\n  protected virtual void Dispose(bool disposing)\n  {\n      WNetCancelConnection2(_networkName, 0, true);\n  }\n\n  [DllImport(\"mpr.dll\")]\n  private static extern int WNetAddConnection2(NetResource netResource,\n      string password, string username, int flags);\n\n  [DllImport(\"mpr.dll\")]\n  private static extern int WNetCancelConnection2(string name, int flags,\n      bool force);\n}\n\n[StructLayout(LayoutKind.Sequential)]\npublic class NetResource\n{\n  public ResourceScope Scope;\n  public ResourceType ResourceType;\n  public ResourceDisplaytype DisplayType;\n  public int Usage;\n  public string LocalName;\n  public string RemoteName;\n  public string Comment;\n  public string Provider;\n}\n\npublic enum ResourceScope : int\n{\n  Connected = 1,\n  GlobalNetwork,\n  Remembered,\n  Recent,\n  Context\n};\n\npublic enum ResourceType : int\n{\n  Any = 0,\n  Disk = 1,\n  Print = 2,\n  Reserved = 8,\n}\n\npublic enum ResourceDisplaytype : int\n{\n  Generic = 0x0,\n  Domain = 0x01,\n  Server = 0x02,\n  Share = 0x03,\n  File = 0x04,\n  Group = 0x05,\n  Network = 0x06,\n  Root = 0x07,\n  Shareadmin = 0x08,\n  Directory = 0x09,\n  Tree = 0x0a,\n  Ndscontainer = 0x0b\n}",
         "code_language": "C#"
       },
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530475658,
-        "id": "a755cb72-0726-459f-b044-2cb70e49d7e9",
-        "ignore_block_count": true,
+        "created_time": 1550224860000,
+        "id": "d177e115-cac1-406d-8e80-1afa1c1b57b3",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530475658,
+        "last_edited_time": 1550224860000,
         "parent_id": "ca5fecfc-fe76-466a-bb97-87f0e5b58a8c",
         "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public void Dispose()\n    {\n        Dispose(true);\n        GC.SuppressFinalize(this);\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public void Dispose()\n    {\n        Dispose(true);\n        GC.SuppressFinalize(this);\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530475659,
-        "id": "6a599a01-305b-4073-91c9-f1da21a35543",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530475659,
-        "parent_id": "ca5fecfc-fe76-466a-bb97-87f0e5b58a8c",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "protected virtual void Dispose(bool disposing)\n    {\n        WNetCancelConnection2(_networkName, 0, true);\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "protected virtual void Dispose(bool disposing)\n    {\n        WNetCancelConnection2(_networkName, 0, true);\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530475659,
-        "id": "66aef7cc-13be-45af-8799-e9944add9b9a",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530475659,
-        "parent_id": "ca5fecfc-fe76-466a-bb97-87f0e5b58a8c",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "[DllImport(\"mpr.dll\")]\n    private static extern int WNetAddConnection2(NetResource netResource,\n        string password, string username, int flags);"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "[DllImport(\"mpr.dll\")]\n    private static extern int WNetAddConnection2(NetResource netResource,\n        string password, string username, int flags);",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530475659,
-        "id": "39b9ca58-d082-465f-9b5a-f88f29c03d90",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530475659,
-        "parent_id": "ca5fecfc-fe76-466a-bb97-87f0e5b58a8c",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "[DllImport(\"mpr.dll\")]\n    private static extern int WNetCancelConnection2(string name, int flags,\n        bool force);\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "[DllImport(\"mpr.dll\")]\n    private static extern int WNetCancelConnection2(string name, int flags,\n        bool force);\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530475659,
-        "id": "8484adb8-1e15-4100-a344-08721170de2e",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530475659,
-        "parent_id": "ca5fecfc-fe76-466a-bb97-87f0e5b58a8c",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "[StructLayout(LayoutKind.Sequential)]\npublic class NetResource\n{\n    public ResourceScope Scope;\n    public ResourceType ResourceType;\n    public ResourceDisplaytype DisplayType;\n    public int Usage;\n    public string LocalName;\n    public string RemoteName;\n    public string Comment;\n    public string Provider;\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "[StructLayout(LayoutKind.Sequential)]\npublic class NetResource\n{\n    public ResourceScope Scope;\n    public ResourceType ResourceType;\n    public ResourceDisplaytype DisplayType;\n    public int Usage;\n    public string LocalName;\n    public string RemoteName;\n    public string Comment;\n    public string Provider;\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530475659,
-        "id": "a7c97692-6d63-4d84-86b0-ad130ae7c464",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530475659,
-        "parent_id": "ca5fecfc-fe76-466a-bb97-87f0e5b58a8c",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public enum ResourceScope : int\n{\n    Connected = 1,\n    GlobalNetwork,\n    Remembered,\n    Recent,\n    Context\n};"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public enum ResourceScope : int\n{\n    Connected = 1,\n    GlobalNetwork,\n    Remembered,\n    Recent,\n    Context\n};",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530475659,
-        "id": "03ff929a-d88c-4c34-b1a6-7cb9c59920de",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530475659,
-        "parent_id": "ca5fecfc-fe76-466a-bb97-87f0e5b58a8c",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public enum ResourceType : int\n{\n    Any = 0,\n    Disk = 1,\n    Print = 2,\n    Reserved = 8,\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public enum ResourceType : int\n{\n    Any = 0,\n    Disk = 1,\n    Print = 2,\n    Reserved = 8,\n}",
-        "code_language": "Plain Text"
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "Code to access network shared file",

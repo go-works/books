@@ -12,8 +12,7 @@
       "abf24b99-c34f-42a7-add3-03dc974b793a",
       "36c836e5-86ef-4e97-848e-8c5c60ce2468",
       "65b366e9-2223-42f2-a441-e57a612763fb",
-      "8a1fa286-0098-4f9c-b52b-b051c4a2e694",
-      "1c7045c9-180a-4545-96ee-d316fa7f72da"
+      "8a1fa286-0098-4f9c-b52b-b051c4a2e694"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549525971281,
@@ -24,7 +23,7 @@
     "id": "639d0e5f-5d53-4841-b6f3-821bdc7dcc29",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549628400000,
+    "last_edited_time": 1550116560000,
     "parent_id": "3579f09a-ed6b-403d-b38a-ab7fa93d0309",
     "parent_table": "block",
     "properties": {
@@ -35,7 +34,7 @@
       ]
     },
     "type": "page",
-    "version": 6,
+    "version": 8,
     "content_resolved": [
       {
         "alive": true,
@@ -408,13 +407,13 @@
         "id": "36c836e5-86ef-4e97-848e-8c5c60ce2468",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525971280,
+        "last_edited_time": 1550116560000,
         "parent_id": "639d0e5f-5d53-4841-b6f3-821bdc7dcc29",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -424,9 +423,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "public class PriceChangingEventArgs : CancelEventArgs\n{\n    int value;\n    public int Value\n    {\n        get { return value; }\n    }\n    public PriceChangingEventArgs(int value)\n    {\n        this.value = value;\n    }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -466,52 +465,25 @@
         "id": "8a1fa286-0098-4f9c-b52b-b051c4a2e694",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525971281,
+        "last_edited_time": 1550116560000,
         "parent_id": "639d0e5f-5d53-4841-b6f3-821bdc7dcc29",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public class Product\n{\n    int price;\n    public int Price\n    {\n        get { return price; }\n        set\n        {\n            var e = new PriceChangingEventArgs(value);\n            OnPriceChanging(e);\n            if (!e.Cancel)\n                price = value;\n        }\n    }"
+              "public class Product\n{\n    int price;\n    public int Price\n    {\n        get { return price; }\n        set\n        {\n            var e = new PriceChangingEventArgs(value);\n            OnPriceChanging(e);\n            if (!e.Cancel)\n                price = value;\n        }\n    }\n\n    public event EventHandler\u003cPriceChangingEventArgs\u003e PropertyChanging;\n    protected void OnPriceChanging(PriceChangingEventArgs e)\n    {\n        var handler = PropertyChanging;\n        if (handler != null)\n            PropertyChanging(this, e);\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public class Product\n{\n    int price;\n    public int Price\n    {\n        get { return price; }\n        set\n        {\n            var e = new PriceChangingEventArgs(value);\n            OnPriceChanging(e);\n            if (!e.Cancel)\n                price = value;\n        }\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525971281,
-        "id": "1c7045c9-180a-4545-96ee-d316fa7f72da",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525971281,
-        "parent_id": "639d0e5f-5d53-4841-b6f3-821bdc7dcc29",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public event EventHandler\u003cPriceChangingEventArgs\u003e PropertyChanging;\n    protected void OnPriceChanging(PriceChangingEventArgs e)\n    {\n        var handler = PropertyChanging;\n        if (handler != null)\n            PropertyChanging(this, e);\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public event EventHandler\u003cPriceChangingEventArgs\u003e PropertyChanging;\n    protected void OnPriceChanging(PriceChangingEventArgs e)\n    {\n        var handler = PropertyChanging;\n        if (handler != null)\n            PropertyChanging(this, e);\n    }\n}",
-        "code_language": "Plain Text"
+        "version": 8,
+        "code": "public class Product\n{\n    int price;\n    public int Price\n    {\n        get { return price; }\n        set\n        {\n            var e = new PriceChangingEventArgs(value);\n            OnPriceChanging(e);\n            if (!e.Cancel)\n                price = value;\n        }\n    }\n\n    public event EventHandler\u003cPriceChangingEventArgs\u003e PropertyChanging;\n    protected void OnPriceChanging(PriceChangingEventArgs e)\n    {\n        var handler = PropertyChanging;\n        if (handler != null)\n            PropertyChanging(this, e);\n    }\n}",
+        "code_language": "C#"
       }
     ],
     "title": "Creating cancelable event",

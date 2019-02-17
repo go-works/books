@@ -5,8 +5,7 @@
     "content": [
       "77c6c591-40fb-4831-92d3-8d203fec5ce2",
       "fe109cc7-b9c0-473e-b804-55fcacefc066",
-      "25f17c2a-8f11-4b15-a7ae-18eef5356b18",
-      "7af8c936-951b-4bfe-809c-61fef71cff3e"
+      "7d12aae1-9315-4bf5-8b91-93372dc96966"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549527886419,
@@ -17,7 +16,7 @@
     "id": "f467a1f3-6221-46f9-8147-a5acaaa40482",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549626180000,
+    "last_edited_time": 1550206020000,
     "parent_id": "7c9f5ce4-12a1-4115-98ff-cdbe26ce2b63",
     "parent_table": "block",
     "properties": {
@@ -28,7 +27,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 13,
     "content_resolved": [
       {
         "alive": true,
@@ -116,79 +115,37 @@
         "id": "fe109cc7-b9c0-473e-b804-55fcacefc066",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527886418,
+        "last_edited_time": 1550206020000,
         "parent_id": "f467a1f3-6221-46f9-8147-a5acaaa40482",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public class Parent : IDisposable\n{\n    private ManagedResource parentManagedResource = new ManagedResource();"
+              "public class Parent : IDisposable\n{\n    private ManagedResource parentManagedResource = new ManagedResource();\n\n    public virtual void Dispose()\n    {\n        if (parentManagedResource != null)\n        {\n            parentManagedResource.Dispose();\n        }\n    }\n}\n\npublic class Child : Parent\n{\n    private ManagedResource childManagedResource = new ManagedResource();\n\n    public override void Dispose()\n    {\n        if (childManagedResource != null)\n        {\n            childManagedResource.Dispose();\n        }\n        //clean up the parent's resources\n        base.Dispose();\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public class Parent : IDisposable\n{\n    private ManagedResource parentManagedResource = new ManagedResource();",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "public class Parent : IDisposable\n{\n    private ManagedResource parentManagedResource = new ManagedResource();\n\n    public virtual void Dispose()\n    {\n        if (parentManagedResource != null)\n        {\n            parentManagedResource.Dispose();\n        }\n    }\n}\n\npublic class Child : Parent\n{\n    private ManagedResource childManagedResource = new ManagedResource();\n\n    public override void Dispose()\n    {\n        if (childManagedResource != null)\n        {\n            childManagedResource.Dispose();\n        }\n        //clean up the parent's resources\n        base.Dispose();\n    }\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527886418,
-        "id": "25f17c2a-8f11-4b15-a7ae-18eef5356b18",
-        "ignore_block_count": true,
+        "created_time": 1550206020000,
+        "id": "7d12aae1-9315-4bf5-8b91-93372dc96966",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527886418,
+        "last_edited_time": 1550206020000,
         "parent_id": "f467a1f3-6221-46f9-8147-a5acaaa40482",
         "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public virtual void Dispose()\n    {\n        if (parentManagedResource != null)\n        {\n            parentManagedResource.Dispose();\n        }\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public virtual void Dispose()\n    {\n        if (parentManagedResource != null)\n        {\n            parentManagedResource.Dispose();\n        }\n    }\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527886418,
-        "id": "7af8c936-951b-4bfe-809c-61fef71cff3e",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527886418,
-        "parent_id": "f467a1f3-6221-46f9-8147-a5acaaa40482",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public class Child : Parent\n{\n    private ManagedResource childManagedResource = new ManagedResource();"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public class Child : Parent\n{\n    private ManagedResource childManagedResource = new ManagedResource();",
-        "code_language": "Plain Text"
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "In an inherited class with managed resources",

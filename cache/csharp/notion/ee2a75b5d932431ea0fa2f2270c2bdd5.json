@@ -6,9 +6,6 @@
       "41d93625-8979-47eb-bb8b-ef05c63466fa",
       "aa62756c-0b06-4008-9d3b-8c5bd2100c9d",
       "12c82806-a35d-494e-b969-e9087ef67154",
-      "f7a5d79d-45c2-4c6b-949a-a1797ba43210",
-      "da58ea0c-4093-4144-bc14-0bce221b5f63",
-      "ea6232b4-aeca-4df6-a9f8-dc5b5e1ef170",
       "b7d6dfb9-ff60-4da6-937d-4dd52c8718d2",
       "1ee9e48e-0ba4-479b-a1ef-1b883b6f45b3",
       "034dccf0-33c5-4abf-a7a6-1321904b360a",
@@ -24,7 +21,7 @@
     "id": "ee2a75b5-d932-431e-a0fa-2f2270c2bdd5",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549791660000,
+    "last_edited_time": 1550222940000,
     "parent_id": "7ab4d6e5-5a1c-4950-82d0-073379ffb854",
     "parent_table": "block",
     "properties": {
@@ -35,7 +32,7 @@
       ]
     },
     "type": "page",
-    "version": 10,
+    "version": 14,
     "content_resolved": [
       {
         "alive": true,
@@ -94,106 +91,25 @@
         "id": "12c82806-a35d-494e-b969-e9087ef67154",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530046451,
+        "last_edited_time": 1550222940000,
         "parent_id": "ee2a75b5-d932-431e-a0fa-2f2270c2bdd5",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "using System;\nusing System.Runtime.InteropServices;"
+              "using System;\nusing System.Runtime.InteropServices;\n\n// The struct needs to be annotated as \"Explicit Layout\"\n[StructLayout(LayoutKind.Explicit)]\nstruct IpAddress\n{\n    // The \"FieldOffset\" means that this Integer starts, an offset in bytes.\n    // sizeof(int) 4, sizeof(byte) = 1\n    [FieldOffset(0)] public int Address;\n    [FieldOffset(0)] public byte Byte1;\n    [FieldOffset(1)] public byte Byte2;\n    [FieldOffset(2)] public byte Byte3;\n    [FieldOffset(3)] public byte Byte4;\n\n    public IpAddress(int address) : this()\n    {\n        // When we init the Int, the Bytes will change too.\n        Address = address;\n    }\n\n    // Now we can use the explicit layout to access the \n    // bytes separately, without doing any conversion.\n    public override string ToString() =\u003e $\"{Byte1}.{Byte2}.{Byte3}.{Byte4}\";\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "using System;\nusing System.Runtime.InteropServices;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530046451,
-        "id": "f7a5d79d-45c2-4c6b-949a-a1797ba43210",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530046451,
-        "parent_id": "ee2a75b5-d932-431e-a0fa-2f2270c2bdd5",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// The struct needs to be annotated as \"Explicit Layout\"\n[StructLayout(LayoutKind.Explicit)]\nstruct IpAddress\n{\n    // The \"FieldOffset\" means that this Integer starts, an offset in bytes.\n    // sizeof(int) 4, sizeof(byte) = 1\n    [FieldOffset(0)] public int Address;\n    [FieldOffset(0)] public byte Byte1;\n    [FieldOffset(1)] public byte Byte2;\n    [FieldOffset(2)] public byte Byte3;\n    [FieldOffset(3)] public byte Byte4;"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// The struct needs to be annotated as \"Explicit Layout\"\n[StructLayout(LayoutKind.Explicit)]\nstruct IpAddress\n{\n    // The \"FieldOffset\" means that this Integer starts, an offset in bytes.\n    // sizeof(int) 4, sizeof(byte) = 1\n    [FieldOffset(0)] public int Address;\n    [FieldOffset(0)] public byte Byte1;\n    [FieldOffset(1)] public byte Byte2;\n    [FieldOffset(2)] public byte Byte3;\n    [FieldOffset(3)] public byte Byte4;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530046451,
-        "id": "da58ea0c-4093-4144-bc14-0bce221b5f63",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530046451,
-        "parent_id": "ee2a75b5-d932-431e-a0fa-2f2270c2bdd5",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public IpAddress(int address) : this()\n    {\n        // When we init the Int, the Bytes will change too.\n        Address = address;\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public IpAddress(int address) : this()\n    {\n        // When we init the Int, the Bytes will change too.\n        Address = address;\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530046451,
-        "id": "ea6232b4-aeca-4df6-a9f8-dc5b5e1ef170",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530046451,
-        "parent_id": "ee2a75b5-d932-431e-a0fa-2f2270c2bdd5",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// Now we can use the explicit layout to access the \n    // bytes separately, without doing any conversion.\n    public override string ToString() =\u003e $\"{Byte1}.{Byte2}.{Byte3}.{Byte4}\";\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// Now we can use the explicit layout to access the \n    // bytes separately, without doing any conversion.\n    public override string ToString() =\u003e $\"{Byte1}.{Byte2}.{Byte3}.{Byte4}\";\n}",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "using System;\nusing System.Runtime.InteropServices;\n\n// The struct needs to be annotated as \"Explicit Layout\"\n[StructLayout(LayoutKind.Explicit)]\nstruct IpAddress\n{\n    // The \"FieldOffset\" means that this Integer starts, an offset in bytes.\n    // sizeof(int) 4, sizeof(byte) = 1\n    [FieldOffset(0)] public int Address;\n    [FieldOffset(0)] public byte Byte1;\n    [FieldOffset(1)] public byte Byte2;\n    [FieldOffset(2)] public byte Byte3;\n    [FieldOffset(3)] public byte Byte4;\n\n    public IpAddress(int address) : this()\n    {\n        // When we init the Int, the Bytes will change too.\n        Address = address;\n    }\n\n    // Now we can use the explicit layout to access the \n    // bytes separately, without doing any conversion.\n    public override string ToString() =\u003e $\"{Byte1}.{Byte2}.{Byte3}.{Byte4}\";\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -227,13 +143,13 @@
         "id": "1ee9e48e-0ba4-479b-a1ef-1b883b6f45b3",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530046451,
+        "last_edited_time": 1550222940000,
         "parent_id": "ee2a75b5-d932-431e-a0fa-2f2270c2bdd5",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -243,9 +159,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "var ip = new IpAddress(new Random().Next());\nConsole.WriteLine($\"{ip} = {ip.Address}\");\nip.Byte1 = 100;\nConsole.WriteLine($\"{ip} = {ip.Address}\");",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -279,13 +195,13 @@
         "id": "65c7f5a0-e3e1-4a69-a85f-bcb8d99e9db3",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530046451,
+        "last_edited_time": 1550222940000,
         "parent_id": "ee2a75b5-d932-431e-a0fa-2f2270c2bdd5",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -295,9 +211,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "75.49.5.32 = 537211211\n100.49.5.32 = 537211236",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,

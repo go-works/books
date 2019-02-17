@@ -33,7 +33,7 @@
     "id": "752478aa-2ea5-4fa5-97da-d66df1aadecc",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549798920000,
+    "last_edited_time": 1550202180000,
     "parent_id": "ae23cb97-ee8a-4ca7-887f-57c7afb5dfd8",
     "parent_table": "block",
     "properties": {
@@ -44,7 +44,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 9,
     "content_resolved": [
       {
         "alive": true,
@@ -128,13 +128,13 @@
         "id": "1b6f8390-4e7d-42ea-bc45-a4f033b958ee",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527261544,
+        "last_edited_time": 1550202180000,
         "parent_id": "752478aa-2ea5-4fa5-97da-d66df1aadecc",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -144,9 +144,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "WeakReference reference = new WeakReference(new object(), false);\n\nGC.Collect();\n\nobject target = reference.Target;\nif (target != null)\n  DoSomething(target);",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -230,13 +230,13 @@
         "id": "8cdbd6dc-d4cc-44d2-9874-124cd624cc89",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527261544,
+        "last_edited_time": 1550202180000,
         "parent_id": "752478aa-2ea5-4fa5-97da-d66df1aadecc",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -246,9 +246,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "Source.Event += new EventHandler(Handler)",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -351,13 +351,13 @@
         "id": "45b064f7-7022-4a7d-b4f4-d4031bfaca8e",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527261546,
+        "last_edited_time": 1550202180000,
         "parent_id": "752478aa-2ea5-4fa5-97da-d66df1aadecc",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -367,9 +367,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "public static class WeakEventManager\n    {\n    public static void SetHandler\u003cS, TArgs\u003e(\n    Action\u003cEventHandler\u003cTArgs\u003e\u003e add,\n    Action\u003cEventHandler\u003cTArgs\u003e\u003e remove,\n    S subscriber,\n    Action\u003cS, TArgs\u003e action)\n    where TArgs : EventArgs\n    where S : class\n        {\n            var subscrWeakRef = new WeakReference(subscriber);\n            EventHandler\u003cTArgs\u003e handler = null;\n\n            handler = (s, e) =\u003e\n            {\n                var subscrStrongRef = subscrWeakRef.Target as S;\n                if (subscrStrongRef != null)\n                {\n                    action(subscrStrongRef, e);\n                }\n                else\n                {\n                    remove(handler);\n                    handler = null;\n                }\n            };\n\n            add(handler);\n        }\n    }",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -403,13 +403,13 @@
         "id": "12577c85-7d9a-4333-96ca-4d8a19670d67",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527261546,
+        "last_edited_time": 1550202180000,
         "parent_id": "752478aa-2ea5-4fa5-97da-d66df1aadecc",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -419,9 +419,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "EventSource s = new EventSource();\n Subscriber subscriber = new Subscriber();\n WeakEventManager.SetHandler\u003cSubscriber, SomeEventArgs\u003e(a =\u003e s.Event += a, r =\u003e s.Event -= r, subscriber, (s,e) =\u003e { s.HandleEvent(e); });",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -455,13 +455,13 @@
         "id": "a532e619-8d2e-48f2-8b6e-7552472546db",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527261546,
+        "last_edited_time": 1550202180000,
         "parent_id": "752478aa-2ea5-4fa5-97da-d66df1aadecc",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -471,9 +471,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "public event EventHandler\u003cSomeEventArgs\u003e Event;",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,

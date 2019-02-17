@@ -22,13 +22,11 @@
       "933b2d16-d17e-4236-bf93-f946cbe4ac2a",
       "a315ea49-b3c3-41f7-aad0-20612f58f0c8",
       "63dfa0ae-9c04-4564-baf2-0cec0f08ea9a",
-      "1cd7a401-c6be-40e9-8a7e-5e27813419c7",
       "26552257-7c0f-4d08-85fc-4bcde8953322",
       "fa3d974b-96b6-4c66-8d46-766d0d252ea6",
       "865c4eb5-879d-45d5-b9d2-c713e08ebe9b",
       "c64d63a3-f154-403f-8241-81a7be3917ac",
       "1c3ed19b-4c30-424b-8a78-4c7a7597c801",
-      "5a7a1dfe-1cff-4ee6-a344-fb7e220c85c8",
       "e93fe962-1b3a-4e59-96eb-52c076cca701"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -40,7 +38,7 @@
     "id": "c0d4973d-98aa-4f0e-8f55-196d77bf2711",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549791180000,
+    "last_edited_time": 1550220540000,
     "parent_id": "17ad5712-f0c3-4ba5-8da9-3bfb63ad5ed6",
     "parent_table": "block",
     "properties": {
@@ -51,7 +49,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 11,
     "content_resolved": [
       {
         "alive": true,
@@ -519,13 +517,13 @@
         "id": "ab734448-9372-4028-a517-1d002b96e670",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529595534,
+        "last_edited_time": 1550220540000,
         "parent_id": "c0d4973d-98aa-4f0e-8f55-196d77bf2711",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -535,9 +533,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "public interface IField\n{\n    string Name { get; }\n    char Mark { get; }\n    bool CanWalk { get; }\n    FieldType Type { get; }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -571,13 +569,13 @@
         "id": "a315ea49-b3c3-41f7-aad0-20612f58f0c8",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529595534,
+        "last_edited_time": 1550220540000,
         "parent_id": "c0d4973d-98aa-4f0e-8f55-196d77bf2711",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -587,9 +585,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "public enum FieldType\n{\n    GRASS,\n    ROCK,\n    START,\n    CHEST\n}\npublic class Grass : IField\n{\n    public string Name { get { return \"Grass\"; } }\n    public char Mark { get { return '#'; } }\n    public bool CanWalk { get { return true; } }\n    public FieldType Type { get { return FieldType.GRASS; } }\n}\npublic class StartingPoint : IField\n{\n    public string Name { get { return \"Starting Point\"; } }\n    public char Mark { get { return '$'; } }\n    public bool CanWalk { get { return true; } }\n    public FieldType Type { get { return FieldType.START; } }\n}\npublic class Rock : IField\n{\n    public string Name { get { return \"Rock\"; } }\n    public char Mark { get { return '@'; } }\n    public bool CanWalk { get { return false; } }\n    public FieldType Type { get { return FieldType.ROCK; } }\n}\npublic class TreasureChest : IField\n{\n    public string Name { get { return \"Treasure Chest\"; } }\n    public char Mark { get { return '%'; } }\n    public bool CanWalk { get { return true; } } // you can approach it\n    public FieldType Type { get { return FieldType.CHEST; } }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -638,55 +636,28 @@
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
         "created_time": 1549529595535,
-        "id": "1cd7a401-c6be-40e9-8a7e-5e27813419c7",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529595535,
-        "parent_id": "c0d4973d-98aa-4f0e-8f55-196d77bf2711",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public class FieldRepository\n{\n    private List\u003cIField\u003e lstFields = new List\u003cIField\u003e();"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public class FieldRepository\n{\n    private List\u003cIField\u003e lstFields = new List\u003cIField\u003e();",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549529595535,
         "id": "26552257-7c0f-4d08-85fc-4bcde8953322",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529595535,
+        "last_edited_time": 1550220540000,
         "parent_id": "c0d4973d-98aa-4f0e-8f55-196d77bf2711",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "private IField AddField(FieldType type)\n    {\n        IField f;\n        switch(type)\n        {\n            case FieldType.GRASS: f = new Grass(); break;\n            case FieldType.ROCK: f = new Rock(); break;\n            case FieldType.START: f = new StartingPoint(); break;\n            case FieldType.CHEST:\n            default: f = new TreasureChest(); break;\n        }\n        lstFields.Add(f); //add it to repository\n        Console.WriteLine(\"Created new instance of {0}\", f.Name);\n        return f;\n    }\n    public IField GetField(FieldType type)\n    {\n        IField f = lstFields.Find(x =\u003e x.Type == type);\n        if (f != null) return f;\n        else return AddField(type);\n    }\n}"
+              "public class FieldRepository\n{\n    private List\u003cIField\u003e lstFields = new List\u003cIField\u003e();\n\n    private IField AddField(FieldType type)\n    {\n        IField f;\n        switch(type)\n        {\n            case FieldType.GRASS: f = new Grass(); break;\n            case FieldType.ROCK: f = new Rock(); break;\n            case FieldType.START: f = new StartingPoint(); break;\n            case FieldType.CHEST:\n            default: f = new TreasureChest(); break;\n        }\n        lstFields.Add(f); //add it to repository\n        Console.WriteLine(\"Created new instance of {0}\", f.Name);\n        return f;\n    }\n    public IField GetField(FieldType type)\n    {\n        IField f = lstFields.Find(x =\u003e x.Type == type);\n        if (f != null) return f;\n        else return AddField(type);\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "private IField AddField(FieldType type)\n    {\n        IField f;\n        switch(type)\n        {\n            case FieldType.GRASS: f = new Grass(); break;\n            case FieldType.ROCK: f = new Rock(); break;\n            case FieldType.START: f = new StartingPoint(); break;\n            case FieldType.CHEST:\n            default: f = new TreasureChest(); break;\n        }\n        lstFields.Add(f); //add it to repository\n        Console.WriteLine(\"Created new instance of {0}\", f.Name);\n        return f;\n    }\n    public IField GetField(FieldType type)\n    {\n        IField f = lstFields.Find(x =\u003e x.Type == type);\n        if (f != null) return f;\n        else return AddField(type);\n    }\n}",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "public class FieldRepository\n{\n    private List\u003cIField\u003e lstFields = new List\u003cIField\u003e();\n\n    private IField AddField(FieldType type)\n    {\n        IField f;\n        switch(type)\n        {\n            case FieldType.GRASS: f = new Grass(); break;\n            case FieldType.ROCK: f = new Rock(); break;\n            case FieldType.START: f = new StartingPoint(); break;\n            case FieldType.CHEST:\n            default: f = new TreasureChest(); break;\n        }\n        lstFields.Add(f); //add it to repository\n        Console.WriteLine(\"Created new instance of {0}\", f.Name);\n        return f;\n    }\n    public IField GetField(FieldType type)\n    {\n        IField f = lstFields.Find(x =\u003e x.Type == type);\n        if (f != null) return f;\n        else return AddField(type);\n    }\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -720,13 +691,13 @@
         "id": "865c4eb5-879d-45d5-b9d2-c713e08ebe9b",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529595535,
+        "last_edited_time": 1550220540000,
         "parent_id": "c0d4973d-98aa-4f0e-8f55-196d77bf2711",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -736,9 +707,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "public class Program\n{\n    public static void Main(string[] args)\n    {\n        FieldRepository f = new FieldRepository();\n        IField grass = f.GetField(FieldType.GRASS);\n        grass = f.GetField(FieldType.ROCK);\n        grass = f.GetField(FieldType.GRASS);       \n    }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -772,46 +743,21 @@
         "id": "1c3ed19b-4c30-424b-8a78-4c7a7597c801",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529595535,
+        "last_edited_time": 1550220540000,
         "parent_id": "c0d4973d-98aa-4f0e-8f55-196d77bf2711",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "Created a new instance of Grass"
+              "Created a new instance of Grass\n\nCreated a new instance of Rock"
             ]
           ]
         },
         "type": "quote",
-        "version": 1,
+        "version": 5,
         "inline_content": [
           {
-            "Text": "Created a new instance of Grass"
-          }
-        ]
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549529595535,
-        "id": "5a7a1dfe-1cff-4ee6-a344-fb7e220c85c8",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529595535,
-        "parent_id": "c0d4973d-98aa-4f0e-8f55-196d77bf2711",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "Created a new instance of Rock"
-            ]
-          ]
-        },
-        "type": "text",
-        "version": 1,
-        "inline_content": [
-          {
-            "Text": "Created a new instance of Rock"
+            "Text": "Created a new instance of Grass\n\nCreated a new instance of Rock"
           }
         ]
       },

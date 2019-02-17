@@ -28,7 +28,7 @@
     "id": "efa02581-f885-4a63-9aec-38e5c9dc5344",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549799040000,
+    "last_edited_time": 1550226000000,
     "parent_id": "4e3eae94-4bd2-484f-aad4-4fb3d4c1abb5",
     "parent_table": "block",
     "properties": {
@@ -39,7 +39,7 @@
       ]
     },
     "type": "page",
-    "version": 7,
+    "version": 9,
     "content_resolved": [
       {
         "alive": true,
@@ -73,13 +73,13 @@
         "id": "ab908df0-c4d6-4338-9906-411146678b62",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530739148,
+        "last_edited_time": 1550225940000,
         "parent_id": "efa02581-f885-4a63-9aec-38e5c9dc5344",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -89,9 +89,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "// Define a service contract.  \n[ServiceContract(Namespace=\"http://StackOverflow.ServiceModel.Samples\")]  \npublic interface ICalculator  \n{  \n    [OperationContract]  \n    double Add(double n1, double n2);\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -125,13 +125,13 @@
         "id": "fb0a3441-2751-44bc-b351-72a96f212824",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530739148,
+        "last_edited_time": 1550226000000,
         "parent_id": "efa02581-f885-4a63-9aec-38e5c9dc5344",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -141,9 +141,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "// Service class that implements the service contract.  \npublic class CalculatorService : ICalculator  \n{  \n    public double Add(double n1, double n2)  \n    {  \n        return n1 + n2;  \n    }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -177,13 +177,13 @@
         "id": "bc93f232-1b5b-4337-9d70-3d5acc9bf856",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530739149,
+        "last_edited_time": 1550226000000,
         "parent_id": "efa02581-f885-4a63-9aec-38e5c9dc5344",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "XML"
             ]
           ],
           "title": [
@@ -193,9 +193,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "\u003cservices\u003e  \n    \u003cservice   \n        name=\"StackOverflow.ServiceModel.Samples.CalculatorService\"  \n        behaviorConfiguration=\"CalculatorServiceBehavior\"\u003e  \n        \u003c!-- ICalculator is exposed at the base address provided by  \n         host: http://localhost/servicemodelsamples/service.svc.  --\u003e  \n       \u003cendpoint address=\"\"  \n              binding=\"wsHttpBinding\"  \n              contract=\"StackOverflow.ServiceModel.Samples.ICalculator\" /\u003e  \n       ...  \n    \u003c/service\u003e  \n\u003c/services\u003e",
-        "code_language": "Plain Text"
+        "code_language": "XML"
       },
       {
         "alive": true,
@@ -229,13 +229,13 @@
         "id": "7a831b9e-f7b3-4333-aff2-bc8698b7ac94",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530739149,
+        "last_edited_time": 1550226000000,
         "parent_id": "efa02581-f885-4a63-9aec-38e5c9dc5344",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "XML"
             ]
           ],
           "title": [
@@ -245,9 +245,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "\u003csystem.serviceModel\u003e  \n  \u003cservices\u003e  \n    \u003cservice   \n        name=\"StackOverflow.ServiceModel.Samples.CalculatorService\"  \n        behaviorConfiguration=\"CalculatorServiceBehavior\"\u003e  \n      ...  \n      \u003c!-- the mex endpoint is explosed at  \n       http://localhost/servicemodelsamples/service.svc/mex --\u003e  \n      \u003cendpoint address=\"mex\"  \n                binding=\"mexHttpBinding\"  \n                contract=\"IMetadataExchange\" /\u003e  \n    \u003c/service\u003e  \n  \u003c/services\u003e  \n\n  \u003c!--For debugging purposes set the includeExceptionDetailInFaults  \n   attribute to true--\u003e  \n  \u003cbehaviors\u003e  \n    \u003cserviceBehaviors\u003e  \n      \u003cbehavior name=\"CalculatorServiceBehavior\"\u003e  \n        \u003cserviceMetadata httpGetEnabled=\"True\"/\u003e  \n        \u003cserviceDebug includeExceptionDetailInFaults=\"False\" /\u003e  \n      \u003c/behavior\u003e  \n    \u003c/serviceBehaviors\u003e  \n  \u003c/behaviors\u003e  \n\u003c/system.serviceModel\u003e",
-        "code_language": "Plain Text"
+        "code_language": "XML"
       },
       {
         "alive": true,
@@ -358,13 +358,13 @@
         "id": "40515394-0572-4702-9aed-d144ae08221e",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530739149,
+        "last_edited_time": 1550226000000,
         "parent_id": "efa02581-f885-4a63-9aec-38e5c9dc5344",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "XML"
             ]
           ],
           "title": [
@@ -374,9 +374,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "\u003cclient\u003e  \n     \u003cendpoint  \n         address=\"http://localhost/servicemodelsamples/service.svc\"   \n         binding=\"wsHttpBinding\"   \n         contract=\"StackOverflow.ServiceModel.Samples.ICalculator\" /\u003e  \n\u003c/client\u003e",
-        "code_language": "Plain Text"
+        "code_language": "XML"
       },
       {
         "alive": true,
@@ -410,13 +410,13 @@
         "id": "0a2e9793-28a4-4e33-8ec7-4a2723c98bf0",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530739150,
+        "last_edited_time": 1550226000000,
         "parent_id": "efa02581-f885-4a63-9aec-38e5c9dc5344",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -426,9 +426,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "// Create a client.  \nCalculatorClient client = new CalculatorClient();  \n\n// Call the Add service operation.  \ndouble value1 = 100.00D;  \ndouble value2 = 15.99D;  \ndouble result = client.Add(value1, value2);  \nConsole.WriteLine(\"Add({0},{1}) = {2}\", value1, value2, result); \n\n//Closing the client releases all communication resources.  \nclient.Close();",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       }
     ],
     "title": "Getting started sample",

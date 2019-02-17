@@ -6,7 +6,6 @@
       "f36e7440-42ca-418c-b7c9-26f0b06b1415",
       "53733cb8-4a44-4adc-a3d0-d6e8c247472e",
       "361c9851-647b-4789-9799-179397c0f2f3",
-      "70d5e407-2edc-4526-8968-29c0c7b0e88c",
       "80c28474-6c0a-46dc-b892-82e0c0d9b2f3",
       "e548c126-6e13-4e9c-85da-2ada6345a58f"
     ],
@@ -19,7 +18,7 @@
     "id": "834516f3-8a5a-478c-9b5d-26c6a2ea5a51",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549613520000,
+    "last_edited_time": 1550044020000,
     "parent_id": "6bc8984c-0999-42e1-a500-ace83190c171",
     "parent_table": "block",
     "properties": {
@@ -30,7 +29,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 11,
     "content_resolved": [
       {
         "alive": true,
@@ -89,7 +88,7 @@
         "id": "361c9851-647b-4789-9799-179397c0f2f3",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549613520000,
+        "last_edited_time": 1550044020000,
         "parent_id": "834516f3-8a5a-478c-9b5d-26c6a2ea5a51",
         "parent_table": "block",
         "properties": {
@@ -100,41 +99,14 @@
           ],
           "title": [
             [
-              "public void SomeMethod\u003cT, V\u003e() \n{\n   // No code for simplicity\n}"
+              "public void SomeMethod\u003cT, V\u003e() \n{\n   // No code for simplicity\n}\n\nSomeMethod(); // doesn't compile\nSomeMethod\u003cint, bool\u003e(); // compiles"
             ]
           ]
         },
         "type": "code",
-        "version": 3,
-        "code": "public void SomeMethod\u003cT, V\u003e() \n{\n   // No code for simplicity\n}",
+        "version": 7,
+        "code": "public void SomeMethod\u003cT, V\u003e() \n{\n   // No code for simplicity\n}\n\nSomeMethod(); // doesn't compile\nSomeMethod\u003cint, bool\u003e(); // compiles",
         "code_language": "C#"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525139197,
-        "id": "70d5e407-2edc-4526-8968-29c0c7b0e88c",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525139197,
-        "parent_id": "834516f3-8a5a-478c-9b5d-26c6a2ea5a51",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "SomeMethod(); // doesn't compile\nSomeMethod\u003cint, bool\u003e(); // compiles"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "SomeMethod(); // doesn't compile\nSomeMethod\u003cint, bool\u003e(); // compiles",
-        "code_language": "Plain Text"
       },
       {
         "alive": true,
@@ -168,7 +140,7 @@
         "id": "e548c126-6e13-4e9c-85da-2ada6345a58f",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549613520000,
+        "last_edited_time": 1550044020000,
         "parent_id": "834516f3-8a5a-478c-9b5d-26c6a2ea5a51",
         "parent_table": "block",
         "properties": {
@@ -179,13 +151,13 @@
           ],
           "title": [
             [
-              "public K SomeMethod\u003cK, V\u003e(V input)\n{\n    return default(K);\n}"
+              "public K SomeMethod\u003cK, V\u003e(V input)\n{\n    return default(K);\n}\n\nint num1 = SomeMethod(3); // doesn't compile\nint num2 = SomeMethod\u003cint\u003e(\"3\"); // doesn't compile\nint num3 = SomeMethod\u003cint, string\u003e(\"3\"); // compiles.\n"
             ]
           ]
         },
         "type": "code",
-        "version": 3,
-        "code": "public K SomeMethod\u003cK, V\u003e(V input)\n{\n    return default(K);\n}",
+        "version": 10,
+        "code": "public K SomeMethod\u003cK, V\u003e(V input)\n{\n    return default(K);\n}\n\nint num1 = SomeMethod(3); // doesn't compile\nint num2 = SomeMethod\u003cint\u003e(\"3\"); // doesn't compile\nint num3 = SomeMethod\u003cint, string\u003e(\"3\"); // compiles.\n",
         "code_language": "C#"
       }
     ],

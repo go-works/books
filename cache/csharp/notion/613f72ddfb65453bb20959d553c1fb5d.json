@@ -5,7 +5,8 @@
     "content": [
       "78c71e45-22ab-40aa-a7a9-cdd314ac7a8e",
       "e3bf1899-7205-4be4-ae7d-d71794faac2e",
-      "0f34cfcc-2ca6-42ba-bd27-1d154ae0bda2"
+      "0f34cfcc-2ca6-42ba-bd27-1d154ae0bda2",
+      "88749067-87d6-42b5-b3ba-4de6afd833d6"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549527724298,
@@ -16,7 +17,7 @@
     "id": "613f72dd-fb65-453b-b209-59d553c1fb5d",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549627200000,
+    "last_edited_time": 1550204280000,
     "parent_id": "34613783-b94f-49b9-af21-5aac4eb1cd51",
     "parent_table": "block",
     "properties": {
@@ -27,7 +28,7 @@
       ]
     },
     "type": "page",
-    "version": 5,
+    "version": 9,
     "content_resolved": [
       {
         "alive": true,
@@ -105,6 +106,32 @@
             "Text": "Reading from this XML file:"
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550204305247,
+        "id": "88749067-87d6-42b5-b3ba-4de6afd833d6",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550204280000,
+        "parent_id": "613f72dd-fb65-453b-b209-59d553c1fb5d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "using System.Xml;\nusing System.Collections.Generic;\n\npublic static void Main(string fullpath)\n{\n    var xmldoc = new XmlDocument();\n    xmldoc.Load(fullpath);\n    \n    var oneValues = new List\u003cstring\u003e();\n    \n    // Getting all XML nodes with the tag name\n    var accountNodes = xmldoc.GetElementsByTagName(\"Account\");\n    for (var i = 0; i \u003c accountNodes.Count; i++)\n    {\n        // Use Xpath to find a node\n        var account = accountNodes[i].SelectSingleNode(\"./One\");\n        if (account != null \u0026\u0026 account.Attributes != null)\n        {\n            // Read node attribute\n            oneValues.Add(account.Attributes[\"number\"].Value);\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 10,
+        "code": "using System.Xml;\nusing System.Collections.Generic;\n\npublic static void Main(string fullpath)\n{\n    var xmldoc = new XmlDocument();\n    xmldoc.Load(fullpath);\n    \n    var oneValues = new List\u003cstring\u003e();\n    \n    // Getting all XML nodes with the tag name\n    var accountNodes = xmldoc.GetElementsByTagName(\"Account\");\n    for (var i = 0; i \u003c accountNodes.Count; i++)\n    {\n        // Use Xpath to find a node\n        var account = accountNodes[i].SelectSingleNode(\"./One\");\n        if (account != null \u0026\u0026 account.Attributes != null)\n        {\n            // Read node attribute\n            oneValues.Add(account.Attributes[\"number\"].Value);\n        }\n    }\n}",
+        "code_language": "C#"
       }
     ],
     "title": "Reading from XML document",

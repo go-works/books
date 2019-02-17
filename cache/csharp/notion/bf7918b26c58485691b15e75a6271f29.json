@@ -10,9 +10,6 @@
       "6b5eb810-42b3-42a8-81ad-0f70cb1646f2",
       "09a98baf-a6a1-445a-b410-efa423b38493",
       "b46da51c-19fd-4d71-9be8-fec29d1bec94",
-      "5939bbec-e5ef-4e3e-a5f3-fd0ffb72d889",
-      "a8e79298-bbd8-4dcd-9162-81e6ea5b8db4",
-      "6492e82f-1719-490e-8958-4daa1186f568",
       "8d0fb22b-ab65-439d-b96d-4256a767ef25"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -24,7 +21,7 @@
     "id": "bf7918b2-6c58-4856-91b1-5e75a6271f29",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549790100000,
+    "last_edited_time": 1550214840000,
     "parent_id": "33a94c41-382b-401a-bbcf-bc110c3bf33f",
     "parent_table": "block",
     "properties": {
@@ -35,7 +32,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 12,
     "content_resolved": [
       {
         "alive": true,
@@ -197,106 +194,25 @@
         "id": "b46da51c-19fd-4d71-9be8-fec29d1bec94",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528801337,
+        "last_edited_time": 1550214840000,
         "parent_id": "bf7918b2-6c58-4856-91b1-5e75a6271f29",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "// Hand-off through a bounded BufferBlock\u003cT\u003e\nprivate static BufferBlock\u003cint\u003e _Buffer = new BufferBlock\u003cint\u003e(\n    new DataflowBlockOptions { BoundedCapacity = 10 });"
+              "// Hand-off through a bounded BufferBlock\u003cT\u003e\nprivate static BufferBlock\u003cint\u003e _Buffer = new BufferBlock\u003cint\u003e(\n    new DataflowBlockOptions { BoundedCapacity = 10 });\n\n// Producer\nprivate static async void Producer()\n{\n    while(true)\n    {\n        await _Buffer.SendAsync(Produce());\n    }\n}\n\n// Consumer\nprivate static async Task Consumer()\n{\n    while(true)\n    {\n        Process(await _Buffer.ReceiveAsync());\n    } \n}\n\n// Start the Producer and Consumer\nprivate static async Task Run()\n{\n    await Task.WhenAll(Producer(), Consumer());\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "// Hand-off through a bounded BufferBlock\u003cT\u003e\nprivate static BufferBlock\u003cint\u003e _Buffer = new BufferBlock\u003cint\u003e(\n    new DataflowBlockOptions { BoundedCapacity = 10 });",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528801337,
-        "id": "5939bbec-e5ef-4e3e-a5f3-fd0ffb72d889",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528801337,
-        "parent_id": "bf7918b2-6c58-4856-91b1-5e75a6271f29",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// Producer\nprivate static async void Producer()\n{\n    while(true)\n    {\n        await _Buffer.SendAsync(Produce());\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// Producer\nprivate static async void Producer()\n{\n    while(true)\n    {\n        await _Buffer.SendAsync(Produce());\n    }\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528801337,
-        "id": "a8e79298-bbd8-4dcd-9162-81e6ea5b8db4",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528801337,
-        "parent_id": "bf7918b2-6c58-4856-91b1-5e75a6271f29",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// Consumer\nprivate static async Task Consumer()\n{\n    while(true)\n    {\n        Process(await _Buffer.ReceiveAsync());\n    } \n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// Consumer\nprivate static async Task Consumer()\n{\n    while(true)\n    {\n        Process(await _Buffer.ReceiveAsync());\n    } \n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528801337,
-        "id": "6492e82f-1719-490e-8958-4daa1186f568",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528801337,
-        "parent_id": "bf7918b2-6c58-4856-91b1-5e75a6271f29",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// Start the Producer and Consumer\nprivate static async Task Run()\n{\n    await Task.WhenAll(Producer(), Consumer());\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// Start the Producer and Consumer\nprivate static async Task Run()\n{\n    await Task.WhenAll(Producer(), Consumer());\n}",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "// Hand-off through a bounded BufferBlock\u003cT\u003e\nprivate static BufferBlock\u003cint\u003e _Buffer = new BufferBlock\u003cint\u003e(\n    new DataflowBlockOptions { BoundedCapacity = 10 });\n\n// Producer\nprivate static async void Producer()\n{\n    while(true)\n    {\n        await _Buffer.SendAsync(Produce());\n    }\n}\n\n// Consumer\nprivate static async Task Consumer()\n{\n    while(true)\n    {\n        Process(await _Buffer.ReceiveAsync());\n    } \n}\n\n// Start the Producer and Consumer\nprivate static async Task Run()\n{\n    await Task.WhenAll(Producer(), Consumer());\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,

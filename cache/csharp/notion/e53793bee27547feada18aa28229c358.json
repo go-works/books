@@ -2,6 +2,10 @@
   "ID": "e53793be-e275-47fe-ada1-8aa28229c358",
   "Root": {
     "alive": true,
+    "content": [
+      "30d7ba38-02d1-4408-b142-b49ff281aa04",
+      "8a5811e0-8994-47fd-98b5-8ea5771ae22f"
+    ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549530210433,
     "format": {
@@ -11,7 +15,7 @@
     "id": "e53793be-e275-47fe-ada1-8aa28229c358",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549786200000,
+    "last_edited_time": 1550223660000,
     "parent_id": "657b0c9d-9132-4296-a3f3-f027f19fcd31",
     "parent_table": "block",
     "properties": {
@@ -22,7 +26,47 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 13,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550223701191,
+        "id": "30d7ba38-02d1-4408-b142-b49ff281aa04",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550223660000,
+        "parent_id": "e53793be-e275-47fe-ada1-8aa28229c358",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "using System;\nusing System.IO;\nusing System.IO.Compression;\n\nnamespace ConsoleApplication1\n{\n    class Program\n    {\n        static void Main(string[] args)\n        {\n            string zipPath = @\"c:\\example\\start.zip\";\n            string extractPath = @\"c:\\example\\extract\";\n\n            using (ZipArchive archive = ZipFile.OpenRead(zipPath))\n            {\n                foreach (ZipArchiveEntry entry in archive.Entries)\n                {\n                    if (entry.FullName.EndsWith(\".txt\", StringComparison.OrdinalIgnoreCase))\n                    {\n                        entry.ExtractToFile(Path.Combine(extractPath, entry.FullName));\n                    }\n                }\n            } \n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 8,
+        "code": "using System;\nusing System.IO;\nusing System.IO.Compression;\n\nnamespace ConsoleApplication1\n{\n    class Program\n    {\n        static void Main(string[] args)\n        {\n            string zipPath = @\"c:\\example\\start.zip\";\n            string extractPath = @\"c:\\example\\extract\";\n\n            using (ZipArchive archive = ZipFile.OpenRead(zipPath))\n            {\n                foreach (ZipArchiveEntry entry in archive.Entries)\n                {\n                    if (entry.FullName.EndsWith(\".txt\", StringComparison.OrdinalIgnoreCase))\n                    {\n                        entry.ExtractToFile(Path.Combine(extractPath, entry.FullName));\n                    }\n                }\n            } \n        }\n    }\n}",
+        "code_language": "C#"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550223660000,
+        "id": "8a5811e0-8994-47fd-98b5-8ea5771ae22f",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550223660000,
+        "parent_id": "e53793be-e275-47fe-ada1-8aa28229c358",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
+      }
+    ],
     "title": "The following example shows how to open a zip archive and extract all .txt files to a folder",
     "format_page": {
       "page_cover": "",

@@ -4,7 +4,8 @@
     "alive": true,
     "content": [
       "036cbb70-eb76-48e1-9b0c-0bbb789a9ec0",
-      "fcab4a0a-8aad-44e8-abd6-35714bd57669"
+      "fcab4a0a-8aad-44e8-abd6-35714bd57669",
+      "8e53cf7b-a6af-4eaa-9b71-c160d1970f14"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549530207811,
@@ -15,7 +16,7 @@
     "id": "988499b9-14b7-4639-a333-f56fd9873930",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549786200000,
+    "last_edited_time": 1550223660000,
     "parent_id": "657b0c9d-9132-4296-a3f3-f027f19fcd31",
     "parent_table": "block",
     "properties": {
@@ -26,7 +27,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 11,
     "content_resolved": [
       {
         "alive": true,
@@ -60,7 +61,7 @@
         "id": "fcab4a0a-8aad-44e8-abd6-35714bd57669",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549786200000,
+        "last_edited_time": 1550223600000,
         "parent_id": "988499b9-14b7-4639-a333-f56fd9873930",
         "parent_table": "block",
         "properties": {
@@ -71,14 +72,26 @@
           ],
           "title": [
             [
-              "System.IO.Compression\nSystem.IO.Compression.FileSystem"
+              "System.IO.Compression\nSystem.IO.Compression.FileSystem\n\nusing (FileStream zipToOpen = new FileStream(@\"C:\\temp\", FileMode.Open)) \n{\n    using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Update)) \n    {\n        ZipArchiveEntry readmeEntry = archive.CreateEntry(\"Readme.txt\");\n        using (StreamWriter writer = new StreamWriter(readmeEntry.Open())) \n        {\n            writer.WriteLine(\"Information about this package.\");\n            writer.WriteLine(\"========================\");\n        }\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 3,
-        "code": "System.IO.Compression\nSystem.IO.Compression.FileSystem",
+        "version": 8,
+        "code": "System.IO.Compression\nSystem.IO.Compression.FileSystem\n\nusing (FileStream zipToOpen = new FileStream(@\"C:\\temp\", FileMode.Open)) \n{\n    using (ZipArchive archive = new ZipArchive(zipToOpen, ZipArchiveMode.Update)) \n    {\n        ZipArchiveEntry readmeEntry = archive.CreateEntry(\"Readme.txt\");\n        using (StreamWriter writer = new StreamWriter(readmeEntry.Open())) \n        {\n            writer.WriteLine(\"Information about this package.\");\n            writer.WriteLine(\"========================\");\n        }\n    }\n}",
         "code_language": "C#"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550223660000,
+        "id": "8e53cf7b-a6af-4eaa-9b71-c160d1970f14",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550223660000,
+        "parent_id": "988499b9-14b7-4639-a333-f56fd9873930",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "Writing to a zip file",

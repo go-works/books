@@ -6,10 +6,8 @@
       "507bbf87-7015-4fd5-af67-d7ca396b692d",
       "4dbd6964-eec4-4783-87d6-1c52d4f25742",
       "77d81b8c-48fc-43b4-ae26-e77bd9f75271",
-      "a4e69ec2-1556-49f0-851d-987b8719dddc",
-      "770b08cc-ddf7-43c3-9b1f-2d9ce40c71c7",
-      "81e6f193-7ca4-4dc0-a0cc-a1f636820e91",
-      "4751001e-29c5-4f5d-bfcd-25158e86a22b"
+      "4751001e-29c5-4f5d-bfcd-25158e86a22b",
+      "20ca1c16-c178-4e0a-b9dd-d1142d7a1d25"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549525064213,
@@ -20,7 +18,7 @@
     "id": "ad25af8d-5576-4cc4-b7c7-cdabd52f7cbb",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549614300000,
+    "last_edited_time": 1549944360000,
     "parent_id": "1cef0e56-e2c1-46b9-9c66-002b53d2c779",
     "parent_table": "block",
     "properties": {
@@ -31,7 +29,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 13,
     "content_resolved": [
       {
         "alive": true,
@@ -114,106 +112,25 @@
         "id": "77d81b8c-48fc-43b4-ae26-e77bd9f75271",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525064211,
+        "last_edited_time": 1549944360000,
         "parent_id": "ad25af8d-5576-4cc4-b7c7-cdabd52f7cbb",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public class Server\n{\n    // defines the event\n    public event EventHandler DataChangeEvent;"
+              "public class Server\n{\n    // defines the event\n    public event EventHandler DataChangeEvent;\n\n    void RaiseEvent()\n    {\n        var ev = DataChangeEvent;\n        if(ev != null)\n        {\n            ev(this, EventArgs.Empty);\n        }\n    }\n}\n\npublic class Client\n{\n    public void Client(Server server)\n    {\n        // client subscribes to the server's DataChangeEvent\n        server.DataChangeEvent += server_DataChanged;\n    }\n\n    private void server_DataChanged(object sender, EventArgs args)\n    {\n        // notified when the server raises the DataChangeEvent\n    }\n}\n"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public class Server\n{\n    // defines the event\n    public event EventHandler DataChangeEvent;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525064211,
-        "id": "a4e69ec2-1556-49f0-851d-987b8719dddc",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525064211,
-        "parent_id": "ad25af8d-5576-4cc4-b7c7-cdabd52f7cbb",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "void RaiseEvent()\n    {\n        var ev = DataChangeEvent;\n        if(ev != null)\n        {\n            ev(this, EventArgs.Empty);\n        }\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "void RaiseEvent()\n    {\n        var ev = DataChangeEvent;\n        if(ev != null)\n        {\n            ev(this, EventArgs.Empty);\n        }\n    }\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525064211,
-        "id": "770b08cc-ddf7-43c3-9b1f-2d9ce40c71c7",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525064211,
-        "parent_id": "ad25af8d-5576-4cc4-b7c7-cdabd52f7cbb",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public class Client\n{\n    public void Client(Server server)\n    {\n        // client subscribes to the server's DataChangeEvent\n        server.DataChangeEvent += server_DataChanged;\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public class Client\n{\n    public void Client(Server server)\n    {\n        // client subscribes to the server's DataChangeEvent\n        server.DataChangeEvent += server_DataChanged;\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525064211,
-        "id": "81e6f193-7ca4-4dc0-a0cc-a1f636820e91",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525064211,
-        "parent_id": "ad25af8d-5576-4cc4-b7c7-cdabd52f7cbb",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "private void server_DataChanged(object sender, EventArgs args)\n    {\n        // notified when the server raises the DataChangeEvent\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "private void server_DataChanged(object sender, EventArgs args)\n    {\n        // notified when the server raises the DataChangeEvent\n    }\n}",
-        "code_language": "Plain Text"
+        "version": 8,
+        "code": "public class Server\n{\n    // defines the event\n    public event EventHandler DataChangeEvent;\n\n    void RaiseEvent()\n    {\n        var ev = DataChangeEvent;\n        if(ev != null)\n        {\n            ev(this, EventArgs.Empty);\n        }\n    }\n}\n\npublic class Client\n{\n    public void Client(Server server)\n    {\n        // client subscribes to the server's DataChangeEvent\n        server.DataChangeEvent += server_DataChanged;\n    }\n\n    private void server_DataChanged(object sender, EventArgs args)\n    {\n        // notified when the server raises the DataChangeEvent\n    }\n}\n",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -246,6 +163,18 @@
             "Link": "https://msdn.microsoft.com/en-CA/library/awbftdfh.aspx"
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549944360000,
+        "id": "20ca1c16-c178-4e0a-b9dd-d1142d7a1d25",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549944360000,
+        "parent_id": "ad25af8d-5576-4cc4-b7c7-cdabd52f7cbb",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "event",

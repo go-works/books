@@ -3,8 +3,7 @@
   "Root": {
     "alive": true,
     "content": [
-      "520cba56-65f6-402d-a3ef-f823dadf127e",
-      "b9b02bdd-e08b-4d28-942e-1675f9feefdb"
+      "520cba56-65f6-402d-a3ef-f823dadf127e"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549525713212,
@@ -15,7 +14,7 @@
     "id": "06989aee-1908-4d41-a4f4-8815a24fc7d8",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549628280000,
+    "last_edited_time": 1550112720000,
     "parent_id": "f5bb18c2-bb24-4faf-8598-a275d629a821",
     "parent_table": "block",
     "properties": {
@@ -26,7 +25,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 10,
     "content_resolved": [
       {
         "alive": true,
@@ -35,52 +34,25 @@
         "id": "520cba56-65f6-402d-a3ef-f823dadf127e",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525713210,
+        "last_edited_time": 1550112720000,
         "parent_id": "06989aee-1908-4d41-a4f4-8815a24fc7d8",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public class Person \n{\n    //Id property can be read by other classes, but only set by the Person class\n    public int Id {get; private set;}\n    //Name property can be retrieved or assigned \n    public string Name {get; set;}\n    \n    private DateTime dob;\n    //Date of Birth property is stored in a private variable, but retrieved or assigned through the public property.\n    public DateTime DOB\n    {\n        get { return this.dob; }\n        set { this.dob = value; }\n    }\n    //Age property can only be retrieved; it's value is derived from the date of birth \n    public int Age \n    {\n        get \n        {\n            int offset = HasHadBirthdayThisYear() ? 0 : -1;\n            return DateTime.UtcNow.Year - this.dob.Year + offset;\n        }\n    }"
+              "public class Person \n{\n    //Id property can be read by other classes, but only set by the Person class\n    public int Id {get; private set;}\n    //Name property can be retrieved or assigned \n    public string Name {get; set;}\n    \n    private DateTime dob;\n    //Date of Birth property is stored in a private variable, but retrieved or assigned through the public property.\n    public DateTime DOB\n    {\n        get { return this.dob; }\n        set { this.dob = value; }\n    }\n    //Age property can only be retrieved; it's value is derived from the date of birth \n    public int Age \n    {\n        get \n        {\n            int offset = HasHadBirthdayThisYear() ? 0 : -1;\n            return DateTime.UtcNow.Year - this.dob.Year + offset;\n        }\n    }\n\n    //this is not a property but a method; though it could be rewritten as a property if desired.\n    private bool HasHadBirthdayThisYear() \n    {\n        bool hasHadBirthdayThisYear = true;\n        DateTime today = DateTime.UtcNow;\n        if (today.Month \u003e this.dob.Month)\n        {\n            hasHadBirthdayThisYear = true;\n        }\n        else \n        {\n            if (today.Month == this.dob.Month)\n            {\n                hasHadBirthdayThisYear = today.Day \u003e this.dob.Day;\n            }\n            else\n            {\n                hasHadBirthdayThisYear = false;\n            }\n        }\n        return hasHadBirthdayThisYear;\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public class Person \n{\n    //Id property can be read by other classes, but only set by the Person class\n    public int Id {get; private set;}\n    //Name property can be retrieved or assigned \n    public string Name {get; set;}\n    \n    private DateTime dob;\n    //Date of Birth property is stored in a private variable, but retrieved or assigned through the public property.\n    public DateTime DOB\n    {\n        get { return this.dob; }\n        set { this.dob = value; }\n    }\n    //Age property can only be retrieved; it's value is derived from the date of birth \n    public int Age \n    {\n        get \n        {\n            int offset = HasHadBirthdayThisYear() ? 0 : -1;\n            return DateTime.UtcNow.Year - this.dob.Year + offset;\n        }\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525713212,
-        "id": "b9b02bdd-e08b-4d28-942e-1675f9feefdb",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525713212,
-        "parent_id": "06989aee-1908-4d41-a4f4-8815a24fc7d8",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "//this is not a property but a method; though it could be rewritten as a property if desired.\n    private bool HasHadBirthdayThisYear() \n    {\n        bool hasHadBirthdayThisYear = true;\n        DateTime today = DateTime.UtcNow;\n        if (today.Month \u003e this.dob.Month)\n        {\n            hasHadBirthdayThisYear = true;\n        }\n        else \n        {\n            if (today.Month == this.dob.Month)\n            {\n                hasHadBirthdayThisYear = today.Day \u003e this.dob.Day;\n            }\n            else\n            {\n                hasHadBirthdayThisYear = false;\n            }\n        }\n        return hasHadBirthdayThisYear;\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "//this is not a property but a method; though it could be rewritten as a property if desired.\n    private bool HasHadBirthdayThisYear() \n    {\n        bool hasHadBirthdayThisYear = true;\n        DateTime today = DateTime.UtcNow;\n        if (today.Month \u003e this.dob.Month)\n        {\n            hasHadBirthdayThisYear = true;\n        }\n        else \n        {\n            if (today.Month == this.dob.Month)\n            {\n                hasHadBirthdayThisYear = today.Day \u003e this.dob.Day;\n            }\n            else\n            {\n                hasHadBirthdayThisYear = false;\n            }\n        }\n        return hasHadBirthdayThisYear;\n    }\n}",
-        "code_language": "Plain Text"
+        "version": 9,
+        "code": "public class Person \n{\n    //Id property can be read by other classes, but only set by the Person class\n    public int Id {get; private set;}\n    //Name property can be retrieved or assigned \n    public string Name {get; set;}\n    \n    private DateTime dob;\n    //Date of Birth property is stored in a private variable, but retrieved or assigned through the public property.\n    public DateTime DOB\n    {\n        get { return this.dob; }\n        set { this.dob = value; }\n    }\n    //Age property can only be retrieved; it's value is derived from the date of birth \n    public int Age \n    {\n        get \n        {\n            int offset = HasHadBirthdayThisYear() ? 0 : -1;\n            return DateTime.UtcNow.Year - this.dob.Year + offset;\n        }\n    }\n\n    //this is not a property but a method; though it could be rewritten as a property if desired.\n    private bool HasHadBirthdayThisYear() \n    {\n        bool hasHadBirthdayThisYear = true;\n        DateTime today = DateTime.UtcNow;\n        if (today.Month \u003e this.dob.Month)\n        {\n            hasHadBirthdayThisYear = true;\n        }\n        else \n        {\n            if (today.Month == this.dob.Month)\n            {\n                hasHadBirthdayThisYear = today.Day \u003e this.dob.Day;\n            }\n            else\n            {\n                hasHadBirthdayThisYear = false;\n            }\n        }\n        return hasHadBirthdayThisYear;\n    }\n}",
+        "code_language": "C#"
       }
     ],
     "title": "Various Properties in Context",

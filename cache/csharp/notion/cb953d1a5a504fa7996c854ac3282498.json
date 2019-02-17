@@ -3,7 +3,8 @@
   "Root": {
     "alive": true,
     "content": [
-      "fa4ad578-fd33-40d5-ab16-cc41dad85978"
+      "fa4ad578-fd33-40d5-ab16-cc41dad85978",
+      "88970322-abd1-4452-a487-378e0b5755b7"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549527840349,
@@ -14,7 +15,7 @@
     "id": "cb953d1a-5a50-4fa7-996c-854ac3282498",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549622580000,
+    "last_edited_time": 1550205420000,
     "parent_id": "33fe0483-3ff7-4d75-885b-f79c4c3e72f3",
     "parent_table": "block",
     "properties": {
@@ -25,7 +26,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 12,
     "content_resolved": [
       {
         "alive": true,
@@ -69,6 +70,32 @@
             "Text": " class is lazily initialized on member access and lives for the duration of the application domain."
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550205452387,
+        "id": "88970322-abd1-4452-a487-378e0b5755b7",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550205420000,
+        "parent_id": "cb953d1a-5a50-4fa7-996c-854ac3282498",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "void Main()\n{\n    Console.WriteLine(\"Static classes are lazily initialized\");\n    Console.WriteLine(\"The static constructor is only invoked when the class is first accessed\");\n    Foo.SayHi();\n\n    Console.WriteLine(\"Reflecting on a type won't trigger its static .ctor\");\n    var barType = typeof(Bar);\n\n    Console.WriteLine(\"However, you can manually trigger it with System.Runtime.CompilerServices.RuntimeHelpers\");\n    RuntimeHelpers.RunClassConstructor(barType.TypeHandle);\n}\n\n// Define other methods and classes here\npublic static class Foo\n{\n    static Foo()\n    {\n        Console.WriteLine(\"static Foo.ctor\");\n    }\n    public static void SayHi()\n    {\n        Console.WriteLine(\"Foo: Hi\");\n    }\n}\npublic static class Bar\n{\n    static Bar()\n    {\n        Console.WriteLine(\"static Bar.ctor\");\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 8,
+        "code": "void Main()\n{\n    Console.WriteLine(\"Static classes are lazily initialized\");\n    Console.WriteLine(\"The static constructor is only invoked when the class is first accessed\");\n    Foo.SayHi();\n\n    Console.WriteLine(\"Reflecting on a type won't trigger its static .ctor\");\n    var barType = typeof(Bar);\n\n    Console.WriteLine(\"However, you can manually trigger it with System.Runtime.CompilerServices.RuntimeHelpers\");\n    RuntimeHelpers.RunClassConstructor(barType.TypeHandle);\n}\n\n// Define other methods and classes here\npublic static class Foo\n{\n    static Foo()\n    {\n        Console.WriteLine(\"static Foo.ctor\");\n    }\n    public static void SayHi()\n    {\n        Console.WriteLine(\"Foo: Hi\");\n    }\n}\npublic static class Bar\n{\n    static Bar()\n    {\n        Console.WriteLine(\"static Bar.ctor\");\n    }\n}",
+        "code_language": "C#"
       }
     ],
     "title": "Static class lifetime",

@@ -11,7 +11,8 @@
       "9c72a8d9-1edd-40c2-a511-a448a2e23c36",
       "efcef719-d3b0-4ec1-8733-3439c7fd284a",
       "e0ce5e45-66ab-4c93-a784-c804208992a2",
-      "c818ed1c-4d44-4a35-81fa-913e14d7ed2c"
+      "c818ed1c-4d44-4a35-81fa-913e14d7ed2c",
+      "e323a52b-9545-43f3-abd1-79ad8fc8dc38"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549528800306,
@@ -22,7 +23,7 @@
     "id": "d07dfda8-d9c9-4d91-9428-4691b4f89c50",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549790100000,
+    "last_edited_time": 1550214780000,
     "parent_id": "33a94c41-382b-401a-bbcf-bc110c3bf33f",
     "parent_table": "block",
     "properties": {
@@ -33,7 +34,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 10,
     "content_resolved": [
       {
         "alive": true,
@@ -170,13 +171,13 @@
         "id": "9c72a8d9-1edd-40c2-a511-a448a2e23c36",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528800304,
+        "last_edited_time": 1550214780000,
         "parent_id": "d07dfda8-d9c9-4d91-9428-4691b4f89c50",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -186,9 +187,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "var ui = TaskScheduler.FromCurrentSynchronizationContext();\nvar bb = new BroadcastBlock\u003cImageData\u003e(i =\u003e i);\n\nvar saveToDiskBlock = new ActionBlock\u003cImageData\u003e(item =\u003e\n    item.Image.Save(item.Path)\n);\n\nvar showInUiBlock = new ActionBlock\u003cImageData\u003e(item =\u003e\n    imagePanel.AddImage(item.Image), \n    new DataflowBlockOptions { TaskScheduler = TaskScheduler.FromCurrentSynchronizationContext() }\n);\n\nbb.LinkTo(saveToDiskBlock);\nbb.LinkTo(showInUiBlock);",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -228,13 +229,13 @@
         "id": "e0ce5e45-66ab-4c93-a784-c804208992a2",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528800305,
+        "last_edited_time": 1550214780000,
         "parent_id": "d07dfda8-d9c9-4d91-9428-4691b4f89c50",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -244,9 +245,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "public class MyAgent\n{\n    public ISourceBlock\u003cstring\u003e Status { get; private set; }\n    \n    public MyAgent()\n    {\n        Status = new BroadcastBlock\u003cstring\u003e();\n        Run();\n    } \n\n    private void Run()\n    {\n        Status.Post(\"Starting\");\n        Status.Post(\"Doing cool stuff\");\n        …\n        Status.Post(\"Done\");\n    }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -279,6 +280,18 @@
             "Link": "https://www.microsoft.com/en-us/download/details.aspx?id=14782"
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550214780000,
+        "id": "e323a52b-9545-43f3-abd1-79ad8fc8dc38",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550214780000,
+        "parent_id": "d07dfda8-d9c9-4d91-9428-4691b4f89c50",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "BroadcastBlockT",

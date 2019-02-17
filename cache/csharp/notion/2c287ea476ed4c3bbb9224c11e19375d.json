@@ -2,6 +2,9 @@
   "ID": "2c287ea4-76ed-4c3b-bb92-24c11e19375d",
   "Root": {
     "alive": true,
+    "content": [
+      "2670c462-d9d2-450d-a4ae-96ab31d40c5a"
+    ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549525798504,
     "format": {
@@ -11,7 +14,7 @@
     "id": "2c287ea4-76ed-4c3b-bb92-24c11e19375d",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549789320000,
+    "last_edited_time": 1550113200000,
     "parent_id": "690c8bdb-4161-40ee-ae39-db6ce423d3b9",
     "parent_table": "block",
     "properties": {
@@ -22,7 +25,35 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 12,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550113213700,
+        "id": "2670c462-d9d2-450d-a4ae-96ab31d40c5a",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550113200000,
+        "parent_id": "2c287ea4-76ed-4c3b-bb92-24c11e19375d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "class Program\n{\n    static void Main(string[] args)\n    {\n        // Run 2 Tasks.  \n        var task1 = Task.Run(() =\u003e PerformAction(1)));\n        var task2 = Task.Run(() =\u003e PerformAction(2)));\n\n        // Wait (i.e. block this thread) until both Tasks are complete.\n        Task.WaitAll(new [] { task1, task2 });\n        \n        Console.WriteLine(\"Done\");\n        Console.ReadKey();\n    }\n\n    // Simple method to help demonstrate the threads running in parallel.\n    static void PerformAction(int id)\n    {\n        var rnd = new Random(id);\n        for (int i = 0; i \u003c 100; i++)\n        {\n            Console.WriteLine(\"Task: {0}: {1}\", id, i);\n            Thread.Sleep(rnd.Next(0, 1000));\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 10,
+        "code": "class Program\n{\n    static void Main(string[] args)\n    {\n        // Run 2 Tasks.  \n        var task1 = Task.Run(() =\u003e PerformAction(1)));\n        var task2 = Task.Run(() =\u003e PerformAction(2)));\n\n        // Wait (i.e. block this thread) until both Tasks are complete.\n        Task.WaitAll(new [] { task1, task2 });\n        \n        Console.WriteLine(\"Done\");\n        Console.ReadKey();\n    }\n\n    // Simple method to help demonstrate the threads running in parallel.\n    static void PerformAction(int id)\n    {\n        var rnd = new Random(id);\n        for (int i = 0; i \u003c 100; i++)\n        {\n            Console.WriteLine(\"Task: {0}: {1}\", id, i);\n            Thread.Sleep(rnd.Next(0, 1000));\n        }\n    }\n}",
+        "code_language": "C#"
+      }
+    ],
     "title": "Simple Complete Threading Demo using Tasks",
     "format_page": {
       "page_cover": "",

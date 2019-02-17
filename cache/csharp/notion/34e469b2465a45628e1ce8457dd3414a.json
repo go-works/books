@@ -11,7 +11,8 @@
       "fdd4b7cb-4926-46ab-a510-48734b527b11",
       "4e4a48ae-7f7c-452a-aaf8-c42154c42c01",
       "8cb90cc2-4ccc-4f72-877b-8a43a02a5f5c",
-      "981b178c-744f-4092-867d-dc9de220fba5"
+      "981b178c-744f-4092-867d-dc9de220fba5",
+      "5d91978b-66ec-4f2e-b790-f88d043c9171"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549525207339,
@@ -22,7 +23,7 @@
     "id": "34e469b2-465a-4562-8e1c-e8457dd3414a",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549626300000,
+    "last_edited_time": 1550044560000,
     "parent_id": "e46b0a90-d1e1-4de7-8d79-875641b9f824",
     "parent_table": "block",
     "properties": {
@@ -33,7 +34,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 13,
     "content_resolved": [
       {
         "alive": true,
@@ -91,13 +92,13 @@
         "id": "c3ad0a29-6ec4-4083-8712-ed63b1e4fbd1",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525207338,
+        "last_edited_time": 1550044500000,
         "parent_id": "34e469b2-465a-4562-8e1c-e8457dd3414a",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -107,9 +108,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "var props = t.GetProperties(BindingFlags.NonPublic | BindingFlags.Public | \n            BindingFlags.Instance).Where(\n            prop =\u003e Attribute.IsDefined(prop, typeof(MyAttribute)));",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -149,13 +150,13 @@
         "id": "b7c84c67-bf55-4fe8-a3b3-614c35211cf6",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525207338,
+        "last_edited_time": 1550044500000,
         "parent_id": "34e469b2-465a-4562-8e1c-e8457dd3414a",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -165,9 +166,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "var attributes = typeof(t).GetProperty(\"Name\").GetCustomAttributes(false);",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -225,13 +226,13 @@
         "id": "fdd4b7cb-4926-46ab-a510-48734b527b11",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525207338,
+        "last_edited_time": 1550044500000,
         "parent_id": "34e469b2-465a-4562-8e1c-e8457dd3414a",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -241,9 +242,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "static IEnumerable\u003cType\u003e GetTypesWithAttribute(Assembly assembly) {\n    foreach(Type type in assembly.GetTypes()) {\n        if (type.GetCustomAttributes(typeof(MyAttribute), true).Length \u003e 0) {\n            yield return type;\n        }\n    }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -283,25 +284,25 @@
         "id": "8cb90cc2-4ccc-4f72-877b-8a43a02a5f5c",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525207339,
+        "last_edited_time": 1550044560000,
         "parent_id": "34e469b2-465a-4562-8e1c-e8457dd3414a",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public static class AttributeExtensions\n{\n\n        /// \u003csummary\u003e\n        /// Returns the value of a member attribute for any member in a class.\n        ///     (a member is a Field, Property, Method, etc...)    \n        /// \u003cremarks\u003e\n        /// If there is more than one member of the same name in the class, it will return the first one (this applies to overloaded methods)\n        /// \u003c/remarks\u003e\n        /// \u003cexample\u003e\n        /// Read System.ComponentModel Description Attribute from method 'MyMethodName' in class 'MyClass': \n        ///     var Attribute = typeof(MyClass).GetAttribute(\"MyMethodName\", (DescriptionAttribute d) =\u003e d.Description);\n        /// \u003c/example\u003e\n        /// \u003cparam name=\"type\"\u003eThe class that contains the member as a type\u003c/param\u003e\n        /// \u003cparam name=\"MemberName\"\u003eName of the member in the class\u003c/param\u003e\n        /// \u003cparam name=\"valueSelector\"\u003eAttribute type and property to get (will return first instance if there are multiple attributes of the same type)\u003c/param\u003e\n        /// \u003cparam name=\"inherit\"\u003etrue to search this member's inheritance chain to find the attributes; otherwise, false. This parameter is ignored for properties and events\u003c/param\u003e\n        /// \u003c/summary\u003e    \n        public static TValue GetAttribute\u003cTAttribute, TValue\u003e(this Type type, string MemberName, Func\u003cTAttribute, TValue\u003e valueSelector, bool inherit = false) where TAttribute : Attribute\n        {\n            var att = type.GetMember(MemberName).FirstOrDefault().GetCustomAttributes(typeof(TAttribute), inherit).FirstOrDefault() as TAttribute;\n            if (att != null)\n            {\n                return valueSelector(att);\n            }\n            return default(TValue);\n        }\n    }"
+              "public static class AttributeExtensions\n{\n    /// \u003csummary\u003e\n    /// Returns the value of a member attribute for any member in a class.\n    ///     (a member is a Field, Property, Method, etc...)    \n    /// \u003cremarks\u003e\n    /// If there is more than one member of the same name in the class, it will return the first one (this applies to overloaded methods)\n    /// \u003c/remarks\u003e\n    /// \u003cexample\u003e\n    /// Read System.ComponentModel Description Attribute from method 'MyMethodName' in class 'MyClass': \n    ///     var Attribute = typeof(MyClass).GetAttribute(\"MyMethodName\", (DescriptionAttribute d) =\u003e d.Description);\n    /// \u003c/example\u003e\n    /// \u003cparam name=\"type\"\u003eThe class that contains the member as a type\u003c/param\u003e\n    /// \u003cparam name=\"MemberName\"\u003eName of the member in the class\u003c/param\u003e\n    /// \u003cparam name=\"valueSelector\"\u003eAttribute type and property to get (will return first instance if there are multiple attributes of the same type)\u003c/param\u003e\n    /// \u003cparam name=\"inherit\"\u003etrue to search this member's inheritance chain to find the attributes; otherwise, false. This parameter is ignored for properties and events\u003c/param\u003e\n    /// \u003c/summary\u003e    \n    public static TValue GetAttribute\u003cTAttribute, TValue\u003e(this Type type, string MemberName, Func\u003cTAttribute, TValue\u003e valueSelector, bool inherit = false) where TAttribute : Attribute\n    {\n        var att = type.GetMember(MemberName).FirstOrDefault().GetCustomAttributes(typeof(TAttribute), inherit).FirstOrDefault() as TAttribute;\n        if (att != null)\n        {\n            return valueSelector(att);\n        }\n        return default(TValue);\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public static class AttributeExtensions\n{\n\n        /// \u003csummary\u003e\n        /// Returns the value of a member attribute for any member in a class.\n        ///     (a member is a Field, Property, Method, etc...)    \n        /// \u003cremarks\u003e\n        /// If there is more than one member of the same name in the class, it will return the first one (this applies to overloaded methods)\n        /// \u003c/remarks\u003e\n        /// \u003cexample\u003e\n        /// Read System.ComponentModel Description Attribute from method 'MyMethodName' in class 'MyClass': \n        ///     var Attribute = typeof(MyClass).GetAttribute(\"MyMethodName\", (DescriptionAttribute d) =\u003e d.Description);\n        /// \u003c/example\u003e\n        /// \u003cparam name=\"type\"\u003eThe class that contains the member as a type\u003c/param\u003e\n        /// \u003cparam name=\"MemberName\"\u003eName of the member in the class\u003c/param\u003e\n        /// \u003cparam name=\"valueSelector\"\u003eAttribute type and property to get (will return first instance if there are multiple attributes of the same type)\u003c/param\u003e\n        /// \u003cparam name=\"inherit\"\u003etrue to search this member's inheritance chain to find the attributes; otherwise, false. This parameter is ignored for properties and events\u003c/param\u003e\n        /// \u003c/summary\u003e    \n        public static TValue GetAttribute\u003cTAttribute, TValue\u003e(this Type type, string MemberName, Func\u003cTAttribute, TValue\u003e valueSelector, bool inherit = false) where TAttribute : Attribute\n        {\n            var att = type.GetMember(MemberName).FirstOrDefault().GetCustomAttributes(typeof(TAttribute), inherit).FirstOrDefault() as TAttribute;\n            if (att != null)\n            {\n                return valueSelector(att);\n            }\n            return default(TValue);\n        }\n    }",
-        "code_language": "Plain Text"
+        "version": 9,
+        "code": "public static class AttributeExtensions\n{\n    /// \u003csummary\u003e\n    /// Returns the value of a member attribute for any member in a class.\n    ///     (a member is a Field, Property, Method, etc...)    \n    /// \u003cremarks\u003e\n    /// If there is more than one member of the same name in the class, it will return the first one (this applies to overloaded methods)\n    /// \u003c/remarks\u003e\n    /// \u003cexample\u003e\n    /// Read System.ComponentModel Description Attribute from method 'MyMethodName' in class 'MyClass': \n    ///     var Attribute = typeof(MyClass).GetAttribute(\"MyMethodName\", (DescriptionAttribute d) =\u003e d.Description);\n    /// \u003c/example\u003e\n    /// \u003cparam name=\"type\"\u003eThe class that contains the member as a type\u003c/param\u003e\n    /// \u003cparam name=\"MemberName\"\u003eName of the member in the class\u003c/param\u003e\n    /// \u003cparam name=\"valueSelector\"\u003eAttribute type and property to get (will return first instance if there are multiple attributes of the same type)\u003c/param\u003e\n    /// \u003cparam name=\"inherit\"\u003etrue to search this member's inheritance chain to find the attributes; otherwise, false. This parameter is ignored for properties and events\u003c/param\u003e\n    /// \u003c/summary\u003e    \n    public static TValue GetAttribute\u003cTAttribute, TValue\u003e(this Type type, string MemberName, Func\u003cTAttribute, TValue\u003e valueSelector, bool inherit = false) where TAttribute : Attribute\n    {\n        var att = type.GetMember(MemberName).FirstOrDefault().GetCustomAttributes(typeof(TAttribute), inherit).FirstOrDefault() as TAttribute;\n        if (att != null)\n        {\n            return valueSelector(att);\n        }\n        return default(TValue);\n    }\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -327,6 +328,32 @@
             "Text": "Usage"
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550044529570,
+        "id": "5d91978b-66ec-4f2e-b790-f88d043c9171",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550044500000,
+        "parent_id": "34e469b2-465a-4562-8e1c-e8457dd3414a",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "// Read System.ComponentModel Description Attribute from method 'MyMethodName' in class 'MyClass'\nvar Attribute = typeof(MyClass).GetAttribute(\"MyMethodName\", (DescriptionAttribute d) =\u003e d.Description);\n"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 10,
+        "code": "// Read System.ComponentModel Description Attribute from method 'MyMethodName' in class 'MyClass'\nvar Attribute = typeof(MyClass).GetAttribute(\"MyMethodName\", (DescriptionAttribute d) =\u003e d.Description);\n",
+        "code_language": "C#"
       }
     ],
     "title": "Custom Attributes",

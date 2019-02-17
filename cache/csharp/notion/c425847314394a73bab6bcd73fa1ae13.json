@@ -5,11 +5,8 @@
     "content": [
       "18bc288d-283a-4431-9112-e4efc9dde6eb",
       "d57ece3f-317b-485f-b6a0-f496897b4680",
-      "a17b177c-70cc-4fe9-9cba-045b88fe6252",
       "02ea2514-d4f7-4771-801a-0e337934fd29",
       "dd4fe7e6-0919-4bb6-b618-b1aa70381cba",
-      "bfb20de7-b50c-4bf4-8f05-7fd39e16aef2",
-      "c77347c4-6644-4e39-8a8d-8cf966c3c5e5",
       "67fb4b23-2e65-4ab8-a39d-552e41235ba1",
       "2e6f95c0-bda0-4c51-a6a4-a9d52bfd3276",
       "d6773cf3-478b-4add-acae-baec40099041",
@@ -26,7 +23,7 @@
     "id": "c4258473-1439-4a73-bab6-bcd73fa1ae13",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549792320000,
+    "last_edited_time": 1550224740000,
     "parent_id": "b10faa15-adc6-472f-918c-27474746f163",
     "parent_table": "block",
     "properties": {
@@ -37,7 +34,7 @@
       ]
     },
     "type": "page",
-    "version": 9,
+    "version": 13,
     "content_resolved": [
       {
         "alive": true,
@@ -71,52 +68,25 @@
         "id": "d57ece3f-317b-485f-b6a0-f496897b4680",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530456309,
+        "last_edited_time": 1550224740000,
         "parent_id": "c4258473-1439-4a73-bab6-bcd73fa1ae13",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "\u003cpre\u003epublic class GmailEmailService:SmtpClient\n{\n    // Gmail user-name\n    public string UserName { get; set; }"
+              "public class GmailEmailService:SmtpClient\n{\n    // Gmail user-name\n    public string UserName { get; set; }\n\n    public GmailEmailService() :\n        base(ConfigurationManager.AppSettings[\"GmailHost\"], Int32.Parse(ConfigurationManager.AppSettings[\"GmailPort\"]))\n    {\n        //Get values from web.config file:\n        this.UserName = ConfigurationManager.AppSettings[\"GmailUserName\"];\n        this.EnableSsl = Boolean.Parse(ConfigurationManager.AppSettings[\"GmailSsl\"]);\n        this.UseDefaultCredentials = false;\n        this.Credentials = new System.Net.NetworkCredential(this.UserName, ConfigurationManager.AppSettings[\"GmailPassword\"]);\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "\u003cpre\u003epublic class GmailEmailService:SmtpClient\n{\n    // Gmail user-name\n    public string UserName { get; set; }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530456311,
-        "id": "a17b177c-70cc-4fe9-9cba-045b88fe6252",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530456311,
-        "parent_id": "c4258473-1439-4a73-bab6-bcd73fa1ae13",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public GmailEmailService() :\n        base(ConfigurationManager.AppSettings[\"GmailHost\"], Int32.Parse(ConfigurationManager.AppSettings[\"GmailPort\"]))\n    {\n        //Get values from web.config file:\n        this.UserName = ConfigurationManager.AppSettings[\"GmailUserName\"];\n        this.EnableSsl = Boolean.Parse(ConfigurationManager.AppSettings[\"GmailSsl\"]);\n        this.UseDefaultCredentials = false;\n        this.Credentials = new System.Net.NetworkCredential(this.UserName, ConfigurationManager.AppSettings[\"GmailPassword\"]);\n    }\n}\u003c/pre\u003e"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public GmailEmailService() :\n        base(ConfigurationManager.AppSettings[\"GmailHost\"], Int32.Parse(ConfigurationManager.AppSettings[\"GmailPort\"]))\n    {\n        //Get values from web.config file:\n        this.UserName = ConfigurationManager.AppSettings[\"GmailUserName\"];\n        this.EnableSsl = Boolean.Parse(ConfigurationManager.AppSettings[\"GmailSsl\"]);\n        this.UseDefaultCredentials = false;\n        this.Credentials = new System.Net.NetworkCredential(this.UserName, ConfigurationManager.AppSettings[\"GmailPassword\"]);\n    }\n}\u003c/pre\u003e",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "public class GmailEmailService:SmtpClient\n{\n    // Gmail user-name\n    public string UserName { get; set; }\n\n    public GmailEmailService() :\n        base(ConfigurationManager.AppSettings[\"GmailHost\"], Int32.Parse(ConfigurationManager.AppSettings[\"GmailPort\"]))\n    {\n        //Get values from web.config file:\n        this.UserName = ConfigurationManager.AppSettings[\"GmailUserName\"];\n        this.EnableSsl = Boolean.Parse(ConfigurationManager.AppSettings[\"GmailSsl\"]);\n        this.UseDefaultCredentials = false;\n        this.Credentials = new System.Net.NetworkCredential(this.UserName, ConfigurationManager.AppSettings[\"GmailPassword\"]);\n    }\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -150,79 +120,25 @@
         "id": "dd4fe7e6-0919-4bb6-b618-b1aa70381cba",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530456312,
+        "last_edited_time": 1550224740000,
         "parent_id": "c4258473-1439-4a73-bab6-bcd73fa1ae13",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "\u003cpre\u003epublic async Task SendAsync(IdentityMessage message)\n{\n    MailMessage email = new MailMessage(new MailAddress(\"youremailadress@domain.com\", \"(any subject here)\"),\n    new MailAddress(message.Destination));\n    email.Subject = message.Subject;\n    email.Body = message.Body;"
+              "public async Task SendAsync(IdentityMessage message)\n{\n    MailMessage email = new MailMessage(new MailAddress(\"youremailadress@domain.com\", \"(any subject here)\"),\n    new MailAddress(message.Destination));\n    email.Subject = message.Subject;\n    email.Body = message.Body;\n\n    email.IsBodyHtml = true;\n\n    GmailEmailService mailClient = new GmailEmailService();\n    await mailClient.SendMailAsync(email);\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "\u003cpre\u003epublic async Task SendAsync(IdentityMessage message)\n{\n    MailMessage email = new MailMessage(new MailAddress(\"youremailadress@domain.com\", \"(any subject here)\"),\n    new MailAddress(message.Destination));\n    email.Subject = message.Subject;\n    email.Body = message.Body;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530456312,
-        "id": "bfb20de7-b50c-4bf4-8f05-7fd39e16aef2",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530456312,
-        "parent_id": "c4258473-1439-4a73-bab6-bcd73fa1ae13",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "email.IsBodyHtml = true;"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "email.IsBodyHtml = true;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530456312,
-        "id": "c77347c4-6644-4e39-8a8d-8cf966c3c5e5",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530456312,
-        "parent_id": "c4258473-1439-4a73-bab6-bcd73fa1ae13",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "GmailEmailService mailClient = new GmailEmailService();\n    await mailClient.SendMailAsync(email);\n}\u003c/pre\u003e"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "GmailEmailService mailClient = new GmailEmailService();\n    await mailClient.SendMailAsync(email);\n}\u003c/pre\u003e",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "public async Task SendAsync(IdentityMessage message)\n{\n    MailMessage email = new MailMessage(new MailAddress(\"youremailadress@domain.com\", \"(any subject here)\"),\n    new MailAddress(message.Destination));\n    email.Subject = message.Subject;\n    email.Body = message.Body;\n\n    email.IsBodyHtml = true;\n\n    GmailEmailService mailClient = new GmailEmailService();\n    await mailClient.SendMailAsync(email);\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -256,13 +172,13 @@
         "id": "2e6f95c0-bda0-4c51-a6a4-a9d52bfd3276",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530456312,
+        "last_edited_time": 1550224740000,
         "parent_id": "c4258473-1439-4a73-bab6-bcd73fa1ae13",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "XML"
             ]
           ],
           "title": [
@@ -272,9 +188,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "\u003cappSettings\u003e\n    \u003cadd key=\"webpages:Version\" value=\"3.0.0.0\" /\u003e\n    \u003cadd key=\"webpages:Enabled\" value=\"false\" /\u003e\n    \u003cadd key=\"ClientValidationEnabled\" value=\"true\" /\u003e\n    \u003cadd key=\"UnobtrusiveJavaScriptEnabled\" value=\"true\" /\u003e\n\n    \u003cadd key=\"GmailUserName\" value=\"youremail@yourdomain.com\"/\u003e\n    \u003cadd key=\"GmailPassword\" value=\"yourPassword\"/\u003e\n    \u003cadd key=\"GmailHost\" value=\"yourServer\"/\u003e\n    \u003cadd key=\"GmailPort\" value=\"yourPort\"/\u003e\n    \u003cadd key=\"GmailSsl\" value=\"chooseTrueOrFalse\"/\u003e\n    \u003c!--Smptp Server (confirmations emails)--\u003e\n\u003c/appSettings\u003e",
-        "code_language": "Plain Text"
+        "code_language": "XML"
       },
       {
         "alive": true,

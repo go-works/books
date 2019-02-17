@@ -17,7 +17,8 @@
       "f3fdca55-7bd3-43ae-9612-df6a5253cf64",
       "b1603645-cc2a-4ed6-bd22-fa1c4bfee2f5",
       "ae5d4371-072f-4af1-b6a7-497cd1057dfc",
-      "461c733e-20d9-47b1-85a0-11d7294a00f7"
+      "461c733e-20d9-47b1-85a0-11d7294a00f7",
+      "fafd03cb-86f1-4cc2-9749-0a28b7a8bd41"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549530181404,
@@ -28,7 +29,7 @@
     "id": "d5683e46-1e58-4571-bb03-8b4a581f1fb3",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549791900000,
+    "last_edited_time": 1550223480000,
     "parent_id": "851f4980-33fc-464c-a340-08f7d2a84c8b",
     "parent_table": "block",
     "properties": {
@@ -39,7 +40,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 12,
     "content_resolved": [
       {
         "alive": true,
@@ -731,6 +732,32 @@
             "Text": "That’s it! Your console application has been compiled. An executable file has been created and you now have a working Console app."
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550223503094,
+        "id": "fafd03cb-86f1-4cc2-9749-0a28b7a8bd41",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550223480000,
+        "parent_id": "d5683e46-1e58-4571-bb03-8b4a581f1fb3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "using System;\n\nnamespace ConsoleApp\n{\n    class Program\n    {\n        private static string input = String.Empty;\n\n        static void Main(string[] args)\n        {\n            goto DisplayGreeting;\n\n            DisplayGreeting:\n            {\n                Console.WriteLine(\"Hello! What is your name?\");\n\n                input = Console.ReadLine();\n\n                if (input.Length \u003e= 1)\n                {\n                    Console.WriteLine(\n                        \"Hello, \" + \n                        input + \n                        \", enter 'Exit' at any time to exit this app.\");\n\n                    goto AwaitFurtherInstruction;\n                }\n                else\n                {\n                    goto DisplayGreeting;\n                }\n            }\n\n            AwaitFurtherInstruction:\n            {\n                input = Console.ReadLine();\n\n                if(input.ToLower() == \"exit\")\n                {\n                    input = String.Empty;\n\n                    Environment.Exit(0);\n                }\n                else\n                {\n                    goto AwaitFurtherInstruction;\n                }\n            }\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 8,
+        "code": "using System;\n\nnamespace ConsoleApp\n{\n    class Program\n    {\n        private static string input = String.Empty;\n\n        static void Main(string[] args)\n        {\n            goto DisplayGreeting;\n\n            DisplayGreeting:\n            {\n                Console.WriteLine(\"Hello! What is your name?\");\n\n                input = Console.ReadLine();\n\n                if (input.Length \u003e= 1)\n                {\n                    Console.WriteLine(\n                        \"Hello, \" + \n                        input + \n                        \", enter 'Exit' at any time to exit this app.\");\n\n                    goto AwaitFurtherInstruction;\n                }\n                else\n                {\n                    goto DisplayGreeting;\n                }\n            }\n\n            AwaitFurtherInstruction:\n            {\n                input = Console.ReadLine();\n\n                if(input.ToLower() == \"exit\")\n                {\n                    input = String.Empty;\n\n                    Environment.Exit(0);\n                }\n                else\n                {\n                    goto AwaitFurtherInstruction;\n                }\n            }\n        }\n    }\n}",
+        "code_language": "C#"
       }
     ],
     "title": "Creating a Console application using a Plain-Text Editor and the C Compiler",

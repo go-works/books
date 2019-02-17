@@ -18,7 +18,6 @@
       "94109c08-3df5-484d-aa9a-bdc91c2c313d",
       "f204832f-5b54-4c2e-97f0-0ef5f9806317",
       "18c4735c-2f85-437d-bc49-f916a55711da",
-      "8b1d8be2-a4dc-4820-a783-646075c85729",
       "5914848a-95c5-4135-a32b-a7d8b228efbb",
       "71cc9fc7-78a8-4c40-969b-b1c7bade1c9f",
       "36682d01-81e8-4d8e-a90f-51ac1d4d92ba",
@@ -34,17 +33,12 @@
       "846550ea-beb1-4cf8-8353-a4530ae42a62",
       "a69ef7e9-8362-4968-9267-cabf92e464eb",
       "32c24fca-6470-4dfb-ac9b-592d354e59b2",
-      "ea1046d9-765d-4365-8245-e485d1599ca1",
-      "a65d66ca-080f-4235-bca7-29f1207b577b",
       "d6b3b711-8ca1-48b8-a73f-9acca2563ff3",
       "e38d4aad-bab4-4e44-b181-12b18965907b",
       "9456de57-69c7-46be-b16d-3a1bbe3090ec",
       "27fa3aa4-01ef-4adb-b132-83ab8f4f7cb7",
       "f8d0abfb-1146-4161-a132-47eddeb7bd4d",
       "411ddd19-62a8-40d0-b67b-22cd6862b113",
-      "972f05c3-1f89-46d5-ad75-0b2fe8e0fc4d",
-      "deeea45e-8568-41f8-872a-6e12d57c4d90",
-      "04f00acd-e7aa-4814-8438-2ca18633ee6e",
       "5ec05f4a-b543-4a56-a592-d7daefb343e1",
       "89f33975-dca2-4b8c-9041-4f511e3e1062",
       "3af6c1b3-07f2-441d-9916-bd8218e5da25",
@@ -65,7 +59,7 @@
     "id": "7408ca12-4b0d-4c46-ad2a-f3ad0a7a123a",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549614540000,
+    "last_edited_time": 1549878000000,
     "parent_id": "307cbc92-1d45-43c5-9927-7963d630a818",
     "parent_table": "block",
     "properties": {
@@ -76,7 +70,7 @@
       ]
     },
     "type": "page",
-    "version": 9,
+    "version": 19,
     "content_resolved": [
       {
         "alive": true,
@@ -508,13 +502,13 @@
         "id": "096b0e2b-a1a7-45d1-b559-790948504d95",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524852400,
+        "last_edited_time": 1549877820000,
         "parent_id": "7408ca12-4b0d-4c46-ad2a-f3ad0a7a123a",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -524,9 +518,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "var SqlErrorToIgnore = 123;\ntry\n{\n    DoSQLOperations();\n}\ncatch (SqlException ex) when (ex.Number != SqlErrorToIgnore)\n{\n    throw new Exception(\"An error occurred accessing the database\", ex);\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -686,13 +680,13 @@
         "id": "870fafcf-903d-4f26-8630-fb71cd479f50",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524852401,
+        "last_edited_time": 1549877820000,
         "parent_id": "7408ca12-4b0d-4c46-ad2a-f3ad0a7a123a",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -702,9 +696,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "try\n{ ... }\ncatch (Exception ex) when (someCondition) //If someCondition evaluates to true,\n                                          //the rest of the catches are ignored.\n{ ... }\ncatch (NotImplementedException ex) when (someMethod()) //someMethod() will only run if\n                                                       //someCondition evaluates to false\n{ ... }\ncatch(Exception ex) // If both when clauses evaluate to false\n{ ... }",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -934,52 +928,25 @@
         "id": "18c4735c-2f85-437d-bc49-f916a55711da",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524852402,
+        "last_edited_time": 1549877880000,
         "parent_id": "7408ca12-4b0d-4c46-ad2a-f3ad0a7a123a",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public static void Main()\n{\n    int a = 7;\n    int b = 0;\n    try\n    {\n        DoSomethingThatMightFail();\n    }\n    catch (Exception ex) when (a / b == 0)\n    {\n        // This block is never reached because a / b throws an ignored\n        // DivideByZeroException which is treated as false.\n    }\n    catch (Exception ex)\n    {\n        // This block is reached since the DivideByZeroException in the \n        // previous when clause is ignored.\n    }\n}"
+              "public static void Main()\n{\n    int a = 7;\n    int b = 0;\n    try\n    {\n        DoSomethingThatMightFail();\n    }\n    catch (Exception ex) when (a / b == 0)\n    {\n        // This block is never reached because a / b throws an ignored\n        // DivideByZeroException which is treated as false.\n    }\n    catch (Exception ex)\n    {\n        // This block is reached since the DivideByZeroException in the \n        // previous when clause is ignored.\n    }\n}\n\npublic static void DoSomethingThatMightFail()\n{\n    // This will always throw an ArgumentNullException.\n    Type.GetType(null);\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public static void Main()\n{\n    int a = 7;\n    int b = 0;\n    try\n    {\n        DoSomethingThatMightFail();\n    }\n    catch (Exception ex) when (a / b == 0)\n    {\n        // This block is never reached because a / b throws an ignored\n        // DivideByZeroException which is treated as false.\n    }\n    catch (Exception ex)\n    {\n        // This block is reached since the DivideByZeroException in the \n        // previous when clause is ignored.\n    }\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524852402,
-        "id": "8b1d8be2-a4dc-4820-a783-646075c85729",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524852402,
-        "parent_id": "7408ca12-4b0d-4c46-ad2a-f3ad0a7a123a",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public static void DoSomethingThatMightFail()\n{\n    // This will always throw an ArgumentNullException.\n    Type.GetType(null);\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public static void DoSomethingThatMightFail()\n{\n    // This will always throw an ArgumentNullException.\n    Type.GetType(null);\n}",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "public static void Main()\n{\n    int a = 7;\n    int b = 0;\n    try\n    {\n        DoSomethingThatMightFail();\n    }\n    catch (Exception ex) when (a / b == 0)\n    {\n        // This block is never reached because a / b throws an ignored\n        // DivideByZeroException which is treated as false.\n    }\n    catch (Exception ex)\n    {\n        // This block is reached since the DivideByZeroException in the \n        // previous when clause is ignored.\n    }\n}\n\npublic static void DoSomethingThatMightFail()\n{\n    // This will always throw an ArgumentNullException.\n    Type.GetType(null);\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -1063,13 +1030,13 @@
         "id": "36682d01-81e8-4d8e-a90f-51ac1d4d92ba",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524852402,
+        "last_edited_time": 1549877880000,
         "parent_id": "7408ca12-4b0d-4c46-ad2a-f3ad0a7a123a",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -1079,9 +1046,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "1. int a = 0, b = 0;\n2. try {\n3.     int c = a / b;\n4. }\n5. catch (DivideByZeroException) {\n6.     throw;\n7. }",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -1158,13 +1125,13 @@
         "id": "aa39b9a9-f0ff-4f14-88b5-988c00ccc768",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524852403,
+        "last_edited_time": 1549877880000,
         "parent_id": "7408ca12-4b0d-4c46-ad2a-f3ad0a7a123a",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -1174,9 +1141,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "1. int a = 0, b = 0;\n2. try {\n3.     int c = a / b;\n4. }\n5. catch (DivideByZeroException) when (a != 0) {\n6.     throw;\n7. }",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -1442,13 +1409,13 @@
         "id": "a42a0ef8-d791-4665-8c50-4db1d337b06a",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524852404,
+        "last_edited_time": 1549877880000,
         "parent_id": "7408ca12-4b0d-4c46-ad2a-f3ad0a7a123a",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -1458,9 +1425,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "try\n{\n    DoSomethingThatMightFail(s);\n}\ncatch (Exception ex) when (Log(ex, \"An error occurred\"))\n{\n    // This catch block will never be reached\n}\n\n// ...\n\nstatic bool Log(Exception ex, string message, params object[] args)\n{\n```\nDebug.Print(message, args);\nreturn false;\n```\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -1526,79 +1493,25 @@
         "id": "32c24fca-6470-4dfb-ac9b-592d354e59b2",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524852405,
+        "last_edited_time": 1549877940000,
         "parent_id": "7408ca12-4b0d-4c46-ad2a-f3ad0a7a123a",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "try\n{\n    DoSomethingThatMightFail(s);\n}\ncatch (Exception ex)\n{\n     Log(ex, \"An error occurred\");\n     throw;\n}"
+              "try\n{\n    DoSomethingThatMightFail(s);\n}\ncatch (Exception ex)\n{\n     Log(ex, \"An error occurred\");\n     throw;\n}\n\n// ...\n\nstatic void Log(Exception ex, string message, params object[] args)\n{\n    Debug.Print(message, args);\n}\n"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "try\n{\n    DoSomethingThatMightFail(s);\n}\ncatch (Exception ex)\n{\n     Log(ex, \"An error occurred\");\n     throw;\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524852405,
-        "id": "ea1046d9-765d-4365-8245-e485d1599ca1",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524852405,
-        "parent_id": "7408ca12-4b0d-4c46-ad2a-f3ad0a7a123a",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// ..."
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// ...",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524852405,
-        "id": "a65d66ca-080f-4235-bca7-29f1207b577b",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524852405,
-        "parent_id": "7408ca12-4b0d-4c46-ad2a-f3ad0a7a123a",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "static void Log(Exception ex, string message, params object[] args)\n{\n    Debug.Print(message, args);\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "static void Log(Exception ex, string message, params object[] args)\n{\n    Debug.Print(message, args);\n}",
-        "code_language": "Plain Text"
+        "version": 8,
+        "code": "try\n{\n    DoSomethingThatMightFail(s);\n}\ncatch (Exception ex)\n{\n     Log(ex, \"An error occurred\");\n     throw;\n}\n\n// ...\n\nstatic void Log(Exception ex, string message, params object[] args)\n{\n    Debug.Print(message, args);\n}\n",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -1858,106 +1771,25 @@
         "id": "411ddd19-62a8-40d0-b67b-22cd6862b113",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524852406,
+        "last_edited_time": 1549878000000,
         "parent_id": "7408ca12-4b0d-4c46-ad2a-f3ad0a7a123a",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "private static bool Flag = false;"
+              "private static bool Flag = false;\n\nstatic void Main(string[] args)\n{\n    Console.WriteLine(\"Start\");\n    try\n    {\n        SomeOperation();\n    }\n    catch (Exception) when (EvaluatesTo())\n    {\n        Console.WriteLine(\"Catch\");\n    }\n    finally\n    {\n        Console.WriteLine(\"Outer Finally\");\n    }\n}\n\nprivate static bool EvaluatesTo()\n{\n    Console.WriteLine($\"EvaluatesTo: {Flag}\");\n    return true;\n}\n\nprivate static void SomeOperation()\n{\n    try\n    {\n        Flag = true;\n        throw new Exception(\"Boom\");\n    }\n    finally\n    {\n        Flag = false;\n        Console.WriteLine(\"Inner Finally\");\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "private static bool Flag = false;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524852407,
-        "id": "972f05c3-1f89-46d5-ad75-0b2fe8e0fc4d",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524852407,
-        "parent_id": "7408ca12-4b0d-4c46-ad2a-f3ad0a7a123a",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "static void Main(string[] args)\n{\n    Console.WriteLine(\"Start\");\n    try\n    {\n        SomeOperation();\n    }\n    catch (Exception) when (EvaluatesTo())\n    {\n        Console.WriteLine(\"Catch\");\n    }\n    finally\n    {\n        Console.WriteLine(\"Outer Finally\");\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "static void Main(string[] args)\n{\n    Console.WriteLine(\"Start\");\n    try\n    {\n        SomeOperation();\n    }\n    catch (Exception) when (EvaluatesTo())\n    {\n        Console.WriteLine(\"Catch\");\n    }\n    finally\n    {\n        Console.WriteLine(\"Outer Finally\");\n    }\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524852407,
-        "id": "deeea45e-8568-41f8-872a-6e12d57c4d90",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524852407,
-        "parent_id": "7408ca12-4b0d-4c46-ad2a-f3ad0a7a123a",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "private static bool EvaluatesTo()\n{\n    Console.WriteLine($\"EvaluatesTo: {Flag}\");\n    return true;\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "private static bool EvaluatesTo()\n{\n    Console.WriteLine($\"EvaluatesTo: {Flag}\");\n    return true;\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524852407,
-        "id": "04f00acd-e7aa-4814-8438-2ca18633ee6e",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524852407,
-        "parent_id": "7408ca12-4b0d-4c46-ad2a-f3ad0a7a123a",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "private static void SomeOperation()\n{\n    try\n    {\n        Flag = true;\n        throw new Exception(\"Boom\");\n    }\n    finally\n    {\n        Flag = false;\n        Console.WriteLine(\"Inner Finally\");\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "private static void SomeOperation()\n{\n    try\n    {\n        Flag = true;\n        throw new Exception(\"Boom\");\n    }\n    finally\n    {\n        Flag = false;\n        Console.WriteLine(\"Inner Finally\");\n    }\n}",
-        "code_language": "Plain Text"
+        "version": 10,
+        "code": "private static bool Flag = false;\n\nstatic void Main(string[] args)\n{\n    Console.WriteLine(\"Start\");\n    try\n    {\n        SomeOperation();\n    }\n    catch (Exception) when (EvaluatesTo())\n    {\n        Console.WriteLine(\"Catch\");\n    }\n    finally\n    {\n        Console.WriteLine(\"Outer Finally\");\n    }\n}\n\nprivate static bool EvaluatesTo()\n{\n    Console.WriteLine($\"EvaluatesTo: {Flag}\");\n    return true;\n}\n\nprivate static void SomeOperation()\n{\n    try\n    {\n        Flag = true;\n        throw new Exception(\"Boom\");\n    }\n    finally\n    {\n        Flag = false;\n        Console.WriteLine(\"Inner Finally\");\n    }\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -2227,13 +2059,13 @@
         "id": "ba81dc21-592d-412e-ae8b-37cde681f326",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524852408,
+        "last_edited_time": 1549878000000,
         "parent_id": "7408ca12-4b0d-4c46-ad2a-f3ad0a7a123a",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -2243,9 +2075,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "private static void SomeOperation()\n{\n    try\n    {\n        Flag = true;\n        throw new Exception(\"Boom\");\n    }\n    catch\n    {\n       Flag = false;\n       throw;\n    }\n    finally\n    {\n        Flag = false;\n        Console.WriteLine(\"Inner Finally\");\n    }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,

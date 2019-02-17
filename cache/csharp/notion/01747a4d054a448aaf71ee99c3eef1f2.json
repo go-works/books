@@ -6,7 +6,9 @@
       "715ae78c-56d2-4215-8a9f-ca14d2f2626a",
       "2cc36436-6905-4353-adb6-d2f237bb16b1",
       "3af8478f-cfac-48a2-a5c1-248f4b3a6072",
-      "1fe0b5c7-e504-49e7-ba4e-a227eb04d513"
+      "1fe0b5c7-e504-49e7-ba4e-a227eb04d513",
+      "0d87bb91-6125-4e2d-96a3-af76db0767fb",
+      "725573ae-57e6-4d94-bc0a-0d53b83d69c0"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549526218148,
@@ -17,7 +19,7 @@
     "id": "01747a4d-054a-448a-af71-ee99c3eef1f2",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549785180000,
+    "last_edited_time": 1550128380000,
     "parent_id": "fa946197-d3a2-4cf6-8c65-bc2d23788972",
     "parent_table": "block",
     "properties": {
@@ -28,7 +30,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 13,
     "content_resolved": [
       {
         "alive": true,
@@ -147,6 +149,44 @@
             "Text": "Otherwise return 0"
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550128380000,
+        "id": "0d87bb91-6125-4e2d-96a3-af76db0767fb",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550128380000,
+        "parent_id": "01747a4d-054a-448a-af71-ee99c3eef1f2",
+        "parent_table": "block",
+        "type": "text",
+        "version": 5
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550128429277,
+        "id": "725573ae-57e6-4d94-bc0a-0d53b83d69c0",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550128380000,
+        "parent_id": "01747a4d-054a-448a-af71-ee99c3eef1f2",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "//For reference, we're using the API to build this lambda expression\norderLine =\u003e orderLine.IsTaxable ? orderLine.Total * orderLine.Order.TaxRate : 0;\n\n//The orderLine parameter we pass in to the method.  We specify it's type (OrderLine) and the name of the parameter.\nParameterExpression orderLine = Expression.Parameter(typeof(OrderLine), \"orderLine\");\n\n//Check if the parameter is taxable;  First we need to access the is taxable property, then check if it's true\nPropertyInfo isTaxableAccessor = typeof(OrderLine).GetProperty(\"IsTaxable\");\nMemberExpression getIsTaxable = Expression.MakeMemberAccess(orderLine, isTaxableAccessor);\nUnaryExpression isLineTaxable = Expression.IsTrue(getIsTaxable);\n\n//Before creating the if, we need to create the braches\n//If the line is taxable, we'll return the total times the tax rate; get the total and tax rate, then multiply\n//Get the total\nPropertyInfo totalAccessor = typeof(OrderLine).GetProperty(\"Total\");\nMemberExpression getTotal = Expression.MakeMemberAccess(orderLine, totalAccessor);\n\n//Get the order\nPropertyInfo orderAccessor = typeof(OrderLine).GetProperty(\"Order\");\nMemberExpression getOrder = Expression.MakeMemberAccess(orderLine, orderAccessor);\n\n//Get the tax rate - notice that we pass the getOrder expression directly to the member access\nPropertyInfo taxRateAccessor = typeof(Order).GetProperty(\"TaxRate\");\nMemberExpression getTaxRate = Expression.MakeMemberAccess(getOrder, taxRateAccessor);\n\n//Multiply the two - notice we pass the two operand expressions directly to multiply\nBinaryExpression multiplyTotalByRate = Expression.Multiply(getTotal, getTaxRate);\n\n//If the line is not taxable, we'll return a constant value - 0.0 (decimal)\nConstantExpression zero = Expression.Constant(0M);\n\n//Create the actual if check and branches\nConditionalExpression ifTaxableTernary = Expression.Condition(isLineTaxable, multiplyTotalByRate, zero);\n\n//Wrap the whole thing up in a \"method\" - a LambdaExpression\nExpression\u003cFunc\u003cOrderLine, decimal\u003e\u003e method = Expression.Lambda\u003cFunc\u003cOrderLine, decimal\u003e\u003e(ifTaxableTernary, orderLine);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 10,
+        "code": "//For reference, we're using the API to build this lambda expression\norderLine =\u003e orderLine.IsTaxable ? orderLine.Total * orderLine.Order.TaxRate : 0;\n\n//The orderLine parameter we pass in to the method.  We specify it's type (OrderLine) and the name of the parameter.\nParameterExpression orderLine = Expression.Parameter(typeof(OrderLine), \"orderLine\");\n\n//Check if the parameter is taxable;  First we need to access the is taxable property, then check if it's true\nPropertyInfo isTaxableAccessor = typeof(OrderLine).GetProperty(\"IsTaxable\");\nMemberExpression getIsTaxable = Expression.MakeMemberAccess(orderLine, isTaxableAccessor);\nUnaryExpression isLineTaxable = Expression.IsTrue(getIsTaxable);\n\n//Before creating the if, we need to create the braches\n//If the line is taxable, we'll return the total times the tax rate; get the total and tax rate, then multiply\n//Get the total\nPropertyInfo totalAccessor = typeof(OrderLine).GetProperty(\"Total\");\nMemberExpression getTotal = Expression.MakeMemberAccess(orderLine, totalAccessor);\n\n//Get the order\nPropertyInfo orderAccessor = typeof(OrderLine).GetProperty(\"Order\");\nMemberExpression getOrder = Expression.MakeMemberAccess(orderLine, orderAccessor);\n\n//Get the tax rate - notice that we pass the getOrder expression directly to the member access\nPropertyInfo taxRateAccessor = typeof(Order).GetProperty(\"TaxRate\");\nMemberExpression getTaxRate = Expression.MakeMemberAccess(getOrder, taxRateAccessor);\n\n//Multiply the two - notice we pass the two operand expressions directly to multiply\nBinaryExpression multiplyTotalByRate = Expression.Multiply(getTotal, getTaxRate);\n\n//If the line is not taxable, we'll return a constant value - 0.0 (decimal)\nConstantExpression zero = Expression.Constant(0M);\n\n//Create the actual if check and branches\nConditionalExpression ifTaxableTernary = Expression.Condition(isLineTaxable, multiplyTotalByRate, zero);\n\n//Wrap the whole thing up in a \"method\" - a LambdaExpression\nExpression\u003cFunc\u003cOrderLine, decimal\u003e\u003e method = Expression.Lambda\u003cFunc\u003cOrderLine, decimal\u003e\u003e(ifTaxableTernary, orderLine);",
+        "code_language": "C#"
       }
     ],
     "title": "Understanding the expressions API",

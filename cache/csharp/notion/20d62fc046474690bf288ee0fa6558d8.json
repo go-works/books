@@ -6,7 +6,6 @@
       "0e70f9a6-b904-4f92-b0ea-e411c15c05ee",
       "2ad26f9a-0d55-4bd1-ba46-9a73c8d671e1",
       "59511235-6e33-4830-bb6a-5d07d8d881b0",
-      "a22284be-8969-46f4-ace5-01ba2f133c21",
       "fb53377d-a563-4b3e-85bb-7b23b59f1722"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -18,7 +17,7 @@
     "id": "20d62fc0-4647-4690-bf28-8ee0fa6558d8",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549798620000,
+    "last_edited_time": 1550221380000,
     "parent_id": "3f90ad64-662d-4026-9438-8f1c858f7ce9",
     "parent_table": "block",
     "properties": {
@@ -29,7 +28,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 11,
     "content_resolved": [
       {
         "alive": true,
@@ -160,52 +159,25 @@
         "id": "59511235-6e33-4830-bb6a-5d07d8d881b0",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529733380,
+        "last_edited_time": 1550221380000,
         "parent_id": "20d62fc0-4647-4690-bf28-8ee0fa6558d8",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "foreach (var syntaxTree in compilation.SyntaxTrees)\n{\n    var root = await syntaxTree.GetRootAsync();\n    var declaredIdentifiers = root.DescendantNodes()\n        .Where(an =\u003e an is VariableDeclaratorSyntax)\n        .Cast\u003cVariableDeclaratorSyntax\u003e()\n        .Select(vd =\u003e vd.Identifier);"
+              "foreach (var syntaxTree in compilation.SyntaxTrees)\n{\n    var root = await syntaxTree.GetRootAsync();\n    var declaredIdentifiers = root.DescendantNodes()\n        .Where(an =\u003e an is VariableDeclaratorSyntax)\n        .Cast\u003cVariableDeclaratorSyntax\u003e()\n        .Select(vd =\u003e vd.Identifier);\n\n    foreach (var di in declaredIdentifiers)\n    {\n        Console.WriteLine(di);\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "foreach (var syntaxTree in compilation.SyntaxTrees)\n{\n    var root = await syntaxTree.GetRootAsync();\n    var declaredIdentifiers = root.DescendantNodes()\n        .Where(an =\u003e an is VariableDeclaratorSyntax)\n        .Cast\u003cVariableDeclaratorSyntax\u003e()\n        .Select(vd =\u003e vd.Identifier);",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549529733380,
-        "id": "a22284be-8969-46f4-ace5-01ba2f133c21",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529733380,
-        "parent_id": "20d62fc0-4647-4690-bf28-8ee0fa6558d8",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "foreach (var di in declaredIdentifiers)\n    {\n        Console.WriteLine(di);\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "foreach (var di in declaredIdentifiers)\n    {\n        Console.WriteLine(di);\n    }\n}",
-        "code_language": "Plain Text"
+        "version": 8,
+        "code": "foreach (var syntaxTree in compilation.SyntaxTrees)\n{\n    var root = await syntaxTree.GetRootAsync();\n    var declaredIdentifiers = root.DescendantNodes()\n        .Where(an =\u003e an is VariableDeclaratorSyntax)\n        .Cast\u003cVariableDeclaratorSyntax\u003e()\n        .Select(vd =\u003e vd.Identifier);\n\n    foreach (var di in declaredIdentifiers)\n    {\n        Console.WriteLine(di);\n    }\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,

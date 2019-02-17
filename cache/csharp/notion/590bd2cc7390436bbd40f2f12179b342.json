@@ -8,7 +8,7 @@
       "774fdaeb-af42-4550-9317-e9a746980691",
       "aa90a664-8ec3-4100-a8fa-a65e40d3c7c7",
       "fcd2e798-9e3a-4ca3-bc23-87dfb9a94128",
-      "f53e8991-2e65-42c8-8619-0a6b2c17c325"
+      "ce45afe1-c5db-4f70-97a9-5948d6c65dc1"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549530151371,
@@ -19,7 +19,7 @@
     "id": "590bd2cc-7390-436b-bd40-f2f12179b342",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549791120000,
+    "last_edited_time": 1550223420000,
     "parent_id": "d0852dd6-2ee4-4d9e-af08-4f050ff9f517",
     "parent_table": "block",
     "properties": {
@@ -30,7 +30,7 @@
       ]
     },
     "type": "page",
-    "version": 9,
+    "version": 13,
     "content_resolved": [
       {
         "alive": true,
@@ -64,21 +64,21 @@
         "id": "c24e6aea-daf5-4000-b6d2-763a9c71c3ab",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530151371,
+        "last_edited_time": 1550223360000,
         "parent_id": "590bd2cc-7390-436b-bd40-f2f12179b342",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "In this example demonstrates the creation of different animal worlds for a computer game using different factories. Although the animals created by the Continent factories are different, the interactions among the animals remain the same."
+              "In this example demonstrates the creation of different animal worlds for a computer game using different factories. Although the animals created by the Continent factories are different, the interactions among the animals remain the same.b"
             ]
           ]
         },
         "type": "text",
-        "version": 1,
+        "version": 3,
         "inline_content": [
           {
-            "Text": "In this example demonstrates the creation of different animal worlds for a computer game using different factories. Although the animals created by the Continent factories are different, the interactions among the animals remain the same."
+            "Text": "In this example demonstrates the creation of different animal worlds for a computer game using different factories. Although the animals created by the Continent factories are different, the interactions among the animals remain the same.b"
           }
         ]
       },
@@ -89,13 +89,13 @@
         "id": "774fdaeb-af42-4550-9317-e9a746980691",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530151371,
+        "last_edited_time": 1550223360000,
         "parent_id": "590bd2cc-7390-436b-bd40-f2f12179b342",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -105,9 +105,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "using System;\n \nnamespace GangOfFour.AbstractFactory\n{\n  /// \u003csummary\u003e\n  /// MainApp startup class for Real-World\n  /// Abstract Factory Design Pattern.\n  /// \u003c/summary\u003e\n  class MainApp\n  {\n    /// \u003csummary\u003e\n    /// Entry point into console application.\n    /// \u003c/summary\u003e\n    public static void Main()\n    {\n      // Create and run the African animal world\n      ContinentFactory africa = new AfricaFactory();\n      AnimalWorld world = new AnimalWorld(africa);\n      world.RunFoodChain();\n \n      // Create and run the American animal world\n      ContinentFactory america = new AmericaFactory();\n      world = new AnimalWorld(america);\n      world.RunFoodChain();\n \n      // Wait for user input\n      Console.ReadKey();\n    }\n  }\n \n \n  /// \u003csummary\u003e\n  /// The 'AbstractFactory' abstract class\n  /// \u003c/summary\u003e\n  abstract class ContinentFactory\n  {\n    public abstract Herbivore CreateHerbivore();\n    public abstract Carnivore CreateCarnivore();\n  }\n \n  /// \u003csummary\u003e\n  /// The 'ConcreteFactory1' class\n  /// \u003c/summary\u003e\n  class AfricaFactory : ContinentFactory\n  {\n    public override Herbivore CreateHerbivore()\n    {\n      return new Wildebeest();\n    }\n    public override Carnivore CreateCarnivore()\n    {\n      return new Lion();\n    }\n  }\n \n  /// \u003csummary\u003e\n  /// The 'ConcreteFactory2' class\n  /// \u003c/summary\u003e\n  class AmericaFactory : ContinentFactory\n  {\n    public override Herbivore CreateHerbivore()\n    {\n      return new Bison();\n    }\n    public override Carnivore CreateCarnivore()\n    {\n      return new Wolf();\n    }\n  }\n \n  /// \u003csummary\u003e\n  /// The 'AbstractProductA' abstract class\n  /// \u003c/summary\u003e\n  abstract class Herbivore\n  {\n  }\n \n  /// \u003csummary\u003e\n  /// The 'AbstractProductB' abstract class\n  /// \u003c/summary\u003e\n  abstract class Carnivore\n  {\n    public abstract void Eat(Herbivore h);\n  }\n \n  /// \u003csummary\u003e\n  /// The 'ProductA1' class\n  /// \u003c/summary\u003e\n  class Wildebeest : Herbivore\n  {\n  }\n \n  /// \u003csummary\u003e\n  /// The 'ProductB1' class\n  /// \u003c/summary\u003e\n  class Lion : Carnivore\n  {\n    public override void Eat(Herbivore h)\n    {\n      // Eat Wildebeest\n      Console.WriteLine(this.GetType().Name +\n        \" eats \" + h.GetType().Name);\n    }\n  }\n \n  /// \u003csummary\u003e\n  /// The 'ProductA2' class\n  /// \u003c/summary\u003e\n  class Bison : Herbivore\n  {\n  }\n \n  /// \u003csummary\u003e\n  /// The 'ProductB2' class\n  /// \u003c/summary\u003e\n  class Wolf : Carnivore\n  {\n    public override void Eat(Herbivore h)\n    {\n      // Eat Bison\n      Console.WriteLine(this.GetType().Name +\n        \" eats \" + h.GetType().Name);\n    }\n  }\n \n  /// \u003csummary\u003e\n  /// The 'Client' class \n  /// \u003c/summary\u003e\n  class AnimalWorld\n  {\n    private Herbivore _herbivore;\n    private Carnivore _carnivore;\n \n    // Constructor\n    public AnimalWorld(ContinentFactory factory)\n    {\n      _carnivore = factory.CreateCarnivore();\n      _herbivore = factory.CreateHerbivore();\n    }\n \n    public void RunFoodChain()\n    {\n      _carnivore.Eat(_herbivore);\n    }\n  }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -141,48 +141,35 @@
         "id": "fcd2e798-9e3a-4ca3-bc23-87dfb9a94128",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530151371,
+        "last_edited_time": 1550223420000,
         "parent_id": "590bd2cc-7390-436b-bd40-f2f12179b342",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "Lion eats Wildebeest"
+              "Lion eats Wildebeest\n\nWolf eats Bison"
             ]
           ]
         },
         "type": "quote",
-        "version": 1,
+        "version": 5,
         "inline_content": [
           {
-            "Text": "Lion eats Wildebeest"
+            "Text": "Lion eats Wildebeest\n\nWolf eats Bison"
           }
         ]
       },
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530151371,
-        "id": "f53e8991-2e65-42c8-8619-0a6b2c17c325",
-        "ignore_block_count": true,
+        "created_time": 1550223360000,
+        "id": "ce45afe1-c5db-4f70-97a9-5948d6c65dc1",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530151371,
+        "last_edited_time": 1550223360000,
         "parent_id": "590bd2cc-7390-436b-bd40-f2f12179b342",
         "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "Wolf eats Bison"
-            ]
-          ]
-        },
         "type": "text",
-        "version": 1,
-        "inline_content": [
-          {
-            "Text": "Wolf eats Bison"
-          }
-        ]
+        "version": 3
       }
     ],
     "title": "Abstract Factory Pattern",

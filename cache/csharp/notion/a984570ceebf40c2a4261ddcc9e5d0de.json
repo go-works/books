@@ -6,13 +6,11 @@
       "c48130a1-ae41-443a-83e0-f68a92d9ffa4",
       "17bb334f-fe81-4dd4-af0b-b8b3aba01845",
       "2b978b91-bbb9-465f-ad54-c72d80b90896",
-      "edf681b0-86eb-400b-bf0e-1d9616d54260",
       "5cdd081f-e09d-4227-85ab-3ae4cd3cb0dd",
       "0dbd5149-4f61-4371-80ba-c4d1fb5073b4",
       "de8e7180-5fec-403c-9fc7-2ad8210e284c",
-      "8bd2f639-749d-47a2-8b82-6f9d3f613147",
-      "11d32709-6b9e-4526-beed-15e983d3ee38",
-      "088c147f-1eb9-4921-a1d2-9e61ca767559"
+      "088c147f-1eb9-4921-a1d2-9e61ca767559",
+      "504c8e56-72ec-4d59-9302-25007b391eac"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549529576372,
@@ -23,7 +21,7 @@
     "id": "a984570c-eebf-40c2-a426-1ddcc9e5d0de",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549627440000,
+    "last_edited_time": 1550220420000,
     "parent_id": "7f7fdd88-2767-47f0-97a2-2dab8a624086",
     "parent_table": "block",
     "properties": {
@@ -34,7 +32,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 17,
     "content_resolved": [
       {
         "alive": true,
@@ -123,52 +121,25 @@
         "id": "2b978b91-bbb9-465f-ad54-c72d80b90896",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529576371,
+        "last_edited_time": 1550220420000,
         "parent_id": "a984570c-eebf-40c2-a426-1ddcc9e5d0de",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "//This method is async because:\n//1. It has async and Task or Task\u003cT\u003e as modifiers\n//2. It ends in \"Async\"\nasync Task\u003cint\u003e GetStringLengthAsync(string URL){\n    HttpClient client = new HttpClient();\n    //Sends a GET request and returns the response body as a string\n    Task\u003cstring\u003e getString = client.GetStringAsync(URL);\n    //Waits for getString to complete before returning its length\n    string contents = await getString;\n    return contents.Length;\n}"
+              "//This method is async because:\n//1. It has async and Task or Task\u003cT\u003e as modifiers\n//2. It ends in \"Async\"\nasync Task\u003cint\u003e GetStringLengthAsync(string URL){\n    HttpClient client = new HttpClient();\n    //Sends a GET request and returns the response body as a string\n    Task\u003cstring\u003e getString = client.GetStringAsync(URL);\n    //Waits for getString to complete before returning its length\n    string contents = await getString;\n    return contents.Length;\n}\n\nprivate async void doProcess(){\n    int length = await GetStringLengthAsync(\"http://example.com/\");\n    //Waits for all the above to finish before printing the number\n    Console.WriteLine(length);\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "//This method is async because:\n//1. It has async and Task or Task\u003cT\u003e as modifiers\n//2. It ends in \"Async\"\nasync Task\u003cint\u003e GetStringLengthAsync(string URL){\n    HttpClient client = new HttpClient();\n    //Sends a GET request and returns the response body as a string\n    Task\u003cstring\u003e getString = client.GetStringAsync(URL);\n    //Waits for getString to complete before returning its length\n    string contents = await getString;\n    return contents.Length;\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549529576371,
-        "id": "edf681b0-86eb-400b-bf0e-1d9616d54260",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529576371,
-        "parent_id": "a984570c-eebf-40c2-a426-1ddcc9e5d0de",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "private async void doProcess(){\n    int length = await GetStringLengthAsync(\"http://example.com/\");\n    //Waits for all the above to finish before printing the number\n    Console.WriteLine(length);\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "private async void doProcess(){\n    int length = await GetStringLengthAsync(\"http://example.com/\");\n    //Waits for all the above to finish before printing the number\n    Console.WriteLine(length);\n}",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "//This method is async because:\n//1. It has async and Task or Task\u003cT\u003e as modifiers\n//2. It ends in \"Async\"\nasync Task\u003cint\u003e GetStringLengthAsync(string URL){\n    HttpClient client = new HttpClient();\n    //Sends a GET request and returns the response body as a string\n    Task\u003cstring\u003e getString = client.GetStringAsync(URL);\n    //Waits for getString to complete before returning its length\n    string contents = await getString;\n    return contents.Length;\n}\n\nprivate async void doProcess(){\n    int length = await GetStringLengthAsync(\"http://example.com/\");\n    //Waits for all the above to finish before printing the number\n    Console.WriteLine(length);\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -227,79 +198,25 @@
         "id": "de8e7180-5fec-403c-9fc7-2ad8210e284c",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529576372,
+        "last_edited_time": 1550220420000,
         "parent_id": "a984570c-eebf-40c2-a426-1ddcc9e5d0de",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "//This one using async event handlers, but not async coupled with await\nprivate void DownloadAndUpdateAsync(string uri, string DownloadLocation){\n    WebClient web = new WebClient();\n    //Assign the event handler\n    web.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);\n    web.DownloadFileCompleted += new AsyncCompletedEventHandler(FileCompleted);\n    //Download the file asynchronously\n    web.DownloadFileAsync(new Uri(uri), DownloadLocation);\n}"
+              "//This one using async event handlers, but not async coupled with await\nprivate void DownloadAndUpdateAsync(string uri, string DownloadLocation){\n    WebClient web = new WebClient();\n    //Assign the event handler\n    web.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);\n    web.DownloadFileCompleted += new AsyncCompletedEventHandler(FileCompleted);\n    //Download the file asynchronously\n    web.DownloadFileAsync(new Uri(uri), DownloadLocation);\n}\n\n//event called for when download progress has changed\nprivate void ProgressChanged(object sender, DownloadProgressChangedEventArgs e){\n    //example code\n    int i = 0;\n    i++;\n    doSomething();\n}\n\n//event called for when download has finished\nprivate void FileCompleted(object sender, AsyncCompletedEventArgs e){\n    Console.WriteLine(\"Completed!\")\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "//This one using async event handlers, but not async coupled with await\nprivate void DownloadAndUpdateAsync(string uri, string DownloadLocation){\n    WebClient web = new WebClient();\n    //Assign the event handler\n    web.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);\n    web.DownloadFileCompleted += new AsyncCompletedEventHandler(FileCompleted);\n    //Download the file asynchronously\n    web.DownloadFileAsync(new Uri(uri), DownloadLocation);\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549529576372,
-        "id": "8bd2f639-749d-47a2-8b82-6f9d3f613147",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529576372,
-        "parent_id": "a984570c-eebf-40c2-a426-1ddcc9e5d0de",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "//event called for when download progress has changed\nprivate void ProgressChanged(object sender, DownloadProgressChangedEventArgs e){\n    //example code\n    int i = 0;\n    i++;\n    doSomething();\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "//event called for when download progress has changed\nprivate void ProgressChanged(object sender, DownloadProgressChangedEventArgs e){\n    //example code\n    int i = 0;\n    i++;\n    doSomething();\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549529576372,
-        "id": "11d32709-6b9e-4526-beed-15e983d3ee38",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529576372,
-        "parent_id": "a984570c-eebf-40c2-a426-1ddcc9e5d0de",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "//event called for when download has finished\nprivate void FileCompleted(object sender, AsyncCompletedEventArgs e){\n    Console.WriteLine(\"Completed!\")\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "//event called for when download has finished\nprivate void FileCompleted(object sender, AsyncCompletedEventArgs e){\n    Console.WriteLine(\"Completed!\")\n}",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "//This one using async event handlers, but not async coupled with await\nprivate void DownloadAndUpdateAsync(string uri, string DownloadLocation){\n    WebClient web = new WebClient();\n    //Assign the event handler\n    web.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);\n    web.DownloadFileCompleted += new AsyncCompletedEventHandler(FileCompleted);\n    //Download the file asynchronously\n    web.DownloadFileAsync(new Uri(uri), DownloadLocation);\n}\n\n//event called for when download progress has changed\nprivate void ProgressChanged(object sender, DownloadProgressChangedEventArgs e){\n    //example code\n    int i = 0;\n    i++;\n    doSomething();\n}\n\n//event called for when download has finished\nprivate void FileCompleted(object sender, AsyncCompletedEventArgs e){\n    Console.WriteLine(\"Completed!\")\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -325,6 +242,32 @@
             "Text": "Method 2:"
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550220469189,
+        "id": "504c8e56-72ec-4d59-9302-25007b391eac",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550220420000,
+        "parent_id": "a984570c-eebf-40c2-a426-1ddcc9e5d0de",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "//however, this one does\n//Refer to first example on why this method is async\nprivate void DownloadAndUpdateAsync(string uri, string DownloadLocation){\n    WebClient web = new WebClient();\n    //Assign the event handler\n    web.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);\n    //Download the file async\n    web.DownloadFileAsync(new Uri(uri), DownloadLocation);\n    //Notice how there is no complete event, instead we're using techniques from the first example\n}\nprivate void ProgressChanged(object sender, DownloadProgressChangedEventArgs e){\n    int i = 0;\n    i++;\n    doSomething();\n}\nprivate void doProcess(){\n    //Wait for the download to finish\n    await DownloadAndUpdateAsync(new Uri(\"http://example.com/file\"))\n    doSomething();\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 8,
+        "code": "//however, this one does\n//Refer to first example on why this method is async\nprivate void DownloadAndUpdateAsync(string uri, string DownloadLocation){\n    WebClient web = new WebClient();\n    //Assign the event handler\n    web.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);\n    //Download the file async\n    web.DownloadFileAsync(new Uri(uri), DownloadLocation);\n    //Notice how there is no complete event, instead we're using techniques from the first example\n}\nprivate void ProgressChanged(object sender, DownloadProgressChangedEventArgs e){\n    int i = 0;\n    i++;\n    doSomething();\n}\nprivate void doProcess(){\n    //Wait for the download to finish\n    await DownloadAndUpdateAsync(new Uri(\"http://example.com/file\"))\n    doSomething();\n}",
+        "code_language": "C#"
       }
     ],
     "title": "Async Await",

@@ -5,10 +5,10 @@
     "content": [
       "4839c861-2508-4678-b567-f56dd257a4dd",
       "e32b2b11-0edc-4291-aacf-d0deaa4b69cc",
-      "4f732746-c61c-420a-8148-d683dede37ba",
-      "2a8de7d6-cc8a-4efc-9858-249009045480",
+      "8767df16-d96b-40d4-8f3c-c008cb68cea2",
       "3e5e97e5-0438-4c43-af08-ac1ca8291054",
-      "88c1a855-327a-4f0c-b4f3-b4ab561b76ae"
+      "88c1a855-327a-4f0c-b4f3-b4ab561b76ae",
+      "865b1a98-956e-4e4b-95ad-475d7f6bfeb9"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549530236278,
@@ -19,7 +19,7 @@
     "id": "7f7e16ce-99d6-4299-89ea-0deabad21f80",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549628160000,
+    "last_edited_time": 1550223780000,
     "parent_id": "d2786b82-24ad-4c4e-b5a8-5ef23d9feee9",
     "parent_table": "block",
     "properties": {
@@ -30,7 +30,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 17,
     "content_resolved": [
       {
         "alive": true,
@@ -85,56 +85,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530236278,
-        "id": "4f732746-c61c-420a-8148-d683dede37ba",
-        "ignore_block_count": true,
+        "created_time": 1550223818459,
+        "id": "8767df16-d96b-40d4-8f3c-c008cb68cea2",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530236278,
+        "last_edited_time": 1550223780000,
         "parent_id": "7f7e16ce-99d6-4299-89ea-0deabad21f80",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "private static Expression GetExpression\u003cT\u003e(ParameterExpression param, QueryFilter queryFilter)\n{\n    // Represents accessing a field or property, so here we are accessing for example:\n    // the property \"Name\" of the entity\n    MemberExpression member = Expression.Property(param, queryFilter.PropertyName);"
+              "private static Expression GetExpression\u003cT\u003e(ParameterExpression param, QueryFilter queryFilter)\n{\n    // Represents accessing a field or property, so here we are accessing for example:\n    // the property \"Name\" of the entity\n    MemberExpression member = Expression.Property(param, queryFilter.PropertyName);\n\n    //Represents an expression that has a constant value, so here we are accessing for example:\n    // the values of the Property \"Name\".\n    // Also for clarity sake the GetConstant will be explained in another example.\n    ConstantExpression constant = GetConstant(member.Type, queryFilter.Value);\n\n    // With these two, now I can build the expression\n    // every operator has it one way to call, so the switch will do.\n    switch (queryFilter.Operator)\n    {\n        case Operator.Equals:\n            return Expression.Equal(member, constant);\n\n        case Operator.Contains:\n            return Expression.Call(member, ContainsMethod, constant);\n\n        case Operator.GreaterThan:\n            return Expression.GreaterThan(member, constant);\n\n        case Operator.GreaterThanOrEqual:\n            return Expression.GreaterThanOrEqual(member, constant);\n\n        case Operator.LessThan:\n            return Expression.LessThan(member, constant);\n\n        case Operator.LessThanOrEqualTo:\n            return Expression.LessThanOrEqual(member, constant);\n\n        case Operator.StartsWith:\n            return Expression.Call(member, StartsWithMethod, constant);\n\n        case Operator.EndsWith:\n            return Expression.Call(member, EndsWithMethod, constant);\n    }\n\n    return null;\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "private static Expression GetExpression\u003cT\u003e(ParameterExpression param, QueryFilter queryFilter)\n{\n    // Represents accessing a field or property, so here we are accessing for example:\n    // the property \"Name\" of the entity\n    MemberExpression member = Expression.Property(param, queryFilter.PropertyName);",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530236278,
-        "id": "2a8de7d6-cc8a-4efc-9858-249009045480",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530236278,
-        "parent_id": "7f7e16ce-99d6-4299-89ea-0deabad21f80",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "//Represents an expression that has a constant value, so here we are accessing for example:\n    // the values of the Property \"Name\".\n    // Also for clarity sake the GetConstant will be explained in another example.\n    ConstantExpression constant = GetConstant(member.Type, queryFilter.Value);\n\n    // With these two, now I can build the expression\n    // every operator has it one way to call, so the switch will do.\n    switch (queryFilter.Operator)\n    {\n        case Operator.Equals:\n            return Expression.Equal(member, constant);\n\n        case Operator.Contains:\n            return Expression.Call(member, ContainsMethod, constant);\n\n        case Operator.GreaterThan:\n            return Expression.GreaterThan(member, constant);\n\n        case Operator.GreaterThanOrEqual:\n            return Expression.GreaterThanOrEqual(member, constant);\n\n        case Operator.LessThan:\n            return Expression.LessThan(member, constant);\n\n        case Operator.LessThanOrEqualTo:\n            return Expression.LessThanOrEqual(member, constant);\n\n        case Operator.StartsWith:\n            return Expression.Call(member, StartsWithMethod, constant);\n\n        case Operator.EndsWith:\n            return Expression.Call(member, EndsWithMethod, constant);\n    }\n\n    return null;\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "//Represents an expression that has a constant value, so here we are accessing for example:\n    // the values of the Property \"Name\".\n    // Also for clarity sake the GetConstant will be explained in another example.\n    ConstantExpression constant = GetConstant(member.Type, queryFilter.Value);\n\n    // With these two, now I can build the expression\n    // every operator has it one way to call, so the switch will do.\n    switch (queryFilter.Operator)\n    {\n        case Operator.Equals:\n            return Expression.Equal(member, constant);\n\n        case Operator.Contains:\n            return Expression.Call(member, ContainsMethod, constant);\n\n        case Operator.GreaterThan:\n            return Expression.GreaterThan(member, constant);\n\n        case Operator.GreaterThanOrEqual:\n            return Expression.GreaterThanOrEqual(member, constant);\n\n        case Operator.LessThan:\n            return Expression.LessThan(member, constant);\n\n        case Operator.LessThanOrEqualTo:\n            return Expression.LessThanOrEqual(member, constant);\n\n        case Operator.StartsWith:\n            return Expression.Call(member, StartsWithMethod, constant);\n\n        case Operator.EndsWith:\n            return Expression.Call(member, EndsWithMethod, constant);\n    }\n\n    return null;\n}",
-        "code_language": "Plain Text"
+        "version": 8,
+        "code": "private static Expression GetExpression\u003cT\u003e(ParameterExpression param, QueryFilter queryFilter)\n{\n    // Represents accessing a field or property, so here we are accessing for example:\n    // the property \"Name\" of the entity\n    MemberExpression member = Expression.Property(param, queryFilter.PropertyName);\n\n    //Represents an expression that has a constant value, so here we are accessing for example:\n    // the values of the Property \"Name\".\n    // Also for clarity sake the GetConstant will be explained in another example.\n    ConstantExpression constant = GetConstant(member.Type, queryFilter.Value);\n\n    // With these two, now I can build the expression\n    // every operator has it one way to call, so the switch will do.\n    switch (queryFilter.Operator)\n    {\n        case Operator.Equals:\n            return Expression.Equal(member, constant);\n\n        case Operator.Contains:\n            return Expression.Call(member, ContainsMethod, constant);\n\n        case Operator.GreaterThan:\n            return Expression.GreaterThan(member, constant);\n\n        case Operator.GreaterThanOrEqual:\n            return Expression.GreaterThanOrEqual(member, constant);\n\n        case Operator.LessThan:\n            return Expression.LessThan(member, constant);\n\n        case Operator.LessThanOrEqualTo:\n            return Expression.LessThanOrEqual(member, constant);\n\n        case Operator.StartsWith:\n            return Expression.Call(member, StartsWithMethod, constant);\n\n        case Operator.EndsWith:\n            return Expression.Call(member, EndsWithMethod, constant);\n    }\n\n    return null;\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -185,6 +157,32 @@
             "Text": "It returns the BinaryExpresion instance instead of the simple Expression."
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550223829516,
+        "id": "865b1a98-956e-4e4b-95ad-475d7f6bfeb9",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550223780000,
+        "parent_id": "7f7e16ce-99d6-4299-89ea-0deabad21f80",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "private static BinaryExpression GetExpression\u003cT\u003e(ParameterExpression param, QueryFilter filter1, QueryFilter filter2)\n{\n    // Built two separated expression and join them after.\n    Expression result1 = GetExpression\u003cT\u003e(param, filter1);\n    Expression result2 = GetExpression\u003cT\u003e(param, filter2);\n    return Expression.AndAlso(result1, result2);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 8,
+        "code": "private static BinaryExpression GetExpression\u003cT\u003e(ParameterExpression param, QueryFilter filter1, QueryFilter filter2)\n{\n    // Built two separated expression and join them after.\n    Expression result1 = GetExpression\u003cT\u003e(param, filter1);\n    Expression result2 = GetExpression\u003cT\u003e(param, filter2);\n    return Expression.AndAlso(result1, result2);\n}",
+        "code_language": "C#"
       }
     ],
     "title": "GetExpression Private overload",

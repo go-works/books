@@ -30,7 +30,7 @@
     "id": "7194498a-6c2d-4983-8b92-353d1b890384",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549791060000,
+    "last_edited_time": 1550223360000,
     "parent_id": "d0852dd6-2ee4-4d9e-af08-4f050ff9f517",
     "parent_table": "block",
     "properties": {
@@ -41,7 +41,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 9,
     "content_resolved": [
       {
         "alive": true,
@@ -352,13 +352,13 @@
         "id": "13453a19-9014-46c0-9fd8-a7a3b451fe60",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530149461,
+        "last_edited_time": 1550223360000,
         "parent_id": "7194498a-6c2d-4983-8b92-353d1b890384",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -368,9 +368,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "class Singleton\n{\n    // Because the _instance member is made private, the only way to get the single \n    // instance is via the static Instance property below. This can also be similarly \n    // achieved with a GetInstance() method instead of the property.\n    private static Singleton _instance = null;\n\n    // Making the constructor private prevents other instances from being \n    // created via something like Singleton s = new Singleton(), protecting\n    // against unintentional misuse.\n    private Singleton()\n    {\n    }\n\n    public static Singleton Instance\n    {\n        get \n        {\n            // The first call will create the one and only instance.\n            if (_instance == null)\n            {\n                _instance = new Singleton();\n            }\n\n            // Every call afterwards will return the single instance created above.\n            return _instance;\n        }\n    }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -404,13 +404,13 @@
         "id": "edcc55cb-b1ed-4fa0-81e3-16852b252a33",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530149461,
+        "last_edited_time": 1550223360000,
         "parent_id": "7194498a-6c2d-4983-8b92-353d1b890384",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -420,9 +420,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "class Program\n{\n    static void Main(string[] args)\n    {\n        Singleton s1 = Singleton.Instance;\n        Singleton s2 = Singleton.Instance;\n        \n        // Both Singleton objects above should now reference the same Singleton instance.\n        if (Object.ReferenceEquals(s1, s2))\n        {\n            Console.WriteLine(\"Singleton is working\");\n        }\n        else\n        {\n            // Otherwise, the Singleton Instance property is returning something \n            // other than the unique, single instance when called.\n            Console.WriteLine(\"Singleton is broken\");\n        }\n    }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,

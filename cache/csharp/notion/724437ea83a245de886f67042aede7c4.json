@@ -17,7 +17,7 @@
     "id": "724437ea-83a2-45de-886f-67042aede7c4",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549791720000,
+    "last_edited_time": 1550223300000,
     "parent_id": "7632739a-2856-46a9-8b2e-800148b5fcf4",
     "parent_table": "block",
     "properties": {
@@ -28,7 +28,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 9,
     "content_resolved": [
       {
         "alive": true,
@@ -80,13 +80,13 @@
         "id": "893eba08-fe95-4d78-917b-5003b38e59b7",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530128329,
+        "last_edited_time": 1550223300000,
         "parent_id": "724437ea-83a2-45de-886f-67042aede7c4",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -96,9 +96,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "private IEnumerable\u003cT\u003e GetData()\n{\n    try \n    {\n        // return results from database \n    }\n    catch(Exception exception)\n    {\n        throw;\n    }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -168,25 +168,25 @@
         "id": "0d3a1906-1817-4ab7-9166-b4d3319e43b9",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530128330,
+        "last_edited_time": 1550223300000,
         "parent_id": "724437ea-83a2-45de-886f-67042aede7c4",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "int bufferSize = 200;"
+              "int bufferSize = 200;\n\nObservable\n    .Start(() =\u003e GetData())\n    .SelectMany(s =\u003e s)\n    .Buffer(bufferSize)\n    .ObserveOn(SynchronizationContext.Current)\n    .Subscribe(items =\u003e \n    {\n        Console.WriteLine(\"Loaded {0} elements\", items.Count);\n        \n        // do something on the UI like incrementing a ProgressBar\n    },\n    () =\u003e Console.WriteLine(\"Completed loading\"));"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "int bufferSize = 200;",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "int bufferSize = 200;\n\nObservable\n    .Start(() =\u003e GetData())\n    .SelectMany(s =\u003e s)\n    .Buffer(bufferSize)\n    .ObserveOn(SynchronizationContext.Current)\n    .Subscribe(items =\u003e \n    {\n        Console.WriteLine(\"Loaded {0} elements\", items.Count);\n        \n        // do something on the UI like incrementing a ProgressBar\n    },\n    () =\u003e Console.WriteLine(\"Completed loading\"));",
+        "code_language": "C#"
       }
     ],
     "title": "Streaming Data from Database with Observable",

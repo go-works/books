@@ -5,16 +5,6 @@
     "content": [
       "3ce29007-6017-4042-8436-b71d6fabff0a",
       "f42c932e-a713-48cb-ab03-5372c4a7d6a2",
-      "a75d7dd1-2d9a-433d-844a-509378503f56",
-      "8cd602d1-faef-4593-bc37-2fab5f512991",
-      "77142de5-7f3e-4757-8e5e-1937f83ea900",
-      "8dca8dca-041d-4689-9b39-4cb30a8935a2",
-      "b56ce069-71e0-4832-9e68-39eb30859a81",
-      "3377ce30-5ec8-41c3-9419-d394ffc0fb80",
-      "3957366d-5dfd-4a10-8caf-bd4800173789",
-      "cc4afb8c-00f9-4c40-8db5-20bdccbd8282",
-      "a14fb622-5548-4f02-b32e-b524b9dd644b",
-      "d869dc6f-d378-4e46-879a-d072b073846f",
       "d6bffebe-b218-4735-82da-8a3bab3d3fb9",
       "717d9068-7d11-4b9f-9ba4-333038948528",
       "a97e4de0-dbf0-4f57-a3bc-00b2dd6e5f2f"
@@ -28,7 +18,7 @@
     "id": "2fe7739b-e677-4a45-ad67-f3b630a3e513",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549789620000,
+    "last_edited_time": 1550205060000,
     "parent_id": "97d7d0bc-7873-4d24-b89e-70a0d8483664",
     "parent_table": "block",
     "properties": {
@@ -39,7 +29,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 22,
     "content_resolved": [
       {
         "alive": true,
@@ -73,295 +63,25 @@
         "id": "f42c932e-a713-48cb-ab03-5372c4a7d6a2",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527789504,
+        "last_edited_time": 1550205060000,
         "parent_id": "2fe7739b-e677-4a45-ad67-f3b630a3e513",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "namespace BgWorkerExample\n{\n    public partial class Form1 : Form\n{"
+              "namespace BgWorkerExample\n{\n    public partial class Form1 : Form\n\t\t{\n\n\t    // a new instance of a backgroundWorker is created.\n\t    BackgroundWorker bgWorker = new BackgroundWorker();\n\t    \n\t    public Form1()\n\t    {\n\t        InitializeComponent();\n\t\n\t        prgProgressBar.Step = 1;\n\t\n\t        //this assigns event handlers for the backgroundWorker\n\t        bgWorker.DoWork += bgWorker_DoWork;\n\t        bgWorker.RunWorkerCompleted += bgWorker_WorkComplete;\n\t\n\t        //tell the backgroundWorker to raise the \"DoWork\" event, thus starting it.\n\t        //Check to make sure the background worker is not already running.\n\t        if(!bgWorker.IsBusy)\n\t            bgWorker.RunWorkerAsync();        \n\t    }\n\t\n\t    private void bgWorker_DoWork(object sender, DoWorkEventArgs e)\n\t    {\n\t        //this is the method that the backgroundworker will perform on in the background thread.\n\t        /* One thing to note! A try catch is not necessary as any exceptions will terminate the backgroundWorker and report \n\t          the error to the \"RunWorkerCompleted\" event */\n\t        CountToY();    \n\t    }\n\t\n\t    private void bgWorker_WorkComplete(object sender, RunWorkerCompletedEventArgs e)\n\t    {\n\t        //e.Error will contain any exceptions caught by the backgroundWorker\n\t        if (e.Error != null)\n\t        {\n\t            MessageBox.Show(e.Error.Message);\n\t        }\n\t        else\n\t        {\n\t            MessageBox.Show(\"Task Complete!\");\n\t            prgProgressBar.Value = 0;\n\t        }\n\t    }\n\t\n\t    // example method to perform a \"long\" running task.\n\t    private void CountToY()\n\t    {\n\t        int x = 0;\n\t\n\t        int maxProgress = 100;\n\t        prgProgressBar.Maximum = maxProgress;\n\t        \n\t\n\t        while (x \u003c maxProgress)\n\t        {\n\t            System.Threading.Thread.Sleep(50);\n\t            Invoke(new Action(() =\u003e { prgProgressBar.PerformStep(); }));\n\t            x += 1;\n\t        }\n\t    }\n\t }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "namespace BgWorkerExample\n{\n    public partial class Form1 : Form\n{",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527789505,
-        "id": "a75d7dd1-2d9a-433d-844a-509378503f56",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527789505,
-        "parent_id": "2fe7739b-e677-4a45-ad67-f3b630a3e513",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "//a new instance of a backgroundWorker is created.\n    BackgroundWorker bgWorker = new BackgroundWorker();\n    \n    public Form1()\n    {\n        InitializeComponent();"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "//a new instance of a backgroundWorker is created.\n    BackgroundWorker bgWorker = new BackgroundWorker();\n    \n    public Form1()\n    {\n        InitializeComponent();",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527789505,
-        "id": "8cd602d1-faef-4593-bc37-2fab5f512991",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527789505,
-        "parent_id": "2fe7739b-e677-4a45-ad67-f3b630a3e513",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "prgProgressBar.Step = 1;"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "prgProgressBar.Step = 1;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527789505,
-        "id": "77142de5-7f3e-4757-8e5e-1937f83ea900",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527789505,
-        "parent_id": "2fe7739b-e677-4a45-ad67-f3b630a3e513",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "//this assigns event handlers for the backgroundWorker\n        bgWorker.DoWork += bgWorker_DoWork;\n        bgWorker.RunWorkerCompleted += bgWorker_WorkComplete;"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "//this assigns event handlers for the backgroundWorker\n        bgWorker.DoWork += bgWorker_DoWork;\n        bgWorker.RunWorkerCompleted += bgWorker_WorkComplete;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527789505,
-        "id": "8dca8dca-041d-4689-9b39-4cb30a8935a2",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527789505,
-        "parent_id": "2fe7739b-e677-4a45-ad67-f3b630a3e513",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "//tell the backgroundWorker to raise the \"DoWork\" event, thus starting it.\n        //Check to make sure the background worker is not already running.\n        if(!bgWorker.IsBusy)\n            bgWorker.RunWorkerAsync();\n        \n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "//tell the backgroundWorker to raise the \"DoWork\" event, thus starting it.\n        //Check to make sure the background worker is not already running.\n        if(!bgWorker.IsBusy)\n            bgWorker.RunWorkerAsync();\n        \n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527789505,
-        "id": "b56ce069-71e0-4832-9e68-39eb30859a81",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527789505,
-        "parent_id": "2fe7739b-e677-4a45-ad67-f3b630a3e513",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "private void bgWorker_DoWork(object sender, DoWorkEventArgs e)\n    {\n        //this is the method that the backgroundworker will perform on in the background thread.\n        /* One thing to note! A try catch is not necessary as any exceptions will terminate the backgroundWorker and report \n          the error to the \"RunWorkerCompleted\" event */\n        CountToY();    \n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "private void bgWorker_DoWork(object sender, DoWorkEventArgs e)\n    {\n        //this is the method that the backgroundworker will perform on in the background thread.\n        /* One thing to note! A try catch is not necessary as any exceptions will terminate the backgroundWorker and report \n          the error to the \"RunWorkerCompleted\" event */\n        CountToY();    \n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527789505,
-        "id": "3377ce30-5ec8-41c3-9419-d394ffc0fb80",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527789505,
-        "parent_id": "2fe7739b-e677-4a45-ad67-f3b630a3e513",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "private void bgWorker_WorkComplete(object sender, RunWorkerCompletedEventArgs e)\n    {\n        //e.Error will contain any exceptions caught by the backgroundWorker\n        if (e.Error != null)\n        {\n            MessageBox.Show(e.Error.Message);\n        }\n        else\n        {\n            MessageBox.Show(\"Task Complete!\");\n            prgProgressBar.Value = 0;\n        }\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "private void bgWorker_WorkComplete(object sender, RunWorkerCompletedEventArgs e)\n    {\n        //e.Error will contain any exceptions caught by the backgroundWorker\n        if (e.Error != null)\n        {\n            MessageBox.Show(e.Error.Message);\n        }\n        else\n        {\n            MessageBox.Show(\"Task Complete!\");\n            prgProgressBar.Value = 0;\n        }\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527789505,
-        "id": "3957366d-5dfd-4a10-8caf-bd4800173789",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527789505,
-        "parent_id": "2fe7739b-e677-4a45-ad67-f3b630a3e513",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// example method to perform a \"long\" running task.\n    private void CountToY()\n    {\n        int x = 0;"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// example method to perform a \"long\" running task.\n    private void CountToY()\n    {\n        int x = 0;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527789505,
-        "id": "cc4afb8c-00f9-4c40-8db5-20bdccbd8282",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527789505,
-        "parent_id": "2fe7739b-e677-4a45-ad67-f3b630a3e513",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "int maxProgress = 100;\n        prgProgressBar.Maximum = maxProgress;"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "int maxProgress = 100;\n        prgProgressBar.Maximum = maxProgress;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527789505,
-        "id": "a14fb622-5548-4f02-b32e-b524b9dd644b",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527789505,
-        "parent_id": "2fe7739b-e677-4a45-ad67-f3b630a3e513",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "while (x \u003c maxProgress)\n        {\n            System.Threading.Thread.Sleep(50);\n            Invoke(new Action(() =\u003e { prgProgressBar.PerformStep(); }));\n            x += 1;\n        }\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "while (x \u003c maxProgress)\n        {\n            System.Threading.Thread.Sleep(50);\n            Invoke(new Action(() =\u003e { prgProgressBar.PerformStep(); }));\n            x += 1;\n        }\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527789505,
-        "id": "d869dc6f-d378-4e46-879a-d072b073846f",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527789505,
-        "parent_id": "2fe7739b-e677-4a45-ad67-f3b630a3e513",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "}",
-        "code_language": "Plain Text"
+        "version": 31,
+        "code": "namespace BgWorkerExample\n{\n    public partial class Form1 : Form\n\t\t{\n\n\t    // a new instance of a backgroundWorker is created.\n\t    BackgroundWorker bgWorker = new BackgroundWorker();\n\t    \n\t    public Form1()\n\t    {\n\t        InitializeComponent();\n\t\n\t        prgProgressBar.Step = 1;\n\t\n\t        //this assigns event handlers for the backgroundWorker\n\t        bgWorker.DoWork += bgWorker_DoWork;\n\t        bgWorker.RunWorkerCompleted += bgWorker_WorkComplete;\n\t\n\t        //tell the backgroundWorker to raise the \"DoWork\" event, thus starting it.\n\t        //Check to make sure the background worker is not already running.\n\t        if(!bgWorker.IsBusy)\n\t            bgWorker.RunWorkerAsync();        \n\t    }\n\t\n\t    private void bgWorker_DoWork(object sender, DoWorkEventArgs e)\n\t    {\n\t        //this is the method that the backgroundworker will perform on in the background thread.\n\t        /* One thing to note! A try catch is not necessary as any exceptions will terminate the backgroundWorker and report \n\t          the error to the \"RunWorkerCompleted\" event */\n\t        CountToY();    \n\t    }\n\t\n\t    private void bgWorker_WorkComplete(object sender, RunWorkerCompletedEventArgs e)\n\t    {\n\t        //e.Error will contain any exceptions caught by the backgroundWorker\n\t        if (e.Error != null)\n\t        {\n\t            MessageBox.Show(e.Error.Message);\n\t        }\n\t        else\n\t        {\n\t            MessageBox.Show(\"Task Complete!\");\n\t            prgProgressBar.Value = 0;\n\t        }\n\t    }\n\t\n\t    // example method to perform a \"long\" running task.\n\t    private void CountToY()\n\t    {\n\t        int x = 0;\n\t\n\t        int maxProgress = 100;\n\t        prgProgressBar.Maximum = maxProgress;\n\t        \n\t\n\t        while (x \u003c maxProgress)\n\t        {\n\t            System.Threading.Thread.Sleep(50);\n\t            Invoke(new Action(() =\u003e { prgProgressBar.PerformStep(); }));\n\t            x += 1;\n\t        }\n\t    }\n\t }\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,

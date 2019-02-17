@@ -11,7 +11,6 @@
       "8bb7cb05-cb0c-458c-82b7-c3318cf9555f",
       "976b25ff-1431-43ee-ad83-0950f055ee06",
       "281892ad-749b-4296-9aa1-e8c4b60a862d",
-      "8a46faa6-066f-4c6d-be48-ff447a258131",
       "aa16251e-238f-451d-8b08-2cd508844606"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -23,18 +22,18 @@
     "id": "7be5a0f2-60c4-4fa7-9701-b587a71d3637",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549614960000,
+    "last_edited_time": 1549876260000,
     "parent_id": "190506d8-ff9f-4443-bbce-bdb69e483555",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "Using Extension methods to create beautiful mapper classes"
+          "Using Extension methods to create mapper classes"
         ]
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 14,
     "content_resolved": [
       {
         "alive": true,
@@ -68,13 +67,13 @@
         "id": "9d08a71b-d481-40d7-bf55-576fb4bbcc6c",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524687874,
+        "last_edited_time": 1549876200000,
         "parent_id": "7be5a0f2-60c4-4fa7-9701-b587a71d3637",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -84,9 +83,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "public class UserDTO\n {\n        public AddressDTO Address { get; set; }\n }\n\n public class AddressDTO\n {\n        public string Name { get; set; }\n }",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -120,13 +119,13 @@
         "id": "ef0663c6-bb2f-4909-92e6-05b2e50e12d8",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524687875,
+        "last_edited_time": 1549876200000,
         "parent_id": "7be5a0f2-60c4-4fa7-9701-b587a71d3637",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -136,9 +135,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "public class UserViewModel\n{\n    public AddressViewModel Address { get; set; }\n}\n\npublic class AddressViewModel\n{\n    public string Name { get; set; }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -172,13 +171,13 @@
         "id": "8bb7cb05-cb0c-458c-82b7-c3318cf9555f",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524687875,
+        "last_edited_time": 1549876200000,
         "parent_id": "7be5a0f2-60c4-4fa7-9701-b587a71d3637",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -188,9 +187,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "public static class ViewModelMapper\n{\n      public static UserViewModel ToViewModel(this UserDTO user)\n      {\n            return user == null ?\n                null :\n                new UserViewModel()\n                {\n                    Address = user.Address.ToViewModel()\n                    // Job = user.Job.ToViewModel(),\n                    // Contact = user.Contact.ToViewModel() .. and so on\n                };\n      }\n\n      public static AddressViewModel ToViewModel(this AddressDTO userAddr)\n      {\n            return userAddr == null ?\n                null :\n                new AddressViewModel()\n                {\n                    Name = userAddr.Name\n                };\n      }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -224,52 +223,25 @@
         "id": "281892ad-749b-4296-9aa1-e8c4b60a862d",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524687875,
+        "last_edited_time": 1549876260000,
         "parent_id": "7be5a0f2-60c4-4fa7-9701-b587a71d3637",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "UserDTO userDTOObj = new UserDTO() {\n            Address = new AddressDTO() {\n                Name = \"Address of the user\"\n            }\n        };"
+              "UserDTO userDTOObj = new UserDTO() {\n        Address = new AddressDTO() {\n            Name = \"Address of the user\"\n        }\n    };\n\nUserViewModel user = userDTOObj.ToViewModel(); // My DTO mapped to Viewmodel\n"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "UserDTO userDTOObj = new UserDTO() {\n            Address = new AddressDTO() {\n                Name = \"Address of the user\"\n            }\n        };",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524687875,
-        "id": "8a46faa6-066f-4c6d-be48-ff447a258131",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524687875,
-        "parent_id": "7be5a0f2-60c4-4fa7-9701-b587a71d3637",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "UserViewModel user = userDTOObj.ToViewModel(); // My DTO mapped to Viewmodel"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "UserViewModel user = userDTOObj.ToViewModel(); // My DTO mapped to Viewmodel",
-        "code_language": "Plain Text"
+        "version": 10,
+        "code": "UserDTO userDTOObj = new UserDTO() {\n        Address = new AddressDTO() {\n            Name = \"Address of the user\"\n        }\n    };\n\nUserViewModel user = userDTOObj.ToViewModel(); // My DTO mapped to Viewmodel\n",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -297,7 +269,7 @@
         ]
       }
     ],
-    "title": "Using Extension methods to create beautiful mapper classes",
+    "title": "Using Extension methods to create mapper classes",
     "format_page": {
       "page_cover": "",
       "page_cover_position": 0,

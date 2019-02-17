@@ -11,16 +11,14 @@
       "498dee9a-228d-47e9-a1f7-fdf32c8d132a",
       "d6fbc575-989f-41ec-933a-5d3a124a1f40",
       "a0dd25a1-0fa1-462a-828b-46183cb014ac",
-      "d6f0a0a7-8191-4e0d-8c4f-9e7782a058e0",
       "700284d4-aaf3-48b5-975f-920423351c85",
       "12756d18-f329-41f3-b569-508e808071e9",
-      "b4244c75-ea91-494a-a5c7-ea61d75e8ab7",
-      "d7810902-d949-4d40-88e2-28b1b12b4229",
       "0ff7b61b-d3f1-4741-94d8-9c6e2c96ce3f",
       "9cffa38a-262f-4a15-9873-ccc95a6ce503",
       "aeaf24a4-64de-485b-8728-a2861fd4b77a",
       "7862d8ee-9945-4277-8e7e-87cdd81909ad",
-      "e733e85a-aa57-455f-b5bd-2655d1d647c7"
+      "e733e85a-aa57-455f-b5bd-2655d1d647c7",
+      "ac8ae75b-8751-4a0f-b0bf-d3301102f215"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549525976311,
@@ -31,7 +29,7 @@
     "id": "4b5bc0f3-d3a7-4bca-8287-ddcc075fd4b2",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549628460000,
+    "last_edited_time": 1550116740000,
     "parent_id": "3579f09a-ed6b-403d-b38a-ab7fa93d0309",
     "parent_table": "block",
     "properties": {
@@ -42,7 +40,7 @@
       ]
     },
     "type": "page",
-    "version": 5,
+    "version": 11,
     "content_resolved": [
       {
         "alive": true,
@@ -464,52 +462,25 @@
         "id": "a0dd25a1-0fa1-462a-828b-46183cb014ac",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525976310,
+        "last_edited_time": 1550116680000,
         "parent_id": "4b5bc0f3-d3a7-4bca-8287-ddcc075fd4b2",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public class PriceChangingEventArgs : EventArgs\n{\n    public PriceChangingEventArgs(int currentPrice, int newPrice)\n    {\n        this.CurrentPrice = currentPrice;\n        this.NewPrice = newPrice;\n    }"
+              "public class PriceChangingEventArgs : EventArgs\n{\n    public PriceChangingEventArgs(int currentPrice, int newPrice)\n    {\n        this.CurrentPrice = currentPrice;\n        this.NewPrice = newPrice;\n    }\n\n    public int CurrentPrice { get; private set; }\n    public int NewPrice { get; private set; }\n}\n"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public class PriceChangingEventArgs : EventArgs\n{\n    public PriceChangingEventArgs(int currentPrice, int newPrice)\n    {\n        this.CurrentPrice = currentPrice;\n        this.NewPrice = newPrice;\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525976310,
-        "id": "d6f0a0a7-8191-4e0d-8c4f-9e7782a058e0",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525976310,
-        "parent_id": "4b5bc0f3-d3a7-4bca-8287-ddcc075fd4b2",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public int CurrentPrice { get; private set; }\n    public int NewPrice { get; private set; }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public int CurrentPrice { get; private set; }\n    public int NewPrice { get; private set; }\n}",
-        "code_language": "Plain Text"
+        "version": 8,
+        "code": "public class PriceChangingEventArgs : EventArgs\n{\n    public PriceChangingEventArgs(int currentPrice, int newPrice)\n    {\n        this.CurrentPrice = currentPrice;\n        this.NewPrice = newPrice;\n    }\n\n    public int CurrentPrice { get; private set; }\n    public int NewPrice { get; private set; }\n}\n",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -549,79 +520,25 @@
         "id": "12756d18-f329-41f3-b569-508e808071e9",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525976310,
+        "last_edited_time": 1550116740000,
         "parent_id": "4b5bc0f3-d3a7-4bca-8287-ddcc075fd4b2",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public class Product\n{\n    public event EventHandler\u003cPriceChangingEventArgs\u003e PriceChanging;"
+              "public class Product\n{\n    public event EventHandler\u003cPriceChangingEventArgs\u003e PriceChanging;\n\n    int price;\n    public int Price\n    {\n        get { return price; }\n        set\n        {\n            var e = new PriceChangingEventArgs(price, value);\n            OnPriceChanging(e);\n            price = value;\n        }\n    }\n\n    protected void OnPriceChanging(PriceChangingEventArgs e)\n    {\n        var handler = PriceChanging;\n        if (handler != null)\n            handler(this, e);\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public class Product\n{\n    public event EventHandler\u003cPriceChangingEventArgs\u003e PriceChanging;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525976310,
-        "id": "b4244c75-ea91-494a-a5c7-ea61d75e8ab7",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525976310,
-        "parent_id": "4b5bc0f3-d3a7-4bca-8287-ddcc075fd4b2",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "int price;\n    public int Price\n    {\n        get { return price; }\n        set\n        {\n            var e = new PriceChangingEventArgs(price, value);\n            OnPriceChanging(e);\n            price = value;\n        }\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "int price;\n    public int Price\n    {\n        get { return price; }\n        set\n        {\n            var e = new PriceChangingEventArgs(price, value);\n            OnPriceChanging(e);\n            price = value;\n        }\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525976310,
-        "id": "d7810902-d949-4d40-88e2-28b1b12b4229",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525976310,
-        "parent_id": "4b5bc0f3-d3a7-4bca-8287-ddcc075fd4b2",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "protected void OnPriceChanging(PriceChangingEventArgs e)\n    {\n        var handler = PriceChanging;\n        if (handler != null)\n            handler(this, e);\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "protected void OnPriceChanging(PriceChangingEventArgs e)\n    {\n        var handler = PriceChanging;\n        if (handler != null)\n            handler(this, e);\n    }\n}",
-        "code_language": "Plain Text"
+        "version": 9,
+        "code": "public class Product\n{\n    public event EventHandler\u003cPriceChangingEventArgs\u003e PriceChanging;\n\n    int price;\n    public int Price\n    {\n        get { return price; }\n        set\n        {\n            var e = new PriceChangingEventArgs(price, value);\n            OnPriceChanging(e);\n            price = value;\n        }\n    }\n\n    protected void OnPriceChanging(PriceChangingEventArgs e)\n    {\n        var handler = PriceChanging;\n        if (handler != null)\n            handler(this, e);\n    }\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -698,13 +615,13 @@
         "id": "aeaf24a4-64de-485b-8728-a2861fd4b77a",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525976311,
+        "last_edited_time": 1550116740000,
         "parent_id": "4b5bc0f3-d3a7-4bca-8287-ddcc075fd4b2",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -714,9 +631,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "public int NewPrice { get; set; }",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -804,13 +721,13 @@
         "id": "e733e85a-aa57-455f-b5bd-2655d1d647c7",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525976311,
+        "last_edited_time": 1550116740000,
         "parent_id": "4b5bc0f3-d3a7-4bca-8287-ddcc075fd4b2",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -820,9 +737,21 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "int price;\npublic int Price\n{\n    get { return price; }\n    set\n    {\n        var e = new PriceChangingEventArgs(price, value);\n        OnPriceChanging(e);\n        price = e.NewPrice;\n    }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550116740000,
+        "id": "ac8ae75b-8751-4a0f-b0bf-d3301102f215",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550116740000,
+        "parent_id": "4b5bc0f3-d3a7-4bca-8287-ddcc075fd4b2",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "Creating custom EventArgs containing additional data",

@@ -6,9 +6,6 @@
       "011237f7-47ad-4aac-bd6d-07c0f5731777",
       "eda2ad43-17de-4e44-8618-c3846659801e",
       "1d5fd394-24a1-4dc6-9204-ce3cd910e9e2",
-      "e66dbe75-c4fe-4b24-86ae-27d2b4b2f286",
-      "5702c443-3330-42cd-87f9-dfe453e8ede3",
-      "652059cd-0f13-4f2c-bdd9-b721313d0202",
       "fdab801d-7f6c-4c54-8a4b-e2286024f31d",
       "499790a4-8472-4682-ac51-a1487ba7b6a4",
       "69f23d55-a173-4380-92fc-74e808530262",
@@ -24,7 +21,7 @@
     "id": "8b100250-538a-4e1a-8500-3fe1ba361011",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549792080000,
+    "last_edited_time": 1550213220000,
     "parent_id": "725b2bde-ffc2-44a7-b59e-22caf9f1930b",
     "parent_table": "block",
     "properties": {
@@ -35,7 +32,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 12,
     "content_resolved": [
       {
         "alive": true,
@@ -143,106 +140,25 @@
         "id": "1d5fd394-24a1-4dc6-9204-ce3cd910e9e2",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528619496,
+        "last_edited_time": 1550213220000,
         "parent_id": "8b100250-538a-4e1a-8500-3fe1ba361011",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "using System.Security.Cryptography;\n\n    ..."
+              "using System.Security.Cryptography;\n\n...\n\npublic const int SALT_SIZE = 24; // size in bytes\npublic const int HASH_SIZE = 24; // size in bytes\npublic const int ITERATIONS = 100000; // number of pbkdf2 iterations\n\npublic static byte[] CreateHash(string input)\n{\n    // Generate a salt\n    RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();\n    byte[] salt = new byte[SALT_SIZE];\n    provider.GetBytes(salt);\n\n    // Generate the hash\n    Rfc2898DeriveBytes pbkdf2 = new Rfc2898DeriveBytes(input, salt, ITERATIONS);\n    return pbkdf2.GetBytes(HASH_SIZE);\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "using System.Security.Cryptography;\n\n    ...",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528619496,
-        "id": "e66dbe75-c4fe-4b24-86ae-27d2b4b2f286",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528619496,
-        "parent_id": "8b100250-538a-4e1a-8500-3fe1ba361011",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public const int SALT_SIZE = 24; // size in bytes\n    public const int HASH_SIZE = 24; // size in bytes\n    public const int ITERATIONS = 100000; // number of pbkdf2 iterations"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public const int SALT_SIZE = 24; // size in bytes\n    public const int HASH_SIZE = 24; // size in bytes\n    public const int ITERATIONS = 100000; // number of pbkdf2 iterations",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528619497,
-        "id": "5702c443-3330-42cd-87f9-dfe453e8ede3",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528619497,
-        "parent_id": "8b100250-538a-4e1a-8500-3fe1ba361011",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public static byte[] CreateHash(string input)\n    {\n        // Generate a salt\n        RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();\n        byte[] salt = new byte[SALT_SIZE];\n        provider.GetBytes(salt);"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public static byte[] CreateHash(string input)\n    {\n        // Generate a salt\n        RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();\n        byte[] salt = new byte[SALT_SIZE];\n        provider.GetBytes(salt);",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528619497,
-        "id": "652059cd-0f13-4f2c-bdd9-b721313d0202",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528619497,
-        "parent_id": "8b100250-538a-4e1a-8500-3fe1ba361011",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// Generate the hash\n        Rfc2898DeriveBytes pbkdf2 = new Rfc2898DeriveBytes(input, salt, ITERATIONS);\n        return pbkdf2.GetBytes(HASH_SIZE);\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// Generate the hash\n        Rfc2898DeriveBytes pbkdf2 = new Rfc2898DeriveBytes(input, salt, ITERATIONS);\n        return pbkdf2.GetBytes(HASH_SIZE);\n    }",
-        "code_language": "Plain Text"
+        "version": 9,
+        "code": "using System.Security.Cryptography;\n\n...\n\npublic const int SALT_SIZE = 24; // size in bytes\npublic const int HASH_SIZE = 24; // size in bytes\npublic const int ITERATIONS = 100000; // number of pbkdf2 iterations\n\npublic static byte[] CreateHash(string input)\n{\n    // Generate a salt\n    RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();\n    byte[] salt = new byte[SALT_SIZE];\n    provider.GetBytes(salt);\n\n    // Generate the hash\n    Rfc2898DeriveBytes pbkdf2 = new Rfc2898DeriveBytes(input, salt, ITERATIONS);\n    return pbkdf2.GetBytes(HASH_SIZE);\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,

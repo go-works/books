@@ -5,7 +5,8 @@
     "content": [
       "527f1392-bb72-4eae-9a89-0bbf6a84746b",
       "c8160c25-24ab-4f5a-bd7d-a2c39ff24fee",
-      "b2599b77-4e41-41cb-872e-571940dd8a89"
+      "b2599b77-4e41-41cb-872e-571940dd8a89",
+      "3d945051-dffa-4248-8cba-eb79f7ac9677"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549526712927,
@@ -16,7 +17,7 @@
     "id": "28afcd75-b78a-4f06-bf87-58171d995b5f",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549621860000,
+    "last_edited_time": 1550130780000,
     "parent_id": "e99b1414-411b-440a-a7eb-eb6a3731ac76",
     "parent_table": "block",
     "properties": {
@@ -27,7 +28,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 10,
     "content_resolved": [
       {
         "alive": true,
@@ -61,13 +62,13 @@
         "id": "c8160c25-24ab-4f5a-bd7d-a2c39ff24fee",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549526712927,
+        "last_edited_time": 1550130780000,
         "parent_id": "28afcd75-b78a-4f06-bf87-58171d995b5f",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -77,9 +78,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "class IfElseExample\n{\n    public string DebugToString(object a)\n    {\n        if (a is StringBuilder)\n        {\n            return DebugToStringInternal(a as StringBuilder);\n        }\n        else if (a is List\u003cstring\u003e)\n        {\n            return DebugToStringInternal(a as List\u003cstring\u003e);\n        }\n        else\n        {\n            return a.ToString();\n        }\n    }\n\n    private string DebugToStringInternal(object a)\n    {\n        // Fall Back\n        return a.ToString();\n    }\n\n    private string DebugToStringInternal(StringBuilder sb)\n    {\n        return $\"StringBuilder - Capacity: {sb.Capacity}, MaxCapacity: {sb.MaxCapacity}, Value: {sb.ToString()}\";\n    }\n\n    private string DebugToStringInternal(List\u003cstring\u003e list)\n    {\n        return $\"List\u003cstring\u003e - Count: {list.Count}, Value: {Environment.NewLine + \"\\t\" + string.Join(Environment.NewLine + \"\\t\", list.ToArray())}\";\n    }\n}\n\nclass DynamicExample\n{\n    public string DebugToString(object a)\n    {\n        return DebugToStringInternal((dynamic)a);\n    }\n\n    private string DebugToStringInternal(object a)\n    {\n        // Fall Back\n        return a.ToString();\n    }\n\n    private string DebugToStringInternal(StringBuilder sb)\n    {\n        return $\"StringBuilder - Capacity: {sb.Capacity}, MaxCapacity: {sb.MaxCapacity}, Value: {sb.ToString()}\";\n    }\n\n    private string DebugToStringInternal(List\u003cstring\u003e list)\n    {\n        return $\"List\u003cstring\u003e - Count: {list.Count}, Value: {Environment.NewLine + \"\\t\" + string.Join(Environment.NewLine + \"\\t\", list.ToArray())}\";\n    }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -105,6 +106,18 @@
             "Text": "The advantage to the dynamic, is adding a new Type to handle just requires adding an overload of DebugToStringInternal of the new type. Also eliminates the need to manually cast it to the type as well."
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550130780000,
+        "id": "3d945051-dffa-4248-8cba-eb79f7ac9677",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550130780000,
+        "parent_id": "28afcd75-b78a-4f06-bf87-58171d995b5f",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "Handling Specific Types Unknown at Compile Time",

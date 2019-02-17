@@ -5,12 +5,12 @@
     "content": [
       "a9562edc-b2c3-4b31-b566-b29808239105",
       "cbefeb57-19a7-4182-aaa5-93d1d82eff71",
-      "a6bd62bd-dd01-4b3f-acb4-d964b7dcb3e8",
       "1cddb930-50c3-4487-a43e-f5511cf7ae55",
       "92ab086a-43ac-417a-a460-18bfc526861d",
       "d8ec87e1-6ff5-493b-b21e-2f7a8eef6885",
       "29bbdcff-7426-4714-909a-9373acaac109",
-      "9333ef1e-d403-4195-8643-88d9121bab99"
+      "9333ef1e-d403-4195-8643-88d9121bab99",
+      "153100f7-5c95-43d5-a9e8-37beaac0f334"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549525131317,
@@ -21,7 +21,7 @@
     "id": "c72f59fa-00f3-4cf2-a0c0-e09c6a4f6e14",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549613400000,
+    "last_edited_time": 1550043840000,
     "parent_id": "6bc8984c-0999-42e1-a500-ace83190c171",
     "parent_table": "block",
     "properties": {
@@ -32,7 +32,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 13,
     "content_resolved": [
       {
         "alive": true,
@@ -246,7 +246,7 @@
         "id": "cbefeb57-19a7-4182-aaa5-93d1d82eff71",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549613400000,
+        "last_edited_time": 1550043840000,
         "parent_id": "c72f59fa-00f3-4cf2-a0c0-e09c6a4f6e14",
         "parent_table": "block",
         "properties": {
@@ -257,41 +257,14 @@
           ],
           "title": [
             [
-              "class Animal { /* ... */ }\nclass Dog : Animal { /* ... */ }"
+              "class Animal { /* ... */ }\nclass Dog : Animal { /* ... */ }\n\nIComparer\u003cAnimal\u003e animalComparer = /* ... */;\nIComparer\u003cDog\u003e dogComparer = animalComparer;  // IComparer\u003cAnimal\u003e is a subtype of IComparer\u003cDog\u003e\n// animalComparer = dogComparer;  // Compilation error - IComparer\u003cDog\u003e is not a subtype of IComparer\u003cAnimal\u003e"
             ]
           ]
         },
         "type": "code",
-        "version": 3,
-        "code": "class Animal { /* ... */ }\nclass Dog : Animal { /* ... */ }",
+        "version": 9,
+        "code": "class Animal { /* ... */ }\nclass Dog : Animal { /* ... */ }\n\nIComparer\u003cAnimal\u003e animalComparer = /* ... */;\nIComparer\u003cDog\u003e dogComparer = animalComparer;  // IComparer\u003cAnimal\u003e is a subtype of IComparer\u003cDog\u003e\n// animalComparer = dogComparer;  // Compilation error - IComparer\u003cDog\u003e is not a subtype of IComparer\u003cAnimal\u003e",
         "code_language": "C#"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525131316,
-        "id": "a6bd62bd-dd01-4b3f-acb4-d964b7dcb3e8",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525131316,
-        "parent_id": "c72f59fa-00f3-4cf2-a0c0-e09c6a4f6e14",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "IComparer\u003cAnimal\u003e animalComparer = /* ... */;\nIComparer\u003cDog\u003e dogComparer = animalComparer;  // IComparer\u003cAnimal\u003e is a subtype of IComparer\u003cDog\u003e\n// animalComparer = dogComparer;  // Compilation error - IComparer\u003cDog\u003e is not a subtype of IComparer\u003cAnimal\u003e"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "IComparer\u003cAnimal\u003e animalComparer = /* ... */;\nIComparer\u003cDog\u003e dogComparer = animalComparer;  // IComparer\u003cAnimal\u003e is a subtype of IComparer\u003cDog\u003e\n// animalComparer = dogComparer;  // Compilation error - IComparer\u003cDog\u003e is not a subtype of IComparer\u003cAnimal\u003e",
-        "code_language": "Plain Text"
       },
       {
         "alive": true,
@@ -545,6 +518,32 @@
             "Text": "A type parameter declared as contravariant may not appear as an output."
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550043873007,
+        "id": "153100f7-5c95-43d5-a9e8-37beaac0f334",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550043840000,
+        "parent_id": "c72f59fa-00f3-4cf2-a0c0-e09c6a4f6e14",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "interface Bad\u003cin T\u003e\n{\n    T GetT();  // type error\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 10,
+        "code": "interface Bad\u003cin T\u003e\n{\n    T GetT();  // type error\n}",
+        "code_language": "C#"
       }
     ],
     "title": "Contravariance",

@@ -11,7 +11,8 @@
       "ae2b0aee-d008-493c-a56b-a27c32b4fb8e",
       "84c91914-c06a-4e2a-92c4-41c878c637c5",
       "4c1562e6-6f84-4089-b9ad-cd89a86618cf",
-      "1dff7621-7db1-4a3e-acb3-321d8ead0054"
+      "1dff7621-7db1-4a3e-acb3-321d8ead0054",
+      "724e321c-e462-4a8a-9b6f-866ca52d4937"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549527230759,
@@ -22,7 +23,7 @@
     "id": "5ce8cd8c-9a01-4094-8fc9-77d36959d849",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549622220000,
+    "last_edited_time": 1550202000000,
     "parent_id": "73b5ab63-2700-4b45-89fb-fa4c13a44d84",
     "parent_table": "block",
     "properties": {
@@ -33,7 +34,7 @@
       ]
     },
     "type": "page",
-    "version": 12,
+    "version": 14,
     "content_resolved": [
       {
         "alive": true,
@@ -377,6 +378,18 @@
         "version": 3,
         "code": "static class NullableTypesCache {\n    readonly static ConcurrentDictionary\u003cType, Type\u003e cache = new ConcurrentDictionary\u003cType, Type\u003e();\n    static NullableTypesCache() {\n        cache.TryAdd(typeof(byte), typeof(Nullable\u003cbyte\u003e));\n        cache.TryAdd(typeof(short), typeof(Nullable\u003cshort\u003e));\n        cache.TryAdd(typeof(int), typeof(Nullable\u003cint\u003e));\n        cache.TryAdd(typeof(long), typeof(Nullable\u003clong\u003e));\n        cache.TryAdd(typeof(float), typeof(Nullable\u003cfloat\u003e));\n        cache.TryAdd(typeof(double), typeof(Nullable\u003cdouble\u003e));\n        cache.TryAdd(typeof(decimal), typeof(Nullable\u003cdecimal\u003e));\n        cache.TryAdd(typeof(sbyte), typeof(Nullable\u003csbyte\u003e));\n        cache.TryAdd(typeof(ushort), typeof(Nullable\u003cushort\u003e));\n        cache.TryAdd(typeof(uint), typeof(Nullable\u003cuint\u003e));\n        cache.TryAdd(typeof(ulong), typeof(Nullable\u003culong\u003e));\n        //... \n    }\n    readonly static Type NullableBase = typeof(Nullable\u003c\u003e);\n    internal static Type Get(Type type) {\n        // Try to avoid the expensive MakeGenericType method call\n        return cache.GetOrAdd(type, t =\u003e NullableBase.MakeGenericType(t)); \n    }\n}",
         "code_language": "C#"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550202000000,
+        "id": "724e321c-e462-4a8a-9b6f-866ca52d4937",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550202000000,
+        "parent_id": "5ce8cd8c-9a01-4094-8fc9-77d36959d849",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "Effective usage of underlying NullableT argument",

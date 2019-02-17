@@ -7,11 +7,7 @@
       "625553a5-99e3-42b7-b730-eb2066d4e70f",
       "879e0790-cebe-47cd-88d9-580e984e963e",
       "3270f2e0-7b98-44c4-8d08-ac83e6403db1",
-      "5d94ebad-3b73-4627-a923-3af2d5a89eec",
-      "f7186051-b8fd-4b2c-a06a-627184226bf6",
-      "bc41747b-ccf3-4077-a0f1-c2e1d29aeb09",
-      "eb385de5-e456-4b74-8089-527d42f95d8d",
-      "963e8243-5036-4dca-8b00-cffe941fb95c"
+      "5d94ebad-3b73-4627-a923-3af2d5a89eec"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549524861222,
@@ -22,7 +18,7 @@
     "id": "ff7b7dd9-772c-47e7-8a79-7eec5906c52e",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549614600000,
+    "last_edited_time": 1549939200000,
     "parent_id": "307cbc92-1d45-43c5-9927-7963d630a818",
     "parent_table": "block",
     "properties": {
@@ -33,7 +29,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 14,
     "content_resolved": [
       {
         "alive": true,
@@ -275,13 +271,13 @@
         "id": "879e0790-cebe-47cd-88d9-580e984e963e",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524861221,
+        "last_edited_time": 1549939140000,
         "parent_id": "ff7b7dd9-772c-47e7-8a79-7eec5906c52e",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -291,9 +287,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "try\n{\n    //since C#5\n    await service.InitializeAsync();\n} \ncatch (Exception e)\n{\n    //since C#6\n    await logger.LogAsync(e);\n}\nfinally\n{\n    //since C#6\n    await service.CloseAsync();\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -363,133 +359,25 @@
         "id": "5d94ebad-3b73-4627-a923-3af2d5a89eec",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524861222,
+        "last_edited_time": 1549939200000,
         "parent_id": "ff7b7dd9-772c-47e7-8a79-7eec5906c52e",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "bool error = false;\nException ex = null;"
+              "bool error = false;\nException ex = null;\n\ntry\n{\n    // Since C#5\n    await service.InitializeAsync();\n} \ncatch (Exception e)\n{\n    // Declare bool or place exception inside variable\n    error = true;\n    ex = e;\n}\n\n// If you don't use the exception\nif (error)\n{\n    // Handle async task\n}\n\n// If want to use information from the exception\nif (ex != null)\n{\n    await logger.LogAsync(e);\n}    \n\n// Close the service, since this isn't possible in the finally\nawait service.CloseAsync();"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "bool error = false;\nException ex = null;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524861222,
-        "id": "f7186051-b8fd-4b2c-a06a-627184226bf6",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524861222,
-        "parent_id": "ff7b7dd9-772c-47e7-8a79-7eec5906c52e",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "try\n{\n    // Since C#5\n    await service.InitializeAsync();\n} \ncatch (Exception e)\n{\n    // Declare bool or place exception inside variable\n    error = true;\n    ex = e;\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "try\n{\n    // Since C#5\n    await service.InitializeAsync();\n} \ncatch (Exception e)\n{\n    // Declare bool or place exception inside variable\n    error = true;\n    ex = e;\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524861222,
-        "id": "bc41747b-ccf3-4077-a0f1-c2e1d29aeb09",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524861222,
-        "parent_id": "ff7b7dd9-772c-47e7-8a79-7eec5906c52e",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// If you don't use the exception\nif (error)\n{\n    // Handle async task\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// If you don't use the exception\nif (error)\n{\n    // Handle async task\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524861222,
-        "id": "eb385de5-e456-4b74-8089-527d42f95d8d",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524861222,
-        "parent_id": "ff7b7dd9-772c-47e7-8a79-7eec5906c52e",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// If want to use information from the exception\nif (ex != null)\n{\n    await logger.LogAsync(e);\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// If want to use information from the exception\nif (ex != null)\n{\n    await logger.LogAsync(e);\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524861222,
-        "id": "963e8243-5036-4dca-8b00-cffe941fb95c",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524861222,
-        "parent_id": "ff7b7dd9-772c-47e7-8a79-7eec5906c52e",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// Close the service, since this isn't possible in the finally\nawait service.CloseAsync();"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// Close the service, since this isn't possible in the finally\nawait service.CloseAsync();",
-        "code_language": "Plain Text"
+        "version": 10,
+        "code": "bool error = false;\nException ex = null;\n\ntry\n{\n    // Since C#5\n    await service.InitializeAsync();\n} \ncatch (Exception e)\n{\n    // Declare bool or place exception inside variable\n    error = true;\n    ex = e;\n}\n\n// If you don't use the exception\nif (error)\n{\n    // Handle async task\n}\n\n// If want to use information from the exception\nif (ex != null)\n{\n    await logger.LogAsync(e);\n}    \n\n// Close the service, since this isn't possible in the finally\nawait service.CloseAsync();",
+        "code_language": "C#"
       }
     ],
     "title": "Await in catch and finally",

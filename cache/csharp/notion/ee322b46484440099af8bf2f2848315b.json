@@ -23,7 +23,7 @@
     "id": "ee322b46-4844-4009-9af8-bf2f2848315b",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549623960000,
+    "last_edited_time": 1550221620000,
     "parent_id": "afa171fd-7878-4468-8315-1e19990ae73e",
     "parent_table": "block",
     "properties": {
@@ -34,7 +34,7 @@
       ]
     },
     "type": "page",
-    "version": 7,
+    "version": 9,
     "content_resolved": [
       {
         "alive": true,
@@ -80,13 +80,13 @@
         "id": "ade6563c-e75b-472f-a5db-3e781d3b7069",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529774399,
+        "last_edited_time": 1550221560000,
         "parent_id": "ee322b46-4844-4009-9af8-bf2f2848315b",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -96,9 +96,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "public class Employee\n{\n    [DisplayName(@\"Employee first name\")]\n    public string FirstName { get; set; }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -138,13 +138,13 @@
         "id": "1efbe9b3-7240-4db1-bbc3-51544f306666",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529774400,
+        "last_edited_time": 1550221620000,
         "parent_id": "ee322b46-4844-4009-9af8-bf2f2848315b",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "XML"
             ]
           ],
           "title": [
@@ -154,9 +154,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "\u003cWindow x:Class=\"WpfApplication.MainWindow\"\n        xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\"\n        xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\"\n        xmlns:wpfApplication=\"clr-namespace:WpfApplication\"\n        Height=\"100\" Width=\"360\" Title=\"Display name example\"\u003e\n\n    \u003cWindow.Resources\u003e\n        \u003cwpfApplication:DisplayNameConverter x:Key=\"DisplayNameConverter\"/\u003e\n    \u003c/Window.Resources\u003e\n\n    \u003cStackPanel Margin=\"5\"\u003e\n        \u003c!-- Label (DisplayName attribute) --\u003e\n        \u003cLabel Content=\"{Binding Employee, Converter={StaticResource DisplayNameConverter}, ConverterParameter=FirstName}\" /\u003e\n        \u003c!-- TextBox (FirstName property value) --\u003e\n        \u003cTextBox Text=\"{Binding Employee.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}\" /\u003e\n    \u003c/StackPanel\u003e\n    \n\u003c/Window\u003e",
-        "code_language": "Plain Text"
+        "code_language": "XML"
       },
       {
         "alive": true,
@@ -178,13 +178,13 @@
         "id": "4a9ed0f1-1cae-4677-a3ee-4a73d33e8709",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529774400,
+        "last_edited_time": 1550221620000,
         "parent_id": "ee322b46-4844-4009-9af8-bf2f2848315b",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -194,9 +194,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "namespace WpfApplication\n{\n    /// \u003csummary\u003e\n    /// Interaction logic for MainWindow.xaml\n    /// \u003c/summary\u003e\n    public partial class MainWindow : Window\n    {\n        private Employee _employee = new Employee();\n\n        public MainWindow()\n        {\n            InitializeComponent();\n            DataContext = this;\n        }\n\n        public Employee Employee\n        {\n            get { return _employee; }\n            set { _employee = value; }\n        }\n    }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -218,13 +218,13 @@
         "id": "925027a3-5b17-458e-9cc3-58fff9b543c5",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529774400,
+        "last_edited_time": 1550221620000,
         "parent_id": "ee322b46-4844-4009-9af8-bf2f2848315b",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -234,9 +234,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "namespace WpfApplication\n{\n    public class DisplayNameConverter : IValueConverter\n    {\n        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)\n        {\n            // Get display name for given instance type and property name\n            var attribute = value.GetType()\n                .GetProperty(parameter.ToString())\n                .GetCustomAttributes(false)\n                .OfType\u003cDisplayNameAttribute\u003e()\n                .FirstOrDefault();\n\n            return attribute != null ? attribute.DisplayName : string.Empty;\n        }\n\n        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)\n        {\n            throw new NotImplementedException();\n        }\n    }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,

@@ -1,0 +1,249 @@
+{
+  "ID": "ef7d1e2a-4cf4-4a55-b336-6226fc23123c",
+  "Root": {
+    "alive": true,
+    "content": [
+      "8ba9c091-8055-4574-a69c-75e13fc4a53d",
+      "8d7a62e5-892b-4d44-965a-8ddd791f4751",
+      "2f8d22b5-ce8a-4bb0-9bc5-addb4454f9d7",
+      "1e7b99b6-6196-4ee3-b512-358bc3e87894",
+      "dae610ac-5a7e-4769-95b6-675318f4612d"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550346066158,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "ef7d1e2a-4cf4-4a55-b336-6226fc23123c",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550346120000,
+    "parent_id": "ce5582e1-265e-4411-b5ad-310114bbe696",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Creating a worker pool"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550346066154,
+        "id": "8ba9c091-8055-4574-a69c-75e13fc4a53d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550346066154,
+        "parent_id": "ef7d1e2a-4cf4-4a55-b336-6226fc23123c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Using "
+            ],
+            [
+              "threading",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " \u0026 "
+            ],
+            [
+              "queue",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ":"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Using "
+          },
+          {
+            "Text": "threading",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " \u0026 "
+          },
+          {
+            "Text": "queue",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ":"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550346066157,
+        "id": "8d7a62e5-892b-4d44-965a-8ddd791f4751",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550346120000,
+        "parent_id": "ef7d1e2a-4cf4-4a55-b336-6226fc23123c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Python"
+            ]
+          ],
+          "title": [
+            [
+              "from socket import socket, AF_INET, SOCK_STREAM\nfrom threading import Thread\nfrom queue import Queue\n    \ndef echo_server(addr, nworkers):\n    print('Echo server running at', addr)\n    # Launch the client workers\n    q = Queue()\n    for n in range(nworkers):\n        t = Thread(target=echo_client, args=(q,))\n        t.daemon = True\n        t.start()\n\n    # Run the server\n    sock = socket(AF_INET, SOCK_STREAM)\n    sock.bind(addr)\n    sock.listen(5)\n    while True:\n        client_sock, client_addr = sock.accept()\n        q.put((client_sock, client_addr))\n\necho_server(('',15000), 128)"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "from socket import socket, AF_INET, SOCK_STREAM\nfrom threading import Thread\nfrom queue import Queue\n    \ndef echo_server(addr, nworkers):\n    print('Echo server running at', addr)\n    # Launch the client workers\n    q = Queue()\n    for n in range(nworkers):\n        t = Thread(target=echo_client, args=(q,))\n        t.daemon = True\n        t.start()\n\n    # Run the server\n    sock = socket(AF_INET, SOCK_STREAM)\n    sock.bind(addr)\n    sock.listen(5)\n    while True:\n        client_sock, client_addr = sock.accept()\n        q.put((client_sock, client_addr))\n\necho_server(('',15000), 128)",
+        "code_language": "Python"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550346066157,
+        "id": "2f8d22b5-ce8a-4bb0-9bc5-addb4454f9d7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550346066157,
+        "parent_id": "ef7d1e2a-4cf4-4a55-b336-6226fc23123c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Using "
+            ],
+            [
+              "concurrent.futures.Threadpoolexecutor",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ":"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Using "
+          },
+          {
+            "Text": "concurrent.futures.Threadpoolexecutor",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ":"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550346066157,
+        "id": "1e7b99b6-6196-4ee3-b512-358bc3e87894",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550346120000,
+        "parent_id": "ef7d1e2a-4cf4-4a55-b336-6226fc23123c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Python"
+            ]
+          ],
+          "title": [
+            [
+              "from socket import AF_INET, SOCK_STREAM, socket\nfrom concurrent.futures import ThreadPoolExecutor\n\ndef echo_server(addr):\n    print('Echo server running at', addr)\n    pool = ThreadPoolExecutor(128)\n    sock = socket(AF_INET, SOCK_STREAM)\n    sock.bind(addr)\n    sock.listen(5)\n    while True:\n        client_sock, client_addr = sock.accept()\n        pool.submit(echo_client, client_sock, client_addr)\n\necho_server(('',15000))"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "from socket import AF_INET, SOCK_STREAM, socket\nfrom concurrent.futures import ThreadPoolExecutor\n\ndef echo_server(addr):\n    print('Echo server running at', addr)\n    pool = ThreadPoolExecutor(128)\n    sock = socket(AF_INET, SOCK_STREAM)\n    sock.bind(addr)\n    sock.listen(5)\n    while True:\n        client_sock, client_addr = sock.accept()\n        pool.submit(echo_client, client_sock, client_addr)\n\necho_server(('',15000))",
+        "code_language": "Python"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550346066158,
+        "id": "dae610ac-5a7e-4769-95b6-675318f4612d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550346066158,
+        "parent_id": "ef7d1e2a-4cf4-4a55-b336-6226fc23123c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Python Cookbook, 3rd edition, by David Beazley and Brian K. Jones (O’Reilly). Copyright 2013 David Beazley and Brian Jones, 978-1-449-34037-7.",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Python Cookbook, 3rd edition, by David Beazley and Brian K. Jones (O’Reilly). Copyright 2013 David Beazley and Brian Jones, 978-1-449-34037-7.",
+            "AttrFlags": 4
+          }
+        ]
+      }
+    ],
+    "title": "Creating a worker pool",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

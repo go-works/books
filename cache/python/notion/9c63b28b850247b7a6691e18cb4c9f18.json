@@ -1,0 +1,189 @@
+{
+  "ID": "9c63b28b-8502-47b7-a669-1e18cb4c9f18",
+  "Root": {
+    "alive": true,
+    "content": [
+      "08c6c568-1334-4b9d-9249-fbd14d19b1aa",
+      "0834ddd3-ff83-4350-be50-523ef8b454b4",
+      "8779d263-3a55-4217-81aa-b357078b59f0",
+      "370a60ae-1bc4-4727-bc42-606e9516b31b",
+      "e08bbfdc-84a4-4552-9006-c80ab38dbda0"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550262669888,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "9c63b28b-8502-47b7-a669-1e18cb4c9f18",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550266680000,
+    "parent_id": "03bb9294-3af1-4922-b21f-12ca8b68a4f2",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Create singleton class with a decorator"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550262669885,
+        "id": "08c6c568-1334-4b9d-9249-fbd14d19b1aa",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550262669885,
+        "parent_id": "9c63b28b-8502-47b7-a669-1e18cb4c9f18",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "A singleton is a pattern that restricts the instantiation of a class to one instance/object. Using a decorator, we can define a class as a singleton by forcing the class to either return an existing instance of the class or create a new instance (if it doesn’t exist)."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "A singleton is a pattern that restricts the instantiation of a class to one instance/object. Using a decorator, we can define a class as a singleton by forcing the class to either return an existing instance of the class or create a new instance (if it doesn’t exist)."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550262669887,
+        "id": "0834ddd3-ff83-4350-be50-523ef8b454b4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550266680000,
+        "parent_id": "9c63b28b-8502-47b7-a669-1e18cb4c9f18",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Python"
+            ]
+          ],
+          "title": [
+            [
+              "def singleton(cls):    \n    instance = [None]\n    def wrapper(*args, **kwargs):\n        if instance[0] is None:\n            instance[0] = cls(*args, **kwargs)\n        return instance[0]\n\n    return wrapper"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "def singleton(cls):    \n    instance = [None]\n    def wrapper(*args, **kwargs):\n        if instance[0] is None:\n            instance[0] = cls(*args, **kwargs)\n        return instance[0]\n\n    return wrapper",
+        "code_language": "Python"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550262669888,
+        "id": "8779d263-3a55-4217-81aa-b357078b59f0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550262669888,
+        "parent_id": "9c63b28b-8502-47b7-a669-1e18cb4c9f18",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This decorator can be added to any class declaration and will make sure that at most one instance of the class is created. Any subsequent calls will return the already existing class instance."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This decorator can be added to any class declaration and will make sure that at most one instance of the class is created. Any subsequent calls will return the already existing class instance."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550262669888,
+        "id": "370a60ae-1bc4-4727-bc42-606e9516b31b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550266680000,
+        "parent_id": "9c63b28b-8502-47b7-a669-1e18cb4c9f18",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Python"
+            ]
+          ],
+          "title": [
+            [
+              "@singleton\nclass SomeSingletonClass:\n    x = 2\n    def __init__(self):\n        print(\"Created!\")\n\ninstance = SomeSingletonClass()  # prints: Created!\ninstance = SomeSingletonClass()  # doesn't print anything\nprint(instance.x)                # 2\n\ninstance.x = 3\nprint(SomeSingletonClass().x)    # 3"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "@singleton\nclass SomeSingletonClass:\n    x = 2\n    def __init__(self):\n        print(\"Created!\")\n\ninstance = SomeSingletonClass()  # prints: Created!\ninstance = SomeSingletonClass()  # doesn't print anything\nprint(instance.x)                # 2\n\ninstance.x = 3\nprint(SomeSingletonClass().x)    # 3",
+        "code_language": "Python"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550262669888,
+        "id": "e08bbfdc-84a4-4552-9006-c80ab38dbda0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550262669888,
+        "parent_id": "9c63b28b-8502-47b7-a669-1e18cb4c9f18",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "So it doesn’t matter whether you refer to the class instance via your local variable or whether you create another “instance”, you always get the same object."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "So it doesn’t matter whether you refer to the class instance via your local variable or whether you create another “instance”, you always get the same object."
+          }
+        ]
+      }
+    ],
+    "title": "Create singleton class with a decorator",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -4,16 +4,12 @@
     "alive": true,
     "content": [
       "9f03fc38-7a3b-42b7-8c22-afc24ff39857",
-      "f154f036-4472-4b30-a974-c9e2269e12b7",
-      "3bf921dd-dd17-49ea-8ea6-940376066488",
-      "22510c0a-1b7a-49dc-9600-9f9e159e1403",
-      "ef758937-91d5-42cc-b74d-1ed410ad7801",
       "266f831e-601a-4a9c-8f6b-5985984c14fc",
       "9d86e326-beaf-4d8b-a609-6bdd96820e35",
-      "cd13487d-7e29-4e28-ae62-2fe628a046f2",
       "b7b8a5e5-20c3-4f9c-a874-6d5e1a58afd4",
       "e621504a-bc7f-49f0-b86c-3b0cdca28618",
-      "48514061-227d-48f6-9c74-b28e531cd683"
+      "48514061-227d-48f6-9c74-b28e531cd683",
+      "ce760ccb-70fb-4c08-b241-e6a859be5e88"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549530687505,
@@ -24,7 +20,7 @@
     "id": "5293c4c9-342c-403b-b40d-d9232692a7bc",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549628040000,
+    "last_edited_time": 1550225940000,
     "parent_id": "5b454c10-001f-4644-b942-d18dfe4b6b1a",
     "parent_table": "block",
     "properties": {
@@ -35,7 +31,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 18,
     "content_resolved": [
       {
         "alive": true,
@@ -44,133 +40,25 @@
         "id": "9f03fc38-7a3b-42b7-8c22-afc24ff39857",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530687502,
+        "last_edited_time": 1550225880000,
         "parent_id": "5293c4c9-342c-403b-b40d-d9232692a7bc",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "using Newtonsoft.Json.Linq;\nusing System.Collections.Generic;"
+              "using Newtonsoft.Json.Linq;\nusing System.Collections.Generic;\n\npublic class JsonFieldsCollector\n{\n    private readonly Dictionary\u003cstring, JValue\u003e fields;\n\n    public JsonFieldsCollector(JToken token)\n    {\n        fields = new Dictionary\u003cstring, JValue\u003e();\n        CollectFields(token);\n    }\n\n    private void CollectFields(JToken jToken)\n    {\n        switch (jToken.Type)\n        {\n            case JTokenType.Object:\n                foreach (var child in jToken.Children\u003cJProperty\u003e())\n                    CollectFields(child);\n                break;\n            case JTokenType.Array:\n                foreach (var child in jToken.Children())\n                    CollectFields(child);\n                break;\n            case JTokenType.Property:\n                CollectFields(((JProperty) jToken).Value);\n                break;\n            default:\n                fields.Add(jToken.Path, (JValue)jToken);\n                break;\n        }\n    }\n\n    public IEnumerable\u003cKeyValuePair\u003cstring, JValue\u003e\u003e GetAllFields() =\u003e fields;\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "using Newtonsoft.Json.Linq;\nusing System.Collections.Generic;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530687504,
-        "id": "f154f036-4472-4b30-a974-c9e2269e12b7",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530687504,
-        "parent_id": "5293c4c9-342c-403b-b40d-d9232692a7bc",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public class JsonFieldsCollector\n{\n    private readonly Dictionary\u003cstring, JValue\u003e fields;"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public class JsonFieldsCollector\n{\n    private readonly Dictionary\u003cstring, JValue\u003e fields;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530687504,
-        "id": "3bf921dd-dd17-49ea-8ea6-940376066488",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530687504,
-        "parent_id": "5293c4c9-342c-403b-b40d-d9232692a7bc",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public JsonFieldsCollector(JToken token)\n    {\n        fields = new Dictionary\u003cstring, JValue\u003e();\n        CollectFields(token);\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public JsonFieldsCollector(JToken token)\n    {\n        fields = new Dictionary\u003cstring, JValue\u003e();\n        CollectFields(token);\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530687504,
-        "id": "22510c0a-1b7a-49dc-9600-9f9e159e1403",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530687504,
-        "parent_id": "5293c4c9-342c-403b-b40d-d9232692a7bc",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "private void CollectFields(JToken jToken)\n    {\n        switch (jToken.Type)\n        {\n            case JTokenType.Object:\n                foreach (var child in jToken.Children\u003cJProperty\u003e())\n                    CollectFields(child);\n                break;\n            case JTokenType.Array:\n                foreach (var child in jToken.Children())\n                    CollectFields(child);\n                break;\n            case JTokenType.Property:\n                CollectFields(((JProperty) jToken).Value);\n                break;\n            default:\n                fields.Add(jToken.Path, (JValue)jToken);\n                break;\n        }\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "private void CollectFields(JToken jToken)\n    {\n        switch (jToken.Type)\n        {\n            case JTokenType.Object:\n                foreach (var child in jToken.Children\u003cJProperty\u003e())\n                    CollectFields(child);\n                break;\n            case JTokenType.Array:\n                foreach (var child in jToken.Children())\n                    CollectFields(child);\n                break;\n            case JTokenType.Property:\n                CollectFields(((JProperty) jToken).Value);\n                break;\n            default:\n                fields.Add(jToken.Path, (JValue)jToken);\n                break;\n        }\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530687504,
-        "id": "ef758937-91d5-42cc-b74d-1ed410ad7801",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530687504,
-        "parent_id": "5293c4c9-342c-403b-b40d-d9232692a7bc",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public IEnumerable\u003cKeyValuePair\u003cstring, JValue\u003e\u003e GetAllFields() =\u003e fields;\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public IEnumerable\u003cKeyValuePair\u003cstring, JValue\u003e\u003e GetAllFields() =\u003e fields;\n}",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "using Newtonsoft.Json.Linq;\nusing System.Collections.Generic;\n\npublic class JsonFieldsCollector\n{\n    private readonly Dictionary\u003cstring, JValue\u003e fields;\n\n    public JsonFieldsCollector(JToken token)\n    {\n        fields = new Dictionary\u003cstring, JValue\u003e();\n        CollectFields(token);\n    }\n\n    private void CollectFields(JToken jToken)\n    {\n        switch (jToken.Type)\n        {\n            case JTokenType.Object:\n                foreach (var child in jToken.Children\u003cJProperty\u003e())\n                    CollectFields(child);\n                break;\n            case JTokenType.Array:\n                foreach (var child in jToken.Children())\n                    CollectFields(child);\n                break;\n            case JTokenType.Property:\n                CollectFields(((JProperty) jToken).Value);\n                break;\n            default:\n                fields.Add(jToken.Path, (JValue)jToken);\n                break;\n        }\n    }\n\n    public IEnumerable\u003cKeyValuePair\u003cstring, JValue\u003e\u003e GetAllFields() =\u003e fields;\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -210,52 +98,25 @@
         "id": "9d86e326-beaf-4d8b-a609-6bdd96820e35",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530687505,
+        "last_edited_time": 1550225940000,
         "parent_id": "5293c4c9-342c-403b-b40d-d9232692a7bc",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "var json = JToken.Parse(/* JSON string */);\nvar fieldsCollector = new JsonFieldsCollector(json);\nvar fields = fieldsCollector.GetAllFields();"
+              "var json = JToken.Parse(/* JSON string */);\nvar fieldsCollector = new JsonFieldsCollector(json);\nvar fields = fieldsCollector.GetAllFields();\n\nforeach (var field in fields)\n    Console.WriteLine($\"{field.Key}: '{field.Value}'\");"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "var json = JToken.Parse(/* JSON string */);\nvar fieldsCollector = new JsonFieldsCollector(json);\nvar fields = fieldsCollector.GetAllFields();",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530687505,
-        "id": "cd13487d-7e29-4e28-ae62-2fe628a046f2",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530687505,
-        "parent_id": "5293c4c9-342c-403b-b40d-d9232692a7bc",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "foreach (var field in fields)\n    Console.WriteLine($\"{field.Key}: '{field.Value}'\");"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "foreach (var field in fields)\n    Console.WriteLine($\"{field.Key}: '{field.Value}'\");",
-        "code_language": "Plain Text"
+        "version": 8,
+        "code": "var json = JToken.Parse(/* JSON string */);\nvar fieldsCollector = new JsonFieldsCollector(json);\nvar fields = fieldsCollector.GetAllFields();\n\nforeach (var field in fields)\n    Console.WriteLine($\"{field.Key}: '{field.Value}'\");",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -301,13 +162,13 @@
         "id": "e621504a-bc7f-49f0-b86c-3b0cdca28618",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530687505,
+        "last_edited_time": 1550225940000,
         "parent_id": "5293c4c9-342c-403b-b40d-d9232692a7bc",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JSON"
             ]
           ],
           "title": [
@@ -317,9 +178,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "{\n  \"User\": \"John\",\n  \"Workdays\": {\n    \"Monday\": true,\n    \"Tuesday\": true,\n    \"Friday\": false\n  },\n  \"Age\": 42\n}",
-        "code_language": "Plain Text"
+        "code_language": "JSON"
       },
       {
         "alive": true,
@@ -345,6 +206,32 @@
             "Text": "expected output will be:"
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550225934803,
+        "id": "ce760ccb-70fb-4c08-b241-e6a859be5e88",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550225940000,
+        "parent_id": "5293c4c9-342c-403b-b40d-d9232692a7bc",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "User: 'John'\nWorkdays.Monday: 'True'\nWorkdays.Tuesday: 'True'\nWorkdays.Friday: 'False'\nAge: '42'"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 10,
+        "code": "User: 'John'\nWorkdays.Monday: 'True'\nWorkdays.Tuesday: 'True'\nWorkdays.Friday: 'False'\nAge: '42'",
+        "code_language": "Plain Text"
       }
     ],
     "title": "Collect all fields of JSON object",

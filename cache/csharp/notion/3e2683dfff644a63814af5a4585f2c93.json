@@ -3,7 +3,8 @@
   "Root": {
     "alive": true,
     "content": [
-      "987d63c0-cd6b-48c9-839c-f0911964e2e1"
+      "987d63c0-cd6b-48c9-839c-f0911964e2e1",
+      "68c5f1ba-e8da-4adc-83b7-99a5d4cc5096"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549530643259,
@@ -14,7 +15,7 @@
     "id": "3e2683df-ff64-4a63-814a-f5a4585f2c93",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549798800000,
+    "last_edited_time": 1550225520000,
     "parent_id": "3ec074a7-a4bd-4d05-b2ec-5cae4fc5bf80",
     "parent_table": "block",
     "properties": {
@@ -25,7 +26,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 10,
     "content_resolved": [
       {
         "alive": true,
@@ -34,25 +35,37 @@
         "id": "987d63c0-cd6b-48c9-839c-f0911964e2e1",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530643257,
+        "last_edited_time": 1550225520000,
         "parent_id": "3e2683df-ff64-4a63-814a-f5a4585f2c93",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public static class Res\n    {\n        /// \u003csummary\u003e\n        /// URL: https://www.behance.net/gallery/2846011/Manteka\n        /// \u003c/summary\u003e\n        public static FontFamily Maneteke = GetResourceFontFamily(Properties.Resources.manteka);"
+              "public static class Res\n{\n    /// \u003csummary\u003e\n    /// URL: https://www.behance.net/gallery/2846011/Manteka\n    /// \u003c/summary\u003e\n    public static FontFamily Maneteke = GetResourceFontFamily(Properties.Resources.manteka);\n\n    public static FontFamily GetResourceFontFamily(byte[] fontbytes)\n    {\n        PrivateFontCollection pfc = new PrivateFontCollection();\n        IntPtr fontMemPointer = Marshal.AllocCoTaskMem(fontbytes.Length);\n        Marshal.Copy(fontbytes, 0, fontMemPointer, fontbytes.Length);\n        pfc.AddMemoryFont(fontMemPointer, fontbytes.Length);\n        Marshal.FreeCoTaskMem(fontMemPointer);\n        return pfc.Families[0];\n    }\n}\n\npublic class FlatButton : Button\n{\n    public FlatButton() : base()\n    {\n        Font = new Font(Res.Maneteke, Font.Size);\n    }\n\n    protected override void OnFontChanged(EventArgs e)\n    {\n        base.OnFontChanged(e);\n        this.Font = new Font(Res.Maneteke, this.Font.Size);\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public static class Res\n    {\n        /// \u003csummary\u003e\n        /// URL: https://www.behance.net/gallery/2846011/Manteka\n        /// \u003c/summary\u003e\n        public static FontFamily Maneteke = GetResourceFontFamily(Properties.Resources.manteka);",
-        "code_language": "Plain Text"
+        "version": 9,
+        "code": "public static class Res\n{\n    /// \u003csummary\u003e\n    /// URL: https://www.behance.net/gallery/2846011/Manteka\n    /// \u003c/summary\u003e\n    public static FontFamily Maneteke = GetResourceFontFamily(Properties.Resources.manteka);\n\n    public static FontFamily GetResourceFontFamily(byte[] fontbytes)\n    {\n        PrivateFontCollection pfc = new PrivateFontCollection();\n        IntPtr fontMemPointer = Marshal.AllocCoTaskMem(fontbytes.Length);\n        Marshal.Copy(fontbytes, 0, fontMemPointer, fontbytes.Length);\n        pfc.AddMemoryFont(fontMemPointer, fontbytes.Length);\n        Marshal.FreeCoTaskMem(fontMemPointer);\n        return pfc.Families[0];\n    }\n}\n\npublic class FlatButton : Button\n{\n    public FlatButton() : base()\n    {\n        Font = new Font(Res.Maneteke, Font.Size);\n    }\n\n    protected override void OnFontChanged(EventArgs e)\n    {\n        base.OnFontChanged(e);\n        this.Font = new Font(Res.Maneteke, this.Font.Size);\n    }\n}",
+        "code_language": "C#"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550225520000,
+        "id": "68c5f1ba-e8da-4adc-83b7-99a5d4cc5096",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550225520000,
+        "parent_id": "3e2683df-ff64-4a63-814a-f5a4585f2c93",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "Usage with a Button",

@@ -7,9 +7,7 @@
       "4e703a9f-28d5-4682-a7e3-6e260d0af64c",
       "e3543027-db75-4ce5-a6a4-2cfa282be622",
       "6e24b432-93d6-442a-8e10-bae967bfd7ce",
-      "93feb2bb-7bd8-4ef3-a925-b4fdd5d4925d",
-      "a49ac7f1-2a40-487f-8a41-e7c7b75eb6e7",
-      "9c97e727-f72d-43ec-aea4-a601a5d8ee4b"
+      "9dda7ddc-8792-40ee-b9cb-415996626eb7"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549524684351,
@@ -20,7 +18,7 @@
     "id": "455cb4be-dc73-4102-a2ab-ba7daeded6e2",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549614900000,
+    "last_edited_time": 1549875900000,
     "parent_id": "190506d8-ff9f-4443-bbce-bdb69e483555",
     "parent_table": "block",
     "properties": {
@@ -31,7 +29,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 14,
     "content_resolved": [
       {
         "alive": true,
@@ -217,106 +215,37 @@
         "id": "6e24b432-93d6-442a-8e10-bae967bfd7ce",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524684351,
+        "last_edited_time": 1549875900000,
         "parent_id": "455cb4be-dc73-4102-a2ab-ba7daeded6e2",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public interface ITimeFormatter\n{\n   string Format(TimeSpan span);\n}"
+              "public interface ITimeFormatter\n{\n   string Format(TimeSpan span);\n}\n\npublic static class TimeFormatter\n{\n    // Provide an overload to *all* implementers of ITimeFormatter.\n    public static string Format(\n        this ITimeFormatter formatter,\n        int millisecondsSpan)\n        =\u003e formatter.Format(TimeSpan.FromMilliseconds(millisecondsSpan));\n}\n\n// Implementations only need to provide one method. Very easy to\n// write additional implementations.\npublic class SecondsTimeFormatter : ITimeFormatter\n{\n   public string Format(TimeSpan span)\n   {\n       return $\"{(int)span.TotalSeconds}s\";\n   }\n}\n\nclass Program\n{\n    static void Main(string[] args)\n    {\n        var formatter = new SecondsTimeFormatter();\n        // Callers get two method overloads!\n        Console.WriteLine($\"4500ms is rougly {formatter.Format(4500)}\");\n        var span = TimeSpan.FromSeconds(5);\n        Console.WriteLine($\"{span} is formatted as {formatter.Format(span)}\");\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public interface ITimeFormatter\n{\n   string Format(TimeSpan span);\n}",
-        "code_language": "Plain Text"
+        "version": 12,
+        "code": "public interface ITimeFormatter\n{\n   string Format(TimeSpan span);\n}\n\npublic static class TimeFormatter\n{\n    // Provide an overload to *all* implementers of ITimeFormatter.\n    public static string Format(\n        this ITimeFormatter formatter,\n        int millisecondsSpan)\n        =\u003e formatter.Format(TimeSpan.FromMilliseconds(millisecondsSpan));\n}\n\n// Implementations only need to provide one method. Very easy to\n// write additional implementations.\npublic class SecondsTimeFormatter : ITimeFormatter\n{\n   public string Format(TimeSpan span)\n   {\n       return $\"{(int)span.TotalSeconds}s\";\n   }\n}\n\nclass Program\n{\n    static void Main(string[] args)\n    {\n        var formatter = new SecondsTimeFormatter();\n        // Callers get two method overloads!\n        Console.WriteLine($\"4500ms is rougly {formatter.Format(4500)}\");\n        var span = TimeSpan.FromSeconds(5);\n        Console.WriteLine($\"{span} is formatted as {formatter.Format(span)}\");\n    }\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524684351,
-        "id": "93feb2bb-7bd8-4ef3-a925-b4fdd5d4925d",
-        "ignore_block_count": true,
+        "created_time": 1549875900000,
+        "id": "9dda7ddc-8792-40ee-b9cb-415996626eb7",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524684351,
+        "last_edited_time": 1549875900000,
         "parent_id": "455cb4be-dc73-4102-a2ab-ba7daeded6e2",
         "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public static class TimeFormatter\n{\n    // Provide an overload to *all* implementers of ITimeFormatter.\n    public static string Format(\n        this ITimeFormatter formatter,\n        int millisecondsSpan)\n        =\u003e formatter.Format(TimeSpan.FromMilliseconds(millisecondsSpan));\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public static class TimeFormatter\n{\n    // Provide an overload to *all* implementers of ITimeFormatter.\n    public static string Format(\n        this ITimeFormatter formatter,\n        int millisecondsSpan)\n        =\u003e formatter.Format(TimeSpan.FromMilliseconds(millisecondsSpan));\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524684351,
-        "id": "a49ac7f1-2a40-487f-8a41-e7c7b75eb6e7",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524684351,
-        "parent_id": "455cb4be-dc73-4102-a2ab-ba7daeded6e2",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// Implementations only need to provide one method. Very easy to\n// write additional implementations.\npublic class SecondsTimeFormatter : ITimeFormatter\n{\n   public string Format(TimeSpan span)\n   {\n       return $\"{(int)span.TotalSeconds}s\";\n   }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// Implementations only need to provide one method. Very easy to\n// write additional implementations.\npublic class SecondsTimeFormatter : ITimeFormatter\n{\n   public string Format(TimeSpan span)\n   {\n       return $\"{(int)span.TotalSeconds}s\";\n   }\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524684351,
-        "id": "9c97e727-f72d-43ec-aea4-a601a5d8ee4b",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524684351,
-        "parent_id": "455cb4be-dc73-4102-a2ab-ba7daeded6e2",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "class Program\n{\n    static void Main(string[] args)\n    {\n        var formatter = new SecondsTimeFormatter();\n        // Callers get two method overloads!\n        Console.WriteLine($\"4500ms is rougly {formatter.Format(4500)}\");\n        var span = TimeSpan.FromSeconds(5);\n        Console.WriteLine($\"{span} is formatted as {formatter.Format(span)}\");\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "class Program\n{\n    static void Main(string[] args)\n    {\n        var formatter = new SecondsTimeFormatter();\n        // Callers get two method overloads!\n        Console.WriteLine($\"4500ms is rougly {formatter.Format(4500)}\");\n        var span = TimeSpan.FromSeconds(5);\n        Console.WriteLine($\"{span} is formatted as {formatter.Format(span)}\");\n    }\n}",
-        "code_language": "Plain Text"
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "Extensions and interfaces together enable DRY code and mixin-like functionality",

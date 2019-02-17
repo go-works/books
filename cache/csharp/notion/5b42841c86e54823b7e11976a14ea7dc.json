@@ -3,7 +3,8 @@
   "Root": {
     "alive": true,
     "content": [
-      "3767e10d-4562-4fef-bbad-21b696dd0a60"
+      "3767e10d-4562-4fef-bbad-21b696dd0a60",
+      "c7c8f90b-4170-470c-8f4a-b9eb71d7026b"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549527032371,
@@ -14,7 +15,7 @@
     "id": "5b42841c-86e5-4823-b7e1-1976a14ea7dc",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549789680000,
+    "last_edited_time": 1550136120000,
     "parent_id": "91106db6-78bc-4ff0-875f-edacdc1e0312",
     "parent_table": "block",
     "properties": {
@@ -25,7 +26,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 13,
     "content_resolved": [
       {
         "alive": true,
@@ -51,6 +52,32 @@
             "Text": "An example that uses Parallel.For loop to ping a given array of website urls."
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550136120905,
+        "id": "c7c8f90b-4170-470c-8f4a-b9eb71d7026b",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550136120000,
+        "parent_id": "5b42841c-86e5-4823-b7e1-1976a14ea7dc",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "static void Main()\n{\n    string [] urls = \n    {\n        \"www.stackoverflow.com\", \n        \"www.google.net\", \n        \"www.facebook.com\", \n        \"www.twitter.com\"\n    };\n    \n    System.Threading.Tasks.Parallel.Invoke(\n        () =\u003e PingUrl(urls[0]),\n        () =\u003e PingUrl(urls[1]),\n        () =\u003e PingUrl(urls[2]),\n        () =\u003e PingUrl(urls[3])\n    );\n}\n\nvoid PingUrl(string url)\n{\n    var ping = new System.Net.NetworkInformation.Ping();\n    \n    var result = ping.Send(url);\n    \n    if (result.Status == System.Net.NetworkInformation.IPStatus.Success)\n    {\n        Console.WriteLine(string.Format(\"{0} is online\", url));\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 8,
+        "code": "static void Main()\n{\n    string [] urls = \n    {\n        \"www.stackoverflow.com\", \n        \"www.google.net\", \n        \"www.facebook.com\", \n        \"www.twitter.com\"\n    };\n    \n    System.Threading.Tasks.Parallel.Invoke(\n        () =\u003e PingUrl(urls[0]),\n        () =\u003e PingUrl(urls[1]),\n        () =\u003e PingUrl(urls[2]),\n        () =\u003e PingUrl(urls[3])\n    );\n}\n\nvoid PingUrl(string url)\n{\n    var ping = new System.Net.NetworkInformation.Ping();\n    \n    var result = ping.Send(url);\n    \n    if (result.Status == System.Net.NetworkInformation.IPStatus.Success)\n    {\n        Console.WriteLine(string.Format(\"{0} is online\", url));\n    }\n}",
+        "code_language": "C#"
       }
     ],
     "title": "Parallel.For",

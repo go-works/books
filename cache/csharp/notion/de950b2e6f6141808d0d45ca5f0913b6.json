@@ -5,9 +5,8 @@
     "content": [
       "338259e6-3c56-40c7-9a7f-df5ba420dded",
       "7897eeef-459b-4562-a4fc-17178aad5aae",
-      "7d43e55b-fd47-4676-aa6d-b57e79010d91",
-      "e3ec90ad-d3ff-4fac-891c-d0d68b0911d4",
-      "4c5ff696-90b8-4e1b-80f9-baef5b872e9c"
+      "4c5ff696-90b8-4e1b-80f9-baef5b872e9c",
+      "66d2ea4f-74d4-47a5-80bb-0ecf34f4215c"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549528052633,
@@ -18,7 +17,7 @@
     "id": "de950b2e-6f61-4180-8d0d-45ca5f0913b6",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549627380000,
+    "last_edited_time": 1550207100000,
     "parent_id": "6edb5732-40b8-4df6-b8a8-809fb1164d58",
     "parent_table": "block",
     "properties": {
@@ -29,7 +28,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 12,
     "content_resolved": [
       {
         "alive": true,
@@ -63,79 +62,25 @@
         "id": "7897eeef-459b-4562-a4fc-17178aad5aae",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528052631,
+        "last_edited_time": 1550207100000,
         "parent_id": "de950b2e-6f61-4180-8d0d-45ca5f0913b6",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "class Person\n{\n    private static ConcurrentDictionary\u003cint, string\u003e names = new ConcurrentDictionary\u003cint, string\u003e();"
+              "class Person\n{\n    private static ConcurrentDictionary\u003cint, string\u003e names = new ConcurrentDictionary\u003cint, string\u003e();\n\n    private int id = GetId();\n\n    public Person(string name) =\u003e names.TryAdd(id, name); // constructors\n\n    ~Person() =\u003e names.TryRemove(id, out _);              // finalizers\n\n    public string Name\n    {\n        get =\u003e names[id];                                 // getters\n        set =\u003e names[id] = value;                         // setters\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "class Person\n{\n    private static ConcurrentDictionary\u003cint, string\u003e names = new ConcurrentDictionary\u003cint, string\u003e();",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528052632,
-        "id": "7d43e55b-fd47-4676-aa6d-b57e79010d91",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528052632,
-        "parent_id": "de950b2e-6f61-4180-8d0d-45ca5f0913b6",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "private int id = GetId();\n\n    public Person(string name) =\u003e names.TryAdd(id, name); // constructors\n\n    ~Person() =\u003e names.TryRemove(id, out _);              // finalizers"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "private int id = GetId();\n\n    public Person(string name) =\u003e names.TryAdd(id, name); // constructors\n\n    ~Person() =\u003e names.TryRemove(id, out _);              // finalizers",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528052632,
-        "id": "e3ec90ad-d3ff-4fac-891c-d0d68b0911d4",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528052632,
-        "parent_id": "de950b2e-6f61-4180-8d0d-45ca5f0913b6",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public string Name\n    {\n        get =\u003e names[id];                                 // getters\n        set =\u003e names[id] = value;                         // setters\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public string Name\n    {\n        get =\u003e names[id];                                 // getters\n        set =\u003e names[id] = value;                         // setters\n    }\n}",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "class Person\n{\n    private static ConcurrentDictionary\u003cint, string\u003e names = new ConcurrentDictionary\u003cint, string\u003e();\n\n    private int id = GetId();\n\n    public Person(string name) =\u003e names.TryAdd(id, name); // constructors\n\n    ~Person() =\u003e names.TryRemove(id, out _);              // finalizers\n\n    public string Name\n    {\n        get =\u003e names[id];                                 // getters\n        set =\u003e names[id] = value;                         // setters\n    }\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -180,6 +125,18 @@
             "Text": " section for the discard operator."
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550207100000,
+        "id": "66d2ea4f-74d4-47a5-80bb-0ecf34f4215c",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550207100000,
+        "parent_id": "de950b2e-6f61-4180-8d0d-45ca5f0913b6",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "Extended expression bodied members list",

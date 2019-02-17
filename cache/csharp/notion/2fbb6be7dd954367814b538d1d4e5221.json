@@ -12,7 +12,8 @@
       "3e587d0d-0082-40de-bb9d-a4ed306d5cb3",
       "fa4d1c2c-51f7-47db-991f-893b503a063e",
       "12a5edbc-f6e8-4113-8076-a0769260ab1c",
-      "ada892e0-03f9-46e1-bd1c-3c769fea0318"
+      "ada892e0-03f9-46e1-bd1c-3c769fea0318",
+      "71b5848e-8837-4515-8bae-afe50183bb64"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549528919253,
@@ -23,7 +24,7 @@
     "id": "2fbb6be7-dd95-4367-814b-538d1d4e5221",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549798560000,
+    "last_edited_time": 1550215500000,
     "parent_id": "2b5c894c-d50a-418f-a811-3b61a23cdead",
     "parent_table": "block",
     "properties": {
@@ -34,7 +35,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 11,
     "content_resolved": [
       {
         "alive": true,
@@ -166,13 +167,13 @@
         "id": "a3fbd4c4-e131-4538-b4da-8a3f36d931b2",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528919253,
+        "last_edited_time": 1550215440000,
         "parent_id": "2fbb6be7-dd95-4367-814b-538d1d4e5221",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -182,9 +183,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "public static T PtrToStructure\u003cT\u003e(IntPtr ptr);",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -292,13 +293,13 @@
         "id": "fa4d1c2c-51f7-47db-991f-893b503a063e",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528919253,
+        "last_edited_time": 1550215500000,
         "parent_id": "2fbb6be7-dd95-4367-814b-538d1d4e5221",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -308,9 +309,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "NATIVE_STRUCT result = Marshal.PtrToStructure\u003cNATIVE_STRUCT\u003e(ptr);",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -344,25 +345,37 @@
         "id": "ada892e0-03f9-46e1-bd1c-3c769fea0318",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528919253,
+        "last_edited_time": 1550215500000,
         "parent_id": "2fbb6be7-dd95-4367-814b-538d1d4e5221",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "T Read\u003cT\u003e(byte[] buffer)\n    {\n        T result = default(T);\n        \n        var gch = GCHandle.Alloc(buffer, GCHandleType.Pinned);\n    \n        try\n        {\n            result = Marshal.PtrToStructure\u003cT\u003e(gch.AddrOfPinnedObject());\n        }\n        finally\n        {\n            gch.Free();\n        }\n        \n        return result;\n    }"
+              "T Read\u003cT\u003e(byte[] buffer)\n{\n    T result = default(T);\n    \n    var gch = GCHandle.Alloc(buffer, GCHandleType.Pinned);\n\n    try\n    {\n        result = Marshal.PtrToStructure\u003cT\u003e(gch.AddrOfPinnedObject());\n    }\n    finally\n    {\n        gch.Free();\n    }\n    \n    return result;\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "T Read\u003cT\u003e(byte[] buffer)\n    {\n        T result = default(T);\n        \n        var gch = GCHandle.Alloc(buffer, GCHandleType.Pinned);\n    \n        try\n        {\n            result = Marshal.PtrToStructure\u003cT\u003e(gch.AddrOfPinnedObject());\n        }\n        finally\n        {\n            gch.Free();\n        }\n        \n        return result;\n    }",
-        "code_language": "Plain Text"
+        "version": 5,
+        "code": "T Read\u003cT\u003e(byte[] buffer)\n{\n    T result = default(T);\n    \n    var gch = GCHandle.Alloc(buffer, GCHandleType.Pinned);\n\n    try\n    {\n        result = Marshal.PtrToStructure\u003cT\u003e(gch.AddrOfPinnedObject());\n    }\n    finally\n    {\n        gch.Free();\n    }\n    \n    return result;\n}",
+        "code_language": "C#"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550215500000,
+        "id": "71b5848e-8837-4515-8bae-afe50183bb64",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550215500000,
+        "parent_id": "2fbb6be7-dd95-4367-814b-538d1d4e5221",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "Reading structures with Marshal",

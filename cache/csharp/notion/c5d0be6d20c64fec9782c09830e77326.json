@@ -6,12 +6,9 @@
       "c0540526-a69f-4053-a7ab-67bf3901ec83",
       "47017b4b-b1bc-4c6b-bdef-f726157d637e",
       "c068b972-753c-4c9d-8540-e7ae42f0e324",
-      "0e49fefa-88ef-40fc-b0db-f8a139464407",
       "c8433789-fb10-4714-bea0-7725e0fd3414",
       "26b46a90-9465-4a8a-b1b2-6715e36b2c32",
       "d2a02a02-98c7-4d64-8490-e6be361d33a5",
-      "a6a102c0-7d59-4066-a60b-14dad7bc2a4a",
-      "c5f13324-6001-469b-9646-98315e5462b8",
       "449a1a05-db23-45ae-95a3-679f5c0f972a",
       "ef415445-de55-4bd8-a95b-d5177e9a1e4b"
     ],
@@ -24,7 +21,7 @@
     "id": "c5d0be6d-20c6-4fec-9782-c09830e77326",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549628400000,
+    "last_edited_time": 1550116560000,
     "parent_id": "3579f09a-ed6b-403d-b38a-ab7fa93d0309",
     "parent_table": "block",
     "properties": {
@@ -35,7 +32,7 @@
       ]
     },
     "type": "page",
-    "version": 5,
+    "version": 10,
     "content_resolved": [
       {
         "alive": true,
@@ -130,52 +127,25 @@
         "id": "c068b972-753c-4c9d-8540-e7ae42f0e324",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525970325,
+        "last_edited_time": 1550116500000,
         "parent_id": "c5d0be6d-20c6-4fec-9782-c09830e77326",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public class MyClass\n{\n    // Declares the event for MyClass\n    public event EventHandler MyEvent;"
+              "public class MyClass\n{\n    // Declares the event for MyClass\n    public event EventHandler MyEvent;\n\n\t\t// Raises the MyEvent event\n    public void RaiseEvent()\n    {\n        OnMyEvent();\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public class MyClass\n{\n    // Declares the event for MyClass\n    public event EventHandler MyEvent;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525970325,
-        "id": "0e49fefa-88ef-40fc-b0db-f8a139464407",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525970325,
-        "parent_id": "c5d0be6d-20c6-4fec-9782-c09830e77326",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// Raises the MyEvent event\n    public void RaiseEvent()\n    {\n        OnMyEvent();\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// Raises the MyEvent event\n    public void RaiseEvent()\n    {\n        OnMyEvent();\n    }\n}",
-        "code_language": "Plain Text"
+        "version": 8,
+        "code": "public class MyClass\n{\n    // Declares the event for MyClass\n    public event EventHandler MyEvent;\n\n\t\t// Raises the MyEvent event\n    public void RaiseEvent()\n    {\n        OnMyEvent();\n    }\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -270,79 +240,25 @@
         "id": "d2a02a02-98c7-4d64-8490-e6be361d33a5",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525970325,
+        "last_edited_time": 1550116560000,
         "parent_id": "c5d0be6d-20c6-4fec-9782-c09830e77326",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "private void OnMyEvent()\n{\n    EventName?.Invoke(this, EventArgs.Empty); \n}"
+              "private void OnMyEvent()\n{\n    // Use a local for EventName, because another thread can modify the\n    // public EventName between when we check it for null, and when we\n    // raise the event.\n    var eventName = EventName;\n\n    // If eventName == null, then it means there are no event-subscribers,\n    // and therefore, we cannot raise the event.\n    if(eventName != null)\n        eventName(this, EventArgs.Empty);\n\n}\n"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "private void OnMyEvent()\n{\n    EventName?.Invoke(this, EventArgs.Empty); \n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525970325,
-        "id": "a6a102c0-7d59-4066-a60b-14dad7bc2a4a",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525970325,
-        "parent_id": "c5d0be6d-20c6-4fec-9782-c09830e77326",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "private void OnMyEvent()\n{\n    // Use a local for EventName, because another thread can modify the\n    // public EventName between when we check it for null, and when we\n    // raise the event.\n    var eventName = EventName;"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "private void OnMyEvent()\n{\n    // Use a local for EventName, because another thread can modify the\n    // public EventName between when we check it for null, and when we\n    // raise the event.\n    var eventName = EventName;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525970326,
-        "id": "c5f13324-6001-469b-9646-98315e5462b8",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525970326,
-        "parent_id": "c5d0be6d-20c6-4fec-9782-c09830e77326",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// If eventName == null, then it means there are no event-subscribers,\n    // and therefore, we cannot raise the event.\n    if(eventName != null)\n        eventName(this, EventArgs.Empty);\n\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// If eventName == null, then it means there are no event-subscribers,\n    // and therefore, we cannot raise the event.\n    if(eventName != null)\n        eventName(this, EventArgs.Empty);\n\n}",
-        "code_language": "Plain Text"
+        "version": 9,
+        "code": "private void OnMyEvent()\n{\n    // Use a local for EventName, because another thread can modify the\n    // public EventName between when we check it for null, and when we\n    // raise the event.\n    var eventName = EventName;\n\n    // If eventName == null, then it means there are no event-subscribers,\n    // and therefore, we cannot raise the event.\n    if(eventName != null)\n        eventName(this, EventArgs.Empty);\n\n}\n",
+        "code_language": "C#"
       },
       {
         "alive": true,

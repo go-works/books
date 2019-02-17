@@ -7,7 +7,8 @@
       "c1b1b9fa-f852-4e12-8944-de28925d7d81",
       "5804045d-707f-47a6-87f6-ae255db9b6a3",
       "a25100d8-4e6e-4e04-9c4e-080bbfd75153",
-      "377f8e22-2775-4101-8795-5866f2f42c3f"
+      "377f8e22-2775-4101-8795-5866f2f42c3f",
+      "f3df1086-be7d-45ac-8242-472218f06e24"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549525790490,
@@ -18,18 +19,18 @@
     "id": "247e07e9-a86f-44f5-9ab8-e277e2312b1d",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549789260000,
+    "last_edited_time": 1550112960000,
     "parent_id": "690c8bdb-4161-40ee-ae39-db6ce423d3b9",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "01Avoiding Reading and Writing Data Simultaneously"
+          "Avoiding Reading and Writing Data Simultaneously"
         ]
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 14,
     "content_resolved": [
       {
         "alive": true,
@@ -175,9 +176,35 @@
             "Text": " the value of count, so that multiple different threads cannot read and write to it at the same time. With the addition of a lock and a key, we can prevent the threads from accessing the data simultaneously."
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550112970266,
+        "id": "f3df1086-be7d-45ac-8242-472218f06e24",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550112960000,
+        "parent_id": "247e07e9-a86f-44f5-9ab8-e277e2312b1d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "using System.Threading;\n  \nclass MainClass\n{\n\n    static int count { get; set; } \n    static readonly object key = new object();\n\n    static void Main()\n    {\n        for (int i = 1; i \u003c= 2; i++)\n        {\n            var thread = new Thread(ThreadMethod);\n            thread.Start(i);\n            Thread.Sleep(500);\n        }\n    }\n\n    static void ThreadMethod(object threadNumber)\n    {\n        while (true)\n        {\n            lock (key) \n            {\n                var temp = count;\n                System.Console.WriteLine(\"Thread \" + threadNumber + \": Reading the value of count.\");\n                Thread.Sleep(1000);\n                count = temp + 1;\n                System.Console.WriteLine(\"Thread \" + threadNumber + \": Incrementing the value of count to:\" + count);\n            }\n            Thread.Sleep(1000);\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 10,
+        "code": "using System.Threading;\n  \nclass MainClass\n{\n\n    static int count { get; set; } \n    static readonly object key = new object();\n\n    static void Main()\n    {\n        for (int i = 1; i \u003c= 2; i++)\n        {\n            var thread = new Thread(ThreadMethod);\n            thread.Start(i);\n            Thread.Sleep(500);\n        }\n    }\n\n    static void ThreadMethod(object threadNumber)\n    {\n        while (true)\n        {\n            lock (key) \n            {\n                var temp = count;\n                System.Console.WriteLine(\"Thread \" + threadNumber + \": Reading the value of count.\");\n                Thread.Sleep(1000);\n                count = temp + 1;\n                System.Console.WriteLine(\"Thread \" + threadNumber + \": Incrementing the value of count to:\" + count);\n            }\n            Thread.Sleep(1000);\n        }\n    }\n}",
+        "code_language": "C#"
       }
     ],
-    "title": "01Avoiding Reading and Writing Data Simultaneously",
+    "title": "Avoiding Reading and Writing Data Simultaneously",
     "format_page": {
       "page_cover": "",
       "page_cover_position": 0,

@@ -2,6 +2,9 @@
   "ID": "836642d1-6cf8-44e5-896e-be15113c86e9",
   "Root": {
     "alive": true,
+    "content": [
+      "9ea78178-b159-4660-b042-ac2e82d233e9"
+    ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549529966408,
     "format": {
@@ -11,7 +14,7 @@
     "id": "836642d1-6cf8-44e5-896e-be15113c86e9",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549791420000,
+    "last_edited_time": 1550222460000,
     "parent_id": "c6f0aa86-fc3f-4827-8ce9-cc47279710b5",
     "parent_table": "block",
     "properties": {
@@ -22,7 +25,35 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 12,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550222482092,
+        "id": "9ea78178-b159-4660-b042-ac2e82d233e9",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550222460000,
+        "parent_id": "836642d1-6cf8-44e5-896e-be15113c86e9",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "public class AuthenticationHandler : DelegatingHandler\n{\n    /// \u003csummary\u003e\n    /// Holds request's header name which will contains token.\n    /// \u003c/summary\u003e\n    private const string securityToken = \"__RequestAuthToken\";\n\n    /// \u003csummary\u003e\n    /// Default overridden method which performs authentication.\n    /// \u003c/summary\u003e\n    /// \u003cparam name=\"request\"\u003eHttp request message.\u003c/param\u003e\n    /// \u003cparam name=\"cancellationToken\"\u003eCancellation token.\u003c/param\u003e\n    /// \u003creturns\u003eReturns http response message of type \u003csee cref=\"HttpResponseMessage\"/\u003e class asynchronously.\u003c/returns\u003e\n    protected override Task\u003cHttpResponseMessage\u003e SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)\n    {\n        if (request.Headers.Contains(securityToken))\n        {\n            bool authorized = Authorize(request);\n            if (!authorized)\n            {\n                return ApiHttpUtility.FromResult(request, false, HttpStatusCode.Unauthorized, MessageTypes.Error, Resource.UnAuthenticatedUser);\n            }\n        }\n        else\n        {\n            return ApiHttpUtility.FromResult(request, false, HttpStatusCode.BadRequest, MessageTypes.Error, Resource.UnAuthenticatedUser);\n        }\n\n        return base.SendAsync(request, cancellationToken);\n    }\n\n    /// \u003csummary\u003e\n    /// Authorize user by validating token.\n    /// \u003c/summary\u003e\n    /// \u003cparam name=\"requestMessage\"\u003eAuthorization context.\u003c/param\u003e\n    /// \u003creturns\u003eReturns a value indicating whether current request is authenticated or not.\u003c/returns\u003e\n    private bool Authorize(HttpRequestMessage requestMessage)\n    {\n        try\n        {\n            HttpRequest request = HttpContext.Current.Request;\n            string token = request.Headers[securityToken];\n            return SecurityUtility.IsTokenValid(token, request.UserAgent, HttpContext.Current.Server.MapPath(\"~/Content/\"), requestMessage);\n        }\n        catch (Exception)\n        {\n            return false;\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 10,
+        "code": "public class AuthenticationHandler : DelegatingHandler\n{\n    /// \u003csummary\u003e\n    /// Holds request's header name which will contains token.\n    /// \u003c/summary\u003e\n    private const string securityToken = \"__RequestAuthToken\";\n\n    /// \u003csummary\u003e\n    /// Default overridden method which performs authentication.\n    /// \u003c/summary\u003e\n    /// \u003cparam name=\"request\"\u003eHttp request message.\u003c/param\u003e\n    /// \u003cparam name=\"cancellationToken\"\u003eCancellation token.\u003c/param\u003e\n    /// \u003creturns\u003eReturns http response message of type \u003csee cref=\"HttpResponseMessage\"/\u003e class asynchronously.\u003c/returns\u003e\n    protected override Task\u003cHttpResponseMessage\u003e SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)\n    {\n        if (request.Headers.Contains(securityToken))\n        {\n            bool authorized = Authorize(request);\n            if (!authorized)\n            {\n                return ApiHttpUtility.FromResult(request, false, HttpStatusCode.Unauthorized, MessageTypes.Error, Resource.UnAuthenticatedUser);\n            }\n        }\n        else\n        {\n            return ApiHttpUtility.FromResult(request, false, HttpStatusCode.BadRequest, MessageTypes.Error, Resource.UnAuthenticatedUser);\n        }\n\n        return base.SendAsync(request, cancellationToken);\n    }\n\n    /// \u003csummary\u003e\n    /// Authorize user by validating token.\n    /// \u003c/summary\u003e\n    /// \u003cparam name=\"requestMessage\"\u003eAuthorization context.\u003c/param\u003e\n    /// \u003creturns\u003eReturns a value indicating whether current request is authenticated or not.\u003c/returns\u003e\n    private bool Authorize(HttpRequestMessage requestMessage)\n    {\n        try\n        {\n            HttpRequest request = HttpContext.Current.Request;\n            string token = request.Headers[securityToken];\n            return SecurityUtility.IsTokenValid(token, request.UserAgent, HttpContext.Current.Server.MapPath(\"~/Content/\"), requestMessage);\n        }\n        catch (Exception)\n        {\n            return false;\n        }\n    }\n}",
+        "code_language": "C#"
+      }
+    ],
     "title": "Authentication handler",
     "format_page": {
       "page_cover": "",

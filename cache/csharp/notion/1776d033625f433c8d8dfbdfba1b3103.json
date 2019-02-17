@@ -23,7 +23,7 @@
     "id": "1776d033-625f-433c-8d8d-fbdfba1b3103",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549623960000,
+    "last_edited_time": 1550221500000,
     "parent_id": "afa171fd-7878-4468-8315-1e19990ae73e",
     "parent_table": "block",
     "properties": {
@@ -34,7 +34,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 9,
     "content_resolved": [
       {
         "alive": true,
@@ -80,13 +80,13 @@
         "id": "f687719c-27cf-4f11-bab7-d086acdfb3e5",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529772597,
+        "last_edited_time": 1550221500000,
         "parent_id": "1776d033-625f-433c-8d8d-fbdfba1b3103",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -96,9 +96,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "public class Employee\n{\n    [Editable(false)]\n    public string FirstName { get; set; }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -138,13 +138,13 @@
         "id": "412e46fb-063c-4f55-a039-650bba5ee392",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529772598,
+        "last_edited_time": 1550221500000,
         "parent_id": "1776d033-625f-433c-8d8d-fbdfba1b3103",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "XML"
             ]
           ],
           "title": [
@@ -154,9 +154,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "\u003cWindow x:Class=\"WpfApplication.MainWindow\"\n        xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\"\n        xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\"\n        xmlns:wpfApplication=\"clr-namespace:WpfApplication\"\n        Height=\"70\" Width=\"360\" Title=\"Display name example\"\u003e\n\n    \u003cWindow.Resources\u003e\n        \u003cwpfApplication:EditableConverter x:Key=\"EditableConverter\"/\u003e\n    \u003c/Window.Resources\u003e\n\n    \u003cStackPanel Margin=\"5\"\u003e\n        \u003c!-- TextBox Text (FirstName property value) --\u003e\n        \u003c!-- TextBox IsEnabled (Editable attribute) --\u003e\n        \u003cTextBox Text=\"{Binding Employee.FirstName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}\" \n                 IsEnabled=\"{Binding Employee, Converter={StaticResource EditableConverter}, ConverterParameter=FirstName}\"/\u003e\n    \u003c/StackPanel\u003e\n    \n\u003c/Window\u003e",
-        "code_language": "Plain Text"
+        "code_language": "XML"
       },
       {
         "alive": true,
@@ -178,13 +178,13 @@
         "id": "29c89002-d55c-4113-8784-b4c29616c792",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529772598,
+        "last_edited_time": 1550221500000,
         "parent_id": "1776d033-625f-433c-8d8d-fbdfba1b3103",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -194,9 +194,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "namespace WpfApplication\n{\n    /// \u003csummary\u003e\n    /// Interaction logic for MainWindow.xaml\n    /// \u003c/summary\u003e\n    public partial class MainWindow : Window\n    {\n        private Employee _employee = new Employee() { FirstName = \"This is not editable\"};\n\n        public MainWindow()\n        {\n            InitializeComponent();\n            DataContext = this;\n        }\n\n        public Employee Employee\n        {\n            get { return _employee; }\n            set { _employee = value; }\n        }\n    }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -218,13 +218,13 @@
         "id": "4e908d35-33e0-4c60-997d-9c0f18d5c90e",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529772598,
+        "last_edited_time": 1550221500000,
         "parent_id": "1776d033-625f-433c-8d8d-fbdfba1b3103",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -234,9 +234,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "namespace WpfApplication\n{\n    public class EditableConverter : IValueConverter\n    {\n        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)\n        {\n            // return editable attribute's value for given instance property,\n            // defaults to true if not found\n            var attribute = value.GetType()\n                .GetProperty(parameter.ToString())\n                .GetCustomAttributes(false)\n                .OfType\u003cEditableAttribute\u003e()\n                .FirstOrDefault();\n\n            return attribute != null ? attribute.AllowEdit : true;\n        }\n\n        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)\n        {\n            throw new NotImplementedException();\n        }\n    }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,

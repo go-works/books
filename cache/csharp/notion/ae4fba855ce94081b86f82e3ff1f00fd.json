@@ -7,23 +7,10 @@
       "0a3aedb8-9f73-41aa-9748-67f13ff46d09",
       "779043bd-42d6-4ce7-a1dc-84c3c2c67667",
       "3143b020-d90a-4e67-93ca-3929084de077",
-      "a4735253-14e2-408f-8a19-a42c28558922",
-      "0c1efa92-3368-463a-a987-3864beccaa29",
-      "720ce911-bac6-480b-9851-22e19d59a177",
-      "72ca56dc-0820-4307-8f73-7da15e35300e",
-      "9b20c10f-9b57-4a39-9674-fe1bcca6ba19",
-      "cdc51538-a39a-4906-825b-9afed1397322",
-      "03eeb329-032f-4496-bcf8-5fa789aaa835",
       "f1f6984e-eb48-4540-b184-aa088919c615",
       "3c02b10c-8661-4e78-a23c-637be55d928b",
-      "460a7156-b465-4ce0-bd8f-be95fccc9959",
-      "0d68b5cb-6eff-4462-a9e5-94336492e6a8",
-      "7060cfa3-2b6b-42f5-8224-30ee607c0f58",
-      "371be8c3-bb46-4646-bd12-30d1e66aeb98",
-      "e74af0a9-4b12-4690-b703-9491f0ce1d0b",
-      "0301c7cb-65d9-4e90-877d-0f3aa8ad2095",
-      "8ecdbe67-caac-49ad-aea1-c6b07e9452da",
-      "efec40c1-7373-4b5e-92b5-883e7e6d3e6d"
+      "efec40c1-7373-4b5e-92b5-883e7e6d3e6d",
+      "727082c3-8060-4216-ae10-6c32e0834a34"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549525794606,
@@ -34,7 +21,7 @@
     "id": "ae4fba85-5ce9-4081-b86f-82e3ff1f00fd",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549789320000,
+    "last_edited_time": 1550113080000,
     "parent_id": "690c8bdb-4161-40ee-ae39-db6ce423d3b9",
     "parent_table": "block",
     "properties": {
@@ -45,7 +32,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 25,
     "content_resolved": [
       {
         "alive": true,
@@ -129,214 +116,25 @@
         "id": "3143b020-d90a-4e67-93ca-3929084de077",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525794604,
+        "last_edited_time": 1550113080000,
         "parent_id": "ae4fba85-5ce9-4081-b86f-82e3ff1f00fd",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "private void button_Click(object sender, EventArgs e)\n{\n    DeadlockWorkers workers = new DeadlockWorkers();\n    workers.StartThreads();\n    textBox.Text = workers.GetResult();\n}"
+              "private void button_Click(object sender, EventArgs e)\n{\n    DeadlockWorkers workers = new DeadlockWorkers();\n    workers.StartThreads();\n    textBox.Text = workers.GetResult();\n}\n\nprivate class DeadlockWorkers\n{\n    Thread thread1, thread2;\n\n    object resourceA = new object();\n    object resourceB = new object();\n\n    string output;\n\n    public void StartThreads()\n    {\n        thread1 = new Thread(Thread1DoWork);\n        thread2 = new Thread(Thread2DoWork);\n        thread1.Start();\n        thread2.Start();\n    }\n\n    public string GetResult()\n    {\n        thread1.Join();\n        thread2.Join();\n        return output;\n    }\n\n    public void Thread1DoWork()\n    {\n        Thread.Sleep(100);\n        lock (resourceA)\n        {\n            Thread.Sleep(100);\n            lock (resourceB)\n            {\n                output += \"T1#\";\n            }\n        }\n    }\n\n    public void Thread2DoWork()\n    {\n        Thread.Sleep(100);\n        lock (resourceB)\n        {\n            Thread.Sleep(100);\n            lock (resourceA)\n            {\n                output += \"T2#\";\n            }\n        }\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "private void button_Click(object sender, EventArgs e)\n{\n    DeadlockWorkers workers = new DeadlockWorkers();\n    workers.StartThreads();\n    textBox.Text = workers.GetResult();\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525794604,
-        "id": "a4735253-14e2-408f-8a19-a42c28558922",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525794604,
-        "parent_id": "ae4fba85-5ce9-4081-b86f-82e3ff1f00fd",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "private class DeadlockWorkers\n{\n    Thread thread1, thread2;"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "private class DeadlockWorkers\n{\n    Thread thread1, thread2;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525794604,
-        "id": "0c1efa92-3368-463a-a987-3864beccaa29",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525794604,
-        "parent_id": "ae4fba85-5ce9-4081-b86f-82e3ff1f00fd",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "object resourceA = new object();\n    object resourceB = new object();"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "object resourceA = new object();\n    object resourceB = new object();",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525794604,
-        "id": "720ce911-bac6-480b-9851-22e19d59a177",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525794604,
-        "parent_id": "ae4fba85-5ce9-4081-b86f-82e3ff1f00fd",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "string output;"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "string output;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525794604,
-        "id": "72ca56dc-0820-4307-8f73-7da15e35300e",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525794604,
-        "parent_id": "ae4fba85-5ce9-4081-b86f-82e3ff1f00fd",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public void StartThreads()\n    {\n        thread1 = new Thread(Thread1DoWork);\n        thread2 = new Thread(Thread2DoWork);\n        thread1.Start();\n        thread2.Start();\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public void StartThreads()\n    {\n        thread1 = new Thread(Thread1DoWork);\n        thread2 = new Thread(Thread2DoWork);\n        thread1.Start();\n        thread2.Start();\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525794604,
-        "id": "9b20c10f-9b57-4a39-9674-fe1bcca6ba19",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525794604,
-        "parent_id": "ae4fba85-5ce9-4081-b86f-82e3ff1f00fd",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public string GetResult()\n    {\n        thread1.Join();\n        thread2.Join();\n        return output;\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public string GetResult()\n    {\n        thread1.Join();\n        thread2.Join();\n        return output;\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525794604,
-        "id": "cdc51538-a39a-4906-825b-9afed1397322",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525794604,
-        "parent_id": "ae4fba85-5ce9-4081-b86f-82e3ff1f00fd",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public void Thread1DoWork()\n    {\n        Thread.Sleep(100);\n        lock (resourceA)\n        {\n            Thread.Sleep(100);\n            lock (resourceB)\n            {\n                output += \"T1#\";\n            }\n        }\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public void Thread1DoWork()\n    {\n        Thread.Sleep(100);\n        lock (resourceA)\n        {\n            Thread.Sleep(100);\n            lock (resourceB)\n            {\n                output += \"T1#\";\n            }\n        }\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525794604,
-        "id": "03eeb329-032f-4496-bcf8-5fa789aaa835",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525794604,
-        "parent_id": "ae4fba85-5ce9-4081-b86f-82e3ff1f00fd",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public void Thread2DoWork()\n    {\n        Thread.Sleep(100);\n        lock (resourceB)\n        {\n            Thread.Sleep(100);\n            lock (resourceA)\n            {\n                output += \"T2#\";\n            }\n        }\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public void Thread2DoWork()\n    {\n        Thread.Sleep(100);\n        lock (resourceB)\n        {\n            Thread.Sleep(100);\n            lock (resourceA)\n            {\n                output += \"T2#\";\n            }\n        }\n    }\n}",
-        "code_language": "Plain Text"
+        "version": 14,
+        "code": "private void button_Click(object sender, EventArgs e)\n{\n    DeadlockWorkers workers = new DeadlockWorkers();\n    workers.StartThreads();\n    textBox.Text = workers.GetResult();\n}\n\nprivate class DeadlockWorkers\n{\n    Thread thread1, thread2;\n\n    object resourceA = new object();\n    object resourceB = new object();\n\n    string output;\n\n    public void StartThreads()\n    {\n        thread1 = new Thread(Thread1DoWork);\n        thread2 = new Thread(Thread2DoWork);\n        thread1.Start();\n        thread2.Start();\n    }\n\n    public string GetResult()\n    {\n        thread1.Join();\n        thread2.Join();\n        return output;\n    }\n\n    public void Thread1DoWork()\n    {\n        Thread.Sleep(100);\n        lock (resourceA)\n        {\n            Thread.Sleep(100);\n            lock (resourceB)\n            {\n                output += \"T1#\";\n            }\n        }\n    }\n\n    public void Thread2DoWork()\n    {\n        Thread.Sleep(100);\n        lock (resourceB)\n        {\n            Thread.Sleep(100);\n            lock (resourceA)\n            {\n                output += \"T2#\";\n            }\n        }\n    }\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -370,214 +168,25 @@
         "id": "3c02b10c-8661-4e78-a23c-637be55d928b",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525794605,
+        "last_edited_time": 1550113080000,
         "parent_id": "ae4fba85-5ce9-4081-b86f-82e3ff1f00fd",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "private void button_Click(object sender, EventArgs e)\n{\n    MonitorWorkers workers = new MonitorWorkers();\n    workers.StartThreads();\n    textBox.Text = workers.GetResult();\n}"
+              "private void button_Click(object sender, EventArgs e)\n{\n  MonitorWorkers workers = new MonitorWorkers();\n  workers.StartThreads();\n  textBox.Text = workers.GetResult();\n}\n\nprivate class MonitorWorkers\n{\n  Thread thread1, thread2;\n\n  object resourceA = new object();\n  object resourceB = new object();\n\n  string output;\n\n  public void StartThreads()\n  {\n      thread1 = new Thread(Thread1DoWork);\n      thread2 = new Thread(Thread2DoWork);\n      thread1.Start();\n      thread2.Start();\n  }\n\n  public string GetResult()\n  {\n      thread1.Join();\n      thread2.Join();\n      return output;\n  }\n\n  public void Thread1DoWork()\n  {\n      bool mustDoWork = true;\n      Thread.Sleep(100);\n      while (mustDoWork)\n      {\n          lock (resourceA)\n          {\n              Thread.Sleep(100);\n              if (Monitor.TryEnter(resourceB, 0))\n              {\n                  output += \"T1#\";\n                  mustDoWork = false;\n                  Monitor.Exit(resourceB);\n              }\n          }\n          if (mustDoWork) Thread.Yield();\n      }\n  }\n\n  public void Thread2DoWork()\n  {\n      Thread.Sleep(100);\n      lock (resourceB)\n      {\n          Thread.Sleep(100);\n          lock (resourceA)\n          {\n              output += \"T2#\";\n          }\n      }\n  }\n}\n"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "private void button_Click(object sender, EventArgs e)\n{\n    MonitorWorkers workers = new MonitorWorkers();\n    workers.StartThreads();\n    textBox.Text = workers.GetResult();\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525794605,
-        "id": "460a7156-b465-4ce0-bd8f-be95fccc9959",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525794605,
-        "parent_id": "ae4fba85-5ce9-4081-b86f-82e3ff1f00fd",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "private class MonitorWorkers\n{\n    Thread thread1, thread2;"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "private class MonitorWorkers\n{\n    Thread thread1, thread2;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525794605,
-        "id": "0d68b5cb-6eff-4462-a9e5-94336492e6a8",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525794605,
-        "parent_id": "ae4fba85-5ce9-4081-b86f-82e3ff1f00fd",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "object resourceA = new object();\n    object resourceB = new object();"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "object resourceA = new object();\n    object resourceB = new object();",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525794605,
-        "id": "7060cfa3-2b6b-42f5-8224-30ee607c0f58",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525794605,
-        "parent_id": "ae4fba85-5ce9-4081-b86f-82e3ff1f00fd",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "string output;"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "string output;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525794605,
-        "id": "371be8c3-bb46-4646-bd12-30d1e66aeb98",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525794605,
-        "parent_id": "ae4fba85-5ce9-4081-b86f-82e3ff1f00fd",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public void StartThreads()\n    {\n        thread1 = new Thread(Thread1DoWork);\n        thread2 = new Thread(Thread2DoWork);\n        thread1.Start();\n        thread2.Start();\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public void StartThreads()\n    {\n        thread1 = new Thread(Thread1DoWork);\n        thread2 = new Thread(Thread2DoWork);\n        thread1.Start();\n        thread2.Start();\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525794605,
-        "id": "e74af0a9-4b12-4690-b703-9491f0ce1d0b",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525794605,
-        "parent_id": "ae4fba85-5ce9-4081-b86f-82e3ff1f00fd",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public string GetResult()\n    {\n        thread1.Join();\n        thread2.Join();\n        return output;\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public string GetResult()\n    {\n        thread1.Join();\n        thread2.Join();\n        return output;\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525794605,
-        "id": "0301c7cb-65d9-4e90-877d-0f3aa8ad2095",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525794605,
-        "parent_id": "ae4fba85-5ce9-4081-b86f-82e3ff1f00fd",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public void Thread1DoWork()\n    {\n        bool mustDoWork = true;\n        Thread.Sleep(100);\n        while (mustDoWork)\n        {\n            lock (resourceA)\n            {\n                Thread.Sleep(100);\n                if (Monitor.TryEnter(resourceB, 0))\n                {\n                    output += \"T1#\";\n                    mustDoWork = false;\n                    Monitor.Exit(resourceB);\n                }\n            }\n            if (mustDoWork) Thread.Yield();\n        }\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public void Thread1DoWork()\n    {\n        bool mustDoWork = true;\n        Thread.Sleep(100);\n        while (mustDoWork)\n        {\n            lock (resourceA)\n            {\n                Thread.Sleep(100);\n                if (Monitor.TryEnter(resourceB, 0))\n                {\n                    output += \"T1#\";\n                    mustDoWork = false;\n                    Monitor.Exit(resourceB);\n                }\n            }\n            if (mustDoWork) Thread.Yield();\n        }\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525794605,
-        "id": "8ecdbe67-caac-49ad-aea1-c6b07e9452da",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525794605,
-        "parent_id": "ae4fba85-5ce9-4081-b86f-82e3ff1f00fd",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public void Thread2DoWork()\n    {\n        Thread.Sleep(100);\n        lock (resourceB)\n        {\n            Thread.Sleep(100);\n            lock (resourceA)\n            {\n                output += \"T2#\";\n            }\n        }\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public void Thread2DoWork()\n    {\n        Thread.Sleep(100);\n        lock (resourceB)\n        {\n            Thread.Sleep(100);\n            lock (resourceA)\n            {\n                output += \"T2#\";\n            }\n        }\n    }\n}",
-        "code_language": "Plain Text"
+        "version": 9,
+        "code": "private void button_Click(object sender, EventArgs e)\n{\n  MonitorWorkers workers = new MonitorWorkers();\n  workers.StartThreads();\n  textBox.Text = workers.GetResult();\n}\n\nprivate class MonitorWorkers\n{\n  Thread thread1, thread2;\n\n  object resourceA = new object();\n  object resourceB = new object();\n\n  string output;\n\n  public void StartThreads()\n  {\n      thread1 = new Thread(Thread1DoWork);\n      thread2 = new Thread(Thread2DoWork);\n      thread1.Start();\n      thread2.Start();\n  }\n\n  public string GetResult()\n  {\n      thread1.Join();\n      thread2.Join();\n      return output;\n  }\n\n  public void Thread1DoWork()\n  {\n      bool mustDoWork = true;\n      Thread.Sleep(100);\n      while (mustDoWork)\n      {\n          lock (resourceA)\n          {\n              Thread.Sleep(100);\n              if (Monitor.TryEnter(resourceB, 0))\n              {\n                  output += \"T1#\";\n                  mustDoWork = false;\n                  Monitor.Exit(resourceB);\n              }\n          }\n          if (mustDoWork) Thread.Yield();\n      }\n  }\n\n  public void Thread2DoWork()\n  {\n      Thread.Sleep(100);\n      lock (resourceB)\n      {\n          Thread.Sleep(100);\n          lock (resourceA)\n          {\n              output += \"T2#\";\n          }\n      }\n  }\n}\n",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -603,6 +212,18 @@
             "Text": "Note that this workaround relies on thread2 being stubborn about its locks and thread1 being willing to yield, such that thread2 always take precedence. Also note that thread1 has to redo the work it did after locking resource A, when it yields. Therefore be careful when implementing this approach with more than one yielding thread, as you’ll then run the risk of entering a so-called livelock - a state which would occur if two threads kept doing the first bit of their work and then yield mutually, starting over repeatedly."
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550113080000,
+        "id": "727082c3-8060-4216-ae10-6c32e0834a34",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550113080000,
+        "parent_id": "ae4fba85-5ce9-4081-b86f-82e3ff1f00fd",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "Deadlocks hold resource and wait",

@@ -5,13 +5,7 @@
     "content": [
       "aaedb88d-8bb9-4dfc-9831-ccd445ad4a3c",
       "c5a51dc4-2791-4684-94b7-d449454ede30",
-      "43cdcf32-15c5-43f3-b734-e44343507549",
-      "545a6edc-b3a3-4911-b5f1-f931b671609b",
-      "b5025597-3bff-4799-9ff6-f2c75e5a8a7e",
-      "1292dd05-63c0-458a-97b9-8b59713dff69",
-      "c62715a4-b368-46fe-bbcd-2b5857874a6d",
-      "9f16f672-0412-4eaf-921b-cd26bf1b2508",
-      "d8201600-0ba7-4806-9480-ece4d1a66e90"
+      "8ead8fdb-d3e8-4307-a79a-11badca10f12"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549527790349,
@@ -22,7 +16,7 @@
     "id": "6b841349-9adb-43fd-95e2-939c17575f43",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549789620000,
+    "last_edited_time": 1550205120000,
     "parent_id": "97d7d0bc-7873-4d24-b89e-70a0d8483664",
     "parent_table": "block",
     "properties": {
@@ -33,7 +27,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 18,
     "content_resolved": [
       {
         "alive": true,
@@ -67,214 +61,37 @@
         "id": "c5a51dc4-2791-4684-94b7-d449454ede30",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527790348,
+        "last_edited_time": 1550205060000,
         "parent_id": "6b841349-9adb-43fd-95e2-939c17575f43",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "/* This is the backgroundworker's \"DoWork\" event handler. This \n       method is what will contain all the work you \n       wish to have your program perform without blocking the UI. */"
+              "/* This is the backgroundworker's \"DoWork\" event handler. This \n   method is what will contain all the work you \n   wish to have your program perform without blocking the UI. */\n\nbgWorker.DoWork += bgWorker_DoWork;\n\n\n/*This is how the DoWork event method signature looks like:*/\nprivate void bgWorker_DoWork(object sender, DoWorkEventArgs e)\n{\n    // Work to be done here   \n    // ...\n    // To get a reference to the current Backgroundworker:\n    BackgroundWorker worker = sender as BackgroundWorker;\n    // The reference to the BackgroundWorker is often used to report progress\n    worker.ReportProgress(...);\n}\n\n/*This is the method that will be run once the BackgroundWorker has completed its tasks */\n\nbgWorker.RunWorkerCompleted += bgWorker_CompletedWork;\n\n/*This is how the RunWorkerCompletedEvent event method signature looks like:*/\nprivate void bgWorker_CompletedWork(object sender, RunWorkerCompletedEventArgs e)\n{\n    // Things to be done after the backgroundworker has finished\n}\n\n/* When you wish to have something occur when a change in progress \n occurs, (like the completion of a specific task) the \"ProgressChanged\" \n event handler is used. Note that ProgressChanged events may be invoked\n by calls to bgWorker.ReportProgress(...) only if bgWorker.WorkerReportsProgress\n is set to true.  */\n\n bgWorker.ProgressChanged += bgWorker_ProgressChanged;\n\n/*This is how the ProgressChanged event method signature looks like:*/\nprivate void bgWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)\n{\n    // Things to be done when a progress change has been reported\n\n    /* The ProgressChangedEventArgs gives access to a percentage,\n     allowing for easy reporting of how far along a process is*/\n    int progress = e.ProgressPercentage;\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "/* This is the backgroundworker's \"DoWork\" event handler. This \n       method is what will contain all the work you \n       wish to have your program perform without blocking the UI. */",
-        "code_language": "Plain Text"
+        "version": 9,
+        "code": "/* This is the backgroundworker's \"DoWork\" event handler. This \n   method is what will contain all the work you \n   wish to have your program perform without blocking the UI. */\n\nbgWorker.DoWork += bgWorker_DoWork;\n\n\n/*This is how the DoWork event method signature looks like:*/\nprivate void bgWorker_DoWork(object sender, DoWorkEventArgs e)\n{\n    // Work to be done here   \n    // ...\n    // To get a reference to the current Backgroundworker:\n    BackgroundWorker worker = sender as BackgroundWorker;\n    // The reference to the BackgroundWorker is often used to report progress\n    worker.ReportProgress(...);\n}\n\n/*This is the method that will be run once the BackgroundWorker has completed its tasks */\n\nbgWorker.RunWorkerCompleted += bgWorker_CompletedWork;\n\n/*This is how the RunWorkerCompletedEvent event method signature looks like:*/\nprivate void bgWorker_CompletedWork(object sender, RunWorkerCompletedEventArgs e)\n{\n    // Things to be done after the backgroundworker has finished\n}\n\n/* When you wish to have something occur when a change in progress \n occurs, (like the completion of a specific task) the \"ProgressChanged\" \n event handler is used. Note that ProgressChanged events may be invoked\n by calls to bgWorker.ReportProgress(...) only if bgWorker.WorkerReportsProgress\n is set to true.  */\n\n bgWorker.ProgressChanged += bgWorker_ProgressChanged;\n\n/*This is how the ProgressChanged event method signature looks like:*/\nprivate void bgWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)\n{\n    // Things to be done when a progress change has been reported\n\n    /* The ProgressChangedEventArgs gives access to a percentage,\n     allowing for easy reporting of how far along a process is*/\n    int progress = e.ProgressPercentage;\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527790348,
-        "id": "43cdcf32-15c5-43f3-b734-e44343507549",
-        "ignore_block_count": true,
+        "created_time": 1550205120000,
+        "id": "8ead8fdb-d3e8-4307-a79a-11badca10f12",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527790348,
+        "last_edited_time": 1550205120000,
         "parent_id": "6b841349-9adb-43fd-95e2-939c17575f43",
         "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "bgWorker.DoWork += bgWorker_DoWork;"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "bgWorker.DoWork += bgWorker_DoWork;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527790348,
-        "id": "545a6edc-b3a3-4911-b5f1-f931b671609b",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527790348,
-        "parent_id": "6b841349-9adb-43fd-95e2-939c17575f43",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "/*This is how the DoWork event method signature looks like:*/\n    private void bgWorker_DoWork(object sender, DoWorkEventArgs e)\n    {\n        // Work to be done here   \n        // ...\n        // To get a reference to the current Backgroundworker:\n        BackgroundWorker worker = sender as BackgroundWorker;\n        // The reference to the BackgroundWorker is often used to report progress\n        worker.ReportProgress(...);\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "/*This is how the DoWork event method signature looks like:*/\n    private void bgWorker_DoWork(object sender, DoWorkEventArgs e)\n    {\n        // Work to be done here   \n        // ...\n        // To get a reference to the current Backgroundworker:\n        BackgroundWorker worker = sender as BackgroundWorker;\n        // The reference to the BackgroundWorker is often used to report progress\n        worker.ReportProgress(...);\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527790348,
-        "id": "b5025597-3bff-4799-9ff6-f2c75e5a8a7e",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527790348,
-        "parent_id": "6b841349-9adb-43fd-95e2-939c17575f43",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "/*This is the method that will be run once the BackgroundWorker has completed its tasks */\n\n    bgWorker.RunWorkerCompleted += bgWorker_CompletedWork;"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "/*This is the method that will be run once the BackgroundWorker has completed its tasks */\n\n    bgWorker.RunWorkerCompleted += bgWorker_CompletedWork;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527790348,
-        "id": "1292dd05-63c0-458a-97b9-8b59713dff69",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527790348,
-        "parent_id": "6b841349-9adb-43fd-95e2-939c17575f43",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "/*This is how the RunWorkerCompletedEvent event method signature looks like:*/\n    private void bgWorker_CompletedWork(object sender, RunWorkerCompletedEventArgs e)\n    {\n        // Things to be done after the backgroundworker has finished\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "/*This is how the RunWorkerCompletedEvent event method signature looks like:*/\n    private void bgWorker_CompletedWork(object sender, RunWorkerCompletedEventArgs e)\n    {\n        // Things to be done after the backgroundworker has finished\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527790348,
-        "id": "c62715a4-b368-46fe-bbcd-2b5857874a6d",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527790348,
-        "parent_id": "6b841349-9adb-43fd-95e2-939c17575f43",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "/* When you wish to have something occur when a change in progress \n     occurs, (like the completion of a specific task) the \"ProgressChanged\" \n     event handler is used. Note that ProgressChanged events may be invoked\n     by calls to bgWorker.ReportProgress(...) only if bgWorker.WorkerReportsProgress\n     is set to true.  */"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "/* When you wish to have something occur when a change in progress \n     occurs, (like the completion of a specific task) the \"ProgressChanged\" \n     event handler is used. Note that ProgressChanged events may be invoked\n     by calls to bgWorker.ReportProgress(...) only if bgWorker.WorkerReportsProgress\n     is set to true.  */",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527790348,
-        "id": "9f16f672-0412-4eaf-921b-cd26bf1b2508",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527790348,
-        "parent_id": "6b841349-9adb-43fd-95e2-939c17575f43",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "bgWorker.ProgressChanged += bgWorker_ProgressChanged;"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "bgWorker.ProgressChanged += bgWorker_ProgressChanged;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527790349,
-        "id": "d8201600-0ba7-4806-9480-ece4d1a66e90",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527790349,
-        "parent_id": "6b841349-9adb-43fd-95e2-939c17575f43",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "/*This is how the ProgressChanged event method signature looks like:*/\n    private void bgWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)\n    {\n        // Things to be done when a progress change has been reported"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "/*This is how the ProgressChanged event method signature looks like:*/\n    private void bgWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)\n    {\n        // Things to be done when a progress change has been reported",
-        "code_language": "Plain Text"
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "Assigning Event Handlers to a BackgroundWorker",

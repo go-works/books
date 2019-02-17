@@ -8,9 +8,9 @@
       "7597452f-1ed3-4d92-858e-a83fd1e01c76",
       "c2be6e26-4be3-4789-9e2b-69d9126b52b5",
       "1ed45a85-4726-4d04-97ad-98a590045183",
-      "3fbc344d-4ce4-4c90-ad83-54b46b3b5693",
       "3f8d4d51-87b0-4b86-868f-bf3048f1519d",
-      "4d0c7d39-16bd-428b-b107-761be194e4f0"
+      "4d0c7d39-16bd-428b-b107-761be194e4f0",
+      "3559e4e1-4e32-46b9-a684-d13a42bc2039"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549524685707,
@@ -21,7 +21,7 @@
     "id": "3ef0be74-1a71-4ad2-96f2-434438421c5a",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549614960000,
+    "last_edited_time": 1549875960000,
     "parent_id": "190506d8-ff9f-4443-bbce-bdb69e483555",
     "parent_table": "block",
     "properties": {
@@ -32,7 +32,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 11,
     "content_resolved": [
       {
         "alive": true,
@@ -219,52 +219,25 @@
         "id": "1ed45a85-4726-4d04-97ad-98a590045183",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524685706,
+        "last_edited_time": 1549875960000,
         "parent_id": "3ef0be74-1a71-4ad2-96f2-434438421c5a",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "List\u003cstring\u003e list1 = new List\u003cstring\u003e {\"a1\", \"a2\", null, \"a3\"};\nList\u003cstring\u003e list2 = new List\u003cstring\u003e {\"a1\", \"a2\", \"a3\", null};"
+              "List\u003cstring\u003e list1 = new List\u003cstring\u003e {\"a1\", \"a2\", null, \"a3\"};\nList\u003cstring\u003e list2 = new List\u003cstring\u003e {\"a1\", \"a2\", \"a3\", null};\n\nlist1.Compare(list2);//this gives false\nlist1.Compare(list2, false);//this gives true. they are equal when the order is disregarded"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "List\u003cstring\u003e list1 = new List\u003cstring\u003e {\"a1\", \"a2\", null, \"a3\"};\nList\u003cstring\u003e list2 = new List\u003cstring\u003e {\"a1\", \"a2\", \"a3\", null};",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524685706,
-        "id": "3fbc344d-4ce4-4c90-ad83-54b46b3b5693",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524685706,
-        "parent_id": "3ef0be74-1a71-4ad2-96f2-434438421c5a",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "list1.Compare(list2);//this gives false\nlist1.Compare(list2, false);//this gives true. they are equal when the order is disregarded"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "list1.Compare(list2);//this gives false\nlist1.Compare(list2, false);//this gives true. they are equal when the order is disregarded",
-        "code_language": "Plain Text"
+        "version": 9,
+        "code": "List\u003cstring\u003e list1 = new List\u003cstring\u003e {\"a1\", \"a2\", null, \"a3\"};\nList\u003cstring\u003e list2 = new List\u003cstring\u003e {\"a1\", \"a2\", \"a3\", null};\n\nlist1.Compare(list2);//this gives false\nlist1.Compare(list2, false);//this gives true. they are equal when the order is disregarded",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -304,25 +277,37 @@
         "id": "4d0c7d39-16bd-428b-b107-761be194e4f0",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524685707,
+        "last_edited_time": 1549875960000,
         "parent_id": "3ef0be74-1a71-4ad2-96f2-434438421c5a",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public static bool Compare\u003cT\u003e(this IList\u003cT\u003e list1, IList\u003cT\u003e list2, bool isOrdered = true) \n{\n    if (list1 == null \u0026\u0026 list2 == null)\n        return true;\n    if (list1 == null || list2 == null || list1.Count != list2.Count)\n        return false;"
+              "public static bool Compare\u003cT\u003e(this IList\u003cT\u003e list1, IList\u003cT\u003e list2, bool isOrdered = true) \n{\n    if (list1 == null \u0026\u0026 list2 == null)\n        return true;\n    if (list1 == null || list2 == null || list1.Count != list2.Count)\n        return false;\n\n    if (isOrdered)\n    {\n        for (int i = 0; i \u003c list2.Count; i++)\n        {\n            var l1 = list1[i]; \n            var l2 = list2[i];\n            if (\n                 (l1 == null \u0026\u0026 l2 != null) || \n                 (l1 != null \u0026\u0026 l2 == null) || \n                 (!l1.Equals(l2)))\n            {\n                    return false;\n            }\n        }\n        return true;\n    }\n    else\n    {\n        List\u003cT\u003e list2Copy = new List\u003cT\u003e(list2);\n        //Can be done with Dictionary without O(n^2)\n        for (int i = 0; i \u003c list1.Count; i++)\n        {\n            if (!list2Copy.Remove(list1[i]))\n                return false;\n        }\n        return true;\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public static bool Compare\u003cT\u003e(this IList\u003cT\u003e list1, IList\u003cT\u003e list2, bool isOrdered = true) \n{\n    if (list1 == null \u0026\u0026 list2 == null)\n        return true;\n    if (list1 == null || list2 == null || list1.Count != list2.Count)\n        return false;",
-        "code_language": "Plain Text"
+        "version": 9,
+        "code": "public static bool Compare\u003cT\u003e(this IList\u003cT\u003e list1, IList\u003cT\u003e list2, bool isOrdered = true) \n{\n    if (list1 == null \u0026\u0026 list2 == null)\n        return true;\n    if (list1 == null || list2 == null || list1.Count != list2.Count)\n        return false;\n\n    if (isOrdered)\n    {\n        for (int i = 0; i \u003c list2.Count; i++)\n        {\n            var l1 = list1[i]; \n            var l2 = list2[i];\n            if (\n                 (l1 == null \u0026\u0026 l2 != null) || \n                 (l1 != null \u0026\u0026 l2 == null) || \n                 (!l1.Equals(l2)))\n            {\n                    return false;\n            }\n        }\n        return true;\n    }\n    else\n    {\n        List\u003cT\u003e list2Copy = new List\u003cT\u003e(list2);\n        //Can be done with Dictionary without O(n^2)\n        for (int i = 0; i \u003c list1.Count; i++)\n        {\n            if (!list2Copy.Remove(list1[i]))\n                return false;\n        }\n        return true;\n    }\n}",
+        "code_language": "C#"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549875960000,
+        "id": "3559e4e1-4e32-46b9-a684-d13a42bc2039",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549875960000,
+        "parent_id": "3ef0be74-1a71-4ad2-96f2-434438421c5a",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "IListT Extension Method Example Comparing 2 Lists",

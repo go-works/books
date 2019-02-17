@@ -12,7 +12,7 @@
       "cbe0c6be-bb9f-465b-88d9-b4dfd573d467",
       "d21faca7-cacb-4c84-85ff-cfaf0e5fcb50",
       "0ce01648-e2ba-4f6b-9a0e-37d7e5105067",
-      "948a3b6a-86c8-4b99-8f7e-bdd83301683c"
+      "e19cbdd4-f8a3-4975-a034-344443d4246f"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549528365364,
@@ -23,7 +23,7 @@
     "id": "efb748d8-d025-450e-a46e-e4c67a9c127c",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549624200000,
+    "last_edited_time": 1550210940000,
     "parent_id": "d6ab87f3-3105-4532-8f9a-1b47bf70d308",
     "parent_table": "block",
     "properties": {
@@ -34,7 +34,7 @@
       ]
     },
     "type": "page",
-    "version": 10,
+    "version": 13,
     "content_resolved": [
       {
         "alive": true,
@@ -309,13 +309,13 @@
         "id": "cbe0c6be-bb9f-465b-88d9-b4dfd573d467",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528365362,
+        "last_edited_time": 1550210940000,
         "parent_id": "efb748d8-d025-450e-a46e-e4c67a9c127c",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -325,9 +325,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "public int CalcPowerOf(int b, int e) {\n    if (b == 0) { return 0; } // when base is 0, it doesn't matter, it will always return 0\n    if (e == 0) { return 1; } // math rule, exponent 0 always returns 1\n    return b * CalcPowerOf(b, e - 1); // actual recursive logic, where we split the problem, aka: 2³ = 2 * 2² etc..\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -380,52 +380,37 @@
         "id": "0ce01648-e2ba-4f6b-9a0e-37d7e5105067",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528365364,
+        "last_edited_time": 1550210940000,
         "parent_id": "efb748d8-d025-450e-a46e-e4c67a9c127c",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "[Theory]\n    [MemberData(nameof(PowerOfTestData))]\n    public void PowerOfTest(int @base, int exponent, int expected) {\n        Assert.Equal(expected, CalcPowerOf(@base, exponent));\n    }"
+              "[Theory]\n[MemberData(nameof(PowerOfTestData))]\npublic void PowerOfTest(int @base, int exponent, int expected) {\n    Assert.Equal(expected, CalcPowerOf(@base, exponent));\n}\n\npublic static IEnumerable\u003cobject[]\u003e PowerOfTestData() {\n    yield return new object[] { 0, 0, 0 };\n    yield return new object[] { 0, 1, 0 };\n    yield return new object[] { 2, 0, 1 };\n    yield return new object[] { 2, 1, 2 };\n    yield return new object[] { 2, 2, 4 };\n    yield return new object[] { 5, 2, 25 };\n    yield return new object[] { 5, 3, 125 };\n    yield return new object[] { 5, 4, 625 };\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "[Theory]\n    [MemberData(nameof(PowerOfTestData))]\n    public void PowerOfTest(int @base, int exponent, int expected) {\n        Assert.Equal(expected, CalcPowerOf(@base, exponent));\n    }",
-        "code_language": "Plain Text"
+        "version": 9,
+        "code": "[Theory]\n[MemberData(nameof(PowerOfTestData))]\npublic void PowerOfTest(int @base, int exponent, int expected) {\n    Assert.Equal(expected, CalcPowerOf(@base, exponent));\n}\n\npublic static IEnumerable\u003cobject[]\u003e PowerOfTestData() {\n    yield return new object[] { 0, 0, 0 };\n    yield return new object[] { 0, 1, 0 };\n    yield return new object[] { 2, 0, 1 };\n    yield return new object[] { 2, 1, 2 };\n    yield return new object[] { 2, 2, 4 };\n    yield return new object[] { 5, 2, 25 };\n    yield return new object[] { 5, 3, 125 };\n    yield return new object[] { 5, 4, 625 };\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528365364,
-        "id": "948a3b6a-86c8-4b99-8f7e-bdd83301683c",
-        "ignore_block_count": true,
+        "created_time": 1550210940000,
+        "id": "e19cbdd4-f8a3-4975-a034-344443d4246f",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528365364,
+        "last_edited_time": 1550210940000,
         "parent_id": "efb748d8-d025-450e-a46e-e4c67a9c127c",
         "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public static IEnumerable\u003cobject[]\u003e PowerOfTestData() {\n        yield return new object[] { 0, 0, 0 };\n        yield return new object[] { 0, 1, 0 };\n        yield return new object[] { 2, 0, 1 };\n        yield return new object[] { 2, 1, 2 };\n        yield return new object[] { 2, 2, 4 };\n        yield return new object[] { 5, 2, 25 };\n        yield return new object[] { 5, 3, 125 };\n        yield return new object[] { 5, 4, 625 };\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public static IEnumerable\u003cobject[]\u003e PowerOfTestData() {\n        yield return new object[] { 0, 0, 0 };\n        yield return new object[] { 0, 1, 0 };\n        yield return new object[] { 2, 0, 1 };\n        yield return new object[] { 2, 1, 2 };\n        yield return new object[] { 2, 2, 4 };\n        yield return new object[] { 5, 2, 25 };\n        yield return new object[] { 5, 3, 125 };\n        yield return new object[] { 5, 4, 625 };\n}",
-        "code_language": "Plain Text"
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "PowerOf calculation",

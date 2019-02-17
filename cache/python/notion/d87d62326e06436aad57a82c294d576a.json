@@ -1,0 +1,109 @@
+{
+  "ID": "d87d6232-6e06-436a-ad57-a82c294d576a",
+  "Root": {
+    "alive": true,
+    "content": [
+      "f133c2a3-58f0-441f-b1b5-d5378a97d248",
+      "c030b94f-0b8f-4ce6-8fee-5fa5c364da7e"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550310912306,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "d87d6232-6e06-436a-ad57-a82c294d576a",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550311200000,
+    "parent_id": "305111c8-efce-4cf2-b2ae-7b5e31a27b42",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Class composition"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550310912304,
+        "id": "f133c2a3-58f0-441f-b1b5-d5378a97d248",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550310912304,
+        "parent_id": "d87d6232-6e06-436a-ad57-a82c294d576a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Class composition allows explicit relations between objects. In this example, people live in cities that belong to countries. Composition allows people to access the number of all people living in their country:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Class composition allows explicit relations between objects. In this example, people live in cities that belong to countries. Composition allows people to access the number of all people living in their country:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550310912306,
+        "id": "c030b94f-0b8f-4ce6-8fee-5fa5c364da7e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550311200000,
+        "parent_id": "d87d6232-6e06-436a-ad57-a82c294d576a",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Python"
+            ]
+          ],
+          "title": [
+            [
+              "class Country(object):\n    def __init__(self):\n        self.cities=[]\n        \n    def addCity(self,city):\n        self.cities.append(city)\n        \n\nclass City(object):\n    def __init__(self, numPeople):\n        self.people = []\n        self.numPeople = numPeople\n        \n        \n    def addPerson(self, person):\n        self.people.append(person)\n    \n    def join_country(self,country):\n        self.country = country\n        country.addCity(self)\n        \n        for i in range(self.numPeople):\n                person(i).join_city(self)\n  \n\nclass Person(object):\n    def __init__(self, ID):\n        self.ID=ID\n\n    def join_city(self, city):\n        self.city = city\n        city.addPerson(self)\n        \n    def people_in_my_country(self):\n        x= sum([len(c.people) for c in self.city.country.cities])\n        return x\n        \nUS=Country()\nNYC=City(10).join_country(US)\nSF=City(5).join_country(US)\n\nprint(US.cities[0].people[0].people_in_my_country())\n\n# 15"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "class Country(object):\n    def __init__(self):\n        self.cities=[]\n        \n    def addCity(self,city):\n        self.cities.append(city)\n        \n\nclass City(object):\n    def __init__(self, numPeople):\n        self.people = []\n        self.numPeople = numPeople\n        \n        \n    def addPerson(self, person):\n        self.people.append(person)\n    \n    def join_country(self,country):\n        self.country = country\n        country.addCity(self)\n        \n        for i in range(self.numPeople):\n                person(i).join_city(self)\n  \n\nclass Person(object):\n    def __init__(self, ID):\n        self.ID=ID\n\n    def join_city(self, city):\n        self.city = city\n        city.addPerson(self)\n        \n    def people_in_my_country(self):\n        x= sum([len(c.people) for c in self.city.country.cities])\n        return x\n        \nUS=Country()\nNYC=City(10).join_country(US)\nSF=City(5).join_country(US)\n\nprint(US.cities[0].people[0].people_in_my_country())\n\n# 15",
+        "code_language": "Python"
+      }
+    ],
+    "title": "Class composition",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

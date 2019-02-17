@@ -3,7 +3,8 @@
   "Root": {
     "alive": true,
     "content": [
-      "b3a168ec-b068-46e6-b1bb-4699cd8f847e"
+      "b3a168ec-b068-46e6-b1bb-4699cd8f847e",
+      "2aea24aa-4282-4b35-84cc-6300578ac13b"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549527036733,
@@ -14,7 +15,7 @@
     "id": "377995f5-f574-449e-a6e2-a664238c4988",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549789740000,
+    "last_edited_time": 1550136180000,
     "parent_id": "91106db6-78bc-4ff0-875f-edacdc1e0312",
     "parent_table": "block",
     "properties": {
@@ -25,7 +26,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 11,
     "content_resolved": [
       {
         "alive": true,
@@ -34,13 +35,13 @@
         "id": "b3a168ec-b068-46e6-b1bb-4699cd8f847e",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527036733,
+        "last_edited_time": 1550136180000,
         "parent_id": "377995f5-f574-449e-a6e2-a664238c4988",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -50,9 +51,21 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "public class Foo\n{\n    private const int TASK_ITERATION_DELAY_MS = 1000;\n    private CancellationTokenSource _cts;\n\n    public Foo()\n    {\n        this._cts = new CancellationTokenSource();\n    }\n\n    public void StartExecution()\n    {\n        Task.Factory.StartNew(this.OwnCodeCancelableTask_EveryNSeconds, this._cts.Token);\n    }\n\n    public void CancelExecution()\n    {\n        this._cts.Cancel();\n    }\n\n    /// \u003csummary\u003e\n    /// \"Infinite\" loop that runs every N seconds. Good for checking for a heartbeat or updates.\n    /// \u003c/summary\u003e\n    /// \u003cparam name=\"taskState\"\u003eThe cancellation token from our _cts field, passed in the StartNew call\u003c/param\u003e\n    private async void OwnCodeCancelableTask_EveryNSeconds(object taskState)\n    {\n        var token = (CancellationToken)taskState;\n\n        while (!token.IsCancellationRequested)\n        {\n            Console.WriteLine(\"Do the work that needs to happen every N seconds in this loop\");\n\n            // Passing token here allows the Delay to be cancelled if your task gets cancelled.\n            await Task.Delay(TASK_ITERATION_DELAY_MS, token);\n        }\n    }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550136120000,
+        "id": "2aea24aa-4282-4b35-84cc-6300578ac13b",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550136120000,
+        "parent_id": "377995f5-f574-449e-a6e2-a664238c4988",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "An async cancellable polling Task that waits between iterations",

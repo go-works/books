@@ -15,7 +15,7 @@
     "id": "852b634c-48b4-48a9-bb33-d5731aba8cdc",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549786020000,
+    "last_edited_time": 1550202240000,
     "parent_id": "0772a9e8-ab55-46c8-8848-6042b5dca448",
     "parent_table": "block",
     "properties": {
@@ -26,7 +26,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 9,
     "content_resolved": [
       {
         "alive": true,
@@ -60,7 +60,7 @@
         "id": "f964675e-a4a4-4184-8997-dbe3adea27d2",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549786020000,
+        "last_edited_time": 1550202240000,
         "parent_id": "852b634c-48b4-48a9-bb33-d5731aba8cdc",
         "parent_table": "block",
         "properties": {
@@ -71,13 +71,13 @@
           ],
           "title": [
             [
-              "// Declare Variables\nstring host = \"stackoverflow.com\";\nint port = 9999;\nint timeout = 5000;"
+              "// Declare Variables\nstring host = \"stackoverflow.com\";\nint port = 9999;\nint timeout = 5000;\n\n// Create TCP client and connect\nusing (var _client = new TcpClient(host, port))\nusing (var _netStream = _client.GetStream()) \n{\n    _netStream.ReadTimeout = timeout;\n\n    // Write a message over the socket\n    string message = \"Hello World!\";\n    byte[] dataToSend = System.Text.Encoding.ASCII.GetBytes(message);\n    _netStream.Write(dataToSend, 0, dataToSend.Length);\n    \n    // Read server response\n    byte[] recvData = new byte[256];\n    int bytes = _netStream.Read(recvData, 0, recvData.Length);\n    message = System.Text.Encoding.ASCII.GetString(recvData, 0, bytes);\n    Console.WriteLine(string.Format(\"Server: {0}\", message));                \n};// The client and stream will close as control exits the using block (Equivilent but safer than calling Close();\n"
             ]
           ]
         },
         "type": "code",
-        "version": 3,
-        "code": "// Declare Variables\nstring host = \"stackoverflow.com\";\nint port = 9999;\nint timeout = 5000;",
+        "version": 9,
+        "code": "// Declare Variables\nstring host = \"stackoverflow.com\";\nint port = 9999;\nint timeout = 5000;\n\n// Create TCP client and connect\nusing (var _client = new TcpClient(host, port))\nusing (var _netStream = _client.GetStream()) \n{\n    _netStream.ReadTimeout = timeout;\n\n    // Write a message over the socket\n    string message = \"Hello World!\";\n    byte[] dataToSend = System.Text.Encoding.ASCII.GetBytes(message);\n    _netStream.Write(dataToSend, 0, dataToSend.Length);\n    \n    // Read server response\n    byte[] recvData = new byte[256];\n    int bytes = _netStream.Read(recvData, 0, recvData.Length);\n    message = System.Text.Encoding.ASCII.GetString(recvData, 0, bytes);\n    Console.WriteLine(string.Format(\"Server: {0}\", message));                \n};// The client and stream will close as control exits the using block (Equivilent but safer than calling Close();\n",
         "code_language": "C#"
       }
     ],

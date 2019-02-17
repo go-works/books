@@ -6,8 +6,7 @@
       "193cb0cd-82de-4a29-9b20-996ef5ef79b1",
       "89cfd39e-5465-4a65-bcf7-389248f551fa",
       "da36e5ea-7cb1-41d6-bc38-f6f67d17a8a3",
-      "e88acad1-6c7e-4505-889d-17ef5c42ec38",
-      "9f92c3d6-057e-44d1-ac32-64458d413e75"
+      "b6b09204-c2a8-4ff3-9c43-d131ac964c4d"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549528666521,
@@ -18,7 +17,7 @@
     "id": "a2347af8-7862-4301-85ae-12ac62f1db60",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549792260000,
+    "last_edited_time": 1550213520000,
     "parent_id": "f0c07076-1721-4628-bc3b-9d40618aeb3a",
     "parent_table": "block",
     "properties": {
@@ -29,7 +28,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 12,
     "content_resolved": [
       {
         "alive": true,
@@ -88,79 +87,37 @@
         "id": "da36e5ea-7cb1-41d6-bc38-f6f67d17a8a3",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528666521,
+        "last_edited_time": 1550213520000,
         "parent_id": "a2347af8-7862-4301-85ae-12ac62f1db60",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public static void ProcessFile(string inputPath, string password, bool encryptMode, string outputPath)\n{\n    using (var cypher = new AesManaged())\n    using (var fsIn = new FileStream(inputPath, FileMode.Open))\n    using (var fsOut = new FileStream(outputPath, FileMode.Create))\n    {\n        const int saltLength = 256;\n        var salt = new byte[saltLength];\n        var iv = new byte[cypher.BlockSize / 8];"
+              "public static void ProcessFile(string inputPath, string password, bool encryptMode, string outputPath)\n{\n    using (var cypher = new AesManaged())\n    using (var fsIn = new FileStream(inputPath, FileMode.Open))\n    using (var fsOut = new FileStream(outputPath, FileMode.Create))\n    {\n        const int saltLength = 256;\n        var salt = new byte[saltLength];\n        var iv = new byte[cypher.BlockSize / 8];\n\n        if (encryptMode)\n        {\n            // Generate random salt and IV, then write them to file\n            using (var rng = new RNGCryptoServiceProvider())\n            {\n                rng.GetBytes(salt);\n                rng.GetBytes(iv);\n            }\n            fsOut.Write(salt, 0, salt.Length);\n            fsOut.Write(iv, 0, iv.Length);\n        }\n        else\n        {\n            // Read the salt and IV from the file\n            fsIn.Read(salt, 0, saltLength);\n            fsIn.Read(iv, 0, iv.Length);\n        }\n\n        // Generate a secure password, based on the password and salt provided\n        var pdb = new Rfc2898DeriveBytes(password, salt);\n        var key = pdb.GetBytes(cypher.KeySize / 8);\n\n        // Encrypt or decrypt the file\n        using (var cryptoTransform = encryptMode\n            ? cypher.CreateEncryptor(key, iv)\n            : cypher.CreateDecryptor(key, iv))\n        using (var cs = new CryptoStream(fsOut, cryptoTransform, CryptoStreamMode.Write))\n        {\n            fsIn.CopyTo(cs);\n        }\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public static void ProcessFile(string inputPath, string password, bool encryptMode, string outputPath)\n{\n    using (var cypher = new AesManaged())\n    using (var fsIn = new FileStream(inputPath, FileMode.Open))\n    using (var fsOut = new FileStream(outputPath, FileMode.Create))\n    {\n        const int saltLength = 256;\n        var salt = new byte[saltLength];\n        var iv = new byte[cypher.BlockSize / 8];",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "public static void ProcessFile(string inputPath, string password, bool encryptMode, string outputPath)\n{\n    using (var cypher = new AesManaged())\n    using (var fsIn = new FileStream(inputPath, FileMode.Open))\n    using (var fsOut = new FileStream(outputPath, FileMode.Create))\n    {\n        const int saltLength = 256;\n        var salt = new byte[saltLength];\n        var iv = new byte[cypher.BlockSize / 8];\n\n        if (encryptMode)\n        {\n            // Generate random salt and IV, then write them to file\n            using (var rng = new RNGCryptoServiceProvider())\n            {\n                rng.GetBytes(salt);\n                rng.GetBytes(iv);\n            }\n            fsOut.Write(salt, 0, salt.Length);\n            fsOut.Write(iv, 0, iv.Length);\n        }\n        else\n        {\n            // Read the salt and IV from the file\n            fsIn.Read(salt, 0, saltLength);\n            fsIn.Read(iv, 0, iv.Length);\n        }\n\n        // Generate a secure password, based on the password and salt provided\n        var pdb = new Rfc2898DeriveBytes(password, salt);\n        var key = pdb.GetBytes(cypher.KeySize / 8);\n\n        // Encrypt or decrypt the file\n        using (var cryptoTransform = encryptMode\n            ? cypher.CreateEncryptor(key, iv)\n            : cypher.CreateDecryptor(key, iv))\n        using (var cs = new CryptoStream(fsOut, cryptoTransform, CryptoStreamMode.Write))\n        {\n            fsIn.CopyTo(cs);\n        }\n    }\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528666521,
-        "id": "e88acad1-6c7e-4505-889d-17ef5c42ec38",
-        "ignore_block_count": true,
+        "created_time": 1550213520000,
+        "id": "b6b09204-c2a8-4ff3-9c43-d131ac964c4d",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528666521,
+        "last_edited_time": 1550213520000,
         "parent_id": "a2347af8-7862-4301-85ae-12ac62f1db60",
         "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "if (encryptMode)\n        {\n            // Generate random salt and IV, then write them to file\n            using (var rng = new RNGCryptoServiceProvider())\n            {\n                rng.GetBytes(salt);\n                rng.GetBytes(iv);\n            }\n            fsOut.Write(salt, 0, salt.Length);\n            fsOut.Write(iv, 0, iv.Length);\n        }\n        else\n        {\n            // Read the salt and IV from the file\n            fsIn.Read(salt, 0, saltLength);\n            fsIn.Read(iv, 0, iv.Length);\n        }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "if (encryptMode)\n        {\n            // Generate random salt and IV, then write them to file\n            using (var rng = new RNGCryptoServiceProvider())\n            {\n                rng.GetBytes(salt);\n                rng.GetBytes(iv);\n            }\n            fsOut.Write(salt, 0, salt.Length);\n            fsOut.Write(iv, 0, iv.Length);\n        }\n        else\n        {\n            // Read the salt and IV from the file\n            fsIn.Read(salt, 0, saltLength);\n            fsIn.Read(iv, 0, iv.Length);\n        }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528666521,
-        "id": "9f92c3d6-057e-44d1-ac32-64458d413e75",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528666521,
-        "parent_id": "a2347af8-7862-4301-85ae-12ac62f1db60",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// Generate a secure password, based on the password and salt provided\n        var pdb = new Rfc2898DeriveBytes(password, salt);\n        var key = pdb.GetBytes(cypher.KeySize / 8);"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// Generate a secure password, based on the password and salt provided\n        var pdb = new Rfc2898DeriveBytes(password, salt);\n        var key = pdb.GetBytes(cypher.KeySize / 8);",
-        "code_language": "Plain Text"
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "Simple Symmetric File Encryption",

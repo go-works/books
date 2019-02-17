@@ -5,9 +5,6 @@
     "content": [
       "158cec70-5a23-4e81-93a8-684d234f7fb7",
       "aece9271-900a-488c-8790-147fdf2124eb",
-      "f3008429-460b-4dc1-881b-d71c7fd41ba6",
-      "e5f78969-933e-46ad-ab53-1fe54e7b2992",
-      "64833fc1-9344-4d41-a01b-b7edba600a0e",
       "bdacc74f-6339-4015-9a50-238b9f1ca793",
       "84491a93-bd7f-459a-a169-f407d594cc47",
       "27ab80b8-a7bc-49f4-aa70-e6823b541aa4"
@@ -21,7 +18,7 @@
     "id": "b301c489-4259-41ef-8775-bbda12cd9972",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549613340000,
+    "last_edited_time": 1550043600000,
     "parent_id": "6bc8984c-0999-42e1-a500-ace83190c171",
     "parent_table": "block",
     "properties": {
@@ -32,7 +29,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 13,
     "content_resolved": [
       {
         "alive": true,
@@ -84,7 +81,7 @@
         "id": "aece9271-900a-488c-8790-147fdf2124eb",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549613340000,
+        "last_edited_time": 1550043600000,
         "parent_id": "b301c489-4259-41ef-8775-bbda12cd9972",
         "parent_table": "block",
         "properties": {
@@ -95,95 +92,14 @@
           ],
           "title": [
             [
-              "class Foo\n{\n    public Foo () { }\n}"
+              "class Foo\n{\n    public Foo () { }\n}\n\nclass Bar\n{\n    public Bar (string s) { ... }\n}\n\nclass Factory\u003cT\u003e\n    where T : new()\n{\n    public T Create()\n    {\n        return new T();\n    }\n}\n\nFoo f = new Factory\u003cFoo\u003e().Create(); // Valid.\nBar b = new Factory\u003cBar\u003e().Create(); // Invalid, Bar does not define a default/empty constructor."
             ]
           ]
         },
         "type": "code",
-        "version": 3,
-        "code": "class Foo\n{\n    public Foo () { }\n}",
+        "version": 17,
+        "code": "class Foo\n{\n    public Foo () { }\n}\n\nclass Bar\n{\n    public Bar (string s) { ... }\n}\n\nclass Factory\u003cT\u003e\n    where T : new()\n{\n    public T Create()\n    {\n        return new T();\n    }\n}\n\nFoo f = new Factory\u003cFoo\u003e().Create(); // Valid.\nBar b = new Factory\u003cBar\u003e().Create(); // Invalid, Bar does not define a default/empty constructor.",
         "code_language": "C#"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525127487,
-        "id": "f3008429-460b-4dc1-881b-d71c7fd41ba6",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525127487,
-        "parent_id": "b301c489-4259-41ef-8775-bbda12cd9972",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "class Bar\n{\n    public Bar (string s) { ... }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "class Bar\n{\n    public Bar (string s) { ... }\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525127487,
-        "id": "e5f78969-933e-46ad-ab53-1fe54e7b2992",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525127487,
-        "parent_id": "b301c489-4259-41ef-8775-bbda12cd9972",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "class Factory\u003cT\u003e\n    where T : new()\n{\n    public T Create()\n    {\n        return new T();\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "class Factory\u003cT\u003e\n    where T : new()\n{\n    public T Create()\n    {\n        return new T();\n    }\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525127487,
-        "id": "64833fc1-9344-4d41-a01b-b7edba600a0e",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525127487,
-        "parent_id": "b301c489-4259-41ef-8775-bbda12cd9972",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "Foo f = new Factory\u003cFoo\u003e().Create(); // Valid.\nBar b = new Factory\u003cBar\u003e().Create(); // Invalid, Bar does not define a default/empty constructor."
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "Foo f = new Factory\u003cFoo\u003e().Create(); // Valid.\nBar b = new Factory\u003cBar\u003e().Create(); // Invalid, Bar does not define a default/empty constructor.",
-        "code_language": "Plain Text"
       },
       {
         "alive": true,

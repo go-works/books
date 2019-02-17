@@ -12,7 +12,6 @@
       "41014a53-f9b0-40ec-b708-fa3d57be3897",
       "01849465-2f5d-4f51-8e26-6fc537ac3f5f",
       "c563bd7c-2b1f-495f-b6d8-2c3a45467dff",
-      "2de11252-0ee2-4bb2-9127-b8620364f6ad",
       "0a67c766-9505-4d76-bd7c-afd2fa50a12a"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -24,7 +23,7 @@
     "id": "9f09430b-bcdd-47c0-bf08-88f8d8080089",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549790160000,
+    "last_edited_time": 1550214900000,
     "parent_id": "33a94c41-382b-401a-bbcf-bc110c3bf33f",
     "parent_table": "block",
     "properties": {
@@ -35,7 +34,7 @@
       ]
     },
     "type": "page",
-    "version": 9,
+    "version": 12,
     "content_resolved": [
       {
         "alive": true,
@@ -247,52 +246,25 @@
         "id": "c563bd7c-2b1f-495f-b6d8-2c3a45467dff",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528802353,
+        "last_edited_time": 1550214900000,
         "parent_id": "9f09430b-bcdd-47c0-bf08-88f8d8080089",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "var throttle = new JoinBlock\u003cExpensiveObject, Request\u003e();\nfor(int i=0; i\u003c10; i++) \n{\n    requestProcessor.Target1.Post(new ExpensiveObject()); \n}"
+              "var throttle = new JoinBlock\u003cExpensiveObject, Request\u003e();\nfor(int i=0; i\u003c10; i++) \n{\n    requestProcessor.Target1.Post(new ExpensiveObject()); \n}\n\nvar processor = new Transform\u003cTuple\u003cExpensiveObject, Request\u003e, ExpensiveObject\u003e(pair =\u003e\n{\n    var resource = pair.Item1;\n    var request = pair.Item2;\n    \n    request.ProcessWith(resource);\n    \n    return resource;\n});\n\nthrottle.LinkTo(processor);\nprocessor.LinkTo(throttle.Target1);"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "var throttle = new JoinBlock\u003cExpensiveObject, Request\u003e();\nfor(int i=0; i\u003c10; i++) \n{\n    requestProcessor.Target1.Post(new ExpensiveObject()); \n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528802353,
-        "id": "2de11252-0ee2-4bb2-9127-b8620364f6ad",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528802353,
-        "parent_id": "9f09430b-bcdd-47c0-bf08-88f8d8080089",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "var processor = new Transform\u003cTuple\u003cExpensiveObject, Request\u003e, ExpensiveObject\u003e(pair =\u003e\n{\n    var resource = pair.Item1;\n    var request = pair.Item2;\n    \n    request.ProcessWith(resource);\n    \n    return resource;\n});\n\nthrottle.LinkTo(processor);\nprocessor.LinkTo(throttle.Target1);"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "var processor = new Transform\u003cTuple\u003cExpensiveObject, Request\u003e, ExpensiveObject\u003e(pair =\u003e\n{\n    var resource = pair.Item1;\n    var request = pair.Item2;\n    \n    request.ProcessWith(resource);\n    \n    return resource;\n});\n\nthrottle.LinkTo(processor);\nprocessor.LinkTo(throttle.Target1);",
-        "code_language": "Plain Text"
+        "version": 8,
+        "code": "var throttle = new JoinBlock\u003cExpensiveObject, Request\u003e();\nfor(int i=0; i\u003c10; i++) \n{\n    requestProcessor.Target1.Post(new ExpensiveObject()); \n}\n\nvar processor = new Transform\u003cTuple\u003cExpensiveObject, Request\u003e, ExpensiveObject\u003e(pair =\u003e\n{\n    var resource = pair.Item1;\n    var request = pair.Item2;\n    \n    request.ProcessWith(resource);\n    \n    return resource;\n});\n\nthrottle.LinkTo(processor);\nprocessor.LinkTo(throttle.Target1);",
+        "code_language": "C#"
       },
       {
         "alive": true,

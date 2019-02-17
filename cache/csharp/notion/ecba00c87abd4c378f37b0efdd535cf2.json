@@ -5,14 +5,9 @@
     "content": [
       "82c81b3e-b286-421a-b6f8-9b166176e761",
       "c777919f-adfa-4529-b33f-a69d9a0f3a23",
-      "cba5ca95-2abf-4ee3-88ce-e88cb7dfa11d",
-      "6017b722-3128-4507-bdcc-87efa19ed496",
-      "e45c0d61-98de-4073-b392-dcc2b3594fac",
-      "9b134e38-9955-4fd2-8742-87e0282aaaa3",
-      "27180d50-85f6-4588-b3af-40308a3d19c9",
-      "e84f2e00-d5a2-42c3-89a7-1eeed349dd8c",
       "895d97e6-6693-456e-9694-f63f1d6b15aa",
-      "857e79be-b4ea-473e-8525-6c228de9e840"
+      "857e79be-b4ea-473e-8525-6c228de9e840",
+      "e84f2e00-d5a2-42c3-89a7-1eeed349dd8c"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549524680333,
@@ -23,7 +18,7 @@
     "id": "ecba00c8-7abd-4c37-8f37-b0efdd535cf2",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549614900000,
+    "last_edited_time": 1549875720000,
     "parent_id": "190506d8-ff9f-4443-bbce-bdb69e483555",
     "parent_table": "block",
     "properties": {
@@ -34,7 +29,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 17,
     "content_resolved": [
       {
         "alive": true,
@@ -68,187 +63,25 @@
         "id": "c777919f-adfa-4529-b33f-a69d9a0f3a23",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524680332,
+        "last_edited_time": 1549875660000,
         "parent_id": "ecba00c8-7abd-4c37-8f37-b0efdd535cf2",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public class Base \n{ \n    public virtual string GetName()\n    {\n        return \"Base\";\n    }\n}"
+              "public class Base \n{ \n    public virtual string GetName()\n    {\n        return \"Base\";\n    }\n}\n\npublic class Derived : Base\n{ \n    public override string GetName()\n    {\n        return \"Derived\";\n    }\n}\n\npublic static class Extensions\n{\n    public static string GetNameByExtension(this Base item)\n    {\n        return \"Base\";\n    }\n\n    public static string GetNameByExtension(this Derived item)\n    {\n        return \"Derived\";\n    }\n}\n\npublic static class Program   \n{\n    public static void Main()\n    {\n        Derived derived = new Derived();\n        Base @base = derived;\n\n        // Use the instance method \"GetName\"\n        Console.WriteLine(derived.GetName()); // Prints \"Derived\"\n        Console.WriteLine(@base.GetName()); // Prints \"Derived\"\n\n        // Use the static extension method \"GetNameByExtension\"\n        Console.WriteLine(derived.GetNameByExtension()); // Prints \"Derived\"\n        Console.WriteLine(@base.GetNameByExtension()); // Prints \"Base\"\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public class Base \n{ \n    public virtual string GetName()\n    {\n        return \"Base\";\n    }\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524680332,
-        "id": "cba5ca95-2abf-4ee3-88ce-e88cb7dfa11d",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524680332,
-        "parent_id": "ecba00c8-7abd-4c37-8f37-b0efdd535cf2",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public class Derived : Base\n{ \n    public override string GetName()\n    {\n        return \"Derived\";\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public class Derived : Base\n{ \n    public override string GetName()\n    {\n        return \"Derived\";\n    }\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524680332,
-        "id": "6017b722-3128-4507-bdcc-87efa19ed496",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524680332,
-        "parent_id": "ecba00c8-7abd-4c37-8f37-b0efdd535cf2",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public static class Extensions\n{\n    public static string GetNameByExtension(this Base item)\n    {\n        return \"Base\";\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public static class Extensions\n{\n    public static string GetNameByExtension(this Base item)\n    {\n        return \"Base\";\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524680332,
-        "id": "e45c0d61-98de-4073-b392-dcc2b3594fac",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524680332,
-        "parent_id": "ecba00c8-7abd-4c37-8f37-b0efdd535cf2",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public static string GetNameByExtension(this Derived item)\n    {\n        return \"Derived\";\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public static string GetNameByExtension(this Derived item)\n    {\n        return \"Derived\";\n    }\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524680332,
-        "id": "9b134e38-9955-4fd2-8742-87e0282aaaa3",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524680332,
-        "parent_id": "ecba00c8-7abd-4c37-8f37-b0efdd535cf2",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public static class Program   \n{\n    public static void Main()\n    {\n        Derived derived = new Derived();\n        Base @base = derived;"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public static class Program   \n{\n    public static void Main()\n    {\n        Derived derived = new Derived();\n        Base @base = derived;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524680332,
-        "id": "27180d50-85f6-4588-b3af-40308a3d19c9",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524680332,
-        "parent_id": "ecba00c8-7abd-4c37-8f37-b0efdd535cf2",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// Use the instance method \"GetName\"\n        Console.WriteLine(derived.GetName()); // Prints \"Derived\"\n        Console.WriteLine(@base.GetName()); // Prints \"Derived\""
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// Use the instance method \"GetName\"\n        Console.WriteLine(derived.GetName()); // Prints \"Derived\"\n        Console.WriteLine(@base.GetName()); // Prints \"Derived\"",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524680332,
-        "id": "e84f2e00-d5a2-42c3-89a7-1eeed349dd8c",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524680332,
-        "parent_id": "ecba00c8-7abd-4c37-8f37-b0efdd535cf2",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// Use the static extension method \"GetNameByExtension\"\n        Console.WriteLine(derived.GetNameByExtension()); // Prints \"Derived\"\n        Console.WriteLine(@base.GetNameByExtension()); // Prints \"Base\"\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// Use the static extension method \"GetNameByExtension\"\n        Console.WriteLine(derived.GetNameByExtension()); // Prints \"Derived\"\n        Console.WriteLine(@base.GetNameByExtension()); // Prints \"Base\"\n    }\n}",
-        "code_language": "Plain Text"
+        "version": 9,
+        "code": "public class Base \n{ \n    public virtual string GetName()\n    {\n        return \"Base\";\n    }\n}\n\npublic class Derived : Base\n{ \n    public override string GetName()\n    {\n        return \"Derived\";\n    }\n}\n\npublic static class Extensions\n{\n    public static string GetNameByExtension(this Base item)\n    {\n        return \"Base\";\n    }\n\n    public static string GetNameByExtension(this Derived item)\n    {\n        return \"Derived\";\n    }\n}\n\npublic static class Program   \n{\n    public static void Main()\n    {\n        Derived derived = new Derived();\n        Base @base = derived;\n\n        // Use the instance method \"GetName\"\n        Console.WriteLine(derived.GetName()); // Prints \"Derived\"\n        Console.WriteLine(@base.GetName()); // Prints \"Derived\"\n\n        // Use the static extension method \"GetNameByExtension\"\n        Console.WriteLine(derived.GetNameByExtension()); // Prints \"Derived\"\n        Console.WriteLine(@base.GetNameByExtension()); // Prints \"Base\"\n    }\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -324,6 +157,33 @@
             "Text": " object:"
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549524680332,
+        "id": "e84f2e00-d5a2-42c3-89a7-1eeed349dd8c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549875720000,
+        "parent_id": "ecba00c8-7abd-4c37-8f37-b0efdd535cf2",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "public class Person\n{\n    public string Name { get; set; }\n}\n\npublic static class ExtenionPerson\n{\n    public static string GetPersonName(this Person person)\n    {\n        return person.Name;\n    }\n}\n\ndynamic person = new Person { Name = \"Jon\" };\nvar name = person.GetPersonName(); // RuntimeBinderException is thrown\n"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 10,
+        "code": "public class Person\n{\n    public string Name { get; set; }\n}\n\npublic static class ExtenionPerson\n{\n    public static string GetPersonName(this Person person)\n    {\n        return person.Name;\n    }\n}\n\ndynamic person = new Person { Name = \"Jon\" };\nvar name = person.GetPersonName(); // RuntimeBinderException is thrown\n",
+        "code_language": "C#"
       }
     ],
     "title": "Extension methods dispatch based on static type",

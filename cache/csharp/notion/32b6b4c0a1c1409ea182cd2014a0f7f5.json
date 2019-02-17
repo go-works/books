@@ -22,7 +22,7 @@
     "id": "32b6b4c0-a1c1-409e-a182-cd2014a0f7f5",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549628040000,
+    "last_edited_time": 1550225820000,
     "parent_id": "5b454c10-001f-4644-b942-d18dfe4b6b1a",
     "parent_table": "block",
     "properties": {
@@ -33,7 +33,7 @@
       ]
     },
     "type": "page",
-    "version": 5,
+    "version": 6,
     "content_resolved": [
       {
         "alive": true,
@@ -111,13 +111,13 @@
         "id": "fb944562-a685-46cd-b244-0984d52c6028",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530686472,
+        "last_edited_time": 1550225820000,
         "parent_id": "32b6b4c0-a1c1-409e-a182-cd2014a0f7f5",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JSON"
             ]
           ],
           "title": [
@@ -127,9 +127,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 4,
         "code": "{\n    Title: \"Pacific Rim\",\n    Year: \"2013\",\n    Rated: \"PG-13\",\n    Released: \"12 Jul 2013\",\n    Runtime: \"131 min\",\n    Genre: \"Action, Adventure, Sci-Fi\",\n    Director: \"Guillermo del Toro\",\n    Writer: \"Travis Beacham (screenplay), Guillermo del Toro (screenplay), Travis Beacham (story)\",\n    Actors: \"Charlie Hunnam, Diego Klattenhoff, Idris Elba, Rinko Kikuchi\",\n    Plot: \"As a war between humankind and monstrous sea creatures wages on, a former pilot and a trainee are paired up to drive a seemingly obsolete special weapon in a desperate effort to save the world from the apocalypse.\",\n    Language: \"English, Japanese, Cantonese, Mandarin\",\n    Country: \"USA\",\n    Awards: \"Nominated for 1 BAFTA Film Award. Another 6 wins \u0026 46 nominations.\",\n    Poster: \"https://images-na.ssl-images-amazon.com/images/M/MV5BMTY3MTI5NjQ4Nl5BMl5BanBnXkFtZTcwOTU1OTU0OQ@@._V1_SX300.jpg\",\n    Ratings: [{\n            Source: \"Internet Movie Database\",\n            Value: \"7.0/10\"\n        },\n        {\n            Source: \"Rotten Tomatoes\",\n            Value: \"71%\"\n        },\n        {\n            Source: \"Metacritic\",\n            Value: \"64/100\"\n        }\n    ],\n    Metascore: \"64\",\n    imdbRating: \"7.0\",\n    imdbVotes: \"398,198\",\n    imdbID: \"tt1663662\",\n    Type: \"movie\",\n    DVD: \"15 Oct 2013\",\n    BoxOffice: \"$101,785,482.00\",\n    Production: \"Warner Bros. Pictures\",\n    Website: \"http://pacificrimmovie.com\",\n    Response: \"True\"\n}",
-        "code_language": "Plain Text"
+        "code_language": "JSON"
       },
       {
         "alive": true,
@@ -163,13 +163,13 @@
         "id": "7cfb9c3b-ab67-43f9-961b-bc68539dc3e3",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530686472,
+        "last_edited_time": 1550225820000,
         "parent_id": "32b6b4c0-a1c1-409e-a182-cd2014a0f7f5",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -179,9 +179,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "using Project.Serializers;\nusing Newtonsoft.Json;\nusing System;\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Runtime.Serialization;\nusing System.Threading.Tasks;\n\nnamespace Project.Models\n{\n    [DataContract]\n    public class Movie\n    {\n        public Movie() { }\n\n        [DataMember]\n        public int Id { get; set; }\n\n        [DataMember]\n        public string ImdbId { get; set; }\n\n        [DataMember]\n        public string Title { get; set; }\n\n        [DataMember]\n        public DateTime Released { get; set; }\n\n        [DataMember]\n        [JsonConverter(typeof(RuntimeSerializer))]\n        public TimeSpan Runtime { get; set; }\n\n    }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -215,13 +215,13 @@
         "id": "78517265-1f83-4881-9ff4-1c34477a8fb2",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530686472,
+        "last_edited_time": 1550225820000,
         "parent_id": "32b6b4c0-a1c1-409e-a182-cd2014a0f7f5",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -231,9 +231,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "using Newtonsoft.Json;\nusing Newtonsoft.Json.Linq;\nusing System;\nusing System.Collections.Generic;\nusing System.Linq;\nusing System.Text.RegularExpressions;\nusing System.Threading.Tasks;\n\nnamespace Project.Serializers\n{\n    public class RuntimeSerializer : JsonConverter\n    {\n        public override bool CanConvert(Type objectType)\n        {\n            return objectType == typeof(TimeSpan);\n        }\n\n        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)\n        {\n            if (reader.TokenType == JsonToken.Null)\n                return null;\n\n            JToken jt = JToken.Load(reader);\n            String value = jt.Value\u003cString\u003e();\n\n            Regex rx = new Regex(\"(\\\\s*)min$\");\n            value = rx.Replace(value, (m) =\u003e \"\");\n\n            int timespanMin; \n            if(!Int32.TryParse(value, out timespanMin))\n            {\n                throw new NotSupportedException();\n            }\n\n            return new TimeSpan(0, timespanMin, 0);\n        }\n\n        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)\n        {\n            serializer.Serialize(writer, value);\n        }\n    }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -267,13 +267,13 @@
         "id": "582af666-e195-4e24-918d-3033f4ce751d",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530686473,
+        "last_edited_time": 1550225820000,
         "parent_id": "32b6b4c0-a1c1-409e-a182-cd2014a0f7f5",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -283,9 +283,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "Movie m = JsonConvert.DeserializeObject\u003cMovie\u003e(apiResponse));",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       }
     ],
     "title": "Using JsonConverter on simple values",

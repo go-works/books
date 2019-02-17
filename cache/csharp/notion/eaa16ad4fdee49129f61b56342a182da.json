@@ -5,21 +5,10 @@
     "content": [
       "722f88fe-8de5-4797-bb3d-20a97c68e6d1",
       "e521b88f-075f-41af-b155-f44e7b62fd6f",
-      "d0a40212-bf69-4017-a9f3-8339b88be0d3",
-      "f3bf9612-f908-413f-a286-93f25cd7aefb",
       "3c75c194-49a3-48f8-b659-c6e1af23c081",
       "ac42ab66-70b3-4309-8d0e-7a6da6ecd17b",
       "b247cf7a-1f61-465c-8002-7cf454c4da91",
       "2bb42240-f996-42c0-93f1-2514a5c7d144",
-      "58af1b7a-f582-455d-852f-87487b25a89e",
-      "c658c321-10cf-4335-b98d-f16bef799393",
-      "e3b2f401-f908-45cd-a32b-d58d86c6d6dd",
-      "bd75ec12-899f-4ced-b331-d84f28375c41",
-      "13bf26c9-a25b-421d-9012-17485a915044",
-      "64452626-4cd3-489c-82a6-646437566b4b",
-      "4174c11d-e8ca-4ffa-be36-f601a6d00be3",
-      "8f546877-cb1b-4b2d-890a-3afae592aa13",
-      "d6b73697-eb8f-4243-8e69-e6c526f1e864",
       "ba4ce431-f0df-47d7-8939-3aa67fc44170",
       "596ce9de-1fee-444a-8291-55bb5b9c9b86",
       "c016d3c4-b24c-4632-8c00-4005ea41295c",
@@ -34,7 +23,7 @@
     "id": "eaa16ad4-fdee-4912-9f61-b56342a182da",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549789980000,
+    "last_edited_time": 1550113800000,
     "parent_id": "867a03bf-215a-491d-9311-455a673a589d",
     "parent_table": "block",
     "properties": {
@@ -45,7 +34,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 21,
     "content_resolved": [
       {
         "alive": true,
@@ -79,79 +68,25 @@
         "id": "e521b88f-075f-41af-b155-f44e7b62fd6f",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525924301,
+        "last_edited_time": 1550113800000,
         "parent_id": "eaa16ad4-fdee-4912-9f61-b56342a182da",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public static IEnumerable\u003cint\u003e Count(int start, int count)\n{\n    // The exception will throw when the method is called, not when the result is iterated\n    if (count \u003c 0)\n        throw new ArgumentOutOfRangeException(nameof(count));"
+              "public static IEnumerable\u003cint\u003e Count(int start, int count)\n{\n    // The exception will throw when the method is called, not when the result is iterated\n    if (count \u003c 0)\n        throw new ArgumentOutOfRangeException(nameof(count));\n\n    return CountCore(start, count);\n}\n\nprivate static IEnumerable\u003cint\u003e CountCore(int start, int count)\n{\n    // If the exception was thrown here it would be raised during the first MoveNext()\n    // call on the IEnumerator, potentially at a point in the code far away from where\n    // an incorrect value was passed.\n    for (int i = 0; i \u003c count; i++)\n    {\n        yield return start + i;\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public static IEnumerable\u003cint\u003e Count(int start, int count)\n{\n    // The exception will throw when the method is called, not when the result is iterated\n    if (count \u003c 0)\n        throw new ArgumentOutOfRangeException(nameof(count));",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525924301,
-        "id": "d0a40212-bf69-4017-a9f3-8339b88be0d3",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525924301,
-        "parent_id": "eaa16ad4-fdee-4912-9f61-b56342a182da",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "return CountCore(start, count);\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "return CountCore(start, count);\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525924301,
-        "id": "f3bf9612-f908-413f-a286-93f25cd7aefb",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525924301,
-        "parent_id": "eaa16ad4-fdee-4912-9f61-b56342a182da",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "private static IEnumerable\u003cint\u003e CountCore(int start, int count)\n{\n    // If the exception was thrown here it would be raised during the first MoveNext()\n    // call on the IEnumerator, potentially at a point in the code far away from where\n    // an incorrect value was passed.\n    for (int i = 0; i \u003c count; i++)\n    {\n        yield return start + i;\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "private static IEnumerable\u003cint\u003e CountCore(int start, int count)\n{\n    // If the exception was thrown here it would be raised during the first MoveNext()\n    // call on the IEnumerator, potentially at a point in the code far away from where\n    // an incorrect value was passed.\n    for (int i = 0; i \u003c count; i++)\n    {\n        yield return start + i;\n    }\n}",
-        "code_language": "Plain Text"
+        "version": 10,
+        "code": "public static IEnumerable\u003cint\u003e Count(int start, int count)\n{\n    // The exception will throw when the method is called, not when the result is iterated\n    if (count \u003c 0)\n        throw new ArgumentOutOfRangeException(nameof(count));\n\n    return CountCore(start, count);\n}\n\nprivate static IEnumerable\u003cint\u003e CountCore(int start, int count)\n{\n    // If the exception was thrown here it would be raised during the first MoveNext()\n    // call on the IEnumerator, potentially at a point in the code far away from where\n    // an incorrect value was passed.\n    for (int i = 0; i \u003c count; i++)\n    {\n        yield return start + i;\n    }\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -191,25 +126,25 @@
         "id": "ac42ab66-70b3-4309-8d0e-7a6da6ecd17b",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525924301,
+        "last_edited_time": 1550113800000,
         "parent_id": "eaa16ad4-fdee-4912-9f61-b56342a182da",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "// Get the count\nvar count = Count(1,10);\n// Iterate the results\nforeach(var x in count)\n{\n    Console.WriteLine(x);\n}"
+              "// Get the count\nvar count = Count(1, 4);\n// Iterate the results\nforeach(var x in count)\n{\n    Console.WriteLine(x);\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "// Get the count\nvar count = Count(1,10);\n// Iterate the results\nforeach(var x in count)\n{\n    Console.WriteLine(x);\n}",
-        "code_language": "Plain Text"
+        "version": 6,
+        "code": "// Get the count\nvar count = Count(1, 4);\n// Iterate the results\nforeach(var x in count)\n{\n    Console.WriteLine(x);\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -249,246 +184,21 @@
         "id": "2bb42240-f996-42c0-93f1-2514a5c7d144",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525924302,
+        "last_edited_time": 1550113800000,
         "parent_id": "eaa16ad4-fdee-4912-9f61-b56342a182da",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "1"
+              "1\n2\n3\n4"
             ]
           ]
         },
         "type": "quote",
-        "version": 1,
+        "version": 13,
         "inline_content": [
           {
-            "Text": "1"
-          }
-        ]
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525924302,
-        "id": "58af1b7a-f582-455d-852f-87487b25a89e",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525924302,
-        "parent_id": "eaa16ad4-fdee-4912-9f61-b56342a182da",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "2"
-            ]
-          ]
-        },
-        "type": "text",
-        "version": 1,
-        "inline_content": [
-          {
-            "Text": "2"
-          }
-        ]
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525924302,
-        "id": "c658c321-10cf-4335-b98d-f16bef799393",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525924302,
-        "parent_id": "eaa16ad4-fdee-4912-9f61-b56342a182da",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "3"
-            ]
-          ]
-        },
-        "type": "text",
-        "version": 1,
-        "inline_content": [
-          {
-            "Text": "3"
-          }
-        ]
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525924302,
-        "id": "e3b2f401-f908-45cd-a32b-d58d86c6d6dd",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525924302,
-        "parent_id": "eaa16ad4-fdee-4912-9f61-b56342a182da",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "4"
-            ]
-          ]
-        },
-        "type": "text",
-        "version": 1,
-        "inline_content": [
-          {
-            "Text": "4"
-          }
-        ]
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525924302,
-        "id": "bd75ec12-899f-4ced-b331-d84f28375c41",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525924302,
-        "parent_id": "eaa16ad4-fdee-4912-9f61-b56342a182da",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "5"
-            ]
-          ]
-        },
-        "type": "text",
-        "version": 1,
-        "inline_content": [
-          {
-            "Text": "5"
-          }
-        ]
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525924302,
-        "id": "13bf26c9-a25b-421d-9012-17485a915044",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525924302,
-        "parent_id": "eaa16ad4-fdee-4912-9f61-b56342a182da",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "6"
-            ]
-          ]
-        },
-        "type": "text",
-        "version": 1,
-        "inline_content": [
-          {
-            "Text": "6"
-          }
-        ]
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525924302,
-        "id": "64452626-4cd3-489c-82a6-646437566b4b",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525924302,
-        "parent_id": "eaa16ad4-fdee-4912-9f61-b56342a182da",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "7"
-            ]
-          ]
-        },
-        "type": "text",
-        "version": 1,
-        "inline_content": [
-          {
-            "Text": "7"
-          }
-        ]
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525924302,
-        "id": "4174c11d-e8ca-4ffa-be36-f601a6d00be3",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525924302,
-        "parent_id": "eaa16ad4-fdee-4912-9f61-b56342a182da",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "8"
-            ]
-          ]
-        },
-        "type": "text",
-        "version": 1,
-        "inline_content": [
-          {
-            "Text": "8"
-          }
-        ]
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525924303,
-        "id": "8f546877-cb1b-4b2d-890a-3afae592aa13",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525924303,
-        "parent_id": "eaa16ad4-fdee-4912-9f61-b56342a182da",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "9"
-            ]
-          ]
-        },
-        "type": "text",
-        "version": 1,
-        "inline_content": [
-          {
-            "Text": "9"
-          }
-        ]
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549525924303,
-        "id": "d6b73697-eb8f-4243-8e69-e6c526f1e864",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549525924303,
-        "parent_id": "eaa16ad4-fdee-4912-9f61-b56342a182da",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "10"
-            ]
-          ]
-        },
-        "type": "text",
-        "version": 1,
-        "inline_content": [
-          {
-            "Text": "10"
+            "Text": "1\n2\n3\n4"
           }
         ]
       },

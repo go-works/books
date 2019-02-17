@@ -31,7 +31,7 @@
     "id": "64bd9ff5-8e75-4781-86f2-0ae9790eabd5",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549791120000,
+    "last_edited_time": 1550223420000,
     "parent_id": "d0852dd6-2ee4-4d9e-af08-4f050ff9f517",
     "parent_table": "block",
     "properties": {
@@ -42,7 +42,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 9,
     "content_resolved": [
       {
         "alive": true,
@@ -101,13 +101,13 @@
         "id": "436ed3bc-5ac6-4bcb-b67a-b0eea5fe34c0",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530152332,
+        "last_edited_time": 1550223420000,
         "parent_id": "64bd9ff5-8e75-4781-86f2-0ae9790eabd5",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -117,9 +117,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "using System;\nusing System.Collections.Generic;\n \nnamespace GangOfFour.Builder\n{\n  /// \u003csummary\u003e\n  /// MainApp startup class for Real-World \n  /// Builder Design Pattern.\n  /// \u003c/summary\u003e\n  public class MainApp\n  {\n    /// \u003csummary\u003e\n    /// Entry point into console application.\n    /// \u003c/summary\u003e\n    public static void Main()\n    {\n      VehicleBuilder builder;\n \n      // Create shop with vehicle builders\n      Shop shop = new Shop();\n \n      // Construct and display vehicles\n      builder = new ScooterBuilder();\n      shop.Construct(builder);\n      builder.Vehicle.Show();\n \n      builder = new CarBuilder();\n      shop.Construct(builder);\n      builder.Vehicle.Show();\n \n      builder = new MotorCycleBuilder();\n      shop.Construct(builder);\n      builder.Vehicle.Show();\n \n      // Wait for user\n      Console.ReadKey();\n    }\n  }\n \n  /// \u003csummary\u003e\n  /// The 'Director' class\n  /// \u003c/summary\u003e\n  class Shop\n  {\n    // Builder uses a complex series of steps\n    public void Construct(VehicleBuilder vehicleBuilder)\n    {\n      vehicleBuilder.BuildFrame();\n      vehicleBuilder.BuildEngine();\n      vehicleBuilder.BuildWheels();\n      vehicleBuilder.BuildDoors();\n    }\n  }\n \n  /// \u003csummary\u003e\n  /// The 'Builder' abstract class\n  /// \u003c/summary\u003e\n  abstract class VehicleBuilder\n  {\n    protected Vehicle vehicle;\n \n    // Gets vehicle instance\n    public Vehicle Vehicle\n    {\n      get { return vehicle; }\n    }\n \n    // Abstract build methods\n    public abstract void BuildFrame();\n    public abstract void BuildEngine();\n    public abstract void BuildWheels();\n    public abstract void BuildDoors();\n  }\n \n  /// \u003csummary\u003e\n  /// The 'ConcreteBuilder1' class\n  /// \u003c/summary\u003e\n  class MotorCycleBuilder : VehicleBuilder\n  {\n    public MotorCycleBuilder()\n    {\n      vehicle = new Vehicle(\"MotorCycle\");\n    }\n \n    public override void BuildFrame()\n    {\n      vehicle[\"frame\"] = \"MotorCycle Frame\";\n    }\n \n    public override void BuildEngine()\n    {\n      vehicle[\"engine\"] = \"500 cc\";\n    }\n \n    public override void BuildWheels()\n    {\n      vehicle[\"wheels\"] = \"2\";\n    }\n \n    public override void BuildDoors()\n    {\n      vehicle[\"doors\"] = \"0\";\n    }\n  }\n \n \n  /// \u003csummary\u003e\n  /// The 'ConcreteBuilder2' class\n  /// \u003c/summary\u003e\n  class CarBuilder : VehicleBuilder\n  {\n    public CarBuilder()\n    {\n      vehicle = new Vehicle(\"Car\");\n    }\n \n    public override void BuildFrame()\n    {\n      vehicle[\"frame\"] = \"Car Frame\";\n    }\n \n    public override void BuildEngine()\n    {\n      vehicle[\"engine\"] = \"2500 cc\";\n    }\n \n    public override void BuildWheels()\n    {\n      vehicle[\"wheels\"] = \"4\";\n    }\n \n    public override void BuildDoors()\n    {\n      vehicle[\"doors\"] = \"4\";\n    }\n  }\n \n  /// \u003csummary\u003e\n  /// The 'ConcreteBuilder3' class\n  /// \u003c/summary\u003e\n  class ScooterBuilder : VehicleBuilder\n  {\n    public ScooterBuilder()\n    {\n      vehicle = new Vehicle(\"Scooter\");\n    }\n \n    public override void BuildFrame()\n    {\n      vehicle[\"frame\"] = \"Scooter Frame\";\n    }\n \n    public override void BuildEngine()\n    {\n      vehicle[\"engine\"] = \"50 cc\";\n    }\n \n    public override void BuildWheels()\n    {\n      vehicle[\"wheels\"] = \"2\";\n    }\n \n    public override void BuildDoors()\n    {\n      vehicle[\"doors\"] = \"0\";\n    }\n  }\n \n  /// \u003csummary\u003e\n  /// The 'Product' class\n  /// \u003c/summary\u003e\n  class Vehicle\n  {\n    private string _vehicleType;\n    private Dictionary\u003cstring,string\u003e _parts = \n      new Dictionary\u003cstring,string\u003e();\n \n    // Constructor\n    public Vehicle(string vehicleType)\n    {\n      this._vehicleType = vehicleType;\n    }\n \n    // Indexer\n    public string this[string key]\n    {\n      get { return _parts[key]; }\n      set { _parts[key] = value; }\n    }\n \n    public void Show()\n    {\n      Console.WriteLine(\"\\n---------------------------\");\n      Console.WriteLine(\"Vehicle Type: {0}\", _vehicleType);\n      Console.WriteLine(\" Frame : {0}\", _parts[\"frame\"]);\n      Console.WriteLine(\" Engine : {0}\", _parts[\"engine\"]);\n      Console.WriteLine(\" #Wheels: {0}\", _parts[\"wheels\"]);\n      Console.WriteLine(\" #Doors : {0}\", _parts[\"doors\"]);\n    }\n  }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,

@@ -5,9 +5,9 @@
     "content": [
       "fdf10fe9-143f-4629-9267-b2ebdcddb9e1",
       "89386d6e-2682-4dd4-90ca-e0fa111fd339",
-      "d733d17f-0ebe-48a3-a93c-71f8fc2adbd4",
-      "ca3d54f9-f894-4093-aa76-31b8cb0fc0ab",
-      "a7b494ae-983a-405c-80ee-8d078afc19d5"
+      "a7b494ae-983a-405c-80ee-8d078afc19d5",
+      "ce24debd-908a-4b67-9385-d32257587588",
+      "072695e6-8875-4893-bdc9-7977201cb8b3"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549529710450,
@@ -18,7 +18,7 @@
     "id": "60224c01-fd24-4353-bc09-6f20b204f779",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549798920000,
+    "last_edited_time": 1550221140000,
     "parent_id": "6941c36f-f18a-4e89-ba06-2f33db9b1e58",
     "parent_table": "block",
     "properties": {
@@ -29,7 +29,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 16,
     "content_resolved": [
       {
         "alive": true,
@@ -117,79 +117,25 @@
         "id": "89386d6e-2682-4dd4-90ca-e0fa111fd339",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529710449,
+        "last_edited_time": 1550221140000,
         "parent_id": "60224c01-fd24-4353-bc09-6f20b204f779",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "using System;\nusing System.Web.Configuration;\nusing Microsoft.Exchange.WebServices.Data;"
+              "using System;\nusing System.Web.Configuration;\nusing Microsoft.Exchange.WebServices.Data;\n\nnamespace SetOutOfOffice\n{\n    class ExchangeManager\n    {\n        private ExchangeService Service;\n\n        public ExchangeManager()\n        {\n            var password = WebConfigurationManager.ConnectionStrings[\"Password\"].ConnectionString;\n            Connect(\"exchangeadmin\", password);\n        }\n        private void Connect(string username, string password)\n        {\n            var service = new ExchangeService(ExchangeVersion.Exchange2010_SP2);\n            service.Credentials = new WebCredentials(username, password);\n            service.AutodiscoverUrl(\"autodiscoveremail@domain.com\" , RedirectionUrlValidationCallback);\n            \n            Service = service;\n        }\n        private static bool RedirectionUrlValidationCallback(string redirectionUrl)\n        {\n            return redirectionUrl.Equals(\"https://mail.domain.com/autodiscover/autodiscover.xml\");\n        }    \n        public OofSettings GetOofSettings(string email)\n        {\n            return Service.GetUserOofSettings(email);\n        }            \n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "using System;\nusing System.Web.Configuration;\nusing Microsoft.Exchange.WebServices.Data;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549529710449,
-        "id": "d733d17f-0ebe-48a3-a93c-71f8fc2adbd4",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529710449,
-        "parent_id": "60224c01-fd24-4353-bc09-6f20b204f779",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "namespace SetOutOfOffice\n{\n    class ExchangeManager\n    {\n        private ExchangeService Service;"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "namespace SetOutOfOffice\n{\n    class ExchangeManager\n    {\n        private ExchangeService Service;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549529710449,
-        "id": "ca3d54f9-f894-4093-aa76-31b8cb0fc0ab",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529710449,
-        "parent_id": "60224c01-fd24-4353-bc09-6f20b204f779",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public ExchangeManager()\n        {\n            var password = WebConfigurationManager.ConnectionStrings[\"Password\"].ConnectionString;\n            Connect(\"exchangeadmin\", password);\n        }\n        private void Connect(string username, string password)\n        {\n            var service = new ExchangeService(ExchangeVersion.Exchange2010_SP2);\n            service.Credentials = new WebCredentials(username, password);\n            service.AutodiscoverUrl(\"autodiscoveremail@domain.com\" , RedirectionUrlValidationCallback);\n            \n            Service = service;\n        }\n        private static bool RedirectionUrlValidationCallback(string redirectionUrl)\n        {\n            return redirectionUrl.Equals(\"https://mail.domain.com/autodiscover/autodiscover.xml\");\n        }    \n        public OofSettings GetOofSettings(string email)\n        {\n            return Service.GetUserOofSettings(email);\n        }            \n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public ExchangeManager()\n        {\n            var password = WebConfigurationManager.ConnectionStrings[\"Password\"].ConnectionString;\n            Connect(\"exchangeadmin\", password);\n        }\n        private void Connect(string username, string password)\n        {\n            var service = new ExchangeService(ExchangeVersion.Exchange2010_SP2);\n            service.Credentials = new WebCredentials(username, password);\n            service.AutodiscoverUrl(\"autodiscoveremail@domain.com\" , RedirectionUrlValidationCallback);\n            \n            Service = service;\n        }\n        private static bool RedirectionUrlValidationCallback(string redirectionUrl)\n        {\n            return redirectionUrl.Equals(\"https://mail.domain.com/autodiscover/autodiscover.xml\");\n        }    \n        public OofSettings GetOofSettings(string email)\n        {\n            return Service.GetUserOofSettings(email);\n        }            \n    }\n}",
-        "code_language": "Plain Text"
+        "version": 8,
+        "code": "using System;\nusing System.Web.Configuration;\nusing Microsoft.Exchange.WebServices.Data;\n\nnamespace SetOutOfOffice\n{\n    class ExchangeManager\n    {\n        private ExchangeService Service;\n\n        public ExchangeManager()\n        {\n            var password = WebConfigurationManager.ConnectionStrings[\"Password\"].ConnectionString;\n            Connect(\"exchangeadmin\", password);\n        }\n        private void Connect(string username, string password)\n        {\n            var service = new ExchangeService(ExchangeVersion.Exchange2010_SP2);\n            service.Credentials = new WebCredentials(username, password);\n            service.AutodiscoverUrl(\"autodiscoveremail@domain.com\" , RedirectionUrlValidationCallback);\n            \n            Service = service;\n        }\n        private static bool RedirectionUrlValidationCallback(string redirectionUrl)\n        {\n            return redirectionUrl.Equals(\"https://mail.domain.com/autodiscover/autodiscover.xml\");\n        }    \n        public OofSettings GetOofSettings(string email)\n        {\n            return Service.GetUserOofSettings(email);\n        }            \n    }\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -215,6 +161,44 @@
             "Text": "We can now call this elsewhere like this:"
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550221152514,
+        "id": "ce24debd-908a-4b67-9385-d32257587588",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550221140000,
+        "parent_id": "60224c01-fd24-4353-bc09-6f20b204f779",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "var em = new ExchangeManager();\nvar oofSettings = em.GetOofSettings(\"testemail@domain.com\");"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 8,
+        "code": "var em = new ExchangeManager();\nvar oofSettings = em.GetOofSettings(\"testemail@domain.com\");",
+        "code_language": "C#"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550221140000,
+        "id": "072695e6-8875-4893-bdc9-7977201cb8b3",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550221140000,
+        "parent_id": "60224c01-fd24-4353-bc09-6f20b204f779",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "Retrieve Specified Users Out of Office Settings",

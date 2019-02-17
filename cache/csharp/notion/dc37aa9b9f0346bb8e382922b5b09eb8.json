@@ -6,9 +6,7 @@
       "867585a2-e8f6-4750-9103-7155e94b1fc1",
       "a5b1f5b7-7a33-49dd-9947-2235c0f7d76d",
       "5f63751c-5c37-4bb6-bc9b-bcbef4b1039d",
-      "7c62c811-58b1-44f9-9ca7-6d4135d63fc0",
-      "cf90e0f8-5eef-4dea-ab2f-b6b9cc8e9df3",
-      "3384cada-47c7-47ad-ae11-2563757d1c5c"
+      "d27583a5-a58d-4ac2-a7a2-a43b746a8225"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549528917388,
@@ -19,7 +17,7 @@
     "id": "dc37aa9b-9f03-46bb-8e38-2922b5b09eb8",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549798560000,
+    "last_edited_time": 1550215440000,
     "parent_id": "2b5c894c-d50a-418f-a811-3b61a23cdead",
     "parent_table": "block",
     "properties": {
@@ -30,7 +28,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 15,
     "content_resolved": [
       {
         "alive": true,
@@ -282,83 +280,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528917388,
-        "id": "7c62c811-58b1-44f9-9ca7-6d4135d63fc0",
-        "ignore_block_count": true,
+        "created_time": 1550215454500,
+        "id": "d27583a5-a58d-4ac2-a7a2-a43b746a8225",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528917388,
+        "last_edited_time": 1550215440000,
         "parent_id": "dc37aa9b-9f03-46bb-8e38-2922b5b09eb8",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "class Program\n{\n    // import necessary API as shown in other examples\n    [DllImport(\"kernel32.dll\", SetLastError = true)]\n    public static extern IntPtr LoadLibrary(string lib);\n    [DllImport(\"kernel32.dll\", SetLastError = true)]\n    public static extern void FreeLibrary(IntPtr module);\n    [DllImport(\"kernel32.dll\", SetLastError = true)]\n    public static extern IntPtr GetProcAddress(IntPtr module, string proc);"
+              "class Program\n{\n    // import necessary API as shown in other examples\n    [DllImport(\"kernel32.dll\", SetLastError = true)]\n    public static extern IntPtr LoadLibrary(string lib);\n    [DllImport(\"kernel32.dll\", SetLastError = true)]\n    public static extern void FreeLibrary(IntPtr module);\n    [DllImport(\"kernel32.dll\", SetLastError = true)]\n    public static extern IntPtr GetProcAddress(IntPtr module, string proc);\n\n    // declare a delegate with the required signature\n    private delegate int AddDelegate(int a, int b);\n\n    private static void Main()\n    {\n        // load the dll\n        IntPtr module = LoadLibrary(\"myDLL.dll\");\n        if (module == IntPtr.Zero) // error handling\n        {\n            Console.WriteLine($\"Could not load library: {Marshal.GetLastWin32Error()}\");\n            return;\n        }\n\n        // get a \"pointer\" to the method\n        IntPtr method = GetProcAddress(module, \"add\");\n        if (method == IntPtr.Zero) // error handling\n        {\n            Console.WriteLine($\"Could not load method: {Marshal.GetLastWin32Error()}\");\n            FreeLibrary(module);  // unload library\n            return;\n        }\n            \n        // convert \"pointer\" to delegate\n        AddDelegate add = (AddDelegate)Marshal.GetDelegateForFunctionPointer(method, typeof(AddDelegate));\n    \n        // use function    \n        int result = add(750, 300);\n        \n        // unload library   \n        FreeLibrary(module);\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "class Program\n{\n    // import necessary API as shown in other examples\n    [DllImport(\"kernel32.dll\", SetLastError = true)]\n    public static extern IntPtr LoadLibrary(string lib);\n    [DllImport(\"kernel32.dll\", SetLastError = true)]\n    public static extern void FreeLibrary(IntPtr module);\n    [DllImport(\"kernel32.dll\", SetLastError = true)]\n    public static extern IntPtr GetProcAddress(IntPtr module, string proc);",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528917388,
-        "id": "cf90e0f8-5eef-4dea-ab2f-b6b9cc8e9df3",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528917388,
-        "parent_id": "dc37aa9b-9f03-46bb-8e38-2922b5b09eb8",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// declare a delegate with the required signature\n    private delegate int AddDelegate(int a, int b);"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// declare a delegate with the required signature\n    private delegate int AddDelegate(int a, int b);",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528917388,
-        "id": "3384cada-47c7-47ad-ae11-2563757d1c5c",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528917388,
-        "parent_id": "dc37aa9b-9f03-46bb-8e38-2922b5b09eb8",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "private static void Main()\n    {\n        // load the dll\n        IntPtr module = LoadLibrary(\"myDLL.dll\");\n        if (module == IntPtr.Zero) // error handling\n        {\n            Console.WriteLine($\"Could not load library: {Marshal.GetLastWin32Error()}\");\n            return;\n        }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "private static void Main()\n    {\n        // load the dll\n        IntPtr module = LoadLibrary(\"myDLL.dll\");\n        if (module == IntPtr.Zero) // error handling\n        {\n            Console.WriteLine($\"Could not load library: {Marshal.GetLastWin32Error()}\");\n            return;\n        }",
-        "code_language": "Plain Text"
+        "version": 8,
+        "code": "class Program\n{\n    // import necessary API as shown in other examples\n    [DllImport(\"kernel32.dll\", SetLastError = true)]\n    public static extern IntPtr LoadLibrary(string lib);\n    [DllImport(\"kernel32.dll\", SetLastError = true)]\n    public static extern void FreeLibrary(IntPtr module);\n    [DllImport(\"kernel32.dll\", SetLastError = true)]\n    public static extern IntPtr GetProcAddress(IntPtr module, string proc);\n\n    // declare a delegate with the required signature\n    private delegate int AddDelegate(int a, int b);\n\n    private static void Main()\n    {\n        // load the dll\n        IntPtr module = LoadLibrary(\"myDLL.dll\");\n        if (module == IntPtr.Zero) // error handling\n        {\n            Console.WriteLine($\"Could not load library: {Marshal.GetLastWin32Error()}\");\n            return;\n        }\n\n        // get a \"pointer\" to the method\n        IntPtr method = GetProcAddress(module, \"add\");\n        if (method == IntPtr.Zero) // error handling\n        {\n            Console.WriteLine($\"Could not load method: {Marshal.GetLastWin32Error()}\");\n            FreeLibrary(module);  // unload library\n            return;\n        }\n            \n        // convert \"pointer\" to delegate\n        AddDelegate add = (AddDelegate)Marshal.GetDelegateForFunctionPointer(method, typeof(AddDelegate));\n    \n        // use function    \n        int result = add(750, 300);\n        \n        // unload library   \n        FreeLibrary(module);\n    }\n}",
+        "code_language": "C#"
       }
     ],
     "title": "Dynamic loading and unloading of unmanaged DLLs",

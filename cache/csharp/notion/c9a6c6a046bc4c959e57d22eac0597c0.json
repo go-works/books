@@ -17,7 +17,6 @@
       "601ff79d-09c0-402a-b727-e012661fc5db",
       "48c7f376-77e3-4c46-aa54-850150d88e78",
       "12777d89-648d-4cb7-9872-dd64e7370b40",
-      "29fc38ea-106c-4fbd-a0db-78bc763d84af",
       "bdcd3200-db6d-4ffb-b64c-10b2b19310a7"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -29,7 +28,7 @@
     "id": "c9a6c6a0-46bc-4c95-9e57-d22eac0597c0",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549614840000,
+    "last_edited_time": 1549874940000,
     "parent_id": "190506d8-ff9f-4443-bbce-bdb69e483555",
     "parent_table": "block",
     "properties": {
@@ -40,7 +39,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 11,
     "content_resolved": [
       {
         "alive": true,
@@ -74,13 +73,13 @@
         "id": "be9c20db-868f-4d42-a671-ad7f255fd2e2",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524675265,
+        "last_edited_time": 1549874880000,
         "parent_id": "c9a6c6a0-46bc-4c95-9e57-d22eac0597c0",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -90,9 +89,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "static class StringExtensions\n{\n    public static string Shorten(this string text, int length) \n    {\n        return text.Substring(0, length);\n    }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -126,13 +125,13 @@
         "id": "ee19445d-4168-42b2-ba75-1459e3f50132",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524675265,
+        "last_edited_time": 1549874940000,
         "parent_id": "c9a6c6a0-46bc-4c95-9e57-d22eac0597c0",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -142,9 +141,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "var newString = StringExtensions.Shorten(\"Hello World\", 5);",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -414,52 +413,25 @@
         "id": "12777d89-648d-4cb7-9872-dd64e7370b40",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524675268,
+        "last_edited_time": 1549874940000,
         "parent_id": "c9a6c6a0-46bc-4c95-9e57-d22eac0597c0",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "using static OurNamespace.StringExtensions; // refers to class in previous example"
+              "using static OurNamespace.StringExtensions; // refers to class in previous example\n\n// OK: extension method syntax still works.\n\"Hello World\".Shorten(5);\n// OK: static method syntax still works.\nOurNamespace.StringExtensions.Shorten(\"Hello World\", 5);\n// Compile time error: extension methods can't be called as static without specifying class.\nShorten(\"Hello World\", 5);"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "using static OurNamespace.StringExtensions; // refers to class in previous example",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549524675268,
-        "id": "29fc38ea-106c-4fbd-a0db-78bc763d84af",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549524675268,
-        "parent_id": "c9a6c6a0-46bc-4c95-9e57-d22eac0597c0",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// OK: extension method syntax still works.\n\"Hello World\".Shorten(5);\n// OK: static method syntax still works.\nOurNamespace.StringExtensions.Shorten(\"Hello World\", 5);\n// Compile time error: extension methods can't be called as static without specifying class.\nShorten(\"Hello World\", 5);"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// OK: extension method syntax still works.\n\"Hello World\".Shorten(5);\n// OK: static method syntax still works.\nOurNamespace.StringExtensions.Shorten(\"Hello World\", 5);\n// Compile time error: extension methods can't be called as static without specifying class.\nShorten(\"Hello World\", 5);",
-        "code_language": "Plain Text"
+        "version": 9,
+        "code": "using static OurNamespace.StringExtensions; // refers to class in previous example\n\n// OK: extension method syntax still works.\n\"Hello World\".Shorten(5);\n// OK: static method syntax still works.\nOurNamespace.StringExtensions.Shorten(\"Hello World\", 5);\n// Compile time error: extension methods can't be called as static without specifying class.\nShorten(\"Hello World\", 5);",
+        "code_language": "C#"
       },
       {
         "alive": true,

@@ -3,10 +3,7 @@
   "Root": {
     "alive": true,
     "content": [
-      "3c6c76c1-d966-4077-aba7-4cf24a2b8446",
-      "37476337-15b4-4593-844f-f23c4550c18b",
-      "825dde88-4a98-44b5-89c1-2a9c4fb9b5f5",
-      "4f2e19c0-dfb6-4ad7-b98c-b858953760f8"
+      "3c6c76c1-d966-4077-aba7-4cf24a2b8446"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549527725504,
@@ -17,7 +14,7 @@
     "id": "c7421204-ef22-4fed-bb05-fa74ae5d8c4c",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549627200000,
+    "last_edited_time": 1550204280000,
     "parent_id": "34613783-b94f-49b9-af21-5aac4eb1cd51",
     "parent_table": "block",
     "properties": {
@@ -28,7 +25,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 12,
     "content_resolved": [
       {
         "alive": true,
@@ -37,106 +34,25 @@
         "id": "3c6c76c1-d966-4077-aba7-4cf24a2b8446",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527725500,
+        "last_edited_time": 1550204280000,
         "parent_id": "c7421204-ef22-4fed-bb05-fa74ae5d8c4c",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public static void Main()\n{\n    var xml  = new XmlDocument();\n    var root = xml.CreateElement(\"element\");\n        // Creates an attribute, so the element will now be \"\u003celement attribute='value' /\u003e\"\n        root.SetAttribute(\"attribute\", \"value\");"
+              "public static void Main()\n{\n    var xml  = new XmlDocument();\n    var root = xml.CreateElement(\"element\");\n        // Creates an attribute, so the element will now be \"\u003celement attribute='value' /\u003e\"\n        root.SetAttribute(\"attribute\", \"value\");\n\n    // All XML documents must have one, and only one, root element        \n    xml.AppendChild(root);\n\n    // Adding data to an XML document\n    foreach (var dayOfWeek in Enum.GetNames((typeof(DayOfWeek))))\n    {\n        var day = xml.CreateElement(\"dayOfWeek\");\n            day.SetAttribute(\"name\", dayOfWeek);\n\n        // Don't forget to add the new value to the current document!\n        root.AppendChild(day);\n    }\n\n    // Looking for data using XPath; BEWARE, this is case-sensitive\n    var monday = xml.SelectSingleNode(\"//dayOfWeek[@name='Monday']\");\n    if (monday != null)\n    {\n        // Once you got a reference to a particular node, you can delete it\n        // by navigating through its parent node and asking for removal\n        monday.ParentNode.RemoveChild(monday);\n    }\n        \n    // Displays the XML document in the screen; optionally can be saved to a file\n    xml.Save(Console.Out);\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public static void Main()\n{\n    var xml  = new XmlDocument();\n    var root = xml.CreateElement(\"element\");\n        // Creates an attribute, so the element will now be \"\u003celement attribute='value' /\u003e\"\n        root.SetAttribute(\"attribute\", \"value\");",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527725503,
-        "id": "37476337-15b4-4593-844f-f23c4550c18b",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527725503,
-        "parent_id": "c7421204-ef22-4fed-bb05-fa74ae5d8c4c",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// All XML documents must have one, and only one, root element        \n    xml.AppendChild(root);"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// All XML documents must have one, and only one, root element        \n    xml.AppendChild(root);",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527725503,
-        "id": "825dde88-4a98-44b5-89c1-2a9c4fb9b5f5",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527725503,
-        "parent_id": "c7421204-ef22-4fed-bb05-fa74ae5d8c4c",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// Adding data to an XML document\n    foreach (var dayOfWeek in Enum.GetNames((typeof(DayOfWeek))))\n    {\n        var day = xml.CreateElement(\"dayOfWeek\");\n            day.SetAttribute(\"name\", dayOfWeek);"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// Adding data to an XML document\n    foreach (var dayOfWeek in Enum.GetNames((typeof(DayOfWeek))))\n    {\n        var day = xml.CreateElement(\"dayOfWeek\");\n            day.SetAttribute(\"name\", dayOfWeek);",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527725504,
-        "id": "4f2e19c0-dfb6-4ad7-b98c-b858953760f8",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527725504,
-        "parent_id": "c7421204-ef22-4fed-bb05-fa74ae5d8c4c",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// Don't forget to add the new value to the current document!\n        root.AppendChild(day);\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// Don't forget to add the new value to the current document!\n        root.AppendChild(day);\n    }",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "public static void Main()\n{\n    var xml  = new XmlDocument();\n    var root = xml.CreateElement(\"element\");\n        // Creates an attribute, so the element will now be \"\u003celement attribute='value' /\u003e\"\n        root.SetAttribute(\"attribute\", \"value\");\n\n    // All XML documents must have one, and only one, root element        \n    xml.AppendChild(root);\n\n    // Adding data to an XML document\n    foreach (var dayOfWeek in Enum.GetNames((typeof(DayOfWeek))))\n    {\n        var day = xml.CreateElement(\"dayOfWeek\");\n            day.SetAttribute(\"name\", dayOfWeek);\n\n        // Don't forget to add the new value to the current document!\n        root.AppendChild(day);\n    }\n\n    // Looking for data using XPath; BEWARE, this is case-sensitive\n    var monday = xml.SelectSingleNode(\"//dayOfWeek[@name='Monday']\");\n    if (monday != null)\n    {\n        // Once you got a reference to a particular node, you can delete it\n        // by navigating through its parent node and asking for removal\n        monday.ParentNode.RemoveChild(monday);\n    }\n        \n    // Displays the XML document in the screen; optionally can be saved to a file\n    xml.Save(Console.Out);\n}",
+        "code_language": "C#"
       }
     ],
     "title": "Basic XML document interaction",

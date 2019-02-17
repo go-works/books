@@ -12,7 +12,8 @@
       "4684eaed-f4f2-49b8-a4f4-c814f0d8e4a2",
       "5ea94971-f5d9-415d-aeb0-fda09b06a053",
       "e627eb21-bb0f-4815-a6a1-57fbd35e8072",
-      "7f818197-56c2-4dc9-98ca-6b2b8fdb8438"
+      "7f818197-56c2-4dc9-98ca-6b2b8fdb8438",
+      "431694e2-2fe6-41d3-92cb-0ace18d89cfe"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549528520259,
@@ -23,7 +24,7 @@
     "id": "d965bc06-faea-40d2-afaf-9c18f640b56d",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549627020000,
+    "last_edited_time": 1550213100000,
     "parent_id": "e6d77161-bd05-4c91-98d3-24a534a07128",
     "parent_table": "block",
     "properties": {
@@ -34,7 +35,7 @@
       ]
     },
     "type": "page",
-    "version": 7,
+    "version": 11,
     "content_resolved": [
       {
         "alive": true,
@@ -295,6 +296,32 @@
             "Text": "To access specific element having a specific attribute"
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550213112772,
+        "id": "431694e2-2fe6-41d3-92cb-0ace18d89cfe",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550213100000,
+        "parent_id": "d965bc06-faea-40d2-afaf-9c18f640b56d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "XElement xelement = XElement.Load(\"..\\\\..\\\\Employees.xml\");\nvar homePhone = from phoneno in xelement.Root.Elements(\"Employee\")\n            where (string)phoneno.Element(\"Phone\").Attribute(\"Type\") == \"Home\"\n            select phoneno;\nConsole.WriteLine(\"List HomePhone Nos.\");\nforeach (XElement xEle in homePhone)\n{\n    Console.WriteLine(xEle.Element(\"Phone\").Value);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 8,
+        "code": "XElement xelement = XElement.Load(\"..\\\\..\\\\Employees.xml\");\nvar homePhone = from phoneno in xelement.Root.Elements(\"Employee\")\n            where (string)phoneno.Element(\"Phone\").Attribute(\"Type\") == \"Home\"\n            select phoneno;\nConsole.WriteLine(\"List HomePhone Nos.\");\nforeach (XElement xEle in homePhone)\n{\n    Console.WriteLine(xEle.Element(\"Phone\").Value);\n}",
+        "code_language": "C#"
       }
     ],
     "title": "Read XML using LINQ to XML",

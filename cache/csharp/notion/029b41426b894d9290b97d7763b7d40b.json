@@ -5,13 +5,6 @@
     "content": [
       "2b47e813-64d9-442d-a6e7-eedfb892981c",
       "c892fad4-6444-4242-8560-6bb13f2653a0",
-      "7ca2f20c-a8df-40e4-923e-619986988c28",
-      "05fb17e8-aeb0-48a0-a5a0-384a6c366bda",
-      "97c3ec34-e46a-4a05-a5a3-5be214a52e8b",
-      "7a7abb8d-a052-4f7f-b79a-929a1697cb91",
-      "41fb1e03-7f21-4e6f-914f-9a6dfc4c4cd7",
-      "a86752c4-d58d-4b95-849b-b995b6612f9d",
-      "29c70712-4c76-4bca-b993-20246266665e",
       "e4a02466-4977-448f-b6b1-302dab16310f",
       "09a03969-502d-452f-b307-ad570b2e1775",
       "aae13216-513c-4bea-a372-6a82cf842746",
@@ -35,7 +28,7 @@
     "id": "029b4142-6b89-4d92-90b9-7d7763b7d40b",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549624200000,
+    "last_edited_time": 1550210820000,
     "parent_id": "d6ab87f3-3105-4532-8f9a-1b47bf70d308",
     "parent_table": "block",
     "properties": {
@@ -46,7 +39,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 16,
     "content_resolved": [
       {
         "alive": true,
@@ -80,214 +73,25 @@
         "id": "c892fad4-6444-4242-8560-6bb13f2653a0",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528363637,
+        "last_edited_time": 1550210820000,
         "parent_id": "029b4142-6b89-4d92-90b9-7d7763b7d40b",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "internal class Program\n{\n    internal const int RootLevel = 0;\n    internal const char Tab = '\\t';"
+              "internal class Program\n{\n    internal const int RootLevel = 0;\n    internal const char Tab = '\\t';\n\n    internal static void Main()\n    {\n        Console.WriteLine(\"Enter the path of the root directory:\");\n        var rootDirectorypath = Console.ReadLine();\n\n        Console.WriteLine(\n            $\"Getting directory tree of '{rootDirectorypath}'\");\n\n        PrintDirectoryTree(rootDirectorypath);\n        Console.WriteLine(\"Press 'Enter' to quit...\");\n        Console.ReadLine();\n    }\n\n    internal static void PrintDirectoryTree(string rootDirectoryPath)\n    {\n        try\n        {\n            if (!Directory.Exists(rootDirectoryPath))\n            {\n                throw new DirectoryNotFoundException(\n                    $\"Directory '{rootDirectoryPath}' not found.\");\n            }\n\n            var rootDirectory = new DirectoryInfo(rootDirectoryPath);\n            PrintDirectoryTree(rootDirectory, RootLevel);\n        }\n        catch (DirectoryNotFoundException e)\n        {\n            Console.WriteLine(e.Message);\n        }\n    }\n\n    private static void PrintDirectoryTree(\n        DirectoryInfo directory, int currentLevel)\n    {\n        var indentation = string.Empty;\n        for (var i = RootLevel; i \u003c currentLevel; i++)\n        {\n            indentation += Tab;\n        }\n\n        Console.WriteLine($\"{indentation}-{directory.Name}\");\n        var nextLevel = currentLevel + 1;\n        try\n        {\n            foreach (var subDirectory in directory.GetDirectories())\n            {\n                PrintDirectoryTree(subDirectory, nextLevel);\n            }\n        }\n        catch (UnauthorizedAccessException e)\n        {\n            Console.WriteLine($\"{indentation}-{e.Message}\");\n        }\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "internal class Program\n{\n    internal const int RootLevel = 0;\n    internal const char Tab = '\\t';",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528363637,
-        "id": "7ca2f20c-a8df-40e4-923e-619986988c28",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528363637,
-        "parent_id": "029b4142-6b89-4d92-90b9-7d7763b7d40b",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "internal static void Main()\n    {\n        Console.WriteLine(\"Enter the path of the root directory:\");\n        var rootDirectorypath = Console.ReadLine();"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "internal static void Main()\n    {\n        Console.WriteLine(\"Enter the path of the root directory:\");\n        var rootDirectorypath = Console.ReadLine();",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528363637,
-        "id": "05fb17e8-aeb0-48a0-a5a0-384a6c366bda",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528363637,
-        "parent_id": "029b4142-6b89-4d92-90b9-7d7763b7d40b",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "Console.WriteLine(\n            $\"Getting directory tree of '{rootDirectorypath}'\");"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "Console.WriteLine(\n            $\"Getting directory tree of '{rootDirectorypath}'\");",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528363637,
-        "id": "97c3ec34-e46a-4a05-a5a3-5be214a52e8b",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528363637,
-        "parent_id": "029b4142-6b89-4d92-90b9-7d7763b7d40b",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "PrintDirectoryTree(rootDirectorypath);\n        Console.WriteLine(\"Press 'Enter' to quit...\");\n        Console.ReadLine();\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "PrintDirectoryTree(rootDirectorypath);\n        Console.WriteLine(\"Press 'Enter' to quit...\");\n        Console.ReadLine();\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528363637,
-        "id": "7a7abb8d-a052-4f7f-b79a-929a1697cb91",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528363637,
-        "parent_id": "029b4142-6b89-4d92-90b9-7d7763b7d40b",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "internal static void PrintDirectoryTree(string rootDirectoryPath)\n    {\n        try\n        {\n            if (!Directory.Exists(rootDirectoryPath))\n            {\n                throw new DirectoryNotFoundException(\n                    $\"Directory '{rootDirectoryPath}' not found.\");\n            }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "internal static void PrintDirectoryTree(string rootDirectoryPath)\n    {\n        try\n        {\n            if (!Directory.Exists(rootDirectoryPath))\n            {\n                throw new DirectoryNotFoundException(\n                    $\"Directory '{rootDirectoryPath}' not found.\");\n            }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528363637,
-        "id": "41fb1e03-7f21-4e6f-914f-9a6dfc4c4cd7",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528363637,
-        "parent_id": "029b4142-6b89-4d92-90b9-7d7763b7d40b",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "var rootDirectory = new DirectoryInfo(rootDirectoryPath);\n            PrintDirectoryTree(rootDirectory, RootLevel);\n        }\n        catch (DirectoryNotFoundException e)\n        {\n            Console.WriteLine(e.Message);\n        }\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "var rootDirectory = new DirectoryInfo(rootDirectoryPath);\n            PrintDirectoryTree(rootDirectory, RootLevel);\n        }\n        catch (DirectoryNotFoundException e)\n        {\n            Console.WriteLine(e.Message);\n        }\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528363637,
-        "id": "a86752c4-d58d-4b95-849b-b995b6612f9d",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528363637,
-        "parent_id": "029b4142-6b89-4d92-90b9-7d7763b7d40b",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "private static void PrintDirectoryTree(\n        DirectoryInfo directory, int currentLevel)\n    {\n        var indentation = string.Empty;\n        for (var i = RootLevel; i \u003c currentLevel; i++)\n        {\n            indentation += Tab;\n        }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "private static void PrintDirectoryTree(\n        DirectoryInfo directory, int currentLevel)\n    {\n        var indentation = string.Empty;\n        for (var i = RootLevel; i \u003c currentLevel; i++)\n        {\n            indentation += Tab;\n        }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549528363638,
-        "id": "29c70712-4c76-4bca-b993-20246266665e",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528363638,
-        "parent_id": "029b4142-6b89-4d92-90b9-7d7763b7d40b",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "Console.WriteLine($\"{indentation}-{directory.Name}\");\n        var nextLevel = currentLevel + 1;\n        try\n        {\n            foreach (var subDirectory in directory.GetDirectories())\n            {\n                PrintDirectoryTree(subDirectory, nextLevel);\n            }\n        }\n        catch (UnauthorizedAccessException e)\n        {\n            Console.WriteLine($\"{indentation}-{e.Message}\");\n        }\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "Console.WriteLine($\"{indentation}-{directory.Name}\");\n        var nextLevel = currentLevel + 1;\n        try\n        {\n            foreach (var subDirectory in directory.GetDirectories())\n            {\n                PrintDirectoryTree(subDirectory, nextLevel);\n            }\n        }\n        catch (UnauthorizedAccessException e)\n        {\n            Console.WriteLine($\"{indentation}-{e.Message}\");\n        }\n    }\n}",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "internal class Program\n{\n    internal const int RootLevel = 0;\n    internal const char Tab = '\\t';\n\n    internal static void Main()\n    {\n        Console.WriteLine(\"Enter the path of the root directory:\");\n        var rootDirectorypath = Console.ReadLine();\n\n        Console.WriteLine(\n            $\"Getting directory tree of '{rootDirectorypath}'\");\n\n        PrintDirectoryTree(rootDirectorypath);\n        Console.WriteLine(\"Press 'Enter' to quit...\");\n        Console.ReadLine();\n    }\n\n    internal static void PrintDirectoryTree(string rootDirectoryPath)\n    {\n        try\n        {\n            if (!Directory.Exists(rootDirectoryPath))\n            {\n                throw new DirectoryNotFoundException(\n                    $\"Directory '{rootDirectoryPath}' not found.\");\n            }\n\n            var rootDirectory = new DirectoryInfo(rootDirectoryPath);\n            PrintDirectoryTree(rootDirectory, RootLevel);\n        }\n        catch (DirectoryNotFoundException e)\n        {\n            Console.WriteLine(e.Message);\n        }\n    }\n\n    private static void PrintDirectoryTree(\n        DirectoryInfo directory, int currentLevel)\n    {\n        var indentation = string.Empty;\n        for (var i = RootLevel; i \u003c currentLevel; i++)\n        {\n            indentation += Tab;\n        }\n\n        Console.WriteLine($\"{indentation}-{directory.Name}\");\n        var nextLevel = currentLevel + 1;\n        try\n        {\n            foreach (var subDirectory in directory.GetDirectories())\n            {\n                PrintDirectoryTree(subDirectory, nextLevel);\n            }\n        }\n        catch (UnauthorizedAccessException e)\n        {\n            Console.WriteLine($\"{indentation}-{e.Message}\");\n        }\n    }\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -789,13 +593,13 @@
         "id": "4f4c4067-3766-4942-9f61-36c607e00be0",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549528363640,
+        "last_edited_time": 1550210820000,
         "parent_id": "029b4142-6b89-4d92-90b9-7d7763b7d40b",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -805,9 +609,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "internal static void PrintDirectoryTree(string directoryName)\n{\n    try\n    {\n        if (!Directory.Exists(directoryName)) return;\n        Console.WriteLine(directoryName);\n        foreach (var d in Directory.GetDirectories(directoryName))\n        {\n            PrintDirectoryTree(d);\n        }\n    }\n    catch (Exception e)\n    {\n        Console.WriteLine(e.Message);\n    }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,

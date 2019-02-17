@@ -5,9 +5,7 @@
     "content": [
       "6af4d464-1d8d-4fbd-86c2-00acdd0b3c76",
       "33357298-2ddd-4d19-986d-9c9c59eb8280",
-      "02de6744-3cd8-4c69-86e3-2e400ad72582",
-      "8183458b-b9bf-4883-929d-0d0829233a68",
-      "764b25a3-ff8b-4dd2-8d25-aae94812b9bc"
+      "525fcb14-f426-4425-b226-3a5fc838d958"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549527883384,
@@ -18,7 +16,7 @@
     "id": "7214d13b-2ad4-468b-b9af-e90d60b91c57",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549626120000,
+    "last_edited_time": 1550205960000,
     "parent_id": "7c9f5ce4-12a1-4115-98ff-cdbe26ce2b63",
     "parent_table": "block",
     "properties": {
@@ -29,7 +27,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 14,
     "content_resolved": [
       {
         "alive": true,
@@ -99,106 +97,37 @@
         "id": "33357298-2ddd-4d19-986d-9c9c59eb8280",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527883383,
+        "last_edited_time": 1550205960000,
         "parent_id": "7214d13b-2ad4-468b-b9af-e90d60b91c57",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public class ManagedAndUnmanagedObject : IDisposable\n{\n    private SqlConnection sqlConnection = new SqlConnection();\n    private UnmanagedHandle unmanagedHandle = Win32.SomeUnmanagedResource();\n    private bool disposed;"
+              "public class ManagedAndUnmanagedObject : IDisposable\n{\n    private SqlConnection sqlConnection = new SqlConnection();\n    private UnmanagedHandle unmanagedHandle = Win32.SomeUnmanagedResource();\n    private bool disposed;\n\n    public void Dispose()\n    {\n        Dispose(true); // client called dispose\n        GC.SuppressFinalize(this); // tell the GC to not execute the Finalizer\n    }\n\n    protected virtual void Dispose(bool disposeManaged)\n    {\n        if (!disposed)\n        {\n            if (disposeManaged)\n            {\n                if (sqlConnection != null)\n                {\n                    sqlConnection.Dispose();\n                }\n            }\n\n            unmanagedHandle.Release();\n\n            disposed = true;\n        }\n    }\n\n    ~ManagedAndUnmanagedObject()\n    {\n        Dispose(false);\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public class ManagedAndUnmanagedObject : IDisposable\n{\n    private SqlConnection sqlConnection = new SqlConnection();\n    private UnmanagedHandle unmanagedHandle = Win32.SomeUnmanagedResource();\n    private bool disposed;",
-        "code_language": "Plain Text"
+        "version": 8,
+        "code": "public class ManagedAndUnmanagedObject : IDisposable\n{\n    private SqlConnection sqlConnection = new SqlConnection();\n    private UnmanagedHandle unmanagedHandle = Win32.SomeUnmanagedResource();\n    private bool disposed;\n\n    public void Dispose()\n    {\n        Dispose(true); // client called dispose\n        GC.SuppressFinalize(this); // tell the GC to not execute the Finalizer\n    }\n\n    protected virtual void Dispose(bool disposeManaged)\n    {\n        if (!disposed)\n        {\n            if (disposeManaged)\n            {\n                if (sqlConnection != null)\n                {\n                    sqlConnection.Dispose();\n                }\n            }\n\n            unmanagedHandle.Release();\n\n            disposed = true;\n        }\n    }\n\n    ~ManagedAndUnmanagedObject()\n    {\n        Dispose(false);\n    }\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527883384,
-        "id": "02de6744-3cd8-4c69-86e3-2e400ad72582",
-        "ignore_block_count": true,
+        "created_time": 1550205900000,
+        "id": "525fcb14-f426-4425-b226-3a5fc838d958",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527883384,
+        "last_edited_time": 1550205900000,
         "parent_id": "7214d13b-2ad4-468b-b9af-e90d60b91c57",
         "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public void Dispose()\n    {\n        Dispose(true); // client called dispose\n        GC.SuppressFinalize(this); // tell the GC to not execute the Finalizer\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public void Dispose()\n    {\n        Dispose(true); // client called dispose\n        GC.SuppressFinalize(this); // tell the GC to not execute the Finalizer\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527883384,
-        "id": "8183458b-b9bf-4883-929d-0d0829233a68",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527883384,
-        "parent_id": "7214d13b-2ad4-468b-b9af-e90d60b91c57",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "protected virtual void Dispose(bool disposeManaged)\n    {\n        if (!disposed)\n        {\n            if (disposeManaged)\n            {\n                if (sqlConnection != null)\n                {\n                    sqlConnection.Dispose();\n                }\n            }\n\n            unmanagedHandle.Release();"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "protected virtual void Dispose(bool disposeManaged)\n    {\n        if (!disposed)\n        {\n            if (disposeManaged)\n            {\n                if (sqlConnection != null)\n                {\n                    sqlConnection.Dispose();\n                }\n            }\n\n            unmanagedHandle.Release();",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527883384,
-        "id": "764b25a3-ff8b-4dd2-8d25-aae94812b9bc",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527883384,
-        "parent_id": "7214d13b-2ad4-468b-b9af-e90d60b91c57",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "disposed = true;\n        }\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "disposed = true;\n        }\n    }",
-        "code_language": "Plain Text"
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "In a class with managed and unmanaged resources",

@@ -6,7 +6,8 @@
       "beaf7c4b-30e8-4050-b2b8-e6292162fd28",
       "c1c66aef-5757-4b80-bb5c-17f9eab2f7fd",
       "ff2137a3-ccc5-40be-b6f5-53d312b163f3",
-      "5ec15607-5579-4387-860a-41d4be7d6295"
+      "5ec15607-5579-4387-860a-41d4be7d6295",
+      "f460ee6e-ee99-40f3-91f5-6d9d9f71e5fd"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549529577421,
@@ -17,7 +18,7 @@
     "id": "1ecedb63-b61c-48c5-bb50-34ed56114e52",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549627440000,
+    "last_edited_time": 1550220480000,
     "parent_id": "7f7fdd88-2767-47f0-97a2-2dab8a624086",
     "parent_table": "block",
     "properties": {
@@ -28,7 +29,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 12,
     "content_resolved": [
       {
         "alive": true,
@@ -87,13 +88,13 @@
         "id": "ff2137a3-ccc5-40be-b6f5-53d312b163f3",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529577421,
+        "last_edited_time": 1550220480000,
         "parent_id": "1ecedb63-b61c-48c5-bb50-34ed56114e52",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -103,9 +104,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "//This is the \"calling method\": the method that is calling the target method\npublic void doProcess()\n{\n    GetMessageCallerAttributes(\"Show my attributes.\");\n}\n//This is the target method\n//There are only 3 caller attributes\npublic void GetMessageCallerAttributes(string message,\n    //gets the name of what is calling this method\n    [System.Runtime.CompilerServices.CallerMemberName] string memberName = \"\",\n    //gets the path of the file in which the \"calling method\" is in\n    [System.Runtime.CompilerServices.CallerFilePath] string sourceFilePath = \"\",\n    //gets the line number of the \"calling method\"\n    [System.Runtime.CompilerServices.CallerLineNumber] int sourceLineNumber = 0)\n{\n    //Writes lines of all the attributes\n    System.Diagnostics.Trace.WriteLine(\"Message: \" + message);\n    System.Diagnostics.Trace.WriteLine(\"Member: \" + memberName);\n    System.Diagnostics.Trace.WriteLine(\"Source File Path: \" + sourceFilePath);\n    System.Diagnostics.Trace.WriteLine(\"Line Number: \" + sourceLineNumber);\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -131,6 +132,32 @@
             "Text": "Example Output:"
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550220497529,
+        "id": "f460ee6e-ee99-40f3-91f5-6d9d9f71e5fd",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550220480000,
+        "parent_id": "1ecedb63-b61c-48c5-bb50-34ed56114e52",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "//Message: Show my attributes.\n//Member: doProcess\n//Source File Path: c:\\Path\\To\\The\\File\n//Line Number: 13"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 9,
+        "code": "//Message: Show my attributes.\n//Member: doProcess\n//Source File Path: c:\\Path\\To\\The\\File\n//Line Number: 13",
+        "code_language": "Plain Text"
       }
     ],
     "title": "Caller Information Attributes",

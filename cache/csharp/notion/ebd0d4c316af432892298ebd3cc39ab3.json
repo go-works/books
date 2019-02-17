@@ -5,8 +5,8 @@
     "content": [
       "1e6638e3-62b5-4957-aafc-9083f9ecffc6",
       "efc37b44-2628-40cf-b8c5-ee0a8bb466ea",
-      "f33ddfc8-d08e-46ad-92ae-5e7c4f50c7cd",
-      "0aea479f-5354-4dd8-a940-567af7bdbc7d"
+      "0aea479f-5354-4dd8-a940-567af7bdbc7d",
+      "0a57f3d4-88cb-48f0-8b62-b98d377376af"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549529735115,
@@ -17,7 +17,7 @@
     "id": "ebd0d4c3-16af-4328-9229-8ebd3cc39ab3",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549798620000,
+    "last_edited_time": 1550221380000,
     "parent_id": "3f90ad64-662d-4026-9438-8f1c858f7ce9",
     "parent_table": "block",
     "properties": {
@@ -28,7 +28,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 11,
     "content_resolved": [
       {
         "alive": true,
@@ -80,52 +80,25 @@
         "id": "efc37b44-2628-40cf-b8c5-ee0a8bb466ea",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529735114,
+        "last_edited_time": 1550221380000,
         "parent_id": "ebd0d4c3-16af-4328-9229-8ebd3cc39ab3",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "var workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create();\nvar project = await workspace.OpenProjectAsync(projectFilePath);\nvar compilation = await project.GetCompilationAsync();"
+              "var workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create();\nvar project = await workspace.OpenProjectAsync(projectFilePath);\nvar compilation = await project.GetCompilationAsync();\n\nforeach (var diagnostic in compilation.GetDiagnostics()\n    .Where(d =\u003e d.Severity == Microsoft.CodeAnalysis.DiagnosticSeverity.Error))\n{\n    Console.WriteLine(diagnostic);\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "var workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create();\nvar project = await workspace.OpenProjectAsync(projectFilePath);\nvar compilation = await project.GetCompilationAsync();",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549529735114,
-        "id": "f33ddfc8-d08e-46ad-92ae-5e7c4f50c7cd",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529735114,
-        "parent_id": "ebd0d4c3-16af-4328-9229-8ebd3cc39ab3",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "foreach (var diagnostic in compilation.GetDiagnostics()\n    .Where(d =\u003e d.Severity == Microsoft.CodeAnalysis.DiagnosticSeverity.Error))\n{\n    Console.WriteLine(diagnostic);\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "foreach (var diagnostic in compilation.GetDiagnostics()\n    .Where(d =\u003e d.Severity == Microsoft.CodeAnalysis.DiagnosticSeverity.Error))\n{\n    Console.WriteLine(diagnostic);\n}",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "var workspace = Microsoft.CodeAnalysis.MSBuild.MSBuildWorkspace.Create();\nvar project = await workspace.OpenProjectAsync(projectFilePath);\nvar compilation = await project.GetCompilationAsync();\n\nforeach (var diagnostic in compilation.GetDiagnostics()\n    .Where(d =\u003e d.Severity == Microsoft.CodeAnalysis.DiagnosticSeverity.Error))\n{\n    Console.WriteLine(diagnostic);\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -151,6 +124,18 @@
             "Text": "To load existing code to the workspace, compile and report errors. Afterwards the code will be located in memory. From here, both the syntactic and semantic side will be available to work with."
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550221380000,
+        "id": "0a57f3d4-88cb-48f0-8b62-b98d377376af",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550221380000,
+        "parent_id": "ebd0d4c3-16af-4328-9229-8ebd3cc39ab3",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "Create workspace from MSBuild project",

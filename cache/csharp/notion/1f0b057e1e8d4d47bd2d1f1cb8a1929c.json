@@ -3,7 +3,8 @@
   "Root": {
     "alive": true,
     "content": [
-      "e5e889bf-6360-4a14-847f-4f86a7ae5021"
+      "e5e889bf-6360-4a14-847f-4f86a7ae5021",
+      "86096caa-9322-4464-b545-afa4d88d9c43"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549530237638,
@@ -14,7 +15,7 @@
     "id": "1f0b057e-1e8d-4d47-bd2d-1f1cb8a1929c",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549628220000,
+    "last_edited_time": 1550223840000,
     "parent_id": "d2786b82-24ad-4c4e-b5a8-5ef23d9feee9",
     "parent_table": "block",
     "properties": {
@@ -25,7 +26,7 @@
       ]
     },
     "type": "page",
-    "version": 9,
+    "version": 13,
     "content_resolved": [
       {
         "alive": true,
@@ -99,6 +100,32 @@
             "Text": " instance."
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550223845496,
+        "id": "86096caa-9322-4464-b545-afa4d88d9c43",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550223840000,
+        "parent_id": "1f0b057e-1e8d-4d47-bd2d-1f1cb8a1929c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "private static ConstantExpression GetConstant(Type type, string value)\n{\n    // Discover the type, convert it, and create ConstantExpression \n    ConstantExpression constant = null;\n    if (type == typeof(int))\n    {\n        int num;\n        int.TryParse(value, out num);\n        constant = Expression.Constant(num);\n    }\n    else if(type == typeof(string))\n    {\n        constant = Expression.Constant(value);\n    }\n    else if (type == typeof(DateTime))\n    {\n        DateTime date;\n        DateTime.TryParse(value, out date);\n        constant = Expression.Constant(date);\n    }\n    else if (type == typeof(bool))\n    {                \n        bool flag;\n        if (bool.TryParse(value, out flag))\n        {\n            flag = true;\n        }\n        constant = Expression.Constant(flag);\n    }\n    else if (type == typeof(decimal))\n    {\n        decimal number;\n        decimal.TryParse(value, out number);\n        constant = Expression.Constant(number);\n    }\n    return constant;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 8,
+        "code": "private static ConstantExpression GetConstant(Type type, string value)\n{\n    // Discover the type, convert it, and create ConstantExpression \n    ConstantExpression constant = null;\n    if (type == typeof(int))\n    {\n        int num;\n        int.TryParse(value, out num);\n        constant = Expression.Constant(num);\n    }\n    else if(type == typeof(string))\n    {\n        constant = Expression.Constant(value);\n    }\n    else if (type == typeof(DateTime))\n    {\n        DateTime date;\n        DateTime.TryParse(value, out date);\n        constant = Expression.Constant(date);\n    }\n    else if (type == typeof(bool))\n    {                \n        bool flag;\n        if (bool.TryParse(value, out flag))\n        {\n            flag = true;\n        }\n        constant = Expression.Constant(flag);\n    }\n    else if (type == typeof(decimal))\n    {\n        decimal number;\n        decimal.TryParse(value, out number);\n        constant = Expression.Constant(number);\n    }\n    return constant;\n}",
+        "code_language": "C#"
       }
     ],
     "title": "ConstantExpression Method",

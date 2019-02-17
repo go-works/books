@@ -6,9 +6,9 @@
       "a857dd67-5101-46a1-9e37-d47fc0707da2",
       "c5de31ae-b37f-44ac-a958-5025323bf0be",
       "d1662891-508b-4f45-8411-4e1e0a226fd7",
-      "3a4ab743-fa0a-40e8-a070-66ac35381805",
       "67c930c0-2001-45ec-bd89-7876036bbfb5",
-      "7dd66ddf-2d8c-432e-8f45-b31198f0f883"
+      "7dd66ddf-2d8c-432e-8f45-b31198f0f883",
+      "1c9ca0da-4af4-4c1f-8a77-e5a7a2ff28b5"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549530389733,
@@ -19,7 +19,7 @@
     "id": "549fea8c-2162-42ff-b495-53a88604de96",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549790700000,
+    "last_edited_time": 1550224500000,
     "parent_id": "ca82249a-e8bd-4017-a1a3-da741fa4b29b",
     "parent_table": "block",
     "properties": {
@@ -30,7 +30,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 11,
     "content_resolved": [
       {
         "alive": true,
@@ -125,52 +125,25 @@
         "id": "d1662891-508b-4f45-8411-4e1e0a226fd7",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530389732,
+        "last_edited_time": 1550224500000,
         "parent_id": "549fea8c-2162-42ff-b495-53a88604de96",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "// Structs are recommended to be immutable objects\n[ImmutableObject(true)]\npublic struct Person : ICloneable\n{\n    // Contents of class\n    public string Name { get; private set; }\n    public int Age { get; private set; }\n    // Constructor\n    public Person(string name, int age)\n    {\n        this.Name=name;\n        this.Age=age;\n    }\n    // Copy Constructor\n    public Person(Person other)\n    {\n        // The assignment operator copies all members\n        this=other;\n    }"
+              "// Structs are recommended to be immutable objects\n[ImmutableObject(true)]\npublic struct Person : ICloneable\n{\n    // Contents of class\n    public string Name { get; private set; }\n    public int Age { get; private set; }\n    // Constructor\n    public Person(string name, int age)\n    {\n        this.Name=name;\n        this.Age=age;\n    }\n    // Copy Constructor\n    public Person(Person other)\n    {\n        // The assignment operator copies all members\n        this=other;\n    }\n\n    #region ICloneable Members\n    // Type safe Clone\n    public Person Clone() { return new Person(this); }\n    // ICloneable implementation\n    object ICloneable.Clone()\n    {\n        return Clone();\n    }\n    #endregion\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "// Structs are recommended to be immutable objects\n[ImmutableObject(true)]\npublic struct Person : ICloneable\n{\n    // Contents of class\n    public string Name { get; private set; }\n    public int Age { get; private set; }\n    // Constructor\n    public Person(string name, int age)\n    {\n        this.Name=name;\n        this.Age=age;\n    }\n    // Copy Constructor\n    public Person(Person other)\n    {\n        // The assignment operator copies all members\n        this=other;\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549530389733,
-        "id": "3a4ab743-fa0a-40e8-a070-66ac35381805",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530389733,
-        "parent_id": "549fea8c-2162-42ff-b495-53a88604de96",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "#region ICloneable Members\n    // Type safe Clone\n    public Person Clone() { return new Person(this); }\n    // ICloneable implementation\n    object ICloneable.Clone()\n    {\n        return Clone();\n    }\n    #endregion\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "#region ICloneable Members\n    // Type safe Clone\n    public Person Clone() { return new Person(this); }\n    // ICloneable implementation\n    object ICloneable.Clone()\n    {\n        return Clone();\n    }\n    #endregion\n}",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "// Structs are recommended to be immutable objects\n[ImmutableObject(true)]\npublic struct Person : ICloneable\n{\n    // Contents of class\n    public string Name { get; private set; }\n    public int Age { get; private set; }\n    // Constructor\n    public Person(string name, int age)\n    {\n        this.Name=name;\n        this.Age=age;\n    }\n    // Copy Constructor\n    public Person(Person other)\n    {\n        // The assignment operator copies all members\n        this=other;\n    }\n\n    #region ICloneable Members\n    // Type safe Clone\n    public Person Clone() { return new Person(this); }\n    // ICloneable implementation\n    object ICloneable.Clone()\n    {\n        return Clone();\n    }\n    #endregion\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -204,13 +177,13 @@
         "id": "7dd66ddf-2d8c-432e-8f45-b31198f0f883",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549530389733,
+        "last_edited_time": 1550224500000,
         "parent_id": "549fea8c-2162-42ff-b495-53a88604de96",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -220,9 +193,21 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "static void Main(string[] args)\n{\n    Person bob=new Person(\"Bob\", 25);\n    Person bob_clone=bob.Clone();\n    Debug.Assert(bob_clone.Name==bob.Name);\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550224500000,
+        "id": "1c9ca0da-4af4-4c1f-8a77-e5a7a2ff28b5",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550224500000,
+        "parent_id": "549fea8c-2162-42ff-b495-53a88604de96",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "Implementing ICloneable in a struct",

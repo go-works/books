@@ -10,7 +10,9 @@
       "e630882c-8ee8-444b-82e2-f7c504e33dc6",
       "fe1cd424-6f20-424d-a7a6-7664a5f378bd",
       "7d62445e-55d0-44d6-a1d4-312f9c41168b",
-      "268c9929-69d7-42ca-9b34-6e3ca9ab57a9"
+      "268c9929-69d7-42ca-9b34-6e3ca9ab57a9",
+      "09ed6253-77df-4b16-accd-8d8199385d78",
+      "bf014cf5-f72c-4402-978e-0471b65407f0"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549529668602,
@@ -21,7 +23,7 @@
     "id": "26a928a6-23e7-4156-b890-fc485d7a795f",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549790760000,
+    "last_edited_time": 1550220960000,
     "parent_id": "c7cf0615-97f6-431f-a5a7-f68e19936273",
     "parent_table": "block",
     "properties": {
@@ -32,7 +34,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 13,
     "content_resolved": [
       {
         "alive": true,
@@ -102,13 +104,13 @@
         "id": "6f7aff99-d01b-43b0-80d4-fbc3e76be5dd",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529668600,
+        "last_edited_time": 1550220960000,
         "parent_id": "26a928a6-23e7-4156-b890-fc485d7a795f",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -118,9 +120,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "public class ExampleContext: DbContext \n{ \n    public virtual DbSet\u003cWidgets\u003e Widgets { get; set; } \n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -172,13 +174,13 @@
         "id": "52c32e24-18da-4384-91dd-5d4f6bb1af56",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529668601,
+        "last_edited_time": 1550220960000,
         "parent_id": "26a928a6-23e7-4156-b890-fc485d7a795f",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -188,9 +190,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "public class ExampleContext: DbContext \n{ \n    // The parameter being passed in to the base constructor indicates the name of the \n    // connection string\n    public ExampleContext() : base(\"ExampleContextEntities\")\n    {\n    }\n\n    public virtual DbSet\u003cWidgets\u003e Widgets { get; set; } \n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -255,13 +257,13 @@
         "id": "7d62445e-55d0-44d6-a1d4-312f9c41168b",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549529668601,
+        "last_edited_time": 1550220960000,
         "parent_id": "26a928a6-23e7-4156-b890-fc485d7a795f",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -271,9 +273,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "using(var context = new ExampleContext())\n{\n      // Retrieve all of the Widgets in your database\n      var data = context.Widgets.ToList();\n}",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -317,6 +319,44 @@
             "Text": " method to push changes to the database :"
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550221004519,
+        "id": "09ed6253-77df-4b16-accd-8d8199385d78",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550220960000,
+        "parent_id": "26a928a6-23e7-4156-b890-fc485d7a795f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "using(var context = new ExampleContext())\n{\n      // Grab the widget you wish to update\n      var widget = context.Widgets.Find(w =\u003e w.Id == id);\n      // If it exists, update it\n      if(widget != null)\n      {\n           // Update your widget and save your changes\n           widget.Updated = DateTime.UtcNow;\n           context.SaveChanges();\n      }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 8,
+        "code": "using(var context = new ExampleContext())\n{\n      // Grab the widget you wish to update\n      var widget = context.Widgets.Find(w =\u003e w.Id == id);\n      // If it exists, update it\n      if(widget != null)\n      {\n           // Update your widget and save your changes\n           widget.Updated = DateTime.UtcNow;\n           context.SaveChanges();\n      }\n}",
+        "code_language": "C#"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550220960000,
+        "id": "bf014cf5-f72c-4402-978e-0471b65407f0",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550220960000,
+        "parent_id": "26a928a6-23e7-4156-b890-fc485d7a795f",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "Entity Framework Connections",

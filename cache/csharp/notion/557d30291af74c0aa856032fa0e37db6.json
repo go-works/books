@@ -2,6 +2,10 @@
   "ID": "557d3029-1af7-4c0a-a856-032fa0e37db6",
   "Root": {
     "alive": true,
+    "content": [
+      "2b6944bf-5fb7-4274-83b7-08bfe88c0c7a",
+      "0107c7d3-c887-4bd4-bd3c-09a0d2bb6a07"
+    ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549529426290,
     "format": {
@@ -11,7 +15,7 @@
     "id": "557d3029-1af7-4c0a-a856-032fa0e37db6",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549790880000,
+    "last_edited_time": 1550219220000,
     "parent_id": "9f28c871-5dbb-48d6-9c77-95dcaa586a2c",
     "parent_table": "block",
     "properties": {
@@ -22,7 +26,47 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 14,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550219219867,
+        "id": "2b6944bf-5fb7-4274-83b7-08bfe88c0c7a",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550219220000,
+        "parent_id": "557d3029-1af7-4c0a-a856-032fa0e37db6",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "namespace CodeContractsDemo\n{\n    using System;\n    using System.Diagnostics.Contracts;\n \n    public class Point\n    {\n        public int X { get; set; }\n        public int Y { get; set; }\n \n        public Point()\n        {\n        }\n \n        public Point(int x, int y)\n        {\n            this.X = x;\n            this.Y = y;\n        }\n \n        public void Set(int x, int y)\n        {\n            this.X = x;\n            this.Y = y;\n        }\n \n        public void Test(int x, int y)\n        {\n            for (int dx = -x; dx \u003c= x; dx++) {\n                this.X = dx;\n                Console.WriteLine(\"Current X = {0}\", this.X);\n            }\n \n            for (int dy = -y; dy \u003c= y; dy++) {\n                this.Y = dy;\n                Console.WriteLine(\"Current Y = {0}\", this.Y);\n            }\n \n            Console.WriteLine(\"X = {0}\", this.X);\n            Console.WriteLine(\"Y = {0}\", this.Y);\n        }\n \n        [ContractInvariantMethod]\n        private void ValidateCoordinates()\n        {\n            Contract.Invariant(this.X \u003e= 0);\n            Contract.Invariant(this.Y \u003e= 0);\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 9,
+        "code": "namespace CodeContractsDemo\n{\n    using System;\n    using System.Diagnostics.Contracts;\n \n    public class Point\n    {\n        public int X { get; set; }\n        public int Y { get; set; }\n \n        public Point()\n        {\n        }\n \n        public Point(int x, int y)\n        {\n            this.X = x;\n            this.Y = y;\n        }\n \n        public void Set(int x, int y)\n        {\n            this.X = x;\n            this.Y = y;\n        }\n \n        public void Test(int x, int y)\n        {\n            for (int dx = -x; dx \u003c= x; dx++) {\n                this.X = dx;\n                Console.WriteLine(\"Current X = {0}\", this.X);\n            }\n \n            for (int dy = -y; dy \u003c= y; dy++) {\n                this.Y = dy;\n                Console.WriteLine(\"Current Y = {0}\", this.Y);\n            }\n \n            Console.WriteLine(\"X = {0}\", this.X);\n            Console.WriteLine(\"Y = {0}\", this.Y);\n        }\n \n        [ContractInvariantMethod]\n        private void ValidateCoordinates()\n        {\n            Contract.Invariant(this.X \u003e= 0);\n            Contract.Invariant(this.Y \u003e= 0);\n        }\n    }\n}",
+        "code_language": "C#"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550219220000,
+        "id": "0107c7d3-c887-4bd4-bd3c-09a0d2bb6a07",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550219220000,
+        "parent_id": "557d3029-1af7-4c0a-a856-032fa0e37db6",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
+      }
+    ],
     "title": "Invariants",
     "format_page": {
       "page_cover": "",

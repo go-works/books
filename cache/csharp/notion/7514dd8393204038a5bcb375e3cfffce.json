@@ -4,10 +4,7 @@
     "alive": true,
     "content": [
       "fd4de3b5-d660-4887-9b06-174119eea24b",
-      "597b0d3c-0f15-4a87-b366-27563d1eba4e",
-      "6839174a-533a-471b-b581-450d2d4ad3d6",
-      "3fc654e1-8464-4cdb-9ab7-c486ea57ae1a",
-      "30a2c64c-6dcc-491b-bb60-4c2f800c19c4"
+      "597b0d3c-0f15-4a87-b366-27563d1eba4e"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549526486274,
@@ -18,7 +15,7 @@
     "id": "7514dd83-9320-4038-a5bc-b375e3cfffce",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549798680000,
+    "last_edited_time": 1550129760000,
     "parent_id": "a251e313-ae47-4531-b960-5000c0f61e47",
     "parent_table": "block",
     "properties": {
@@ -29,7 +26,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 12,
     "content_resolved": [
       {
         "alive": true,
@@ -81,106 +78,25 @@
         "id": "597b0d3c-0f15-4a87-b366-27563d1eba4e",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549526486273,
+        "last_edited_time": 1550129760000,
         "parent_id": "7514dd83-9320-4038-a5bc-b375e3cfffce",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "// create an Assembly and new type\nvar name = new AssemblyName(\"MethodOverriding\");\nvar dynAsm = AppDomain.CurrentDomain.DefineDynamicAssembly(name, AssemblyBuilderAccess.RunAndSave);\nvar dynModule = dynAsm.DefineDynamicModule(name.Name, $\"{name.Name}.dll\");\nvar typeBuilder = dynModule.DefineType(\"MyClass\", TypeAttributes.Public | TypeAttributes.Class);"
+              "// create an Assembly and new type\nvar name = new AssemblyName(\"MethodOverriding\");\nvar dynAsm = AppDomain.CurrentDomain.DefineDynamicAssembly(name, AssemblyBuilderAccess.RunAndSave);\nvar dynModule = dynAsm.DefineDynamicModule(name.Name, $\"{name.Name}.dll\");\nvar typeBuilder = dynModule.DefineType(\"MyClass\", TypeAttributes.Public | TypeAttributes.Class);\n\n// define a new method\nvar toStr = typeBuilder.DefineMethod(\n    \"ToString\", // name\n    MethodAttributes.Public | MethodAttributes.Virtual, // modifiers\n    typeof(string), // return type\n    Type.EmptyTypes); // argument types\nvar ilGen = toStr.GetILGenerator();\nilGen.Emit(OpCodes.Ldstr, \"Hello, world!\");\nilGen.Emit(OpCodes.Ret);\n\n// set this method as override of object.ToString\ntypeBuilder.DefineMethodOverride(toStr, typeof(object).GetMethod(\"ToString\"));\nvar type = typeBuilder.CreateType();\n\n// now test it:\nvar instance = Activator.CreateInstance(type);\nConsole.WriteLine(instance.ToString());"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "// create an Assembly and new type\nvar name = new AssemblyName(\"MethodOverriding\");\nvar dynAsm = AppDomain.CurrentDomain.DefineDynamicAssembly(name, AssemblyBuilderAccess.RunAndSave);\nvar dynModule = dynAsm.DefineDynamicModule(name.Name, $\"{name.Name}.dll\");\nvar typeBuilder = dynModule.DefineType(\"MyClass\", TypeAttributes.Public | TypeAttributes.Class);",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549526486274,
-        "id": "6839174a-533a-471b-b581-450d2d4ad3d6",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549526486274,
-        "parent_id": "7514dd83-9320-4038-a5bc-b375e3cfffce",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// define a new method\nvar toStr = typeBuilder.DefineMethod(\n    \"ToString\", // name\n    MethodAttributes.Public | MethodAttributes.Virtual, // modifiers\n    typeof(string), // return type\n    Type.EmptyTypes); // argument types\nvar ilGen = toStr.GetILGenerator();\nilGen.Emit(OpCodes.Ldstr, \"Hello, world!\");\nilGen.Emit(OpCodes.Ret);"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// define a new method\nvar toStr = typeBuilder.DefineMethod(\n    \"ToString\", // name\n    MethodAttributes.Public | MethodAttributes.Virtual, // modifiers\n    typeof(string), // return type\n    Type.EmptyTypes); // argument types\nvar ilGen = toStr.GetILGenerator();\nilGen.Emit(OpCodes.Ldstr, \"Hello, world!\");\nilGen.Emit(OpCodes.Ret);",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549526486274,
-        "id": "3fc654e1-8464-4cdb-9ab7-c486ea57ae1a",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549526486274,
-        "parent_id": "7514dd83-9320-4038-a5bc-b375e3cfffce",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// set this method as override of object.ToString\ntypeBuilder.DefineMethodOverride(toStr, typeof(object).GetMethod(\"ToString\"));\nvar type = typeBuilder.CreateType();"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// set this method as override of object.ToString\ntypeBuilder.DefineMethodOverride(toStr, typeof(object).GetMethod(\"ToString\"));\nvar type = typeBuilder.CreateType();",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549526486274,
-        "id": "30a2c64c-6dcc-491b-bb60-4c2f800c19c4",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549526486274,
-        "parent_id": "7514dd83-9320-4038-a5bc-b375e3cfffce",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// now test it:\nvar instance = Activator.CreateInstance(type);\nConsole.WriteLine(instance.ToString());"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// now test it:\nvar instance = Activator.CreateInstance(type);\nConsole.WriteLine(instance.ToString());",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "// create an Assembly and new type\nvar name = new AssemblyName(\"MethodOverriding\");\nvar dynAsm = AppDomain.CurrentDomain.DefineDynamicAssembly(name, AssemblyBuilderAccess.RunAndSave);\nvar dynModule = dynAsm.DefineDynamicModule(name.Name, $\"{name.Name}.dll\");\nvar typeBuilder = dynModule.DefineType(\"MyClass\", TypeAttributes.Public | TypeAttributes.Class);\n\n// define a new method\nvar toStr = typeBuilder.DefineMethod(\n    \"ToString\", // name\n    MethodAttributes.Public | MethodAttributes.Virtual, // modifiers\n    typeof(string), // return type\n    Type.EmptyTypes); // argument types\nvar ilGen = toStr.GetILGenerator();\nilGen.Emit(OpCodes.Ldstr, \"Hello, world!\");\nilGen.Emit(OpCodes.Ret);\n\n// set this method as override of object.ToString\ntypeBuilder.DefineMethodOverride(toStr, typeof(object).GetMethod(\"ToString\"));\nvar type = typeBuilder.CreateType();\n\n// now test it:\nvar instance = Activator.CreateInstance(type);\nConsole.WriteLine(instance.ToString());",
+        "code_language": "C#"
       }
     ],
     "title": "Create method override",

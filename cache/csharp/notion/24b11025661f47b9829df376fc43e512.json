@@ -6,31 +6,17 @@
       "a554cfba-c51d-489e-91f9-96dddd20ce53",
       "740421a5-61be-4cb0-b0f4-79c24f83813b",
       "c0feb486-c888-4825-82ca-51d199e6271a",
-      "f8f58277-1b34-4665-beb2-929c5bb489d4",
-      "9a5de025-fa81-421c-b789-f3ed905afb90",
-      "151cff2c-e6db-4795-af20-fefb8e5124ac",
       "0d1b79f8-081a-458e-8f3d-2c5ebd231d2f",
       "63f9f772-5592-4ce3-bcaa-9260bb1f658b",
       "5245d6a9-06d6-4b64-b7ed-4080f60f789a",
-      "5f0ebaf7-dca1-44c3-b8f9-e6dc6cebd092",
       "6bb68afc-4099-4e6e-b731-fe84843c415d",
       "06a3a22e-a241-4c36-a03e-7a03d825e1ca",
       "d79a56ba-af69-4306-875b-9e56f81b39db",
-      "1b4e6eb5-4273-44d9-b103-0e50a13d04f4",
-      "6b0b77fe-aad5-43e5-8899-5f2fecd75144",
-      "47f9de4a-f1ac-4c88-b3c5-849254c31cdb",
-      "0d7c72e8-e8fa-45ac-a172-22a202955317",
       "97aadcb4-84e0-4e24-a49a-4604d1c476df",
       "962f0a47-49d8-4f99-8ac6-63b63e1682a7",
-      "34d2e9fd-ffbc-4f21-970c-9e53d383541b",
-      "cdea3b79-35d2-4352-a1e2-9592bda3e22e",
-      "d484c30e-a041-4d62-9098-8811a63a80db",
-      "0a8c0a92-0392-4a6b-ad28-c4ac0e1328cf",
       "a7138e19-77c0-4abf-a442-3dc821d8d9e1",
       "69497074-5469-4987-bbf1-35c70e74a5b6",
       "9bad88a9-4540-44bd-9403-b0996ee260f7",
-      "8a232e30-c21e-4092-b113-62709554004b",
-      "291bfde9-cdfa-49c0-a267-0a2f27c3b4ce",
       "c4b91042-892d-43ad-9d7d-84c977ada047",
       "0383b892-28c4-438c-a5b3-b547c327a3fb",
       "ae874e1d-2960-488e-83ba-3eed5ccd7dd9",
@@ -40,13 +26,9 @@
       "23a460b7-ddea-41bf-b455-73128d2a8555",
       "2945caf0-6f45-4fde-89a7-d15fdaee5121",
       "7fe41535-9ebd-4b7e-9e2f-9c9f183709ab",
-      "289fbde9-2a80-49e7-9abc-0c89f418c755",
-      "0758965f-7608-4426-b137-505104b62ad9",
       "fc33943c-c5b6-4c0b-bd8c-6e1d21b96164",
       "92bfd613-0d2c-48b7-966d-10c8905d439c",
       "40a1ce37-cf9b-41ad-91b4-dd03b40f170f",
-      "16274883-2388-4396-8ad1-6b669c2b6184",
-      "315df505-1ff9-422c-9911-c85550e1d5ce",
       "fcf68fd5-b4a0-4c2a-8254-6727104e31a7"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -58,7 +40,7 @@
     "id": "24b11025-661f-47b9-829d-f376fc43e512",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549789860000,
+    "last_edited_time": 1550203920000,
     "parent_id": "06a46918-892a-4c7f-9b78-e8c23e0b6d32",
     "parent_table": "block",
     "properties": {
@@ -69,7 +51,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 30,
     "content_resolved": [
       {
         "alive": true,
@@ -164,106 +146,25 @@
         "id": "c0feb486-c888-4825-82ca-51d199e6271a",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527398275,
+        "last_edited_time": 1550203740000,
         "parent_id": "24b11025-661f-47b9-829d-f376fc43e512",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "List\u003cstring\u003e stringList = new List\u003cstring\u003e();"
+              "List\u003cstring\u003e stringList = new List\u003cstring\u003e();\n\npublic void AddToListNotThreadSafe(string something)\n{\n    // DO NOT do this, as each call to this method \n    // will lock on a different instance of an Object.\n    // This provides no thread safety, it only degrades performance.\n    var localLock = new Object();\n    lock(localLock)\n    {\n        stringList.Add(something);\n    }\n}\n\n// Define object that can be used for thread safety in the AddToList method\nreadonly object classLock = new object();\n\npublic void AddToList(List\u003cstring\u003e stringList, string something)\n{\n    // USE THE classLock instance field to achieve a \n    // thread-safe lock before adding to stringList\n    lock(classLock)\n    {\n        stringList.Add(something);\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "List\u003cstring\u003e stringList = new List\u003cstring\u003e();",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527398275,
-        "id": "f8f58277-1b34-4665-beb2-929c5bb489d4",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527398275,
-        "parent_id": "24b11025-661f-47b9-829d-f376fc43e512",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public void AddToListNotThreadSafe(string something)\n{\n    // DO NOT do this, as each call to this method \n    // will lock on a different instance of an Object.\n    // This provides no thread safety, it only degrades performance.\n    var localLock = new Object();\n    lock(localLock)\n    {\n        stringList.Add(something);\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public void AddToListNotThreadSafe(string something)\n{\n    // DO NOT do this, as each call to this method \n    // will lock on a different instance of an Object.\n    // This provides no thread safety, it only degrades performance.\n    var localLock = new Object();\n    lock(localLock)\n    {\n        stringList.Add(something);\n    }\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527398275,
-        "id": "9a5de025-fa81-421c-b789-f3ed905afb90",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527398275,
-        "parent_id": "24b11025-661f-47b9-829d-f376fc43e512",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// Define object that can be used for thread safety in the AddToList method\nreadonly object classLock = new object();"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// Define object that can be used for thread safety in the AddToList method\nreadonly object classLock = new object();",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527398275,
-        "id": "151cff2c-e6db-4795-af20-fefb8e5124ac",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527398275,
-        "parent_id": "24b11025-661f-47b9-829d-f376fc43e512",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public void AddToList(List\u003cstring\u003e stringList, string something)\n{\n    // USE THE classLock instance field to achieve a \n    // thread-safe lock before adding to stringList\n    lock(classLock)\n    {\n        stringList.Add(something);\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public void AddToList(List\u003cstring\u003e stringList, string something)\n{\n    // USE THE classLock instance field to achieve a \n    // thread-safe lock before adding to stringList\n    lock(classLock)\n    {\n        stringList.Add(something);\n    }\n}",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "List\u003cstring\u003e stringList = new List\u003cstring\u003e();\n\npublic void AddToListNotThreadSafe(string something)\n{\n    // DO NOT do this, as each call to this method \n    // will lock on a different instance of an Object.\n    // This provides no thread safety, it only degrades performance.\n    var localLock = new Object();\n    lock(localLock)\n    {\n        stringList.Add(something);\n    }\n}\n\n// Define object that can be used for thread safety in the AddToList method\nreadonly object classLock = new object();\n\npublic void AddToList(List\u003cstring\u003e stringList, string something)\n{\n    // USE THE classLock instance field to achieve a \n    // thread-safe lock before adding to stringList\n    lock(classLock)\n    {\n        stringList.Add(something);\n    }\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -358,52 +259,25 @@
         "id": "5245d6a9-06d6-4b64-b7ed-4080f60f789a",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527398275,
+        "last_edited_time": 1550203740000,
         "parent_id": "24b11025-661f-47b9-829d-f376fc43e512",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "object obj = new Object();\n \npublic void SomeMethod()\n{\n     lock(obj)\n    {\n       //do dangerous stuff \n    }\n }"
+              "object obj = new Object();\n \npublic void SomeMethod()\n{\n     lock(obj)\n    {\n       //do dangerous stuff \n    }\n }\n\n //Meanwhile on other tread \n public void SomeOtherMethod()\n {\n   var objInString = obj.ToString(); //this does not block\n }"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "object obj = new Object();\n \npublic void SomeMethod()\n{\n     lock(obj)\n    {\n       //do dangerous stuff \n    }\n }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527398275,
-        "id": "5f0ebaf7-dca1-44c3-b8f9-e6dc6cebd092",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527398275,
-        "parent_id": "24b11025-661f-47b9-829d-f376fc43e512",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "//Meanwhile on other tread \n public void SomeOtherMethod()\n {\n   var objInString = obj.ToString(); //this does not block\n }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "//Meanwhile on other tread \n public void SomeOtherMethod()\n {\n   var objInString = obj.ToString(); //this does not block\n }",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "object obj = new Object();\n \npublic void SomeMethod()\n{\n     lock(obj)\n    {\n       //do dangerous stuff \n    }\n }\n\n //Meanwhile on other tread \n public void SomeOtherMethod()\n {\n   var objInString = obj.ToString(); //this does not block\n }",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -462,133 +336,25 @@
         "id": "d79a56ba-af69-4306-875b-9e56f81b39db",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527398276,
+        "last_edited_time": 1550203800000,
         "parent_id": "24b11025-661f-47b9-829d-f376fc43e512",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public abstract class Base\n{\n    protected readonly object padlock;\n    protected readonly List\u003cstring\u003e list;"
+              "public abstract class Base\n{\n    protected readonly object padlock;\n    protected readonly List\u003cstring\u003e list;\n\n    public Base()\n    {\n        this.padlock = new object();\n        this.list = new List\u003cstring\u003e();\n    }\n\n    public abstract void Do();\n}\n\npublic class Derived1 : Base\n{\n    public override void Do()\n    {\n        lock (this.padlock)\n        {\n            this.list.Add(\"Derived1\");\n        }\n    }\n}\n\npublic class Derived2 : Base\n{\n    public override void Do()\n    {\n        this.list.Add(\"Derived2\"); // OOPS! I forgot to lock!\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public abstract class Base\n{\n    protected readonly object padlock;\n    protected readonly List\u003cstring\u003e list;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527398276,
-        "id": "1b4e6eb5-4273-44d9-b103-0e50a13d04f4",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527398276,
-        "parent_id": "24b11025-661f-47b9-829d-f376fc43e512",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public Base()\n    {\n        this.padlock = new object();\n        this.list = new List\u003cstring\u003e();\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public Base()\n    {\n        this.padlock = new object();\n        this.list = new List\u003cstring\u003e();\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527398276,
-        "id": "6b0b77fe-aad5-43e5-8899-5f2fecd75144",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527398276,
-        "parent_id": "24b11025-661f-47b9-829d-f376fc43e512",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public abstract void Do();\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public abstract void Do();\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527398276,
-        "id": "47f9de4a-f1ac-4c88-b3c5-849254c31cdb",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527398276,
-        "parent_id": "24b11025-661f-47b9-829d-f376fc43e512",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public class Derived1 : Base\n{\n    public override void Do()\n    {\n        lock (this.padlock)\n        {\n            this.list.Add(\"Derived1\");\n        }\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public class Derived1 : Base\n{\n    public override void Do()\n    {\n        lock (this.padlock)\n        {\n            this.list.Add(\"Derived1\");\n        }\n    }\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527398276,
-        "id": "0d7c72e8-e8fa-45ac-a172-22a202955317",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527398276,
-        "parent_id": "24b11025-661f-47b9-829d-f376fc43e512",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public class Derived2 : Base\n{\n    public override void Do()\n    {\n        this.list.Add(\"Derived2\"); // OOPS! I forgot to lock!\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public class Derived2 : Base\n{\n    public override void Do()\n    {\n        this.list.Add(\"Derived2\"); // OOPS! I forgot to lock!\n    }\n}",
-        "code_language": "Plain Text"
+        "version": 8,
+        "code": "public abstract class Base\n{\n    protected readonly object padlock;\n    protected readonly List\u003cstring\u003e list;\n\n    public Base()\n    {\n        this.padlock = new object();\n        this.list = new List\u003cstring\u003e();\n    }\n\n    public abstract void Do();\n}\n\npublic class Derived1 : Base\n{\n    public override void Do()\n    {\n        lock (this.padlock)\n        {\n            this.list.Add(\"Derived1\");\n        }\n    }\n}\n\npublic class Derived2 : Base\n{\n    public override void Do()\n    {\n        this.list.Add(\"Derived2\"); // OOPS! I forgot to lock!\n    }\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -659,133 +425,25 @@
         "id": "962f0a47-49d8-4f99-8ac6-63b63e1682a7",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527398278,
+        "last_edited_time": 1550203800000,
         "parent_id": "24b11025-661f-47b9-829d-f376fc43e512",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public abstract class Base\n{\n    private readonly object padlock; // This is now private\n    protected readonly List\u003cstring\u003e list;"
+              "public abstract class Base\n{\n    private readonly object padlock; // This is now private\n    protected readonly List\u003cstring\u003e list;\n\n    public Base()\n    {\n        this.padlock = new object();\n        this.list = new List\u003cstring\u003e();\n    }\n\n    public void Do()\n    {\n        lock (this.padlock) {\n            this.DoInternal();\n        }\n    }\n\n    protected abstract void DoInternal();\n}\n\npublic class Derived1 : Base\n{\n    protected override void DoInternal()\n    {\n        this.list.Add(\"Derived1\"); // Yay! No need to lock\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public abstract class Base\n{\n    private readonly object padlock; // This is now private\n    protected readonly List\u003cstring\u003e list;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527398278,
-        "id": "34d2e9fd-ffbc-4f21-970c-9e53d383541b",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527398278,
-        "parent_id": "24b11025-661f-47b9-829d-f376fc43e512",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public Base()\n    {\n        this.padlock = new object();\n        this.list = new List\u003cstring\u003e();\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public Base()\n    {\n        this.padlock = new object();\n        this.list = new List\u003cstring\u003e();\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527398278,
-        "id": "cdea3b79-35d2-4352-a1e2-9592bda3e22e",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527398278,
-        "parent_id": "24b11025-661f-47b9-829d-f376fc43e512",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public void Do()\n    {\n        lock (this.padlock) {\n            this.DoInternal();\n        }\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public void Do()\n    {\n        lock (this.padlock) {\n            this.DoInternal();\n        }\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527398278,
-        "id": "d484c30e-a041-4d62-9098-8811a63a80db",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527398278,
-        "parent_id": "24b11025-661f-47b9-829d-f376fc43e512",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "protected abstract void DoInternal();\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "protected abstract void DoInternal();\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527398278,
-        "id": "0a8c0a92-0392-4a6b-ad28-c4ac0e1328cf",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527398278,
-        "parent_id": "24b11025-661f-47b9-829d-f376fc43e512",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public class Derived1 : Base\n{\n    protected override void DoInternal()\n    {\n        this.list.Add(\"Derived1\"); // Yay! No need to lock\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public class Derived1 : Base\n{\n    protected override void DoInternal()\n    {\n        this.list.Add(\"Derived1\"); // Yay! No need to lock\n    }\n}",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "public abstract class Base\n{\n    private readonly object padlock; // This is now private\n    protected readonly List\u003cstring\u003e list;\n\n    public Base()\n    {\n        this.padlock = new object();\n        this.list = new List\u003cstring\u003e();\n    }\n\n    public void Do()\n    {\n        lock (this.padlock) {\n            this.DoInternal();\n        }\n    }\n\n    protected abstract void DoInternal();\n}\n\npublic class Derived1 : Base\n{\n    protected override void DoInternal()\n    {\n        this.list.Add(\"Derived1\"); // Yay! No need to lock\n    }\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -862,79 +520,25 @@
         "id": "9bad88a9-4540-44bd-9403-b0996ee260f7",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527398278,
+        "last_edited_time": 1550203800000,
         "parent_id": "24b11025-661f-47b9-829d-f376fc43e512",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public int Count { get; private set; }"
+              "public int Count { get; private set; }\n\nprivate readonly int counterLock = 1;\n\npublic void Inc()\n{\n    IncInSync(counterLock);\n}\n\nprivate void IncInSync(object monitorResource)\n{\n    lock (monitorResource)\n    {\n        Count++;\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public int Count { get; private set; }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527398279,
-        "id": "8a232e30-c21e-4092-b113-62709554004b",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527398279,
-        "parent_id": "24b11025-661f-47b9-829d-f376fc43e512",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "private readonly int counterLock = 1;\n\npublic void Inc()\n{\n    IncInSync(counterLock);\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "private readonly int counterLock = 1;\n\npublic void Inc()\n{\n    IncInSync(counterLock);\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527398279,
-        "id": "291bfde9-cdfa-49c0-a267-0a2f27c3b4ce",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527398279,
-        "parent_id": "24b11025-661f-47b9-829d-f376fc43e512",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "private void IncInSync(object monitorResource)\n{\n    lock (monitorResource)\n    {\n        Count++;\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "private void IncInSync(object monitorResource)\n{\n    lock (monitorResource)\n    {\n        Count++;\n    }\n}",
-        "code_language": "Plain Text"
+        "version": 9,
+        "code": "public int Count { get; private set; }\n\nprivate readonly int counterLock = 1;\n\npublic void Inc()\n{\n    IncInSync(counterLock);\n}\n\nprivate void IncInSync(object monitorResource)\n{\n    lock (monitorResource)\n    {\n        Count++;\n    }\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -1038,13 +642,13 @@
         "id": "a4a25d5f-969c-4fd9-ad98-35f90fdd56c0",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527398279,
+        "last_edited_time": 1550203860000,
         "parent_id": "24b11025-661f-47b9-829d-f376fc43e512",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
@@ -1054,9 +658,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "private readonly object counterLock = 1;",
-        "code_language": "Plain Text"
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -1203,79 +807,25 @@
         "id": "7fe41535-9ebd-4b7e-9e2f-9c9f183709ab",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527398280,
+        "last_edited_time": 1550203860000,
         "parent_id": "24b11025-661f-47b9-829d-f376fc43e512",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public class Cache\n{\n    private readonly object padlock;\n    private readonly Dictionary\u003cstring, object\u003e values;"
+              "public class Cache\n{\n    private readonly object padlock;\n    private readonly Dictionary\u003cstring, object\u003e values;\n\n    public WordStats()\n    {\n        this.padlock = new object();\n        this.values = new Dictionary\u003cstring, object\u003e();\n    }\n    \n    public void Add(string key, object value)\n    {\n        lock (this.padlock)\n        {\n            this.values.Add(key, value);\n        }\n    }\n\n    /* rest of class omitted */\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public class Cache\n{\n    private readonly object padlock;\n    private readonly Dictionary\u003cstring, object\u003e values;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527398280,
-        "id": "289fbde9-2a80-49e7-9abc-0c89f418c755",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527398280,
-        "parent_id": "24b11025-661f-47b9-829d-f376fc43e512",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public WordStats()\n    {\n        this.padlock = new object();\n        this.values = new Dictionary\u003cstring, object\u003e();\n    }\n    \n    public void Add(string key, object value)\n    {\n        lock (this.padlock)\n        {\n            this.values.Add(key, value);\n        }\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public WordStats()\n    {\n        this.padlock = new object();\n        this.values = new Dictionary\u003cstring, object\u003e();\n    }\n    \n    public void Add(string key, object value)\n    {\n        lock (this.padlock)\n        {\n            this.values.Add(key, value);\n        }\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527398280,
-        "id": "0758965f-7608-4426-b137-505104b62ad9",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527398280,
-        "parent_id": "24b11025-661f-47b9-829d-f376fc43e512",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "/* rest of class omitted */\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "/* rest of class omitted */\n}",
-        "code_language": "Plain Text"
+        "version": 9,
+        "code": "public class Cache\n{\n    private readonly object padlock;\n    private readonly Dictionary\u003cstring, object\u003e values;\n\n    public WordStats()\n    {\n        this.padlock = new object();\n        this.values = new Dictionary\u003cstring, object\u003e();\n    }\n    \n    public void Add(string key, object value)\n    {\n        lock (this.padlock)\n        {\n            this.values.Add(key, value);\n        }\n    }\n\n    /* rest of class omitted */\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,
@@ -1393,79 +943,25 @@
         "id": "40a1ce37-cf9b-41ad-91b4-dd03b40f170f",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527398281,
+        "last_edited_time": 1550203860000,
         "parent_id": "24b11025-661f-47b9-829d-f376fc43e512",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C#"
             ]
           ],
           "title": [
             [
-              "public class Cache\n{\n    private readonly ConcurrentDictionary\u003cstring, object\u003e values;"
+              "public class Cache\n{\n    private readonly ConcurrentDictionary\u003cstring, object\u003e values;\n\n    public WordStats()\n    {\n        this.values = new ConcurrentDictionary\u003cstring, object\u003e();\n    }\n    \n    public void Add(string key, object value)\n    {\n        this.values.Add(key, value);\n    }\n\n    /* rest of class omitted */\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "public class Cache\n{\n    private readonly ConcurrentDictionary\u003cstring, object\u003e values;",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527398281,
-        "id": "16274883-2388-4396-8ad1-6b669c2b6184",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527398281,
-        "parent_id": "24b11025-661f-47b9-829d-f376fc43e512",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "public WordStats()\n    {\n        this.values = new ConcurrentDictionary\u003cstring, object\u003e();\n    }\n    \n    public void Add(string key, object value)\n    {\n        this.values.Add(key, value);\n    }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "public WordStats()\n    {\n        this.values = new ConcurrentDictionary\u003cstring, object\u003e();\n    }\n    \n    public void Add(string key, object value)\n    {\n        this.values.Add(key, value);\n    }",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1549527398281,
-        "id": "315df505-1ff9-422c-9911-c85550e1d5ce",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1549527398281,
-        "parent_id": "24b11025-661f-47b9-829d-f376fc43e512",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "/* rest of class omitted */\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "/* rest of class omitted */\n}",
-        "code_language": "Plain Text"
+        "version": 7,
+        "code": "public class Cache\n{\n    private readonly ConcurrentDictionary\u003cstring, object\u003e values;\n\n    public WordStats()\n    {\n        this.values = new ConcurrentDictionary\u003cstring, object\u003e();\n    }\n    \n    public void Add(string key, object value)\n    {\n        this.values.Add(key, value);\n    }\n\n    /* rest of class omitted */\n}",
+        "code_language": "C#"
       },
       {
         "alive": true,

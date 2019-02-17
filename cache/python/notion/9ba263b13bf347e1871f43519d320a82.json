@@ -1,0 +1,225 @@
+{
+  "ID": "9ba263b1-3bf3-47e1-871f-43519d320a82",
+  "Root": {
+    "alive": true,
+    "content": [
+      "c044fb3d-f230-445a-a5f3-7236776a17b3",
+      "f5e25b21-e191-4f25-b1a9-d4cf49632549",
+      "e73092d2-a888-47ae-96c8-a8b2cd74b471",
+      "2fac50b0-068c-4986-b23b-0e9d89a0fab5",
+      "4ed258fc-beaf-48af-80fd-5c6dc84796f3"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550358569607,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "9ba263b1-3bf3-47e1-871f-43519d320a82",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550358600000,
+    "parent_id": "57a8ac20-fb15-4105-ba66-5e964b980ece",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Disassembling modules"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550358569604,
+        "id": "c044fb3d-f230-445a-a5f3-7236776a17b3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550358569604,
+        "parent_id": "9ba263b1-3bf3-47e1-871f-43519d320a82",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To disassemble a Python module, first this has to be turned into a "
+            ],
+            [
+              ".pyc",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " file (Python compiled). To do this, run"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To disassemble a Python module, first this has to be turned into a "
+          },
+          {
+            "Text": ".pyc",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " file (Python compiled). To do this, run"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550358569606,
+        "id": "f5e25b21-e191-4f25-b1a9-d4cf49632549",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550358600000,
+        "parent_id": "9ba263b1-3bf3-47e1-871f-43519d320a82",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Shell"
+            ]
+          ],
+          "title": [
+            [
+              "python -m compileall \u003cfile\u003e.py"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "python -m compileall \u003cfile\u003e.py",
+        "code_language": "Shell"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550358569607,
+        "id": "e73092d2-a888-47ae-96c8-a8b2cd74b471",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550358569607,
+        "parent_id": "9ba263b1-3bf3-47e1-871f-43519d320a82",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Then in an interpreter, run"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Then in an interpreter, run"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550358569607,
+        "id": "2fac50b0-068c-4986-b23b-0e9d89a0fab5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550358600000,
+        "parent_id": "9ba263b1-3bf3-47e1-871f-43519d320a82",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Python"
+            ]
+          ],
+          "title": [
+            [
+              "import dis\nimport marshal\nwith open(\"\u003cfile\u003e.pyc\", \"rb\") as code_f:\n    code_f.read(8) # Magic number and modification time\n    code = marshal.load(code_f) # Returns a code object which can be disassembled\n    dis.dis(code) # Output the disassembly"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "import dis\nimport marshal\nwith open(\"\u003cfile\u003e.pyc\", \"rb\") as code_f:\n    code_f.read(8) # Magic number and modification time\n    code = marshal.load(code_f) # Returns a code object which can be disassembled\n    dis.dis(code) # Output the disassembly",
+        "code_language": "Python"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550358569607,
+        "id": "4ed258fc-beaf-48af-80fd-5c6dc84796f3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550358569607,
+        "parent_id": "9ba263b1-3bf3-47e1-871f-43519d320a82",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This will compile a Python module and output the bytecode instructions with "
+            ],
+            [
+              "dis",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". The module is never imported so it is safe to use with untrusted code."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This will compile a Python module and output the bytecode instructions with "
+          },
+          {
+            "Text": "dis",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". The module is never imported so it is safe to use with untrusted code."
+          }
+        ]
+      }
+    ],
+    "title": "Disassembling modules",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

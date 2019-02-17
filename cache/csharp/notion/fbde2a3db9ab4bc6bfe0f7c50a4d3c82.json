@@ -7,7 +7,9 @@
       "caca4fbd-6920-47bb-b46f-8f8a513e5102",
       "b75306f0-8db6-49a2-ba8c-eb5b48047f91",
       "59a72e43-5801-4cfc-ba55-8073cd69c1a3",
-      "c52e59a9-d6f2-4063-9bb2-49cd3c645ebd"
+      "c52e59a9-d6f2-4063-9bb2-49cd3c645ebd",
+      "2d9e551b-a02f-4b27-888d-29ac5bf75329",
+      "95539897-b712-4935-b41f-ee343edec15d"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1549525209550,
@@ -18,7 +20,7 @@
     "id": "fbde2a3d-b9ab-4bc6-bfe0-f7c50a4d3c82",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1549626360000,
+    "last_edited_time": 1550044620000,
     "parent_id": "e46b0a90-d1e1-4de7-8d79-875641b9f824",
     "parent_table": "block",
     "properties": {
@@ -29,7 +31,7 @@
       ]
     },
     "type": "page",
-    "version": 9,
+    "version": 15,
     "content_resolved": [
       {
         "alive": true,
@@ -195,6 +197,44 @@
             "Text": ", and create instances of those."
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550044606185,
+        "id": "2d9e551b-a02f-4b27-888d-29ac5bf75329",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550044560000,
+        "parent_id": "fbde2a3d-b9ab-4bc6-bfe0-f7c50a4d3c82",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C#"
+            ]
+          ],
+          "title": [
+            [
+              "public IEnumerable\u003cIPlugin\u003e InstantiatePlugins(string directory)\n{\n    var pluginAssemblyNames = Directory.GetFiles(directory, \"*.addin.dll\").Select(name =\u003e new FileInfo(name).FullName).ToArray();\n    //load the assemblies into the current AppDomain, so we can instantiate the types later\n    foreach (var fileName in pluginAssemblyNames)\n        AppDomain.CurrentDomain.Load(File.ReadAllBytes(fileName));\n    var assemblies = pluginAssemblyNames.Select(System.Reflection.Assembly.LoadFile);\n    var typesInAssembly = assemblies.SelectMany(asm =\u003e asm.GetTypes());\n    var pluginTypes = typesInAssembly.Where(type =\u003e typeof (IPlugin).IsAssignableFrom(type));\n    return pluginTypes.Select(Activator.CreateInstance).Cast\u003cIPlugin\u003e(); \n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 10,
+        "code": "public IEnumerable\u003cIPlugin\u003e InstantiatePlugins(string directory)\n{\n    var pluginAssemblyNames = Directory.GetFiles(directory, \"*.addin.dll\").Select(name =\u003e new FileInfo(name).FullName).ToArray();\n    //load the assemblies into the current AppDomain, so we can instantiate the types later\n    foreach (var fileName in pluginAssemblyNames)\n        AppDomain.CurrentDomain.Load(File.ReadAllBytes(fileName));\n    var assemblies = pluginAssemblyNames.Select(System.Reflection.Assembly.LoadFile);\n    var typesInAssembly = assemblies.SelectMany(asm =\u003e asm.GetTypes());\n    var pluginTypes = typesInAssembly.Where(type =\u003e typeof (IPlugin).IsAssignableFrom(type));\n    return pluginTypes.Select(Activator.CreateInstance).Cast\u003cIPlugin\u003e(); \n}",
+        "code_language": "C#"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550044620000,
+        "id": "95539897-b712-4935-b41f-ee343edec15d",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550044620000,
+        "parent_id": "fbde2a3d-b9ab-4bc6-bfe0-f7c50a4d3c82",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "Instantiating classes that implement an interface e.g. plugin activation",
