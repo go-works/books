@@ -1,0 +1,109 @@
+{
+  "ID": "28fa7d97-fd67-4292-95d7-982b73fb9a59",
+  "Root": {
+    "alive": true,
+    "content": [
+      "01ede89f-6979-436c-bab9-19014894e787",
+      "73684b17-9c5e-4666-8630-d1cb53c29798"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550354228232,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "28fa7d97-fd67-4292-95d7-982b73fb9a59",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550354280000,
+    "parent_id": "ead7b4b8-21f1-44cb-985a-91d4177083c6",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Start Simple HttpServer in a thread and open the browser"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550354228230,
+        "id": "01ede89f-6979-436c-bab9-19014894e787",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550354228230,
+        "parent_id": "28fa7d97-fd67-4292-95d7-982b73fb9a59",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Useful if your program is outputting web pages along the way."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Useful if your program is outputting web pages along the way."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550354228232,
+        "id": "73684b17-9c5e-4666-8630-d1cb53c29798",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550354280000,
+        "parent_id": "28fa7d97-fd67-4292-95d7-982b73fb9a59",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Python"
+            ]
+          ],
+          "title": [
+            [
+              "from http.server import HTTPServer, CGIHTTPRequestHandler\nimport webbrowser\nimport threading\n\ndef start_server(path, port=8000):\n    '''Start a simple webserver serving path on port'''\n    os.chdir(path)\n    httpd = HTTPServer(('', port), CGIHTTPRequestHandler)\n    httpd.serve_forever()\n\n# Start the server in a new thread\nport = 8000\ndaemon = threading.Thread(name='daemon_server',\n                          target=start_server,\n                          args=('.', port)\ndaemon.setDaemon(True) # Set as a daemon so it will be killed once the main thread is dead.\ndaemon.start()\n\n# Open the web browser \nwebbrowser.open('http://localhost:{}'.format(port))"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "from http.server import HTTPServer, CGIHTTPRequestHandler\nimport webbrowser\nimport threading\n\ndef start_server(path, port=8000):\n    '''Start a simple webserver serving path on port'''\n    os.chdir(path)\n    httpd = HTTPServer(('', port), CGIHTTPRequestHandler)\n    httpd.serve_forever()\n\n# Start the server in a new thread\nport = 8000\ndaemon = threading.Thread(name='daemon_server',\n                          target=start_server,\n                          args=('.', port)\ndaemon.setDaemon(True) # Set as a daemon so it will be killed once the main thread is dead.\ndaemon.start()\n\n# Open the web browser \nwebbrowser.open('http://localhost:{}'.format(port))",
+        "code_language": "Python"
+      }
+    ],
+    "title": "Start Simple HttpServer in a thread and open the browser",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

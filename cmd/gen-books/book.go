@@ -37,7 +37,7 @@ type Book struct {
 	AppJSURL string
 
 	// name of a file in covers/ directory
-	// e.g. Python.png
+	// e.g. "Python.png"
 	CoverImageName string
 
 	// cache related
@@ -120,7 +120,7 @@ func (b *Book) ShareOnTwitterText() string {
 // CoverURL returns url to cover image
 func (b *Book) CoverURL() string {
 	panicIf(b.CoverImageName == "")
-	return fmt.Sprintf("/covers/%s.png", b.CoverImageName)
+	return fmt.Sprintf("/covers/%s", b.CoverImageName)
 }
 
 // CoverFullURL returns a URL for the cover including host
@@ -131,7 +131,7 @@ func (b *Book) CoverFullURL() string {
 // CoverTwitterFullURL returns a URL for the cover including host
 func (b *Book) CoverTwitterFullURL() string {
 	panicIf(b.CoverImageName == "")
-	coverURL := fmt.Sprintf("/covers/twitter/%s.png", b.CoverImageName)
+	coverURL := fmt.Sprintf("/covers/twitter/%s", b.CoverImageName)
 	return urlJoin(siteBaseURL, coverURL)
 }
 

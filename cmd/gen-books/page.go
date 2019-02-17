@@ -70,6 +70,8 @@ var knownMetaKeys = map[string]bool{
 	"note":        true, // for leaving notes to myself
 	"desc":        true, // for SEO (meant to go into "description" meta tag)
 	"description": true, // same as "desc"
+	"cleanup":     true,
+	"needs":       true, // "needs cleanup"
 }
 
 func isKnownMeta(s string) bool {
