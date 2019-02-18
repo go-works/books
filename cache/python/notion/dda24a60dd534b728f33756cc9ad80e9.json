@@ -1,0 +1,195 @@
+{
+  "ID": "dda24a60-dd53-4b72-8f33-756cc9ad80e9",
+  "Root": {
+    "alive": true,
+    "content": [
+      "24d033b1-3038-499e-9bda-c400461a4938",
+      "7f06dc62-e352-49b2-9bf6-8664db26d577",
+      "a2870052-0c31-4f0d-8c52-9576c76e8c4a"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550389904140,
+    "id": "dda24a60-dd53-4b72-8f33-756cc9ad80e9",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550470560000,
+    "parent_id": "eb6e22e5-db57-40af-8d3f-410dcb87c9ac",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Parsing Parentheses"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 7,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389904137,
+        "id": "24d033b1-3038-499e-9bda-c400461a4938",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389904137,
+        "parent_id": "dda24a60-dd53-4b72-8f33-756cc9ad80e9",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Stacks are often used for parsing. A simple parsing task is to check whether a string of parentheses are matching."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Stacks are often used for parsing. A simple parsing task is to check whether a string of parentheses are matching."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389904140,
+        "id": "7f06dc62-e352-49b2-9bf6-8664db26d577",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389904140,
+        "parent_id": "dda24a60-dd53-4b72-8f33-756cc9ad80e9",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "For example, the string "
+            ],
+            [
+              "([])",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is matching, because the outer and inner brackets form pairs. "
+            ],
+            [
+              "()\u003c\u003e)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is not matching, because the last "
+            ],
+            [
+              "\\)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " has no partner. "
+            ],
+            [
+              "([)]",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is also not matching, because pairs must be either entirely inside or outside other pairs."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "For example, the string "
+          },
+          {
+            "Text": "([])",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is matching, because the outer and inner brackets form pairs. "
+          },
+          {
+            "Text": "()\u003c\u003e)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is not matching, because the last "
+          },
+          {
+            "Text": "\\)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " has no partner. "
+          },
+          {
+            "Text": "([)]",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is also not matching, because pairs must be either entirely inside or outside other pairs."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389904140,
+        "id": "a2870052-0c31-4f0d-8c52-9576c76e8c4a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550470560000,
+        "parent_id": "dda24a60-dd53-4b72-8f33-756cc9ad80e9",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Python"
+            ]
+          ],
+          "title": [
+            [
+              "def checkParenth(str):\n    stack = Stack()\n    pushChars, popChars = \"\u003c({[\", \"\u003e)}]\"\n    for c in str:\n        if c in pushChars:\n            stack.push(c)\n        elif c in popChars:\n            if stack.isEmpty():\n                return False\n            else:\n                stackTop = stack.pop()\n                # Checks to see whether the opening bracket matches the closing one\n                balancingBracket = pushChars[popChars.index(c)]\n                if stackTop != balancingBracket:\n                    return False\n        else:\n            return False\n\n    return not stack.isEmpty()"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "def checkParenth(str):\n    stack = Stack()\n    pushChars, popChars = \"\u003c({[\", \"\u003e)}]\"\n    for c in str:\n        if c in pushChars:\n            stack.push(c)\n        elif c in popChars:\n            if stack.isEmpty():\n                return False\n            else:\n                stackTop = stack.pop()\n                # Checks to see whether the opening bracket matches the closing one\n                balancingBracket = pushChars[popChars.index(c)]\n                if stackTop != balancingBracket:\n                    return False\n        else:\n            return False\n\n    return not stack.isEmpty()",
+        "code_language": "Python"
+      }
+    ],
+    "title": "Parsing Parentheses"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

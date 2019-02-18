@@ -1,0 +1,109 @@
+{
+  "ID": "d460d930-61e1-4f60-9023-984640ff5955",
+  "Root": {
+    "alive": true,
+    "content": [
+      "60791767-653f-4e28-b83b-3cdb3b9b2a55",
+      "147eac75-f957-40d3-bd32-45bccecb5475"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550391181492,
+    "id": "d460d930-61e1-4f60-9023-984640ff5955",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550473560000,
+    "parent_id": "3793b9f0-ce6b-49f1-8be0-025fb0d43d5e",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Adding Relationships to Neo4j Graph"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 6,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550391181489,
+        "id": "60791767-653f-4e28-b83b-3cdb3b9b2a55",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550391181489,
+        "parent_id": "d460d930-61e1-4f60-9023-984640ff5955",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "results = News.objects.todays_news()\nfor r in results:\n    article = graph.merge_one(\"NewsArticle\", \"news_id\", r)\n    if 'LOCATION' in results[r].keys():\n        for loc in results[r]['LOCATION']:\n            loc = graph.merge_one(\"Location\", \"name\", loc)\n            try:\n                rel = graph.create_unique(Relationship(article, \"about_place\", loc))\n            except Exception, e:\n                print e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "results = News.objects.todays_news()\nfor r in results:\n    article = graph.merge_one(\"NewsArticle\", \"news_id\", r)\n    if 'LOCATION' in results[r].keys():\n        for loc in results[r]['LOCATION']:\n            loc = graph.merge_one(\"Location\", \"name\", loc)\n            try:\n                rel = graph.create_unique(Relationship(article, \"about_place\", loc))\n            except Exception, e:\n                print e",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550391181492,
+        "id": "147eac75-f957-40d3-bd32-45bccecb5475",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550391181492,
+        "parent_id": "d460d930-61e1-4f60-9023-984640ff5955",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "create_unique",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is important for avoiding duplicates. But otherwise its a pretty straightforward operation. The relationship name is also important as you would use it in advanced cases."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "create_unique",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is important for avoiding duplicates. But otherwise its a pretty straightforward operation. The relationship name is also important as you would use it in advanced cases."
+          }
+        ]
+      }
+    ],
+    "title": "Adding Relationships to Neo4j Graph"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

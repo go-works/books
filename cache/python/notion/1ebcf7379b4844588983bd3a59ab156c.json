@@ -1,0 +1,276 @@
+{
+  "ID": "1ebcf737-9b48-4458-8983-bd3a59ab156c",
+  "Root": {
+    "alive": true,
+    "content": [
+      "9299631b-1a4e-4ea6-adff-a33660fd6058",
+      "12b89ade-afb1-418f-ae3b-c0267e7bea29",
+      "370dd531-fe4a-4785-9262-ab76a1264452",
+      "efdb4d62-4275-4827-8caf-5226850c6578",
+      "f5d54260-c163-4df0-8b8b-67e21ec0c20b"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550389302222,
+    "id": "1ebcf737-9b48-4458-8983-bd3a59ab156c",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550469480000,
+    "parent_id": "154b1b38-7004-4d41-8644-1bd8e63d12f1",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Generating RSA signatures using pycrypto"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 6,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389302220,
+        "id": "9299631b-1a4e-4ea6-adff-a33660fd6058",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389302220,
+        "parent_id": "1ebcf737-9b48-4458-8983-bd3a59ab156c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "RSA",
+              [
+                [
+                  "a",
+                  "https://en.wikipedia.org/wiki/RSA_(cryptosystem)"
+                ]
+              ]
+            ],
+            [
+              " can be used to create a message signature. A valid signature can only be generated with access to the private RSA key, validating on the other hand is possible with merely the corresponding public key. So as long as the other side knows your public key they can verify the message to be signed by you and unchanged - an approach used for email for example. Currently, a third-party module like "
+            ],
+            [
+              "pycrypto",
+              [
+                [
+                  "a",
+                  "https://pypi.python.org/pypi/pycrypto"
+                ]
+              ]
+            ],
+            [
+              " is required for this functionality."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "RSA",
+            "Link": "https://en.wikipedia.org/wiki/RSA_(cryptosystem)"
+          },
+          {
+            "Text": " can be used to create a message signature. A valid signature can only be generated with access to the private RSA key, validating on the other hand is possible with merely the corresponding public key. So as long as the other side knows your public key they can verify the message to be signed by you and unchanged - an approach used for email for example. Currently, a third-party module like "
+          },
+          {
+            "Text": "pycrypto",
+            "Link": "https://pypi.python.org/pypi/pycrypto"
+          },
+          {
+            "Text": " is required for this functionality."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389302221,
+        "id": "12b89ade-afb1-418f-ae3b-c0267e7bea29",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389302221,
+        "parent_id": "1ebcf737-9b48-4458-8983-bd3a59ab156c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import errno\n\nfrom Crypto.Hash import SHA256\nfrom Crypto.PublicKey import RSA\nfrom Crypto.Signature import PKCS1_v1_5\n\nmessage = b'This message is from me, I promise.'\n\ntry:\n    with open('privkey.pem', 'r') as f:\n        key = RSA.importKey(f.read())\nexcept IOError as e:\n    if e.errno != errno.ENOENT:\n        raise\n    # No private key, generate a new one. This can take a few seconds.\n    key = RSA.generate(4096)\n    with open('privkey.pem', 'wb') as f:\n        f.write(key.exportKey('PEM'))\n    with open('pubkey.pem', 'wb') as f:\n        f.write(key.publickey().exportKey('PEM'))\n\nhasher = SHA256.new(message)\nsigner = PKCS1_v1_5.new(key)\nsignature = signer.sign(hasher)"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import errno\n\nfrom Crypto.Hash import SHA256\nfrom Crypto.PublicKey import RSA\nfrom Crypto.Signature import PKCS1_v1_5\n\nmessage = b'This message is from me, I promise.'\n\ntry:\n    with open('privkey.pem', 'r') as f:\n        key = RSA.importKey(f.read())\nexcept IOError as e:\n    if e.errno != errno.ENOENT:\n        raise\n    # No private key, generate a new one. This can take a few seconds.\n    key = RSA.generate(4096)\n    with open('privkey.pem', 'wb') as f:\n        f.write(key.exportKey('PEM'))\n    with open('pubkey.pem', 'wb') as f:\n        f.write(key.publickey().exportKey('PEM'))\n\nhasher = SHA256.new(message)\nsigner = PKCS1_v1_5.new(key)\nsignature = signer.sign(hasher)",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389302222,
+        "id": "370dd531-fe4a-4785-9262-ab76a1264452",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389302222,
+        "parent_id": "1ebcf737-9b48-4458-8983-bd3a59ab156c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Verifying the signature works similarly but uses the public key rather than the private key:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Verifying the signature works similarly but uses the public key rather than the private key:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389302222,
+        "id": "efdb4d62-4275-4827-8caf-5226850c6578",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389302222,
+        "parent_id": "1ebcf737-9b48-4458-8983-bd3a59ab156c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "with open('pubkey.pem', 'rb') as f:\n    key = RSA.importKey(f.read())\nhasher = SHA256.new(message)\nverifier = PKCS1_v1_5.new(key)\nif verifier.verify(hasher, signature):\n    print('Nice, the signature is valid!')\nelse:\n    print('No, the message was signed with the wrong private key or modified')"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "with open('pubkey.pem', 'rb') as f:\n    key = RSA.importKey(f.read())\nhasher = SHA256.new(message)\nverifier = PKCS1_v1_5.new(key)\nif verifier.verify(hasher, signature):\n    print('Nice, the signature is valid!')\nelse:\n    print('No, the message was signed with the wrong private key or modified')",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389302222,
+        "id": "f5d54260-c163-4df0-8b8b-67e21ec0c20b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389302222,
+        "parent_id": "1ebcf737-9b48-4458-8983-bd3a59ab156c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Note",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              ": The above examples use PKCS#1 v1.5 signing algorithm which is very common. pycrypto also implements the newer PKCS#1 PSS algorithm, replacing "
+            ],
+            [
+              "PKCS1_v1_5",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " by "
+            ],
+            [
+              "PKCS1_PSS",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " in the examples should work if you want to use that one. Currently there seems to be "
+            ],
+            [
+              "little reason to use it",
+              [
+                [
+                  "a",
+                  "http://crypto.stackexchange.com/questions/3850/is-rsassa-pkcs1-v1-5-a-good-signature-scheme-for-new-systems"
+                ]
+              ]
+            ],
+            [
+              " however."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Note",
+            "AttrFlags": 4
+          },
+          {
+            "Text": ": The above examples use PKCS#1 v1.5 signing algorithm which is very common. pycrypto also implements the newer PKCS#1 PSS algorithm, replacing "
+          },
+          {
+            "Text": "PKCS1_v1_5",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " by "
+          },
+          {
+            "Text": "PKCS1_PSS",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " in the examples should work if you want to use that one. Currently there seems to be "
+          },
+          {
+            "Text": "little reason to use it",
+            "Link": "http://crypto.stackexchange.com/questions/3850/is-rsassa-pkcs1-v1-5-a-good-signature-scheme-for-new-systems"
+          },
+          {
+            "Text": " however."
+          }
+        ]
+      }
+    ],
+    "title": "Generating RSA signatures using pycrypto"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

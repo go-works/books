@@ -1,0 +1,71 @@
+{
+  "ID": "24de1f29-a422-491d-8ec5-8db08bc98556",
+  "Root": {
+    "alive": true,
+    "content": [
+      "39c83a9b-df87-4d36-ba5e-ab7aa146a086"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550392099978,
+    "id": "24de1f29-a422-491d-8ec5-8db08bc98556",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550475240000,
+    "parent_id": "e7935abe-c453-4cbf-8d12-5413dca4ff3d",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Client side Implementation"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 6,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550392099975,
+        "id": "39c83a9b-df87-4d36-ba5e-ab7aa146a086",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550475240000,
+        "parent_id": "24de1f29-a422-491d-8ec5-8db08bc98556",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Python"
+            ]
+          ],
+          "title": [
+            [
+              "import time\nimport socket\nimport threading\nimport hashlib\nimport itertools\nimport sys\nfrom Crypto import Random\nfrom Crypto.PublicKey import RSA\nfrom CryptoPlus.Cipher import IDEA\n\n#animating loading\ndone = False\ndef animate():\n    for c in itertools.cycle(['....','.......','..........','............']):\n        if done:\n            break\n        sys.stdout.write('\\rCONFIRMING CONNECTION TO SERVER '+c)\n        sys.stdout.flush()\n        time.sleep(0.1)\n\n#public key and private key\nrandom_generator = Random.new().read\nkey = RSA.generate(1024,random_generator)\npublic = key.publickey().exportKey()\nprivate = key.exportKey()\n\n#hashing the public key\nhash_object = hashlib.sha1(public)\nhex_digest = hash_object.hexdigest()\n\n#Setting up socket\nserver = socket.socket(socket.AF_INET,socket.SOCK_STREAM)\n\n#host and port input user\nhost = raw_input(\"Server Address To Be Connected -\u003e \")\nport = int(input(\"Port of The Server -\u003e \"))\n#binding the address and port\nserver.connect((host, port))\n# printing \"Server Started Message\"\nthread_load = threading.Thread(target=animate)\nthread_load.start()\n\ntime.sleep(4)\ndone = True\n\ndef send(t,name,key):\n    mess = raw_input(name + \" : \")\n    key = key[:16]\n    #merging the message and the name\n    whole = name+\" : \"+mess\n    ideaEncrypt = IDEA.new(key, IDEA.MODE_CTR, counter=lambda : key)\n    eMsg = ideaEncrypt.encrypt(whole)\n    #converting the encrypted message to HEXADECIMAL to readable\n    eMsg = eMsg.encode(\"hex\").upper()\n    if eMsg != \"\":\n        print (\"ENCRYPTED MESSAGE TO SERVER-\u003e \"+eMsg)\n    server.send(eMsg)\ndef recv(t,key):\n    newmess = server.recv(1024)\n    print (\"\\nENCRYPTED MESSAGE FROM SERVER-\u003e \" + newmess)\n    key = key[:16]\n    decoded = newmess.decode(\"hex\")\n    ideaDecrypt = IDEA.new(key, IDEA.MODE_CTR, counter=lambda: key)\n    dMsg = ideaDecrypt.decrypt(decoded)\n    print (\"\\n**New Message From Server**  \" + time.ctime(time.time()) + \" : \" + dMsg + \"\\n\")\n\nwhile True:\n    server.send(public)\n    confirm = server.recv(1024)\n    if confirm == \"YES\":\n        server.send(hex_digest)\n\n    #connected msg\n    msg = server.recv(1024)\n    en = eval(msg)\n    decrypt = key.decrypt(en)\n    # hashing sha1\n    en_object = hashlib.sha1(decrypt)\n    en_digest = en_object.hexdigest()\n\n    print (\"\\n-----ENCRYPTED PUBLIC KEY AND SESSION KEY FROM SERVER-----\")\n    print (msg)\n    print (\"\\n-----DECRYPTED SESSION KEY-----\")\n    print (en_digest)\n    print (\"\\n-----HANDSHAKE COMPLETE-----\\n\")\n    alais = raw_input(\"\\nYour Name -\u003e \")\n\n    while True:\n        thread_send = threading.Thread(target=send,args=(\"------Sending Message------\",alais,en_digest))\n        thread_recv = threading.Thread(target=recv,args=(\"------Recieving Message------\",en_digest))\n        thread_send.start()\n        thread_recv.start()\n\n        thread_send.join()\n        thread_recv.join()\n        time.sleep(0.5)\n    time.sleep(60)\n    server.close()"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "import time\nimport socket\nimport threading\nimport hashlib\nimport itertools\nimport sys\nfrom Crypto import Random\nfrom Crypto.PublicKey import RSA\nfrom CryptoPlus.Cipher import IDEA\n\n#animating loading\ndone = False\ndef animate():\n    for c in itertools.cycle(['....','.......','..........','............']):\n        if done:\n            break\n        sys.stdout.write('\\rCONFIRMING CONNECTION TO SERVER '+c)\n        sys.stdout.flush()\n        time.sleep(0.1)\n\n#public key and private key\nrandom_generator = Random.new().read\nkey = RSA.generate(1024,random_generator)\npublic = key.publickey().exportKey()\nprivate = key.exportKey()\n\n#hashing the public key\nhash_object = hashlib.sha1(public)\nhex_digest = hash_object.hexdigest()\n\n#Setting up socket\nserver = socket.socket(socket.AF_INET,socket.SOCK_STREAM)\n\n#host and port input user\nhost = raw_input(\"Server Address To Be Connected -\u003e \")\nport = int(input(\"Port of The Server -\u003e \"))\n#binding the address and port\nserver.connect((host, port))\n# printing \"Server Started Message\"\nthread_load = threading.Thread(target=animate)\nthread_load.start()\n\ntime.sleep(4)\ndone = True\n\ndef send(t,name,key):\n    mess = raw_input(name + \" : \")\n    key = key[:16]\n    #merging the message and the name\n    whole = name+\" : \"+mess\n    ideaEncrypt = IDEA.new(key, IDEA.MODE_CTR, counter=lambda : key)\n    eMsg = ideaEncrypt.encrypt(whole)\n    #converting the encrypted message to HEXADECIMAL to readable\n    eMsg = eMsg.encode(\"hex\").upper()\n    if eMsg != \"\":\n        print (\"ENCRYPTED MESSAGE TO SERVER-\u003e \"+eMsg)\n    server.send(eMsg)\ndef recv(t,key):\n    newmess = server.recv(1024)\n    print (\"\\nENCRYPTED MESSAGE FROM SERVER-\u003e \" + newmess)\n    key = key[:16]\n    decoded = newmess.decode(\"hex\")\n    ideaDecrypt = IDEA.new(key, IDEA.MODE_CTR, counter=lambda: key)\n    dMsg = ideaDecrypt.decrypt(decoded)\n    print (\"\\n**New Message From Server**  \" + time.ctime(time.time()) + \" : \" + dMsg + \"\\n\")\n\nwhile True:\n    server.send(public)\n    confirm = server.recv(1024)\n    if confirm == \"YES\":\n        server.send(hex_digest)\n\n    #connected msg\n    msg = server.recv(1024)\n    en = eval(msg)\n    decrypt = key.decrypt(en)\n    # hashing sha1\n    en_object = hashlib.sha1(decrypt)\n    en_digest = en_object.hexdigest()\n\n    print (\"\\n-----ENCRYPTED PUBLIC KEY AND SESSION KEY FROM SERVER-----\")\n    print (msg)\n    print (\"\\n-----DECRYPTED SESSION KEY-----\")\n    print (en_digest)\n    print (\"\\n-----HANDSHAKE COMPLETE-----\\n\")\n    alais = raw_input(\"\\nYour Name -\u003e \")\n\n    while True:\n        thread_send = threading.Thread(target=send,args=(\"------Sending Message------\",alais,en_digest))\n        thread_recv = threading.Thread(target=recv,args=(\"------Recieving Message------\",en_digest))\n        thread_send.start()\n        thread_recv.start()\n\n        thread_send.join()\n        thread_recv.join()\n        time.sleep(0.5)\n    time.sleep(60)\n    server.close()",
+        "code_language": "Python"
+      }
+    ],
+    "title": "Client side Implementation"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

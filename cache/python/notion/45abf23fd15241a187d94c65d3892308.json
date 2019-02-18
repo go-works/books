@@ -1,0 +1,151 @@
+{
+  "ID": "45abf23f-d152-41a1-87d9-4c65d3892308",
+  "Root": {
+    "alive": true,
+    "content": [
+      "23cd3259-5abf-49f1-8dee-ac8c87f6b81c",
+      "39f8e925-5f17-4bdc-99c2-8e1cac9be1c7",
+      "c55efe01-bf8f-4633-a440-7db9e10f9c41",
+      "41742a90-21b7-4c2d-ae9d-f6ce56d724f7"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550391184166,
+    "id": "45abf23f-d152-41a1-87d9-4c65d3892308",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550473560000,
+    "parent_id": "3793b9f0-ce6b-49f1-8be0-025fb0d43d5e",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Cypher Query Samples"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550391184163,
+        "id": "23cd3259-5abf-49f1-8dee-ac8c87f6b81c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550391184163,
+        "parent_id": "45abf23f-d152-41a1-87d9-4c65d3892308",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Count articles connected to a particular person over time"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Count articles connected to a particular person over time"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550391184165,
+        "id": "39f8e925-5f17-4bdc-99c2-8e1cac9be1c7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550391184165,
+        "parent_id": "45abf23f-d152-41a1-87d9-4c65d3892308",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "MATCH (n)-[]-\u003e(l) \nwhere l.name='Donald Trump'\nRETURN n.date,count(*) order by n.date"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "MATCH (n)-[]-\u003e(l) \nwhere l.name='Donald Trump'\nRETURN n.date,count(*) order by n.date",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550391184166,
+        "id": "c55efe01-bf8f-4633-a440-7db9e10f9c41",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550391184166,
+        "parent_id": "45abf23f-d152-41a1-87d9-4c65d3892308",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Search for other People / Locations connected to the same news articles as Trump with at least 5 total relationship nodes."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Search for other People / Locations connected to the same news articles as Trump with at least 5 total relationship nodes."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550391184166,
+        "id": "41742a90-21b7-4c2d-ae9d-f6ce56d724f7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550391184166,
+        "parent_id": "45abf23f-d152-41a1-87d9-4c65d3892308",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "MATCH (n:NewsArticle)-[]-\u003e(l)\nwhere l.name='Donald Trump'\nMATCH (n:NewsArticle)-[]-\u003e(m)\nwith m,count(n) as num where num\u003e5\nreturn labels(m)[0],(m.name), num order by num desc limit 10"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "MATCH (n:NewsArticle)-[]-\u003e(l)\nwhere l.name='Donald Trump'\nMATCH (n:NewsArticle)-[]-\u003e(m)\nwith m,count(n) as num where num\u003e5\nreturn labels(m)[0],(m.name), num order by num desc limit 10",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Cypher Query Samples"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

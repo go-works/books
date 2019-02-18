@@ -1,0 +1,949 @@
+{
+  "ID": "e118ba4d-b89e-41cb-82de-bf7355406325",
+  "Root": {
+    "alive": true,
+    "content": [
+      "49591e93-6b51-4bb2-ae96-36e50a558ebf",
+      "e8ff9c3e-a3e0-4dc6-a967-56fdca8dc687",
+      "a0bb006e-8205-4bb4-954d-5b28f662df7a",
+      "edd3369b-a569-425e-8507-4c80412351ab",
+      "f4a1cc79-f9a9-4bd3-a5e5-bea2a851dd2d",
+      "2054d878-1f00-4f62-81b3-83a33a6c5562",
+      "5508759c-bb6d-4719-8698-1c018de16a2b",
+      "1c12f137-77b9-4e3f-92e9-3c0fbcacfa61",
+      "5d5cf8ec-a9cf-490d-9e3e-d2b155cc75a8",
+      "b6cb3b7c-3cea-44da-9481-a71b9fbf0f25",
+      "1319b24e-28c8-4935-9b2e-eff5e9945201",
+      "42f838dd-2abd-4477-adc1-0e80787331a5",
+      "6146c600-bc3a-43b4-93f8-55677e5ed0cf",
+      "9e12b763-973c-46e3-88c3-ead1b68c24d0",
+      "4e86da9a-f030-4f3a-b632-dd4976513e1e",
+      "de4990c3-6351-440f-9d6d-aef962a4ed66",
+      "18e2e901-62de-4719-be6a-e6edec080e90",
+      "53a273db-1fe9-40df-b22a-660c85b0f8f2",
+      "bd4d7bc5-aa43-43c0-b352-c9521434efdb",
+      "a59f4c3a-67e7-47c3-a023-f4a0b0e70495",
+      "815beabd-b1b4-4a11-9190-69570a203f76",
+      "996c9627-ee59-43e9-9443-243e1da3db3c"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550393451947,
+    "id": "e118ba4d-b89e-41cb-82de-bf7355406325",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550477220000,
+    "parent_id": "8178616c-a0f2-4a08-93be-0454eaeffb70",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Part 2 Parsing Tokenized Input with Yacc"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 6,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393451940,
+        "id": "49591e93-6b51-4bb2-ae96-36e50a558ebf",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393451940,
+        "parent_id": "e118ba4d-b89e-41cb-82de-bf7355406325",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This section explains how the tokenized input from Part 1 is processed - it is done using Context Free Grammars (CFGs). The grammar must be specified, and the tokens are processed according to the grammar. Under the hood, the parser uses an LALR parser."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This section explains how the tokenized input from Part 1 is processed - it is done using Context Free Grammars (CFGs). The grammar must be specified, and the tokens are processed according to the grammar. Under the hood, the parser uses an LALR parser."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393451943,
+        "id": "e8ff9c3e-a3e0-4dc6-a967-56fdca8dc687",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393451943,
+        "parent_id": "e118ba4d-b89e-41cb-82de-bf7355406325",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "# Yacc example\n\nimport ply.yacc as yacc\n\n# Get the token map from the lexer. This is required.\nfrom calclex import tokens\n\ndef p_expression_plus(p):\n    'expression : expression PLUS term'\n    p[0] = p[1] + p[3]\n\ndef p_expression_minus(p):\n    'expression : expression MINUS term'\n    p[0] = p[1] - p[3]\n\ndef p_expression_term(p):\n    'expression : term'\n    p[0] = p[1]\n\ndef p_term_times(p):\n    'term : term TIMES factor'\n    p[0] = p[1] * p[3]\n\ndef p_term_div(p):\n    'term : term DIVIDE factor'\n    p[0] = p[1] / p[3]\n\ndef p_term_factor(p):\n    'term : factor'\n    p[0] = p[1]\n\ndef p_factor_num(p):\n    'factor : NUMBER'\n    p[0] = p[1]\n\ndef p_factor_expr(p):\n    'factor : LPAREN expression RPAREN'\n    p[0] = p[2]\n\n# Error rule for syntax errors\ndef p_error(p):\n    print(\"Syntax error in input!\")\n\n# Build the parser\nparser = yacc.yacc()\n\nwhile True:\n   try:\n       s = raw_input('calc \u003e ')\n   except EOFError:\n       break\n   if not s: continue\n   result = parser.parse(s)\n   print(result)"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "# Yacc example\n\nimport ply.yacc as yacc\n\n# Get the token map from the lexer. This is required.\nfrom calclex import tokens\n\ndef p_expression_plus(p):\n    'expression : expression PLUS term'\n    p[0] = p[1] + p[3]\n\ndef p_expression_minus(p):\n    'expression : expression MINUS term'\n    p[0] = p[1] - p[3]\n\ndef p_expression_term(p):\n    'expression : term'\n    p[0] = p[1]\n\ndef p_term_times(p):\n    'term : term TIMES factor'\n    p[0] = p[1] * p[3]\n\ndef p_term_div(p):\n    'term : term DIVIDE factor'\n    p[0] = p[1] / p[3]\n\ndef p_term_factor(p):\n    'term : factor'\n    p[0] = p[1]\n\ndef p_factor_num(p):\n    'factor : NUMBER'\n    p[0] = p[1]\n\ndef p_factor_expr(p):\n    'factor : LPAREN expression RPAREN'\n    p[0] = p[2]\n\n# Error rule for syntax errors\ndef p_error(p):\n    print(\"Syntax error in input!\")\n\n# Build the parser\nparser = yacc.yacc()\n\nwhile True:\n   try:\n       s = raw_input('calc \u003e ')\n   except EOFError:\n       break\n   if not s: continue\n   result = parser.parse(s)\n   print(result)",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393451943,
+        "id": "a0bb006e-8205-4bb4-954d-5b28f662df7a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393451943,
+        "parent_id": "e118ba4d-b89e-41cb-82de-bf7355406325",
+        "parent_table": "block",
+        "type": "divider",
+        "version": 1
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393451943,
+        "id": "edd3369b-a569-425e-8507-4c80412351ab",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393451943,
+        "parent_id": "e118ba4d-b89e-41cb-82de-bf7355406325",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Breakdown"
+            ]
+          ]
+        },
+        "type": "header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Breakdown"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393451943,
+        "id": "f4a1cc79-f9a9-4bd3-a5e5-bea2a851dd2d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393451943,
+        "parent_id": "e118ba4d-b89e-41cb-82de-bf7355406325",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Each grammar rule is defined by a function where the docstring to that function contains the appropriate context-free grammar specification. The statements that make up the function body implement the semantic actions of the rule. Each function accepts a single argument p that is a sequence containing the values of each grammar symbol in the corresponding rule. The values of "
+            ],
+            [
+              "p[i]",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " are mapped to grammar symbols as shown here:"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Each grammar rule is defined by a function where the docstring to that function contains the appropriate context-free grammar specification. The statements that make up the function body implement the semantic actions of the rule. Each function accepts a single argument p that is a sequence containing the values of each grammar symbol in the corresponding rule. The values of "
+          },
+          {
+            "Text": "p[i]",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " are mapped to grammar symbols as shown here:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393451943,
+        "id": "2054d878-1f00-4f62-81b3-83a33a6c5562",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393451943,
+        "parent_id": "e118ba4d-b89e-41cb-82de-bf7355406325",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "def p_expression_plus(p):\n    'expression : expression PLUS term'\n    #   ^            ^        ^    ^\n    #  p[0]         p[1]     p[2] p[3]\n\n    p[0] = p[1] + p[3]"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "def p_expression_plus(p):\n    'expression : expression PLUS term'\n    #   ^            ^        ^    ^\n    #  p[0]         p[1]     p[2] p[3]\n\n    p[0] = p[1] + p[3]",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393451944,
+        "id": "5508759c-bb6d-4719-8698-1c018de16a2b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393451944,
+        "parent_id": "e118ba4d-b89e-41cb-82de-bf7355406325",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "For tokens, the “value” of the corresponding "
+            ],
+            [
+              "p[i]",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is the same as the "
+            ],
+            [
+              "p.value",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " attribute assigned in the lexer module. So, "
+            ],
+            [
+              "PLUS",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " will have the value "
+            ],
+            [
+              "\\+",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "For tokens, the “value” of the corresponding "
+          },
+          {
+            "Text": "p[i]",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is the same as the "
+          },
+          {
+            "Text": "p.value",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " attribute assigned in the lexer module. So, "
+          },
+          {
+            "Text": "PLUS",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " will have the value "
+          },
+          {
+            "Text": "\\+",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393451944,
+        "id": "1c12f137-77b9-4e3f-92e9-3c0fbcacfa61",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393451944,
+        "parent_id": "e118ba4d-b89e-41cb-82de-bf7355406325",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "For non-terminals, the value is determined by whatever is placed in "
+            ],
+            [
+              "p[0]",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". If nothing is placed, the value is None. Also, "
+            ],
+            [
+              "p[-1]",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is not the same as "
+            ],
+            [
+              "p[3]",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", since "
+            ],
+            [
+              "p",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is not a simple list ("
+            ],
+            [
+              "p[-1]",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " can specify embedded actions (not discussed here))."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "For non-terminals, the value is determined by whatever is placed in "
+          },
+          {
+            "Text": "p[0]",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". If nothing is placed, the value is None. Also, "
+          },
+          {
+            "Text": "p[-1]",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is not the same as "
+          },
+          {
+            "Text": "p[3]",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", since "
+          },
+          {
+            "Text": "p",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is not a simple list ("
+          },
+          {
+            "Text": "p[-1]",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " can specify embedded actions (not discussed here))."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393451945,
+        "id": "5d5cf8ec-a9cf-490d-9e3e-d2b155cc75a8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393451945,
+        "parent_id": "e118ba4d-b89e-41cb-82de-bf7355406325",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Note that the function can have any name, as long as it is preceeded by "
+            ],
+            [
+              "p_",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Note that the function can have any name, as long as it is preceeded by "
+          },
+          {
+            "Text": "p_",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393451945,
+        "id": "b6cb3b7c-3cea-44da-9481-a71b9fbf0f25",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393451945,
+        "parent_id": "e118ba4d-b89e-41cb-82de-bf7355406325",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The "
+            ],
+            [
+              "p_error(p)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " rule is defined to catch syntax errors (same as "
+            ],
+            [
+              "yyerror",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " in yacc/bison)."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The "
+          },
+          {
+            "Text": "p_error(p)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " rule is defined to catch syntax errors (same as "
+          },
+          {
+            "Text": "yyerror",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " in yacc/bison)."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393451945,
+        "id": "1319b24e-28c8-4935-9b2e-eff5e9945201",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393451945,
+        "parent_id": "e118ba4d-b89e-41cb-82de-bf7355406325",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Multiple grammar rules can be combined into a single function, which is a good idea if productions have a similar structure."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Multiple grammar rules can be combined into a single function, which is a good idea if productions have a similar structure."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393451945,
+        "id": "42f838dd-2abd-4477-adc1-0e80787331a5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393451945,
+        "parent_id": "e118ba4d-b89e-41cb-82de-bf7355406325",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "def p_binary_operators(p):\n    '''expression : expression PLUS term\n                  | expression MINUS term\n       term       : term TIMES factor\n                  | term DIVIDE factor'''\n    if p[2] == '+':\n        p[0] = p[1] + p[3]\n    elif p[2] == '-':\n        p[0] = p[1] - p[3]\n    elif p[2] == '*':\n        p[0] = p[1] * p[3]\n    elif p[2] == '/':\n        p[0] = p[1] / p[3]"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "def p_binary_operators(p):\n    '''expression : expression PLUS term\n                  | expression MINUS term\n       term       : term TIMES factor\n                  | term DIVIDE factor'''\n    if p[2] == '+':\n        p[0] = p[1] + p[3]\n    elif p[2] == '-':\n        p[0] = p[1] - p[3]\n    elif p[2] == '*':\n        p[0] = p[1] * p[3]\n    elif p[2] == '/':\n        p[0] = p[1] / p[3]",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393451945,
+        "id": "6146c600-bc3a-43b4-93f8-55677e5ed0cf",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393451945,
+        "parent_id": "e118ba4d-b89e-41cb-82de-bf7355406325",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Character literals can be used instead of tokens."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Character literals can be used instead of tokens."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393451945,
+        "id": "9e12b763-973c-46e3-88c3-ead1b68c24d0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393451945,
+        "parent_id": "e118ba4d-b89e-41cb-82de-bf7355406325",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "def p_binary_operators(p):\n    '''expression : expression '+' term\n                  | expression '-' term\n       term       : term '*' factor\n                  | term '/' factor'''\n    if p[2] == '+':\n        p[0] = p[1] + p[3]\n    elif p[2] == '-':\n        p[0] = p[1] - p[3]\n    elif p[2] == '*':\n        p[0] = p[1] * p[3]\n    elif p[2] == '/':\n        p[0] = p[1] / p[3]"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "def p_binary_operators(p):\n    '''expression : expression '+' term\n                  | expression '-' term\n       term       : term '*' factor\n                  | term '/' factor'''\n    if p[2] == '+':\n        p[0] = p[1] + p[3]\n    elif p[2] == '-':\n        p[0] = p[1] - p[3]\n    elif p[2] == '*':\n        p[0] = p[1] * p[3]\n    elif p[2] == '/':\n        p[0] = p[1] / p[3]",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393451946,
+        "id": "4e86da9a-f030-4f3a-b632-dd4976513e1e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393451946,
+        "parent_id": "e118ba4d-b89e-41cb-82de-bf7355406325",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Of course, the literals must be specified in the lexer module."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Of course, the literals must be specified in the lexer module."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393451946,
+        "id": "de4990c3-6351-440f-9d6d-aef962a4ed66",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393451946,
+        "parent_id": "e118ba4d-b89e-41cb-82de-bf7355406325",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Empty productions have the form "
+            ],
+            [
+              "'''symbol : '''",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Empty productions have the form "
+          },
+          {
+            "Text": "'''symbol : '''",
+            "AttrFlags": 2
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393451946,
+        "id": "18e2e901-62de-4719-be6a-e6edec080e90",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393451946,
+        "parent_id": "e118ba4d-b89e-41cb-82de-bf7355406325",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To explicitly set the start symbol, use "
+            ],
+            [
+              "start = 'foo'",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", where "
+            ],
+            [
+              "foo",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is some non-terminal."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To explicitly set the start symbol, use "
+          },
+          {
+            "Text": "start = 'foo'",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", where "
+          },
+          {
+            "Text": "foo",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is some non-terminal."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393451946,
+        "id": "53a273db-1fe9-40df-b22a-660c85b0f8f2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393451946,
+        "parent_id": "e118ba4d-b89e-41cb-82de-bf7355406325",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Setting precedence and associativity can be done using the precedence variable."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Setting precedence and associativity can be done using the precedence variable."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393451946,
+        "id": "bd4d7bc5-aa43-43c0-b352-c9521434efdb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393451946,
+        "parent_id": "e118ba4d-b89e-41cb-82de-bf7355406325",
+        "parent_table": "block",
+        "type": "sub_header",
+        "version": 1
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393451947,
+        "id": "a59f4c3a-67e7-47c3-a023-f4a0b0e70495",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393451947,
+        "parent_id": "e118ba4d-b89e-41cb-82de-bf7355406325",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "precedence = (\n    ('nonassoc', 'LESSTHAN', 'GREATERTHAN'),  # Nonassociative operators\n    ('left', 'PLUS', 'MINUS'),\n    ('left', 'TIMES', 'DIVIDE'),\n    ('right', 'UMINUS'),            # Unary minus operator\n)"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "precedence = (\n    ('nonassoc', 'LESSTHAN', 'GREATERTHAN'),  # Nonassociative operators\n    ('left', 'PLUS', 'MINUS'),\n    ('left', 'TIMES', 'DIVIDE'),\n    ('right', 'UMINUS'),            # Unary minus operator\n)",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393451947,
+        "id": "815beabd-b1b4-4a11-9190-69570a203f76",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393451947,
+        "parent_id": "e118ba4d-b89e-41cb-82de-bf7355406325",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Tokens are ordered from lowest to highest precedence. "
+            ],
+            [
+              "nonassoc",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " means that those tokens do not associate. This means that something like "
+            ],
+            [
+              "a \u003c b \u003c c",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is illegal whereas "
+            ],
+            [
+              "a \u003c b",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is still legal."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Tokens are ordered from lowest to highest precedence. "
+          },
+          {
+            "Text": "nonassoc",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " means that those tokens do not associate. This means that something like "
+          },
+          {
+            "Text": "a \u003c b \u003c c",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is illegal whereas "
+          },
+          {
+            "Text": "a \u003c b",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is still legal."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393451947,
+        "id": "996c9627-ee59-43e9-9443-243e1da3db3c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393451947,
+        "parent_id": "e118ba4d-b89e-41cb-82de-bf7355406325",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "parser.out",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is a debugging file that is created when the yacc program is executed for the first time. Whenever a shift/reduce conflict occurs, the parser always shifts."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "parser.out",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is a debugging file that is created when the yacc program is executed for the first time. Whenever a shift/reduce conflict occurs, the parser always shifts."
+          }
+        ]
+      }
+    ],
+    "title": "Part 2 Parsing Tokenized Input with Yacc"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

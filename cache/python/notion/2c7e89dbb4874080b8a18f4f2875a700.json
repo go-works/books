@@ -1,0 +1,97 @@
+{
+  "ID": "2c7e89db-b487-4080-b8a1-8f4f2875a700",
+  "Root": {
+    "alive": true,
+    "content": [
+      "af13b289-701a-48c6-9b4b-d5d4ac0c701c",
+      "bfd83642-d496-4e17-8645-6d575be295a1"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550388833854,
+    "id": "2c7e89db-b487-4080-b8a1-8f4f2875a700",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550468160000,
+    "parent_id": "18853f83-1609-44ff-b666-d773db031815",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Using properties without decorators"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 5,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550388833854,
+        "id": "af13b289-701a-48c6-9b4b-d5d4ac0c701c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550388833854,
+        "parent_id": "2c7e89db-b487-4080-b8a1-8f4f2875a700",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "While using decorator syntax (with the @) is convenient, it also a bit concealing. You can use properties directly, without decorators. The following Python 3.x example shows this:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "While using decorator syntax (with the @) is convenient, it also a bit concealing. You can use properties directly, without decorators. The following Python 3.x example shows this:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550388833854,
+        "id": "bfd83642-d496-4e17-8645-6d575be295a1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550388833854,
+        "parent_id": "2c7e89db-b487-4080-b8a1-8f4f2875a700",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class A:\n    p = 1234\n    def getX (self):\n        return self._x\n\n    def setX (self, value):\n        self._x = value\n            \n    def getY (self):\n        return self._y\n\n    def setY (self, value):\n        self._y = 1000 + value    # Weird but possible\n        \n    def getY2 (self):\n        return self._y\n\n    def setY2 (self, value):\n        self._y = value\n        \n    def getT    (self):\n        return self._t\n\n    def setT (self, value):\n        self._t = value\n        \n    def getU (self):\n        return self._u + 10000\n\n    def setU (self, value):\n        self._u = value - 5000\n            \n    x, y, y2 = property (getX, setX), property (getY, setY), property (getY2, setY2)\n    t = property (getT, setT)\n    u = property (getU, setU)\n    \nA.q = 5678\n\nclass B:\n    def getZ (self):\n        return self.z_\n    \n    def setZ (self, value):\n        self.z_ = value\n        \n    z = property (getZ, setZ)\n    \nclass C:\n    def __init__ (self):\n        self.offset = 1234\n\n    def getW (self):\n        return self.w_ + self.offset\n        \n    def setW (self, value):\n        self.w_ = value - self.offset\n        \n    w = property (getW, setW)\n    \na1 = A ()\na2 = A ()\n\na1.y2 = 1000\na2.y2 = 2000\n\na1.x = 5\na1.y = 6\n\na2.x = 7\na2.y = 8\n\na1.t = 77\na1.u = 88\n    \nprint (a1.x, a1.y, a1.y2)\nprint (a2.x, a2.y, a2.y2)\nprint (a1.p, a2.p, a1.q, a2.q)\n\nprint (a1.t, a1.u)\n\nb = B ()\nc = C ()\n\nb.z = 100100\nc.z = 200200\nc.w = 300300\n\nprint (a1.x, b.z, c.z, c.w)\n\nc.w = 400400\nc.z = 500500\nb.z = 600600\n\nprint (a1.x, b.z, c.z, c.w)"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class A:\n    p = 1234\n    def getX (self):\n        return self._x\n\n    def setX (self, value):\n        self._x = value\n            \n    def getY (self):\n        return self._y\n\n    def setY (self, value):\n        self._y = 1000 + value    # Weird but possible\n        \n    def getY2 (self):\n        return self._y\n\n    def setY2 (self, value):\n        self._y = value\n        \n    def getT    (self):\n        return self._t\n\n    def setT (self, value):\n        self._t = value\n        \n    def getU (self):\n        return self._u + 10000\n\n    def setU (self, value):\n        self._u = value - 5000\n            \n    x, y, y2 = property (getX, setX), property (getY, setY), property (getY2, setY2)\n    t = property (getT, setT)\n    u = property (getU, setU)\n    \nA.q = 5678\n\nclass B:\n    def getZ (self):\n        return self.z_\n    \n    def setZ (self, value):\n        self.z_ = value\n        \n    z = property (getZ, setZ)\n    \nclass C:\n    def __init__ (self):\n        self.offset = 1234\n\n    def getW (self):\n        return self.w_ + self.offset\n        \n    def setW (self, value):\n        self.w_ = value - self.offset\n        \n    w = property (getW, setW)\n    \na1 = A ()\na2 = A ()\n\na1.y2 = 1000\na2.y2 = 2000\n\na1.x = 5\na1.y = 6\n\na2.x = 7\na2.y = 8\n\na1.t = 77\na1.u = 88\n    \nprint (a1.x, a1.y, a1.y2)\nprint (a2.x, a2.y, a2.y2)\nprint (a1.p, a2.p, a1.q, a2.q)\n\nprint (a1.t, a1.u)\n\nb = B ()\nc = C ()\n\nb.z = 100100\nc.z = 200200\nc.w = 300300\n\nprint (a1.x, b.z, c.z, c.w)\n\nc.w = 400400\nc.z = 500500\nb.z = 600600\n\nprint (a1.x, b.z, c.z, c.w)",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Using properties without decorators"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,133 @@
+{
+  "ID": "d880b09c-c9a9-4178-a9d6-6c84ab3205a4",
+  "Root": {
+    "alive": true,
+    "content": [
+      "d8ae8f4f-37df-4ad5-85a5-4d8f25faf094",
+      "64a7abbd-b4f0-478d-b3ef-9ead6c25bcbc"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550391182368,
+    "id": "d880b09c-c9a9-4178-a9d6-6c84ab3205a4",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550473560000,
+    "parent_id": "3793b9f0-ce6b-49f1-8be0-025fb0d43d5e",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Query 1 Autocomplete on News Titles"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 6,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550391182365,
+        "id": "d8ae8f4f-37df-4ad5-85a5-4d8f25faf094",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550391182365,
+        "parent_id": "d880b09c-c9a9-4178-a9d6-6c84ab3205a4",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "def get_autocomplete(text):\n    query = \"\"\"\n    start n = node(*) where n.name =~ '(?i)%s.*' return n.name,labels(n) limit 10;\n    \"\"\"\n    query = query % (text)\n    obj = []\n    for res in graph.cypher.execute(query):\n        # print res[0],res[1]\n        obj.append({'name':res[0],'entity_type':res[1]})\n    return res"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "def get_autocomplete(text):\n    query = \"\"\"\n    start n = node(*) where n.name =~ '(?i)%s.*' return n.name,labels(n) limit 10;\n    \"\"\"\n    query = query % (text)\n    obj = []\n    for res in graph.cypher.execute(query):\n        # print res[0],res[1]\n        obj.append({'name':res[0],'entity_type':res[1]})\n    return res",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550391182367,
+        "id": "64a7abbd-b4f0-478d-b3ef-9ead6c25bcbc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550391182367,
+        "parent_id": "d880b09c-c9a9-4178-a9d6-6c84ab3205a4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This is a sample cypher query to get all nodes with the property "
+            ],
+            [
+              "name",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " that starts with the argument "
+            ],
+            [
+              "text",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This is a sample cypher query to get all nodes with the property "
+          },
+          {
+            "Text": "name",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " that starts with the argument "
+          },
+          {
+            "Text": "text",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      }
+    ],
+    "title": "Query 1 Autocomplete on News Titles"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

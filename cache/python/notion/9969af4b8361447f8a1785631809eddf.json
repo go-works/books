@@ -1,0 +1,327 @@
+{
+  "ID": "9969af4b-8361-447f-8a17-85631809eddf",
+  "Root": {
+    "alive": true,
+    "content": [
+      "bb022ece-ef81-4244-9f8d-caf98103114c",
+      "f9ca61b9-1ea0-4aba-9056-026712a8bbb5",
+      "fb150056-8366-4de7-a782-76feaa122c5f",
+      "6f4a34f7-b6f2-414e-aca0-264b6014c609",
+      "eef20bca-f40b-46f5-b6da-21fafd05ad01",
+      "d004f210-956d-4f41-8406-ecad4dbdbbb3"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550389296273,
+    "id": "9969af4b-8361-447f-8a17-85631809eddf",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550469480000,
+    "parent_id": "154b1b38-7004-4d41-8644-1bd8e63d12f1",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Secure Password Hashing"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 6,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389296271,
+        "id": "bb022ece-ef81-4244-9f8d-caf98103114c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389296271,
+        "parent_id": "9969af4b-8361-447f-8a17-85631809eddf",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The "
+            ],
+            [
+              "PBKDF2 algorithm",
+              [
+                [
+                  "a",
+                  "https://en.wikipedia.org/wiki/PBKDF2"
+                ]
+              ]
+            ],
+            [
+              " exposed by "
+            ],
+            [
+              "hashlib",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " module can be used to perform secure password hashing. While this algorithm cannot prevent brute-force attacks in order to recover the original password from the stored hash, it makes such attacks very expensive."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The "
+          },
+          {
+            "Text": "PBKDF2 algorithm",
+            "Link": "https://en.wikipedia.org/wiki/PBKDF2"
+          },
+          {
+            "Text": " exposed by "
+          },
+          {
+            "Text": "hashlib",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " module can be used to perform secure password hashing. While this algorithm cannot prevent brute-force attacks in order to recover the original password from the stored hash, it makes such attacks very expensive."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389296271,
+        "id": "f9ca61b9-1ea0-4aba-9056-026712a8bbb5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389296271,
+        "parent_id": "9969af4b-8361-447f-8a17-85631809eddf",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import hashlib\nimport os\n\nsalt = os.urandom(16)\nhash = hashlib.pbkdf2_hmac('sha256', b'password', salt, 100000)"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import hashlib\nimport os\n\nsalt = os.urandom(16)\nhash = hashlib.pbkdf2_hmac('sha256', b'password', salt, 100000)",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389296272,
+        "id": "fb150056-8366-4de7-a782-76feaa122c5f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389296272,
+        "parent_id": "9969af4b-8361-447f-8a17-85631809eddf",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "PBKDF2 can work with any digest algorithm, the above example uses SHA256 which is usually recommended. The random salt should be stored along with the hashed password, you will need it again in order to compare an entered password to the stored hash. It is essential that each password is hashed with a different salt. As to the number of rounds, it is recommended to set it "
+            ],
+            [
+              "as high as possible for your application",
+              [
+                [
+                  "a",
+                  "http://security.stackexchange.com/questions/3959/recommended-of-iterations-when-using-pkbdf2-sha256"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "PBKDF2 can work with any digest algorithm, the above example uses SHA256 which is usually recommended. The random salt should be stored along with the hashed password, you will need it again in order to compare an entered password to the stored hash. It is essential that each password is hashed with a different salt. As to the number of rounds, it is recommended to set it "
+          },
+          {
+            "Text": "as high as possible for your application",
+            "Link": "http://security.stackexchange.com/questions/3959/recommended-of-iterations-when-using-pkbdf2-sha256"
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389296272,
+        "id": "6f4a34f7-b6f2-414e-aca0-264b6014c609",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389296272,
+        "parent_id": "9969af4b-8361-447f-8a17-85631809eddf",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If you want the result in hexadecimal, you can use the "
+            ],
+            [
+              "binascii",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " module:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If you want the result in hexadecimal, you can use the "
+          },
+          {
+            "Text": "binascii",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " module:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389296272,
+        "id": "eef20bca-f40b-46f5-b6da-21fafd05ad01",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389296272,
+        "parent_id": "9969af4b-8361-447f-8a17-85631809eddf",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import binascii\nhexhash = binascii.hexlify(hash)"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import binascii\nhexhash = binascii.hexlify(hash)",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389296273,
+        "id": "d004f210-956d-4f41-8406-ecad4dbdbbb3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389296273,
+        "parent_id": "9969af4b-8361-447f-8a17-85631809eddf",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Note",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              ": While PBKDF2 isn’t bad, "
+            ],
+            [
+              "bcrypt",
+              [
+                [
+                  "a",
+                  "https://en.wikipedia.org/wiki/Bcrypt"
+                ]
+              ]
+            ],
+            [
+              " and especially "
+            ],
+            [
+              "scrypt",
+              [
+                [
+                  "a",
+                  "https://en.wikipedia.org/wiki/Scrypt"
+                ]
+              ]
+            ],
+            [
+              " are considered stronger against brute-force attacks. Neither is part of the Python standard library at the moment."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Note",
+            "AttrFlags": 4
+          },
+          {
+            "Text": ": While PBKDF2 isn’t bad, "
+          },
+          {
+            "Text": "bcrypt",
+            "Link": "https://en.wikipedia.org/wiki/Bcrypt"
+          },
+          {
+            "Text": " and especially "
+          },
+          {
+            "Text": "scrypt",
+            "Link": "https://en.wikipedia.org/wiki/Scrypt"
+          },
+          {
+            "Text": " are considered stronger against brute-force attacks. Neither is part of the Python standard library at the moment."
+          }
+        ]
+      }
+    ],
+    "title": "Secure Password Hashing"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

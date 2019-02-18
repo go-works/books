@@ -1,0 +1,150 @@
+{
+  "ID": "10d68954-07ad-4ad2-b58c-ecfc977a5ddf",
+  "Root": {
+    "alive": true,
+    "content": [
+      "08e75004-cf77-4c1e-949e-44eae9df2ed5",
+      "6c6968dd-75db-4b18-9026-051ff3fb93a4",
+      "14360cdc-5216-4133-882b-530a2c74f28e"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550393432950,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "10d68954-07ad-4ad2-b58c-ecfc977a5ddf",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550477100000,
+    "parent_id": "0ceaa160-1640-4a18-b7ac-67eb3f6c07f3",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Plots with common Y-axis and different X-axis using twiny"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393432947,
+        "id": "08e75004-cf77-4c1e-949e-44eae9df2ed5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393432947,
+        "parent_id": "10d68954-07ad-4ad2-b58c-ecfc977a5ddf",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In this example, a plot with curves having common y-axis but different x-axis is demonstrated using "
+            ],
+            [
+              "twiny()",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " method. Also, some additional features such as the title, legend, labels, grids, axis ticks and colours are added to the plot."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In this example, a plot with curves having common y-axis but different x-axis is demonstrated using "
+          },
+          {
+            "Text": "twiny()",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " method. Also, some additional features such as the title, legend, labels, grids, axis ticks and colours are added to the plot."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393432949,
+        "id": "6c6968dd-75db-4b18-9026-051ff3fb93a4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550477100000,
+        "parent_id": "10d68954-07ad-4ad2-b58c-ecfc977a5ddf",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Python"
+            ]
+          ],
+          "title": [
+            [
+              "# Plotting tutorials in Python\n# Adding Multiple plots by twin y axis\n# Good for plots having different x axis range\n# Separate axes and figure objects\n# replicate axes object and plot curves\n# use axes to set attributes\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\ny = np.linspace(0, 2.0*np.pi, 101)\nx1 = np.sin(y)\nx2 = np.sinh(y)\n\n# values for making ticks in x and y axis\nynumbers = np.linspace(0, 7, 15)\nxnumbers1 = np.linspace(-1, 1, 11)\nxnumbers2 = np.linspace(0, 300, 7)\n\n# separate the figure object and axes object\n# from the plotting object\nfig, ax1 = plt.subplots()\n\n# Duplicate the axes with a different x axis\n# and the same y axis\nax2 = ax1.twiny() # ax2 and ax1 will have common y axis and different x axis\n\n# plot the curves on axes 1, and 2, and get the axes handles\ncurve1, = ax1.plot(x1, y, label=\"sin\", color='r')\ncurve2, = ax2.plot(x2, y, label=\"sinh\", color='b')\n\n# Make a curves list to access the parameters in the curves\ncurves = [curve1, curve2]\n\n# add legend via axes 1 or axes 2 object.\n# one command is usually sufficient\n# ax1.legend() # will not display the legend of ax2\n# ax2.legend() # will not display the legend of ax1\n# ax1.legend(curves, [curve.get_label() for curve in curves])\nax2.legend(curves, [curve.get_label() for curve in curves]) # also valid\n\n# x axis labels via the axes\nax1.set_xlabel(\"Magnitude\", color=curve1.get_color())\nax2.set_xlabel(\"Magnitude\", color=curve2.get_color())\n\n# y axis label via the axes\nax1.set_ylabel(\"Angle/Value\", color=curve1.get_color())\n# ax2.set_ylabel(\"Magnitude\", color=curve2.get_color()) # does not work\n# ax2 has no property control over y axis\n\n# y ticks - make them coloured as well\nax1.tick_params(axis='y', colors=curve1.get_color())\n# ax2.tick_params(axis='y', colors=curve2.get_color()) # does not work\n# ax2 has no property control over y axis\n\n# x axis ticks via the axes\nax1.tick_params(axis='x', colors=curve1.get_color())\nax2.tick_params(axis='x', colors=curve2.get_color())\n\n# set x ticks\nax1.set_xticks(xnumbers1)\nax2.set_xticks(xnumbers2)\n\n# set y ticks\nax1.set_yticks(ynumbers)\n# ax2.set_yticks(ynumbers) # also works\n\n# Grids via axes 1 # use this if axes 1 is used to\n# define the properties of common x axis\n# ax1.grid(color=curve1.get_color())\n\n# To make grids using axes 2\nax1.grid(color=curve2.get_color())\nax2.grid(color=curve2.get_color())\nax1.xaxis.grid(False)\n\n# Global figure properties\nplt.title(\"Plot of sine and hyperbolic sine\")\nplt.show()"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "# Plotting tutorials in Python\n# Adding Multiple plots by twin y axis\n# Good for plots having different x axis range\n# Separate axes and figure objects\n# replicate axes object and plot curves\n# use axes to set attributes\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\ny = np.linspace(0, 2.0*np.pi, 101)\nx1 = np.sin(y)\nx2 = np.sinh(y)\n\n# values for making ticks in x and y axis\nynumbers = np.linspace(0, 7, 15)\nxnumbers1 = np.linspace(-1, 1, 11)\nxnumbers2 = np.linspace(0, 300, 7)\n\n# separate the figure object and axes object\n# from the plotting object\nfig, ax1 = plt.subplots()\n\n# Duplicate the axes with a different x axis\n# and the same y axis\nax2 = ax1.twiny() # ax2 and ax1 will have common y axis and different x axis\n\n# plot the curves on axes 1, and 2, and get the axes handles\ncurve1, = ax1.plot(x1, y, label=\"sin\", color='r')\ncurve2, = ax2.plot(x2, y, label=\"sinh\", color='b')\n\n# Make a curves list to access the parameters in the curves\ncurves = [curve1, curve2]\n\n# add legend via axes 1 or axes 2 object.\n# one command is usually sufficient\n# ax1.legend() # will not display the legend of ax2\n# ax2.legend() # will not display the legend of ax1\n# ax1.legend(curves, [curve.get_label() for curve in curves])\nax2.legend(curves, [curve.get_label() for curve in curves]) # also valid\n\n# x axis labels via the axes\nax1.set_xlabel(\"Magnitude\", color=curve1.get_color())\nax2.set_xlabel(\"Magnitude\", color=curve2.get_color())\n\n# y axis label via the axes\nax1.set_ylabel(\"Angle/Value\", color=curve1.get_color())\n# ax2.set_ylabel(\"Magnitude\", color=curve2.get_color()) # does not work\n# ax2 has no property control over y axis\n\n# y ticks - make them coloured as well\nax1.tick_params(axis='y', colors=curve1.get_color())\n# ax2.tick_params(axis='y', colors=curve2.get_color()) # does not work\n# ax2 has no property control over y axis\n\n# x axis ticks via the axes\nax1.tick_params(axis='x', colors=curve1.get_color())\nax2.tick_params(axis='x', colors=curve2.get_color())\n\n# set x ticks\nax1.set_xticks(xnumbers1)\nax2.set_xticks(xnumbers2)\n\n# set y ticks\nax1.set_yticks(ynumbers)\n# ax2.set_yticks(ynumbers) # also works\n\n# Grids via axes 1 # use this if axes 1 is used to\n# define the properties of common x axis\n# ax1.grid(color=curve1.get_color())\n\n# To make grids using axes 2\nax1.grid(color=curve2.get_color())\nax2.grid(color=curve2.get_color())\nax1.xaxis.grid(False)\n\n# Global figure properties\nplt.title(\"Plot of sine and hyperbolic sine\")\nplt.show()",
+        "code_language": "Python"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393432949,
+        "id": "14360cdc-5216-4133-882b-530a2c74f28e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393432949,
+        "parent_id": "10d68954-07ad-4ad2-b58c-ecfc977a5ddf",
+        "parent_table": "block",
+        "properties": {
+          "source": [
+            [
+              "https://i.stack.imgur.com/vXROi.png"
+            ]
+          ]
+        },
+        "type": "image",
+        "version": 1,
+        "source": "https://i.stack.imgur.com/vXROi.png",
+        "image_url": "https://www.notion.so/image/https:%2F%2Fi.stack.imgur.com%2FvXROi.png"
+      }
+    ],
+    "title": "Plots with common Y-axis and different X-axis using twiny",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

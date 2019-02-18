@@ -1,0 +1,71 @@
+{
+  "ID": "97775bc8-134c-403c-8628-90bd72dccc88",
+  "Root": {
+    "alive": true,
+    "content": [
+      "6147fe5d-ca87-43a4-bfbf-871945fa1d45"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550392098914,
+    "id": "97775bc8-134c-403c-8628-90bd72dccc88",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550475240000,
+    "parent_id": "e7935abe-c453-4cbf-8d12-5413dca4ff3d",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Server side Implementation"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 6,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550392098912,
+        "id": "6147fe5d-ca87-43a4-bfbf-871945fa1d45",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550475240000,
+        "parent_id": "97775bc8-134c-403c-8628-90bd72dccc88",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Python"
+            ]
+          ],
+          "title": [
+            [
+              "import socket\nimport hashlib\nimport os\nimport time\nimport itertools\nimport threading\nimport sys\nimport Crypto.Cipher.AES as AES\nfrom Crypto.PublicKey import RSA\nfrom CryptoPlus.Cipher import IDEA\n\n#server address and port number input from admin\nhost= raw_input(\"Server Address - \u003e \")\nport = int(input(\"Port - \u003e \"))\n#boolean for checking server and port\ncheck = False\ndone = False\n\ndef animate():\n    for c in itertools.cycle(['....','.......','..........','............']):\n        if done:\n            break\n        sys.stdout.write('\\rCHECKING IP ADDRESS AND NOT USED PORT '+c)\n        sys.stdout.flush()\n        time.sleep(0.1)\n    sys.stdout.write('\\r -----SERVER STARTED. WAITING FOR CLIENT-----\\n')\ntry:\n    #setting up socket\n    server = socket.socket(socket.AF_INET,socket.SOCK_STREAM)\n    server.bind((host,port))\n    server.listen(5)\n    check = True\nexcept BaseException:\n    print \"-----Check Server Address or Port-----\"\n    check = False\n\nif check is True:\n    # server Quit\n    shutdown = False\n# printing \"Server Started Message\"\nthread_load = threading.Thread(target=animate)\nthread_load.start()\n\ntime.sleep(4)\ndone = True\n#binding client and address\nclient,address = server.accept()\nprint (\"CLIENT IS CONNECTED. CLIENT'S ADDRESS -\u003e\",address)\nprint (\"\\n-----WAITING FOR PUBLIC KEY \u0026 PUBLIC KEY HASH-----\\n\")\n\n#client's message(Public Key)\ngetpbk = client.recv(2048)\n\n#conversion of string to KEY\nserver_public_key = RSA.importKey(getpbk)\n\n#hashing the public key in server side for validating the hash from client\nhash_object = hashlib.sha1(getpbk)\nhex_digest = hash_object.hexdigest()\n\nif getpbk != \"\":\n    print (getpbk)\n    client.send(\"YES\")\n    gethash = client.recv(1024)\n    print (\"\\n-----HASH OF PUBLIC KEY----- \\n\"+gethash)\nif hex_digest == gethash:\n    # creating session key\n    key_128 = os.urandom(16)\n    #encrypt CTR MODE session key\n    en = AES.new(key_128,AES.MODE_CTR,counter = lambda:key_128)\n    encrypto = en.encrypt(key_128)\n    #hashing sha1\n    en_object = hashlib.sha1(encrypto)\n    en_digest = en_object.hexdigest()\n\n    print (\"\\n-----SESSION KEY-----\\n\"+en_digest)\n\n    #encrypting session key and public key\n    E = server_public_key.encrypt(encrypto,16)\n    print (\"\\n-----ENCRYPTED PUBLIC KEY AND SESSION KEY-----\\n\"+str(E))\n    print (\"\\n-----HANDSHAKE COMPLETE-----\")\n    client.send(str(E))\n    while True:\n        #message from client\n        newmess = client.recv(1024)\n        #decoding the message from HEXADECIMAL to decrypt the ecrypted version of the message only\n        decoded = newmess.decode(\"hex\")\n        #making en_digest(session_key) as the key\n        key = en_digest[:16]\n        print (\"\\nENCRYPTED MESSAGE FROM CLIENT -\u003e \"+newmess)\n        #decrypting message from the client\n        ideaDecrypt = IDEA.new(key, IDEA.MODE_CTR, counter=lambda: key)\n        dMsg = ideaDecrypt.decrypt(decoded)\n        print (\"\\n**New Message**  \"+time.ctime(time.time()) +\" \u003e \"+dMsg+\"\\n\")\n        mess = raw_input(\"\\nMessage To Client -\u003e \")\n        if mess != \"\":\n            ideaEncrypt = IDEA.new(key, IDEA.MODE_CTR, counter=lambda : key)\n            eMsg = ideaEncrypt.encrypt(mess)\n            eMsg = eMsg.encode(\"hex\").upper()\n            if eMsg != \"\":\n                print (\"ENCRYPTED MESSAGE TO CLIENT-\u003e \" + eMsg)\n            client.send(eMsg)\n    client.close()\nelse:\n    print (\"\\n-----PUBLIC KEY HASH DOESNOT MATCH-----\\n\")"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "import socket\nimport hashlib\nimport os\nimport time\nimport itertools\nimport threading\nimport sys\nimport Crypto.Cipher.AES as AES\nfrom Crypto.PublicKey import RSA\nfrom CryptoPlus.Cipher import IDEA\n\n#server address and port number input from admin\nhost= raw_input(\"Server Address - \u003e \")\nport = int(input(\"Port - \u003e \"))\n#boolean for checking server and port\ncheck = False\ndone = False\n\ndef animate():\n    for c in itertools.cycle(['....','.......','..........','............']):\n        if done:\n            break\n        sys.stdout.write('\\rCHECKING IP ADDRESS AND NOT USED PORT '+c)\n        sys.stdout.flush()\n        time.sleep(0.1)\n    sys.stdout.write('\\r -----SERVER STARTED. WAITING FOR CLIENT-----\\n')\ntry:\n    #setting up socket\n    server = socket.socket(socket.AF_INET,socket.SOCK_STREAM)\n    server.bind((host,port))\n    server.listen(5)\n    check = True\nexcept BaseException:\n    print \"-----Check Server Address or Port-----\"\n    check = False\n\nif check is True:\n    # server Quit\n    shutdown = False\n# printing \"Server Started Message\"\nthread_load = threading.Thread(target=animate)\nthread_load.start()\n\ntime.sleep(4)\ndone = True\n#binding client and address\nclient,address = server.accept()\nprint (\"CLIENT IS CONNECTED. CLIENT'S ADDRESS -\u003e\",address)\nprint (\"\\n-----WAITING FOR PUBLIC KEY \u0026 PUBLIC KEY HASH-----\\n\")\n\n#client's message(Public Key)\ngetpbk = client.recv(2048)\n\n#conversion of string to KEY\nserver_public_key = RSA.importKey(getpbk)\n\n#hashing the public key in server side for validating the hash from client\nhash_object = hashlib.sha1(getpbk)\nhex_digest = hash_object.hexdigest()\n\nif getpbk != \"\":\n    print (getpbk)\n    client.send(\"YES\")\n    gethash = client.recv(1024)\n    print (\"\\n-----HASH OF PUBLIC KEY----- \\n\"+gethash)\nif hex_digest == gethash:\n    # creating session key\n    key_128 = os.urandom(16)\n    #encrypt CTR MODE session key\n    en = AES.new(key_128,AES.MODE_CTR,counter = lambda:key_128)\n    encrypto = en.encrypt(key_128)\n    #hashing sha1\n    en_object = hashlib.sha1(encrypto)\n    en_digest = en_object.hexdigest()\n\n    print (\"\\n-----SESSION KEY-----\\n\"+en_digest)\n\n    #encrypting session key and public key\n    E = server_public_key.encrypt(encrypto,16)\n    print (\"\\n-----ENCRYPTED PUBLIC KEY AND SESSION KEY-----\\n\"+str(E))\n    print (\"\\n-----HANDSHAKE COMPLETE-----\")\n    client.send(str(E))\n    while True:\n        #message from client\n        newmess = client.recv(1024)\n        #decoding the message from HEXADECIMAL to decrypt the ecrypted version of the message only\n        decoded = newmess.decode(\"hex\")\n        #making en_digest(session_key) as the key\n        key = en_digest[:16]\n        print (\"\\nENCRYPTED MESSAGE FROM CLIENT -\u003e \"+newmess)\n        #decrypting message from the client\n        ideaDecrypt = IDEA.new(key, IDEA.MODE_CTR, counter=lambda: key)\n        dMsg = ideaDecrypt.decrypt(decoded)\n        print (\"\\n**New Message**  \"+time.ctime(time.time()) +\" \u003e \"+dMsg+\"\\n\")\n        mess = raw_input(\"\\nMessage To Client -\u003e \")\n        if mess != \"\":\n            ideaEncrypt = IDEA.new(key, IDEA.MODE_CTR, counter=lambda : key)\n            eMsg = ideaEncrypt.encrypt(mess)\n            eMsg = eMsg.encode(\"hex\").upper()\n            if eMsg != \"\":\n                print (\"ENCRYPTED MESSAGE TO CLIENT-\u003e \" + eMsg)\n            client.send(eMsg)\n    client.close()\nelse:\n    print (\"\\n-----PUBLIC KEY HASH DOESNOT MATCH-----\\n\")",
+        "code_language": "Python"
+      }
+    ],
+    "title": "Server side Implementation"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

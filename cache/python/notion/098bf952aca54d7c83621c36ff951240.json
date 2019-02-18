@@ -1,0 +1,141 @@
+{
+  "ID": "098bf952-aca5-4d7c-8362-1c36ff951240",
+  "Root": {
+    "alive": true,
+    "content": [
+      "2b697a2d-ac8e-41eb-afc6-97da63bcac32",
+      "7eee0bd8-c7d6-45c8-8a6c-83d3fe9edf10",
+      "65873e14-8418-4a92-a6eb-35e83badd2e3"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550393700811,
+    "id": "098bf952-aca5-4d7c-8362-1c36ff951240",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550478180000,
+    "parent_id": "f9cef861-fa11-469e-9688-07cce105be5c",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Multiple results per group"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393700807,
+        "id": "2b697a2d-ac8e-41eb-afc6-97da63bcac32",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393700807,
+        "parent_id": "098bf952-aca5-4d7c-8362-1c36ff951240",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Using "
+            ],
+            [
+              "transform",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " functions that return sub-calculations per group"
+            ]
+          ]
+        },
+        "type": "header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Using "
+          },
+          {
+            "Text": "transform",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " functions that return sub-calculations per group"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393700810,
+        "id": "7eee0bd8-c7d6-45c8-8a6c-83d3fe9edf10",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393700810,
+        "parent_id": "098bf952-aca5-4d7c-8362-1c36ff951240",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In the previous example, we had one result per client. However, functions returning different values for the group can also be applied."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In the previous example, we had one result per client. However, functions returning different values for the group can also be applied."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393700810,
+        "id": "65873e14-8418-4a92-a6eb-35e83badd2e3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550478180000,
+        "parent_id": "098bf952-aca5-4d7c-8362-1c36ff951240",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Python"
+            ]
+          ],
+          "title": [
+            [
+              "# Create a dummy dataframe\norders_df = pd.DataFrame()\norders_df['customer_id'] = [1,1,1,1,1,2,2,3,3,3,3,3]\norders_df['order_id'] = [1,1,1,2,2,3,3,4,5,6,6,6]\norders_df['item'] = ['apples', 'chocolate', 'chocolate', 'coffee', 'coffee', 'apples', \n                     'bananas', 'coffee', 'milkshake', 'chocolate', 'strawberry', 'strawberry']\n\n# Let's try to see if the items were ordered more than once in each orders\n\n# First, we define a fuction that will be applied per group\ndef multiple_items_per_order(_items):\n    # Apply .duplicated, which will return True is the item occurs more than once.\n    multiple_item_bool = _items.duplicated(keep=False) \n    return(multiple_item_bool)\n\n# Then, we transform each group according to the defined function\norders_df['item_duplicated_per_order'] = (                    # Put the results into a new column \n                        orders_df                             # Take the orders dataframe\n                        .groupby(['order_id'])['item']        # Create a seperate group for each order_id \u0026 select the item\n                        .transform(multiple_items_per_order)) # Apply the defined function to each group separately\n\n# Inspecting the results ... \nprint(orders_df)\n#     customer_id  order_id        item  item_duplicated_per_order\n# 0             1         1      apples                      False\n# 1             1         1   chocolate                       True\n# 2             1         1   chocolate                       True\n# 3             1         2      coffee                       True\n# 4             1         2      coffee                       True\n# 5             2         3      apples                      False\n# 6             2         3     bananas                      False\n# 7             3         4      coffee                      False\n# 8             3         5   milkshake                      False\n# 9             3         6   chocolate                      False\n# 10            3         6  strawberry                       True\n# 11            3         6  strawberry                       True"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 11,
+        "code": "# Create a dummy dataframe\norders_df = pd.DataFrame()\norders_df['customer_id'] = [1,1,1,1,1,2,2,3,3,3,3,3]\norders_df['order_id'] = [1,1,1,2,2,3,3,4,5,6,6,6]\norders_df['item'] = ['apples', 'chocolate', 'chocolate', 'coffee', 'coffee', 'apples', \n                     'bananas', 'coffee', 'milkshake', 'chocolate', 'strawberry', 'strawberry']\n\n# Let's try to see if the items were ordered more than once in each orders\n\n# First, we define a fuction that will be applied per group\ndef multiple_items_per_order(_items):\n    # Apply .duplicated, which will return True is the item occurs more than once.\n    multiple_item_bool = _items.duplicated(keep=False) \n    return(multiple_item_bool)\n\n# Then, we transform each group according to the defined function\norders_df['item_duplicated_per_order'] = (                    # Put the results into a new column \n                        orders_df                             # Take the orders dataframe\n                        .groupby(['order_id'])['item']        # Create a seperate group for each order_id \u0026 select the item\n                        .transform(multiple_items_per_order)) # Apply the defined function to each group separately\n\n# Inspecting the results ... \nprint(orders_df)\n#     customer_id  order_id        item  item_duplicated_per_order\n# 0             1         1      apples                      False\n# 1             1         1   chocolate                       True\n# 2             1         1   chocolate                       True\n# 3             1         2      coffee                       True\n# 4             1         2      coffee                       True\n# 5             2         3      apples                      False\n# 6             2         3     bananas                      False\n# 7             3         4      coffee                      False\n# 8             3         5   milkshake                      False\n# 9             3         6   chocolate                      False\n# 10            3         6  strawberry                       True\n# 11            3         6  strawberry                       True",
+        "code_language": "Python"
+      }
+    ],
+    "title": "Multiple results per group"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

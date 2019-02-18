@@ -1,0 +1,71 @@
+{
+  "ID": "fa654b3b-b301-46df-87e8-75b543aff1ae",
+  "Root": {
+    "alive": true,
+    "content": [
+      "9fbccc0a-9928-4426-bdce-507d2ccb8529"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550393476898,
+    "id": "fa654b3b-b301-46df-87e8-75b543aff1ae",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550477340000,
+    "parent_id": "4feeec83-7517-45bf-be00-827d7b0cc408",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Chemical equilibria"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393476898,
+        "id": "9fbccc0a-9928-4426-bdce-507d2ccb8529",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550477340000,
+        "parent_id": "fa654b3b-b301-46df-87e8-75b543aff1ae",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Python"
+            ]
+          ],
+          "title": [
+            [
+              "from chempy import Equilibrium\nfrom chempy.chemistry import Species\nwater_autop = Equilibrium({'H2O'}, {'H+', 'OH-'}, 10**-14)  # unit \"molar\" assumed\nammonia_prot = Equilibrium({'NH4+'}, {'NH3', 'H+'}, 10**-9.24)  # same here\nfrom chempy.equilibria import EqSystem\nsubstances = map(Species.from_formula, 'H2O OH- H+ NH3 NH4+'.split())\neqsys = EqSystem([water_autop, ammonia_prot], substances)\nprint('\\n'.join(map(str, eqsys.rxns)))  # \"rxns\" short for \"reactions\"\nH2O = H+ + OH-; 1e-14\nNH4+ = H+ + NH3; 5.75e-10\nfrom collections import defaultdict\ninit_conc = defaultdict(float, {'H2O': 1, 'NH3': 0.1})\nx, sol, sane = eqsys.root(init_conc)\nassert sol['success'] and sane\nprint(sorted(sol.keys()))  # see package \"pyneqsys\" for more info\n['fun', 'intermediate_info', 'internal_x_vecs', 'nfev', 'njev', 'success', 'x', 'x_vecs']\nprint(', '.join('%.2g' % v for v in x))\n1, 0.0013, 7.6e-12, 0.099, 0.0013"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "from chempy import Equilibrium\nfrom chempy.chemistry import Species\nwater_autop = Equilibrium({'H2O'}, {'H+', 'OH-'}, 10**-14)  # unit \"molar\" assumed\nammonia_prot = Equilibrium({'NH4+'}, {'NH3', 'H+'}, 10**-9.24)  # same here\nfrom chempy.equilibria import EqSystem\nsubstances = map(Species.from_formula, 'H2O OH- H+ NH3 NH4+'.split())\neqsys = EqSystem([water_autop, ammonia_prot], substances)\nprint('\\n'.join(map(str, eqsys.rxns)))  # \"rxns\" short for \"reactions\"\nH2O = H+ + OH-; 1e-14\nNH4+ = H+ + NH3; 5.75e-10\nfrom collections import defaultdict\ninit_conc = defaultdict(float, {'H2O': 1, 'NH3': 0.1})\nx, sol, sane = eqsys.root(init_conc)\nassert sol['success'] and sane\nprint(sorted(sol.keys()))  # see package \"pyneqsys\" for more info\n['fun', 'intermediate_info', 'internal_x_vecs', 'nfev', 'njev', 'success', 'x', 'x_vecs']\nprint(', '.join('%.2g' % v for v in x))\n1, 0.0013, 7.6e-12, 0.099, 0.0013",
+        "code_language": "Python"
+      }
+    ],
+    "title": "Chemical equilibria"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,71 @@
+{
+  "ID": "a39c8ec3-34cb-443b-9c54-020dc64adaab",
+  "Root": {
+    "alive": true,
+    "content": [
+      "aac5d8dc-a9a8-405e-b83e-f381a2f83916"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550393522746,
+    "id": "a39c8ec3-34cb-443b-9c54-020dc64adaab",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550477520000,
+    "parent_id": "0c3e026c-5232-4ace-b58a-709c31d3def1",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "To summarize the interface key is a string data is an arbitrary object "
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 7,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393522745,
+        "id": "aac5d8dc-a9a8-405e-b83e-f381a2f83916",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550477520000,
+        "parent_id": "a39c8ec3-34cb-443b-9c54-020dc64adaab",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Python"
+            ]
+          ],
+          "title": [
+            [
+              "import shelve\n\nd = shelve.open(filename)  # open -- file may get suffix added by low-level\n                           # library\n\nd[key] = data              # store data at key (overwrites old data if\n                           # using an existing key)\ndata = d[key]              # retrieve a COPY of data at key (raise KeyError\n                           # if no such key)\ndel d[key]                 # delete data stored at key (raises KeyError\n                           # if no such key)\n\nflag = key in d            # true if the key exists\nklist = list(d.keys())     # a list of all existing keys (slow!)\n\n# as d was opened WITHOUT writeback=True, beware:\nd['xx'] = [0, 1, 2]        # this works as expected, but...\nd['xx'].append(3)          # *this doesn't!* -- d['xx'] is STILL [0, 1, 2]!\n\n# having opened d without writeback=True, you need to code carefully:\ntemp = d['xx']             # extracts the copy\ntemp.append(5)             # mutates the copy\nd['xx'] = temp             # stores the copy right back, to persist it\n\n# or, d=shelve.open(filename,writeback=True) would let you just code\n# d['xx'].append(5) and have it work as expected, BUT it would also\n# consume more memory and make the d.close() operation slower.\n\nd.close()                  # close it"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "import shelve\n\nd = shelve.open(filename)  # open -- file may get suffix added by low-level\n                           # library\n\nd[key] = data              # store data at key (overwrites old data if\n                           # using an existing key)\ndata = d[key]              # retrieve a COPY of data at key (raise KeyError\n                           # if no such key)\ndel d[key]                 # delete data stored at key (raises KeyError\n                           # if no such key)\n\nflag = key in d            # true if the key exists\nklist = list(d.keys())     # a list of all existing keys (slow!)\n\n# as d was opened WITHOUT writeback=True, beware:\nd['xx'] = [0, 1, 2]        # this works as expected, but...\nd['xx'].append(3)          # *this doesn't!* -- d['xx'] is STILL [0, 1, 2]!\n\n# having opened d without writeback=True, you need to code carefully:\ntemp = d['xx']             # extracts the copy\ntemp.append(5)             # mutates the copy\nd['xx'] = temp             # stores the copy right back, to persist it\n\n# or, d=shelve.open(filename,writeback=True) would let you just code\n# d['xx'].append(5) and have it work as expected, BUT it would also\n# consume more memory and make the d.close() operation slower.\n\nd.close()                  # close it",
+        "code_language": "Python"
+      }
+    ],
+    "title": "To summarize the interface key is a string data is an arbitrary object "
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

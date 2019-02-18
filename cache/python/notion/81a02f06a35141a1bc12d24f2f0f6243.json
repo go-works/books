@@ -1,0 +1,267 @@
+{
+  "ID": "81a02f06-a351-41a1-bc12-d24f2f0f6243",
+  "Root": {
+    "alive": true,
+    "content": [
+      "15f88bec-2aa3-4e5c-b642-2d42fe66138c",
+      "8e1b5f9e-d8a4-4d92-be39-697d4cc9452f",
+      "f25ef8ec-9c4c-44cf-b0d4-6d5cd0072564",
+      "baa6b41d-6cc9-43c1-88cf-ed1aacbfa37a",
+      "3c0e1a90-adaf-4e5c-980d-b67f999713e1",
+      "1e0403ab-52c2-4e79-87b7-6868799bd743",
+      "7a0d5ddf-1fd5-4181-8847-84c5878ccc0d"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550392516874,
+    "id": "81a02f06-a351-41a1-bc12-d24f2f0f6243",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550475600000,
+    "parent_id": "4bc3ba38-2f91-455b-9146-7b9ec3c23c41",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "A Python script that can be run as a service"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 6,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550392516872,
+        "id": "15f88bec-2aa3-4e5c-b642-2d42fe66138c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550392516872,
+        "parent_id": "81a02f06-a351-41a1-bc12-d24f2f0f6243",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The modules used in this example are part of "
+            ],
+            [
+              "pywin32",
+              [
+                [
+                  "a",
+                  "https://sourceforge.net/projects/pywin32/"
+                ]
+              ]
+            ],
+            [
+              " (Python for Windows extensions). Depending on how you installed Python, you might need to install this separately."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The modules used in this example are part of "
+          },
+          {
+            "Text": "pywin32",
+            "Link": "https://sourceforge.net/projects/pywin32/"
+          },
+          {
+            "Text": " (Python for Windows extensions). Depending on how you installed Python, you might need to install this separately."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550392516873,
+        "id": "8e1b5f9e-d8a4-4d92-be39-697d4cc9452f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550475600000,
+        "parent_id": "81a02f06-a351-41a1-bc12-d24f2f0f6243",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Python"
+            ]
+          ],
+          "title": [
+            [
+              "import win32serviceutil\nimport win32service\nimport win32event\nimport servicemanager\nimport socket\n\n\nclass AppServerSvc (win32serviceutil.ServiceFramework):\n    _svc_name_ = \"TestService\"\n    _svc_display_name_ = \"Test Service\"\n\n    def __init__(self,args):\n        win32serviceutil.ServiceFramework.__init__(self,args)\n        self.hWaitStop = win32event.CreateEvent(None,0,0,None)\n        socket.setdefaulttimeout(60)\n\n    def SvcStop(self):\n        self.ReportServiceStatus(win32service.SERVICE_STOP_PENDING)\n        win32event.SetEvent(self.hWaitStop)\n\n    def SvcDoRun(self):\n        servicemanager.LogMsg(servicemanager.EVENTLOG_INFORMATION_TYPE,\n                              servicemanager.PYS_SERVICE_STARTED,\n                              (self._svc_name_,''))\n        self.main()\n\n    def main(self):\n        pass\n\nif __name__ == '__main__':\n    win32serviceutil.HandleCommandLine(AppServerSvc)"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "import win32serviceutil\nimport win32service\nimport win32event\nimport servicemanager\nimport socket\n\n\nclass AppServerSvc (win32serviceutil.ServiceFramework):\n    _svc_name_ = \"TestService\"\n    _svc_display_name_ = \"Test Service\"\n\n    def __init__(self,args):\n        win32serviceutil.ServiceFramework.__init__(self,args)\n        self.hWaitStop = win32event.CreateEvent(None,0,0,None)\n        socket.setdefaulttimeout(60)\n\n    def SvcStop(self):\n        self.ReportServiceStatus(win32service.SERVICE_STOP_PENDING)\n        win32event.SetEvent(self.hWaitStop)\n\n    def SvcDoRun(self):\n        servicemanager.LogMsg(servicemanager.EVENTLOG_INFORMATION_TYPE,\n                              servicemanager.PYS_SERVICE_STARTED,\n                              (self._svc_name_,''))\n        self.main()\n\n    def main(self):\n        pass\n\nif __name__ == '__main__':\n    win32serviceutil.HandleCommandLine(AppServerSvc)",
+        "code_language": "Python"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550392516873,
+        "id": "f25ef8ec-9c4c-44cf-b0d4-6d5cd0072564",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550392516873,
+        "parent_id": "81a02f06-a351-41a1-bc12-d24f2f0f6243",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This is just boilerplate. Your application code, probably invoking a separate script, would go in the main() function."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This is just boilerplate. Your application code, probably invoking a separate script, would go in the main() function."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550392516873,
+        "id": "baa6b41d-6cc9-43c1-88cf-ed1aacbfa37a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550392516873,
+        "parent_id": "81a02f06-a351-41a1-bc12-d24f2f0f6243",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "You will also need to install this as a service. The best solution for this at the moment appears to be to use "
+            ],
+            [
+              "Non-sucking Service Manager",
+              [
+                [
+                  "a",
+                  "http://nssm.cc/"
+                ]
+              ]
+            ],
+            [
+              ". This allows you to install a service and provides a GUI for configuring the command line the service executes. For Python you can do this, which creates the service in one go:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "You will also need to install this as a service. The best solution for this at the moment appears to be to use "
+          },
+          {
+            "Text": "Non-sucking Service Manager",
+            "Link": "http://nssm.cc/"
+          },
+          {
+            "Text": ". This allows you to install a service and provides a GUI for configuring the command line the service executes. For Python you can do this, which creates the service in one go:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550392516874,
+        "id": "3c0e1a90-adaf-4e5c-980d-b67f999713e1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550392516874,
+        "parent_id": "81a02f06-a351-41a1-bc12-d24f2f0f6243",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "nssm install MyServiceName c:\\python27\\python.exe c:\\temp\\myscript.py"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "nssm install MyServiceName c:\\python27\\python.exe c:\\temp\\myscript.py",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550392516874,
+        "id": "1e0403ab-52c2-4e79-87b7-6868799bd743",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550392516874,
+        "parent_id": "81a02f06-a351-41a1-bc12-d24f2f0f6243",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Where my_script.py is the boilerplate script above, modified to invoke your application script or code in the main() function. Note that the service doesn’t run the Python script directly, it runs the Python interpreter and passes it the main script on the command line."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Where my_script.py is the boilerplate script above, modified to invoke your application script or code in the main() function. Note that the service doesn’t run the Python script directly, it runs the Python interpreter and passes it the main script on the command line."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550392516874,
+        "id": "7a0d5ddf-1fd5-4181-8847-84c5878ccc0d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550392516874,
+        "parent_id": "81a02f06-a351-41a1-bc12-d24f2f0f6243",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Alternatively you can use tools provided in the Windows Server Resource Kit for your operating system version so create the service."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Alternatively you can use tools provided in the Windows Server Resource Kit for your operating system version so create the service."
+          }
+        ]
+      }
+    ],
+    "title": "A Python script that can be run as a service"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

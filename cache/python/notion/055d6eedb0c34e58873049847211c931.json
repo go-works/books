@@ -1,0 +1,150 @@
+{
+  "ID": "055d6eed-b0c3-4e58-8730-49847211c931",
+  "Root": {
+    "alive": true,
+    "content": [
+      "4cb3ce05-6265-4909-adac-c5748e49c6a0",
+      "447525ef-3a47-4c23-bd90-d0458f75ac6c",
+      "d150a69a-fe3f-41c6-8eaf-ddd0068da10e"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550393432054,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "055d6eed-b0c3-4e58-8730-49847211c931",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550477100000,
+    "parent_id": "0ceaa160-1640-4a18-b7ac-67eb3f6c07f3",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Plots with Common X-axis but different Y-axis Using twinx"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393432053,
+        "id": "4cb3ce05-6265-4909-adac-c5748e49c6a0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393432053,
+        "parent_id": "055d6eed-b0c3-4e58-8730-49847211c931",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In this example, we will plot a sine curve and a hyperbolic sine curve in the same plot with a common x-axis having different y-axis. This is accomplished by the use of "
+            ],
+            [
+              "twinx()",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " command."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In this example, we will plot a sine curve and a hyperbolic sine curve in the same plot with a common x-axis having different y-axis. This is accomplished by the use of "
+          },
+          {
+            "Text": "twinx()",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " command."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393432053,
+        "id": "447525ef-3a47-4c23-bd90-d0458f75ac6c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550477100000,
+        "parent_id": "055d6eed-b0c3-4e58-8730-49847211c931",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Python"
+            ]
+          ],
+          "title": [
+            [
+              "# Plotting tutorials in Python\n# Adding Multiple plots by twin x axis\n# Good for plots having different y axis range\n# Separate axes and figure objects\n# replicate axes object and plot curves\n# use axes to set attributes\n\n# Note:\n# Grid for second curve unsuccessful : let me know if you find it! :(\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nx = np.linspace(0, 2.0*np.pi, 101)\ny = np.sin(x)\nz = np.sinh(x)\n\n# separate the figure object and axes object\n# from the plotting object\nfig, ax1 = plt.subplots()\n\n# Duplicate the axes with a different y axis\n# and the same x axis\nax2 = ax1.twinx() # ax2 and ax1 will have common x axis and different y axis\n\n# plot the curves on axes 1, and 2, and get the curve handles\ncurve1, = ax1.plot(x, y, label=\"sin\", color='r')\ncurve2, = ax2.plot(x, z, label=\"sinh\", color='b')\n\n# Make a curves list to access the parameters in the curves\ncurves = [curve1, curve2]\n\n# add legend via axes 1 or axes 2 object.\n# one command is usually sufficient\n# ax1.legend() # will not display the legend of ax2\n# ax2.legend() # will not display the legend of ax1\nax1.legend(curves, [curve.get_label() for curve in curves])\n# ax2.legend(curves, [curve.get_label() for curve in curves]) # also valid\n\n# Global figure properties\nplt.title(\"Plot of sine and hyperbolic sine\")\nplt.show()"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "# Plotting tutorials in Python\n# Adding Multiple plots by twin x axis\n# Good for plots having different y axis range\n# Separate axes and figure objects\n# replicate axes object and plot curves\n# use axes to set attributes\n\n# Note:\n# Grid for second curve unsuccessful : let me know if you find it! :(\n\nimport numpy as np\nimport matplotlib.pyplot as plt\n\nx = np.linspace(0, 2.0*np.pi, 101)\ny = np.sin(x)\nz = np.sinh(x)\n\n# separate the figure object and axes object\n# from the plotting object\nfig, ax1 = plt.subplots()\n\n# Duplicate the axes with a different y axis\n# and the same x axis\nax2 = ax1.twinx() # ax2 and ax1 will have common x axis and different y axis\n\n# plot the curves on axes 1, and 2, and get the curve handles\ncurve1, = ax1.plot(x, y, label=\"sin\", color='r')\ncurve2, = ax2.plot(x, z, label=\"sinh\", color='b')\n\n# Make a curves list to access the parameters in the curves\ncurves = [curve1, curve2]\n\n# add legend via axes 1 or axes 2 object.\n# one command is usually sufficient\n# ax1.legend() # will not display the legend of ax2\n# ax2.legend() # will not display the legend of ax1\nax1.legend(curves, [curve.get_label() for curve in curves])\n# ax2.legend(curves, [curve.get_label() for curve in curves]) # also valid\n\n# Global figure properties\nplt.title(\"Plot of sine and hyperbolic sine\")\nplt.show()",
+        "code_language": "Python"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393432054,
+        "id": "d150a69a-fe3f-41c6-8eaf-ddd0068da10e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550393432054,
+        "parent_id": "055d6eed-b0c3-4e58-8730-49847211c931",
+        "parent_table": "block",
+        "properties": {
+          "source": [
+            [
+              "https://i.stack.imgur.com/Qtcpv.png"
+            ]
+          ]
+        },
+        "type": "image",
+        "version": 1,
+        "source": "https://i.stack.imgur.com/Qtcpv.png",
+        "image_url": "https://www.notion.so/image/https:%2F%2Fi.stack.imgur.com%2FQtcpv.png"
+      }
+    ],
+    "title": "Plots with Common X-axis but different Y-axis Using twinx",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

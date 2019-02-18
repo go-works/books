@@ -1,0 +1,225 @@
+{
+  "ID": "61069c9c-b41c-4eec-91e0-13e42c6e3026",
+  "Root": {
+    "alive": true,
+    "content": [
+      "105d3c87-428f-4c41-9ad9-2d00bd596d37",
+      "65e41b4a-a9c2-4179-93cc-3f91d3d0649c",
+      "d52ac1e3-f782-404f-af44-cb5e75120369",
+      "16adeb77-6b11-4870-a854-d7c749853e94",
+      "84d9385b-ff11-4f00-a5ab-c251b9c79ee2"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550388850971,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "61069c9c-b41c-4eec-91e0-13e42c6e3026",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550468340000,
+    "parent_id": "2a4bdab1-4a05-4c5d-9f05-61c2e4d09b32",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Container and sequence types"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 9,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550388850967,
+        "id": "105d3c87-428f-4c41-9ad9-2d00bd596d37",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550388850967,
+        "parent_id": "61069c9c-b41c-4eec-91e0-13e42c6e3026",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "It is possible to emulate container types, which support accessing values by key or index."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "It is possible to emulate container types, which support accessing values by key or index."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550388850970,
+        "id": "65e41b4a-a9c2-4179-93cc-3f91d3d0649c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550388850970,
+        "parent_id": "61069c9c-b41c-4eec-91e0-13e42c6e3026",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Consider this naive implementation of a sparse list, which stores only its non-zero elements to conserve memory."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Consider this naive implementation of a sparse list, which stores only its non-zero elements to conserve memory."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550388850970,
+        "id": "d52ac1e3-f782-404f-af44-cb5e75120369",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550468340000,
+        "parent_id": "61069c9c-b41c-4eec-91e0-13e42c6e3026",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Python"
+            ]
+          ],
+          "title": [
+            [
+              "class sparselist(object):\n    def __init__(self, size):\n        self.size = size\n        self.data = {}\n    \n    # l[index]\n    def __getitem__(self, index):\n        if index \u003c 0:\n            index += self.size\n        if index \u003e= self.size:\n            raise IndexError(index)\n        try:\n            return self.data[index]\n        except KeyError:\n            return 0.0\n\n    # l[index] = value\n    def __setitem__(self, index, value):\n        self.data[index] = value\n\n    # del l[index]\n    def __delitem__(self, index):\n        if index in self.data:\n            del self.data[index]\n\n    # value in l\n    def __contains__(self, value):\n        return value == 0.0 or value in self.data.values()\n\n    # len(l)\n    def __len__(self):\n        return self.size\n\n    # for value in l: ...\n    def __iter__(self):\n        return (self[i] for i in range(self.size)) # use xrange for python2"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "class sparselist(object):\n    def __init__(self, size):\n        self.size = size\n        self.data = {}\n    \n    # l[index]\n    def __getitem__(self, index):\n        if index \u003c 0:\n            index += self.size\n        if index \u003e= self.size:\n            raise IndexError(index)\n        try:\n            return self.data[index]\n        except KeyError:\n            return 0.0\n\n    # l[index] = value\n    def __setitem__(self, index, value):\n        self.data[index] = value\n\n    # del l[index]\n    def __delitem__(self, index):\n        if index in self.data:\n            del self.data[index]\n\n    # value in l\n    def __contains__(self, value):\n        return value == 0.0 or value in self.data.values()\n\n    # len(l)\n    def __len__(self):\n        return self.size\n\n    # for value in l: ...\n    def __iter__(self):\n        return (self[i] for i in range(self.size)) # use xrange for python2",
+        "code_language": "Python"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550388850970,
+        "id": "16adeb77-6b11-4870-a854-d7c749853e94",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550388850970,
+        "parent_id": "61069c9c-b41c-4eec-91e0-13e42c6e3026",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Then, we can use a "
+            ],
+            [
+              "sparselist",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " much like a regular "
+            ],
+            [
+              "list",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Then, we can use a "
+          },
+          {
+            "Text": "sparselist",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " much like a regular "
+          },
+          {
+            "Text": "list",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550388850970,
+        "id": "84d9385b-ff11-4f00-a5ab-c251b9c79ee2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550468340000,
+        "parent_id": "61069c9c-b41c-4eec-91e0-13e42c6e3026",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Python"
+            ]
+          ],
+          "title": [
+            [
+              "l = sparselist(10 ** 6)  # list with 1 million elements\n0 in l                   # True\n10 in l                  # False\n\nl[12345] = 10            \n10 in l                  # True\nl[12345]                 # 10\n\nfor v in l:\n    pass  # 0, 0, 0, ... 10, 0, 0 ... 0"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "l = sparselist(10 ** 6)  # list with 1 million elements\n0 in l                   # True\n10 in l                  # False\n\nl[12345] = 10            \n10 in l                  # True\nl[12345]                 # 10\n\nfor v in l:\n    pass  # 0, 0, 0, ... 10, 0, 0 ... 0",
+        "code_language": "Python"
+      }
+    ],
+    "title": "Container and sequence types",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

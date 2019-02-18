@@ -1,0 +1,187 @@
+{
+  "ID": "60613634-661b-418a-a15e-9d4de291a149",
+  "Root": {
+    "alive": true,
+    "content": [
+      "5b95f110-11b4-44ea-8147-62ae0f460d6f",
+      "02e91ae0-d161-481a-837c-5e5d9122069c",
+      "9ad9371c-5751-4eb2-a127-a668d0bca21f",
+      "4e59fc91-3f44-442a-833d-1df1968f5c44"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550389512303,
+    "id": "60613634-661b-418a-a15e-9d4de291a149",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550469900000,
+    "parent_id": "b52ee895-5b14-4fff-9135-19763b0c3363",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Passing data between multiprocessing processes"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 6,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389512301,
+        "id": "5b95f110-11b4-44ea-8147-62ae0f460d6f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389512301,
+        "parent_id": "60613634-661b-418a-a15e-9d4de291a149",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Because data is sensitive when dealt with between two threads (think concurrent read and concurrent write can conflict with one another, causing race conditions), a set of unique objects were made in order to facilitate the passing of data back and forth between threads. Any truly atomic operation can be used between threads, but it is always safe to stick with Queue."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Because data is sensitive when dealt with between two threads (think concurrent read and concurrent write can conflict with one another, causing race conditions), a set of unique objects were made in order to facilitate the passing of data back and forth between threads. Any truly atomic operation can be used between threads, but it is always safe to stick with Queue."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389512301,
+        "id": "02e91ae0-d161-481a-837c-5e5d9122069c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389512301,
+        "parent_id": "60613634-661b-418a-a15e-9d4de291a149",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import multiprocessing\nimport queue\nmy_Queue=multiprocessing.Queue() \n#Creates a queue with an undefined maximum size\n#this can be dangerous as the queue becomes increasingly large\n#it will take a long time to copy data to/from each read/write thread"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import multiprocessing\nimport queue\nmy_Queue=multiprocessing.Queue() \n#Creates a queue with an undefined maximum size\n#this can be dangerous as the queue becomes increasingly large\n#it will take a long time to copy data to/from each read/write thread",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389512303,
+        "id": "9ad9371c-5751-4eb2-a127-a668d0bca21f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389512303,
+        "parent_id": "60613634-661b-418a-a15e-9d4de291a149",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Most people will suggest that when using queue, to always place the queue data in a try: except: block instead of using empty. However, for applications where it does not matter if you skip a scan cycle (data can be placed in the queue while it is flipping states from "
+            ],
+            [
+              "queue.Empty==True",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to "
+            ],
+            [
+              "queue.Empty==False",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ") it is usually better to place read and write access in what I call an Iftry block, because an ‘if’ statement is technically more performant than catching the exception."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Most people will suggest that when using queue, to always place the queue data in a try: except: block instead of using empty. However, for applications where it does not matter if you skip a scan cycle (data can be placed in the queue while it is flipping states from "
+          },
+          {
+            "Text": "queue.Empty==True",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to "
+          },
+          {
+            "Text": "queue.Empty==False",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ") it is usually better to place read and write access in what I call an Iftry block, because an ‘if’ statement is technically more performant than catching the exception."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389512303,
+        "id": "4e59fc91-3f44-442a-833d-1df1968f5c44",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389512303,
+        "parent_id": "60613634-661b-418a-a15e-9d4de291a149",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import multiprocessing\nimport queue\n'''Import necessary Python standard libraries, multiprocessing for classes and queue for the queue exceptions it provides'''\ndef Queue_Iftry_Get(get_queue, default=None, use_default=False, func=None, use_func=False):\n    '''This global method for the Iftry block is provided for it's reuse and \nstandard functionality, the if also saves on performance as opposed to catching\n the exception, which is expencive.\n        It also allows the user to specify a function for the outgoing data to use,\n and a default value to return if the function cannot return the value from the queue'''\n        if get_queue.empty():\n            if use_default:\n                return default\n        else:\n            try:\n                value = get_queue.get_nowait()\n            except queue.Empty:\n                if use_default:\n                    return default\n            else:\n                if use_func:\n                    return func(value)\n                else:\n                    return value\n    def Queue_Iftry_Put(put_queue, value):\n        '''This global method for the Iftry block is provided because of its reuse \nand \nstandard functionality, the If also saves on performance as opposed to catching\n the exception, which is expensive.\n        Return True if placing value in the queue was successful. Otherwise, false'''\n        if put_queue.full():\n            return False\n        else:\n            try:\n                put_queue.put_nowait(value)\n            except queue.Full:\n                return False\n            else:\n                return True"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import multiprocessing\nimport queue\n'''Import necessary Python standard libraries, multiprocessing for classes and queue for the queue exceptions it provides'''\ndef Queue_Iftry_Get(get_queue, default=None, use_default=False, func=None, use_func=False):\n    '''This global method for the Iftry block is provided for it's reuse and \nstandard functionality, the if also saves on performance as opposed to catching\n the exception, which is expencive.\n        It also allows the user to specify a function for the outgoing data to use,\n and a default value to return if the function cannot return the value from the queue'''\n        if get_queue.empty():\n            if use_default:\n                return default\n        else:\n            try:\n                value = get_queue.get_nowait()\n            except queue.Empty:\n                if use_default:\n                    return default\n            else:\n                if use_func:\n                    return func(value)\n                else:\n                    return value\n    def Queue_Iftry_Put(put_queue, value):\n        '''This global method for the Iftry block is provided because of its reuse \nand \nstandard functionality, the If also saves on performance as opposed to catching\n the exception, which is expensive.\n        Return True if placing value in the queue was successful. Otherwise, false'''\n        if put_queue.full():\n            return False\n        else:\n            try:\n                put_queue.put_nowait(value)\n            except queue.Full:\n                return False\n            else:\n                return True",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Passing data between multiprocessing processes"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

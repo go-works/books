@@ -1,0 +1,109 @@
+{
+  "ID": "80231e14-b947-41d0-bff0-1e9778e40ae6",
+  "Root": {
+    "alive": true,
+    "content": [
+      "41de61d9-5a92-4640-9165-611b4ea47989",
+      "5f6e5e94-7b68-4f8c-8345-02226eed2749"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550390587056,
+    "id": "80231e14-b947-41d0-bff0-1e9778e40ae6",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550472960000,
+    "parent_id": "7aeced73-daff-461a-beb3-ac9281908249",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Wrapper Class with aiohttp"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 6,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550390587053,
+        "id": "41de61d9-5a92-4640-9165-611b4ea47989",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550390587053,
+        "parent_id": "80231e14-b947-41d0-bff0-1e9778e40ae6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "aiohttp.ClientSession",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " may be used as a parent for a custom WebSocket class."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "aiohttp.ClientSession",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " may be used as a parent for a custom WebSocket class."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550390587055,
+        "id": "5f6e5e94-7b68-4f8c-8345-02226eed2749",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550390587055,
+        "parent_id": "80231e14-b947-41d0-bff0-1e9778e40ae6",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import asyncio\nfrom aiohttp import ClientSession\n\nclass EchoWebSocket(ClientSession):\n\n    URL = \"wss://echo.websocket.org\"\n\n    def __init__(self):\n        super().__init__()\n        self.websocket = None\n\n    async def connect(self):\n        \"\"\"Connect to the WebSocket.\"\"\"\n        self.websocket = await self.ws_connect(self.URL)\n\n    async def send(self, message):\n        \"\"\"Send a message to the WebSocket.\"\"\"\n        assert self.websocket is not None, \"You must connect first!\"\n        self.websocket.send_str(message)\n        print(\"Sent:\", message)\n\n    async def receive(self):\n        \"\"\"Receive one message from the WebSocket.\"\"\"\n        assert self.websocket is not None, \"You must connect first!\"\n        return (await self.websocket.receive()).data\n\n    async def read(self):\n        \"\"\"Read messages from the WebSocket.\"\"\"\n        assert self.websocket is not None, \"You must connect first!\"\n\n        while self.websocket.receive():\n            message = await self.receive()\n            print(\"Received:\", message)\n            if message == \"Echo 9!\":\n                break\n\nasync def send(websocket):\n    for n in range(10):\n        await websocket.send(\"Echo {}!\".format(n))\n        await asyncio.sleep(1)\n\nloop = asyncio.get_event_loop()\n\nwith EchoWebSocket() as websocket:\n\n    loop.run_until_complete(websocket.connect())\n\n    tasks = (\n        send(websocket),\n        websocket.read()\n    )\n\n    loop.run_until_complete(asyncio.wait(tasks))\n\n    loop.close()"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import asyncio\nfrom aiohttp import ClientSession\n\nclass EchoWebSocket(ClientSession):\n\n    URL = \"wss://echo.websocket.org\"\n\n    def __init__(self):\n        super().__init__()\n        self.websocket = None\n\n    async def connect(self):\n        \"\"\"Connect to the WebSocket.\"\"\"\n        self.websocket = await self.ws_connect(self.URL)\n\n    async def send(self, message):\n        \"\"\"Send a message to the WebSocket.\"\"\"\n        assert self.websocket is not None, \"You must connect first!\"\n        self.websocket.send_str(message)\n        print(\"Sent:\", message)\n\n    async def receive(self):\n        \"\"\"Receive one message from the WebSocket.\"\"\"\n        assert self.websocket is not None, \"You must connect first!\"\n        return (await self.websocket.receive()).data\n\n    async def read(self):\n        \"\"\"Read messages from the WebSocket.\"\"\"\n        assert self.websocket is not None, \"You must connect first!\"\n\n        while self.websocket.receive():\n            message = await self.receive()\n            print(\"Received:\", message)\n            if message == \"Echo 9!\":\n                break\n\nasync def send(websocket):\n    for n in range(10):\n        await websocket.send(\"Echo {}!\".format(n))\n        await asyncio.sleep(1)\n\nloop = asyncio.get_event_loop()\n\nwith EchoWebSocket() as websocket:\n\n    loop.run_until_complete(websocket.connect())\n\n    tasks = (\n        send(websocket),\n        websocket.read()\n    )\n\n    loop.run_until_complete(asyncio.wait(tasks))\n\n    loop.close()",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Wrapper Class with aiohttp"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

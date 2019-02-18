@@ -1,0 +1,123 @@
+{
+  "ID": "331a1ea7-e20c-416f-b1f4-5ebc5e7606bd",
+  "Root": {
+    "alive": true,
+    "content": [
+      "9280fa71-1dfa-4d1b-a0ad-21584a2b29d7",
+      "b123d5f8-a9e8-4a4e-9a11-accab8fc8c9e",
+      "8ed4a544-0932-407d-ba37-af6f8ecfc009"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550390007159,
+    "id": "331a1ea7-e20c-416f-b1f4-5ebc5e7606bd",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550470740000,
+    "parent_id": "83a774bd-c15f-4309-8977-f8e4f50be338",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Sharing State Between Threads"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 6,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550390007158,
+        "id": "9280fa71-1dfa-4d1b-a0ad-21584a2b29d7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550390007158,
+        "parent_id": "331a1ea7-e20c-416f-b1f4-5ebc5e7606bd",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "As all threads are running in the same process, all threads have access to the same data."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "As all threads are running in the same process, all threads have access to the same data."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550390007158,
+        "id": "b123d5f8-a9e8-4a4e-9a11-accab8fc8c9e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550390007158,
+        "parent_id": "331a1ea7-e20c-416f-b1f4-5ebc5e7606bd",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "However, concurrent access to shared data should be protected with a lock to avoid synchronization issues."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "However, concurrent access to shared data should be protected with a lock to avoid synchronization issues."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550390007158,
+        "id": "8ed4a544-0932-407d-ba37-af6f8ecfc009",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550390007158,
+        "parent_id": "331a1ea7-e20c-416f-b1f4-5ebc5e7606bd",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import threading\n\nobj = {}\nobj_lock = threading.Lock()\n\ndef objify(key, val):\n    print(\"Obj has %d values\" % len(obj))\n    with obj_lock:\n        obj[key] = val\n    print(\"Obj now has %d values\" % len(obj))\n\nts = [threading.Thread(target=objify, args=(str(n), n)) for n in range(4)]\nfor t in ts:\n    t.start()\nfor t in ts:\n    t.join()\nprint(\"Obj final result:\")\nimport pprint; pprint.pprint(obj)\n\n# Out: Obj has 0 values\n# Out:  Obj has 0 values\n# Out: Obj now has 1 values\n# Out: Obj now has 2 valuesObj has 2 values\n# Out: Obj now has 3 values\n# Out: \n# Out:  Obj has 3 values\n# Out: Obj now has 4 values\n# Out: Obj final result:\n# Out: {'0': 0, '1': 1, '2': 2, '3': 3}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import threading\n\nobj = {}\nobj_lock = threading.Lock()\n\ndef objify(key, val):\n    print(\"Obj has %d values\" % len(obj))\n    with obj_lock:\n        obj[key] = val\n    print(\"Obj now has %d values\" % len(obj))\n\nts = [threading.Thread(target=objify, args=(str(n), n)) for n in range(4)]\nfor t in ts:\n    t.start()\nfor t in ts:\n    t.join()\nprint(\"Obj final result:\")\nimport pprint; pprint.pprint(obj)\n\n# Out: Obj has 0 values\n# Out:  Obj has 0 values\n# Out: Obj now has 1 values\n# Out: Obj now has 2 valuesObj has 2 values\n# Out: Obj now has 3 values\n# Out: \n# Out:  Obj has 3 values\n# Out: Obj now has 4 values\n# Out: Obj final result:\n# Out: {'0': 0, '1': 1, '2': 2, '3': 3}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Sharing State Between Threads"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

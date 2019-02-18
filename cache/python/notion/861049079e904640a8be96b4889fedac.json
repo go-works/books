@@ -1,0 +1,71 @@
+{
+  "ID": "86104907-9e90-4640-a8be-96b4889fedac",
+  "Root": {
+    "alive": true,
+    "content": [
+      "adbcdacc-42f4-4a3f-9830-4f43eba8a050"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550393475819,
+    "id": "86104907-9e90-4640-a8be-96b4889fedac",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550477280000,
+    "parent_id": "4feeec83-7517-45bf-be00-827d7b0cc408",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Balancing reactions"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 6,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550393475817,
+        "id": "adbcdacc-42f4-4a3f-9830-4f43eba8a050",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550477280000,
+        "parent_id": "86104907-9e90-4640-a8be-96b4889fedac",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Python"
+            ]
+          ],
+          "title": [
+            [
+              "from chempy import Equilibrium\n from sympy import symbols\n K1, K2, Kw = symbols('K1 K2 Kw')\n e1 = Equilibrium({'MnO4-': 1, 'H+': 8, 'e-': 5}, {'Mn+2': 1, 'H2O': 4}, K1)\n e2 = Equilibrium({'O2': 1, 'H2O': 2, 'e-': 4}, {'OH-': 4}, K2)\n coeff = Equilibrium.eliminate([e1, e2], 'e-')\n coeff\n[4, -5]\n redox = e1*coeff[0] + e2*coeff[1]\n print(redox)\n20 OH- + 32 H+ + 4 MnO4- = 26 H2O + 4 Mn+2 + 5 O2; K1**4/K2**5\n autoprot = Equilibrium({'H2O': 1}, {'H+': 1, 'OH-': 1}, Kw)\n n = redox.cancel(autoprot)\n n\n20\n redox2 = redox + n*autoprot\n print(redox2)\n12 H+ + 4 MnO4- = 4 Mn+2 + 5 O2 + 6 H2O; K1**4*Kw**20/K2**5"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "from chempy import Equilibrium\n from sympy import symbols\n K1, K2, Kw = symbols('K1 K2 Kw')\n e1 = Equilibrium({'MnO4-': 1, 'H+': 8, 'e-': 5}, {'Mn+2': 1, 'H2O': 4}, K1)\n e2 = Equilibrium({'O2': 1, 'H2O': 2, 'e-': 4}, {'OH-': 4}, K2)\n coeff = Equilibrium.eliminate([e1, e2], 'e-')\n coeff\n[4, -5]\n redox = e1*coeff[0] + e2*coeff[1]\n print(redox)\n20 OH- + 32 H+ + 4 MnO4- = 26 H2O + 4 Mn+2 + 5 O2; K1**4/K2**5\n autoprot = Equilibrium({'H2O': 1}, {'H+': 1, 'OH-': 1}, Kw)\n n = redox.cancel(autoprot)\n n\n20\n redox2 = redox + n*autoprot\n print(redox2)\n12 H+ + 4 MnO4- = 4 Mn+2 + 5 O2 + 6 H2O; K1**4*Kw**20/K2**5",
+        "code_language": "Python"
+      }
+    ],
+    "title": "Balancing reactions"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

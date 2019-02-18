@@ -1,0 +1,642 @@
+{
+  "ID": "6e3433dc-969c-4f47-843d-199e59184918",
+  "Root": {
+    "alive": true,
+    "content": [
+      "4b3516a3-5868-4d3a-8802-afece20cf2c4",
+      "c6711cb3-5e08-4d53-bca7-83cea8a8ac1a",
+      "f8dc9da1-5dcb-4e47-97a0-7e6178c558f5",
+      "a7ba5337-111a-4071-83bc-8e8846b285c2",
+      "c78f1abb-a895-41f6-ac62-2bff919b8914",
+      "0850d144-ced1-4092-ba19-a121e1c5c159",
+      "86481a56-4f25-47fb-8067-54a80d2d367a",
+      "6a681096-5558-4bd9-bc15-15a725f3d0f0",
+      "c9447ff3-edbe-46da-834a-49f18d1485de",
+      "78f0255a-b0be-4f46-bfb9-988ae2c3726e",
+      "a004fe8b-bda7-48a8-9f01-84d72ab7a07b",
+      "39f19007-4f55-4e74-8163-09dccd29f3b4",
+      "03ef2ba8-13ce-49b6-92c0-3b5577fbd06d",
+      "a769ed4f-713e-4c7d-a959-2fcea36b54ce",
+      "e6e2d49e-376b-43b5-ad60-8bb927a55e49",
+      "c2c7086e-c0f8-4de4-a4d7-9afb3676a2f2",
+      "ad7381ee-13d1-472b-aa1b-89c2b08555ea",
+      "02f087a4-94fa-4b40-8ad0-531d18130d8f"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550389530161,
+    "id": "6e3433dc-969c-4f47-843d-199e59184918",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550469960000,
+    "parent_id": "0b9e0e51-5eaf-4610-9728-abc0e494ca3d",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "How to create a delayed queue in RabbitMQ"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 6,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389530157,
+        "id": "4b3516a3-5868-4d3a-8802-afece20cf2c4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389530157,
+        "parent_id": "6e3433dc-969c-4f47-843d-199e59184918",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "First we need to set up two basic channels, one for the main queue, and one for the delay queue. In my example at the end, I include a couple of additional flags that are not required, but makes the code more reliable; such as "
+            ],
+            [
+              "confirm delivery",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", "
+            ],
+            [
+              "delivery_mode",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "durable",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". You can find more information on these in the RabbitMQ "
+            ],
+            [
+              "manual",
+              [
+                [
+                  "a",
+                  "http://www.rabbitmq.com/tutorials/amqp-concepts.html"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "First we need to set up two basic channels, one for the main queue, and one for the delay queue. In my example at the end, I include a couple of additional flags that are not required, but makes the code more reliable; such as "
+          },
+          {
+            "Text": "confirm delivery",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", "
+          },
+          {
+            "Text": "delivery_mode",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "durable",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". You can find more information on these in the RabbitMQ "
+          },
+          {
+            "Text": "manual",
+            "Link": "http://www.rabbitmq.com/tutorials/amqp-concepts.html"
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389530157,
+        "id": "c6711cb3-5e08-4d53-bca7-83cea8a8ac1a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389530157,
+        "parent_id": "6e3433dc-969c-4f47-843d-199e59184918",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "After we have set up the channels we add a binding to the main channel that we can use to send messages from the delay channel to our main queue."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "After we have set up the channels we add a binding to the main channel that we can use to send messages from the delay channel to our main queue."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389530157,
+        "id": "f8dc9da1-5dcb-4e47-97a0-7e6178c558f5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389530157,
+        "parent_id": "6e3433dc-969c-4f47-843d-199e59184918",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "channel.queue.bind(exchange='amq.direct', routing_key='hello', queue='hello')"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "channel.queue.bind(exchange='amq.direct', routing_key='hello', queue='hello')",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389530157,
+        "id": "a7ba5337-111a-4071-83bc-8e8846b285c2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389530157,
+        "parent_id": "6e3433dc-969c-4f47-843d-199e59184918",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Next we need to configure our delay channel to forward messages to the main queue once they have expired."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Next we need to configure our delay channel to forward messages to the main queue once they have expired."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389530157,
+        "id": "c78f1abb-a895-41f6-ac62-2bff919b8914",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389530157,
+        "parent_id": "6e3433dc-969c-4f47-843d-199e59184918",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "delay_channel.queue.declare(queue='hello_delay', durable=True, arguments={\n    'x-message-ttl': 5000,\n    'x-dead-letter-exchange': 'amq.direct',\n    'x-dead-letter-routing-key': 'hello'\n})"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "delay_channel.queue.declare(queue='hello_delay', durable=True, arguments={\n    'x-message-ttl': 5000,\n    'x-dead-letter-exchange': 'amq.direct',\n    'x-dead-letter-routing-key': 'hello'\n})",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389530158,
+        "id": "0850d144-ced1-4092-ba19-a121e1c5c159",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389530158,
+        "parent_id": "6e3433dc-969c-4f47-843d-199e59184918",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "x-message-ttl",
+              [
+                [
+                  "a",
+                  "https://www.rabbitmq.com/ttl.html"
+                ]
+              ]
+            ],
+            [
+              " "
+            ],
+            [
+              "(Message - Time To Live)",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "x-message-ttl",
+            "Link": "https://www.rabbitmq.com/ttl.html"
+          },
+          {
+            "Text": " "
+          },
+          {
+            "Text": "(Message - Time To Live)",
+            "AttrFlags": 4
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389530158,
+        "id": "86481a56-4f25-47fb-8067-54a80d2d367a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389530158,
+        "parent_id": "6e3433dc-969c-4f47-843d-199e59184918",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This is normally used to automatically remove old messages in the queue after a specific duration, but by adding two optional arguments we can change this behaviour, and instead have this parameter determine in milliseconds how long messages will stay in the delay queue."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This is normally used to automatically remove old messages in the queue after a specific duration, but by adding two optional arguments we can change this behaviour, and instead have this parameter determine in milliseconds how long messages will stay in the delay queue."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389530159,
+        "id": "6a681096-5558-4bd9-bc15-15a725f3d0f0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389530159,
+        "parent_id": "6e3433dc-969c-4f47-843d-199e59184918",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "x-dead-letter-routing-key",
+              [
+                [
+                  "a",
+                  "http://www.rabbitmq.com/dlx.html"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "x-dead-letter-routing-key",
+            "Link": "http://www.rabbitmq.com/dlx.html"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389530159,
+        "id": "c9447ff3-edbe-46da-834a-49f18d1485de",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389530159,
+        "parent_id": "6e3433dc-969c-4f47-843d-199e59184918",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This variable allows us to transfer the message to a different queue once they have expired, instead of the default behaviour of removing it completely."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This variable allows us to transfer the message to a different queue once they have expired, instead of the default behaviour of removing it completely."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389530160,
+        "id": "78f0255a-b0be-4f46-bfb9-988ae2c3726e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389530160,
+        "parent_id": "6e3433dc-969c-4f47-843d-199e59184918",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "x-dead-letter-exchange",
+              [
+                [
+                  "a",
+                  "http://www.rabbitmq.com/dlx.html"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "x-dead-letter-exchange",
+            "Link": "http://www.rabbitmq.com/dlx.html"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389530160,
+        "id": "a004fe8b-bda7-48a8-9f01-84d72ab7a07b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389530160,
+        "parent_id": "6e3433dc-969c-4f47-843d-199e59184918",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "This variable determines which Exchange used to transfer the message from hello_delay to hello queue."
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "This variable determines which Exchange used to transfer the message from hello_delay to hello queue.",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389530160,
+        "id": "39f19007-4f55-4e74-8163-09dccd29f3b4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389530160,
+        "parent_id": "6e3433dc-969c-4f47-843d-199e59184918",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Publishing to the delay queue",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Publishing to the delay queue",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389530160,
+        "id": "03ef2ba8-13ce-49b6-92c0-3b5577fbd06d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389530160,
+        "parent_id": "6e3433dc-969c-4f47-843d-199e59184918",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "When we are done setting up all the basic Pika parameters you simply send a message to the delay queue using basic publish."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "When we are done setting up all the basic Pika parameters you simply send a message to the delay queue using basic publish."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389530160,
+        "id": "a769ed4f-713e-4c7d-a959-2fcea36b54ce",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389530160,
+        "parent_id": "6e3433dc-969c-4f47-843d-199e59184918",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "delay_channel.basic.publish(exchange='',\n                            routing_key='hello_delay',\n                            body='test',\n                            properties={'delivery_mod': 2})"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "delay_channel.basic.publish(exchange='',\n                            routing_key='hello_delay',\n                            body='test',\n                            properties={'delivery_mod': 2})",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389530160,
+        "id": "e6e2d49e-376b-43b5-ad60-8bb927a55e49",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389530160,
+        "parent_id": "6e3433dc-969c-4f47-843d-199e59184918",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Once you have executed the script you should see the following queues created in your RabbitMQ management module."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Once you have executed the script you should see the following queues created in your RabbitMQ management module."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389530160,
+        "id": "c2c7086e-c0f8-4de4-a4d7-9afb3676a2f2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389530160,
+        "parent_id": "6e3433dc-969c-4f47-843d-199e59184918",
+        "parent_table": "block",
+        "properties": {
+          "source": [
+            [
+              "http://i.stack.imgur.com/jWEDR.png"
+            ]
+          ]
+        },
+        "type": "image",
+        "version": 1,
+        "source": "http://i.stack.imgur.com/jWEDR.png",
+        "image_url": "https://www.notion.so/image/https:%2F%2Fwww.notion.sohttp:%2F%2Fi.stack.imgur.com%2FjWEDR.png"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389530161,
+        "id": "ad7381ee-13d1-472b-aa1b-89c2b08555ea",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389530161,
+        "parent_id": "6e3433dc-969c-4f47-843d-199e59184918",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Example.",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Example.",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389530161,
+        "id": "02f087a4-94fa-4b40-8ad0-531d18130d8f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389530161,
+        "parent_id": "6e3433dc-969c-4f47-843d-199e59184918",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "from amqpstorm import Connection\n\nconnection = Connection('127.0.0.1', 'guest', 'guest')\n\n# Create normal 'Hello World' type channel.\nchannel = connection.channel()\nchannel.confirm_deliveries()\nchannel.queue.declare(queue='hello', durable=True)\n\n# We need to bind this channel to an exchange, that will be used to transfer\n# messages from our delay queue.\nchannel.queue.bind(exchange='amq.direct', routing_key='hello', queue='hello')\n\n# Create our delay channel.\ndelay_channel = connection.channel()\ndelay_channel.confirm_deliveries()\n\n# This is where we declare the delay, and routing for our delay channel.\ndelay_channel.queue.declare(queue='hello_delay', durable=True, arguments={\n    'x-message-ttl': 5000, # Delay until the message is transferred in milliseconds.\n    'x-dead-letter-exchange': 'amq.direct', # Exchange used to transfer the message from A to B.\n    'x-dead-letter-routing-key': 'hello' # Name of the queue we want the message transferred to.\n})\n\ndelay_channel.basic.publish(exchange='',\n                            routing_key='hello_delay',\n                            body='test',\n                            properties={'delivery_mode': 2})\n\nprint(\"[x] Sent\")"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "from amqpstorm import Connection\n\nconnection = Connection('127.0.0.1', 'guest', 'guest')\n\n# Create normal 'Hello World' type channel.\nchannel = connection.channel()\nchannel.confirm_deliveries()\nchannel.queue.declare(queue='hello', durable=True)\n\n# We need to bind this channel to an exchange, that will be used to transfer\n# messages from our delay queue.\nchannel.queue.bind(exchange='amq.direct', routing_key='hello', queue='hello')\n\n# Create our delay channel.\ndelay_channel = connection.channel()\ndelay_channel.confirm_deliveries()\n\n# This is where we declare the delay, and routing for our delay channel.\ndelay_channel.queue.declare(queue='hello_delay', durable=True, arguments={\n    'x-message-ttl': 5000, # Delay until the message is transferred in milliseconds.\n    'x-dead-letter-exchange': 'amq.direct', # Exchange used to transfer the message from A to B.\n    'x-dead-letter-routing-key': 'hello' # Name of the queue we want the message transferred to.\n})\n\ndelay_channel.basic.publish(exchange='',\n                            routing_key='hello_delay',\n                            body='test',\n                            properties={'delivery_mode': 2})\n\nprint(\"[x] Sent\")",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "How to create a delayed queue in RabbitMQ"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

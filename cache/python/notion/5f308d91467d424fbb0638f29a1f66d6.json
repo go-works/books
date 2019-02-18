@@ -1,0 +1,133 @@
+{
+  "ID": "5f308d91-467d-424f-bb06-38f29a1f66d6",
+  "Root": {
+    "alive": true,
+    "content": [
+      "3c77b7c1-325a-4e20-bfb1-21799b5d86ed",
+      "8bfb6c0a-797c-43d9-9eb1-eed5bd35359f"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550391183076,
+    "id": "5f308d91-467d-424f-bb06-38f29a1f66d6",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550391183076,
+    "parent_id": "3793b9f0-ce6b-49f1-8be0-025fb0d43d5e",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "050 Query 2 Get News Articles by Location on a particular date"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550391183073,
+        "id": "3c77b7c1-325a-4e20-bfb1-21799b5d86ed",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550391183073,
+        "parent_id": "5f308d91-467d-424f-bb06-38f29a1f66d6",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "def search_news_by_entity(location,timestamp):\n    query = \"\"\"\n    MATCH (n)-[]-\u003e(l) \n    where l.name='%s' and n.timestamp='%s'\n    RETURN n.news_id limit 10\n    \"\"\"\n\n    query = query % (location,timestamp)\n\n    news_ids = []\n    for res in graph.cypher.execute(query):\n        news_ids.append(str(res[0]))\n\n    return news_ids"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "def search_news_by_entity(location,timestamp):\n    query = \"\"\"\n    MATCH (n)-[]-\u003e(l) \n    where l.name='%s' and n.timestamp='%s'\n    RETURN n.news_id limit 10\n    \"\"\"\n\n    query = query % (location,timestamp)\n\n    news_ids = []\n    for res in graph.cypher.execute(query):\n        news_ids.append(str(res[0]))\n\n    return news_ids",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550391183076,
+        "id": "8bfb6c0a-797c-43d9-9eb1-eed5bd35359f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550391183076,
+        "parent_id": "5f308d91-467d-424f-bb06-38f29a1f66d6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "You can use this query to find all news articles "
+            ],
+            [
+              "(n)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " connected to a location "
+            ],
+            [
+              "(l)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " by a relationship."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "You can use this query to find all news articles "
+          },
+          {
+            "Text": "(n)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " connected to a location "
+          },
+          {
+            "Text": "(l)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " by a relationship."
+          }
+        ]
+      }
+    ],
+    "title": "050 Query 2 Get News Articles by Location on a particular date"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

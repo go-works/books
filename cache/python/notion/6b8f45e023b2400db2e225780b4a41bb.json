@@ -1,0 +1,286 @@
+{
+  "ID": "6b8f45e0-23b2-400d-b2e2-25780b4a41bb",
+  "Root": {
+    "alive": true,
+    "content": [
+      "0d75ce03-3cf3-4ba4-8407-d977843423cc",
+      "b93bea48-aa4c-472c-b0de-995b9eba0192",
+      "1ffdb59e-ff5a-45cf-a804-2f18a6267781",
+      "74cdc2d4-dc6b-4de5-966a-a4ebd0ad9b79",
+      "692d63f4-c504-4bcd-8425-ad14a2b47bf7",
+      "af396490-0362-4f2e-91cc-6d578897b133",
+      "2177b188-164b-47ae-89d6-98bab882d0b0"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550388777985,
+    "id": "6b8f45e0-23b2-400d-b2e2-25780b4a41bb",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550467860000,
+    "parent_id": "b6889a68-481f-4717-ad92-69e3fbc6822b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Scraping using the Scrapy framework"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 6,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550388777981,
+        "id": "0d75ce03-3cf3-4ba4-8407-d977843423cc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550388777981,
+        "parent_id": "6b8f45e0-23b2-400d-b2e2-25780b4a41bb",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "First you have to set up a new Scrapy project. Enter a directory where you’d like to store your code and run:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "First you have to set up a new Scrapy project. Enter a directory where you’d like to store your code and run:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550388777983,
+        "id": "b93bea48-aa4c-472c-b0de-995b9eba0192",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550388777983,
+        "parent_id": "6b8f45e0-23b2-400d-b2e2-25780b4a41bb",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "scrapy startproject projectName"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "scrapy startproject projectName",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550388777985,
+        "id": "1ffdb59e-ff5a-45cf-a804-2f18a6267781",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550388777985,
+        "parent_id": "6b8f45e0-23b2-400d-b2e2-25780b4a41bb",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To scrape we need a spider. Spiders define how a certain site will be scraped. Here’s the code for a spider that follows the links to the top voted questions on StackOverflow and scrapes some data from each page ("
+            ],
+            [
+              "source",
+              [
+                [
+                  "a",
+                  "http://doc.scrapy.org/en/latest/intro/overview.html"
+                ]
+              ]
+            ],
+            [
+              "):"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To scrape we need a spider. Spiders define how a certain site will be scraped. Here’s the code for a spider that follows the links to the top voted questions on StackOverflow and scrapes some data from each page ("
+          },
+          {
+            "Text": "source",
+            "Link": "http://doc.scrapy.org/en/latest/intro/overview.html"
+          },
+          {
+            "Text": "):"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550388777985,
+        "id": "74cdc2d4-dc6b-4de5-966a-a4ebd0ad9b79",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550388777985,
+        "parent_id": "6b8f45e0-23b2-400d-b2e2-25780b4a41bb",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import scrapy\n\nclass StackOverflowSpider(scrapy.Spider):\n    name = 'stackoverflow'  # each spider has a unique name\n    start_urls = ['http://stackoverflow.com/questions?sort=votes']  # the parsing starts from a specific set of urls\n\n    def parse(self, response):  # for each request this generator yields, its response is sent to parse_question\n        for href in response.css('.question-summary h3 a::attr(href)'):  # do some scraping stuff using css selectors to find question urls \n            full_url = response.urljoin(href.extract())\n            yield scrapy.Request(full_url, callback=self.parse_question)\n\n    def parse_question(self, response): \n        yield {\n            'title': response.css('h1 a::text').extract_first(),\n            'votes': response.css('.question .vote-count-post::text').extract_first(),\n            'body': response.css('.question .post-text').extract_first(),\n            'tags': response.css('.question .post-tag::text').extract(),\n            'link': response.url,\n        }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import scrapy\n\nclass StackOverflowSpider(scrapy.Spider):\n    name = 'stackoverflow'  # each spider has a unique name\n    start_urls = ['http://stackoverflow.com/questions?sort=votes']  # the parsing starts from a specific set of urls\n\n    def parse(self, response):  # for each request this generator yields, its response is sent to parse_question\n        for href in response.css('.question-summary h3 a::attr(href)'):  # do some scraping stuff using css selectors to find question urls \n            full_url = response.urljoin(href.extract())\n            yield scrapy.Request(full_url, callback=self.parse_question)\n\n    def parse_question(self, response): \n        yield {\n            'title': response.css('h1 a::text').extract_first(),\n            'votes': response.css('.question .vote-count-post::text').extract_first(),\n            'body': response.css('.question .post-text').extract_first(),\n            'tags': response.css('.question .post-tag::text').extract(),\n            'link': response.url,\n        }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550388777985,
+        "id": "692d63f4-c504-4bcd-8425-ad14a2b47bf7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550388777985,
+        "parent_id": "6b8f45e0-23b2-400d-b2e2-25780b4a41bb",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Save your spider classes in the "
+            ],
+            [
+              "projectName\\spiders",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " directory. In this case - "
+            ],
+            [
+              "projectName\\spiders\\stackoverflow_spider.py",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Save your spider classes in the "
+          },
+          {
+            "Text": "projectName\\spiders",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " directory. In this case - "
+          },
+          {
+            "Text": "projectName\\spiders\\stackoverflow_spider.py",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550388777985,
+        "id": "af396490-0362-4f2e-91cc-6d578897b133",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550388777985,
+        "parent_id": "6b8f45e0-23b2-400d-b2e2-25780b4a41bb",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Now you can use your spider. For example, try running (in the project’s directory):"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Now you can use your spider. For example, try running (in the project’s directory):"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550388777985,
+        "id": "2177b188-164b-47ae-89d6-98bab882d0b0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550388777985,
+        "parent_id": "6b8f45e0-23b2-400d-b2e2-25780b4a41bb",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "scrapy crawl stackoverflow"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "scrapy crawl stackoverflow",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Scraping using the Scrapy framework"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

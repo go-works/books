@@ -1,0 +1,126 @@
+{
+  "ID": "9bd70015-8e07-4481-bb25-7009c7e95eea",
+  "Root": {
+    "alive": true,
+    "content": [
+      "ed5d1826-18c2-44da-b3d1-ca9e36e7630d",
+      "320085ea-48d2-4984-85d5-d986fcc801ad",
+      "35574a77-e8c4-4af6-b991-59ff58c3f888"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550389377233,
+    "id": "9bd70015-8e07-4481-bb25-7009c7e95eea",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550469600000,
+    "parent_id": "d227661a-e9f9-40ca-9433-51e50de93a16",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Create excel charts with xlsxwriter"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 6,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389377230,
+        "id": "ed5d1826-18c2-44da-b3d1-ca9e36e7630d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389377230,
+        "parent_id": "9bd70015-8e07-4481-bb25-7009c7e95eea",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import xlsxwriter\n\n# sample data\nchart_data = [\n    {'name': 'Lorem', 'value': 23},\n    {'name': 'Ipsum', 'value': 48},\n    {'name': 'Dolor', 'value': 15},\n    {'name': 'Sit', 'value': 8},\n    {'name': 'Amet', 'value': 32}\n]\n\n# excel file path\nxls_file = 'chart.xlsx'\n\n# the workbook\nworkbook = xlsxwriter.Workbook(xls_file)\n\n# add worksheet to workbook\nworksheet = workbook.add_worksheet()\n\nrow_ = 0\ncol_ = 0\n\n# write headers\nworksheet.write(row_, col_, 'NAME')\ncol_ += 1\nworksheet.write(row_, col_, 'VALUE')\nrow_ += 1\n\n# write sample data \nfor item in chart_data:\n    col_ = 0\n    worksheet.write(row_, col_, item['name'])\n    col_ += 1\n    worksheet.write(row_, col_, item['value'])\n    row_ += 1\n\n# create pie chart\npie_chart = workbook.add_chart({'type': 'pie'})\n\n# add series to pie chart\npie_chart.add_series({\n    'name': 'Series Name',\n    'categories': '=Sheet1!$A$3:$A$%s' % row_,\n    'values': '=Sheet1!$B$3:$B$%s' % row_,\n    'marker': {'type': 'circle'}\n})\n# insert pie chart\nworksheet.insert_chart('D2', pie_chart)\n\n# create column chart\ncolumn_chart = workbook.add_chart({'type': 'column'})\n\n# add serie to column chart\ncolumn_chart.add_series({\n    'name': 'Series Name',\n    'categories': '=Sheet1!$A$3:$A$%s' % row_,\n    'values': '=Sheet1!$B$3:$B$%s' % row_,\n    'marker': {'type': 'circle'}\n})\n# insert column chart\nworksheet.insert_chart('D20', column_chart)\n\nworkbook.close()"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import xlsxwriter\n\n# sample data\nchart_data = [\n    {'name': 'Lorem', 'value': 23},\n    {'name': 'Ipsum', 'value': 48},\n    {'name': 'Dolor', 'value': 15},\n    {'name': 'Sit', 'value': 8},\n    {'name': 'Amet', 'value': 32}\n]\n\n# excel file path\nxls_file = 'chart.xlsx'\n\n# the workbook\nworkbook = xlsxwriter.Workbook(xls_file)\n\n# add worksheet to workbook\nworksheet = workbook.add_worksheet()\n\nrow_ = 0\ncol_ = 0\n\n# write headers\nworksheet.write(row_, col_, 'NAME')\ncol_ += 1\nworksheet.write(row_, col_, 'VALUE')\nrow_ += 1\n\n# write sample data \nfor item in chart_data:\n    col_ = 0\n    worksheet.write(row_, col_, item['name'])\n    col_ += 1\n    worksheet.write(row_, col_, item['value'])\n    row_ += 1\n\n# create pie chart\npie_chart = workbook.add_chart({'type': 'pie'})\n\n# add series to pie chart\npie_chart.add_series({\n    'name': 'Series Name',\n    'categories': '=Sheet1!$A$3:$A$%s' % row_,\n    'values': '=Sheet1!$B$3:$B$%s' % row_,\n    'marker': {'type': 'circle'}\n})\n# insert pie chart\nworksheet.insert_chart('D2', pie_chart)\n\n# create column chart\ncolumn_chart = workbook.add_chart({'type': 'column'})\n\n# add serie to column chart\ncolumn_chart.add_series({\n    'name': 'Series Name',\n    'categories': '=Sheet1!$A$3:$A$%s' % row_,\n    'values': '=Sheet1!$B$3:$B$%s' % row_,\n    'marker': {'type': 'circle'}\n})\n# insert column chart\nworksheet.insert_chart('D20', column_chart)\n\nworkbook.close()",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389377233,
+        "id": "320085ea-48d2-4984-85d5-d986fcc801ad",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389377233,
+        "parent_id": "9bd70015-8e07-4481-bb25-7009c7e95eea",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Result:",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Result:",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389377233,
+        "id": "35574a77-e8c4-4af6-b991-59ff58c3f888",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389377233,
+        "parent_id": "9bd70015-8e07-4481-bb25-7009c7e95eea",
+        "parent_table": "block",
+        "properties": {
+          "source": [
+            [
+              "http://i.stack.imgur.com/D3sta.png"
+            ]
+          ]
+        },
+        "type": "image",
+        "version": 1,
+        "source": "http://i.stack.imgur.com/D3sta.png",
+        "image_url": "https://www.notion.so/image/https:%2F%2Fwww.notion.sohttp:%2F%2Fi.stack.imgur.com%2FD3sta.png"
+      }
+    ],
+    "title": "Create excel charts with xlsxwriter"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

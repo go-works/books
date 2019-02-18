@@ -1,0 +1,71 @@
+{
+  "ID": "cb2e95d5-4d07-4bf2-8164-b684246563d6",
+  "Root": {
+    "alive": true,
+    "content": [
+      "ac41d1d0-ab02-4306-a6d9-527e9761ee8c"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550389375174,
+    "id": "cb2e95d5-4d07-4bf2-8164-b684246563d6",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550469600000,
+    "parent_id": "d227661a-e9f9-40ca-9433-51e50de93a16",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Put list data into a Excels file."
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 6,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550389375171,
+        "id": "ac41d1d0-ab02-4306-a6d9-527e9761ee8c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550389375171,
+        "parent_id": "cb2e95d5-4d07-4bf2-8164-b684246563d6",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import os, sys\nfrom openpyxl import Workbook\nfrom datetime import datetime\n\ndt = datetime.now()\nlist_values = [[\"01/01/2016\", \"05:00:00\", 3], \\\n               [\"01/02/2016\", \"06:00:00\", 4], \\\n               [\"01/03/2016\", \"07:00:00\", 5], \\\n               [\"01/04/2016\", \"08:00:00\", 6], \\\n               [\"01/05/2016\", \"09:00:00\", 7]]\n\n# Create a Workbook on Excel:\nwb = Workbook()\nsheet = wb.active\nsheet.title = 'data'\n\n# Print the titles into Excel Workbook:\nrow = 1\nsheet['A'+str(row)] = 'Date'\nsheet['B'+str(row)] = 'Hour'\nsheet['C'+str(row)] = 'Value'\n\n# Populate with data\nfor item in list_values:\n    row += 1\n    sheet['A'+str(row)] = item[0]\n    sheet['B'+str(row)] = item[1]\n    sheet['C'+str(row)] = item[2]\n\n# Save a file by date:\nfilename = 'data_' + dt.strftime(\"%Y%m%d_%I%M%S\") + '.xlsx'\nwb.save(filename)\n\n# Open the file for the user:\nos.chdir(sys.path[0])\nos.system('start excel.exe \"%s\\\\%s\"' % (sys.path[0], filename, ))"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import os, sys\nfrom openpyxl import Workbook\nfrom datetime import datetime\n\ndt = datetime.now()\nlist_values = [[\"01/01/2016\", \"05:00:00\", 3], \\\n               [\"01/02/2016\", \"06:00:00\", 4], \\\n               [\"01/03/2016\", \"07:00:00\", 5], \\\n               [\"01/04/2016\", \"08:00:00\", 6], \\\n               [\"01/05/2016\", \"09:00:00\", 7]]\n\n# Create a Workbook on Excel:\nwb = Workbook()\nsheet = wb.active\nsheet.title = 'data'\n\n# Print the titles into Excel Workbook:\nrow = 1\nsheet['A'+str(row)] = 'Date'\nsheet['B'+str(row)] = 'Hour'\nsheet['C'+str(row)] = 'Value'\n\n# Populate with data\nfor item in list_values:\n    row += 1\n    sheet['A'+str(row)] = item[0]\n    sheet['B'+str(row)] = item[1]\n    sheet['C'+str(row)] = item[2]\n\n# Save a file by date:\nfilename = 'data_' + dt.strftime(\"%Y%m%d_%I%M%S\") + '.xlsx'\nwb.save(filename)\n\n# Open the file for the user:\nos.chdir(sys.path[0])\nos.system('start excel.exe \"%s\\\\%s\"' % (sys.path[0], filename, ))",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Put list data into a Excels file."
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}
