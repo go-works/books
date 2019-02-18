@@ -252,7 +252,7 @@ func extractMetaValueFromBlock(block *notionapi.Block) *MetaValue {
 	if len(s) < 4 {
 		return nil
 	}
-	isMeta := s[0] == '$' || s[0] == '@'
+	isMeta := s[0] == '$' || s[0] == '@' || s[0] == '#'
 	if !isMeta {
 		return nil
 	}
