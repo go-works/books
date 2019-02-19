@@ -38,35 +38,19 @@ var (
 )
 
 var (
-	bookGo = 		&Book{
-		Title:     "Go",
-		TitleLong: "Essential Go",
-		Dir:       "go",
+	bookRaven = 		&Book{
+		Title:     "Raven",
+		TitleLong: "Dive Into Raven",
+		Dir:       "raven",
 		CoverImageName: "Go.png",
-		// https://www.notion.so/2cab1ed2b7a44584b56b0d3ca9b80185
-		NotionStartPageID: "2cab1ed2b7a44584b56b0d3ca9b80185",
-	}
-	bookCsharp = 		&Book{
-		Title: "C#",
-		TitleLong: "Essential C#",
-		Dir: "csharp",
-		CoverImageName: "CSharp.png",
-		// https://www.notion.so/kjkpublic/Essential-C-896da5248e65414ab645dd45985879a1
-		NotionStartPageID: "896da5248e65414ab645dd45985879a1",
-	}
-	bookPython = &Book{
-		Title: "Python",
-		TitleLong: "Essential Python",
-		Dir: "python",
-		CoverImageName: "Python.png",
-		// https://www.notion.so/kjkpublic/Essential-Python-12e6f78e68a5497290c96e1365ae6259
-		NotionStartPageID: "12e6f78e68a5497290c96e1365ae6259",
+		// https://www.notion.so/kjkpublic/Dive-Into-RavenDB-with-Go-de0e09b7ba9b484fa808394f1050f855
+		NotionStartPageID: "de0e09b7ba9b484fa808394f1050f855",
 	}
 )
 
 var (
 	books = []*Book{
-		bookGo, bookCsharp, bookPython,
+		bookRaven,
 	}
 )
 

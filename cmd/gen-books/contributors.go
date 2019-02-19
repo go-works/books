@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"html/template"
 	"net/url"
+	"os"
 	"path/filepath"
 	"sort"
 	"strconv"
@@ -29,6 +30,10 @@ func loadSoContributorsMust(book *Book) {
 	path := filepath.Join("books", book.Dir+"_so_contributors.txt")
 	fmt.Printf("loadSoContributorsMust: book.Dir: %s, path: %s\n", book.Dir, path)
 	lines, err := common.ReadFileAsLines(path)
+	if os.IsNotExist(err) {
+		fmt.Printf("No %s file for book %s\n", path, book.Title)
+		return
+	}
 	panicIfErr(err)
 	var contributors []SoContributor
 	for _, line := range lines {
