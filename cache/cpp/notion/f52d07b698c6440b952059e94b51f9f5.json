@@ -22,8 +22,7 @@
       "1d8ac695-5c6f-40e3-bd31-9295ed95c2c2",
       "ddaf06d7-3d1b-4895-808f-a77838a9501f",
       "df567dd9-57b6-4609-bc2f-a9c9cc2d12bb",
-      "fe5e147e-c47e-402e-9cf6-7307efffcc4c",
-      "eb10af7a-66ef-4804-ade5-913d30ebc45d"
+      "fe5e147e-c47e-402e-9cf6-7307efffcc4c"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550522007565,
@@ -34,7 +33,7 @@
     "id": "f52d07b6-98c6-440b-9520-59e94b51f9f5",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550656200000,
+    "last_edited_time": 1550779740000,
     "parent_id": "b96c747c-3d87-49a0-b2bb-264f7c11b216",
     "parent_table": "block",
     "properties": {
@@ -45,7 +44,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 14,
     "content_resolved": [
       {
         "alive": true,
@@ -192,13 +191,13 @@
         "id": "6df8c3b7-93e8-4594-97a6-40891eda833c",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522007560,
+        "last_edited_time": 1550779620000,
         "parent_id": "f52d07b6-98c6-440b-9520-59e94b51f9f5",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -208,9 +207,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "// Define variables.\nstd::ifstream is(\"foo.txt\");\nstd::string firstname, lastname;\nint age, bmonth, bday, byear;\n\n// Extract firstname, lastname, age, bday month, bday day, and bday year in that order.\n// Note: '\u003e\u003e' returns false if it reached EOF (end of file) or if the input data doesn't\n// correspond to the type of the input variable (for example, the string \"foo\" can't be\n// extracted into an 'int' variable).\nwhile (is \u003e\u003e firstname \u003e\u003e lastname \u003e\u003e age \u003e\u003e bmonth \u003e\u003e bday \u003e\u003e byear)\n    // Process the data that has been read.",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -262,16 +261,16 @@
         "id": "0c2e63a6-58dd-44f6-a1e1-47c7fb9ef5cd",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522007561,
+        "last_edited_time": 1550779740000,
         "parent_id": "f52d07b6-98c6-440b-9520-59e94b51f9f5",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "For string types, the operator stops at a whitespace (`"
+              "For string types, the operator stops at a whitespace ("
             ],
             [
-              ") or at a newline (",
+              " ",
               [
                 [
                   "c"
@@ -279,22 +278,40 @@
               ]
             ],
             [
-              "`)."
+              ") or at a newline ("
+            ],
+            [
+              "\\n",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ")."
             ]
           ]
         },
         "type": "bulleted_list",
-        "version": 1,
+        "version": 18,
         "inline_content": [
           {
-            "Text": "For string types, the operator stops at a whitespace (`"
+            "Text": "For string types, the operator stops at a whitespace ("
           },
           {
-            "Text": ") or at a newline (",
+            "Text": " ",
             "AttrFlags": 2
           },
           {
-            "Text": "`)."
+            "Text": ") or at a newline ("
+          },
+          {
+            "Text": "\\n",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ")."
           }
         ]
       },
@@ -594,25 +611,25 @@
         "id": "9c28d0fc-b22c-490b-a22a-0691e3f78115",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522007562,
+        "last_edited_time": 1550779680000,
         "parent_id": "f52d07b6-98c6-440b-9520-59e94b51f9f5",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
             [
-              "// Opens 'foo.txt'.\nstd::ifstream is(\"foo.txt\");\nstd::string whole_file;\n\n// Sets position to the end of the file.\nis.seekg(0, std::ios::end);\n\n// Reserves memory for the file.\nwhole_file.reserve(is.tellg());\n\n// Sets position to the start of the file.\nis.seekg(0, std::ios::beg);\n\n// Sets contents of 'whole_file' to all characters in the file.\nwhole_file.assign(std::istreambuf_iterator\u003cchar\u003e(is),\n  std::istreambuf_iterator\u003cchar\u003e());"
+              "// opens 'foo.txt'\nstd::ifstream is(\"foo.txt\");\nstd::string whole_file;\n\n// Sets position to the end of the file.\nis.seekg(0, std::ios::end);\n\n// Reserves memory for the file.\nwhole_file.reserve(is.tellg());\n\n// Sets position to the start of the file.\nis.seekg(0, std::ios::beg);\n\n// Sets contents of 'whole_file' to all characters in the file.\nwhole_file.assign(std::istreambuf_iterator\u003cchar\u003e(is),\n  std::istreambuf_iterator\u003cchar\u003e());"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "// Opens 'foo.txt'.\nstd::ifstream is(\"foo.txt\");\nstd::string whole_file;\n\n// Sets position to the end of the file.\nis.seekg(0, std::ios::end);\n\n// Reserves memory for the file.\nwhole_file.reserve(is.tellg());\n\n// Sets position to the start of the file.\nis.seekg(0, std::ios::beg);\n\n// Sets contents of 'whole_file' to all characters in the file.\nwhole_file.assign(std::istreambuf_iterator\u003cchar\u003e(is),\n  std::istreambuf_iterator\u003cchar\u003e());",
-        "code_language": "Plain Text"
+        "version": 39,
+        "code": "// opens 'foo.txt'\nstd::ifstream is(\"foo.txt\");\nstd::string whole_file;\n\n// Sets position to the end of the file.\nis.seekg(0, std::ios::end);\n\n// Reserves memory for the file.\nwhole_file.reserve(is.tellg());\n\n// Sets position to the start of the file.\nis.seekg(0, std::ios::beg);\n\n// Sets contents of 'whole_file' to all characters in the file.\nwhole_file.assign(std::istreambuf_iterator\u003cchar\u003e(is),\n  std::istreambuf_iterator\u003cchar\u003e());",
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -712,13 +729,13 @@
         "id": "f77c2ed9-22b0-47c3-a066-023f921b23f0",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522007564,
+        "last_edited_time": 1550779620000,
         "parent_id": "f52d07b6-98c6-440b-9520-59e94b51f9f5",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -728,9 +745,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "std::ifstream is(\"foo.txt\");   \n\n// The function getline returns false if there are no more lines.\nfor (std::string str; std::getline(is, str);) {\n    // Process the line that has been read.\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -782,13 +799,13 @@
         "id": "ddaf06d7-3d1b-4895-808f-a77838a9501f",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522007564,
+        "last_edited_time": 1550779620000,
         "parent_id": "f52d07b6-98c6-440b-9520-59e94b51f9f5",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -798,9 +815,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "std::ifstream is(\"foo.txt\");\nchar str[4];\n\n// Read 4 characters from the file.\nis.read(str, 4);",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -870,52 +887,25 @@
         "id": "fe5e147e-c47e-402e-9cf6-7307efffcc4c",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522007564,
+        "last_edited_time": 1550779620000,
         "parent_id": "f52d07b6-98c6-440b-9520-59e94b51f9f5",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
             [
-              "is.read(str, 4); // This operation might fail for any reason."
+              "is.read(str, 4); // this operation might fail for any reason.\n\nif (is.fail()) {\n    // failed to read!\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "is.read(str, 4); // This operation might fail for any reason.",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550522007565,
-        "id": "eb10af7a-66ef-4804-ade5-913d30ebc45d",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522007565,
-        "parent_id": "f52d07b6-98c6-440b-9520-59e94b51f9f5",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "if (is.fail())\n    // Failed to read!"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "if (is.fail())\n    // Failed to read!",
-        "code_language": "Plain Text"
+        "version": 14,
+        "code": "is.read(str, 4); // this operation might fail for any reason.\n\nif (is.fail()) {\n    // failed to read!\n}",
+        "code_language": "C++"
       }
     ],
     "title": "Reading from a file",

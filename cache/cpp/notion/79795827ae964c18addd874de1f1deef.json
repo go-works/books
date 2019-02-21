@@ -8,8 +8,7 @@
       "d370453d-46d5-489b-96f7-e5825c70a900",
       "07f7eca8-6fc4-45df-9f80-1ce559582244",
       "98e67f5e-fba7-4ae7-adae-dc6b6c5fae64",
-      "a536efc0-b03d-43bb-b299-bee0ba1144ca",
-      "ae130b21-e9cb-4bc4-baf9-179f260e9abc"
+      "a536efc0-b03d-43bb-b299-bee0ba1144ca"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550522012515,
@@ -20,7 +19,7 @@
     "id": "79795827-ae96-4c18-addd-874de1f1deef",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550656260000,
+    "last_edited_time": 1550780280000,
     "parent_id": "b96c747c-3d87-49a0-b2bb-264f7c11b216",
     "parent_table": "block",
     "properties": {
@@ -31,7 +30,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 10,
     "content_resolved": [
       {
         "alive": true,
@@ -101,13 +100,13 @@
         "id": "57362220-904f-4aef-83c1-6cbd987f3daf",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522012514,
+        "last_edited_time": 1550780280000,
         "parent_id": "79795827-ae96-4c18-addd-874de1f1deef",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -117,9 +116,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "std::ifstream file(\"file3.txt\");\n\nstd::vector\u003cstd::string\u003e  v;\n\nstd::string s;\nwhile(file \u003e\u003e s) // keep reading until we run out\n{\n    v.push_back(s);\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -189,13 +188,13 @@
         "id": "07f7eca8-6fc4-45df-9f80-1ce559582244",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522012514,
+        "last_edited_time": 1550780280000,
         "parent_id": "79795827-ae96-4c18-addd-874de1f1deef",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -205,9 +204,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "std::ifstream file(\"file3.txt\");\n\nstd::vector\u003cstd::string\u003e  v(std::istream_iterator\u003cstd::string\u003e{file},\n                            std::istream_iterator\u003cstd::string\u003e{});",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -259,52 +258,25 @@
         "id": "a536efc0-b03d-43bb-b299-bee0ba1144ca",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522012514,
+        "last_edited_time": 1550780280000,
         "parent_id": "79795827-ae96-4c18-addd-874de1f1deef",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
             [
-              "// Unfortunately there is  no built in type that reads line using \u003e\u003e\n// So here we build a simple helper class to do it. That will convert\n// back to a string when used in string context.\nstruct Line\n{\n    // Store data here\n    std::string data;\n    // Convert object to string\n    operator std::string const\u0026() const {return data;}\n    // Read a line from a stream.\n    friend std::istream\u0026 operator\u003e\u003e(std::istream\u0026 stream, Line\u0026 line)\n    {\n        return std::getline(stream, line.data);\n    }\n};"
+              "// Unfortunately there is  no built in type that reads line using \u003e\u003e\n// So here we build a simple helper class to do it. That will convert\n// back to a string when used in string context.\nstruct Line\n{\n    // Store data here\n    std::string data;\n    // Convert object to string\n    operator std::string const\u0026() const {return data;}\n    // Read a line from a stream.\n    friend std::istream\u0026 operator\u003e\u003e(std::istream\u0026 stream, Line\u0026 line)\n    {\n        return std::getline(stream, line.data);\n    }\n};\n\nstd::ifstream file(\"file3.txt\");\n\n// Read the lines of a file into a container.\nstd::vector\u003cstd::string\u003e  v(std::istream_iterator\u003cLine\u003e{file},\n                            std::istream_iterator\u003cLine\u003e{});"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "// Unfortunately there is  no built in type that reads line using \u003e\u003e\n// So here we build a simple helper class to do it. That will convert\n// back to a string when used in string context.\nstruct Line\n{\n    // Store data here\n    std::string data;\n    // Convert object to string\n    operator std::string const\u0026() const {return data;}\n    // Read a line from a stream.\n    friend std::istream\u0026 operator\u003e\u003e(std::istream\u0026 stream, Line\u0026 line)\n    {\n        return std::getline(stream, line.data);\n    }\n};",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550522012515,
-        "id": "ae130b21-e9cb-4bc4-baf9-179f260e9abc",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522012515,
-        "parent_id": "79795827-ae96-4c18-addd-874de1f1deef",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "std::ifstream file(\"file3.txt\");\n\n// Read the lines of a file into a container.\nstd::vector\u003cstd::string\u003e  v(std::istream_iterator\u003cLine\u003e{file},\n                            std::istream_iterator\u003cLine\u003e{});"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "std::ifstream file(\"file3.txt\");\n\n// Read the lines of a file into a container.\nstd::vector\u003cstd::string\u003e  v(std::istream_iterator\u003cLine\u003e{file},\n                            std::istream_iterator\u003cLine\u003e{});",
-        "code_language": "Plain Text"
+        "version": 6,
+        "code": "// Unfortunately there is  no built in type that reads line using \u003e\u003e\n// So here we build a simple helper class to do it. That will convert\n// back to a string when used in string context.\nstruct Line\n{\n    // Store data here\n    std::string data;\n    // Convert object to string\n    operator std::string const\u0026() const {return data;}\n    // Read a line from a stream.\n    friend std::istream\u0026 operator\u003e\u003e(std::istream\u0026 stream, Line\u0026 line)\n    {\n        return std::getline(stream, line.data);\n    }\n};\n\nstd::ifstream file(\"file3.txt\");\n\n// Read the lines of a file into a container.\nstd::vector\u003cstd::string\u003e  v(std::istream_iterator\u003cLine\u003e{file},\n                            std::istream_iterator\u003cLine\u003e{});",
+        "code_language": "C++"
       }
     ],
     "title": "Reading a file into a container",

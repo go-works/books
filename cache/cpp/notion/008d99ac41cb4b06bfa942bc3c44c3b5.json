@@ -20,7 +20,7 @@
     "id": "008d99ac-41cb-4b06-bfa9-42bc3c44c3b5",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550655480000,
+    "last_edited_time": 1550779380000,
     "parent_id": "ee10cf45-84c7-467c-8068-ea9076a2401a",
     "parent_table": "block",
     "properties": {
@@ -31,7 +31,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 9,
     "content_resolved": [
       {
         "alive": true,
@@ -65,13 +65,13 @@
         "id": "b8fd0ef2-8326-4061-bd58-f04cfc35bae1",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522082003,
+        "last_edited_time": 1550779380000,
         "parent_id": "008d99ac-41cb-4b06-bfa9-42bc3c44c3b5",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -81,9 +81,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "template\u003cclass Iterator, class Sentinel=Iterator\u003e\nstruct range_t {\n  Iterator b;\n  Sentinel e;\n  Iterator begin() const { return b; }\n  Sentinel end() const { return e; }\n  bool empty() const { return begin()==end(); }\n  range_t without_front( std::size_t count=1 ) const {\n    if (std::is_same\u003c std::random_access_iterator_tag, typename std::iterator_traits\u003cIterator\u003e::iterator_category \u003e{} ) {\n      count = (std::min)(std::size_t(std::distance(b,e)), count);\n    }\n    return {std::next(b, count), e};\n  }\n  range_t without_back( std::size_t count=1 ) const {\n    if (std::is_same\u003c std::random_access_iterator_tag, typename std::iterator_traits\u003cIterator\u003e::iterator_category \u003e{} ) {\n      count = (std::min)(std::size_t(std::distance(b,e)), count);\n    }\n    return {b, std::prev(e, count)};\n  }\n};\n\ntemplate\u003cclass Iterator, class Sentinel\u003e\nrange_t\u003cIterator, Sentinel\u003e range( Iterator b, Sentinal e ) {\n  return {b,e};\n}\ntemplate\u003cclass Iterable\u003e\nauto range( Iterable\u0026 r ) {\n  using std::begin; using std::end;\n  return range(begin(r),end(r));\n}\n\ntemplate\u003cclass C\u003e\nauto except_first( C\u0026 c ) {\n  auto r = range(c);\n  if (r.empty()) return r;\n  return r.without_front();\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -117,13 +117,13 @@
         "id": "75eb0825-ce4b-4248-b2aa-f0a47a3d9fcd",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522082004,
+        "last_edited_time": 1550779380000,
         "parent_id": "008d99ac-41cb-4b06-bfa9-42bc3c44c3b5",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -133,9 +133,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "std::vector\u003cint\u003e v = {1,2,3,4};\n\nfor (auto i : except_first(v))\n  std::cout \u003c\u003c i \u003c\u003c '\\n';",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,

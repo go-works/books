@@ -17,7 +17,7 @@
     "id": "f4ecda6f-c6b8-4713-9669-df56036b82f9",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550656140000,
+    "last_edited_time": 1550780340000,
     "parent_id": "b96c747c-3d87-49a0-b2bb-264f7c11b216",
     "parent_table": "block",
     "properties": {
@@ -28,7 +28,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 9,
     "content_resolved": [
       {
         "alive": true,
@@ -80,13 +80,13 @@
         "id": "e7a0b5cb-2a61-4e9c-b4b1-09a59b644cf4",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522016434,
+        "last_edited_time": 1550780340000,
         "parent_id": "f4ecda6f-c6b8-4713-9669-df56036b82f9",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -96,9 +96,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "std::string const prepared_data = prepare_data();\n{\n    // Open a file for writing.\n    std::ofstream output(\"foo.txt\");\n\n    // Write data.\n    output \u003c\u003c prepared_data;\n}  // The ofstream will go out of scope here.\n   // Its destructor will take care of closing the file properly.",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -168,13 +168,13 @@
         "id": "290c1b81-5562-4639-bd57-9fd65d0bd674",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522016434,
+        "last_edited_time": 1550780340000,
         "parent_id": "f4ecda6f-c6b8-4713-9669-df56036b82f9",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -184,9 +184,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "// Open the file \"foo.txt\" for the first time.\nstd::ofstream output(\"foo.txt\");\n\n// Get some data to write from somewhere.\nstd::string const prepared_data = prepare_data();\n\n// Write data to the file \"foo.txt\".\noutput \u003c\u003c prepared_data;\n\n// Close the file \"foo.txt\".\noutput.close();\n\n// Preparing data might take a long time. Therefore, we don't open the output file stream\n// before we actually can write some data to it.\nstd::string const more_prepared_data = prepare_complex_data();\n\n// Open the file \"foo.txt\" for the second time once we are ready for writing.\noutput.open(\"foo.txt\");\n\n// Write the data to the file \"foo.txt\".\noutput \u003c\u003c more_prepared_data;\n\n// Close the file \"foo.txt\" once again.\noutput.close();",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       }
     ],
     "title": "Closing a file",

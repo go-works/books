@@ -19,7 +19,7 @@
     "id": "d05f05a6-1dda-497b-84b2-961dbedbfafb",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550656620000,
+    "last_edited_time": 1550778780000,
     "parent_id": "ee86edbe-8dd9-497a-a24c-fa516272404e",
     "parent_table": "block",
     "properties": {
@@ -30,7 +30,7 @@
       ]
     },
     "type": "page",
-    "version": 9,
+    "version": 10,
     "content_resolved": [
       {
         "alive": true,
@@ -89,13 +89,13 @@
         "id": "34dac2e2-eddd-4d28-85d3-236fd35d09cb",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521973559,
+        "last_edited_time": 1550778780000,
         "parent_id": "d05f05a6-1dda-497b-84b2-961dbedbfafb",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -105,9 +105,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "template\u003cclass T\u003e\nstruct generator_iterator {\n  using difference_type=std::ptrdiff_t;\n  using value_type=T;\n  using pointer=T*;\n  using reference=T;\n  using iterator_category=std::input_iterator_tag;\n  std::optional\u003cT\u003e state;\n  std::function\u003c std::optional\u003cT\u003e() \u003e operation;\n  // we store the current element in \"state\" if we have one:\n  T operator*() const {\n    return *state;\n  }\n  // to advance, we invoke our operation.  If it returns a nullopt\n  // we have reached the end:\n  generator_iterator\u0026 operator++() {\n    state = operation();\n    return *this;        \n  }\n  generator_iterator operator++(int) {\n    auto r = *this;\n    ++(*this);\n    return r;\n  }\n  // generator iterators are only equal if they are both in the \"end\" state:\n  friend bool operator==( generator_iterator const\u0026 lhs, generator_iterator const\u0026 rhs ) {\n    if (!lhs.state \u0026\u0026 !rhs.state) return true;\n    return false;\n  }\n  friend bool operator!=( generator_iterator const\u0026 lhs, generator_iterator const\u0026 rhs ) {\n    return !(lhs==rhs);\n  }\n  // We implicitly construct from a std::function with the right signature:\n  generator_iterator( std::function\u003c std::optional\u003cT\u003e() \u003e f ):operation(std::move(f))\n  {\n    if (operation)\n      state = operation();\n  }\n  // default all special member functions:\n  generator_iterator( generator_iterator \u0026\u0026 ) =default;\n  generator_iterator( generator_iterator const\u0026 ) =default;\n  generator_iterator\u0026 operator=( generator_iterator \u0026\u0026 ) =default;\n  generator_iterator\u0026 operator=( generator_iterator const\u0026 ) =default;\n  generator_iterator() =default;\n};",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,

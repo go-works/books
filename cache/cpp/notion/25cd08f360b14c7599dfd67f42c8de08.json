@@ -22,18 +22,18 @@
     "id": "25cd08f3-60b1-4c75-99df-d67f42c8de08",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550656200000,
+    "last_edited_time": 1550780160000,
     "parent_id": "b96c747c-3d87-49a0-b2bb-264f7c11b216",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "Reading an ASCII file into a std string"
+          "Reading text file into a std::string"
         ]
       ]
     },
     "type": "page",
-    "version": 10,
+    "version": 23,
     "content_resolved": [
       {
         "alive": true,
@@ -42,13 +42,13 @@
         "id": "0fd24b0f-5ce0-48f7-be1c-e9e9b7e37c3d",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522009478,
+        "last_edited_time": 1550780160000,
         "parent_id": "25cd08f3-60b1-4c75-99df-d67f42c8de08",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -58,9 +58,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "std::ifstream f(\"file.txt\");\n\nif (f)\n{\n  std::stringstream buffer;\n  buffer \u003c\u003c f.rdbuf();\n  f.close();\n\n  // The content of \"file.txt\" is available in the string `buffer.str()`\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -244,13 +244,13 @@
         "id": "3620b2a6-3d30-4cab-acb1-c2d16cc1ff76",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522009495,
+        "last_edited_time": 1550780160000,
         "parent_id": "25cd08f3-60b1-4c75-99df-d67f42c8de08",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -260,9 +260,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "std::ifstream f(\"file.txt\");\n\nif (f)\n{\n  std::string str((std::istreambuf_iterator\u003cchar\u003e(f)),\n                  std::istreambuf_iterator\u003cchar\u003e());\n\n  // Operations on `str`...\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -376,13 +376,13 @@
         "id": "030c1339-0470-4eba-b440-5e57cd09360d",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522009495,
+        "last_edited_time": 1550780160000,
         "parent_id": "25cd08f3-60b1-4c75-99df-d67f42c8de08",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -392,9 +392,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "std::ifstream f(\"file.txt\");\n\nif (f)\n{\n  f.seekg(0, std::ios::end);\n  const auto size = f.tellg();\n\n  std::string str(size, ' ');\n  f.seekg(0);\n  f.read(\u0026str[0], size); \n  f.close();\n\n  // Operations on `str`...\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -422,7 +422,7 @@
         ]
       }
     ],
-    "title": "Reading an ASCII file into a std string",
+    "title": "Reading text file into a std::string",
     "format_page": {
       "page_cover": "",
       "page_cover_position": 0,

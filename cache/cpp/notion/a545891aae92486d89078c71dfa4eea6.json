@@ -16,21 +16,25 @@
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550523073869,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
     "id": "a545891a-ae92-486d-8907-8c71dfa4eea6",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550523073869,
+    "last_edited_time": 1550778600000,
     "parent_id": "3724ad56-a879-48bf-847e-5adcfcb60c18",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "060 A dynamic size matrix using std vector for storage."
+          "Dynamic size matrix using std::vector for storage"
         ]
       ]
     },
     "type": "page",
-    "version": 1,
+    "version": 16,
     "content_resolved": [
       {
         "alive": true,
@@ -89,13 +93,13 @@
         "id": "2c9de5f3-eb9c-4d16-a2d0-cd8323682a48",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550523073868,
+        "last_edited_time": 1550778600000,
         "parent_id": "a545891a-ae92-486d-8907-8c71dfa4eea6",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -105,9 +109,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "vector\u003cvector\u003cint\u003e\u003e m( 3, vector\u003cint\u003e( 7 ) );",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -310,13 +314,13 @@
         "id": "b949498c-1085-4b54-9648-8a67a286e340",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550523073869,
+        "last_edited_time": 1550778600000,
         "parent_id": "a545891a-ae92-486d-8907-8c71dfa4eea6",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -326,9 +330,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "// A dynamic size matrix using std::vector for storage.\n\n//--------------------------------------------- Machinery:\n#include \u003calgorithm\u003e        // std::copy\n#include \u003cassert.h\u003e         // assert\n#include \u003cinitializer_list\u003e // std::initializer_list\n#include \u003cvector\u003e           // std::vector\n#include \u003cstddef.h\u003e         // ptrdiff_t\n\nnamespace my {\n    using Size = ptrdiff_t;\n    using std::initializer_list;\n    using std::vector;\n\n    template\u003c class Item \u003e\n    class Matrix\n    {\n    private:\n        vector\u003cItem\u003e    items_;\n        Size            n_cols_;\n        \n        auto index_for( Size const x, Size const y ) const\n            -\u003e Size\n        { return y*n_cols_ + x; }\n\n    public:\n        auto n_rows() const -\u003e Size { return items_.size()/n_cols_; }\n        auto n_cols() const -\u003e Size { return n_cols_; }\n\n        auto item( Size const x, Size const y )\n            -\u003e Item\u0026\n        { return items_[index_for(x, y)]; }\n        \n        auto item( Size const x, Size const y ) const\n            -\u003e Item const\u0026\n        { return items_[index_for(x, y)]; }\n\n        Matrix(): n_cols_( 0 ) {}\n\n        Matrix( Size const n_cols, Size const n_rows )\n            : items_( n_cols*n_rows )\n            , n_cols_( n_cols )\n        {}\n        \n        Matrix( initializer_list\u003c initializer_list\u003cItem\u003e \u003e const\u0026 values )\n            : items_()\n            , n_cols_( values.size() == 0? 0 : values.begin()-\u003esize() )\n        {\n            for( auto const\u0026 row : values )\n            {\n                assert( Size( row.size() ) == n_cols_ );\n                items_.insert( items_.end(), row.begin(), row.end() );\n            }\n        }\n    };\n}  // namespace my\n\n//--------------------------------------------- Usage:\nusing my::Matrix;\n\nauto some_matrix()\n    -\u003e Matrix\u003cint\u003e\n{\n    return\n    {\n        {  1,  2,  3,  4,  5,  6,  7 },\n        {  8,  9, 10, 11, 12, 13, 14 },\n        { 15, 16, 17, 18, 19, 20, 21 }\n    };\n}\n\n#include \u003ciostream\u003e\n#include \u003ciomanip\u003e\nusing namespace std;\nauto main() -\u003e int\n{\n    Matrix\u003cint\u003e const m = some_matrix();\n    assert( m.n_cols() == 7 );\n    assert( m.n_rows() == 3 );\n    for( int y = 0, y_end = m.n_rows(); y \u003c y_end; ++y )\n    {\n        for( int x = 0, x_end = m.n_cols(); x \u003c x_end; ++x )\n        {\n            cout \u003c\u003c setw( 4 ) \u003c\u003c m.item( x, y );        // ← Note: not `m[y][x]`!\n        }\n        cout \u003c\u003c '\\n';\n    }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -451,7 +455,15 @@
         ]
       }
     ],
-    "title": "060 A dynamic size matrix using std vector for storage."
+    "title": "Dynamic size matrix using std::vector for storage",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
   },
   "Users": [
     {
