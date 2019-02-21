@@ -67,7 +67,7 @@ var (
 		Title: "Kotlin",
 		TitleLong: "Essential Kotlin",
 		Dir: "kotlin",
-		CoverImageName: "Bash.png", // TODO: need a cover
+		CoverImageName: "Kotlin.png",
 		// https://www.notion.so/kjkpublic/Essential-Kotlin-2bdd47318f3a4e8681dda289a8b3472b
 		NotionStartPageID: "2bdd47318f3a4e8681dda289a8b3472b",
 	}
@@ -85,7 +85,7 @@ var (
 		Title: "Dart",
 		TitleLong: "Essential Dart",
 		Dir: "dart",
-		CoverImageName: "Cpp.png", // TODO: need a cover
+		CoverImageName: "Dart.png",
 		// 	https://www.notion.so/kjkpublic/Essential-Dart-0e2d248bf94b4aebaefbcf51ae435df0
 		NotionStartPageID: "0e2d248bf94b4aebaefbcf51ae435df0",
 	}
@@ -157,8 +157,11 @@ var (
 var (
 	books = []*Book{
 		bookGo, bookCsharp, bookPython, bookKotlin, bookJavaScript,
-		bookDart, bookJava, bookAndroid, bookSql, bookCpp, bookIOS,
+		bookDart, bookJava, bookAndroid, bookCpp, bookIOS,
 		bookPostgresql, bookMysql,
+	}
+	bookUnpublished = []*Book{
+		bookSql,
 	}
 )
 
