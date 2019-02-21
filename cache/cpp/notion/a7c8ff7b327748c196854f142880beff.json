@@ -1,0 +1,335 @@
+{
+  "ID": "a7c8ff7b-3277-48c1-9685-4f142880beff",
+  "Root": {
+    "alive": true,
+    "content": [
+      "ae4e2fcc-3a22-46d8-bd78-018de4bd139f",
+      "86aedf76-8c0e-4b2e-ad37-86fefb147544",
+      "898a4fb9-79cf-4dac-99bd-dfa1693e9a19",
+      "cdaaca44-cf2d-4bcf-9660-5b074c173b9f",
+      "512cd9e0-52d1-4e97-b9d4-edb93cba2c29",
+      "fda51edc-9a29-4b95-b440-62a34d5dda0a"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550522336761,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "a7c8ff7b-3277-48c1-9685-4f142880beff",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550709660000,
+    "parent_id": "5a1044bb-eec6-47e0-932c-1a000fc67e20",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Best practice throw by value catch by const reference"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522336757,
+        "id": "ae4e2fcc-3a22-46d8-bd78-018de4bd139f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522336757,
+        "parent_id": "a7c8ff7b-3277-48c1-9685-4f142880beff",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In general, it is considered good practice to throw by value (rather than by pointer), but catch by (const) reference."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In general, it is considered good practice to throw by value (rather than by pointer), but catch by (const) reference."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522336759,
+        "id": "86aedf76-8c0e-4b2e-ad37-86fefb147544",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522336759,
+        "parent_id": "a7c8ff7b-3277-48c1-9685-4f142880beff",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "try {\n    // throw new std::runtime_error(\"Error!\");   // Don't do this!\n    // This creates an exception object\n    // on the heap and would require you to catch the\n    // pointer and manage the memory yourself. This can\n    // cause memory leaks!\n    \n    throw std::runtime_error(\"Error!\");\n} catch (const std::runtime_error\u0026 e) {\n    std::cout \u003c\u003c e.what() \u003c\u003c std::endl;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "try {\n    // throw new std::runtime_error(\"Error!\");   // Don't do this!\n    // This creates an exception object\n    // on the heap and would require you to catch the\n    // pointer and manage the memory yourself. This can\n    // cause memory leaks!\n    \n    throw std::runtime_error(\"Error!\");\n} catch (const std::runtime_error\u0026 e) {\n    std::cout \u003c\u003c e.what() \u003c\u003c std::endl;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522336760,
+        "id": "898a4fb9-79cf-4dac-99bd-dfa1693e9a19",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522336760,
+        "parent_id": "a7c8ff7b-3277-48c1-9685-4f142880beff",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "One reason why catching by reference is a good practice is that it eliminates the need to reconstruct the object when being passed to the catch block (or when propagating through to other catch blocks). Catching by reference also allows the exceptions to be handled polymorphically and avoids object slicing. However, if you are rethrowing an exception (like "
+            ],
+            [
+              "throw e;",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", see example below), you can still get object slicing because the "
+            ],
+            [
+              "throw e;",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " statement makes a copy of the exception as whatever type is declared:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "One reason why catching by reference is a good practice is that it eliminates the need to reconstruct the object when being passed to the catch block (or when propagating through to other catch blocks). Catching by reference also allows the exceptions to be handled polymorphically and avoids object slicing. However, if you are rethrowing an exception (like "
+          },
+          {
+            "Text": "throw e;",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", see example below), you can still get object slicing because the "
+          },
+          {
+            "Text": "throw e;",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " statement makes a copy of the exception as whatever type is declared:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522336760,
+        "id": "cdaaca44-cf2d-4bcf-9660-5b074c173b9f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522336760,
+        "parent_id": "a7c8ff7b-3277-48c1-9685-4f142880beff",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003ciostream\u003e\n\nstruct BaseException {\n    virtual const char* what() const { return \"BaseException\"; }\n};\n\nstruct DerivedException : BaseException {\n    // \"virtual\" keyword is optional here\n    virtual const char* what() const { return \"DerivedException\"; }\n};\n\nint main(int argc, char** argv) {\n    try {\n        try {\n            throw DerivedException();\n        } catch (const BaseException\u0026 e) {\n            std::cout \u003c\u003c \"First catch block: \" \u003c\u003c e.what() \u003c\u003c std::endl;\n            // Output ==\u003e First catch block: DerivedException\n\n            throw e; // This changes the exception to BaseException\n                     // instead of the original DerivedException!\n        }\n    } catch (const BaseException\u0026 e) {\n        std::cout \u003c\u003c \"Second catch block: \" \u003c\u003c e.what() \u003c\u003c std::endl;\n        // Output ==\u003e Second catch block: BaseException\n    }\n    return 0;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \u003ciostream\u003e\n\nstruct BaseException {\n    virtual const char* what() const { return \"BaseException\"; }\n};\n\nstruct DerivedException : BaseException {\n    // \"virtual\" keyword is optional here\n    virtual const char* what() const { return \"DerivedException\"; }\n};\n\nint main(int argc, char** argv) {\n    try {\n        try {\n            throw DerivedException();\n        } catch (const BaseException\u0026 e) {\n            std::cout \u003c\u003c \"First catch block: \" \u003c\u003c e.what() \u003c\u003c std::endl;\n            // Output ==\u003e First catch block: DerivedException\n\n            throw e; // This changes the exception to BaseException\n                     // instead of the original DerivedException!\n        }\n    } catch (const BaseException\u0026 e) {\n        std::cout \u003c\u003c \"Second catch block: \" \u003c\u003c e.what() \u003c\u003c std::endl;\n        // Output ==\u003e Second catch block: BaseException\n    }\n    return 0;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522336760,
+        "id": "512cd9e0-52d1-4e97-b9d4-edb93cba2c29",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522336760,
+        "parent_id": "a7c8ff7b-3277-48c1-9685-4f142880beff",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If you are sure that you are not going to do anything to change the exception (like add information or modify the message), catching by const reference allows the compiler to make optimizations and can improve performance. But this can still cause object splicing (as seen in the example above)."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If you are sure that you are not going to do anything to change the exception (like add information or modify the message), catching by const reference allows the compiler to make optimizations and can improve performance. But this can still cause object splicing (as seen in the example above)."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522336760,
+        "id": "fda51edc-9a29-4b95-b440-62a34d5dda0a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522336760,
+        "parent_id": "a7c8ff7b-3277-48c1-9685-4f142880beff",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Warning:",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " Beware of throwing unintended exceptions in "
+            ],
+            [
+              "catch",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " blocks, especially related to allocating extra memory or resources. For example, constructing "
+            ],
+            [
+              "logic_error",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", "
+            ],
+            [
+              "runtime_error",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " or their subclasses might throw "
+            ],
+            [
+              "bad_alloc",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " due to memory running out when copying the exception string, I/O streams might throw during logging with respective exception masks set, etc."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Warning:",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " Beware of throwing unintended exceptions in "
+          },
+          {
+            "Text": "catch",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " blocks, especially related to allocating extra memory or resources. For example, constructing "
+          },
+          {
+            "Text": "logic_error",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", "
+          },
+          {
+            "Text": "runtime_error",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " or their subclasses might throw "
+          },
+          {
+            "Text": "bad_alloc",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " due to memory running out when copying the exception string, I/O streams might throw during logging with respective exception masks set, etc."
+          }
+        ]
+      }
+    ],
+    "title": "Best practice throw by value catch by const reference",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,97 @@
+{
+  "ID": "134ea277-65da-4e86-a844-6a851138107c",
+  "Root": {
+    "alive": true,
+    "content": [
+      "8bd1e0a6-0605-4e6d-b9e7-e5a3059c5d4d",
+      "15aff02c-001b-4418-87f6-098106f49a57"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550522956746,
+    "id": "134ea277-65da-4e86-a844-6a851138107c",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550522956746,
+    "parent_id": "3b939fe5-bf07-416e-b626-9b4dcfb5abc4",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 Typical Use"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522956744,
+        "id": "8bd1e0a6-0605-4e6d-b9e7-e5a3059c5d4d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522956744,
+        "parent_id": "134ea277-65da-4e86-a844-6a851138107c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Unions are useful for minimizing memory usage for exclusive data, such as when implementing mixed data types."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Unions are useful for minimizing memory usage for exclusive data, such as when implementing mixed data types."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522956746,
+        "id": "15aff02c-001b-4418-87f6-098106f49a57",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522956746,
+        "parent_id": "134ea277-65da-4e86-a844-6a851138107c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "struct AnyType {\n    enum {\n        IS_INT,\n        IS_FLOAT\n    } type;\n    \n    union Data {\n        int as_int;\n        float as_float;\n    } value;\n\n    AnyType(int i) : type(IS_INT) { value.as_int = i; }\n    AnyType(float f) : type(IS_FLOAT) { value.as_float = f; }\n\n    int get_int() const {\n        if(type == IS_INT)\n            return value.as_int;\n        else\n            return (int)value.as_float;\n    }\n    \n    float get_float() const {\n        if(type == IS_FLOAT)\n            return value.as_float;\n        else\n            return (float)value.as_int;\n    }\n};"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "struct AnyType {\n    enum {\n        IS_INT,\n        IS_FLOAT\n    } type;\n    \n    union Data {\n        int as_int;\n        float as_float;\n    } value;\n\n    AnyType(int i) : type(IS_INT) { value.as_int = i; }\n    AnyType(float f) : type(IS_FLOAT) { value.as_float = f; }\n\n    int get_int() const {\n        if(type == IS_INT)\n            return value.as_int;\n        else\n            return (int)value.as_float;\n    }\n    \n    float get_float() const {\n        if(type == IS_FLOAT)\n            return value.as_float;\n        else\n            return (float)value.as_int;\n    }\n};",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "030 Typical Use"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

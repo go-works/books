@@ -1,0 +1,334 @@
+{
+  "ID": "a625cb29-d4bd-47ce-b3e9-7be2837b0986",
+  "Root": {
+    "alive": true,
+    "content": [
+      "30813267-c818-4700-9308-0ec97909190e",
+      "744d139d-c689-4366-9d5c-193e205ec3f9",
+      "db588aec-a29a-4e0c-ad38-dbd889e095ca",
+      "8e9898b6-7764-421f-90a8-d9fcf8e40116",
+      "c8bd53da-ddb8-4d83-aea5-5aeab1d6478f"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550522282559,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "a625cb29-d4bd-47ce-b3e9-7be2837b0986",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550655300000,
+    "parent_id": "f1b860db-be5a-41ed-a67b-b7b0181ec59f",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Ensuring a thread is always joined"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522282559,
+        "id": "30813267-c818-4700-9308-0ec97909190e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522282559,
+        "parent_id": "a625cb29-d4bd-47ce-b3e9-7be2837b0986",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "When the destructor for "
+            ],
+            [
+              "std::thread",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is invoked, a call to either "
+            ],
+            [
+              "join()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " or "
+            ],
+            [
+              "detach()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " "
+            ],
+            [
+              "must",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " have been made. If a thread has not been joined or detached, then by default "
+            ],
+            [
+              "std::terminate",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " will be called. Using "
+            ],
+            [
+              "RAII",
+              [
+                [
+                  "a",
+                  "http://en.cppreference.com/w/cpp/language/raii"
+                ]
+              ]
+            ],
+            [
+              ", this is generally simple enough to accomplish:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "When the destructor for "
+          },
+          {
+            "Text": "std::thread",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is invoked, a call to either "
+          },
+          {
+            "Text": "join()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " or "
+          },
+          {
+            "Text": "detach()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " "
+          },
+          {
+            "Text": "must",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " have been made. If a thread has not been joined or detached, then by default "
+          },
+          {
+            "Text": "std::terminate",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " will be called. Using "
+          },
+          {
+            "Text": "RAII",
+            "Link": "http://en.cppreference.com/w/cpp/language/raii"
+          },
+          {
+            "Text": ", this is generally simple enough to accomplish:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522282559,
+        "id": "744d139d-c689-4366-9d5c-193e205ec3f9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522282559,
+        "parent_id": "a625cb29-d4bd-47ce-b3e9-7be2837b0986",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class thread_joiner\n{\npublic:\n\n    thread_joiner(std::thread t)\n        : t_(std::move(t))\n    { }\n\n    ~thread_joiner()\n    {\n        if(t_.joinable()) {\n            t_.join();\n        }\n    }\n\nprivate:\n\n    std::thread t_;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class thread_joiner\n{\npublic:\n\n    thread_joiner(std::thread t)\n        : t_(std::move(t))\n    { }\n\n    ~thread_joiner()\n    {\n        if(t_.joinable()) {\n            t_.join();\n        }\n    }\n\nprivate:\n\n    std::thread t_;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522282559,
+        "id": "db588aec-a29a-4e0c-ad38-dbd889e095ca",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522282559,
+        "parent_id": "a625cb29-d4bd-47ce-b3e9-7be2837b0986",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This is then used like so:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This is then used like so:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522282559,
+        "id": "8e9898b6-7764-421f-90a8-d9fcf8e40116",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522282559,
+        "parent_id": "a625cb29-d4bd-47ce-b3e9-7be2837b0986",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "void perform_work()\n{\n    // Perform some work\n}\n\nvoid t()\n{\n    thread_joiner j{std::thread(perform_work)};\n    // Do some other calculations while thread is running\n} // Thread is automatically joined here"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "void perform_work()\n{\n    // Perform some work\n}\n\nvoid t()\n{\n    thread_joiner j{std::thread(perform_work)};\n    // Do some other calculations while thread is running\n} // Thread is automatically joined here",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522282559,
+        "id": "c8bd53da-ddb8-4d83-aea5-5aeab1d6478f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522282559,
+        "parent_id": "a625cb29-d4bd-47ce-b3e9-7be2837b0986",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This also provides exception safety; if we had created our thread normally and the work done in "
+            ],
+            [
+              "t()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " performing other calculations had thrown an exception, "
+            ],
+            [
+              "join()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " would never have been called on our thread and our process would have been terminated."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This also provides exception safety; if we had created our thread normally and the work done in "
+          },
+          {
+            "Text": "t()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " performing other calculations had thrown an exception, "
+          },
+          {
+            "Text": "join()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " would never have been called on our thread and our process would have been terminated."
+          }
+        ]
+      }
+    ],
+    "title": "Ensuring a thread is always joined",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

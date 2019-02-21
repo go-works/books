@@ -1,0 +1,171 @@
+{
+  "ID": "daafb284-6c14-49ea-a7f3-05118a355dae",
+  "Root": {
+    "alive": true,
+    "content": [
+      "bc8ea93e-da13-433d-9211-25188a955abb",
+      "b2d318c9-2a06-4b1d-ad31-a878b233ad72",
+      "f97adb8d-6413-4e26-b00d-ed8df2e0ed5b"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550522684500,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "daafb284-6c14-49ea-a7f3-05118a355dae",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550710680000,
+    "parent_id": "a3104ba4-9a8b-4f2a-ad89-25f36d3b9595",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Pointers to member functions"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522684497,
+        "id": "bc8ea93e-da13-433d-9211-25188a955abb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522684497,
+        "parent_id": "daafb284-6c14-49ea-a7f3-05118a355dae",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To access a member function of a class, you need to have a “handle” to the particular instance, as either the instance itself, or a pointer or reference to it. Given a class instance, you can point to various of its members with a pointer-to-member, IF you get the syntax correct! Of course, the pointer has to be declared to be of the same type as what you are pointing to…"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To access a member function of a class, you need to have a “handle” to the particular instance, as either the instance itself, or a pointer or reference to it. Given a class instance, you can point to various of its members with a pointer-to-member, IF you get the syntax correct! Of course, the pointer has to be declared to be of the same type as what you are pointing to…"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522684500,
+        "id": "b2d318c9-2a06-4b1d-ad31-a878b233ad72",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550710680000,
+        "parent_id": "daafb284-6c14-49ea-a7f3-05118a355dae",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C++"
+            ]
+          ],
+          "title": [
+            [
+              "typedef int Fn(int); // Fn is a type-of function that accepts an int and returns an int\n\nclass Class {\npublic:\n    // Note that A() is of type 'Fn'\n    int A(int a) { return 2*a; }\n    // Note that B() is of type 'Fn'\n    int B(int b) { return 3*b; }\n}; // Class\n\nint main() {\n    Class c;          // Need a Class instance to play with\n    Class *p = \u0026c;    // Need a Class pointer to play with\n\n    Fn Class::*fn;    // fn is a pointer to a type-of Fn within Class\n\n    fn = \u0026Class::A;   // fn now points to A within any Class\n    (c.*fn)(5);       // Pass 5 to c's function A (via fn)\n    fn = \u0026Class::B;   // fn now points to B within any Class\n    (p-\u003e*fn)(6);      // Pass 6 to c's (via p) function B (via fn)\n} // main()"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "typedef int Fn(int); // Fn is a type-of function that accepts an int and returns an int\n\nclass Class {\npublic:\n    // Note that A() is of type 'Fn'\n    int A(int a) { return 2*a; }\n    // Note that B() is of type 'Fn'\n    int B(int b) { return 3*b; }\n}; // Class\n\nint main() {\n    Class c;          // Need a Class instance to play with\n    Class *p = \u0026c;    // Need a Class pointer to play with\n\n    Fn Class::*fn;    // fn is a pointer to a type-of Fn within Class\n\n    fn = \u0026Class::A;   // fn now points to A within any Class\n    (c.*fn)(5);       // Pass 5 to c's function A (via fn)\n    fn = \u0026Class::B;   // fn now points to B within any Class\n    (p-\u003e*fn)(6);      // Pass 6 to c's (via p) function B (via fn)\n} // main()",
+        "code_language": "C++"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522684500,
+        "id": "f97adb8d-6413-4e26-b00d-ed8df2e0ed5b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522684500,
+        "parent_id": "daafb284-6c14-49ea-a7f3-05118a355dae",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Unlike pointers to member variables (in the previous example), the association between the class instance and the member pointer need to be bound tightly together with parentheses, which looks a little strange (as though the "
+            ],
+            [
+              ".*",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "-\u003e*",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " aren’t strange enough!)"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Unlike pointers to member variables (in the previous example), the association between the class instance and the member pointer need to be bound tightly together with parentheses, which looks a little strange (as though the "
+          },
+          {
+            "Text": ".*",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "-\u003e*",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " aren’t strange enough!)"
+          }
+        ]
+      }
+    ],
+    "title": "Pointers to member functions",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

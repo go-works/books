@@ -1,0 +1,199 @@
+{
+  "ID": "b8d8344d-a0cb-456e-9cc8-e07f497515d9",
+  "Root": {
+    "alive": true,
+    "content": [
+      "95d1cf31-6543-4d17-bdc1-d93e686d090a",
+      "3fccd675-5f28-452a-90d8-b72712731e7b",
+      "d208a125-7846-4b73-84e5-1f734afc607a",
+      "e08e5437-3d9e-4520-b600-2a9e54148812"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550522338481,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "b8d8344d-a0cb-456e-9cc8-e07f497515d9",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550709660000,
+    "parent_id": "5a1044bb-eec6-47e0-932c-1a000fc67e20",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "std::uncaught exceptions"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 11,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522338478,
+        "id": "95d1cf31-6543-4d17-bdc1-d93e686d090a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522338478,
+        "parent_id": "b8d8344d-a0cb-456e-9cc8-e07f497515d9",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "C++17 introduces "
+            ],
+            [
+              "int std::uncaught_exceptions()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " (to replace the limited "
+            ],
+            [
+              "bool std::uncaught_exception()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ") to know how many exceptions are currently uncaught. That allows for a class to determine if it is destroyed during a stack unwinding or not."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "C++17 introduces "
+          },
+          {
+            "Text": "int std::uncaught_exceptions()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " (to replace the limited "
+          },
+          {
+            "Text": "bool std::uncaught_exception()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ") to know how many exceptions are currently uncaught. That allows for a class to determine if it is destroyed during a stack unwinding or not."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522338481,
+        "id": "3fccd675-5f28-452a-90d8-b72712731e7b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522338481,
+        "parent_id": "b8d8344d-a0cb-456e-9cc8-e07f497515d9",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003cexception\u003e\n#include \u003cstring\u003e\n#include \u003ciostream\u003e\n\n// Apply change on destruction:\n// Rollback in case of exception (failure)\n// Else Commit (success)\nclass Transaction\n{\npublic:\n    Transaction(const std::string\u0026 s) : message(s) {}\n    Transaction(const Transaction\u0026) = delete;\n    Transaction\u0026 operator =(const Transaction\u0026) = delete;\n    void Commit() { std::cout \u003c\u003c message \u003c\u003c \": Commit\\n\"; }\n    void RollBack() noexcept(true) { std::cout \u003c\u003c message \u003c\u003c \": Rollback\\n\"; }\n\n    // ...\n\n    ~Transaction() {\n        if (uncaughtExceptionCount == std::uncaught_exceptions()) {\n            Commit(); // May throw.\n        } else { // current stack unwinding\n            RollBack();\n        }\n    }\n\nprivate:\n    std::string message;\n    int uncaughtExceptionCount = std::uncaught_exceptions();\n};\n\nclass Foo\n{\npublic:\n    ~Foo() {\n        try {\n            Transaction transaction(\"In ~Foo\"); // Commit,\n                                            // even if there is an uncaught exception\n            //...\n        } catch (const std::exception\u0026 e) {\n            std::cerr \u003c\u003c \"exception/~Foo:\" \u003c\u003c e.what() \u003c\u003c std::endl;\n        }\n    }\n};\n\nint main()\n{\n    try {\n        Transaction transaction(\"In main\"); // RollBack\n        Foo foo; // ~Foo commit its transaction.\n        //...\n        throw std::runtime_error(\"Error\");\n    } catch (const std::exception\u0026 e) {\n        std::cerr \u003c\u003c \"exception/main:\" \u003c\u003c e.what() \u003c\u003c std::endl;\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \u003cexception\u003e\n#include \u003cstring\u003e\n#include \u003ciostream\u003e\n\n// Apply change on destruction:\n// Rollback in case of exception (failure)\n// Else Commit (success)\nclass Transaction\n{\npublic:\n    Transaction(const std::string\u0026 s) : message(s) {}\n    Transaction(const Transaction\u0026) = delete;\n    Transaction\u0026 operator =(const Transaction\u0026) = delete;\n    void Commit() { std::cout \u003c\u003c message \u003c\u003c \": Commit\\n\"; }\n    void RollBack() noexcept(true) { std::cout \u003c\u003c message \u003c\u003c \": Rollback\\n\"; }\n\n    // ...\n\n    ~Transaction() {\n        if (uncaughtExceptionCount == std::uncaught_exceptions()) {\n            Commit(); // May throw.\n        } else { // current stack unwinding\n            RollBack();\n        }\n    }\n\nprivate:\n    std::string message;\n    int uncaughtExceptionCount = std::uncaught_exceptions();\n};\n\nclass Foo\n{\npublic:\n    ~Foo() {\n        try {\n            Transaction transaction(\"In ~Foo\"); // Commit,\n                                            // even if there is an uncaught exception\n            //...\n        } catch (const std::exception\u0026 e) {\n            std::cerr \u003c\u003c \"exception/~Foo:\" \u003c\u003c e.what() \u003c\u003c std::endl;\n        }\n    }\n};\n\nint main()\n{\n    try {\n        Transaction transaction(\"In main\"); // RollBack\n        Foo foo; // ~Foo commit its transaction.\n        //...\n        throw std::runtime_error(\"Error\");\n    } catch (const std::exception\u0026 e) {\n        std::cerr \u003c\u003c \"exception/main:\" \u003c\u003c e.what() \u003c\u003c std::endl;\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522338481,
+        "id": "d208a125-7846-4b73-84e5-1f734afc607a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522338481,
+        "parent_id": "b8d8344d-a0cb-456e-9cc8-e07f497515d9",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Output:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Output:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522338481,
+        "id": "e08e5437-3d9e-4520-b600-2a9e54148812",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522338481,
+        "parent_id": "b8d8344d-a0cb-456e-9cc8-e07f497515d9",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "In ~Foo: Commit\nIn main: Rollback\nexception/main:Error"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "In ~Foo: Commit\nIn main: Rollback\nexception/main:Error",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "std::uncaught exceptions",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

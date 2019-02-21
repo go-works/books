@@ -1,0 +1,349 @@
+{
+  "ID": "92bf8be1-80dc-466e-a11d-adc259b3da5c",
+  "Root": {
+    "alive": true,
+    "content": [
+      "7739d332-e0dd-4cca-a9af-0f12a2d34e4e",
+      "2579d5c8-752e-4575-bb49-ea910b511107",
+      "1ca298fc-d1bd-4298-aa52-ceb61434ac16",
+      "61a7dbcb-6360-4cc3-aa46-56753af73270",
+      "a12be252-add7-4f10-abb6-5fc49a0eef2b"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550522030502,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "92bf8be1-80dc-466e-a11d-adc259b3da5c",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550656020000,
+    "parent_id": "402ef4da-a4e3-4503-ab08-9a4aa56821b5",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Writing a smart pointer value ptr"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522030500,
+        "id": "7739d332-e0dd-4cca-a9af-0f12a2d34e4e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522030500,
+        "parent_id": "92bf8be1-80dc-466e-a11d-adc259b3da5c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "A "
+            ],
+            [
+              "value_ptr",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is a smart pointer that behaves like a value. When copied, it copies its contents. When created, it creates its contents."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "A "
+          },
+          {
+            "Text": "value_ptr",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is a smart pointer that behaves like a value. When copied, it copies its contents. When created, it creates its contents."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522030501,
+        "id": "2579d5c8-752e-4575-bb49-ea910b511107",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522030501,
+        "parent_id": "92bf8be1-80dc-466e-a11d-adc259b3da5c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Like std::default_delete:\ntemplate\u003cclass T\u003e\nstruct default_copier {\n  // a copier must handle a null T const* in and return null:\n  T* operator()(T const* tin)const {\n    if (!tin) return nullptr;\n    return new T(*tin);\n  }\n  void operator()(void* dest, T const* tin)const {\n    if (!tin) return;\n    return new(dest) T(*tin);\n  }\n};\n// tag class to handle empty case:\nstruct empty_ptr_t {};\nconstexpr empty_ptr_t empty_ptr{};\n// the value pointer type itself:\ntemplate\u003cclass T, class Copier=default_copier\u003cT\u003e, class Deleter=std::default_delete\u003cT\u003e,\n  class Base=std::unique_ptr\u003cT, Deleter\u003e\n\u003e\nstruct value_ptr:Base, private Copier {\n  using copier_type=Copier;\n  // also typedefs from unique_ptr\n\n  using Base::Base;\n\n  value_ptr( T const\u0026 t ):\n    Base( std::make_unique\u003cT\u003e(t) ),\n    Copier()\n  {}\n  value_ptr( T \u0026\u0026 t ):\n    Base( std::make_unique\u003cT\u003e(std::move(t)) ),\n    Copier()\n  {}\n  // almost-never-empty:\n      value_ptr():\n    Base( std::make_unique\u003cT\u003e() ),\n    Copier()\n  {}\n  value_ptr( empty_ptr_t ) {}\n\n  value_ptr( Base b, Copier c={} ):\n    Base(std::move(b)),\n    Copier(std::move(c))\n  {}\n\n  Copier const\u0026 get_copier() const {\n    return *this;\n  }\n\n  value_ptr clone() const {\n    return {\n      Base(\n        get_copier()(this-\u003eget()),\n        this-\u003eget_deleter()\n      ),\n      get_copier()\n    };\n  }\n  value_ptr(value_ptr\u0026\u0026)=default;\n  value_ptr\u0026 operator=(value_ptr\u0026\u0026)=default;\n\n  value_ptr(value_ptr const\u0026 o):value_ptr(o.clone()) {}\n  value_ptr\u0026 operator=(value_ptr const\u0026o) {\n    if (o \u0026\u0026 *this) {\n      // if we are both non-null, assign contents:\n      **this = *o;\n    } else {\n      // otherwise, assign a clone (which could itself be null):\n      *this = o.clone();\n    }\n    return *this;\n  }\n  value_ptr\u0026 operator=( T const\u0026 t ) {\n    if (*this) {\n      **this = t;\n    } else {\n      *this = value_ptr(t);\n    }\n    return *this;\n  }\n  value_ptr\u0026 operator=( T \u0026\u0026 t ) {\n    if (*this) {\n      **this = std::move(t);\n    } else {\n      *this = value_ptr(std::move(t));\n    }\n    return *this;\n  }\n  T\u0026 get() { return **this; }\n  T const\u0026 get() const { return **this; }\n  T* get_pointer() {\n    if (!*this) return nullptr;\n    return std::addressof(get());\n  }\n  T const* get_pointer() const {\n    if (!*this) return nullptr;\n    return std::addressof(get());\n  }\n  // operator-\u003e from unique_ptr\n};\ntemplate\u003cclass T, class...Args\u003e\nvalue_ptr\u003cT\u003e make_value_ptr( Args\u0026\u0026... args ) {\n  return {std::make_unique\u003cT\u003e(std::forward\u003cArgs\u003e(args)...)};\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Like std::default_delete:\ntemplate\u003cclass T\u003e\nstruct default_copier {\n  // a copier must handle a null T const* in and return null:\n  T* operator()(T const* tin)const {\n    if (!tin) return nullptr;\n    return new T(*tin);\n  }\n  void operator()(void* dest, T const* tin)const {\n    if (!tin) return;\n    return new(dest) T(*tin);\n  }\n};\n// tag class to handle empty case:\nstruct empty_ptr_t {};\nconstexpr empty_ptr_t empty_ptr{};\n// the value pointer type itself:\ntemplate\u003cclass T, class Copier=default_copier\u003cT\u003e, class Deleter=std::default_delete\u003cT\u003e,\n  class Base=std::unique_ptr\u003cT, Deleter\u003e\n\u003e\nstruct value_ptr:Base, private Copier {\n  using copier_type=Copier;\n  // also typedefs from unique_ptr\n\n  using Base::Base;\n\n  value_ptr( T const\u0026 t ):\n    Base( std::make_unique\u003cT\u003e(t) ),\n    Copier()\n  {}\n  value_ptr( T \u0026\u0026 t ):\n    Base( std::make_unique\u003cT\u003e(std::move(t)) ),\n    Copier()\n  {}\n  // almost-never-empty:\n      value_ptr():\n    Base( std::make_unique\u003cT\u003e() ),\n    Copier()\n  {}\n  value_ptr( empty_ptr_t ) {}\n\n  value_ptr( Base b, Copier c={} ):\n    Base(std::move(b)),\n    Copier(std::move(c))\n  {}\n\n  Copier const\u0026 get_copier() const {\n    return *this;\n  }\n\n  value_ptr clone() const {\n    return {\n      Base(\n        get_copier()(this-\u003eget()),\n        this-\u003eget_deleter()\n      ),\n      get_copier()\n    };\n  }\n  value_ptr(value_ptr\u0026\u0026)=default;\n  value_ptr\u0026 operator=(value_ptr\u0026\u0026)=default;\n\n  value_ptr(value_ptr const\u0026 o):value_ptr(o.clone()) {}\n  value_ptr\u0026 operator=(value_ptr const\u0026o) {\n    if (o \u0026\u0026 *this) {\n      // if we are both non-null, assign contents:\n      **this = *o;\n    } else {\n      // otherwise, assign a clone (which could itself be null):\n      *this = o.clone();\n    }\n    return *this;\n  }\n  value_ptr\u0026 operator=( T const\u0026 t ) {\n    if (*this) {\n      **this = t;\n    } else {\n      *this = value_ptr(t);\n    }\n    return *this;\n  }\n  value_ptr\u0026 operator=( T \u0026\u0026 t ) {\n    if (*this) {\n      **this = std::move(t);\n    } else {\n      *this = value_ptr(std::move(t));\n    }\n    return *this;\n  }\n  T\u0026 get() { return **this; }\n  T const\u0026 get() const { return **this; }\n  T* get_pointer() {\n    if (!*this) return nullptr;\n    return std::addressof(get());\n  }\n  T const* get_pointer() const {\n    if (!*this) return nullptr;\n    return std::addressof(get());\n  }\n  // operator-\u003e from unique_ptr\n};\ntemplate\u003cclass T, class...Args\u003e\nvalue_ptr\u003cT\u003e make_value_ptr( Args\u0026\u0026... args ) {\n  return {std::make_unique\u003cT\u003e(std::forward\u003cArgs\u003e(args)...)};\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522030501,
+        "id": "1ca298fc-d1bd-4298-aa52-ceb61434ac16",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522030501,
+        "parent_id": "92bf8be1-80dc-466e-a11d-adc259b3da5c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This particular value_ptr is only empty if you construct it with "
+            ],
+            [
+              "empty_ptr_t",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " or if you move from it. It exposes the fact it is a "
+            ],
+            [
+              "unique_ptr",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", so "
+            ],
+            [
+              "explicit operator bool() const",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " works on it. "
+            ],
+            [
+              ".get()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " has been changed to return a reference (as it is almost never empty), and "
+            ],
+            [
+              ".get_pointer()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " returns a pointer instead."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This particular value_ptr is only empty if you construct it with "
+          },
+          {
+            "Text": "empty_ptr_t",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " or if you move from it. It exposes the fact it is a "
+          },
+          {
+            "Text": "unique_ptr",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", so "
+          },
+          {
+            "Text": "explicit operator bool() const",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " works on it. "
+          },
+          {
+            "Text": ".get()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " has been changed to return a reference (as it is almost never empty), and "
+          },
+          {
+            "Text": ".get_pointer()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " returns a pointer instead."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522030502,
+        "id": "61a7dbcb-6360-4cc3-aa46-56753af73270",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522030502,
+        "parent_id": "92bf8be1-80dc-466e-a11d-adc259b3da5c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This smart pointer can be useful for "
+            ],
+            [
+              "pImpl",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " cases, where we want value-semantics but we also don’t want to expose the contents of the "
+            ],
+            [
+              "pImpl",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " outside of the implementation file."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This smart pointer can be useful for "
+          },
+          {
+            "Text": "pImpl",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " cases, where we want value-semantics but we also don’t want to expose the contents of the "
+          },
+          {
+            "Text": "pImpl",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " outside of the implementation file."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522030502,
+        "id": "a12be252-add7-4f10-abb6-5fc49a0eef2b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522030502,
+        "parent_id": "92bf8be1-80dc-466e-a11d-adc259b3da5c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "With a non-default "
+            ],
+            [
+              "Copier",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", it can even handle virtual base classes that know how to produce instances of their derived and turn them into value-types."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "With a non-default "
+          },
+          {
+            "Text": "Copier",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", it can even handle virtual base classes that know how to produce instances of their derived and turn them into value-types."
+          }
+        ]
+      }
+    ],
+    "title": "Writing a smart pointer value ptr",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

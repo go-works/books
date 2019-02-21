@@ -1,0 +1,413 @@
+{
+  "ID": "f0aa304f-e584-4917-87b3-cb6a08257830",
+  "Root": {
+    "alive": true,
+    "content": [
+      "140e8add-0b03-4abb-b6b1-5f20284099e2",
+      "272a6ac7-6640-44f5-980b-a28a277f476f",
+      "f2c5550e-2444-47f0-9713-e8e2348aa248",
+      "964f430f-2117-4ebc-9887-9c5f190650b2",
+      "d3dab585-6451-42c7-a123-157167a7137d",
+      "49b7093b-3638-47e7-89bc-4974baa6f9b8",
+      "16c6f5f4-c42e-4097-b197-bdabc1a27f3b",
+      "8ac402c8-c374-4df9-b6aa-07e7e19a9fe4",
+      "268e1ff0-b5fe-441a-86c0-4b1017555050",
+      "f0976484-c8fd-4bf3-8489-db550737719e"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550525211645,
+    "id": "f0aa304f-e584-4917-87b3-cb6a08257830",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550525211645,
+    "parent_id": "5e61d351-5c67-4222-b553-e5a42137412d",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "050 Strategies for lock classes std try to lock std adopt lock std defer lock"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550525211642,
+        "id": "140e8add-0b03-4abb-b6b1-5f20284099e2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550525211642,
+        "parent_id": "f0aa304f-e584-4917-87b3-cb6a08257830",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "When creating a std::unique_lock, there are three different locking strategies to choose from: "
+            ],
+            [
+              "std::try_to_lock",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", "
+            ],
+            [
+              "std::defer_lock",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "std::adopt_lock",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "When creating a std::unique_lock, there are three different locking strategies to choose from: "
+          },
+          {
+            "Text": "std::try_to_lock",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", "
+          },
+          {
+            "Text": "std::defer_lock",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "std::adopt_lock",
+            "AttrFlags": 2
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550525211644,
+        "id": "272a6ac7-6640-44f5-980b-a28a277f476f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550525211644,
+        "parent_id": "f0aa304f-e584-4917-87b3-cb6a08257830",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "std::try_to_lock",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " allows for trying a lock without blocking:"
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "std::try_to_lock",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " allows for trying a lock without blocking:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550525211644,
+        "id": "f2c5550e-2444-47f0-9713-e8e2348aa248",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550525211644,
+        "parent_id": "f0aa304f-e584-4917-87b3-cb6a08257830",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "{\n    std::atomic_int temp {0};\n    std::mutex _mutex;\n    \n    std::thread t( [\u0026](){\n        \n        while( temp!= -1){\n            std::this_thread::sleep_for(std::chrono::seconds(5));\n            std::unique_lock\u003cstd::mutex\u003e lock( _mutex, std::try_to_lock);\n            \n            if(lock.owns_lock()){\n                //do something\n                temp=0;\n            }\n        }\n    });\n    \n    while ( true )\n    {\n        std::this_thread::sleep_for(std::chrono::seconds(1));\n        std::unique_lock\u003cstd::mutex\u003e lock( _mutex, std::try_to_lock);\n        if(lock.owns_lock()){\n            if (temp \u003c INT_MAX){\n                ++temp;\n            }\n            std::cout \u003c\u003c temp \u003c\u003c std::endl;\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "{\n    std::atomic_int temp {0};\n    std::mutex _mutex;\n    \n    std::thread t( [\u0026](){\n        \n        while( temp!= -1){\n            std::this_thread::sleep_for(std::chrono::seconds(5));\n            std::unique_lock\u003cstd::mutex\u003e lock( _mutex, std::try_to_lock);\n            \n            if(lock.owns_lock()){\n                //do something\n                temp=0;\n            }\n        }\n    });\n    \n    while ( true )\n    {\n        std::this_thread::sleep_for(std::chrono::seconds(1));\n        std::unique_lock\u003cstd::mutex\u003e lock( _mutex, std::try_to_lock);\n        if(lock.owns_lock()){\n            if (temp \u003c INT_MAX){\n                ++temp;\n            }\n            std::cout \u003c\u003c temp \u003c\u003c std::endl;\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550525211644,
+        "id": "964f430f-2117-4ebc-9887-9c5f190650b2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550525211644,
+        "parent_id": "f0aa304f-e584-4917-87b3-cb6a08257830",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "std::defer_lock",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " allows for creating a lock structure without acquiring the lock. When locking more than one mutex, there is a window of opportunity for a deadlock if two function callers try to acquire the locks at the same time:"
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "std::defer_lock",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " allows for creating a lock structure without acquiring the lock. When locking more than one mutex, there is a window of opportunity for a deadlock if two function callers try to acquire the locks at the same time:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550525211644,
+        "id": "d3dab585-6451-42c7-a123-157167a7137d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550525211644,
+        "parent_id": "f0aa304f-e584-4917-87b3-cb6a08257830",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "{\n    std::unique_lock\u003cstd::mutex\u003e lock1(_mutex1, std::defer_lock);\n    std::unique_lock\u003cstd::mutex\u003e lock2(_mutex2, std::defer_lock);\n    lock1.lock()\n    lock2.lock(); // deadlock here\n    std::cout \u003c\u003c \"Locked! \u003c\u003c std::endl;\n    //...\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "{\n    std::unique_lock\u003cstd::mutex\u003e lock1(_mutex1, std::defer_lock);\n    std::unique_lock\u003cstd::mutex\u003e lock2(_mutex2, std::defer_lock);\n    lock1.lock()\n    lock2.lock(); // deadlock here\n    std::cout \u003c\u003c \"Locked! \u003c\u003c std::endl;\n    //...\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550525211644,
+        "id": "49b7093b-3638-47e7-89bc-4974baa6f9b8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550525211644,
+        "parent_id": "f0aa304f-e584-4917-87b3-cb6a08257830",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "With the following code, whatever happens in the function, the locks are acquired and released in appropriate order:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "With the following code, whatever happens in the function, the locks are acquired and released in appropriate order:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550525211645,
+        "id": "16c6f5f4-c42e-4097-b197-bdabc1a27f3b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550525211645,
+        "parent_id": "f0aa304f-e584-4917-87b3-cb6a08257830",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "{\n    std::unique_lock\u003cstd::mutex\u003e lock1(_mutex1, std::defer_lock);\n    std::unique_lock\u003cstd::mutex\u003e lock2(_mutex2, std::defer_lock);\n    std::lock(lock1,lock2); // no deadlock possible\n    std::cout \u003c\u003c \"Locked! \u003c\u003c std::endl;\n    //...\n    \n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "{\n    std::unique_lock\u003cstd::mutex\u003e lock1(_mutex1, std::defer_lock);\n    std::unique_lock\u003cstd::mutex\u003e lock2(_mutex2, std::defer_lock);\n    std::lock(lock1,lock2); // no deadlock possible\n    std::cout \u003c\u003c \"Locked! \u003c\u003c std::endl;\n    //...\n    \n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550525211645,
+        "id": "8ac402c8-c374-4df9-b6aa-07e7e19a9fe4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550525211645,
+        "parent_id": "f0aa304f-e584-4917-87b3-cb6a08257830",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "std::adopt_lock",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " does not attempt to lock a second time if the calling thread currently owns the lock."
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "std::adopt_lock",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " does not attempt to lock a second time if the calling thread currently owns the lock."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550525211645,
+        "id": "268e1ff0-b5fe-441a-86c0-4b1017555050",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550525211645,
+        "parent_id": "f0aa304f-e584-4917-87b3-cb6a08257830",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "{\n    std::unique_lock\u003cstd::mutex\u003e lock1(_mutex1, std::adopt_lock);\n    std::unique_lock\u003cstd::mutex\u003e lock2(_mutex2, std::adopt_lock);\n    std::cout \u003c\u003c \"Locked! \u003c\u003c std::endl;\n    //...\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "{\n    std::unique_lock\u003cstd::mutex\u003e lock1(_mutex1, std::adopt_lock);\n    std::unique_lock\u003cstd::mutex\u003e lock2(_mutex2, std::adopt_lock);\n    std::cout \u003c\u003c \"Locked! \u003c\u003c std::endl;\n    //...\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550525211645,
+        "id": "f0976484-c8fd-4bf3-8489-db550737719e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550525211645,
+        "parent_id": "f0aa304f-e584-4917-87b3-cb6a08257830",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Something to keep in mind is that std::adopt_lock is not a substitute for recursive mutex usage. When the lock goes out of scope the mutex is "
+            ],
+            [
+              "released",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Something to keep in mind is that std::adopt_lock is not a substitute for recursive mutex usage. When the lock goes out of scope the mutex is "
+          },
+          {
+            "Text": "released",
+            "AttrFlags": 1
+          },
+          {
+            "Text": "."
+          }
+        ]
+      }
+    ],
+    "title": "050 Strategies for lock classes std try to lock std adopt lock std defer lock"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

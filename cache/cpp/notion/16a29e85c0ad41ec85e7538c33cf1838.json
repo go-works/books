@@ -1,0 +1,71 @@
+{
+  "ID": "16a29e85-c0ad-41ec-85e7-538c33cf1838",
+  "Root": {
+    "alive": true,
+    "content": [
+      "b674759a-41e3-437f-8597-5fca800e73d7"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550523934601,
+    "id": "16a29e85-c0ad-41ec-85e7-538c33cf1838",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550523934601,
+    "parent_id": "c70aafee-9819-4bd7-9b37-69e9f016666b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 1. Base example without covariant returns shows why theyre desirable"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523934599,
+        "id": "b674759a-41e3-437f-8597-5fca800e73d7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523934599,
+        "parent_id": "16a29e85-c0ad-41ec-85e7-538c33cf1838",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// 1. Base example not using language support for covariance, dynamic type checking.\n\nclass Top\n{\npublic:\n    virtual Top* clone() const = 0;\n    virtual ~Top() = default;       // Necessary for `delete` via Top*.\n};\n\nclass D : public Top\n{\n\npublic:\n    Top* clone() const override\n    { return new D( *this ); }\n};\n\nclass DD : public D\n{\nprivate:\n    int answer_ = 42;\n\npublic:\n    int answer() const\n    { return answer_;}\n\n    Top* clone() const override\n    { return new DD( *this ); }\n};\n\n#include \u003cassert.h\u003e\n#include \u003ciostream\u003e\n#include \u003ctypeinfo\u003e\nusing namespace std;\n\nint main()\n{\n    cout \u003c\u003c boolalpha;\n\n    DD* p1 = new DD();\n    Top* p2 = p1-\u003eclone();\n    bool const  correct_dynamic_type = (typeid( *p2 ) == typeid( DD ));\n    cout \u003c\u003c correct_dynamic_type \u003c\u003c endl;               // \"true\"\n\n    assert( correct_dynamic_type ); // This is essentially dynamic type checking. :(\n    auto p2_most_derived = static_cast\u003cDD*\u003e( p2 );\n    cout \u003c\u003c p2_most_derived-\u003eanswer() \u003c\u003c endl;          // \"42\"\n    delete p2;\n    delete p1;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// 1. Base example not using language support for covariance, dynamic type checking.\n\nclass Top\n{\npublic:\n    virtual Top* clone() const = 0;\n    virtual ~Top() = default;       // Necessary for `delete` via Top*.\n};\n\nclass D : public Top\n{\n\npublic:\n    Top* clone() const override\n    { return new D( *this ); }\n};\n\nclass DD : public D\n{\nprivate:\n    int answer_ = 42;\n\npublic:\n    int answer() const\n    { return answer_;}\n\n    Top* clone() const override\n    { return new DD( *this ); }\n};\n\n#include \u003cassert.h\u003e\n#include \u003ciostream\u003e\n#include \u003ctypeinfo\u003e\nusing namespace std;\n\nint main()\n{\n    cout \u003c\u003c boolalpha;\n\n    DD* p1 = new DD();\n    Top* p2 = p1-\u003eclone();\n    bool const  correct_dynamic_type = (typeid( *p2 ) == typeid( DD ));\n    cout \u003c\u003c correct_dynamic_type \u003c\u003c endl;               // \"true\"\n\n    assert( correct_dynamic_type ); // This is essentially dynamic type checking. :(\n    auto p2_most_derived = static_cast\u003cDD*\u003e( p2 );\n    cout \u003c\u003c p2_most_derived-\u003eanswer() \u003c\u003c endl;          // \"42\"\n    delete p2;\n    delete p1;\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "030 1. Base example without covariant returns shows why theyre desirable"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

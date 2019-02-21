@@ -1,0 +1,181 @@
+{
+  "ID": "3610299b-288e-42c9-bdc2-60475686fefe",
+  "Root": {
+    "alive": true,
+    "content": [
+      "0bec8dd7-a65f-47be-9a29-04e677ae803f",
+      "55e1091c-8db7-4a22-8e22-a7cc81aa7238",
+      "4b49e687-af33-4af1-bbef-a88d58aef75d",
+      "3de251b7-c923-44d0-a45b-5df1926d7d0d"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550522057759,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "3610299b-288e-42c9-bdc2-60475686fefe",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550655720000,
+    "parent_id": "2be9c7d5-be12-439a-8968-ad057c67187a",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Complex Numbers Revisited"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522057758,
+        "id": "0bec8dd7-a65f-47be-9a29-04e677ae803f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522057758,
+        "parent_id": "3610299b-288e-42c9-bdc2-60475686fefe",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The code below implements a very simple complex number type for which the underlying field is automatically promoted, following the language’s type promotion rules, under application of the four basic operators (+, -, *, and /) with a member of a different field (be it another "
+            ],
+            [
+              "complex\u003cT\u003e",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " or some scalar type)."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The code below implements a very simple complex number type for which the underlying field is automatically promoted, following the language’s type promotion rules, under application of the four basic operators (+, -, *, and /) with a member of a different field (be it another "
+          },
+          {
+            "Text": "complex\u003cT\u003e",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " or some scalar type)."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522057759,
+        "id": "55e1091c-8db7-4a22-8e22-a7cc81aa7238",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522057759,
+        "parent_id": "3610299b-288e-42c9-bdc2-60475686fefe",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This is intended to be a holistic example covering operator overloading alongside basic use of templates."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This is intended to be a holistic example covering operator overloading alongside basic use of templates."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522057759,
+        "id": "4b49e687-af33-4af1-bbef-a88d58aef75d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522057759,
+        "parent_id": "3610299b-288e-42c9-bdc2-60475686fefe",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003ctype_traits\u003e\n\nnamespace not_std{\n\nusing std::decay_t;\n\n//----------------------------------------------------------------\n// complex\u003c value_t \u003e\n//----------------------------------------------------------------\n\ntemplate\u003ctypename value_t\u003e\nstruct complex\n{\n    value_t x;\n    value_t y;\n\n    complex \u0026operator += (const value_t \u0026x)\n    {\n        this-\u003ex += x;\n        return *this;\n    }\n    complex \u0026operator += (const complex \u0026other)\n    {\n        this-\u003ex += other.x;\n        this-\u003ey += other.y;\n        return *this;\n    }\n\n    complex \u0026operator -= (const value_t \u0026x)\n    {\n        this-\u003ex -= x;\n        return *this;\n    }\n    complex \u0026operator -= (const complex \u0026other)\n    {\n        this-\u003ex -= other.x;\n        this-\u003ey -= other.y;\n        return *this;\n    }\n\n    complex \u0026operator *= (const value_t \u0026s)\n    {\n        this-\u003ex *= s;\n        this-\u003ey *= s;\n        return *this;\n    }\n    complex \u0026operator *= (const complex \u0026other)\n    {\n        (*this) = (*this) * other;\n        return *this;\n    }\n\n    complex \u0026operator /= (const value_t \u0026s)\n    {\n        this-\u003ex /= s;\n        this-\u003ey /= s;\n        return *this;\n    }\n    complex \u0026operator /= (const complex \u0026other)\n    {\n        (*this) = (*this) / other;\n        return *this;\n    }\n\n    complex(const value_t \u0026x, const value_t \u0026y)\n    : x{x}\n    , y{y}\n    {}\n\n    template\u003ctypename other_value_t\u003e\n    explicit complex(const complex\u003cother_value_t\u003e \u0026other)\n    : x{static_cast\u003cconst value_t \u0026\u003e(other.x)}\n    , y{static_cast\u003cconst value_t \u0026\u003e(other.y)}\n    {}\n\n    complex \u0026operator = (const complex \u0026) = default;\n    complex \u0026operator = (complex \u0026\u0026) = default;\n    complex(const complex \u0026) = default;\n    complex(complex \u0026\u0026) = default;\n    complex() = default;\n};\n\n// Absolute value squared\ntemplate\u003ctypename value_t\u003e\nvalue_t absqr(const complex\u003cvalue_t\u003e \u0026z)\n{ return z.x*z.x + z.y*z.y; }\n\n//----------------------------------------------------------------\n// operator - (negation)\n//----------------------------------------------------------------\n\ntemplate\u003ctypename value_t\u003e\ncomplex\u003cvalue_t\u003e operator - (const complex\u003cvalue_t\u003e \u0026z)\n{ return {-z.x, -z.y}; }\n\n//----------------------------------------------------------------\n// operator +\n//----------------------------------------------------------------\n\ntemplate\u003ctypename left_t,typename right_t\u003e\nauto operator + (const complex\u003cleft_t\u003e \u0026a, const complex\u003cright_t\u003e \u0026b)\n-\u003e complex\u003cdecay_t\u003cdecltype(a.x + b.x)\u003e\u003e\n{ return{a.x + b.x, a.y + b.y}; }\n\ntemplate\u003ctypename left_t,typename right_t\u003e\nauto operator + (const left_t \u0026a, const complex\u003cright_t\u003e \u0026b)\n-\u003e complex\u003cdecay_t\u003cdecltype(a + b.x)\u003e\u003e\n{ return{a + b.x, b.y}; }\n\ntemplate\u003ctypename left_t,typename right_t\u003e\nauto operator + (const complex\u003cleft_t\u003e \u0026a, const right_t \u0026b)\n-\u003e complex\u003cdecay_t\u003cdecltype(a.x + b)\u003e\u003e\n{ return{a.x + b, a.y}; }\n\n//----------------------------------------------------------------\n// operator -\n//----------------------------------------------------------------\n\ntemplate\u003ctypename left_t,typename right_t\u003e\nauto operator - (const complex\u003cleft_t\u003e \u0026a, const complex\u003cright_t\u003e \u0026b)\n-\u003e complex\u003cdecay_t\u003cdecltype(a.x - b.x)\u003e\u003e\n{ return{a.x - b.x, a.y - b.y}; }\n\ntemplate\u003ctypename left_t,typename right_t\u003e\nauto operator - (const left_t \u0026a, const complex\u003cright_t\u003e \u0026b)\n-\u003e complex\u003cdecay_t\u003cdecltype(a - b.x)\u003e\u003e\n{ return{a - b.x, - b.y}; }\n\ntemplate\u003ctypename left_t,typename right_t\u003e\nauto operator - (const complex\u003cleft_t\u003e \u0026a, const right_t \u0026b)\n-\u003e complex\u003cdecay_t\u003cdecltype(a.x - b)\u003e\u003e\n{ return{a.x - b, a.y}; }\n\n//----------------------------------------------------------------\n// operator *\n//----------------------------------------------------------------\n\ntemplate\u003ctypename left_t, typename right_t\u003e\nauto operator * (const complex\u003cleft_t\u003e \u0026a, const complex\u003cright_t\u003e \u0026b)\n-\u003e complex\u003cdecay_t\u003cdecltype(a.x * b.x)\u003e\u003e\n{\n    return {\n        a.x*b.x - a.y*b.y,\n        a.x*b.y + a.y*b.x\n        };\n}\n\ntemplate\u003ctypename left_t, typename right_t\u003e\nauto operator * (const left_t \u0026a, const complex\u003cright_t\u003e \u0026b)\n-\u003e complex\u003cdecay_t\u003cdecltype(a * b.x)\u003e\u003e\n{ return {a * b.x, a * b.y}; }\n\ntemplate\u003ctypename left_t, typename right_t\u003e\nauto operator * (const complex\u003cleft_t\u003e \u0026a, const right_t \u0026b)\n-\u003e complex\u003cdecay_t\u003cdecltype(a.x * b)\u003e\u003e\n{ return {a.x * b, a.y * b}; }\n\n//----------------------------------------------------------------\n// operator /\n//----------------------------------------------------------------\n\ntemplate\u003ctypename left_t, typename right_t\u003e\nauto operator / (const complex\u003cleft_t\u003e \u0026a, const complex\u003cright_t\u003e \u0026b)\n-\u003e complex\u003cdecay_t\u003cdecltype(a.x / b.x)\u003e\u003e\n{\n    const auto r = absqr(b);\n    return {\n        ( a.x*b.x + a.y*b.y) / r,\n        (-a.x*b.y + a.y*b.x) / r\n        };\n}\n\ntemplate\u003ctypename left_t, typename right_t\u003e\nauto operator / (const left_t \u0026a, const complex\u003cright_t\u003e \u0026b)\n-\u003e complex\u003cdecay_t\u003cdecltype(a / b.x)\u003e\u003e\n{\n    const auto s = a/absqr(b);\n    return {\n         b.x * s,\n        -b.y * s\n        };\n}\n\ntemplate\u003ctypename left_t, typename right_t\u003e\nauto operator / (const complex\u003cleft_t\u003e \u0026a, const right_t \u0026b)\n-\u003e complex\u003cdecay_t\u003cdecltype(a.x / b)\u003e\u003e\n{ return {a.x / b, a.y / b}; }\n\n}// namespace not_std"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \u003ctype_traits\u003e\n\nnamespace not_std{\n\nusing std::decay_t;\n\n//----------------------------------------------------------------\n// complex\u003c value_t \u003e\n//----------------------------------------------------------------\n\ntemplate\u003ctypename value_t\u003e\nstruct complex\n{\n    value_t x;\n    value_t y;\n\n    complex \u0026operator += (const value_t \u0026x)\n    {\n        this-\u003ex += x;\n        return *this;\n    }\n    complex \u0026operator += (const complex \u0026other)\n    {\n        this-\u003ex += other.x;\n        this-\u003ey += other.y;\n        return *this;\n    }\n\n    complex \u0026operator -= (const value_t \u0026x)\n    {\n        this-\u003ex -= x;\n        return *this;\n    }\n    complex \u0026operator -= (const complex \u0026other)\n    {\n        this-\u003ex -= other.x;\n        this-\u003ey -= other.y;\n        return *this;\n    }\n\n    complex \u0026operator *= (const value_t \u0026s)\n    {\n        this-\u003ex *= s;\n        this-\u003ey *= s;\n        return *this;\n    }\n    complex \u0026operator *= (const complex \u0026other)\n    {\n        (*this) = (*this) * other;\n        return *this;\n    }\n\n    complex \u0026operator /= (const value_t \u0026s)\n    {\n        this-\u003ex /= s;\n        this-\u003ey /= s;\n        return *this;\n    }\n    complex \u0026operator /= (const complex \u0026other)\n    {\n        (*this) = (*this) / other;\n        return *this;\n    }\n\n    complex(const value_t \u0026x, const value_t \u0026y)\n    : x{x}\n    , y{y}\n    {}\n\n    template\u003ctypename other_value_t\u003e\n    explicit complex(const complex\u003cother_value_t\u003e \u0026other)\n    : x{static_cast\u003cconst value_t \u0026\u003e(other.x)}\n    , y{static_cast\u003cconst value_t \u0026\u003e(other.y)}\n    {}\n\n    complex \u0026operator = (const complex \u0026) = default;\n    complex \u0026operator = (complex \u0026\u0026) = default;\n    complex(const complex \u0026) = default;\n    complex(complex \u0026\u0026) = default;\n    complex() = default;\n};\n\n// Absolute value squared\ntemplate\u003ctypename value_t\u003e\nvalue_t absqr(const complex\u003cvalue_t\u003e \u0026z)\n{ return z.x*z.x + z.y*z.y; }\n\n//----------------------------------------------------------------\n// operator - (negation)\n//----------------------------------------------------------------\n\ntemplate\u003ctypename value_t\u003e\ncomplex\u003cvalue_t\u003e operator - (const complex\u003cvalue_t\u003e \u0026z)\n{ return {-z.x, -z.y}; }\n\n//----------------------------------------------------------------\n// operator +\n//----------------------------------------------------------------\n\ntemplate\u003ctypename left_t,typename right_t\u003e\nauto operator + (const complex\u003cleft_t\u003e \u0026a, const complex\u003cright_t\u003e \u0026b)\n-\u003e complex\u003cdecay_t\u003cdecltype(a.x + b.x)\u003e\u003e\n{ return{a.x + b.x, a.y + b.y}; }\n\ntemplate\u003ctypename left_t,typename right_t\u003e\nauto operator + (const left_t \u0026a, const complex\u003cright_t\u003e \u0026b)\n-\u003e complex\u003cdecay_t\u003cdecltype(a + b.x)\u003e\u003e\n{ return{a + b.x, b.y}; }\n\ntemplate\u003ctypename left_t,typename right_t\u003e\nauto operator + (const complex\u003cleft_t\u003e \u0026a, const right_t \u0026b)\n-\u003e complex\u003cdecay_t\u003cdecltype(a.x + b)\u003e\u003e\n{ return{a.x + b, a.y}; }\n\n//----------------------------------------------------------------\n// operator -\n//----------------------------------------------------------------\n\ntemplate\u003ctypename left_t,typename right_t\u003e\nauto operator - (const complex\u003cleft_t\u003e \u0026a, const complex\u003cright_t\u003e \u0026b)\n-\u003e complex\u003cdecay_t\u003cdecltype(a.x - b.x)\u003e\u003e\n{ return{a.x - b.x, a.y - b.y}; }\n\ntemplate\u003ctypename left_t,typename right_t\u003e\nauto operator - (const left_t \u0026a, const complex\u003cright_t\u003e \u0026b)\n-\u003e complex\u003cdecay_t\u003cdecltype(a - b.x)\u003e\u003e\n{ return{a - b.x, - b.y}; }\n\ntemplate\u003ctypename left_t,typename right_t\u003e\nauto operator - (const complex\u003cleft_t\u003e \u0026a, const right_t \u0026b)\n-\u003e complex\u003cdecay_t\u003cdecltype(a.x - b)\u003e\u003e\n{ return{a.x - b, a.y}; }\n\n//----------------------------------------------------------------\n// operator *\n//----------------------------------------------------------------\n\ntemplate\u003ctypename left_t, typename right_t\u003e\nauto operator * (const complex\u003cleft_t\u003e \u0026a, const complex\u003cright_t\u003e \u0026b)\n-\u003e complex\u003cdecay_t\u003cdecltype(a.x * b.x)\u003e\u003e\n{\n    return {\n        a.x*b.x - a.y*b.y,\n        a.x*b.y + a.y*b.x\n        };\n}\n\ntemplate\u003ctypename left_t, typename right_t\u003e\nauto operator * (const left_t \u0026a, const complex\u003cright_t\u003e \u0026b)\n-\u003e complex\u003cdecay_t\u003cdecltype(a * b.x)\u003e\u003e\n{ return {a * b.x, a * b.y}; }\n\ntemplate\u003ctypename left_t, typename right_t\u003e\nauto operator * (const complex\u003cleft_t\u003e \u0026a, const right_t \u0026b)\n-\u003e complex\u003cdecay_t\u003cdecltype(a.x * b)\u003e\u003e\n{ return {a.x * b, a.y * b}; }\n\n//----------------------------------------------------------------\n// operator /\n//----------------------------------------------------------------\n\ntemplate\u003ctypename left_t, typename right_t\u003e\nauto operator / (const complex\u003cleft_t\u003e \u0026a, const complex\u003cright_t\u003e \u0026b)\n-\u003e complex\u003cdecay_t\u003cdecltype(a.x / b.x)\u003e\u003e\n{\n    const auto r = absqr(b);\n    return {\n        ( a.x*b.x + a.y*b.y) / r,\n        (-a.x*b.y + a.y*b.x) / r\n        };\n}\n\ntemplate\u003ctypename left_t, typename right_t\u003e\nauto operator / (const left_t \u0026a, const complex\u003cright_t\u003e \u0026b)\n-\u003e complex\u003cdecay_t\u003cdecltype(a / b.x)\u003e\u003e\n{\n    const auto s = a/absqr(b);\n    return {\n         b.x * s,\n        -b.y * s\n        };\n}\n\ntemplate\u003ctypename left_t, typename right_t\u003e\nauto operator / (const complex\u003cleft_t\u003e \u0026a, const right_t \u0026b)\n-\u003e complex\u003cdecay_t\u003cdecltype(a.x / b)\u003e\u003e\n{ return {a.x / b, a.y / b}; }\n\n}// namespace not_std",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522057759,
+        "id": "3de251b7-c923-44d0-a45b-5df1926d7d0d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522057759,
+        "parent_id": "3610299b-288e-42c9-bdc2-60475686fefe",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "int main(int argc, char **argv)\n{\n    using namespace not_std;\n\n    complex\u003cfloat\u003e fz{4.0f, 1.0f};\n\n    // makes a complex\u003cdouble\u003e\n    auto dz = fz * 1.0;\n\n    // still a complex\u003cdouble\u003e\n    auto idz = 1.0f/dz;\n\n    // also a complex\u003cdouble\u003e\n    auto one = dz * idz;\n\n    // a complex\u003cdouble\u003e again\n    auto one_again = fz * idz;\n\n    // Operator tests, just to make sure everything compiles.\n\n    complex\u003cfloat\u003e a{1.0f, -2.0f};\n    complex\u003cdouble\u003e b{3.0, -4.0};\n\n    // All of these are complex\u003cdouble\u003e\n    auto c0 = a + b;\n    auto c1 = a - b;\n    auto c2 = a * b;\n    auto c3 = a / b;\n\n    // All of these are complex\u003cfloat\u003e\n    auto d0 = a + 1;\n    auto d1 = 1 + a;\n    auto d2 = a - 1;\n    auto d3 = 1 - a;\n    auto d4 = a * 1;\n    auto d5 = 1 * a;\n    auto d6 = a / 1;\n    auto d7 = 1 / a;\n\n    // All of these are complex\u003cdouble\u003e\n    auto e0 = b + 1;\n    auto e1 = 1 + b;\n    auto e2 = b - 1;\n    auto e3 = 1 - b;\n    auto e4 = b * 1;\n    auto e5 = 1 * b;\n    auto e6 = b / 1;\n    auto e7 = 1 / b;\n\n    return 0;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "int main(int argc, char **argv)\n{\n    using namespace not_std;\n\n    complex\u003cfloat\u003e fz{4.0f, 1.0f};\n\n    // makes a complex\u003cdouble\u003e\n    auto dz = fz * 1.0;\n\n    // still a complex\u003cdouble\u003e\n    auto idz = 1.0f/dz;\n\n    // also a complex\u003cdouble\u003e\n    auto one = dz * idz;\n\n    // a complex\u003cdouble\u003e again\n    auto one_again = fz * idz;\n\n    // Operator tests, just to make sure everything compiles.\n\n    complex\u003cfloat\u003e a{1.0f, -2.0f};\n    complex\u003cdouble\u003e b{3.0, -4.0};\n\n    // All of these are complex\u003cdouble\u003e\n    auto c0 = a + b;\n    auto c1 = a - b;\n    auto c2 = a * b;\n    auto c3 = a / b;\n\n    // All of these are complex\u003cfloat\u003e\n    auto d0 = a + 1;\n    auto d1 = 1 + a;\n    auto d2 = a - 1;\n    auto d3 = 1 - a;\n    auto d4 = a * 1;\n    auto d5 = 1 * a;\n    auto d6 = a / 1;\n    auto d7 = 1 / a;\n\n    // All of these are complex\u003cdouble\u003e\n    auto e0 = b + 1;\n    auto e1 = 1 + b;\n    auto e2 = b - 1;\n    auto e3 = 1 - b;\n    auto e4 = b * 1;\n    auto e5 = 1 * b;\n    auto e6 = b / 1;\n    auto e7 = 1 / b;\n\n    return 0;\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Complex Numbers Revisited",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,385 @@
+{
+  "ID": "9d6da069-8edd-47e4-a261-619eaf56010d",
+  "Root": {
+    "alive": true,
+    "content": [
+      "b0562d37-e43d-4c67-b960-813844764875",
+      "cbca3c69-72ca-487e-b3f4-7bc01f788718",
+      "2480765b-32a4-48e0-a49d-9a3a6458d7d1",
+      "c1c63288-3ab7-4826-bd79-d9a5b5ecd023",
+      "8fcc2aa7-5e7d-4d81-8e93-66912588290f",
+      "d6e0281b-4293-4d3b-b279-213f0060e881",
+      "1517965e-644d-4c5e-bb27-c8c8f842ab6d",
+      "860c1ace-e345-4de7-a1de-473f763f1271",
+      "84481bd7-5fae-43cd-8d2e-9f8dc4172c6d",
+      "3399f3cb-c544-42a8-87e5-a13ff83f14c2"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550523942635,
+    "id": "9d6da069-8edd-47e4-a261-619eaf56010d",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550523942635,
+    "parent_id": "2f06e164-6745-4c46-9402-92f51f9f9266",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 Name Hiding Importing"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523942631,
+        "id": "b0562d37-e43d-4c67-b960-813844764875",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523942631,
+        "parent_id": "9d6da069-8edd-47e4-a261-619eaf56010d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "When a base class provides a set of overloaded functions, and a derived class adds another overload to the set, this hides all of the overloads provided by the base class."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "When a base class provides a set of overloaded functions, and a derived class adds another overload to the set, this hides all of the overloads provided by the base class."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523942633,
+        "id": "cbca3c69-72ca-487e-b3f4-7bc01f788718",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523942633,
+        "parent_id": "9d6da069-8edd-47e4-a261-619eaf56010d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "struct HiddenBase {\n    void f(int) { std::cout \u003c\u003c \"int\" \u003c\u003c std::endl; }\n    void f(bool) { std::cout \u003c\u003c \"bool\" \u003c\u003c std::endl; }\n    void f(std::string) { std::cout \u003c\u003c \"std::string\" \u003c\u003c std::endl; }\n};\n\nstruct HidingDerived : HiddenBase {\n    void f(float) { std::cout \u003c\u003c \"float\" \u003c\u003c std::endl; }\n};\n\n// ...\n\nHiddenBase hb;\nHidingDerived hd;\nstd::string s;\n\nhb.f(1);    // Output:  int\nhb.f(true); // Output:  bool\nhb.f(s);    // Output:  std::string;\n\nhd.f(1.f);  // Output:  float\nhd.f(3);    // Output:  float\nhd.f(true); // Output:  float\nhd.f(s);    // Error: Can't convert from std::string to float."
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "struct HiddenBase {\n    void f(int) { std::cout \u003c\u003c \"int\" \u003c\u003c std::endl; }\n    void f(bool) { std::cout \u003c\u003c \"bool\" \u003c\u003c std::endl; }\n    void f(std::string) { std::cout \u003c\u003c \"std::string\" \u003c\u003c std::endl; }\n};\n\nstruct HidingDerived : HiddenBase {\n    void f(float) { std::cout \u003c\u003c \"float\" \u003c\u003c std::endl; }\n};\n\n// ...\n\nHiddenBase hb;\nHidingDerived hd;\nstd::string s;\n\nhb.f(1);    // Output:  int\nhb.f(true); // Output:  bool\nhb.f(s);    // Output:  std::string;\n\nhd.f(1.f);  // Output:  float\nhd.f(3);    // Output:  float\nhd.f(true); // Output:  float\nhd.f(s);    // Error: Can't convert from std::string to float.",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523942634,
+        "id": "2480765b-32a4-48e0-a49d-9a3a6458d7d1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523942634,
+        "parent_id": "9d6da069-8edd-47e4-a261-619eaf56010d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This is due to name resolution rules: During name lookup, once the correct name is found, we stop looking, even if we clearly haven’t found the correct "
+            ],
+            [
+              "version",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " of the entity with that name (such as with "
+            ],
+            [
+              "hd.f(s)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "); due to this, overloading the function in the derived class prevents name lookup from discovering the overloads in the base class. To avoid this, a using-declaration can be used to “import” names from the base class into the derived class, so that they will be available during name lookup."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This is due to name resolution rules: During name lookup, once the correct name is found, we stop looking, even if we clearly haven’t found the correct "
+          },
+          {
+            "Text": "version",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " of the entity with that name (such as with "
+          },
+          {
+            "Text": "hd.f(s)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "); due to this, overloading the function in the derived class prevents name lookup from discovering the overloads in the base class. To avoid this, a using-declaration can be used to “import” names from the base class into the derived class, so that they will be available during name lookup."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523942634,
+        "id": "c1c63288-3ab7-4826-bd79-d9a5b5ecd023",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523942634,
+        "parent_id": "9d6da069-8edd-47e4-a261-619eaf56010d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "struct HidingDerived : HiddenBase {\n     // All members named HiddenBase::f shall be considered members of HidingDerived for lookup.\n    using HiddenBase::f;\n\n    void f(float) { std::cout \u003c\u003c \"float\" \u003c\u003c std::endl; }\n};\n\n// ...\n\nHidingDerived hd;\n\nhd.f(1.f);  // Output:  float\nhd.f(3);    // Output:  int\nhd.f(true); // Output:  bool\nhd.f(s);    // Output:  std::string"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "struct HidingDerived : HiddenBase {\n     // All members named HiddenBase::f shall be considered members of HidingDerived for lookup.\n    using HiddenBase::f;\n\n    void f(float) { std::cout \u003c\u003c \"float\" \u003c\u003c std::endl; }\n};\n\n// ...\n\nHidingDerived hd;\n\nhd.f(1.f);  // Output:  float\nhd.f(3);    // Output:  int\nhd.f(true); // Output:  bool\nhd.f(s);    // Output:  std::string",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523942634,
+        "id": "8fcc2aa7-5e7d-4d81-8e93-66912588290f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523942634,
+        "parent_id": "9d6da069-8edd-47e4-a261-619eaf56010d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If a derived class imports names with a using-declaration, but also declares functions with the same signature as functions in the base class, the base class functions will silently be overridden or hidden."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If a derived class imports names with a using-declaration, but also declares functions with the same signature as functions in the base class, the base class functions will silently be overridden or hidden."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523942634,
+        "id": "d6e0281b-4293-4d3b-b279-213f0060e881",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523942634,
+        "parent_id": "9d6da069-8edd-47e4-a261-619eaf56010d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "struct NamesHidden {\n    virtual void hide_me()      {}\n    virtual void hide_me(float) {}\n    void hide_me(int)           {}\n    void hide_me(bool)          {}\n};\n\nstruct NameHider : NamesHidden {\n    using NamesHidden::hide_me;\n\n    void hide_me()    {} // Overrides NamesHidden::hide_me().\n    void hide_me(int) {} // Hides NamesHidden::hide_me(int).\n};"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "struct NamesHidden {\n    virtual void hide_me()      {}\n    virtual void hide_me(float) {}\n    void hide_me(int)           {}\n    void hide_me(bool)          {}\n};\n\nstruct NameHider : NamesHidden {\n    using NamesHidden::hide_me;\n\n    void hide_me()    {} // Overrides NamesHidden::hide_me().\n    void hide_me(int) {} // Hides NamesHidden::hide_me(int).\n};",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523942634,
+        "id": "1517965e-644d-4c5e-bb27-c8c8f842ab6d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523942634,
+        "parent_id": "9d6da069-8edd-47e4-a261-619eaf56010d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "A using-declaration can also be used to change access modifiers, provided the imported entity was "
+            ],
+            [
+              "public",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " or "
+            ],
+            [
+              "protected",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " in the base class."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "A using-declaration can also be used to change access modifiers, provided the imported entity was "
+          },
+          {
+            "Text": "public",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " or "
+          },
+          {
+            "Text": "protected",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " in the base class."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523942634,
+        "id": "860c1ace-e345-4de7-a1de-473f763f1271",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523942634,
+        "parent_id": "9d6da069-8edd-47e4-a261-619eaf56010d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "struct ProMem {\n  protected:\n    void func() {}\n};\n\nstruct BecomesPub : ProMem {\n    using ProMem::func;\n};\n\n// ...\n\nProMem pm;\nBecomesPub bp;\n\npm.func(); // Error: protected.\nbp.func(); // Good."
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "struct ProMem {\n  protected:\n    void func() {}\n};\n\nstruct BecomesPub : ProMem {\n    using ProMem::func;\n};\n\n// ...\n\nProMem pm;\nBecomesPub bp;\n\npm.func(); // Error: protected.\nbp.func(); // Good.",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523942635,
+        "id": "84481bd7-5fae-43cd-8d2e-9f8dc4172c6d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523942635,
+        "parent_id": "9d6da069-8edd-47e4-a261-619eaf56010d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Similarly, if we explicitly want to call a member function from a specific class in the inheritance hierarchy, we can qualify the function name when calling the function, specifying that class by name."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Similarly, if we explicitly want to call a member function from a specific class in the inheritance hierarchy, we can qualify the function name when calling the function, specifying that class by name."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523942635,
+        "id": "3399f3cb-c544-42a8-87e5-a13ff83f14c2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523942635,
+        "parent_id": "9d6da069-8edd-47e4-a261-619eaf56010d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "struct One {\n    virtual void f() { std::cout \u003c\u003c \"One.\" \u003c\u003c std::endl; }\n};\n\nstruct Two : One {\n    void f() override {\n        One::f(); // this-\u003eOne::f();\n        std::cout \u003c\u003c \"Two.\" \u003c\u003c std::endl;\n    }\n};\n\nstruct Three : Two {\n    void f() override {\n        Two::f(); // this-\u003eTwo::f();\n        std::cout \u003c\u003c \"Three.\" \u003c\u003c std::endl;\n    }\n};\n\n// ...\n\nThree t;\n\nt.f();      // Normal syntax.\nt.Two::f(); // Calls version of f() defined in Two.\nt.One::f(); // Calls version of f() defined in One."
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "struct One {\n    virtual void f() { std::cout \u003c\u003c \"One.\" \u003c\u003c std::endl; }\n};\n\nstruct Two : One {\n    void f() override {\n        One::f(); // this-\u003eOne::f();\n        std::cout \u003c\u003c \"Two.\" \u003c\u003c std::endl;\n    }\n};\n\nstruct Three : Two {\n    void f() override {\n        Two::f(); // this-\u003eTwo::f();\n        std::cout \u003c\u003c \"Three.\" \u003c\u003c std::endl;\n    }\n};\n\n// ...\n\nThree t;\n\nt.f();      // Normal syntax.\nt.Two::f(); // Calls version of f() defined in Two.\nt.One::f(); // Calls version of f() defined in One.",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "030 Name Hiding Importing"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

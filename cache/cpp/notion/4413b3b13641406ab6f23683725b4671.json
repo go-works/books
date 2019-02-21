@@ -1,0 +1,195 @@
+{
+  "ID": "4413b3b1-3641-406a-b6f2-3683725b4671",
+  "Root": {
+    "alive": true,
+    "content": [
+      "50da6419-f4e0-4d04-815f-bd707bd118e8",
+      "2890edfe-5ebb-41e2-bb75-a399d528e29f",
+      "5739ce62-62cb-43b1-b2eb-d8c90065dcbc"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550524762729,
+    "id": "4413b3b1-3641-406a-b6f2-3683725b4671",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550524762729,
+    "parent_id": "333099ca-9ef1-4569-b9ad-a7a9275c368b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Turn a std tupleT... into function parameters"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550524762726,
+        "id": "50da6419-f4e0-4d04-815f-bd707bd118e8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550524762726,
+        "parent_id": "4413b3b1-3641-406a-b6f2-3683725b4671",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "A "
+            ],
+            [
+              "std::tuple\u003cT...\u003e",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " can be used to pass multiple values around. For example, it could be used to store a sequence of parameters into some form of a queue. When processing such a tuple its elements need to be turned into function call arguments:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "A "
+          },
+          {
+            "Text": "std::tuple\u003cT...\u003e",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " can be used to pass multiple values around. For example, it could be used to store a sequence of parameters into some form of a queue. When processing such a tuple its elements need to be turned into function call arguments:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550524762728,
+        "id": "2890edfe-5ebb-41e2-bb75-a399d528e29f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550524762728,
+        "parent_id": "4413b3b1-3641-406a-b6f2-3683725b4671",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003carray\u003e\n#include \u003ciostream\u003e\n#include \u003cstring\u003e\n#include \u003ctuple\u003e\n#include \u003cutility\u003e\n\n// ----------------------------------------------------------------------------\n// Example functions to be called:\nvoid f(int i, std::string const\u0026 s) {\n    std::cout \u003c\u003c \"f(\" \u003c\u003c i \u003c\u003c \", \" \u003c\u003c s \u003c\u003c \")\\n\";\n}\nvoid f(int i, double d, std::string const\u0026 s) {\n    std::cout \u003c\u003c \"f(\" \u003c\u003c i \u003c\u003c \", \" \u003c\u003c d \u003c\u003c \", \" \u003c\u003c s \u003c\u003c \")\\n\";\n}\nvoid f(char c, int i, double d, std::string const\u0026 s) {\n    std::cout \u003c\u003c \"f(\" \u003c\u003c c \u003c\u003c \", \" \u003c\u003c i \u003c\u003c \", \" \u003c\u003c d \u003c\u003c \", \" \u003c\u003c s \u003c\u003c \")\\n\";\n}\nvoid f(int i, int j, int k) {\n    std::cout \u003c\u003c \"f(\" \u003c\u003c i \u003c\u003c \", \" \u003c\u003c j \u003c\u003c \", \" \u003c\u003c k \u003c\u003c \")\\n\";\n}\n\n// ----------------------------------------------------------------------------\n// The actual function expanding the tuple:\ntemplate \u003ctypename Tuple, std::size_t... I\u003e\nvoid process(Tuple const\u0026 tuple, std::index_sequence\u003cI...\u003e) {\n    f(std::get\u003cI\u003e(tuple)...);\n}\n\n// The interface to call. Sadly, it needs to dispatch to another function\n// to deduce the sequence of indices created from std::make_index_sequence\u003cN\u003e\ntemplate \u003ctypename Tuple\u003e\nvoid process(Tuple const\u0026 tuple) {\n    process(tuple, std::make_index_sequence\u003cstd::tuple_size\u003cTuple\u003e::value\u003e());\n}\n\n// ----------------------------------------------------------------------------\nint main() {\n    process(std::make_tuple(1, 3.14, std::string(\"foo\")));\n    process(std::make_tuple('a', 2, 2.71, std::string(\"bar\")));\n    process(std::make_pair(3, std::string(\"pair\")));\n    process(std::array\u003cint, 3\u003e{ 1, 2, 3 });\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \u003carray\u003e\n#include \u003ciostream\u003e\n#include \u003cstring\u003e\n#include \u003ctuple\u003e\n#include \u003cutility\u003e\n\n// ----------------------------------------------------------------------------\n// Example functions to be called:\nvoid f(int i, std::string const\u0026 s) {\n    std::cout \u003c\u003c \"f(\" \u003c\u003c i \u003c\u003c \", \" \u003c\u003c s \u003c\u003c \")\\n\";\n}\nvoid f(int i, double d, std::string const\u0026 s) {\n    std::cout \u003c\u003c \"f(\" \u003c\u003c i \u003c\u003c \", \" \u003c\u003c d \u003c\u003c \", \" \u003c\u003c s \u003c\u003c \")\\n\";\n}\nvoid f(char c, int i, double d, std::string const\u0026 s) {\n    std::cout \u003c\u003c \"f(\" \u003c\u003c c \u003c\u003c \", \" \u003c\u003c i \u003c\u003c \", \" \u003c\u003c d \u003c\u003c \", \" \u003c\u003c s \u003c\u003c \")\\n\";\n}\nvoid f(int i, int j, int k) {\n    std::cout \u003c\u003c \"f(\" \u003c\u003c i \u003c\u003c \", \" \u003c\u003c j \u003c\u003c \", \" \u003c\u003c k \u003c\u003c \")\\n\";\n}\n\n// ----------------------------------------------------------------------------\n// The actual function expanding the tuple:\ntemplate \u003ctypename Tuple, std::size_t... I\u003e\nvoid process(Tuple const\u0026 tuple, std::index_sequence\u003cI...\u003e) {\n    f(std::get\u003cI\u003e(tuple)...);\n}\n\n// The interface to call. Sadly, it needs to dispatch to another function\n// to deduce the sequence of indices created from std::make_index_sequence\u003cN\u003e\ntemplate \u003ctypename Tuple\u003e\nvoid process(Tuple const\u0026 tuple) {\n    process(tuple, std::make_index_sequence\u003cstd::tuple_size\u003cTuple\u003e::value\u003e());\n}\n\n// ----------------------------------------------------------------------------\nint main() {\n    process(std::make_tuple(1, 3.14, std::string(\"foo\")));\n    process(std::make_tuple('a', 2, 2.71, std::string(\"bar\")));\n    process(std::make_pair(3, std::string(\"pair\")));\n    process(std::array\u003cint, 3\u003e{ 1, 2, 3 });\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550524762729,
+        "id": "5739ce62-62cb-43b1-b2eb-d8c90065dcbc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550524762729,
+        "parent_id": "4413b3b1-3641-406a-b6f2-3683725b4671",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "As long as a class supports "
+            ],
+            [
+              "std::get\u003cI\u003e(object)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "std::tuple_size\u003cT\u003e::value",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " it can be expanded with the above "
+            ],
+            [
+              "process()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " function. The function itself is entirely independent of the number of arguments."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "As long as a class supports "
+          },
+          {
+            "Text": "std::get\u003cI\u003e(object)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "std::tuple_size\u003cT\u003e::value",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " it can be expanded with the above "
+          },
+          {
+            "Text": "process()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " function. The function itself is entirely independent of the number of arguments."
+          }
+        ]
+      }
+    ],
+    "title": "010 Turn a std tupleT... into function parameters"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

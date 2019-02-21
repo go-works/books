@@ -1,0 +1,163 @@
+{
+  "ID": "f4b72677-9639-48b0-a9ce-f9ee6ecc1c34",
+  "Root": {
+    "alive": true,
+    "content": [
+      "e08c10dc-9fda-464a-b3e2-29a1dc1c4995",
+      "47cc26e5-9e22-42f6-9d4c-4c5f5f21db9d",
+      "9377e24f-308a-4fc0-8a63-7295cb6d7b23",
+      "86cc35ed-d3ce-4700-bbb4-1895e31beda9"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550522714732,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "f4b72677-9639-48b0-a9ce-f9ee6ecc1c34",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550710920000,
+    "parent_id": "6fdcface-f439-4f73-87ef-255a8f378573",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Const local variables"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522714729,
+        "id": "e08c10dc-9fda-464a-b3e2-29a1dc1c4995",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522714729,
+        "parent_id": "f4b72677-9639-48b0-a9ce-f9ee6ecc1c34",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Declaration and usage."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Declaration and usage."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522714731,
+        "id": "47cc26e5-9e22-42f6-9d4c-4c5f5f21db9d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550710920000,
+        "parent_id": "f4b72677-9639-48b0-a9ce-f9ee6ecc1c34",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C++"
+            ]
+          ],
+          "title": [
+            [
+              "// a is const int, so it can't be changed\nconst int a = 15;  \na = 12;           // Error: can't assign new value to const variable\na += 1;           // Error: can't assign new value to const variable"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "// a is const int, so it can't be changed\nconst int a = 15;  \na = 12;           // Error: can't assign new value to const variable\na += 1;           // Error: can't assign new value to const variable",
+        "code_language": "C++"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522714732,
+        "id": "9377e24f-308a-4fc0-8a63-7295cb6d7b23",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522714732,
+        "parent_id": "f4b72677-9639-48b0-a9ce-f9ee6ecc1c34",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Binding of references and pointers"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Binding of references and pointers"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522714732,
+        "id": "86cc35ed-d3ce-4700-bbb4-1895e31beda9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550710920000,
+        "parent_id": "f4b72677-9639-48b0-a9ce-f9ee6ecc1c34",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C++"
+            ]
+          ],
+          "title": [
+            [
+              "int \u0026b = a;       // Error: can't bind non-const reference to const variable\nconst int \u0026c = a; // OK; c is a const reference\n\nint *d = \u0026a;      // Error: can't bind pointer-to-non-const to const variable\nconst int *e = \u0026a // OK; e is a pointer-to-const\n\nint f = 0;\ne = \u0026f;           // OK; e is a non-const pointer-to-const,\n                  // which means that it can be rebound to new int* or const int*\n\n*e = 1            // Error: e is a pointer-to-const which means that\n                  // the value it points to can't be changed through dereferencing e\n\nint *g = \u0026f;\n*g = 1;           // OK; this value still can be changed through dereferencing\n                  // a pointer-not-to-const"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "int \u0026b = a;       // Error: can't bind non-const reference to const variable\nconst int \u0026c = a; // OK; c is a const reference\n\nint *d = \u0026a;      // Error: can't bind pointer-to-non-const to const variable\nconst int *e = \u0026a // OK; e is a pointer-to-const\n\nint f = 0;\ne = \u0026f;           // OK; e is a non-const pointer-to-const,\n                  // which means that it can be rebound to new int* or const int*\n\n*e = 1            // Error: e is a pointer-to-const which means that\n                  // the value it points to can't be changed through dereferencing e\n\nint *g = \u0026f;\n*g = 1;           // OK; this value still can be changed through dereferencing\n                  // a pointer-not-to-const",
+        "code_language": "C++"
+      }
+    ],
+    "title": "Const local variables",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

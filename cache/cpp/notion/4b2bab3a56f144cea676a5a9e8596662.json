@@ -1,0 +1,135 @@
+{
+  "ID": "4b2bab3a-56f1-44ce-a676-a5a9e8596662",
+  "Root": {
+    "alive": true,
+    "content": [
+      "96c6d16a-f9a9-41f4-9f3d-4ba564763021",
+      "b7281c3e-635d-4aef-a310-40871dcf6764",
+      "89b813b6-2bbb-4f32-83b7-c165180eaaa6"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550522357934,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "4b2bab3a-56f1-44ce-a676-a5a9e8596662",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550709780000,
+    "parent_id": "2ed71a30-e220-47b0-b0e7-1bc14fce30c0",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Implicit Move and Copy"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522357931,
+        "id": "96c6d16a-f9a9-41f4-9f3d-4ba564763021",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522357931,
+        "parent_id": "4b2bab3a-56f1-44ce-a676-a5a9e8596662",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Bear in mind that declaring a destructor inhibits the compiler from generating implicit move constructors and move assignment operators. If you declare a destructor, remember to also add appropriate definitions for the move operations."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Bear in mind that declaring a destructor inhibits the compiler from generating implicit move constructors and move assignment operators. If you declare a destructor, remember to also add appropriate definitions for the move operations."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522357934,
+        "id": "b7281c3e-635d-4aef-a310-40871dcf6764",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522357934,
+        "parent_id": "4b2bab3a-56f1-44ce-a676-a5a9e8596662",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Furthermore, declaring move operations will suppress the generation of copy operations, so these should also be added (if the objects of this class are required to have copy semantics)."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Furthermore, declaring move operations will suppress the generation of copy operations, so these should also be added (if the objects of this class are required to have copy semantics)."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522357934,
+        "id": "89b813b6-2bbb-4f32-83b7-c165180eaaa6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522357934,
+        "parent_id": "4b2bab3a-56f1-44ce-a676-a5a9e8596662",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class Movable {\npublic:\n    virtual ~Movable() noexcept = default;\n\n    //    compiler won't generate these unless we tell it to\n    //    because we declared a destructor\n    Movable(Movable\u0026\u0026) noexcept = default;\n    Movable\u0026 operator=(Movable\u0026\u0026) noexcept = default;\n\n    //    declaring move operations will suppress generation\n    //    of copy operations unless we explicitly re-enable them\n    Movable(const Movable\u0026) = default;\n    Movable\u0026 operator=(const Movable\u0026) = default;\n};"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class Movable {\npublic:\n    virtual ~Movable() noexcept = default;\n\n    //    compiler won't generate these unless we tell it to\n    //    because we declared a destructor\n    Movable(Movable\u0026\u0026) noexcept = default;\n    Movable\u0026 operator=(Movable\u0026\u0026) noexcept = default;\n\n    //    declaring move operations will suppress generation\n    //    of copy operations unless we explicitly re-enable them\n    Movable(const Movable\u0026) = default;\n    Movable\u0026 operator=(const Movable\u0026) = default;\n};",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Implicit Move and Copy",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

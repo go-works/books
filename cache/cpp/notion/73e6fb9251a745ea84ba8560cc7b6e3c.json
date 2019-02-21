@@ -1,0 +1,83 @@
+{
+  "ID": "73e6fb92-51a7-45ea-84ba-8560cc7b6e3c",
+  "Root": {
+    "alive": true,
+    "content": [
+      "c0ffa20e-abf3-48ce-932e-49eff83f7784"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550522390449,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "73e6fb92-51a7-45ea-84ba-8560cc7b6e3c",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550709960000,
+    "parent_id": "899c3027-a75e-4a44-9144-10a53c6a2c11",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Sorting sequence containers using lambda expressions"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 12,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522390445,
+        "id": "c0ffa20e-abf3-48ce-932e-49eff83f7784",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550709900000,
+        "parent_id": "73e6fb92-51a7-45ea-84ba-8560cc7b6e3c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003cvector\u003e\n#include \u003cdeque\u003e\n#include \u003clist\u003e\n#include \u003carray\u003e\n#include \u003cforward_list\u003e\n\n// Include sorting algorithm\n#include \u003calgorithm\u003e\n\nclass Base {\n public:\n\n    // Constructor that set variable to the value of v\n    Base(int v): variable(v) {\n    }\n    \n    int variable;\n};\n\nint main() {\n    // Create 2 elements to sort\n    Base a(10);\n    Base b(5);\n    \n    // We're using C++11, so let's use initializer lists to insert items.\n    std::vector \u003cBase\u003e vector = {a, b};\n    std::deque \u003cBase\u003e deque = {a, b};\n    std::list \u003cBase\u003e list = {a, b};\n    std::array \u003cBase, 2\u003e array = {a, b};\n    std::forward_list\u003cBase\u003e flist = {a, b};\n    \n    // We can sort data using an inline lambda expression\n    std::sort(std::begin(vector), std::end(vector),\n      [](const Base \u0026a, const Base \u0026b) { return a.variable \u003c b.variable;});\n\n    // We can also pass a lambda object as the comparator\n    // and reuse the lambda multiple times\n    auto compare = [](const Base \u0026a, const Base \u0026b) {\n                     return a.variable \u003c b.variable;};\n    std::sort(std::begin(deque), std::end(deque), compare);\n    std::sort(std::begin(array), std::end(array), compare);\n    list.sort(compare);\n    flist.sort(compare);\n\n    return 0;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 36,
+        "code": "#include \u003cvector\u003e\n#include \u003cdeque\u003e\n#include \u003clist\u003e\n#include \u003carray\u003e\n#include \u003cforward_list\u003e\n\n// Include sorting algorithm\n#include \u003calgorithm\u003e\n\nclass Base {\n public:\n\n    // Constructor that set variable to the value of v\n    Base(int v): variable(v) {\n    }\n    \n    int variable;\n};\n\nint main() {\n    // Create 2 elements to sort\n    Base a(10);\n    Base b(5);\n    \n    // We're using C++11, so let's use initializer lists to insert items.\n    std::vector \u003cBase\u003e vector = {a, b};\n    std::deque \u003cBase\u003e deque = {a, b};\n    std::list \u003cBase\u003e list = {a, b};\n    std::array \u003cBase, 2\u003e array = {a, b};\n    std::forward_list\u003cBase\u003e flist = {a, b};\n    \n    // We can sort data using an inline lambda expression\n    std::sort(std::begin(vector), std::end(vector),\n      [](const Base \u0026a, const Base \u0026b) { return a.variable \u003c b.variable;});\n\n    // We can also pass a lambda object as the comparator\n    // and reuse the lambda multiple times\n    auto compare = [](const Base \u0026a, const Base \u0026b) {\n                     return a.variable \u003c b.variable;};\n    std::sort(std::begin(deque), std::end(deque), compare);\n    std::sort(std::begin(array), std::end(array), compare);\n    list.sort(compare);\n    flist.sort(compare);\n\n    return 0;\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Sorting sequence containers using lambda expressions",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

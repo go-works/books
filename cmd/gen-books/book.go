@@ -18,7 +18,6 @@ type Book struct {
 	NoPublish bool
 
 	Title     string // "Go", "jQuery" etcc
-	titleSafe string
 	TitleLong string // "Essential Go", "Essential jQuery" etc.
 
 	NotionStartPageID string
@@ -107,7 +106,7 @@ func (b *Book) GitHubURL() string {
 
 // URL returns url of the book, used in index.tmpl.html
 func (b *Book) URL() string {
-	return fmt.Sprintf("/essential/%s/", b.titleSafe)
+	return fmt.Sprintf("/essential/%s/", b.Dir)
 }
 
 // CanonnicalURL returns full url including host
@@ -181,7 +180,7 @@ func (b *Book) ChaptersCount() int {
 }
 
 func updateBookAppJS(book *Book) {
-	srcName := fmt.Sprintf("app-%s.js", book.titleSafe)
+	srcName := fmt.Sprintf("app-%s.js", book.Dir)
 	path := filepath.Join("tmpl", "app.js")
 	d, err := ioutil.ReadFile(path)
 	maybePanicIfErr(err)

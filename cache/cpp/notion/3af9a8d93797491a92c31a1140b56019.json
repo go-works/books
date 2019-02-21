@@ -1,0 +1,297 @@
+{
+  "ID": "3af9a8d9-3797-491a-92c3-1a1140b56019",
+  "Root": {
+    "alive": true,
+    "content": [
+      "e944c2af-6c81-498d-9663-b2b6822a8f9f",
+      "d7f98469-ca3e-4cf7-97e2-d876294734e9",
+      "010bf313-0353-482e-9156-f09c0bf14708",
+      "b8f68931-990c-484c-85a6-582114cb7889",
+      "a5d83d1b-bdcd-43a3-85cb-99c8d1597cfc"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550522624586,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "3af9a8d9-3797-491a-92c3-1a1140b56019",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550710080000,
+    "parent_id": "fcd2d991-afe0-4c4f-a9fe-760a139ae1f3",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Factory functions"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 11,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522624582,
+        "id": "e944c2af-6c81-498d-9663-b2b6822a8f9f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522624582,
+        "parent_id": "3af9a8d9-3797-491a-92c3-1a1140b56019",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Suppose we want to write a factory function that accepts an arbitrary list of arguments and passes those arguments unmodified to another function. An example of such a function is "
+            ],
+            [
+              "make_unique",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", which is used to safely construct a new instance of "
+            ],
+            [
+              "T",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and return a "
+            ],
+            [
+              "unique_ptr\u003cT\u003e",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " that owns the instance."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Suppose we want to write a factory function that accepts an arbitrary list of arguments and passes those arguments unmodified to another function. An example of such a function is "
+          },
+          {
+            "Text": "make_unique",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", which is used to safely construct a new instance of "
+          },
+          {
+            "Text": "T",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and return a "
+          },
+          {
+            "Text": "unique_ptr\u003cT\u003e",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " that owns the instance."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522624585,
+        "id": "d7f98469-ca3e-4cf7-97e2-d876294734e9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522624585,
+        "parent_id": "3af9a8d9-3797-491a-92c3-1a1140b56019",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The language rules regarding variadic templates and rvalue references allows us to write such a function."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The language rules regarding variadic templates and rvalue references allows us to write such a function."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522624585,
+        "id": "010bf313-0353-482e-9156-f09c0bf14708",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522624585,
+        "parent_id": "3af9a8d9-3797-491a-92c3-1a1140b56019",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "template\u003cclass T, class... A\u003e\nunique_ptr\u003cT\u003e make_unique(A\u0026\u0026... args)\n{\n    return unique_ptr\u003cT\u003e(new T(std::forward\u003cA\u003e(args)...));\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "template\u003cclass T, class... A\u003e\nunique_ptr\u003cT\u003e make_unique(A\u0026\u0026... args)\n{\n    return unique_ptr\u003cT\u003e(new T(std::forward\u003cA\u003e(args)...));\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522624585,
+        "id": "b8f68931-990c-484c-85a6-582114cb7889",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522624585,
+        "parent_id": "3af9a8d9-3797-491a-92c3-1a1140b56019",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The use of ellipses "
+            ],
+            [
+              "...",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " indicate a parameter pack, which represents an arbitrary number of types. The compiler will expand this parameter pack to the correct number of arguments at the call site. These arguments are then passed to "
+            ],
+            [
+              "T",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "’s constructor using "
+            ],
+            [
+              "std::forward",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". This function is required to preserve the ref-qualifiers of the arguments."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The use of ellipses "
+          },
+          {
+            "Text": "...",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " indicate a parameter pack, which represents an arbitrary number of types. The compiler will expand this parameter pack to the correct number of arguments at the call site. These arguments are then passed to "
+          },
+          {
+            "Text": "T",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "’s constructor using "
+          },
+          {
+            "Text": "std::forward",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". This function is required to preserve the ref-qualifiers of the arguments."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522624586,
+        "id": "a5d83d1b-bdcd-43a3-85cb-99c8d1597cfc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522624586,
+        "parent_id": "3af9a8d9-3797-491a-92c3-1a1140b56019",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "struct foo\n{\n    foo() {}\n    foo(const foo\u0026) {}                    // copy constructor\n    foo(foo\u0026\u0026) {}                         // copy constructor\n    foo(int, int, int) {}\n};\n\nfoo f;\nauto p1 = make_unique\u003cfoo\u003e(f);            // calls foo::foo(const foo\u0026)\nauto p2 = make_unique\u003cfoo\u003e(std::move(f)); // calls foo::foo(foo\u0026\u0026)\nauto p3 = make_unique\u003cfoo\u003e(1, 2, 3);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "struct foo\n{\n    foo() {}\n    foo(const foo\u0026) {}                    // copy constructor\n    foo(foo\u0026\u0026) {}                         // copy constructor\n    foo(int, int, int) {}\n};\n\nfoo f;\nauto p1 = make_unique\u003cfoo\u003e(f);            // calls foo::foo(const foo\u0026)\nauto p2 = make_unique\u003cfoo\u003e(std::move(f)); // calls foo::foo(foo\u0026\u0026)\nauto p3 = make_unique\u003cfoo\u003e(1, 2, 3);",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Factory functions",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

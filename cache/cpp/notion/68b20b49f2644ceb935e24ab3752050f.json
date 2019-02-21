@@ -1,0 +1,217 @@
+{
+  "ID": "68b20b49-f264-4ceb-935e-24ab3752050f",
+  "Root": {
+    "alive": true,
+    "content": [
+      "1679e9b8-097d-49ef-bdd3-14ce5765a30b",
+      "28f8a256-08a6-46a9-a3aa-36b2f4b65e63",
+      "0e648e95-91cc-4d9f-b651-74f7332e4c9b",
+      "92c6439f-d9f4-4759-ab90-bbbf18bf9263"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550522328859,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "68b20b49-f264-4ceb-935e-24ab3752050f",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550709540000,
+    "parent_id": "96325b08-db02-4f4f-a7a3-7510a746dbe2",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "ScopeFail C++ 17"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 12,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522328856,
+        "id": "1679e9b8-097d-49ef-bdd3-14ce5765a30b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522328856,
+        "parent_id": "68b20b49-f264-4ceb-935e-24ab3752050f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Thanks to "
+            ],
+            [
+              "int std::uncaught_exceptions()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", we can implement action which executes only on failure (thrown exception in scope). Previously "
+            ],
+            [
+              "bool std::uncaught_exception()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " just allows to detect if "
+            ],
+            [
+              "any",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " stack unwinding is running."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Thanks to "
+          },
+          {
+            "Text": "int std::uncaught_exceptions()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", we can implement action which executes only on failure (thrown exception in scope). Previously "
+          },
+          {
+            "Text": "bool std::uncaught_exception()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " just allows to detect if "
+          },
+          {
+            "Text": "any",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " stack unwinding is running."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522328859,
+        "id": "28f8a256-08a6-46a9-a3aa-36b2f4b65e63",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522328859,
+        "parent_id": "68b20b49-f264-4ceb-935e-24ab3752050f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003cexception\u003e\n#include \u003ciostream\u003e\n\ntemplate \u003ctypename F\u003e\nclass ScopeFail\n{\nprivate:\n    F f;\n    int uncaughtExceptionCount = std::uncaught_exceptions();\npublic:\n    explicit ScopeFail(const F\u0026 f) : f(f) {}\n    ScopeFail(const ScopeFail\u0026) = delete;\n    ScopeFail\u0026 operator =(const ScopeFail\u0026) = delete;\n\n    // f() should not throw, else std::terminate is called.\n    ~ScopeFail() {\n        if (uncaughtExceptionCount != std::uncaught_exceptions()) {\n            f();\n        }\n    }\n};\n\nstruct Foo {\n    ~Foo() {\n        try {\n            ScopeFail logFailure{[](){std::cout \u003c\u003c \"Fail 1\\n\";}};\n            // Scope succeeds,\n            // even if Foo is destroyed during stack unwinding\n            // (so when 0 \u003c std::uncaught_exceptions())\n            // (or previously std::uncaught_exception() == true)\n        } catch (...) {\n        }\n        try {\n            ScopeFail logFailure{[](){std::cout \u003c\u003c \"Failure 2\\n\";}};\n\n            throw std::runtime_error(\"Failed\"); // returned value\n                                                // of std::uncaught_exceptions increases\n        } catch (...) { // returned value of std::uncaught_exceptions decreases\n        }\n    }\n\n};\n\nint main()\n{\n    try {\n        Foo foo;\n\n        throw std::runtime_error(\"Failed\"); // std::uncaught_exceptions() == 1\n    } catch (...) { // std::uncaught_exceptions() == 0\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \u003cexception\u003e\n#include \u003ciostream\u003e\n\ntemplate \u003ctypename F\u003e\nclass ScopeFail\n{\nprivate:\n    F f;\n    int uncaughtExceptionCount = std::uncaught_exceptions();\npublic:\n    explicit ScopeFail(const F\u0026 f) : f(f) {}\n    ScopeFail(const ScopeFail\u0026) = delete;\n    ScopeFail\u0026 operator =(const ScopeFail\u0026) = delete;\n\n    // f() should not throw, else std::terminate is called.\n    ~ScopeFail() {\n        if (uncaughtExceptionCount != std::uncaught_exceptions()) {\n            f();\n        }\n    }\n};\n\nstruct Foo {\n    ~Foo() {\n        try {\n            ScopeFail logFailure{[](){std::cout \u003c\u003c \"Fail 1\\n\";}};\n            // Scope succeeds,\n            // even if Foo is destroyed during stack unwinding\n            // (so when 0 \u003c std::uncaught_exceptions())\n            // (or previously std::uncaught_exception() == true)\n        } catch (...) {\n        }\n        try {\n            ScopeFail logFailure{[](){std::cout \u003c\u003c \"Failure 2\\n\";}};\n\n            throw std::runtime_error(\"Failed\"); // returned value\n                                                // of std::uncaught_exceptions increases\n        } catch (...) { // returned value of std::uncaught_exceptions decreases\n        }\n    }\n\n};\n\nint main()\n{\n    try {\n        Foo foo;\n\n        throw std::runtime_error(\"Failed\"); // std::uncaught_exceptions() == 1\n    } catch (...) { // std::uncaught_exceptions() == 0\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522328859,
+        "id": "0e648e95-91cc-4d9f-b651-74f7332e4c9b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522328859,
+        "parent_id": "68b20b49-f264-4ceb-935e-24ab3752050f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Output:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Output:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522328859,
+        "id": "92c6439f-d9f4-4759-ab90-bbbf18bf9263",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522328859,
+        "parent_id": "68b20b49-f264-4ceb-935e-24ab3752050f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "Failure 2"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "Failure 2",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "ScopeFail C++ 17",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

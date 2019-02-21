@@ -1,0 +1,421 @@
+{
+  "ID": "22d70d09-2ba8-44ce-9d70-f856dfcddc14",
+  "Root": {
+    "alive": true,
+    "content": [
+      "dfa3e442-faf6-4786-b2b0-0d03a35a92a9",
+      "510b2aa2-d4d9-4b8e-8873-323530bfa980",
+      "f1776733-f6ab-41f3-b45e-62e97d0f18c0",
+      "f914d628-6164-485d-8740-91c8ee8a7c38",
+      "2f67ef29-f023-4bf8-a940-7b23c2775f0a"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550523072763,
+    "id": "22d70d09-2ba8-44ce-9d70-f856dfcddc14",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550523072763,
+    "parent_id": "3724ad56-a879-48bf-847e-5adcfcb60c18",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "050 Expanding dynamic size array by using std vector."
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523072759,
+        "id": "dfa3e442-faf6-4786-b2b0-0d03a35a92a9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523072759,
+        "parent_id": "22d70d09-2ba8-44ce-9d70-f856dfcddc14",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Example of std::vector as an expanding dynamic size array.\n#include \u003calgorithm\u003e            // std::sort\n#include \u003ciostream\u003e\n#include \u003cvector\u003e               // std::vector\nusing namespace std;\n\nint int_from( std::istream\u0026 in ) { int x = 0; in \u003e\u003e x; return x; }\n\nint main()\n{\n    cout \u003c\u003c \"Sorting integers provided by you.\\n\";\n    cout \u003c\u003c \"You can indicate EOF via F6 in Windows or Ctrl+D in Unix-land.\\n\";\n    vector\u003cint\u003e a;      // ← Zero size by default.\n\n    while( cin )\n    {\n        cout \u003c\u003c \"One number, please, or indicate EOF: \";\n        int const x = int_from( cin );\n        if( !cin.fail() ) { a.push_back( x ); }  // Expands as necessary.\n    }\n\n    sort( a.begin(), a.end() );\n    int const n = a.size();\n    for( int i = 0; i \u003c n; ++i ) { cout \u003c\u003c a[i] \u003c\u003c ' '; }\n    cout \u003c\u003c '\\n';\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Example of std::vector as an expanding dynamic size array.\n#include \u003calgorithm\u003e            // std::sort\n#include \u003ciostream\u003e\n#include \u003cvector\u003e               // std::vector\nusing namespace std;\n\nint int_from( std::istream\u0026 in ) { int x = 0; in \u003e\u003e x; return x; }\n\nint main()\n{\n    cout \u003c\u003c \"Sorting integers provided by you.\\n\";\n    cout \u003c\u003c \"You can indicate EOF via F6 in Windows or Ctrl+D in Unix-land.\\n\";\n    vector\u003cint\u003e a;      // ← Zero size by default.\n\n    while( cin )\n    {\n        cout \u003c\u003c \"One number, please, or indicate EOF: \";\n        int const x = int_from( cin );\n        if( !cin.fail() ) { a.push_back( x ); }  // Expands as necessary.\n    }\n\n    sort( a.begin(), a.end() );\n    int const n = a.size();\n    for( int i = 0; i \u003c n; ++i ) { cout \u003c\u003c a[i] \u003c\u003c ' '; }\n    cout \u003c\u003c '\\n';\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523072762,
+        "id": "510b2aa2-d4d9-4b8e-8873-323530bfa980",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523072762,
+        "parent_id": "22d70d09-2ba8-44ce-9d70-f856dfcddc14",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "std::vector",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is a standard library class template that provides the notion of a variable size array. It takes care of all the memory management, and the buffer is contiguous so a pointer to the buffer (e.g. "
+            ],
+            [
+              "\u0026v[0]",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " or "
+            ],
+            [
+              "v.data()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ") can be passed to API functions requiring a raw array. A "
+            ],
+            [
+              "vector",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " can even be expanded at run time, via e.g. the "
+            ],
+            [
+              "push_back",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " member function that appends an item."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "std::vector",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is a standard library class template that provides the notion of a variable size array. It takes care of all the memory management, and the buffer is contiguous so a pointer to the buffer (e.g. "
+          },
+          {
+            "Text": "\u0026v[0]",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " or "
+          },
+          {
+            "Text": "v.data()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ") can be passed to API functions requiring a raw array. A "
+          },
+          {
+            "Text": "vector",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " can even be expanded at run time, via e.g. the "
+          },
+          {
+            "Text": "push_back",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " member function that appends an item."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523072762,
+        "id": "f1776733-f6ab-41f3-b45e-62e97d0f18c0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523072762,
+        "parent_id": "22d70d09-2ba8-44ce-9d70-f856dfcddc14",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The complexity of the sequence of "
+            ],
+            [
+              "n",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " "
+            ],
+            [
+              "push_back",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " operations, including the copying or moving involved in the vector expansions, is amortized O("
+            ],
+            [
+              "n",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              "). “Amortized”: on average."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The complexity of the sequence of "
+          },
+          {
+            "Text": "n",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " "
+          },
+          {
+            "Text": "push_back",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " operations, including the copying or moving involved in the vector expansions, is amortized O("
+          },
+          {
+            "Text": "n",
+            "AttrFlags": 4
+          },
+          {
+            "Text": "). “Amortized”: on average."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523072763,
+        "id": "f914d628-6164-485d-8740-91c8ee8a7c38",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523072763,
+        "parent_id": "22d70d09-2ba8-44ce-9d70-f856dfcddc14",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Internally this is usually achieved by the vector "
+            ],
+            [
+              "doubling",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " its buffer size, its capacity, when a larger buffer is needed. E.g. for a buffer starting out as size 1, and being repeatedly doubled as needed for "
+            ],
+            [
+              "n",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              "=17 "
+            ],
+            [
+              "push_back",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " calls, this involves 1 + 2 + 4 + 8 + 16 = 31 copy operations, which is less than 2×"
+            ],
+            [
+              "n",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " = 34. And more generally the sum of this sequence can’t exceed 2×"
+            ],
+            [
+              "n",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Internally this is usually achieved by the vector "
+          },
+          {
+            "Text": "doubling",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " its buffer size, its capacity, when a larger buffer is needed. E.g. for a buffer starting out as size 1, and being repeatedly doubled as needed for "
+          },
+          {
+            "Text": "n",
+            "AttrFlags": 4
+          },
+          {
+            "Text": "=17 "
+          },
+          {
+            "Text": "push_back",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " calls, this involves 1 + 2 + 4 + 8 + 16 = 31 copy operations, which is less than 2×"
+          },
+          {
+            "Text": "n",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " = 34. And more generally the sum of this sequence can’t exceed 2×"
+          },
+          {
+            "Text": "n",
+            "AttrFlags": 4
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523072763,
+        "id": "2f67ef29-f023-4bf8-a940-7b23c2775f0a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523072763,
+        "parent_id": "22d70d09-2ba8-44ce-9d70-f856dfcddc14",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Compared to the dynamic size raw array example, this "
+            ],
+            [
+              "vector",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "-based code does not require the user to supply (and know) the number of items up front. Instead the vector is just expanded as necessary, for each new item value specified by the user."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Compared to the dynamic size raw array example, this "
+          },
+          {
+            "Text": "vector",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "-based code does not require the user to supply (and know) the number of items up front. Instead the vector is just expanded as necessary, for each new item value specified by the user."
+          }
+        ]
+      }
+    ],
+    "title": "050 Expanding dynamic size array by using std vector."
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

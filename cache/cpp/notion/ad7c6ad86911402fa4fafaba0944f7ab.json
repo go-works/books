@@ -1,0 +1,280 @@
+{
+  "ID": "ad7c6ad8-6911-402f-a4fa-faba0944f7ab",
+  "Root": {
+    "alive": true,
+    "content": [
+      "cb2c90ee-5566-4672-ad14-bff95bcc4134",
+      "578cd261-4eec-407d-b26d-31eb22830458",
+      "b9627501-3e17-469d-96da-728821c0506d",
+      "4d45609e-1b09-4bbc-b547-c7de854dccf0",
+      "e11ac788-3e14-45b0-a338-5ef7360f6594",
+      "37f1c351-3dce-4704-9a18-4a994c5954e7",
+      "e5473f55-1926-4135-96bf-2ea6dfde04d9"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550521951434,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "ad7c6ad8-6911-402f-a4fa-faba0944f7ab",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550656800000,
+    "parent_id": "94bfa868-4e02-4b90-841b-817c34132524",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "CRTP to avoid code duplication"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550521951433,
+        "id": "cb2c90ee-5566-4672-ad14-bff95bcc4134",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550521951433,
+        "parent_id": "ad7c6ad8-6911-402f-a4fa-faba0944f7ab",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The example in "
+            ],
+            [
+              "Visitor Pattern",
+              [
+                [
+                  "a",
+                  "http://stackoverflow.com/documentation/c%2B%2B/4335/design-pattern-implementation-in-c/15127/visitor-pattern#t=201607291405391540231"
+                ]
+              ]
+            ],
+            [
+              " provides a compelling use-case for CRTP:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The example in "
+          },
+          {
+            "Text": "Visitor Pattern",
+            "Link": "http://stackoverflow.com/documentation/c%2B%2B/4335/design-pattern-implementation-in-c/15127/visitor-pattern#t=201607291405391540231"
+          },
+          {
+            "Text": " provides a compelling use-case for CRTP:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550521951433,
+        "id": "578cd261-4eec-407d-b26d-31eb22830458",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550521951433,
+        "parent_id": "ad7c6ad8-6911-402f-a4fa-faba0944f7ab",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "struct IShape\n{\n    virtual ~IShape() = default;\n\n    virtual void accept(IShapeVisitor\u0026) const = 0;\n};\n\nstruct Circle : IShape\n{\n    // ...        \n    // Each shape has to implement this method the same way\n    void accept(IShapeVisitor\u0026 visitor) const override { visitor.visit(*this); }\n    // ...\n};\n\nstruct Square : IShape\n{\n    // ...    \n    // Each shape has to implement this method the same way\n    void accept(IShapeVisitor\u0026 visitor) const override { visitor.visit(*this); }\n    // ...\n};"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "struct IShape\n{\n    virtual ~IShape() = default;\n\n    virtual void accept(IShapeVisitor\u0026) const = 0;\n};\n\nstruct Circle : IShape\n{\n    // ...        \n    // Each shape has to implement this method the same way\n    void accept(IShapeVisitor\u0026 visitor) const override { visitor.visit(*this); }\n    // ...\n};\n\nstruct Square : IShape\n{\n    // ...    \n    // Each shape has to implement this method the same way\n    void accept(IShapeVisitor\u0026 visitor) const override { visitor.visit(*this); }\n    // ...\n};",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550521951434,
+        "id": "b9627501-3e17-469d-96da-728821c0506d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550521951434,
+        "parent_id": "ad7c6ad8-6911-402f-a4fa-faba0944f7ab",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Each child type of "
+            ],
+            [
+              "IShape",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " needs to implement the same function the same way. That’s a lot of extra typing. Instead, we can introduce a new type in the hierarchy that does this for us:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Each child type of "
+          },
+          {
+            "Text": "IShape",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " needs to implement the same function the same way. That’s a lot of extra typing. Instead, we can introduce a new type in the hierarchy that does this for us:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550521951434,
+        "id": "4d45609e-1b09-4bbc-b547-c7de854dccf0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550521951434,
+        "parent_id": "ad7c6ad8-6911-402f-a4fa-faba0944f7ab",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "template \u003cclass Derived\u003e\nstruct IShapeAcceptor : IShape {\n    void accept(IShapeVisitor\u0026 visitor) const override {\n        // visit with our exact type\n        visitor.visit(*static_cast\u003cDerived const*\u003e(this));\n    }\n};"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "template \u003cclass Derived\u003e\nstruct IShapeAcceptor : IShape {\n    void accept(IShapeVisitor\u0026 visitor) const override {\n        // visit with our exact type\n        visitor.visit(*static_cast\u003cDerived const*\u003e(this));\n    }\n};",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550521951434,
+        "id": "e11ac788-3e14-45b0-a338-5ef7360f6594",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550521951434,
+        "parent_id": "ad7c6ad8-6911-402f-a4fa-faba0944f7ab",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "And now, each shape simply needs to inherit from the acceptor:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "And now, each shape simply needs to inherit from the acceptor:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550521951434,
+        "id": "37f1c351-3dce-4704-9a18-4a994c5954e7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550521951434,
+        "parent_id": "ad7c6ad8-6911-402f-a4fa-faba0944f7ab",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "struct Circle : IShapeAcceptor\u003cCircle\u003e\n{\n    Circle(const Point\u0026 center, double radius) : center(center), radius(radius) {}\n    Point center;\n    double radius;\n};\n\nstruct Square : IShapeAcceptor\u003cSquare\u003e\n{\n    Square(const Point\u0026 topLeft, double sideLength) : topLeft(topLeft), sideLength(sideLength) {}    \n    Point topLeft;\n    double sideLength;\n};"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "struct Circle : IShapeAcceptor\u003cCircle\u003e\n{\n    Circle(const Point\u0026 center, double radius) : center(center), radius(radius) {}\n    Point center;\n    double radius;\n};\n\nstruct Square : IShapeAcceptor\u003cSquare\u003e\n{\n    Square(const Point\u0026 topLeft, double sideLength) : topLeft(topLeft), sideLength(sideLength) {}    \n    Point topLeft;\n    double sideLength;\n};",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550521951434,
+        "id": "e5473f55-1926-4135-96bf-2ea6dfde04d9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550521951434,
+        "parent_id": "ad7c6ad8-6911-402f-a4fa-faba0944f7ab",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "No duplicate code necessary."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "No duplicate code necessary."
+          }
+        ]
+      }
+    ],
+    "title": "CRTP to avoid code duplication",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

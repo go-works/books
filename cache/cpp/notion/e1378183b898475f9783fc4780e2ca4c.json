@@ -1,0 +1,342 @@
+{
+  "ID": "e1378183-b898-475f-9783-fc4780e2ca4c",
+  "Root": {
+    "alive": true,
+    "content": [
+      "0b80e7e6-ca00-4c43-b034-d9d9e1b9c88e",
+      "06534332-8dfd-4dc6-8839-e40c2c10ca2f",
+      "81d9dfbc-a3de-43eb-943f-a1a71bf1da06",
+      "4c87cb28-8c9e-47cc-b733-c1a873303f7a",
+      "eb0f0616-c391-42ff-a183-c5e635281d8a",
+      "8fd700ca-c2a1-448b-adb1-4e88c3ec6051",
+      "6a8d4ad5-d702-485a-aa6f-75d3a19a237d",
+      "e62b35f1-b45a-42ef-be09-1e91d8fe5898"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550522668839,
+    "format": {
+      "page_small_text": true
+    },
+    "id": "e1378183-b898-475f-9783-fc4780e2ca4c",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550710560000,
+    "parent_id": "5fbdea23-a3bd-48e3-9bb9-c7ca69fd9aa2",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Overloading on constness and volatility"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 7,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522668837,
+        "id": "0b80e7e6-ca00-4c43-b034-d9d9e1b9c88e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522668837,
+        "parent_id": "e1378183-b898-475f-9783-fc4780e2ca4c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Passing a pointer argument to a "
+            ],
+            [
+              "T*",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " parameter, if possible, is better than passing it to a "
+            ],
+            [
+              "const T*",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " parameter."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Passing a pointer argument to a "
+          },
+          {
+            "Text": "T*",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " parameter, if possible, is better than passing it to a "
+          },
+          {
+            "Text": "const T*",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " parameter."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522668838,
+        "id": "06534332-8dfd-4dc6-8839-e40c2c10ca2f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522668838,
+        "parent_id": "e1378183-b898-475f-9783-fc4780e2ca4c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "struct Base {};\nstruct Derived : Base {};\nvoid f(Base* pb);\nvoid f(const Base* pb);\nvoid f(const Derived* pd);\nvoid f(bool b);\n\nBase b;\nf(\u0026b); // f(Base*) is better than f(const Base*)\nDerived d;\nf(\u0026d); // f(const Derived*) is better than f(Base*) though;\n       // constness is only a \"tie-breaker\" rule"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "struct Base {};\nstruct Derived : Base {};\nvoid f(Base* pb);\nvoid f(const Base* pb);\nvoid f(const Derived* pd);\nvoid f(bool b);\n\nBase b;\nf(\u0026b); // f(Base*) is better than f(const Base*)\nDerived d;\nf(\u0026d); // f(const Derived*) is better than f(Base*) though;\n       // constness is only a \"tie-breaker\" rule",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522668838,
+        "id": "81d9dfbc-a3de-43eb-943f-a1a71bf1da06",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522668838,
+        "parent_id": "e1378183-b898-475f-9783-fc4780e2ca4c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Likewise, passing an argument to a "
+            ],
+            [
+              "T\u0026",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " parameter, if possible, is better than passing it to a "
+            ],
+            [
+              "const T\u0026",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " parameter, even if both have exact match rank."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Likewise, passing an argument to a "
+          },
+          {
+            "Text": "T\u0026",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " parameter, if possible, is better than passing it to a "
+          },
+          {
+            "Text": "const T\u0026",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " parameter, even if both have exact match rank."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522668838,
+        "id": "4c87cb28-8c9e-47cc-b733-c1a873303f7a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522668838,
+        "parent_id": "e1378183-b898-475f-9783-fc4780e2ca4c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "void f(int\u0026 r);\nvoid f(const int\u0026 r);\nint x;\nf(x); // both overloads match exactly, but f(int\u0026) is still better\nconst int y = 42;\nf(y); // only f(const int\u0026) is viable"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "void f(int\u0026 r);\nvoid f(const int\u0026 r);\nint x;\nf(x); // both overloads match exactly, but f(int\u0026) is still better\nconst int y = 42;\nf(y); // only f(const int\u0026) is viable",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522668838,
+        "id": "eb0f0616-c391-42ff-a183-c5e635281d8a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522668838,
+        "parent_id": "e1378183-b898-475f-9783-fc4780e2ca4c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This rule applies to const-qualified member functions as well, where it is important for allowing mutable access to non-const objects and immutable access to const objects."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This rule applies to const-qualified member functions as well, where it is important for allowing mutable access to non-const objects and immutable access to const objects."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522668838,
+        "id": "8fd700ca-c2a1-448b-adb1-4e88c3ec6051",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522668838,
+        "parent_id": "e1378183-b898-475f-9783-fc4780e2ca4c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class IntVector {\n  public:\n    // ...\n    int* data() { return m_data; }\n    const int* data() const { return m_data; }\n  private:\n    // ...\n    int* m_data;\n};\nIntVector v1;\nint* data1 = v1.data();       // Vector::data() is better than Vector::data() const;\n                              // data1 can be used to modify the vector's data\nconst IntVector v2;\nconst int* data2 = v2.data(); // only Vector::data() const is viable;\n                              // data2 can't be used to modify the vector's data"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class IntVector {\n  public:\n    // ...\n    int* data() { return m_data; }\n    const int* data() const { return m_data; }\n  private:\n    // ...\n    int* m_data;\n};\nIntVector v1;\nint* data1 = v1.data();       // Vector::data() is better than Vector::data() const;\n                              // data1 can be used to modify the vector's data\nconst IntVector v2;\nconst int* data2 = v2.data(); // only Vector::data() const is viable;\n                              // data2 can't be used to modify the vector's data",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522668838,
+        "id": "6a8d4ad5-d702-485a-aa6f-75d3a19a237d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522668838,
+        "parent_id": "e1378183-b898-475f-9783-fc4780e2ca4c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In the same way, a volatile overload will be less preferred than a non-volatile overload."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In the same way, a volatile overload will be less preferred than a non-volatile overload."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522668838,
+        "id": "e62b35f1-b45a-42ef-be09-1e91d8fe5898",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522668838,
+        "parent_id": "e1378183-b898-475f-9783-fc4780e2ca4c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class AtomicInt {\n  public:\n    // ...\n    int load();\n    int load() volatile;\n  private:\n    // ...\n};\nAtomicInt a1;\na1.load(); // non-volatile overload preferred; no side effect\nvolatile AtomicInt a2;\na2.load(); // only volatile overload is viable; side effect\nstatic_cast\u003cvolatile AtomicInt\u0026\u003e(a1).load(); // force volatile semantics for a1"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class AtomicInt {\n  public:\n    // ...\n    int load();\n    int load() volatile;\n  private:\n    // ...\n};\nAtomicInt a1;\na1.load(); // non-volatile overload preferred; no side effect\nvolatile AtomicInt a2;\na2.load(); // only volatile overload is viable; side effect\nstatic_cast\u003cvolatile AtomicInt\u0026\u003e(a1).load(); // force volatile semantics for a1",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Overloading on constness and volatility",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": false,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

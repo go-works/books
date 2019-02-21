@@ -1,0 +1,530 @@
+{
+  "ID": "c119ce9e-c36b-4e96-add1-0ea403079f69",
+  "Root": {
+    "alive": true,
+    "content": [
+      "3e49f3ae-4471-48c2-b59d-dc56dd963a36",
+      "b8950085-8248-47e9-93c2-7baa4cb12edf",
+      "8beb12e9-4ef6-465e-a2ad-9dc676a95ab1",
+      "c21f7d65-cc27-4e25-a762-3b7480a4bcae",
+      "0175e263-1133-47e3-9a65-fc72607f08f8",
+      "da230b5f-252a-471c-ba09-d712df1c6a7f",
+      "51839aa1-8a62-48d8-834c-38586e261e63",
+      "b1c64ee5-d24a-4a00-8e34-c60c091b0040"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550523040455,
+    "id": "c119ce9e-c36b-4e96-add1-0ea403079f69",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550523040455,
+    "parent_id": "5dbd715a-2e96-4062-9cda-4e181e63af5e",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 A move-only std function"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523040453,
+        "id": "3e49f3ae-4471-48c2-b59d-dc56dd963a36",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523040453,
+        "parent_id": "c119ce9e-c36b-4e96-add1-0ea403079f69",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "std::function",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " type erases down to a few operations. One of the things it requires is that the stored value be copyable."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "std::function",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " type erases down to a few operations. One of the things it requires is that the stored value be copyable."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523040454,
+        "id": "b8950085-8248-47e9-93c2-7baa4cb12edf",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523040454,
+        "parent_id": "c119ce9e-c36b-4e96-add1-0ea403079f69",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This causes problems in a few contexts, like lambdas storing unique ptrs. If you are using the "
+            ],
+            [
+              "std::function",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " in a context where copying doesn’t matter, like a thread pool where you dispatch tasks to threads, this requirement can add overhead."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This causes problems in a few contexts, like lambdas storing unique ptrs. If you are using the "
+          },
+          {
+            "Text": "std::function",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " in a context where copying doesn’t matter, like a thread pool where you dispatch tasks to threads, this requirement can add overhead."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523040454,
+        "id": "8beb12e9-4ef6-465e-a2ad-9dc676a95ab1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523040454,
+        "parent_id": "c119ce9e-c36b-4e96-add1-0ea403079f69",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In particular, "
+            ],
+            [
+              "std::packaged_task\u003cSig\u003e",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is a callable object that is move-only. You can store a "
+            ],
+            [
+              "std::packaged_task\u003cR(Args...)\u003e",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " in a "
+            ],
+            [
+              "std::packaged_task\u003cvoid(Args...)\u003e",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", but that is a pretty heavy-weight and obscure way to create a move-only callable type-erasure class."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In particular, "
+          },
+          {
+            "Text": "std::packaged_task\u003cSig\u003e",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is a callable object that is move-only. You can store a "
+          },
+          {
+            "Text": "std::packaged_task\u003cR(Args...)\u003e",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " in a "
+          },
+          {
+            "Text": "std::packaged_task\u003cvoid(Args...)\u003e",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", but that is a pretty heavy-weight and obscure way to create a move-only callable type-erasure class."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523040454,
+        "id": "c21f7d65-cc27-4e25-a762-3b7480a4bcae",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523040454,
+        "parent_id": "c119ce9e-c36b-4e96-add1-0ea403079f69",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Thus the "
+            ],
+            [
+              "task",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". This demonstrates how you could write a simple "
+            ],
+            [
+              "std::function",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " type. I omitted the copy constructor (which would involve adding a "
+            ],
+            [
+              "clone",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method to "
+            ],
+            [
+              "details::task_pimpl\u003c...\u003e",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " as well)."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Thus the "
+          },
+          {
+            "Text": "task",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". This demonstrates how you could write a simple "
+          },
+          {
+            "Text": "std::function",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " type. I omitted the copy constructor (which would involve adding a "
+          },
+          {
+            "Text": "clone",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method to "
+          },
+          {
+            "Text": "details::task_pimpl\u003c...\u003e",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " as well)."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523040454,
+        "id": "0175e263-1133-47e3-9a65-fc72607f08f8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523040454,
+        "parent_id": "c119ce9e-c36b-4e96-add1-0ea403079f69",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "template\u003cclass Sig\u003e\nstruct task;\n\n// putting it in a namespace allows us to specialize it nicely for void return value:\nnamespace details {\n  template\u003cclass R, class...Args\u003e\n  struct task_pimpl {\n    virtual R invoke(Args\u0026\u0026...args) const = 0;\n    virtual ~task_pimpl() {};\n    virtual const std::type_info\u0026 target_type() const = 0;\n  };\n\n  // store an F.  invoke(Args\u0026\u0026...) calls the f\n  template\u003cclass F, class R, class...Args\u003e\n  struct task_pimpl_impl:task_pimpl\u003cR,Args...\u003e {\n    F f;\n    template\u003cclass Fin\u003e\n    task_pimpl_impl( Fin\u0026\u0026 fin ):f(std::forward\u003cFin\u003e(fin)) {}\n    virtual R invoke(Args\u0026\u0026...args) const final override {\n      return f(std::forward\u003cArgs\u003e(args)...);\n    }\n    virtual const std::type_info\u0026 target_type() const final override {\n      return typeid(F);\n    }\n  };\n\n  // the void version discards the return value of f:\n  template\u003cclass F, class...Args\u003e\n  struct task_pimpl_impl\u003cF,void,Args...\u003e:task_pimpl\u003cvoid,Args...\u003e {\n    F f;\n    template\u003cclass Fin\u003e\n    task_pimpl_impl( Fin\u0026\u0026 fin ):f(std::forward\u003cFin\u003e(fin)) {}\n    virtual void invoke(Args\u0026\u0026...args) const final override {\n      f(std::forward\u003cArgs\u003e(args)...);\n    }\n    virtual const std::type_info\u0026 target_type() const final override {\n      return typeid(F);\n    }\n  };\n};\n\ntemplate\u003cclass R, class...Args\u003e\nstruct task\u003cR(Args...)\u003e {\n  // semi-regular:\n  task()=default;\n  task(task\u0026\u0026)=default;\n  // no copy\n\nprivate:\n  // aliases to make some SFINAE code below less ugly:\n  template\u003cclass F\u003e\n  using call_r = std::result_of_t\u003cF const\u0026(Args...)\u003e;\n  template\u003cclass F\u003e\n  using is_task = std::is_same\u003cstd::decay_t\u003cF\u003e, task\u003e;\npublic:\n  // can be constructed from a callable F\n  template\u003cclass F,\n    // that can be invoked with Args... and converted-to-R:\n    class= decltype( (R)(std::declval\u003ccall_r\u003cF\u003e\u003e()) ),\n    // and is not this same type:\n    std::enable_if_t\u003c!is_task\u003cF\u003e{}, int\u003e* = nullptr\n  \u003e\n  task(F\u0026\u0026 f):\n    m_pImpl( make_pimpl(std::forward\u003cF\u003e(f)) )\n  {}\n\n  // the meat: the call operator        \n  R operator()(Args... args)const {\n        return m_pImpl-\u003einvoke( std::forward\u003cArgs\u003e(args)... );\n  }\n  explicit operator bool() const {\n    return (bool)m_pImpl;\n  }\n  void swap( task\u0026 o ) {\n    std::swap( m_pImpl, o.m_pImpl );\n  }\n  template\u003cclass F\u003e\n  void assign( F\u0026\u0026 f ) {\n    m_pImpl = make_pimpl(std::forward\u003cF\u003e(f));    \n  }\n  // Part of the std::function interface:\n  const std::type_info\u0026 target_type() const {\n    if (!*this) return typeid(void);\n    return m_pImpl-\u003etarget_type();\n  }\n  template\u003c class T \u003e\n  T* target() {\n    return target_impl\u003cT\u003e();\n  }\n  template\u003c class T \u003e\n  const T* target() const {\n    return target_impl\u003cT\u003e();\n  }\n  // compare with nullptr    :    \n  friend bool operator==( std::nullptr_t, task const\u0026 self ) { return !self; }\n  friend bool operator==( task const\u0026 self, std::nullptr_t ) { return !self; }\n  friend bool operator!=( std::nullptr_t, task const\u0026 self ) { return !!self; }\n  friend bool operator!=( task const\u0026 self, std::nullptr_t ) { return !!self; }\nprivate:\n  template\u003cclass T\u003e\n  using pimpl_t = details::task_pimpl_impl\u003cT, R, Args...\u003e;\n\n  template\u003cclass F\u003e\n  static auto make_pimpl( F\u0026\u0026 f ) {\n    using dF=std::decay_t\u003cF\u003e;\n    using pImpl_t = pimpl_t\u003cdF\u003e;\n    return std::make_unique\u003cpImpl_t\u003e(std::forward\u003cF\u003e(f));\n  }\n  std::unique_ptr\u003cdetails::task_pimpl\u003cR,Args...\u003e\u003e m_pImpl;\n\n  template\u003c class T \u003e\n  T* target_impl() const {\n    return dynamic_cast\u003cpimpl_t\u003cT\u003e*\u003e(m_pImpl.get());\n  }\n};"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "template\u003cclass Sig\u003e\nstruct task;\n\n// putting it in a namespace allows us to specialize it nicely for void return value:\nnamespace details {\n  template\u003cclass R, class...Args\u003e\n  struct task_pimpl {\n    virtual R invoke(Args\u0026\u0026...args) const = 0;\n    virtual ~task_pimpl() {};\n    virtual const std::type_info\u0026 target_type() const = 0;\n  };\n\n  // store an F.  invoke(Args\u0026\u0026...) calls the f\n  template\u003cclass F, class R, class...Args\u003e\n  struct task_pimpl_impl:task_pimpl\u003cR,Args...\u003e {\n    F f;\n    template\u003cclass Fin\u003e\n    task_pimpl_impl( Fin\u0026\u0026 fin ):f(std::forward\u003cFin\u003e(fin)) {}\n    virtual R invoke(Args\u0026\u0026...args) const final override {\n      return f(std::forward\u003cArgs\u003e(args)...);\n    }\n    virtual const std::type_info\u0026 target_type() const final override {\n      return typeid(F);\n    }\n  };\n\n  // the void version discards the return value of f:\n  template\u003cclass F, class...Args\u003e\n  struct task_pimpl_impl\u003cF,void,Args...\u003e:task_pimpl\u003cvoid,Args...\u003e {\n    F f;\n    template\u003cclass Fin\u003e\n    task_pimpl_impl( Fin\u0026\u0026 fin ):f(std::forward\u003cFin\u003e(fin)) {}\n    virtual void invoke(Args\u0026\u0026...args) const final override {\n      f(std::forward\u003cArgs\u003e(args)...);\n    }\n    virtual const std::type_info\u0026 target_type() const final override {\n      return typeid(F);\n    }\n  };\n};\n\ntemplate\u003cclass R, class...Args\u003e\nstruct task\u003cR(Args...)\u003e {\n  // semi-regular:\n  task()=default;\n  task(task\u0026\u0026)=default;\n  // no copy\n\nprivate:\n  // aliases to make some SFINAE code below less ugly:\n  template\u003cclass F\u003e\n  using call_r = std::result_of_t\u003cF const\u0026(Args...)\u003e;\n  template\u003cclass F\u003e\n  using is_task = std::is_same\u003cstd::decay_t\u003cF\u003e, task\u003e;\npublic:\n  // can be constructed from a callable F\n  template\u003cclass F,\n    // that can be invoked with Args... and converted-to-R:\n    class= decltype( (R)(std::declval\u003ccall_r\u003cF\u003e\u003e()) ),\n    // and is not this same type:\n    std::enable_if_t\u003c!is_task\u003cF\u003e{}, int\u003e* = nullptr\n  \u003e\n  task(F\u0026\u0026 f):\n    m_pImpl( make_pimpl(std::forward\u003cF\u003e(f)) )\n  {}\n\n  // the meat: the call operator        \n  R operator()(Args... args)const {\n        return m_pImpl-\u003einvoke( std::forward\u003cArgs\u003e(args)... );\n  }\n  explicit operator bool() const {\n    return (bool)m_pImpl;\n  }\n  void swap( task\u0026 o ) {\n    std::swap( m_pImpl, o.m_pImpl );\n  }\n  template\u003cclass F\u003e\n  void assign( F\u0026\u0026 f ) {\n    m_pImpl = make_pimpl(std::forward\u003cF\u003e(f));    \n  }\n  // Part of the std::function interface:\n  const std::type_info\u0026 target_type() const {\n    if (!*this) return typeid(void);\n    return m_pImpl-\u003etarget_type();\n  }\n  template\u003c class T \u003e\n  T* target() {\n    return target_impl\u003cT\u003e();\n  }\n  template\u003c class T \u003e\n  const T* target() const {\n    return target_impl\u003cT\u003e();\n  }\n  // compare with nullptr    :    \n  friend bool operator==( std::nullptr_t, task const\u0026 self ) { return !self; }\n  friend bool operator==( task const\u0026 self, std::nullptr_t ) { return !self; }\n  friend bool operator!=( std::nullptr_t, task const\u0026 self ) { return !!self; }\n  friend bool operator!=( task const\u0026 self, std::nullptr_t ) { return !!self; }\nprivate:\n  template\u003cclass T\u003e\n  using pimpl_t = details::task_pimpl_impl\u003cT, R, Args...\u003e;\n\n  template\u003cclass F\u003e\n  static auto make_pimpl( F\u0026\u0026 f ) {\n    using dF=std::decay_t\u003cF\u003e;\n    using pImpl_t = pimpl_t\u003cdF\u003e;\n    return std::make_unique\u003cpImpl_t\u003e(std::forward\u003cF\u003e(f));\n  }\n  std::unique_ptr\u003cdetails::task_pimpl\u003cR,Args...\u003e\u003e m_pImpl;\n\n  template\u003c class T \u003e\n  T* target_impl() const {\n    return dynamic_cast\u003cpimpl_t\u003cT\u003e*\u003e(m_pImpl.get());\n  }\n};",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523040454,
+        "id": "da230b5f-252a-471c-ba09-d712df1c6a7f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523040454,
+        "parent_id": "c119ce9e-c36b-4e96-add1-0ea403079f69",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To make this library-worthy, you’d want to add in a small buffer optimization, so it does not store every callable on the heap."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To make this library-worthy, you’d want to add in a small buffer optimization, so it does not store every callable on the heap."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523040455,
+        "id": "51839aa1-8a62-48d8-834c-38586e261e63",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523040455,
+        "parent_id": "c119ce9e-c36b-4e96-add1-0ea403079f69",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Adding SBO would require a non-default "
+            ],
+            [
+              "task(task\u0026\u0026)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", some "
+            ],
+            [
+              "std::aligned_storage_t",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " within the class, a "
+            ],
+            [
+              "m_pImpl",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " "
+            ],
+            [
+              "unique_ptr",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " with a deleter that can be set to destroy-only (and not return the memory to the heap), and a "
+            ],
+            [
+              "emplace_move_to( void* ) = 0",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " in the "
+            ],
+            [
+              "task_pimpl",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Adding SBO would require a non-default "
+          },
+          {
+            "Text": "task(task\u0026\u0026)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", some "
+          },
+          {
+            "Text": "std::aligned_storage_t",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " within the class, a "
+          },
+          {
+            "Text": "m_pImpl",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " "
+          },
+          {
+            "Text": "unique_ptr",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " with a deleter that can be set to destroy-only (and not return the memory to the heap), and a "
+          },
+          {
+            "Text": "emplace_move_to( void* ) = 0",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " in the "
+          },
+          {
+            "Text": "task_pimpl",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523040455,
+        "id": "b1c64ee5-d24a-4a00-8e34-c60c091b0040",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523040455,
+        "parent_id": "c119ce9e-c36b-4e96-add1-0ea403079f69",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "live example",
+              [
+                [
+                  "a",
+                  "http://coliru.stacked-crooked.com/a/6e6811e8626a37d1"
+                ]
+              ]
+            ],
+            [
+              " of the above code (with no SBO)."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "live example",
+            "Link": "http://coliru.stacked-crooked.com/a/6e6811e8626a37d1"
+          },
+          {
+            "Text": " of the above code (with no SBO)."
+          }
+        ]
+      }
+    ],
+    "title": "010 A move-only std function"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

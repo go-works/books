@@ -1,0 +1,123 @@
+{
+  "ID": "d9266f40-26a8-4a02-858c-af445699d0d9",
+  "Root": {
+    "alive": true,
+    "content": [
+      "6d246ee4-b5ac-4724-bd6d-36b0d4f0d749",
+      "da5fee39-a112-47ca-b042-08be3f4f0f0d",
+      "3411b492-1715-4b4c-a993-9f84d048743f"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550525439903,
+    "id": "d9266f40-26a8-4a02-858c-af445699d0d9",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550525439903,
+    "parent_id": "2dfdecd0-c228-4dc2-941d-0a4e53390d1c",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 std recursive mutex"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550525439899,
+        "id": "6d246ee4-b5ac-4724-bd6d-36b0d4f0d749",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550525439899,
+        "parent_id": "d9266f40-26a8-4a02-858c-af445699d0d9",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Recursive mutex allows the same thread to recursively lock a resource - up to an unspecified limit."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Recursive mutex allows the same thread to recursively lock a resource - up to an unspecified limit."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550525439902,
+        "id": "da5fee39-a112-47ca-b042-08be3f4f0f0d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550525439902,
+        "parent_id": "d9266f40-26a8-4a02-858c-af445699d0d9",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "There are very few real-word justifications for this. Certain complex implementations might need to call an overloaded copy of a function without releasing the lock."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "There are very few real-word justifications for this. Certain complex implementations might need to call an overloaded copy of a function without releasing the lock."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550525439902,
+        "id": "3411b492-1715-4b4c-a993-9f84d048743f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550525439902,
+        "parent_id": "d9266f40-26a8-4a02-858c-af445699d0d9",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "std::atomic_int temp{0};\nstd::recursive_mutex _mutex;\n\n//launch_deferred launches asynchronous tasks on the same thread id\n\nauto future1 = std::async(\n            std::launch::deferred,\n            [\u0026]()\n            {\n                std::cout \u003c\u003c std::this_thread::get_id() \u003c\u003c std::endl;\n\n                std::this_thread::sleep_for(std::chrono::seconds(3));\n                std::unique_lock\u003cstd::recursive_mutex\u003e lock( _mutex);\n                temp=0;\n                \n            });\n\nauto future2 = std::async(\n            std::launch::deferred,\n            [\u0026]()\n            {\n                std::cout \u003c\u003c std::this_thread::get_id() \u003c\u003c std::endl;\n                while ( true )\n                {\n                    std::this_thread::sleep_for(std::chrono::milliseconds(1));\n                    std::unique_lock\u003cstd::recursive_mutex\u003e lock( _mutex, std::try_to_lock);\n                    if ( temp \u003c INT_MAX )\n                         temp++;\n\n                    cout \u003c\u003c temp \u003c\u003c endl;\n                    \n                }\n            });\nfuture1.get();\nfuture2.get();"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "std::atomic_int temp{0};\nstd::recursive_mutex _mutex;\n\n//launch_deferred launches asynchronous tasks on the same thread id\n\nauto future1 = std::async(\n            std::launch::deferred,\n            [\u0026]()\n            {\n                std::cout \u003c\u003c std::this_thread::get_id() \u003c\u003c std::endl;\n\n                std::this_thread::sleep_for(std::chrono::seconds(3));\n                std::unique_lock\u003cstd::recursive_mutex\u003e lock( _mutex);\n                temp=0;\n                \n            });\n\nauto future2 = std::async(\n            std::launch::deferred,\n            [\u0026]()\n            {\n                std::cout \u003c\u003c std::this_thread::get_id() \u003c\u003c std::endl;\n                while ( true )\n                {\n                    std::this_thread::sleep_for(std::chrono::milliseconds(1));\n                    std::unique_lock\u003cstd::recursive_mutex\u003e lock( _mutex, std::try_to_lock);\n                    if ( temp \u003c INT_MAX )\n                         temp++;\n\n                    cout \u003c\u003c temp \u003c\u003c endl;\n                    \n                }\n            });\nfuture1.get();\nfuture2.get();",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 std recursive mutex"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

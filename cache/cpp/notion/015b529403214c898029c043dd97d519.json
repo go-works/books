@@ -1,0 +1,71 @@
+{
+  "ID": "015b5294-0321-4c89-8029-c043dd97d519",
+  "Root": {
+    "alive": true,
+    "content": [
+      "70e17e73-d2b2-4e48-9f2e-521a9b176d6a"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550523933549,
+    "id": "015b5294-0321-4c89-8029-c043dd97d519",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550523933549,
+    "parent_id": "c70aafee-9819-4bd7-9b37-69e9f016666b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "020 3. Covariant smart pointer result automated cleanup."
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523933546,
+        "id": "70e17e73-d2b2-4e48-9f2e-521a9b176d6a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523933546,
+        "parent_id": "015b5294-0321-4c89-8029-c043dd97d519",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// 3. Covariant smart pointer result (automated cleanup).\n\n#include \u003cmemory\u003e\nusing std::unique_ptr;\n\ntemplate\u003c class Type \u003e\nauto up( Type* p ) { return unique_ptr\u003cType\u003e( p ); }\n\nclass Top\n{\nprivate:\n    virtual Top* virtual_clone() const = 0;\n\npublic:\n    unique_ptr\u003cTop\u003e clone() const\n    { return up( virtual_clone() ); }\n\n    virtual ~Top() = default;       // Necessary for `delete` via Top*.\n};\n\nclass D : public Top\n{\nprivate:\n    D* /* ← Covariant return */ virtual_clone() const override\n    { return new D( *this ); }\n\npublic:\n    unique_ptr\u003cD\u003e /* ← Apparent covariant return */ clone() const\n    { return up( virtual_clone() ); }\n};\n\nclass DD : public D\n{\nprivate:\n    int answer_ = 42;\n\n    DD* /* ← Covariant return */ virtual_clone() const override\n    { return new DD( *this ); }\n\npublic:\n    int answer() const\n    { return answer_;}\n\n    unique_ptr\u003cDD\u003e /* ← Apparent covariant return */ clone() const\n    { return up( virtual_clone() ); }\n};\n\n#include \u003ciostream\u003e\nusing namespace std;\n\nint main()\n{\n    auto  p1 = unique_ptr\u003cDD\u003e(new DD());\n    auto  p2 = p1-\u003eclone();\n    // Correct dynamic type DD for *p2 is guaranteed by the static type checking.\n\n    cout \u003c\u003c p2-\u003eanswer() \u003c\u003c endl;          // \"42\"\n    // Cleanup is automated via unique_ptr.\n }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// 3. Covariant smart pointer result (automated cleanup).\n\n#include \u003cmemory\u003e\nusing std::unique_ptr;\n\ntemplate\u003c class Type \u003e\nauto up( Type* p ) { return unique_ptr\u003cType\u003e( p ); }\n\nclass Top\n{\nprivate:\n    virtual Top* virtual_clone() const = 0;\n\npublic:\n    unique_ptr\u003cTop\u003e clone() const\n    { return up( virtual_clone() ); }\n\n    virtual ~Top() = default;       // Necessary for `delete` via Top*.\n};\n\nclass D : public Top\n{\nprivate:\n    D* /* ← Covariant return */ virtual_clone() const override\n    { return new D( *this ); }\n\npublic:\n    unique_ptr\u003cD\u003e /* ← Apparent covariant return */ clone() const\n    { return up( virtual_clone() ); }\n};\n\nclass DD : public D\n{\nprivate:\n    int answer_ = 42;\n\n    DD* /* ← Covariant return */ virtual_clone() const override\n    { return new DD( *this ); }\n\npublic:\n    int answer() const\n    { return answer_;}\n\n    unique_ptr\u003cDD\u003e /* ← Apparent covariant return */ clone() const\n    { return up( virtual_clone() ); }\n};\n\n#include \u003ciostream\u003e\nusing namespace std;\n\nint main()\n{\n    auto  p1 = unique_ptr\u003cDD\u003e(new DD());\n    auto  p2 = p1-\u003eclone();\n    // Correct dynamic type DD for *p2 is guaranteed by the static type checking.\n\n    cout \u003c\u003c p2-\u003eanswer() \u003c\u003c endl;          // \"42\"\n    // Cleanup is automated via unique_ptr.\n }",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "020 3. Covariant smart pointer result automated cleanup."
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

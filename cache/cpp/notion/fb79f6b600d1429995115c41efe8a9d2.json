@@ -1,0 +1,185 @@
+{
+  "ID": "fb79f6b6-00d1-4299-9511-5c41efe8a9d2",
+  "Root": {
+    "alive": true,
+    "content": [
+      "85ff0fc5-a277-4d50-b521-7a4900b1ded7",
+      "dd0b4706-7343-4c7f-b4c1-1a76ba80f21a",
+      "9d5cfc00-a2ac-46da-a715-e0a908ea6c7d",
+      "d4db0b87-483b-417e-aa53-35b837282940"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550524744532,
+    "id": "fb79f6b6-00d1-4299-9511-5c41efe8a9d2",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550524744532,
+    "parent_id": "50856007-ed7d-41fb-8551-374ecae3e24b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "040 OpenMP Parallel Gathering Reduction"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550524744529,
+        "id": "85ff0fc5-a277-4d50-b521-7a4900b1ded7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550524744529,
+        "parent_id": "fb79f6b6-00d1-4299-9511-5c41efe8a9d2",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This example illustrates a concept to perform reduction or gathering using "
+            ],
+            [
+              "std::vector",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and OpenMP."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This example illustrates a concept to perform reduction or gathering using "
+          },
+          {
+            "Text": "std::vector",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and OpenMP."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550524744531,
+        "id": "dd0b4706-7343-4c7f-b4c1-1a76ba80f21a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550524744531,
+        "parent_id": "fb79f6b6-00d1-4299-9511-5c41efe8a9d2",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Supposed we have a scenario where we want multiple threads to help us generate a bunch of stuff, "
+            ],
+            [
+              "int",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is used here for simplicity and can be replaced with other data types."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Supposed we have a scenario where we want multiple threads to help us generate a bunch of stuff, "
+          },
+          {
+            "Text": "int",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is used here for simplicity and can be replaced with other data types."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550524744531,
+        "id": "9d5cfc00-a2ac-46da-a715-e0a908ea6c7d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550524744531,
+        "parent_id": "fb79f6b6-00d1-4299-9511-5c41efe8a9d2",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This is particularly useful when you need to merge results from slaves to avoid segement faults or memory access violations and do not wish to use libraries or custom sync container libraries."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This is particularly useful when you need to merge results from slaves to avoid segement faults or memory access violations and do not wish to use libraries or custom sync container libraries."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550524744532,
+        "id": "d4db0b87-483b-417e-aa53-35b837282940",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550524744532,
+        "parent_id": "fb79f6b6-00d1-4299-9511-5c41efe8a9d2",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "//    The Master vector\n//    We want a vector of results gathered from slave threads\nstd::vector\u003cint\u003e Master;    \n\n//    Hint the compiler to parallelize this { } of code\n//    with all available threads (usually the same as logical processor qty)\n#pragma omp parallel\n{\n    //    In this area, you can write any code you want for each\n    //    slave thread, in this case a vector to hold each of their results\n    //    We don't have to worry about how many threads were spawn or if we need\n    //    to repeat this declaration or not.\n    std::vector\u003cint\u003e Slave;\n\n    //    Tell the compiler to use all threads allocated for this parallel region\n    //    to perform this loop in parts. Actual load appx = 1000000 / Thread Qty\n    //    The nowait keyword tells the compiler that the slave threads don't\n    //    have to wait for all other slaves to finish this for loop job\n    #pragma omp for nowait\n    for (size_t i = 0; i \u003c 1000000; ++i\n    {\n        /* Do something */\n        ....\n        Slave.push_back(...);\n    }\n\n    //    Slaves that finished their part of the job\n    //    will perform this thread by thread one at a time\n    //    critical section ensures that only 0 or 1 thread performs\n    //    the { } at any time\n    #pragma omp critical\n    {\n        //    Merge slave into master\n        //    use move iterators instead, avoid copy unless\n        //    you want to use it for something else after this section\n        Master.insert(Master.end(), \n                      std::make_move_iterator(Slave.begin()), \n                      std::make_move_iterator(Slave.end()));\n    }\n}\n\n//    Have fun with Master vector\n..."
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "//    The Master vector\n//    We want a vector of results gathered from slave threads\nstd::vector\u003cint\u003e Master;    \n\n//    Hint the compiler to parallelize this { } of code\n//    with all available threads (usually the same as logical processor qty)\n#pragma omp parallel\n{\n    //    In this area, you can write any code you want for each\n    //    slave thread, in this case a vector to hold each of their results\n    //    We don't have to worry about how many threads were spawn or if we need\n    //    to repeat this declaration or not.\n    std::vector\u003cint\u003e Slave;\n\n    //    Tell the compiler to use all threads allocated for this parallel region\n    //    to perform this loop in parts. Actual load appx = 1000000 / Thread Qty\n    //    The nowait keyword tells the compiler that the slave threads don't\n    //    have to wait for all other slaves to finish this for loop job\n    #pragma omp for nowait\n    for (size_t i = 0; i \u003c 1000000; ++i\n    {\n        /* Do something */\n        ....\n        Slave.push_back(...);\n    }\n\n    //    Slaves that finished their part of the job\n    //    will perform this thread by thread one at a time\n    //    critical section ensures that only 0 or 1 thread performs\n    //    the { } at any time\n    #pragma omp critical\n    {\n        //    Merge slave into master\n        //    use move iterators instead, avoid copy unless\n        //    you want to use it for something else after this section\n        Master.insert(Master.end(), \n                      std::make_move_iterator(Slave.begin()), \n                      std::make_move_iterator(Slave.end()));\n    }\n}\n\n//    Have fun with Master vector\n...",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "040 OpenMP Parallel Gathering Reduction"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

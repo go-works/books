@@ -1,0 +1,339 @@
+{
+  "ID": "adb12f37-35f0-4db9-abd9-fdd2ef91cf57",
+  "Root": {
+    "alive": true,
+    "content": [
+      "80839ee8-1891-4368-ae6f-db141f7866cd",
+      "f7b58ecc-3dff-4ee1-a461-a71ad538c183",
+      "40b5e4ef-65c7-459d-9673-f1fb7142a099",
+      "2feb9273-306f-48ff-9291-fa4d4d0b8244",
+      "0d089bf5-91da-4acc-a8fd-3658b11e0445",
+      "7b74bf19-9fdb-44ba-8d70-c255bbfa76f0"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550522685516,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "adb12f37-35f0-4db9-abd9-fdd2ef91cf57",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550710680000,
+    "parent_id": "a3104ba4-9a8b-4f2a-ad89-25f36d3b9595",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Pointers to member variables"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522685512,
+        "id": "80839ee8-1891-4368-ae6f-db141f7866cd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522685512,
+        "parent_id": "adb12f37-35f0-4db9-abd9-fdd2ef91cf57",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To access a member of a "
+            ],
+            [
+              "class",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", you need to have a “handle” to the particular instance, as either the instance itself, or a pointer or reference to it. Given a "
+            ],
+            [
+              "class",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " instance, you can point to various of its members with a pointer-to-member, IF you get the syntax correct! Of course, the pointer has to be declared to be of the same type as what you are pointing to…"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To access a member of a "
+          },
+          {
+            "Text": "class",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", you need to have a “handle” to the particular instance, as either the instance itself, or a pointer or reference to it. Given a "
+          },
+          {
+            "Text": "class",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " instance, you can point to various of its members with a pointer-to-member, IF you get the syntax correct! Of course, the pointer has to be declared to be of the same type as what you are pointing to…"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522685515,
+        "id": "f7b58ecc-3dff-4ee1-a461-a71ad538c183",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550710680000,
+        "parent_id": "adb12f37-35f0-4db9-abd9-fdd2ef91cf57",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C++"
+            ]
+          ],
+          "title": [
+            [
+              "class Class {\npublic:\n    int x, y, z;\n    char m, n, o;\n}; // Class\n\nint x;  // Global variable\n\nint main() {\n    Class c;        // Need a Class instance to play with\n    Class *p = \u0026c;  // Need a Class pointer to play with\n\n    int *p_i;       // Pointer to an int\n\n    p_i = \u0026x;       // Now pointing to x\n    p_i = \u0026c.x;     // Now pointing to c's x\n\n    int Class::*p_C_i; // Pointer to an int within Class\n\n    p_C_i = \u0026Class::x; // Point to x within any Class\n    int i = c.*p_C_i;  // Use p_c_i to fetch x from c's instance\n    p_C_i = \u0026Class::y; // Point to y within any Class\n    i = c.*p_C_i;      // Use p_c_i to fetch y from c's instance\n\n    p_C_i = \u0026Class::m; // ERROR! m is a char, not an int!\n\n    char Class::*p_C_c = \u0026Class::m; // That's better...\n} // main()"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "class Class {\npublic:\n    int x, y, z;\n    char m, n, o;\n}; // Class\n\nint x;  // Global variable\n\nint main() {\n    Class c;        // Need a Class instance to play with\n    Class *p = \u0026c;  // Need a Class pointer to play with\n\n    int *p_i;       // Pointer to an int\n\n    p_i = \u0026x;       // Now pointing to x\n    p_i = \u0026c.x;     // Now pointing to c's x\n\n    int Class::*p_C_i; // Pointer to an int within Class\n\n    p_C_i = \u0026Class::x; // Point to x within any Class\n    int i = c.*p_C_i;  // Use p_c_i to fetch x from c's instance\n    p_C_i = \u0026Class::y; // Point to y within any Class\n    i = c.*p_C_i;      // Use p_c_i to fetch y from c's instance\n\n    p_C_i = \u0026Class::m; // ERROR! m is a char, not an int!\n\n    char Class::*p_C_c = \u0026Class::m; // That's better...\n} // main()",
+        "code_language": "C++"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522685515,
+        "id": "40b5e4ef-65c7-459d-9673-f1fb7142a099",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522685515,
+        "parent_id": "adb12f37-35f0-4db9-abd9-fdd2ef91cf57",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The syntax of pointer-to-member requires some extra syntactic elements:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The syntax of pointer-to-member requires some extra syntactic elements:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522685515,
+        "id": "2feb9273-306f-48ff-9291-fa4d4d0b8244",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522685515,
+        "parent_id": "adb12f37-35f0-4db9-abd9-fdd2ef91cf57",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To define the type of the pointer, you need to mention the base type, as well as the fact that it is inside a class: "
+            ],
+            [
+              "int Class::*ptr;",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To define the type of the pointer, you need to mention the base type, as well as the fact that it is inside a class: "
+          },
+          {
+            "Text": "int Class::*ptr;",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522685516,
+        "id": "0d089bf5-91da-4acc-a8fd-3658b11e0445",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522685516,
+        "parent_id": "adb12f37-35f0-4db9-abd9-fdd2ef91cf57",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If you have a class or reference and want to use it with a pointer-to-member, you need to use the "
+            ],
+            [
+              ".*",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " operator (akin to the "
+            ],
+            [
+              ".",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " operator)."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If you have a class or reference and want to use it with a pointer-to-member, you need to use the "
+          },
+          {
+            "Text": ".*",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " operator (akin to the "
+          },
+          {
+            "Text": ".",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " operator)."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522685516,
+        "id": "7b74bf19-9fdb-44ba-8d70-c255bbfa76f0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522685516,
+        "parent_id": "adb12f37-35f0-4db9-abd9-fdd2ef91cf57",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If you have a pointer to a class and want to use it with a pointer-to-member, you need to use the "
+            ],
+            [
+              "-\u003e*",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " operator (akin to the "
+            ],
+            [
+              "-\u003e",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " operator)."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If you have a pointer to a class and want to use it with a pointer-to-member, you need to use the "
+          },
+          {
+            "Text": "-\u003e*",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " operator (akin to the "
+          },
+          {
+            "Text": "-\u003e",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " operator)."
+          }
+        ]
+      }
+    ],
+    "title": "Pointers to member variables",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

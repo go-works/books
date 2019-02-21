@@ -1,0 +1,373 @@
+{
+  "ID": "b8e05616-7d6e-4903-876d-8a44d5e23c77",
+  "Root": {
+    "alive": true,
+    "content": [
+      "2db3861e-4358-4cdd-a536-9919d9f6faec",
+      "7e952fc5-00b9-433f-b94b-b35677c1923f",
+      "6bc137a3-2aa6-4c87-888e-da7184e74acb",
+      "0edb60ed-6232-4afe-81bc-c885c56747ef",
+      "166ff345-294a-42f3-85c2-036d8675c5d6",
+      "4ee79332-11ee-4eab-9228-8d3f954b644a",
+      "1f01205b-a93b-4abc-88f6-73a4c3382fd7",
+      "e27fd94e-af1b-40e8-a393-5aad72553976",
+      "04df2c2e-21ad-46e5-958f-810c2c288a96",
+      "78fe8ade-9e38-4c81-89ef-ca61a87ec58f"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550525210517,
+    "id": "b8e05616-7d6e-4903-876d-8a44d5e23c77",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550525210517,
+    "parent_id": "5e61d351-5c67-4222-b553-e5a42137412d",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "040 Object locking for efficient access."
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550525210512,
+        "id": "2db3861e-4358-4cdd-a536-9919d9f6faec",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550525210512,
+        "parent_id": "b8e05616-7d6e-4903-876d-8a44d5e23c77",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Often you want to lock the entire object while you perform multiple operations on it. For example, if you need to examine or modify the object using "
+            ],
+            [
+              "iterators",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              ". Whenever you need to call multiple member functions it is generally more efficient to lock the whole object rather than individual member functions."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Often you want to lock the entire object while you perform multiple operations on it. For example, if you need to examine or modify the object using "
+          },
+          {
+            "Text": "iterators",
+            "AttrFlags": 4
+          },
+          {
+            "Text": ". Whenever you need to call multiple member functions it is generally more efficient to lock the whole object rather than individual member functions."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550525210514,
+        "id": "7e952fc5-00b9-433f-b94b-b35677c1923f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550525210514,
+        "parent_id": "b8e05616-7d6e-4903-876d-8a44d5e23c77",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "For example:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "For example:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550525210514,
+        "id": "6bc137a3-2aa6-4c87-888e-da7184e74acb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550525210514,
+        "parent_id": "b8e05616-7d6e-4903-876d-8a44d5e23c77",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class text_buffer\n{\n    // for readability/maintainability\n    using mutex_type = std::shared_timed_mutex;\n    using reading_lock = std::shared_lock\u003cmutex_type\u003e;\n    using updates_lock = std::unique_lock\u003cmutex_type\u003e;\n\npublic:\n    // This returns a scoped lock that can be shared by multiple\n    // readers at the same time while excluding any writers\n    [[nodiscard]]\n    reading_lock lock_for_reading() const { return reading_lock(mtx); }\n\n    // This returns a scoped lock that is exclusing to one\n    // writer preventing any readers\n    [[nodiscard]]\n    updates_lock lock_for_updates() { return updates_lock(mtx); }\n\n    char* data() { return buf; }\n    char const* data() const { return buf; }\n\n    char* begin() { return buf; }\n    char const* begin() const { return buf; }\n\n    char* end() { return buf + sizeof(buf); }\n    char const* end() const { return buf + sizeof(buf); }\n\n    std::size_t size() const { return sizeof(buf); }\n\nprivate:\n    char buf[1024];\n    mutable mutex_type mtx; // mutable allows const objects to be locked\n};"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class text_buffer\n{\n    // for readability/maintainability\n    using mutex_type = std::shared_timed_mutex;\n    using reading_lock = std::shared_lock\u003cmutex_type\u003e;\n    using updates_lock = std::unique_lock\u003cmutex_type\u003e;\n\npublic:\n    // This returns a scoped lock that can be shared by multiple\n    // readers at the same time while excluding any writers\n    [[nodiscard]]\n    reading_lock lock_for_reading() const { return reading_lock(mtx); }\n\n    // This returns a scoped lock that is exclusing to one\n    // writer preventing any readers\n    [[nodiscard]]\n    updates_lock lock_for_updates() { return updates_lock(mtx); }\n\n    char* data() { return buf; }\n    char const* data() const { return buf; }\n\n    char* begin() { return buf; }\n    char const* begin() const { return buf; }\n\n    char* end() { return buf + sizeof(buf); }\n    char const* end() const { return buf + sizeof(buf); }\n\n    std::size_t size() const { return sizeof(buf); }\n\nprivate:\n    char buf[1024];\n    mutable mutex_type mtx; // mutable allows const objects to be locked\n};",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550525210515,
+        "id": "0edb60ed-6232-4afe-81bc-c885c56747ef",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550525210515,
+        "parent_id": "b8e05616-7d6e-4903-876d-8a44d5e23c77",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "When calculating a checksum the object is locked for reading, allowing other threads that want to read from the object at the same time to do so."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "When calculating a checksum the object is locked for reading, allowing other threads that want to read from the object at the same time to do so."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550525210515,
+        "id": "166ff345-294a-42f3-85c2-036d8675c5d6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550525210515,
+        "parent_id": "b8e05616-7d6e-4903-876d-8a44d5e23c77",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "std::size_t checksum(text_buffer const\u0026 buf)\n{\n    std::size_t sum = 0xA44944A4;\n\n    // lock the object for reading\n    auto lock = buf.lock_for_reading();\n\n    for(auto c: buf)\n        sum = (sum \u003c\u003c 8) | (((unsigned char) ((sum \u0026 0xFF000000) \u003e\u003e 24)) ^ c);\n\n    return sum;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "std::size_t checksum(text_buffer const\u0026 buf)\n{\n    std::size_t sum = 0xA44944A4;\n\n    // lock the object for reading\n    auto lock = buf.lock_for_reading();\n\n    for(auto c: buf)\n        sum = (sum \u003c\u003c 8) | (((unsigned char) ((sum \u0026 0xFF000000) \u003e\u003e 24)) ^ c);\n\n    return sum;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550525210515,
+        "id": "4ee79332-11ee-4eab-9228-8d3f954b644a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550525210515,
+        "parent_id": "b8e05616-7d6e-4903-876d-8a44d5e23c77",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Clearing the object updates its internal data so it must be done using an exclusing lock."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Clearing the object updates its internal data so it must be done using an exclusing lock."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550525210515,
+        "id": "1f01205b-a93b-4abc-88f6-73a4c3382fd7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550525210515,
+        "parent_id": "b8e05616-7d6e-4903-876d-8a44d5e23c77",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "void clear(text_buffer\u0026 buf)\n{\n    auto lock = buf.lock_for_updates(); // exclusive lock\n    std::fill(std::begin(buf), std::end(buf), '\\0');\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "void clear(text_buffer\u0026 buf)\n{\n    auto lock = buf.lock_for_updates(); // exclusive lock\n    std::fill(std::begin(buf), std::end(buf), '\\0');\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550525210515,
+        "id": "e27fd94e-af1b-40e8-a393-5aad72553976",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550525210515,
+        "parent_id": "b8e05616-7d6e-4903-876d-8a44d5e23c77",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "When obtaining more than one lock care should be taken to always acquire the locks in the same order for all threads."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "When obtaining more than one lock care should be taken to always acquire the locks in the same order for all threads."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550525210515,
+        "id": "04df2c2e-21ad-46e5-958f-810c2c288a96",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550525210515,
+        "parent_id": "b8e05616-7d6e-4903-876d-8a44d5e23c77",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "void transfer(text_buffer const\u0026 input, text_buffer\u0026 output)\n{\n    auto lock1 = input.lock_for_reading();\n    auto lock2 = output.lock_for_updates();\n\n    std::copy(std::begin(input), std::end(input), std::begin(output));\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "void transfer(text_buffer const\u0026 input, text_buffer\u0026 output)\n{\n    auto lock1 = input.lock_for_reading();\n    auto lock2 = output.lock_for_updates();\n\n    std::copy(std::begin(input), std::end(input), std::begin(output));\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550525210517,
+        "id": "78fe8ade-9e38-4c81-89ef-ca61a87ec58f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550525210517,
+        "parent_id": "b8e05616-7d6e-4903-876d-8a44d5e23c77",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "note:",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " This is best done using "
+            ],
+            [
+              "std::deferred::lock",
+              [
+                [
+                  "a",
+                  "http://en.cppreference.com/w/cpp/thread/lock_tag"
+                ]
+              ]
+            ],
+            [
+              " and calling "
+            ],
+            [
+              "std::lock",
+              [
+                [
+                  "a",
+                  "http://en.cppreference.com/w/cpp/thread/lock"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "note:",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " This is best done using "
+          },
+          {
+            "Text": "std::deferred::lock",
+            "Link": "http://en.cppreference.com/w/cpp/thread/lock_tag"
+          },
+          {
+            "Text": " and calling "
+          },
+          {
+            "Text": "std::lock",
+            "Link": "http://en.cppreference.com/w/cpp/thread/lock"
+          }
+        ]
+      }
+    ],
+    "title": "040 Object locking for efficient access."
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

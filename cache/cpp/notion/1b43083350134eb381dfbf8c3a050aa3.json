@@ -1,0 +1,606 @@
+{
+  "ID": "1b430833-5013-4eb3-81df-bf8c3a050aa3",
+  "Root": {
+    "alive": true,
+    "content": [
+      "437aa4c9-50af-42e8-9450-caa9db670acc",
+      "113cc432-1d10-4d4d-88fa-51db9cf7efe0",
+      "12b7a1c8-bb93-4849-ba4a-e75f91c5338a",
+      "0bf16207-8fa2-42e8-a2e3-5be2d49ad48b",
+      "4258f494-5751-4327-a544-df2d1b130ff1",
+      "3c7bdec7-5f8f-4d2d-b94e-01c26f07b935",
+      "4e6a7fed-07a3-4a33-b6fc-9cc4398ed77d",
+      "1e12f0d8-503c-46d3-af40-1983643e9373",
+      "91394cf6-091b-44c2-8356-ef38e36f32a9",
+      "aa12d742-69fa-404d-9b55-12f802c4dbab",
+      "3b83c33e-8697-401c-9060-8f69e2fe9635",
+      "7c15d145-000b-4700-ac75-9de515f90457",
+      "af97d5e7-d66c-434b-a55b-d266af61e660",
+      "981cefd7-c30d-444c-af05-41a1a2fcc6f3",
+      "d0f694a6-b0f2-4427-badc-e75081d47f38"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550524369469,
+    "id": "1b430833-5013-4eb3-81df-bf8c3a050aa3",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550524369469,
+    "parent_id": "d5db2d0f-24c4-4bf6-a1d3-fc170bfb1b75",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "020 Refactoring walk through"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550524369466,
+        "id": "437aa4c9-50af-42e8-9450-caa9db670acc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550524369466,
+        "parent_id": "1b430833-5013-4eb3-81df-bf8c3a050aa3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Here’s a program which might benefit from refactoring. It’s a simple program using C++11 which is intended to calculate and print all prime numbers from 1 to 100 and is based on a program that was posted on "
+            ],
+            [
+              "CodeReview",
+              [
+                [
+                  "a",
+                  "https://codereview.stackexchange.com/"
+                ]
+              ]
+            ],
+            [
+              " for review."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Here’s a program which might benefit from refactoring. It’s a simple program using C++11 which is intended to calculate and print all prime numbers from 1 to 100 and is based on a program that was posted on "
+          },
+          {
+            "Text": "CodeReview",
+            "Link": "https://codereview.stackexchange.com/"
+          },
+          {
+            "Text": " for review."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550524369467,
+        "id": "113cc432-1d10-4d4d-88fa-51db9cf7efe0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550524369467,
+        "parent_id": "1b430833-5013-4eb3-81df-bf8c3a050aa3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003ciostream\u003e\n#include \u003cvector\u003e\n#include \u003ccmath\u003e\n\nint main()\n{\n    int l = 100;\n    bool isprime;\n    std::vector\u003cint\u003e primes;\n    primes.push_back(2);\n    for (int no = 3; no \u003c l; no += 2) {\n        isprime = true;\n        for (int primecount=0; primes[primecount] \u003c= std::sqrt(no); ++primecount) {\n            if (no % primes[primecount] == 0) {\n                isprime = false;\n                break;\n            } else if (primes[primecount] * primes[primecount] \u003e no) {\n                std::cout \u003c\u003c no \u003c\u003c \"\\n\";\n                break;\n            }\n        }\n        if (isprime) {\n            std::cout \u003c\u003c no \u003c\u003c \" \";\n            primes.push_back(no);\n        }\n    }\n    std::cout \u003c\u003c \"\\n\";\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \u003ciostream\u003e\n#include \u003cvector\u003e\n#include \u003ccmath\u003e\n\nint main()\n{\n    int l = 100;\n    bool isprime;\n    std::vector\u003cint\u003e primes;\n    primes.push_back(2);\n    for (int no = 3; no \u003c l; no += 2) {\n        isprime = true;\n        for (int primecount=0; primes[primecount] \u003c= std::sqrt(no); ++primecount) {\n            if (no % primes[primecount] == 0) {\n                isprime = false;\n                break;\n            } else if (primes[primecount] * primes[primecount] \u003e no) {\n                std::cout \u003c\u003c no \u003c\u003c \"\\n\";\n                break;\n            }\n        }\n        if (isprime) {\n            std::cout \u003c\u003c no \u003c\u003c \" \";\n            primes.push_back(no);\n        }\n    }\n    std::cout \u003c\u003c \"\\n\";\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550524369467,
+        "id": "12b7a1c8-bb93-4849-ba4a-e75f91c5338a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550524369467,
+        "parent_id": "1b430833-5013-4eb3-81df-bf8c3a050aa3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The output from this program looks like this:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The output from this program looks like this:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550524369467,
+        "id": "0bf16207-8fa2-42e8-a2e3-5be2d49ad48b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550524369467,
+        "parent_id": "1b430833-5013-4eb3-81df-bf8c3a050aa3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97"
+            ]
+          ]
+        },
+        "type": "quote",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550524369468,
+        "id": "4258f494-5751-4327-a544-df2d1b130ff1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550524369468,
+        "parent_id": "1b430833-5013-4eb3-81df-bf8c3a050aa3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The first thing we notice is that the program fails to print "
+            ],
+            [
+              "2",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " which is a prime number. We could simply add a line of code to simply print that one constant without modifying the rest of the program, but it might be neater to "
+            ],
+            [
+              "refactor",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " the program to split it into two parts - one that creates the prime number list an another that prints them. Here’s how that might look:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The first thing we notice is that the program fails to print "
+          },
+          {
+            "Text": "2",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " which is a prime number. We could simply add a line of code to simply print that one constant without modifying the rest of the program, but it might be neater to "
+          },
+          {
+            "Text": "refactor",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " the program to split it into two parts - one that creates the prime number list an another that prints them. Here’s how that might look:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550524369468,
+        "id": "3c7bdec7-5f8f-4d2d-b94e-01c26f07b935",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550524369468,
+        "parent_id": "1b430833-5013-4eb3-81df-bf8c3a050aa3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003ciostream\u003e\n#include \u003cvector\u003e\n#include \u003ccmath\u003e\n\nstd::vector\u003cint\u003e prime_list(int limit)\n{\n    bool isprime;\n    std::vector\u003cint\u003e primes;\n    primes.push_back(2);\n    for (int no = 3; no \u003c limit; no += 2) {\n        isprime = true;\n        for (int primecount=0; primes[primecount] \u003c= std::sqrt(no); ++primecount) {\n            if (no % primes[primecount] == 0) {\n                isprime = false;\n                break;\n            } else if (primes[primecount] * primes[primecount] \u003e no) {\n                break;\n            }\n        }\n        if (isprime) {\n            primes.push_back(no);\n        }\n    }\n    return primes;\n}\n\nint main() \n{\n    std::vector\u003cint\u003e primes = prime_list(100);\n    for (std::size_t i = 0; i \u003c primes.size(); ++i) {\n        std::cout \u003c\u003c primes[i] \u003c\u003c ' ';\n    }\n    std::cout \u003c\u003c '\\n';\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \u003ciostream\u003e\n#include \u003cvector\u003e\n#include \u003ccmath\u003e\n\nstd::vector\u003cint\u003e prime_list(int limit)\n{\n    bool isprime;\n    std::vector\u003cint\u003e primes;\n    primes.push_back(2);\n    for (int no = 3; no \u003c limit; no += 2) {\n        isprime = true;\n        for (int primecount=0; primes[primecount] \u003c= std::sqrt(no); ++primecount) {\n            if (no % primes[primecount] == 0) {\n                isprime = false;\n                break;\n            } else if (primes[primecount] * primes[primecount] \u003e no) {\n                break;\n            }\n        }\n        if (isprime) {\n            primes.push_back(no);\n        }\n    }\n    return primes;\n}\n\nint main() \n{\n    std::vector\u003cint\u003e primes = prime_list(100);\n    for (std::size_t i = 0; i \u003c primes.size(); ++i) {\n        std::cout \u003c\u003c primes[i] \u003c\u003c ' ';\n    }\n    std::cout \u003c\u003c '\\n';\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550524369468,
+        "id": "4e6a7fed-07a3-4a33-b6fc-9cc4398ed77d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550524369468,
+        "parent_id": "1b430833-5013-4eb3-81df-bf8c3a050aa3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Trying this version, we see that it does indeed work correctly now:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Trying this version, we see that it does indeed work correctly now:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550524369468,
+        "id": "1e12f0d8-503c-46d3-af40-1983643e9373",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550524369468,
+        "parent_id": "1b430833-5013-4eb3-81df-bf8c3a050aa3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97"
+            ]
+          ]
+        },
+        "type": "quote",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550524369468,
+        "id": "91394cf6-091b-44c2-8356-ef38e36f32a9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550524369468,
+        "parent_id": "1b430833-5013-4eb3-81df-bf8c3a050aa3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The next step is to notice that the second "
+            ],
+            [
+              "if",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " clause is not really needed. The logic in the loop looks for prime factors of each given number up to the square root of that number. This works because if there are any prime factors of a number at least one of them must be less than or equal to the square root of that number. Reworking just that function (the rest of the program remains the same) we get this result:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The next step is to notice that the second "
+          },
+          {
+            "Text": "if",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " clause is not really needed. The logic in the loop looks for prime factors of each given number up to the square root of that number. This works because if there are any prime factors of a number at least one of them must be less than or equal to the square root of that number. Reworking just that function (the rest of the program remains the same) we get this result:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550524369468,
+        "id": "aa12d742-69fa-404d-9b55-12f802c4dbab",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550524369468,
+        "parent_id": "1b430833-5013-4eb3-81df-bf8c3a050aa3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "std::vector\u003cint\u003e prime_list(int limit)\n{\n    bool isprime;\n    std::vector\u003cint\u003e primes;\n    primes.push_back(2);\n    for (int no = 3; no \u003c limit; no += 2) {\n        isprime = true;\n        for (int primecount=0; primes[primecount] \u003c= std::sqrt(no); ++primecount) {\n            if (no % primes[primecount] == 0) {\n                isprime = false;\n                break;\n            }\n        }\n        if (isprime) {\n            primes.push_back(no);\n        }\n    }\n    return primes;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "std::vector\u003cint\u003e prime_list(int limit)\n{\n    bool isprime;\n    std::vector\u003cint\u003e primes;\n    primes.push_back(2);\n    for (int no = 3; no \u003c limit; no += 2) {\n        isprime = true;\n        for (int primecount=0; primes[primecount] \u003c= std::sqrt(no); ++primecount) {\n            if (no % primes[primecount] == 0) {\n                isprime = false;\n                break;\n            }\n        }\n        if (isprime) {\n            primes.push_back(no);\n        }\n    }\n    return primes;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550524369469,
+        "id": "3b83c33e-8697-401c-9060-8f69e2fe9635",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550524369469,
+        "parent_id": "1b430833-5013-4eb3-81df-bf8c3a050aa3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "We can go further, changing variable names to be a bit more descriptive. For example "
+            ],
+            [
+              "primecount",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " isn’t really a count of primes. Instead it’s an index variable into the vector of known primes. Also, while "
+            ],
+            [
+              "no",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is sometimes used as an abbreviation for “number”, in mathematical writing, it’s more common to use "
+            ],
+            [
+              "n",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". We can also make some modifications by eliminating the "
+            ],
+            [
+              "break",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", and by declaring variables closer to where they’re used."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "We can go further, changing variable names to be a bit more descriptive. For example "
+          },
+          {
+            "Text": "primecount",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " isn’t really a count of primes. Instead it’s an index variable into the vector of known primes. Also, while "
+          },
+          {
+            "Text": "no",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is sometimes used as an abbreviation for “number”, in mathematical writing, it’s more common to use "
+          },
+          {
+            "Text": "n",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". We can also make some modifications by eliminating the "
+          },
+          {
+            "Text": "break",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", and by declaring variables closer to where they’re used."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550524369469,
+        "id": "7c15d145-000b-4700-ac75-9de515f90457",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550524369469,
+        "parent_id": "1b430833-5013-4eb3-81df-bf8c3a050aa3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "std::vector\u003cint\u003e prime_list(int limit)\n{\n    std::vector\u003cint\u003e primes{2};\n    for (int n = 3; n \u003c limit; n += 2) {\n        bool isprime = true;\n        for (int i=0; isprime \u0026\u0026 primes[i] \u003c= std::sqrt(n); ++i) {\n            isprime \u0026= (n % primes[i] != 0);\n        }\n        if (isprime) {\n            primes.push_back(n);\n        }\n    }\n    return primes;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "std::vector\u003cint\u003e prime_list(int limit)\n{\n    std::vector\u003cint\u003e primes{2};\n    for (int n = 3; n \u003c limit; n += 2) {\n        bool isprime = true;\n        for (int i=0; isprime \u0026\u0026 primes[i] \u003c= std::sqrt(n); ++i) {\n            isprime \u0026= (n % primes[i] != 0);\n        }\n        if (isprime) {\n            primes.push_back(n);\n        }\n    }\n    return primes;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550524369469,
+        "id": "af97d5e7-d66c-434b-a55b-d266af61e660",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550524369469,
+        "parent_id": "1b430833-5013-4eb3-81df-bf8c3a050aa3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "We can also refactor "
+            ],
+            [
+              "main",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to use a “range-for” to make it a bit neater:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "We can also refactor "
+          },
+          {
+            "Text": "main",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to use a “range-for” to make it a bit neater:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550524369469,
+        "id": "981cefd7-c30d-444c-af05-41a1a2fcc6f3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550524369469,
+        "parent_id": "1b430833-5013-4eb3-81df-bf8c3a050aa3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "int main() \n{\n    std::vector\u003cint\u003e primes = prime_list(100);\n    for (auto p : primes) {\n        std::cout \u003c\u003c p \u003c\u003c ' ';\n    }\n    std::cout \u003c\u003c '\\n';\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "int main() \n{\n    std::vector\u003cint\u003e primes = prime_list(100);\n    for (auto p : primes) {\n        std::cout \u003c\u003c p \u003c\u003c ' ';\n    }\n    std::cout \u003c\u003c '\\n';\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550524369469,
+        "id": "d0f694a6-b0f2-4427-badc-e75081d47f38",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550524369469,
+        "parent_id": "1b430833-5013-4eb3-81df-bf8c3a050aa3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This is just one way refactoring might be done. Others might make different choices. However, the purpose for refactoring remains the same, which is to improve the readability and possibly the performance of the code without necessarily adding features."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This is just one way refactoring might be done. Others might make different choices. However, the purpose for refactoring remains the same, which is to improve the readability and possibly the performance of the code without necessarily adding features."
+          }
+        ]
+      }
+    ],
+    "title": "020 Refactoring walk through"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

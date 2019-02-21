@@ -1,0 +1,71 @@
+{
+  "ID": "cd9d1477-ab1c-4735-b155-b42165ed7e97",
+  "Root": {
+    "alive": true,
+    "content": [
+      "e43d0e04-c193-4c4b-824a-bc06d64f2a4a"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550523932609,
+    "id": "cd9d1477-ab1c-4735-b155-b42165ed7e97",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550523932609,
+    "parent_id": "c70aafee-9819-4bd7-9b37-69e9f016666b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 2. Covariant result version of the base example static type checking."
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523932606,
+        "id": "e43d0e04-c193-4c4b-824a-bc06d64f2a4a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523932606,
+        "parent_id": "cd9d1477-ab1c-4735-b155-b42165ed7e97",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// 2. Covariant result version of the base example, static type checking.\n\nclass Top\n{\npublic:\n    virtual Top* clone() const = 0;\n    virtual ~Top() = default;       // Necessary for `delete` via Top*.\n};\n\nclass D : public Top\n{\npublic:\n    D* /* ← Covariant return */ clone() const override\n    { return new D( *this ); }\n};\n\nclass DD : public D\n{\nprivate:\n    int answer_ = 42;\n\npublic:\n    int answer() const\n    { return answer_;}\n\n    DD* /* ← Covariant return */ clone() const override\n    { return new DD( *this ); }\n};\n\n#include \u003ciostream\u003e\nusing namespace std;\n\nint main()\n{\n    DD* p1 = new DD();\n    DD* p2 = p1-\u003eclone();\n    // Correct dynamic type DD for *p2 is guaranteed by the static type checking.\n\n    cout \u003c\u003c p2-\u003eanswer() \u003c\u003c endl;          // \"42\"\n    delete p2;\n    delete p1;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// 2. Covariant result version of the base example, static type checking.\n\nclass Top\n{\npublic:\n    virtual Top* clone() const = 0;\n    virtual ~Top() = default;       // Necessary for `delete` via Top*.\n};\n\nclass D : public Top\n{\npublic:\n    D* /* ← Covariant return */ clone() const override\n    { return new D( *this ); }\n};\n\nclass DD : public D\n{\nprivate:\n    int answer_ = 42;\n\npublic:\n    int answer() const\n    { return answer_;}\n\n    DD* /* ← Covariant return */ clone() const override\n    { return new DD( *this ); }\n};\n\n#include \u003ciostream\u003e\nusing namespace std;\n\nint main()\n{\n    DD* p1 = new DD();\n    DD* p2 = p1-\u003eclone();\n    // Correct dynamic type DD for *p2 is guaranteed by the static type checking.\n\n    cout \u003c\u003c p2-\u003eanswer() \u003c\u003c endl;          // \"42\"\n    delete p2;\n    delete p1;\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 2. Covariant result version of the base example static type checking."
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

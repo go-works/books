@@ -1,0 +1,396 @@
+{
+  "ID": "626d3e4e-79cc-4fa7-9192-99bca61868e1",
+  "Root": {
+    "alive": true,
+    "content": [
+      "8df8f778-8d61-40f0-b655-b288a9f8cbd9",
+      "15681b3b-9019-4fe5-bf8d-491d6da2973f",
+      "4268fa6d-6d6d-4810-83b5-a6e931237a61",
+      "52cd4648-daf9-49fd-b2f1-bb147a367f0a",
+      "6308d3f4-f3e9-4eb2-aa02-befd490c8c19",
+      "dce99f3e-39bd-48b6-bbb7-2f0e35610290",
+      "3cd9ba6b-9bcc-4815-b55b-e81871d51924",
+      "18c89bb8-2499-484c-9fb0-f0a21ba9a234",
+      "03fa237d-1ffa-4c63-b18c-ef3acbaefdce"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550523071931,
+    "id": "626d3e4e-79cc-4fa7-9192-99bca61868e1",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550523071931,
+    "parent_id": "3724ad56-a879-48bf-847e-5adcfcb60c18",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "040 Array size type safe at compile time."
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523071925,
+        "id": "8df8f778-8d61-40f0-b655-b288a9f8cbd9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523071925,
+        "parent_id": "626d3e4e-79cc-4fa7-9192-99bca61868e1",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003cstddef.h\u003e     // size_t, ptrdiff_t\n\n//----------------------------------- Machinery:\n\nusing Size = ptrdiff_t;\n\ntemplate\u003c class Item, size_t n \u003e\nconstexpr auto n_items( Item (\u0026)[n] ) noexcept\n    -\u003e Size\n{ return n; }\n\n\n//----------------------------------- Usage:\n\n#include \u003ciostream\u003e\nusing namespace std;\nauto main()\n    -\u003e int\n{\n    int const   a[]     = {3, 1, 4, 1, 5, 9, 2, 6, 5, 4};\n    Size const  n       = n_items( a );\n    int         b[n]    = {};       // An array of the same size as a.\n    \n    (void) b;\n    cout \u003c\u003c \"Size = \" \u003c\u003c n \u003c\u003c \"\\n\";\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \u003cstddef.h\u003e     // size_t, ptrdiff_t\n\n//----------------------------------- Machinery:\n\nusing Size = ptrdiff_t;\n\ntemplate\u003c class Item, size_t n \u003e\nconstexpr auto n_items( Item (\u0026)[n] ) noexcept\n    -\u003e Size\n{ return n; }\n\n\n//----------------------------------- Usage:\n\n#include \u003ciostream\u003e\nusing namespace std;\nauto main()\n    -\u003e int\n{\n    int const   a[]     = {3, 1, 4, 1, 5, 9, 2, 6, 5, 4};\n    Size const  n       = n_items( a );\n    int         b[n]    = {};       // An array of the same size as a.\n    \n    (void) b;\n    cout \u003c\u003c \"Size = \" \u003c\u003c n \u003c\u003c \"\\n\";\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523071927,
+        "id": "15681b3b-9019-4fe5-bf8d-491d6da2973f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523071927,
+        "parent_id": "626d3e4e-79cc-4fa7-9192-99bca61868e1",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The C idiom for array size, "
+            ],
+            [
+              "sizeof(a)/sizeof(a[0])",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", will accept a pointer as argument and will then generally yield an incorrect result."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The C idiom for array size, "
+          },
+          {
+            "Text": "sizeof(a)/sizeof(a[0])",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", will accept a pointer as argument and will then generally yield an incorrect result."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523071928,
+        "id": "4268fa6d-6d6d-4810-83b5-a6e931237a61",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523071928,
+        "parent_id": "626d3e4e-79cc-4fa7-9192-99bca61868e1",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "For C++11"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "For C++11"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523071929,
+        "id": "52cd4648-daf9-49fd-b2f1-bb147a367f0a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523071929,
+        "parent_id": "626d3e4e-79cc-4fa7-9192-99bca61868e1",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "using C++11 you can do:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "using C++11 you can do:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523071929,
+        "id": "6308d3f4-f3e9-4eb2-aa02-befd490c8c19",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523071929,
+        "parent_id": "626d3e4e-79cc-4fa7-9192-99bca61868e1",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "std::extent\u003cdecltype(MyArray)\u003e::value;"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "std::extent\u003cdecltype(MyArray)\u003e::value;",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523071929,
+        "id": "dce99f3e-39bd-48b6-bbb7-2f0e35610290",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523071929,
+        "parent_id": "626d3e4e-79cc-4fa7-9192-99bca61868e1",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Example:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Example:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523071929,
+        "id": "3cd9ba6b-9bcc-4815-b55b-e81871d51924",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523071929,
+        "parent_id": "626d3e4e-79cc-4fa7-9192-99bca61868e1",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "char MyArray[] = { 'X','o','c','e' };\nconst auto n = std::extent\u003cdecltype(MyArray)\u003e::value;\nstd::cout \u003c\u003c n \u003c\u003c \"\\n\"; // Prints 4"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "char MyArray[] = { 'X','o','c','e' };\nconst auto n = std::extent\u003cdecltype(MyArray)\u003e::value;\nstd::cout \u003c\u003c n \u003c\u003c \"\\n\"; // Prints 4",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523071929,
+        "id": "18c89bb8-2499-484c-9fb0-f0a21ba9a234",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523071929,
+        "parent_id": "626d3e4e-79cc-4fa7-9192-99bca61868e1",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Up till C++17 (forthcoming as of this writing) C++ had no built-in core language or standard library utility to obtain the size of an array, but this can be implemented by passing the array "
+            ],
+            [
+              "by reference",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " to a function template, as shown above. Fine but important point: the template size parameter is a "
+            ],
+            [
+              "size_t",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", somewhat inconsistent with the signed "
+            ],
+            [
+              "Size",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " function result type, in order to accommodate the g++ compiler which sometimes insists on "
+            ],
+            [
+              "size_t",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " for template matching."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Up till C++17 (forthcoming as of this writing) C++ had no built-in core language or standard library utility to obtain the size of an array, but this can be implemented by passing the array "
+          },
+          {
+            "Text": "by reference",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " to a function template, as shown above. Fine but important point: the template size parameter is a "
+          },
+          {
+            "Text": "size_t",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", somewhat inconsistent with the signed "
+          },
+          {
+            "Text": "Size",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " function result type, in order to accommodate the g++ compiler which sometimes insists on "
+          },
+          {
+            "Text": "size_t",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " for template matching."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523071931,
+        "id": "03fa237d-1ffa-4c63-b18c-ef3acbaefdce",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523071931,
+        "parent_id": "626d3e4e-79cc-4fa7-9192-99bca61868e1",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "With C++17 and later one may instead use "
+            ],
+            [
+              "std::size",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "http://en.cppreference.com/w/cpp/iterator/size"
+                ]
+              ]
+            ],
+            [
+              ", which is specialized for arrays."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "With C++17 and later one may instead use "
+          },
+          {
+            "Text": "std::size",
+            "AttrFlags": 2,
+            "Link": "http://en.cppreference.com/w/cpp/iterator/size"
+          },
+          {
+            "Text": ", which is specialized for arrays."
+          }
+        ]
+      }
+    ],
+    "title": "040 Array size type safe at compile time."
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

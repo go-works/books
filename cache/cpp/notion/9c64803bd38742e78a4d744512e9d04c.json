@@ -1,0 +1,920 @@
+{
+  "ID": "9c64803b-d387-42e7-8a4d-744512e9d04c",
+  "Root": {
+    "alive": true,
+    "content": [
+      "1bc0f5f4-da34-457a-860d-aeed20a4b030",
+      "7694e395-bbf7-4ced-85ce-3a829bdda786",
+      "79ead5f0-0ef0-47b0-9cd2-419100ccdc85",
+      "9307e8a5-68ea-48bc-a4cb-d186f5c439df",
+      "ac2f669c-b831-46c1-9f7f-ffafb7181f9c",
+      "a4b32f9a-2d1b-4c86-b937-f58041dbe80d",
+      "40ac2608-d117-4cab-b3b5-a667b3bfef33",
+      "e6310955-79c8-422c-aa1c-d6a0f72ec911",
+      "bfb4a749-5543-4494-83c5-cf9073e06ece",
+      "68bb428c-1076-4fd2-91b1-cc9927dfeea8",
+      "a461362e-31d4-40f6-ac7d-127578fab2f0",
+      "90575c68-d7d4-4d7c-a299-f664bccee4b7",
+      "081b9207-8a23-4743-838c-e4ebafebd94b",
+      "86485374-9b64-4d4f-846d-8f1af0165866",
+      "39d1afc9-f593-4a0d-86c8-e109e7db555e",
+      "ce83f8a3-235f-4fb0-a1dd-42ffb6b18127",
+      "1210bd24-e443-4e32-9e47-8919b1c22e73",
+      "7bf1eabe-d99e-4ace-afdd-4693a486cba0",
+      "12094edd-b976-466b-90cf-7b927794c6e3",
+      "e44b3986-ad7e-4538-85d4-03056be62ca3"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550522061529,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "9c64803b-d387-42e7-8a4d-744512e9d04c",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550655720000,
+    "parent_id": "2be9c7d5-be12-439a-8968-ad057c67187a",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Named operators"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522061523,
+        "id": "1bc0f5f4-da34-457a-860d-aeed20a4b030",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522061523,
+        "parent_id": "9c64803b-d387-42e7-8a4d-744512e9d04c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "You can extend C++ with named operators that are “quoted” by standard C++ operators."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "You can extend C++ with named operators that are “quoted” by standard C++ operators."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522061524,
+        "id": "7694e395-bbf7-4ced-85ce-3a829bdda786",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522061524,
+        "parent_id": "9c64803b-d387-42e7-8a4d-744512e9d04c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "First we start with a dozen-line library:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "First we start with a dozen-line library:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522061524,
+        "id": "79ead5f0-0ef0-47b0-9cd2-419100ccdc85",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522061524,
+        "parent_id": "9c64803b-d387-42e7-8a4d-744512e9d04c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "namespace named_operator {\n  template\u003cclass D\u003estruct make_operator{constexpr make_operator(){}};\n\n  template\u003cclass T, char, class O\u003e struct half_apply { T\u0026\u0026 lhs; };\n\n  template\u003cclass Lhs, class Op\u003e\n  half_apply\u003cLhs, '*', Op\u003e operator*( Lhs\u0026\u0026 lhs, make_operator\u003cOp\u003e ) {\n    return {std::forward\u003cLhs\u003e(lhs)};\n  }\n\n  template\u003cclass Lhs, class Op, class Rhs\u003e\n  auto operator*( half_apply\u003cLhs, '*', Op\u003e\u0026\u0026 lhs, Rhs\u0026\u0026 rhs )\n  -\u003e decltype( named_invoke( std::forward\u003cLhs\u003e(lhs.lhs), Op{}, std::forward\u003cRhs\u003e(rhs) ) )\n  {\n    return named_invoke( std::forward\u003cLhs\u003e(lhs.lhs), Op{}, std::forward\u003cRhs\u003e(rhs) );\n  }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "namespace named_operator {\n  template\u003cclass D\u003estruct make_operator{constexpr make_operator(){}};\n\n  template\u003cclass T, char, class O\u003e struct half_apply { T\u0026\u0026 lhs; };\n\n  template\u003cclass Lhs, class Op\u003e\n  half_apply\u003cLhs, '*', Op\u003e operator*( Lhs\u0026\u0026 lhs, make_operator\u003cOp\u003e ) {\n    return {std::forward\u003cLhs\u003e(lhs)};\n  }\n\n  template\u003cclass Lhs, class Op, class Rhs\u003e\n  auto operator*( half_apply\u003cLhs, '*', Op\u003e\u0026\u0026 lhs, Rhs\u0026\u0026 rhs )\n  -\u003e decltype( named_invoke( std::forward\u003cLhs\u003e(lhs.lhs), Op{}, std::forward\u003cRhs\u003e(rhs) ) )\n  {\n    return named_invoke( std::forward\u003cLhs\u003e(lhs.lhs), Op{}, std::forward\u003cRhs\u003e(rhs) );\n  }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522061524,
+        "id": "9307e8a5-68ea-48bc-a4cb-d186f5c439df",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522061524,
+        "parent_id": "9c64803b-d387-42e7-8a4d-744512e9d04c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "this doesn’t do anything yet."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "this doesn’t do anything yet."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522061525,
+        "id": "ac2f669c-b831-46c1-9f7f-ffafb7181f9c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522061525,
+        "parent_id": "9c64803b-d387-42e7-8a4d-744512e9d04c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "First, appending vectors"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "First, appending vectors"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522061525,
+        "id": "a4b32f9a-2d1b-4c86-b937-f58041dbe80d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522061525,
+        "parent_id": "9c64803b-d387-42e7-8a4d-744512e9d04c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "namespace my_ns {\n  struct append_t : named_operator::make_operator\u003cappend_t\u003e {};\n  constexpr append_t append{};\n  \n  template\u003cclass T, class A0, class A1\u003e\n  std::vector\u003cT, A0\u003e named_invoke( std::vector\u003cT, A0\u003e lhs, append_t, std::vector\u003cT, A1\u003e const\u0026 rhs ) {\n      lhs.insert( lhs.end(), rhs.begin(), rhs.end() );\n      return std::move(lhs);\n  }\n}\nusing my_ns::append;\n\nstd::vector\u003cint\u003e a {1,2,3};\nstd::vector\u003cint\u003e b {4,5,6};\n\nauto c = a *append* b;"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "namespace my_ns {\n  struct append_t : named_operator::make_operator\u003cappend_t\u003e {};\n  constexpr append_t append{};\n  \n  template\u003cclass T, class A0, class A1\u003e\n  std::vector\u003cT, A0\u003e named_invoke( std::vector\u003cT, A0\u003e lhs, append_t, std::vector\u003cT, A1\u003e const\u0026 rhs ) {\n      lhs.insert( lhs.end(), rhs.begin(), rhs.end() );\n      return std::move(lhs);\n  }\n}\nusing my_ns::append;\n\nstd::vector\u003cint\u003e a {1,2,3};\nstd::vector\u003cint\u003e b {4,5,6};\n\nauto c = a *append* b;",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522061525,
+        "id": "40ac2608-d117-4cab-b3b5-a667b3bfef33",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522061525,
+        "parent_id": "9c64803b-d387-42e7-8a4d-744512e9d04c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The core here is that we define an "
+            ],
+            [
+              "append",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " object of type "
+            ],
+            [
+              "append_t:named_operator::make_operator\u003cappend_t\u003e",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The core here is that we define an "
+          },
+          {
+            "Text": "append",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " object of type "
+          },
+          {
+            "Text": "append_t:named_operator::make_operator\u003cappend_t\u003e",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522061525,
+        "id": "e6310955-79c8-422c-aa1c-d6a0f72ec911",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522061525,
+        "parent_id": "9c64803b-d387-42e7-8a4d-744512e9d04c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "We then overload named_invoke( lhs, append_t, rhs ) for the types we want on the right and left."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "We then overload named_invoke( lhs, append_t, rhs ) for the types we want on the right and left."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522061526,
+        "id": "bfb4a749-5543-4494-83c5-cf9073e06ece",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522061526,
+        "parent_id": "9c64803b-d387-42e7-8a4d-744512e9d04c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The library overloads "
+            ],
+            [
+              "lhs*append_t",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", returning a temporary "
+            ],
+            [
+              "half_apply",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " object. It also overloads "
+            ],
+            [
+              "half_apply*rhs",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to call "
+            ],
+            [
+              "named_invoke( lhs, append_t, rhs )",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The library overloads "
+          },
+          {
+            "Text": "lhs*append_t",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", returning a temporary "
+          },
+          {
+            "Text": "half_apply",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " object. It also overloads "
+          },
+          {
+            "Text": "half_apply*rhs",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to call "
+          },
+          {
+            "Text": "named_invoke( lhs, append_t, rhs )",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522061526,
+        "id": "68bb428c-1076-4fd2-91b1-cc9927dfeea8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522061526,
+        "parent_id": "9c64803b-d387-42e7-8a4d-744512e9d04c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "We simply have to create the proper "
+            ],
+            [
+              "append_t",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " token and do an ADL-friendly "
+            ],
+            [
+              "named_invoke",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " of the proper signature, and everything hooks up and works."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "We simply have to create the proper "
+          },
+          {
+            "Text": "append_t",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " token and do an ADL-friendly "
+          },
+          {
+            "Text": "named_invoke",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " of the proper signature, and everything hooks up and works."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522061526,
+        "id": "a461362e-31d4-40f6-ac7d-127578fab2f0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522061526,
+        "parent_id": "9c64803b-d387-42e7-8a4d-744512e9d04c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "For a more complex example, suppose you want to have element-wise multiplication of elements of a std::array:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "For a more complex example, suppose you want to have element-wise multiplication of elements of a std::array:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522061526,
+        "id": "90575c68-d7d4-4d7c-a299-f664bccee4b7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522061526,
+        "parent_id": "9c64803b-d387-42e7-8a4d-744512e9d04c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "template\u003cclass=void, std::size_t...Is\u003e\nauto indexer( std::index_sequence\u003cIs...\u003e ) {\n  return [](auto\u0026\u0026 f) {\n    return f( std::integral_constant\u003cstd::size_t, Is\u003e{}... );\n  };\n}\ntemplate\u003cstd::size_t N\u003e\nauto indexer() { return indexer( std::make_index_sequence\u003cN\u003e{} ); }\n\nnamespace my_ns {\n  struct e_times_t : named_operator::make_operator\u003ce_times_t\u003e {};\n  constexpr e_times_t e_times{};\n\n  template\u003cclass L, class R, std::size_t N,\n    class Out=std::decay_t\u003cdecltype( std::declval\u003cL const\u0026\u003e()*std::declval\u003cR const\u0026\u003e() )\u003e\n  \u003e\n  std::array\u003cOut, N\u003e named_invoke( std::array\u003cL, N\u003e const\u0026 lhs, e_times_t, std::array\u003cR, N\u003e const\u0026 rhs ) {\n    using result_type = std::array\u003cOut, N\u003e;\n    auto index_over_N = indexer\u003cN\u003e();\n    return index_over_N([\u0026](auto...is)-\u003eresult_type {\n      return {{\n        (lhs[is] * rhs[is])...\n      }};\n    });\n  }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "template\u003cclass=void, std::size_t...Is\u003e\nauto indexer( std::index_sequence\u003cIs...\u003e ) {\n  return [](auto\u0026\u0026 f) {\n    return f( std::integral_constant\u003cstd::size_t, Is\u003e{}... );\n  };\n}\ntemplate\u003cstd::size_t N\u003e\nauto indexer() { return indexer( std::make_index_sequence\u003cN\u003e{} ); }\n\nnamespace my_ns {\n  struct e_times_t : named_operator::make_operator\u003ce_times_t\u003e {};\n  constexpr e_times_t e_times{};\n\n  template\u003cclass L, class R, std::size_t N,\n    class Out=std::decay_t\u003cdecltype( std::declval\u003cL const\u0026\u003e()*std::declval\u003cR const\u0026\u003e() )\u003e\n  \u003e\n  std::array\u003cOut, N\u003e named_invoke( std::array\u003cL, N\u003e const\u0026 lhs, e_times_t, std::array\u003cR, N\u003e const\u0026 rhs ) {\n    using result_type = std::array\u003cOut, N\u003e;\n    auto index_over_N = indexer\u003cN\u003e();\n    return index_over_N([\u0026](auto...is)-\u003eresult_type {\n      return {{\n        (lhs[is] * rhs[is])...\n      }};\n    });\n  }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522061527,
+        "id": "081b9207-8a23-4743-838c-e4ebafebd94b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522061527,
+        "parent_id": "9c64803b-d387-42e7-8a4d-744512e9d04c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "live example",
+              [
+                [
+                  "a",
+                  "http://coliru.stacked-crooked.com/a/c071a0662834c838"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "live example",
+            "Link": "http://coliru.stacked-crooked.com/a/c071a0662834c838"
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522061527,
+        "id": "86485374-9b64-4d4f-846d-8f1af0165866",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522061527,
+        "parent_id": "9c64803b-d387-42e7-8a4d-744512e9d04c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This element-wise array code can be extended to work on tuples or pairs or C-style arrays, or even variable length containers if you decide what to do if the lengths don’t match."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This element-wise array code can be extended to work on tuples or pairs or C-style arrays, or even variable length containers if you decide what to do if the lengths don’t match."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522061527,
+        "id": "39d1afc9-f593-4a0d-86c8-e109e7db555e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522061527,
+        "parent_id": "9c64803b-d387-42e7-8a4d-744512e9d04c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "You could also an element-wise operator type and get "
+            ],
+            [
+              "lhs *element_wise\u003c'+'\u003e* rhs",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "You could also an element-wise operator type and get "
+          },
+          {
+            "Text": "lhs *element_wise\u003c'+'\u003e* rhs",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522061528,
+        "id": "ce83f8a3-235f-4fb0-a1dd-42ffb6b18127",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522061528,
+        "parent_id": "9c64803b-d387-42e7-8a4d-744512e9d04c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Writing a "
+            ],
+            [
+              "*dot*",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "*cross*",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " product operators are also obvious uses."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Writing a "
+          },
+          {
+            "Text": "*dot*",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "*cross*",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " product operators are also obvious uses."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522061528,
+        "id": "1210bd24-e443-4e32-9e47-8919b1c22e73",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522061528,
+        "parent_id": "9c64803b-d387-42e7-8a4d-744512e9d04c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The use of "
+            ],
+            [
+              "\\*",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " can be extended to support other delimiters, like "
+            ],
+            [
+              "\\+",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". The delimeter precidence determines the precidence of the named operator, which may be important when translating physics equations over to C++ with minimal use of extra "
+            ],
+            [
+              "()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "s."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The use of "
+          },
+          {
+            "Text": "\\*",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " can be extended to support other delimiters, like "
+          },
+          {
+            "Text": "\\+",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". The delimeter precidence determines the precidence of the named operator, which may be important when translating physics equations over to C++ with minimal use of extra "
+          },
+          {
+            "Text": "()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "s."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522061528,
+        "id": "7bf1eabe-d99e-4ace-afdd-4693a486cba0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522061528,
+        "parent_id": "9c64803b-d387-42e7-8a4d-744512e9d04c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "With a slight change in the library above, we can support "
+            ],
+            [
+              "-\u003e*then*",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " operators and extend "
+            ],
+            [
+              "std::function",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " prior to the standard being updated, or write monadic "
+            ],
+            [
+              "-\u003e*bind*",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". It could also have a stateful named operator, where we carefully pass the "
+            ],
+            [
+              "Op",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " down to the final invoke function, permitting:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "With a slight change in the library above, we can support "
+          },
+          {
+            "Text": "-\u003e*then*",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " operators and extend "
+          },
+          {
+            "Text": "std::function",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " prior to the standard being updated, or write monadic "
+          },
+          {
+            "Text": "-\u003e*bind*",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". It could also have a stateful named operator, where we carefully pass the "
+          },
+          {
+            "Text": "Op",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " down to the final invoke function, permitting:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522061529,
+        "id": "12094edd-b976-466b-90cf-7b927794c6e3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522061529,
+        "parent_id": "9c64803b-d387-42e7-8a4d-744512e9d04c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "named_operator\u003c'*'\u003e append = [](auto lhs, auto\u0026\u0026 rhs) {\n  using std::begin; using std::end;\n  lhs.insert( end(lhs), begin(rhs), end(rhs) );\n  return std::move(lhs);\n};"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "named_operator\u003c'*'\u003e append = [](auto lhs, auto\u0026\u0026 rhs) {\n  using std::begin; using std::end;\n  lhs.insert( end(lhs), begin(rhs), end(rhs) );\n  return std::move(lhs);\n};",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522061529,
+        "id": "e44b3986-ad7e-4538-85d4-03056be62ca3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522061529,
+        "parent_id": "9c64803b-d387-42e7-8a4d-744512e9d04c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "generating a named container-appending operator in C++17."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "generating a named container-appending operator in C++17."
+          }
+        ]
+      }
+    ],
+    "title": "Named operators",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

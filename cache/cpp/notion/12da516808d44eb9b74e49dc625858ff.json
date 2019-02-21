@@ -1,0 +1,347 @@
+{
+  "ID": "12da5168-08d4-4eb9-b74e-49dc625858ff",
+  "Root": {
+    "alive": true,
+    "content": [
+      "46c0a8ad-f34c-4d3b-879b-fe2fe57f1f05",
+      "88e5d8bf-8225-46f3-a35d-cf4116c0301d",
+      "b536090d-7681-46e9-8824-9c7b1c48aa6b",
+      "a01adc5d-912d-4260-91c5-683d1059d989",
+      "01cd944b-674d-4afe-b127-fb1f64e2b444",
+      "abcd6721-8742-45f5-8dcf-bbb74adc622c",
+      "fa5b5c58-8cd7-4bc5-ae91-faab0f1c9e1e",
+      "83dfd343-96f9-489a-849d-4635ba61c844",
+      "9d23722c-0ace-4c14-a20c-0fd1e8ca29f8",
+      "5ebeafc1-4f4f-474e-bc58-5abeffcc7bae"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550523042572,
+    "id": "12da5168-08d4-4eb9-b74e-49dc625858ff",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550523042572,
+    "parent_id": "5dbd715a-2e96-4062-9cda-4e181e63af5e",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 Basic mechanism"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523042568,
+        "id": "46c0a8ad-f34c-4d3b-879b-fe2fe57f1f05",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523042568,
+        "parent_id": "12da5168-08d4-4eb9-b74e-49dc625858ff",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Type erasure is a way to hide the type of an object from code using it, even though it is not derived from a common base class. In doing so, it provides a bridge between the worlds of static polymorphism (templates; at the place of use, the exact type must be known at compile time, but it need not be declared to conform to an interface at definition) and dynamic polymorphism (inheritance and virtual functions; at the place of use, the exact type need not be known at compile time, but must be declared to conform to an interface at definition)."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Type erasure is a way to hide the type of an object from code using it, even though it is not derived from a common base class. In doing so, it provides a bridge between the worlds of static polymorphism (templates; at the place of use, the exact type must be known at compile time, but it need not be declared to conform to an interface at definition) and dynamic polymorphism (inheritance and virtual functions; at the place of use, the exact type need not be known at compile time, but must be declared to conform to an interface at definition)."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523042570,
+        "id": "88e5d8bf-8225-46f3-a35d-cf4116c0301d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523042570,
+        "parent_id": "12da5168-08d4-4eb9-b74e-49dc625858ff",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The following code shows the basic mechanism of type erasure."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The following code shows the basic mechanism of type erasure."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523042571,
+        "id": "b536090d-7681-46e9-8824-9c7b1c48aa6b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523042571,
+        "parent_id": "12da5168-08d4-4eb9-b74e-49dc625858ff",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003costream\u003e\n\nclass Printable\n{\npublic:\n  template \u003ctypename T\u003e\n  Printable(T value) : pValue(new Value\u003cT\u003e(value)) {}\n  ~Printable() { delete pValue; }\n  void print(std::ostream \u0026os) const { pValue-\u003eprint(os); }\n\nprivate:\n  Printable(Printable const \u0026)        /* in C++1x: =delete */; // not implemented\n  void operator = (Printable const \u0026) /* in C++1x: =delete */; // not implemented\n  struct ValueBase\n  {\n      virtual ~ValueBase() = default;\n      virtual void print(std::ostream \u0026) const = 0;\n  };\n  template \u003ctypename T\u003e\n  struct Value : ValueBase\n  {\n      Value(T const \u0026t) : v(t) {}\n      virtual void print(std::ostream \u0026os) const { os \u003c\u003c v; }\n      T v;\n  };\n  ValueBase *pValue;\n};"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \u003costream\u003e\n\nclass Printable\n{\npublic:\n  template \u003ctypename T\u003e\n  Printable(T value) : pValue(new Value\u003cT\u003e(value)) {}\n  ~Printable() { delete pValue; }\n  void print(std::ostream \u0026os) const { pValue-\u003eprint(os); }\n\nprivate:\n  Printable(Printable const \u0026)        /* in C++1x: =delete */; // not implemented\n  void operator = (Printable const \u0026) /* in C++1x: =delete */; // not implemented\n  struct ValueBase\n  {\n      virtual ~ValueBase() = default;\n      virtual void print(std::ostream \u0026) const = 0;\n  };\n  template \u003ctypename T\u003e\n  struct Value : ValueBase\n  {\n      Value(T const \u0026t) : v(t) {}\n      virtual void print(std::ostream \u0026os) const { os \u003c\u003c v; }\n      T v;\n  };\n  ValueBase *pValue;\n};",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523042571,
+        "id": "a01adc5d-912d-4260-91c5-683d1059d989",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523042571,
+        "parent_id": "12da5168-08d4-4eb9-b74e-49dc625858ff",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "At the use site, only the above definition need to be visible, just as with base classes with virtual functions. For example:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "At the use site, only the above definition need to be visible, just as with base classes with virtual functions. For example:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523042571,
+        "id": "01cd944b-674d-4afe-b127-fb1f64e2b444",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523042571,
+        "parent_id": "12da5168-08d4-4eb9-b74e-49dc625858ff",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003ciostream\u003e\n\nvoid print_value(Printable const \u0026p)\n{\n    p.print(std::cout);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \u003ciostream\u003e\n\nvoid print_value(Printable const \u0026p)\n{\n    p.print(std::cout);\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523042571,
+        "id": "abcd6721-8742-45f5-8dcf-bbb74adc622c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523042571,
+        "parent_id": "12da5168-08d4-4eb9-b74e-49dc625858ff",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Note that this is "
+            ],
+            [
+              "not",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " a template, but a normal function that only needs to be declared in a header file, and can be defined in an implementation file (unlike templates, whose definition must be visible at the place of use)."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Note that this is "
+          },
+          {
+            "Text": "not",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " a template, but a normal function that only needs to be declared in a header file, and can be defined in an implementation file (unlike templates, whose definition must be visible at the place of use)."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523042571,
+        "id": "fa5b5c58-8cd7-4bc5-ae91-faab0f1c9e1e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523042571,
+        "parent_id": "12da5168-08d4-4eb9-b74e-49dc625858ff",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "At the definition of the concrete type, nothing needs to be known about "
+            ],
+            [
+              "Printable",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", it just needs to conform to an interface, as with templates:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "At the definition of the concrete type, nothing needs to be known about "
+          },
+          {
+            "Text": "Printable",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", it just needs to conform to an interface, as with templates:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523042571,
+        "id": "83dfd343-96f9-489a-849d-4635ba61c844",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523042571,
+        "parent_id": "12da5168-08d4-4eb9-b74e-49dc625858ff",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "struct MyType { int i; };\nostream\u0026 operator \u003c\u003c (ostream \u0026os, MyType const \u0026mc)\n{\n  return os \u003c\u003c \"MyType {\" \u003c\u003c mc.i \u003c\u003c \"}\";\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "struct MyType { int i; };\nostream\u0026 operator \u003c\u003c (ostream \u0026os, MyType const \u0026mc)\n{\n  return os \u003c\u003c \"MyType {\" \u003c\u003c mc.i \u003c\u003c \"}\";\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523042572,
+        "id": "9d23722c-0ace-4c14-a20c-0fd1e8ca29f8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523042572,
+        "parent_id": "12da5168-08d4-4eb9-b74e-49dc625858ff",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "We can now pass an object of this class to the function defined above:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "We can now pass an object of this class to the function defined above:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523042572,
+        "id": "5ebeafc1-4f4f-474e-bc58-5abeffcc7bae",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523042572,
+        "parent_id": "12da5168-08d4-4eb9-b74e-49dc625858ff",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "MyType foo = { 42 };\nprint_value(foo);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "MyType foo = { 42 };\nprint_value(foo);",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "030 Basic mechanism"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

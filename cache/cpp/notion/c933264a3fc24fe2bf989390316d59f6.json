@@ -1,0 +1,171 @@
+{
+  "ID": "c933264a-3fc2-4fe2-bf98-9390316d59f6",
+  "Root": {
+    "alive": true,
+    "content": [
+      "81d1425c-abe5-4a05-919a-f56f38553a26",
+      "4fc83e55-fc09-4e7c-a04b-65ddf8f11736",
+      "caf0b35a-9714-483f-b5f1-331146deb922"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550522288681,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "c933264a-3fc2-4fe2-bf98-9390316d59f6",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550655180000,
+    "parent_id": "f1b860db-be5a-41ed-a67b-b7b0181ec59f",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Reassigning thread objects"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522288677,
+        "id": "81d1425c-abe5-4a05-919a-f56f38553a26",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522288677,
+        "parent_id": "c933264a-3fc2-4fe2-bf98-9390316d59f6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "We can create empty thread objects and assign work to them later."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "We can create empty thread objects and assign work to them later."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522288680,
+        "id": "4fc83e55-fc09-4e7c-a04b-65ddf8f11736",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522288680,
+        "parent_id": "c933264a-3fc2-4fe2-bf98-9390316d59f6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If we assign a thread object to another active, "
+            ],
+            [
+              "joinable",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " thread, "
+            ],
+            [
+              "std::terminate",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " will automatically be called before the thread is replaced."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If we assign a thread object to another active, "
+          },
+          {
+            "Text": "joinable",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " thread, "
+          },
+          {
+            "Text": "std::terminate",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " will automatically be called before the thread is replaced."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522288680,
+        "id": "caf0b35a-9714-483f-b5f1-331146deb922",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550655180000,
+        "parent_id": "c933264a-3fc2-4fe2-bf98-9390316d59f6",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C++"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003cthread\u003e\n\nvoid foo()\n{\n    std::this_thread::sleep_for(std::chrono::seconds(3));\n}\n//create 100 thread objects that do nothing\nstd::thread executors[100];\n\n// Some code\n\n// I want to create some threads now\n\nfor (int i = 0;i \u003c 100;i++)\n{\n    // If this object doesn't have a thread assigned\n    if (!executors[i].joinable())\n         executors[i] = std::thread(foo);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "#include \u003cthread\u003e\n\nvoid foo()\n{\n    std::this_thread::sleep_for(std::chrono::seconds(3));\n}\n//create 100 thread objects that do nothing\nstd::thread executors[100];\n\n// Some code\n\n// I want to create some threads now\n\nfor (int i = 0;i \u003c 100;i++)\n{\n    // If this object doesn't have a thread assigned\n    if (!executors[i].joinable())\n         executors[i] = std::thread(foo);\n}",
+        "code_language": "C++"
+      }
+    ],
+    "title": "Reassigning thread objects",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

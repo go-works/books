@@ -1,0 +1,225 @@
+{
+  "ID": "7f7d146b-8269-4e3b-9bca-0d942fbda8fc",
+  "Root": {
+    "alive": true,
+    "content": [
+      "d1f204dc-00fd-4096-9668-5328eaae2ceb",
+      "21aa5cbd-0cab-41c2-9bf5-b375fe249681",
+      "9d22d28f-4fbf-4fe6-831e-1f4733b6082d"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550522388451,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "7f7d146b-8269-4e3b-9bca-0d942fbda8fc",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550709900000,
+    "parent_id": "899c3027-a75e-4a44-9144-10a53c6a2c11",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Sorting sequence containers by overloaded less operator"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522388449,
+        "id": "d1f204dc-00fd-4096-9668-5328eaae2ceb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522388449,
+        "parent_id": "7f7d146b-8269-4e3b-9bca-0d942fbda8fc",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If no ordering function is passed, "
+            ],
+            [
+              "std::sort",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " will order the elements by calling "
+            ],
+            [
+              "operator\u003c",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " on pairs of elements, which must return a type contextually convertible to "
+            ],
+            [
+              "bool",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " (or just "
+            ],
+            [
+              "bool",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "). Basic types (integers, floats, pointers etc) have already build in comparison operators."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If no ordering function is passed, "
+          },
+          {
+            "Text": "std::sort",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " will order the elements by calling "
+          },
+          {
+            "Text": "operator\u003c",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " on pairs of elements, which must return a type contextually convertible to "
+          },
+          {
+            "Text": "bool",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " (or just "
+          },
+          {
+            "Text": "bool",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "). Basic types (integers, floats, pointers etc) have already build in comparison operators."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522388451,
+        "id": "21aa5cbd-0cab-41c2-9bf5-b375fe249681",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522388451,
+        "parent_id": "7f7d146b-8269-4e3b-9bca-0d942fbda8fc",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "We can overload this operator to make the default "
+            ],
+            [
+              "sort",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " call work on user-defined types."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "We can overload this operator to make the default "
+          },
+          {
+            "Text": "sort",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " call work on user-defined types."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522388451,
+        "id": "9d22d28f-4fbf-4fe6-831e-1f4733b6082d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522388451,
+        "parent_id": "7f7d146b-8269-4e3b-9bca-0d942fbda8fc",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Include sequence containers\n#include \u003cvector\u003e\n#include \u003cdeque\u003e\n#include \u003clist\u003e\n\n// Insert sorting algorithm\n#include \u003calgorithm\u003e    \n\nclass Base {\n public:\n\n    // Constructor that set variable to the value of v\n    Base(int v): variable(v) {\n    }\n    \n    // Use variable to provide total order operator less\n    //`this` always represents the left-hand side of the compare.\n    bool operator\u003c(const Base \u0026b) const { \n        return this-\u003evariable \u003c b.variable;\n    }\n    \n    int variable;\n};\n\nint main() {\n    std::vector \u003cBase\u003e vector;\n    std::deque \u003cBase\u003e deque;\n    std::list \u003cBase\u003e list;\n    \n    // Create 2 elements to sort\n    Base a(10);\n    Base b(5);\n    \n    // Insert them into backs of containers\n    vector.push_back(a);\n    vector.push_back(b);\n    \n    deque.push_back(a);\n    deque.push_back(b);\n    \n    list.push_back(a);\n    list.push_back(b);\n    \n    // Now sort data using operator\u003c(const Base \u0026b) function\n    std::sort(vector.begin(), vector.end());\n    std::sort(deque.begin(), deque.end());\n    // List must be sorted differently due to its design\n    list.sort();\n\n    return 0;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Include sequence containers\n#include \u003cvector\u003e\n#include \u003cdeque\u003e\n#include \u003clist\u003e\n\n// Insert sorting algorithm\n#include \u003calgorithm\u003e    \n\nclass Base {\n public:\n\n    // Constructor that set variable to the value of v\n    Base(int v): variable(v) {\n    }\n    \n    // Use variable to provide total order operator less\n    //`this` always represents the left-hand side of the compare.\n    bool operator\u003c(const Base \u0026b) const { \n        return this-\u003evariable \u003c b.variable;\n    }\n    \n    int variable;\n};\n\nint main() {\n    std::vector \u003cBase\u003e vector;\n    std::deque \u003cBase\u003e deque;\n    std::list \u003cBase\u003e list;\n    \n    // Create 2 elements to sort\n    Base a(10);\n    Base b(5);\n    \n    // Insert them into backs of containers\n    vector.push_back(a);\n    vector.push_back(b);\n    \n    deque.push_back(a);\n    deque.push_back(b);\n    \n    list.push_back(a);\n    list.push_back(b);\n    \n    // Now sort data using operator\u003c(const Base \u0026b) function\n    std::sort(vector.begin(), vector.end());\n    std::sort(deque.begin(), deque.end());\n    // List must be sorted differently due to its design\n    list.sort();\n\n    return 0;\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Sorting sequence containers by overloaded less operator",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

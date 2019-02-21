@@ -1,0 +1,123 @@
+{
+  "ID": "af8b8224-0915-498c-8ea5-f7d1c77bc831",
+  "Root": {
+    "alive": true,
+    "content": [
+      "6825a580-39be-4a06-8983-1c2fe2c3737c",
+      "0c259067-f9a8-4f62-84db-7ec1b539b59c",
+      "882e1cce-c031-42df-a23c-e1baac88ce84"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550523455533,
+    "id": "af8b8224-0915-498c-8ea5-f7d1c77bc831",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550523455533,
+    "parent_id": "5eb58f1d-da3c-4ebe-aff3-c98a60cca1a7",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "020 Find number of days between two dates"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523455530,
+        "id": "6825a580-39be-4a06-8983-1c2fe2c3737c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523455530,
+        "parent_id": "af8b8224-0915-498c-8ea5-f7d1c77bc831",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This example shows how to find number of days between two dates. A date is specified by year/month/day of month, and additionally hour/minute/second."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This example shows how to find number of days between two dates. A date is specified by year/month/day of month, and additionally hour/minute/second."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523455533,
+        "id": "0c259067-f9a8-4f62-84db-7ec1b539b59c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523455533,
+        "parent_id": "af8b8224-0915-498c-8ea5-f7d1c77bc831",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Program calculates number of days in years since 2000."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Program calculates number of days in years since 2000."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523455533,
+        "id": "882e1cce-c031-42df-a23c-e1baac88ce84",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523455533,
+        "parent_id": "af8b8224-0915-498c-8ea5-f7d1c77bc831",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003ciostream\u003e\n#include \u003cstring\u003e\n#include \u003cchrono\u003e\n#include \u003cctime\u003e\n\n/***\n * Creates a std::tm structure from raw date.\n * \n * \\param year (must be 1900 or greater)\n * \\param month months since January – [1, 12] \n * \\param day day of the month – [1, 31] \n * \\param minutes minutes after the hour – [0, 59] \n * \\param seconds seconds after the minute – [0, 61](until C++11) / [0, 60] (since C++11)\n * \n * Based on http://en.cppreference.com/w/cpp/chrono/c/tm\n */\nstd::tm CreateTmStruct(int year, int month, int day, int hour, int minutes, int seconds) {\n    struct tm tm_ret = {0};\n \n    tm_ret.tm_sec = seconds;\n    tm_ret.tm_min = minutes;\n    tm_ret.tm_hour = hour;\n    tm_ret.tm_mday = day;\n    tm_ret.tm_mon = month - 1;\n    tm_ret.tm_year = year - 1900;\n    \n    return tm_ret;\n}\n\nint get_days_in_year(int year) {\n    \n    using namespace std;\n    using namespace std::chrono;\n    \n    // We want results to be in days\n    typedef duration\u003cint, ratio_multiply\u003chours::period, ratio\u003c24\u003e \u003e::type\u003e days;    \n    \n    // Create start time span    \n    std::tm tm_start = CreateTmStruct(year, 1, 1, 0, 0, 0);\n    auto tms = system_clock::from_time_t(std::mktime(\u0026tm_start));\n    \n    // Create end time span\n        std::tm tm_end =   CreateTmStruct(year + 1, 1, 1, 0, 0, 0);\n    auto tme = system_clock::from_time_t(std::mktime(\u0026tm_end));\n    \n    // Calculate time duration between those two dates\n    auto diff_in_days = std::chrono::duration_cast\u003cdays\u003e(tme - tms);\n    \n    return diff_in_days.count();\n}\n\nint main()\n{\n    for ( int year = 2000; year \u003c= 2016; ++year ) \n        std::cout \u003c\u003c \"There are \" \u003c\u003c get_days_in_year(year) \u003c\u003c \" days in \" \u003c\u003c year \u003c\u003c \"\\n\";\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \u003ciostream\u003e\n#include \u003cstring\u003e\n#include \u003cchrono\u003e\n#include \u003cctime\u003e\n\n/***\n * Creates a std::tm structure from raw date.\n * \n * \\param year (must be 1900 or greater)\n * \\param month months since January – [1, 12] \n * \\param day day of the month – [1, 31] \n * \\param minutes minutes after the hour – [0, 59] \n * \\param seconds seconds after the minute – [0, 61](until C++11) / [0, 60] (since C++11)\n * \n * Based on http://en.cppreference.com/w/cpp/chrono/c/tm\n */\nstd::tm CreateTmStruct(int year, int month, int day, int hour, int minutes, int seconds) {\n    struct tm tm_ret = {0};\n \n    tm_ret.tm_sec = seconds;\n    tm_ret.tm_min = minutes;\n    tm_ret.tm_hour = hour;\n    tm_ret.tm_mday = day;\n    tm_ret.tm_mon = month - 1;\n    tm_ret.tm_year = year - 1900;\n    \n    return tm_ret;\n}\n\nint get_days_in_year(int year) {\n    \n    using namespace std;\n    using namespace std::chrono;\n    \n    // We want results to be in days\n    typedef duration\u003cint, ratio_multiply\u003chours::period, ratio\u003c24\u003e \u003e::type\u003e days;    \n    \n    // Create start time span    \n    std::tm tm_start = CreateTmStruct(year, 1, 1, 0, 0, 0);\n    auto tms = system_clock::from_time_t(std::mktime(\u0026tm_start));\n    \n    // Create end time span\n        std::tm tm_end =   CreateTmStruct(year + 1, 1, 1, 0, 0, 0);\n    auto tme = system_clock::from_time_t(std::mktime(\u0026tm_end));\n    \n    // Calculate time duration between those two dates\n    auto diff_in_days = std::chrono::duration_cast\u003cdays\u003e(tme - tms);\n    \n    return diff_in_days.count();\n}\n\nint main()\n{\n    for ( int year = 2000; year \u003c= 2016; ++year ) \n        std::cout \u003c\u003c \"There are \" \u003c\u003c get_days_in_year(year) \u003c\u003c \" days in \" \u003c\u003c year \u003c\u003c \"\\n\";\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "020 Find number of days between two dates"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

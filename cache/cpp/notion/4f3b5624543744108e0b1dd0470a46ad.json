@@ -1,0 +1,301 @@
+{
+  "ID": "4f3b5624-5437-4410-8e0b-1dd0470a46ad",
+  "Root": {
+    "alive": true,
+    "content": [
+      "3c389312-3408-43f7-9d51-dd1f6cc153fe",
+      "9c6d67fd-c309-4841-9d83-66b86524c726",
+      "d6593af1-17dd-4dc4-a8ed-613cc1979105",
+      "41582756-9110-4c25-b1fc-eb960fb7a3f1",
+      "7e815fca-d964-43df-8cb4-c64ca6ebd70a",
+      "679ded42-37cd-43c9-8880-561ec94cdb52",
+      "03acae2d-ac3b-4e19-90e8-5bf61b209601"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550523417544,
+    "id": "4f3b5624-5437-4410-8e0b-1dd0470a46ad",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550523417544,
+    "parent_id": "e6a35ae0-352c-42a0-9c74-633d5c76667f",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Multi-threaded Access"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523417540,
+        "id": "3c389312-3408-43f7-9d51-dd1f6cc153fe",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523417540,
+        "parent_id": "4f3b5624-5437-4410-8e0b-1dd0470a46ad",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "An atomic type can be used to safely read and write to a memory location shared between two threads."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "An atomic type can be used to safely read and write to a memory location shared between two threads."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523417543,
+        "id": "9c6d67fd-c309-4841-9d83-66b86524c726",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523417543,
+        "parent_id": "4f3b5624-5437-4410-8e0b-1dd0470a46ad",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "A Bad example that is likely to cause a data race:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "A Bad example that is likely to cause a data race:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523417543,
+        "id": "d6593af1-17dd-4dc4-a8ed-613cc1979105",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523417543,
+        "parent_id": "4f3b5624-5437-4410-8e0b-1dd0470a46ad",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003cthread\u003e\n#include \u003ciostream\u003e\n\n\n//function will add all values including and between 'a' and 'b' to 'result'\nvoid add(int a, int b, int * result) {\n    for (int i = a; i \u003c= b; i++) {\n        *result += i;\n    }\n}\n\nint main() {\n    //a primitive data type has no thread safety\n    int shared = 0;\n\n    //create a thread that may run parallel to the 'main' thread\n    //the thread will run the function 'add' defined above with paramters a = 1, b = 100, result = \u0026shared\n    //analogous to 'add(1,100, \u0026shared);'\n    std::thread addingThread(add, 1, 100, \u0026shared);\n\n    //attempt to print the value of 'shared' to console\n    //main will keep repeating this until the addingThread becomes joinable\n    while (!addingThread.joinable()) {\n        //this may cause undefined behavior or print a corrupted value\n        //if the addingThread tries to write to 'shared' while the main thread is reading it\n        std::cout \u003c\u003c shared \u003c\u003c std::endl;  \n    }\n\n\n    //rejoin the thread at the end of execution for cleaning purposes\n    addingThread.join();\n    \n    return 0;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \u003cthread\u003e\n#include \u003ciostream\u003e\n\n\n//function will add all values including and between 'a' and 'b' to 'result'\nvoid add(int a, int b, int * result) {\n    for (int i = a; i \u003c= b; i++) {\n        *result += i;\n    }\n}\n\nint main() {\n    //a primitive data type has no thread safety\n    int shared = 0;\n\n    //create a thread that may run parallel to the 'main' thread\n    //the thread will run the function 'add' defined above with paramters a = 1, b = 100, result = \u0026shared\n    //analogous to 'add(1,100, \u0026shared);'\n    std::thread addingThread(add, 1, 100, \u0026shared);\n\n    //attempt to print the value of 'shared' to console\n    //main will keep repeating this until the addingThread becomes joinable\n    while (!addingThread.joinable()) {\n        //this may cause undefined behavior or print a corrupted value\n        //if the addingThread tries to write to 'shared' while the main thread is reading it\n        std::cout \u003c\u003c shared \u003c\u003c std::endl;  \n    }\n\n\n    //rejoin the thread at the end of execution for cleaning purposes\n    addingThread.join();\n    \n    return 0;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523417544,
+        "id": "41582756-9110-4c25-b1fc-eb960fb7a3f1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523417544,
+        "parent_id": "4f3b5624-5437-4410-8e0b-1dd0470a46ad",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The above example may cause a corrupted read and can lead to undefined behavior."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The above example may cause a corrupted read and can lead to undefined behavior."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523417544,
+        "id": "7e815fca-d964-43df-8cb4-c64ca6ebd70a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523417544,
+        "parent_id": "4f3b5624-5437-4410-8e0b-1dd0470a46ad",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "An example with thread safety:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "An example with thread safety:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523417544,
+        "id": "679ded42-37cd-43c9-8880-561ec94cdb52",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523417544,
+        "parent_id": "4f3b5624-5437-4410-8e0b-1dd0470a46ad",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003catomic\u003e\n#include \u003cthread\u003e\n#include \u003ciostream\u003e\n\n\n    //function will add all values including and between 'a' and 'b' to 'result'\nvoid add(int a, int b, std::atomic\u003cint\u003e * result) {\n    for (int i = a; i \u003c= b; i++) {\n        //atomically add 'i' to result\n        result-\u003efetch_add(i);\n    }\n}\n\nint main() {\n    //atomic template used to store non-atomic objects\n    std::atomic\u003cint\u003e shared = 0;\n\n    //create a thread that may run parallel to the 'main' thread\n    //the thread will run the function 'add' defined above with paramters a = 1, b = 100, result = \u0026shared\n    //analogous to 'add(1,100, \u0026shared);'\n    std::thread addingThread(add, 1, 10000, \u0026shared);\n\n    //print the value of 'shared' to console\n    //main will keep repeating this until the addingThread becomes joinable\n    while (!addingThread.joinable()) {\n        //safe way to read the value of shared atomically for thread safe read\n        std::cout \u003c\u003c shared.load() \u003c\u003c std::endl;  \n    }\n\n\n    //rejoin the thread at the end of execution for cleaning purposes\n    addingThread.join();\n    \n    return 0;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \u003catomic\u003e\n#include \u003cthread\u003e\n#include \u003ciostream\u003e\n\n\n    //function will add all values including and between 'a' and 'b' to 'result'\nvoid add(int a, int b, std::atomic\u003cint\u003e * result) {\n    for (int i = a; i \u003c= b; i++) {\n        //atomically add 'i' to result\n        result-\u003efetch_add(i);\n    }\n}\n\nint main() {\n    //atomic template used to store non-atomic objects\n    std::atomic\u003cint\u003e shared = 0;\n\n    //create a thread that may run parallel to the 'main' thread\n    //the thread will run the function 'add' defined above with paramters a = 1, b = 100, result = \u0026shared\n    //analogous to 'add(1,100, \u0026shared);'\n    std::thread addingThread(add, 1, 10000, \u0026shared);\n\n    //print the value of 'shared' to console\n    //main will keep repeating this until the addingThread becomes joinable\n    while (!addingThread.joinable()) {\n        //safe way to read the value of shared atomically for thread safe read\n        std::cout \u003c\u003c shared.load() \u003c\u003c std::endl;  \n    }\n\n\n    //rejoin the thread at the end of execution for cleaning purposes\n    addingThread.join();\n    \n    return 0;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523417544,
+        "id": "03acae2d-ac3b-4e19-90e8-5bf61b209601",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523417544,
+        "parent_id": "4f3b5624-5437-4410-8e0b-1dd0470a46ad",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The above example is safe because all "
+            ],
+            [
+              "store()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "load()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " operations of the "
+            ],
+            [
+              "atomic",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " data type protect the encapsulated "
+            ],
+            [
+              "int",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " from simultaneous access."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The above example is safe because all "
+          },
+          {
+            "Text": "store()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "load()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " operations of the "
+          },
+          {
+            "Text": "atomic",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " data type protect the encapsulated "
+          },
+          {
+            "Text": "int",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " from simultaneous access."
+          }
+        ]
+      }
+    ],
+    "title": "010 Multi-threaded Access"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

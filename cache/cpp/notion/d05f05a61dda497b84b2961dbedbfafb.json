@@ -1,0 +1,244 @@
+{
+  "ID": "d05f05a6-1dda-497b-84b2-961dbedbfafb",
+  "Root": {
+    "alive": true,
+    "content": [
+      "fd576ee9-08d7-43f2-a5c2-a1f46b330338",
+      "a158394b-7455-43d9-943c-388473105020",
+      "34dac2e2-eddd-4d28-85d3-236fd35d09cb",
+      "1b59cd6f-bad1-40a8-8f0b-bc67497f6328",
+      "53e33d1c-ba94-461f-b581-b3419e76dbb2",
+      "73c72139-92f3-46ed-a247-422dccbc695f"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550521973562,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "d05f05a6-1dda-497b-84b2-961dbedbfafb",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550656620000,
+    "parent_id": "ee86edbe-8dd9-497a-a24c-fa516272404e",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Write your own generator-backed iterator"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 9,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550521973557,
+        "id": "fd576ee9-08d7-43f2-a5c2-a1f46b330338",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550521973557,
+        "parent_id": "d05f05a6-1dda-497b-84b2-961dbedbfafb",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "A common pattern in other languages is having a function that produces a “stream” of objects, and being able to use loop-code to loop over it."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "A common pattern in other languages is having a function that produces a “stream” of objects, and being able to use loop-code to loop over it."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550521973559,
+        "id": "a158394b-7455-43d9-943c-388473105020",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550521973559,
+        "parent_id": "d05f05a6-1dda-497b-84b2-961dbedbfafb",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "We can model this in C++ as"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "We can model this in C++ as"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550521973559,
+        "id": "34dac2e2-eddd-4d28-85d3-236fd35d09cb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550521973559,
+        "parent_id": "d05f05a6-1dda-497b-84b2-961dbedbfafb",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "template\u003cclass T\u003e\nstruct generator_iterator {\n  using difference_type=std::ptrdiff_t;\n  using value_type=T;\n  using pointer=T*;\n  using reference=T;\n  using iterator_category=std::input_iterator_tag;\n  std::optional\u003cT\u003e state;\n  std::function\u003c std::optional\u003cT\u003e() \u003e operation;\n  // we store the current element in \"state\" if we have one:\n  T operator*() const {\n    return *state;\n  }\n  // to advance, we invoke our operation.  If it returns a nullopt\n  // we have reached the end:\n  generator_iterator\u0026 operator++() {\n    state = operation();\n    return *this;        \n  }\n  generator_iterator operator++(int) {\n    auto r = *this;\n    ++(*this);\n    return r;\n  }\n  // generator iterators are only equal if they are both in the \"end\" state:\n  friend bool operator==( generator_iterator const\u0026 lhs, generator_iterator const\u0026 rhs ) {\n    if (!lhs.state \u0026\u0026 !rhs.state) return true;\n    return false;\n  }\n  friend bool operator!=( generator_iterator const\u0026 lhs, generator_iterator const\u0026 rhs ) {\n    return !(lhs==rhs);\n  }\n  // We implicitly construct from a std::function with the right signature:\n  generator_iterator( std::function\u003c std::optional\u003cT\u003e() \u003e f ):operation(std::move(f))\n  {\n    if (operation)\n      state = operation();\n  }\n  // default all special member functions:\n  generator_iterator( generator_iterator \u0026\u0026 ) =default;\n  generator_iterator( generator_iterator const\u0026 ) =default;\n  generator_iterator\u0026 operator=( generator_iterator \u0026\u0026 ) =default;\n  generator_iterator\u0026 operator=( generator_iterator const\u0026 ) =default;\n  generator_iterator() =default;\n};"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "template\u003cclass T\u003e\nstruct generator_iterator {\n  using difference_type=std::ptrdiff_t;\n  using value_type=T;\n  using pointer=T*;\n  using reference=T;\n  using iterator_category=std::input_iterator_tag;\n  std::optional\u003cT\u003e state;\n  std::function\u003c std::optional\u003cT\u003e() \u003e operation;\n  // we store the current element in \"state\" if we have one:\n  T operator*() const {\n    return *state;\n  }\n  // to advance, we invoke our operation.  If it returns a nullopt\n  // we have reached the end:\n  generator_iterator\u0026 operator++() {\n    state = operation();\n    return *this;        \n  }\n  generator_iterator operator++(int) {\n    auto r = *this;\n    ++(*this);\n    return r;\n  }\n  // generator iterators are only equal if they are both in the \"end\" state:\n  friend bool operator==( generator_iterator const\u0026 lhs, generator_iterator const\u0026 rhs ) {\n    if (!lhs.state \u0026\u0026 !rhs.state) return true;\n    return false;\n  }\n  friend bool operator!=( generator_iterator const\u0026 lhs, generator_iterator const\u0026 rhs ) {\n    return !(lhs==rhs);\n  }\n  // We implicitly construct from a std::function with the right signature:\n  generator_iterator( std::function\u003c std::optional\u003cT\u003e() \u003e f ):operation(std::move(f))\n  {\n    if (operation)\n      state = operation();\n  }\n  // default all special member functions:\n  generator_iterator( generator_iterator \u0026\u0026 ) =default;\n  generator_iterator( generator_iterator const\u0026 ) =default;\n  generator_iterator\u0026 operator=( generator_iterator \u0026\u0026 ) =default;\n  generator_iterator\u0026 operator=( generator_iterator const\u0026 ) =default;\n  generator_iterator() =default;\n};",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550521973561,
+        "id": "1b59cd6f-bad1-40a8-8f0b-bc67497f6328",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550521973561,
+        "parent_id": "d05f05a6-1dda-497b-84b2-961dbedbfafb",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "live example",
+              [
+                [
+                  "a",
+                  "http://coliru.stacked-crooked.com/a/cbb93f9ff193cdba"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "live example",
+            "Link": "http://coliru.stacked-crooked.com/a/cbb93f9ff193cdba"
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550521973561,
+        "id": "53e33d1c-ba94-461f-b581-b3419e76dbb2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550521973561,
+        "parent_id": "d05f05a6-1dda-497b-84b2-961dbedbfafb",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "We store the generated element early so we can more easily detect if we are already at the end."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "We store the generated element early so we can more easily detect if we are already at the end."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550521973562,
+        "id": "73c72139-92f3-46ed-a247-422dccbc695f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550521973562,
+        "parent_id": "d05f05a6-1dda-497b-84b2-961dbedbfafb",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "As the function of an end generator iterator is never used, we can create a range of generator iterators by only copying the "
+            ],
+            [
+              "std::function",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " once. A default constructed generator iterator compares equal to itself, and to all other end-generator-iterators."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "As the function of an end generator iterator is never used, we can create a range of generator iterators by only copying the "
+          },
+          {
+            "Text": "std::function",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " once. A default constructed generator iterator compares equal to itself, and to all other end-generator-iterators."
+          }
+        ]
+      }
+    ],
+    "title": "Write your own generator-backed iterator",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

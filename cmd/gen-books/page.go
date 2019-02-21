@@ -144,11 +144,10 @@ func (p *Page) URLLastPath() string {
 // URL returns url of the page
 func (p *Page) URL() string {
 	book := p.Book
-	bookTitle := book.Dir // should this be book.titleSafe ?
 	id := p.NotionID
 	title := urlify(p.Title)
 	// /essentail/go/${id}-title
-	return fmt.Sprintf("/essential/%s/%s-%s", bookTitle, id, title)
+	return fmt.Sprintf("/essential/%s/%s-%s", book.Dir, id, title)
 }
 
 // CanonnicalURL returns full url including host

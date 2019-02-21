@@ -1,0 +1,1133 @@
+{
+  "ID": "2eb52871-8a17-443f-9b30-6ea34eb72345",
+  "Root": {
+    "alive": true,
+    "content": [
+      "aba8e560-63e2-4b19-82e5-c4b6a4892b74",
+      "6b7aece3-a723-4bfa-9ecb-f14acbc06009",
+      "25fef06f-d43a-4128-9642-4258e2093c4b",
+      "9f2b49f3-513b-4195-9243-2d4c136098fe",
+      "8f2a3eb7-1aae-47b4-a8f9-8435d30bbb02",
+      "217db4e1-d06b-4fe3-bf0a-ccac2b45a21b",
+      "9ba6012f-9c04-45ac-a187-041505f84b23",
+      "7f2f0941-60a2-4edd-8806-44bd1bcc8f05",
+      "a87985bb-d8ed-4ab2-a3e6-48160927a956",
+      "9e69a0cf-376f-4ff9-bb8c-39b508234a41",
+      "a368398c-74a1-4af1-8373-3846932d909a",
+      "7651bea4-2cd3-4e14-b6aa-e1af816324ac",
+      "0f4009be-9932-4856-a5c0-5a26c03b8343",
+      "074d0626-1ceb-451e-aae1-6bf177cbc1d9",
+      "e6447994-ef28-46ae-8ee5-7d5fa42e661e"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550523944554,
+    "id": "2eb52871-8a17-443f-9b30-6ea34eb72345",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550523944554,
+    "parent_id": "2f06e164-6745-4c46-9402-92f51f9f9266",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "050 this Pointer"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523944546,
+        "id": "aba8e560-63e2-4b19-82e5-c4b6a4892b74",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523944546,
+        "parent_id": "2eb52871-8a17-443f-9b30-6ea34eb72345",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "All non-static member functions have a hidden parameter, a pointer to an instance of the class, named "
+            ],
+            [
+              "this",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "; this parameter is silently inserted at the beginning of the parameter list, and handled entirely by the compiler. When a member of the class is accessed inside a member function, it is silently accessed through "
+            ],
+            [
+              "this",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "; this allows the compiler to use a single non-static member function for all instances, and allows a member function to call other member functions polymorphically."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "All non-static member functions have a hidden parameter, a pointer to an instance of the class, named "
+          },
+          {
+            "Text": "this",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "; this parameter is silently inserted at the beginning of the parameter list, and handled entirely by the compiler. When a member of the class is accessed inside a member function, it is silently accessed through "
+          },
+          {
+            "Text": "this",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "; this allows the compiler to use a single non-static member function for all instances, and allows a member function to call other member functions polymorphically."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523944549,
+        "id": "6b7aece3-a723-4bfa-9ecb-f14acbc06009",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523944549,
+        "parent_id": "2eb52871-8a17-443f-9b30-6ea34eb72345",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "struct ThisPointer {\n    int i;\n\n    ThisPointer(int ii);\n\n    virtual void func();\n\n    int  get_i() const;\n    void set_i(int ii);\n};\nThisPointer::ThisPointer(int ii) : i(ii) {}\n// Compiler rewrites as:\nThisPointer::ThisPointer(int ii) : this-\u003ei(ii) {}\n// Constructor is responsible for turning allocated memory into 'this'.\n// As the constructor is responsible for creating the object, 'this' will not be \"fully\"\n// valid until the instance is fully constructed.\n\n/* virtual */ void ThisPointer::func() {\n    if (some_external_condition) {\n        set_i(182);\n    } else {\n        i = 218;\n    }\n}\n// Compiler rewrites as:\n/* virtual */ void ThisPointer::func(ThisPointer* this) {\n    if (some_external_condition) {\n        this-\u003eset_i(182);\n    } else {\n        this-\u003ei = 218;\n    }\n}\n\nint  ThisPointer::get_i() const { return i; }\n// Compiler rewrites as:\nint  ThisPointer::get_i(const ThisPointer* this) { return this-\u003ei; }\n\nvoid ThisPointer::set_i(int ii) { i = ii; }\n// Compiler rewrites as:\nvoid ThisPointer::set_i(ThisPointer* this, int ii) { this-\u003ei = ii; }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "struct ThisPointer {\n    int i;\n\n    ThisPointer(int ii);\n\n    virtual void func();\n\n    int  get_i() const;\n    void set_i(int ii);\n};\nThisPointer::ThisPointer(int ii) : i(ii) {}\n// Compiler rewrites as:\nThisPointer::ThisPointer(int ii) : this-\u003ei(ii) {}\n// Constructor is responsible for turning allocated memory into 'this'.\n// As the constructor is responsible for creating the object, 'this' will not be \"fully\"\n// valid until the instance is fully constructed.\n\n/* virtual */ void ThisPointer::func() {\n    if (some_external_condition) {\n        set_i(182);\n    } else {\n        i = 218;\n    }\n}\n// Compiler rewrites as:\n/* virtual */ void ThisPointer::func(ThisPointer* this) {\n    if (some_external_condition) {\n        this-\u003eset_i(182);\n    } else {\n        this-\u003ei = 218;\n    }\n}\n\nint  ThisPointer::get_i() const { return i; }\n// Compiler rewrites as:\nint  ThisPointer::get_i(const ThisPointer* this) { return this-\u003ei; }\n\nvoid ThisPointer::set_i(int ii) { i = ii; }\n// Compiler rewrites as:\nvoid ThisPointer::set_i(ThisPointer* this, int ii) { this-\u003ei = ii; }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523944550,
+        "id": "25fef06f-d43a-4128-9642-4258e2093c4b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523944550,
+        "parent_id": "2eb52871-8a17-443f-9b30-6ea34eb72345",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In a constructor, "
+            ],
+            [
+              "this",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " can safely be used to (implicitly or explicitly) access any field that has already been initialised, or any field in a parent class; conversely, (implicitly or explicitly) accessing any fields that haven’t yet been initialised, or any fields in a derived class, is unsafe (due to the derived class not yet being constructed, and thus its fields neither being initialised nor existing). It is also unsafe to call virtual member functions through "
+            ],
+            [
+              "this",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " in the constructor, as any derived class functions will not be considered (due to the derived class not yet being constructed, and thus its constructor not yet updating the vtable)."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In a constructor, "
+          },
+          {
+            "Text": "this",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " can safely be used to (implicitly or explicitly) access any field that has already been initialised, or any field in a parent class; conversely, (implicitly or explicitly) accessing any fields that haven’t yet been initialised, or any fields in a derived class, is unsafe (due to the derived class not yet being constructed, and thus its fields neither being initialised nor existing). It is also unsafe to call virtual member functions through "
+          },
+          {
+            "Text": "this",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " in the constructor, as any derived class functions will not be considered (due to the derived class not yet being constructed, and thus its constructor not yet updating the vtable)."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523944550,
+        "id": "9f2b49f3-513b-4195-9243-2d4c136098fe",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523944550,
+        "parent_id": "2eb52871-8a17-443f-9b30-6ea34eb72345",
+        "parent_table": "block",
+        "type": "divider",
+        "version": 1
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523944550,
+        "id": "8f2a3eb7-1aae-47b4-a8f9-8435d30bbb02",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523944550,
+        "parent_id": "2eb52871-8a17-443f-9b30-6ea34eb72345",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Also note that while in a constructor, the type of the object is the type which that constructor constructs. This holds true even if the object is declared as a derived type. For example, in the below example, "
+            ],
+            [
+              "ctd_good",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "ctd_bad",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " are type "
+            ],
+            [
+              "CtorThisBase",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " inside "
+            ],
+            [
+              "CtorThisBase()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", and type "
+            ],
+            [
+              "CtorThis",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " inside "
+            ],
+            [
+              "CtorThis()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", even though their canonical type is "
+            ],
+            [
+              "CtorThisDerived",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". As the more-derived classes are constructed around the base class, the instance gradually goes through the class hierarchy until it is a fully-constructed instance of its intended type."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Also note that while in a constructor, the type of the object is the type which that constructor constructs. This holds true even if the object is declared as a derived type. For example, in the below example, "
+          },
+          {
+            "Text": "ctd_good",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "ctd_bad",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " are type "
+          },
+          {
+            "Text": "CtorThisBase",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " inside "
+          },
+          {
+            "Text": "CtorThisBase()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", and type "
+          },
+          {
+            "Text": "CtorThis",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " inside "
+          },
+          {
+            "Text": "CtorThis()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", even though their canonical type is "
+          },
+          {
+            "Text": "CtorThisDerived",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". As the more-derived classes are constructed around the base class, the instance gradually goes through the class hierarchy until it is a fully-constructed instance of its intended type."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523944550,
+        "id": "217db4e1-d06b-4fe3-bf0a-ccac2b45a21b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523944550,
+        "parent_id": "2eb52871-8a17-443f-9b30-6ea34eb72345",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class CtorThisBase {\n    short s;\n\n  public:\n    CtorThisBase() : s(516) {}\n};\n\nclass CtorThis : public CtorThisBase {\n    int i, j, k;\n\n  public:\n    // Good constructor.\n    CtorThis() : i(s + 42), j(this-\u003ei), k(j) {}\n\n    // Bad constructor.\n    CtorThis(int ii) : i(ii), j(this-\u003ek), k(b ? 51 : -51) {\n        virt_func();\n    }\n\n    virtual void virt_func() { i += 2; }\n};\n\nclass CtorThisDerived : public CtorThis {\n    bool b;\n\n  public:\n    CtorThisDerived()       : b(true) {}\n    CtorThisDerived(int ii) : CtorThis(ii), b(false) {}\n\n    void virt_func() override { k += (2 * i); }\n};\n\n// ...\n\nCtorThisDerived ctd_good;\nCtorThisDerived ctd_bad(3);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class CtorThisBase {\n    short s;\n\n  public:\n    CtorThisBase() : s(516) {}\n};\n\nclass CtorThis : public CtorThisBase {\n    int i, j, k;\n\n  public:\n    // Good constructor.\n    CtorThis() : i(s + 42), j(this-\u003ei), k(j) {}\n\n    // Bad constructor.\n    CtorThis(int ii) : i(ii), j(this-\u003ek), k(b ? 51 : -51) {\n        virt_func();\n    }\n\n    virtual void virt_func() { i += 2; }\n};\n\nclass CtorThisDerived : public CtorThis {\n    bool b;\n\n  public:\n    CtorThisDerived()       : b(true) {}\n    CtorThisDerived(int ii) : CtorThis(ii), b(false) {}\n\n    void virt_func() override { k += (2 * i); }\n};\n\n// ...\n\nCtorThisDerived ctd_good;\nCtorThisDerived ctd_bad(3);",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523944550,
+        "id": "9ba6012f-9c04-45ac-a187-041505f84b23",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523944550,
+        "parent_id": "2eb52871-8a17-443f-9b30-6ea34eb72345",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "With these classes and member functions:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "With these classes and member functions:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523944551,
+        "id": "7f2f0941-60a2-4edd-8806-44bd1bcc8f05",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523944551,
+        "parent_id": "2eb52871-8a17-443f-9b30-6ea34eb72345",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In the good constructor, for "
+            ],
+            [
+              "ctd_good",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ":"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In the good constructor, for "
+          },
+          {
+            "Text": "ctd_good",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ":"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523944552,
+        "id": "a87985bb-d8ed-4ab2-a3e6-48160927a956",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523944552,
+        "parent_id": "2eb52871-8a17-443f-9b30-6ea34eb72345",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "CtorThisBase",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is fully constructed by the time the "
+            ],
+            [
+              "CtorThis",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " constructor is entered. Therefore, "
+            ],
+            [
+              "s",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is in a valid state while initialising "
+            ],
+            [
+              "i",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", and can thus be accessed."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "CtorThisBase",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is fully constructed by the time the "
+          },
+          {
+            "Text": "CtorThis",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " constructor is entered. Therefore, "
+          },
+          {
+            "Text": "s",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is in a valid state while initialising "
+          },
+          {
+            "Text": "i",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", and can thus be accessed."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523944552,
+        "id": "9e69a0cf-376f-4ff9-bb8c-39b508234a41",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523944552,
+        "parent_id": "2eb52871-8a17-443f-9b30-6ea34eb72345",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "i",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is initialised before "
+            ],
+            [
+              "j(this-\u003ei)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is reached. Therefore, "
+            ],
+            [
+              "i",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is in a valid state while initialising "
+            ],
+            [
+              "j",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", and can thus be accessed."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "i",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is initialised before "
+          },
+          {
+            "Text": "j(this-\u003ei)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is reached. Therefore, "
+          },
+          {
+            "Text": "i",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is in a valid state while initialising "
+          },
+          {
+            "Text": "j",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", and can thus be accessed."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523944552,
+        "id": "a368398c-74a1-4af1-8373-3846932d909a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523944552,
+        "parent_id": "2eb52871-8a17-443f-9b30-6ea34eb72345",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "j",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is initialised before "
+            ],
+            [
+              "k(j)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is reached. Therefore, "
+            ],
+            [
+              "j",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is in a valid state while initialising "
+            ],
+            [
+              "k",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", and can thus be accessed."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "j",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is initialised before "
+          },
+          {
+            "Text": "k(j)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is reached. Therefore, "
+          },
+          {
+            "Text": "j",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is in a valid state while initialising "
+          },
+          {
+            "Text": "k",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", and can thus be accessed."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523944553,
+        "id": "7651bea4-2cd3-4e14-b6aa-e1af816324ac",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523944553,
+        "parent_id": "2eb52871-8a17-443f-9b30-6ea34eb72345",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In the bad constructor, for "
+            ],
+            [
+              "ctd_bad",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ":"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In the bad constructor, for "
+          },
+          {
+            "Text": "ctd_bad",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ":"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523944553,
+        "id": "0f4009be-9932-4856-a5c0-5a26c03b8343",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523944553,
+        "parent_id": "2eb52871-8a17-443f-9b30-6ea34eb72345",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "k",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is initialised after "
+            ],
+            [
+              "j(this-\u003ek)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is reached. Therefore, "
+            ],
+            [
+              "k",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is in an invalid state while initialising "
+            ],
+            [
+              "j",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", and accessing it causes undefined behaviour."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "k",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is initialised after "
+          },
+          {
+            "Text": "j(this-\u003ek)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is reached. Therefore, "
+          },
+          {
+            "Text": "k",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is in an invalid state while initialising "
+          },
+          {
+            "Text": "j",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", and accessing it causes undefined behaviour."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523944554,
+        "id": "074d0626-1ceb-451e-aae1-6bf177cbc1d9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523944554,
+        "parent_id": "2eb52871-8a17-443f-9b30-6ea34eb72345",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "CtorThisDerived",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is not constructed until after "
+            ],
+            [
+              "CtorThis",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is constructed. Therefore, "
+            ],
+            [
+              "b",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is in an invalid state while initialising "
+            ],
+            [
+              "k",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", and accessing it causes undefined behaviour."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "CtorThisDerived",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is not constructed until after "
+          },
+          {
+            "Text": "CtorThis",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is constructed. Therefore, "
+          },
+          {
+            "Text": "b",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is in an invalid state while initialising "
+          },
+          {
+            "Text": "k",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", and accessing it causes undefined behaviour."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523944554,
+        "id": "e6447994-ef28-46ae-8ee5-7d5fa42e661e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523944554,
+        "parent_id": "2eb52871-8a17-443f-9b30-6ea34eb72345",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The object "
+            ],
+            [
+              "ctd_bad",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is still a "
+            ],
+            [
+              "CtorThis",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " until it leaves "
+            ],
+            [
+              "CtorThis()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", and will not be updated to use "
+            ],
+            [
+              "CtorThisDerived",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "’s vtable until "
+            ],
+            [
+              "CtorThisDerived()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". Therefore, "
+            ],
+            [
+              "virt_func()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " will call "
+            ],
+            [
+              "CtorThis::virt_func()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", regardless of whether it is intended to call that or "
+            ],
+            [
+              "CtorThisDerived::virt_func()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The object "
+          },
+          {
+            "Text": "ctd_bad",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is still a "
+          },
+          {
+            "Text": "CtorThis",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " until it leaves "
+          },
+          {
+            "Text": "CtorThis()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", and will not be updated to use "
+          },
+          {
+            "Text": "CtorThisDerived",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "’s vtable until "
+          },
+          {
+            "Text": "CtorThisDerived()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". Therefore, "
+          },
+          {
+            "Text": "virt_func()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " will call "
+          },
+          {
+            "Text": "CtorThis::virt_func()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", regardless of whether it is intended to call that or "
+          },
+          {
+            "Text": "CtorThisDerived::virt_func()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      }
+    ],
+    "title": "050 this Pointer"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

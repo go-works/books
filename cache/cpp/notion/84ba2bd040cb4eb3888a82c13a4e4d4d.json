@@ -1,0 +1,274 @@
+{
+  "ID": "84ba2bd0-40cb-4eb3-888a-82c13a4e4d4d",
+  "Root": {
+    "alive": true,
+    "content": [
+      "3d1af52a-b54d-4116-9756-cb0ff860e229",
+      "1fcac326-ea96-4119-8ffc-a31c95e9a144",
+      "3ac6a872-e19a-4b56-9567-737a179e5bd4",
+      "427a8ef4-554c-48c7-ad57-1054cfb1ba8c",
+      "1de0a0ed-b595-456a-925e-3eba79e0a848"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550522283790,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "84ba2bd0-40cb-4eb3-888a-82c13a4e4d4d",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550655300000,
+    "parent_id": "f1b860db-be5a-41ed-a67b-b7b0181ec59f",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Basic Synchronization"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 7,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522283786,
+        "id": "3d1af52a-b54d-4116-9756-cb0ff860e229",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522283786,
+        "parent_id": "84ba2bd0-40cb-4eb3-888a-82c13a4e4d4d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Thread synchronization can be accomplished using mutexes, among other synchronization primitives. There are several mutex types provided by the standard library, but the simplest is "
+            ],
+            [
+              "std::mutex",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". To lock a mutex, you construct a lock on it. The simplest lock type is "
+            ],
+            [
+              "std::lock_guard",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ":"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Thread synchronization can be accomplished using mutexes, among other synchronization primitives. There are several mutex types provided by the standard library, but the simplest is "
+          },
+          {
+            "Text": "std::mutex",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". To lock a mutex, you construct a lock on it. The simplest lock type is "
+          },
+          {
+            "Text": "std::lock_guard",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ":"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522283788,
+        "id": "1fcac326-ea96-4119-8ffc-a31c95e9a144",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522283788,
+        "parent_id": "84ba2bd0-40cb-4eb3-888a-82c13a4e4d4d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "std::mutex m;\nvoid worker() {\n    std::lock_guard\u003cstd::mutex\u003e guard(m); // Acquires a lock on the mutex\n    // Synchronized code here\n} // the mutex is automatically released when guard goes out of scope"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "std::mutex m;\nvoid worker() {\n    std::lock_guard\u003cstd::mutex\u003e guard(m); // Acquires a lock on the mutex\n    // Synchronized code here\n} // the mutex is automatically released when guard goes out of scope",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522283789,
+        "id": "3ac6a872-e19a-4b56-9567-737a179e5bd4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522283789,
+        "parent_id": "84ba2bd0-40cb-4eb3-888a-82c13a4e4d4d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "With "
+            ],
+            [
+              "std::lock_guard",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " the mutex is locked for the whole lifetime of the lock object. In cases where you need to manually control the regions for locking, use "
+            ],
+            [
+              "std::unique_lock",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " instead:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "With "
+          },
+          {
+            "Text": "std::lock_guard",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " the mutex is locked for the whole lifetime of the lock object. In cases where you need to manually control the regions for locking, use "
+          },
+          {
+            "Text": "std::unique_lock",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " instead:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522283789,
+        "id": "427a8ef4-554c-48c7-ad57-1054cfb1ba8c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522283789,
+        "parent_id": "84ba2bd0-40cb-4eb3-888a-82c13a4e4d4d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "std::mutex m;\nvoid worker() {\n    // by default, constructing a unique_lock from a mutex will lock the mutex\n    // by passing the std::defer_lock as a second argument, we\n    // can construct the guard in an unlocked state instead and\n    // manually lock later.\n    std::unique_lock\u003cstd::mutex\u003e guard(m, std::defer_lock);\n    // the mutex is not locked yet!\n    guard.lock();\n    // critical section\n    guard.unlock();\n    // mutex is again released\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "std::mutex m;\nvoid worker() {\n    // by default, constructing a unique_lock from a mutex will lock the mutex\n    // by passing the std::defer_lock as a second argument, we\n    // can construct the guard in an unlocked state instead and\n    // manually lock later.\n    std::unique_lock\u003cstd::mutex\u003e guard(m, std::defer_lock);\n    // the mutex is not locked yet!\n    guard.lock();\n    // critical section\n    guard.unlock();\n    // mutex is again released\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522283790,
+        "id": "1de0a0ed-b595-456a-925e-3eba79e0a848",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522283790,
+        "parent_id": "84ba2bd0-40cb-4eb3-888a-82c13a4e4d4d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "More "
+            ],
+            [
+              "Thread synchronization structures",
+              [
+                [
+                  "a",
+                  "http://stackoverflow.com/documentation/c%2B%2B/9794/thread-synchronization-structures#t=201704240523319231466"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "More "
+          },
+          {
+            "Text": "Thread synchronization structures",
+            "Link": "http://stackoverflow.com/documentation/c%2B%2B/9794/thread-synchronization-structures#t=201704240523319231466"
+          }
+        ]
+      }
+    ],
+    "title": "Basic Synchronization",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

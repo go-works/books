@@ -1,0 +1,97 @@
+{
+  "ID": "188af8fc-f52b-421b-863e-3bea81038f6c",
+  "Root": {
+    "alive": true,
+    "content": [
+      "74f79639-c196-4371-8f1d-64301df65ec5",
+      "c2619033-5d6d-4e93-bef9-29cecf488017"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550523891479,
+    "id": "188af8fc-f52b-421b-863e-3bea81038f6c",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550523891479,
+    "parent_id": "5644241e-ceec-479a-8322-e9c1780f1515",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 Constructing a std variant"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523891476,
+        "id": "74f79639-c196-4371-8f1d-64301df65ec5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523891476,
+        "parent_id": "188af8fc-f52b-421b-863e-3bea81038f6c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This does not cover allocators."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This does not cover allocators."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550523891479,
+        "id": "c2619033-5d6d-4e93-bef9-29cecf488017",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550523891479,
+        "parent_id": "188af8fc-f52b-421b-863e-3bea81038f6c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "struct A {};\nstruct B { B()=default; B(B const\u0026)=default; B(int){}; };\nstruct C { C()=delete; C(int) {}; C(C const\u0026)=default; };\nstruct D { D( std::initializer_list\u003cint\u003e ) {}; D(D const\u0026)=default; D()=default; };\n\nstd::variant\u003cA,B\u003e var_ab0; // contains a A()\nstd::variant\u003cA,B\u003e var_ab1 = 7; // contains a B(7)\nstd::variant\u003cA,B\u003e var_ab2 = var_ab1; // contains a B(7)\nstd::variant\u003cA,B,C\u003e var_abc0{ std::in_place_type\u003cC\u003e, 7 }; // contains a C(7)\nstd::variant\u003cC\u003e var_c0; // illegal, no default ctor for C\nstd::variant\u003cA,D\u003e var_ad0( std::in_place_type\u003cD\u003e, {1,3,3,4} ); // contains D{1,3,3,4}\nstd::variant\u003cA,D\u003e var_ad1( std::in_place_index\u003c0\u003e ); // contains A{}\nstd::variant\u003cA,D\u003e var_ad2( std::in_place_index\u003c1\u003e, {1,3,3,4} ); // contains D{1,3,3,4}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "struct A {};\nstruct B { B()=default; B(B const\u0026)=default; B(int){}; };\nstruct C { C()=delete; C(int) {}; C(C const\u0026)=default; };\nstruct D { D( std::initializer_list\u003cint\u003e ) {}; D(D const\u0026)=default; D()=default; };\n\nstd::variant\u003cA,B\u003e var_ab0; // contains a A()\nstd::variant\u003cA,B\u003e var_ab1 = 7; // contains a B(7)\nstd::variant\u003cA,B\u003e var_ab2 = var_ab1; // contains a B(7)\nstd::variant\u003cA,B,C\u003e var_abc0{ std::in_place_type\u003cC\u003e, 7 }; // contains a C(7)\nstd::variant\u003cC\u003e var_c0; // illegal, no default ctor for C\nstd::variant\u003cA,D\u003e var_ad0( std::in_place_type\u003cD\u003e, {1,3,3,4} ); // contains D{1,3,3,4}\nstd::variant\u003cA,D\u003e var_ad1( std::in_place_index\u003c0\u003e ); // contains A{}\nstd::variant\u003cA,D\u003e var_ad2( std::in_place_index\u003c1\u003e, {1,3,3,4} ); // contains D{1,3,3,4}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "030 Constructing a std variant"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,71 @@
+{
+  "ID": "a4925187-1447-4ff1-9480-d1cc42223d27",
+  "Root": {
+    "alive": true,
+    "content": [
+      "d12da010-7793-4fd6-a3f2-f9f7095f19dc"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550522705509,
+    "id": "a4925187-1447-4ff1-9480-d1cc42223d27",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550710800000,
+    "parent_id": "263edcef-95ee-480a-8c67-1e74662a250a",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "std::function with lambda and std::bind"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 16,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522705507,
+        "id": "d12da010-7793-4fd6-a3f2-f9f7095f19dc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550710800000,
+        "parent_id": "a4925187-1447-4ff1-9480-d1cc42223d27",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "C++"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003ciostream\u003e\n#include \u003cfunctional\u003e\n\nusing std::placeholders::_1; // to be used in std::bind example\n\nint stdf_foobar (int x, std::function\u003cint(int)\u003e moo)\n{\n    return x + moo(x); // std::function moo called\n}\n\nint foo (int x) { return 2+x; }\n\nint foo_2 (int x, int y) { return 9*x + y; }\n\nint main()\n{\n    int a = 2;\n\n    /* Function pointers */\n    std::cout \u003c\u003c stdf_foobar(a, \u0026foo) \u003c\u003c std::endl; // 6 ( 2 + (2+2) )\n    // can also be: stdf_foobar(2, foo)\n\n    /* Lambda expressions */\n    /* An unnamed closure from a lambda expression can be\n     * stored in a std::function object:\n     */\n    int capture_value = 3;\n    std::cout \u003c\u003c stdf_foobar(a,\n                             [capture_value](int param) -\u003e int { return 7 + capture_value * param; })\n              \u003c\u003c std::endl;\n    // result: 15 ==  value + (7 * capture_value * value) == 2 + (7 + 3 * 2)\n\n    /* std::bind expressions */\n    /* The result of a std::bind expression can be passed.\n     * For example by binding parameters to a function pointer call:\n     */    \n    int b = stdf_foobar(a, std::bind(foo_2, _1, 3));\n    std::cout \u003c\u003c b \u003c\u003c std::endl;\n    // b == 23 == 2 + ( 9*2 + 3 )\n    int c = stdf_foobar(a, std::bind(foo_2, 5, _1));\n    std::cout \u003c\u003c c \u003c\u003c std::endl;\n    // c == 49 == 2 + ( 9*5 + 2 )\n\n    return 0;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "#include \u003ciostream\u003e\n#include \u003cfunctional\u003e\n\nusing std::placeholders::_1; // to be used in std::bind example\n\nint stdf_foobar (int x, std::function\u003cint(int)\u003e moo)\n{\n    return x + moo(x); // std::function moo called\n}\n\nint foo (int x) { return 2+x; }\n\nint foo_2 (int x, int y) { return 9*x + y; }\n\nint main()\n{\n    int a = 2;\n\n    /* Function pointers */\n    std::cout \u003c\u003c stdf_foobar(a, \u0026foo) \u003c\u003c std::endl; // 6 ( 2 + (2+2) )\n    // can also be: stdf_foobar(2, foo)\n\n    /* Lambda expressions */\n    /* An unnamed closure from a lambda expression can be\n     * stored in a std::function object:\n     */\n    int capture_value = 3;\n    std::cout \u003c\u003c stdf_foobar(a,\n                             [capture_value](int param) -\u003e int { return 7 + capture_value * param; })\n              \u003c\u003c std::endl;\n    // result: 15 ==  value + (7 * capture_value * value) == 2 + (7 + 3 * 2)\n\n    /* std::bind expressions */\n    /* The result of a std::bind expression can be passed.\n     * For example by binding parameters to a function pointer call:\n     */    \n    int b = stdf_foobar(a, std::bind(foo_2, _1, 3));\n    std::cout \u003c\u003c b \u003c\u003c std::endl;\n    // b == 23 == 2 + ( 9*2 + 3 )\n    int c = stdf_foobar(a, std::bind(foo_2, 5, _1));\n    std::cout \u003c\u003c c \u003c\u003c std::endl;\n    // c == 49 == 2 + ( 9*5 + 2 )\n\n    return 0;\n}",
+        "code_language": "C++"
+      }
+    ],
+    "title": "std::function with lambda and std::bind"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

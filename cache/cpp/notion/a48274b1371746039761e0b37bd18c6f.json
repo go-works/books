@@ -1,0 +1,189 @@
+{
+  "ID": "a48274b1-3717-4603-9761-e0b37bd18c6f",
+  "Root": {
+    "alive": true,
+    "content": [
+      "1efee530-3087-4ad9-8de9-830400c0fc0e",
+      "be86577c-d313-49c0-a92c-2d1a0afe17fd",
+      "3da9f3d8-ca91-47b7-846b-540a9a3c6c84"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550522408476,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "a48274b1-3717-4603-9761-e0b37bd18c6f",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550710020000,
+    "parent_id": "efdc4616-d5e4-4dce-b49c-941c07a9ac4b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Polymorphism Destructors"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522408475,
+        "id": "1efee530-3087-4ad9-8de9-830400c0fc0e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522408475,
+        "parent_id": "a48274b1-3717-4603-9761-e0b37bd18c6f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If a class is intended to be used polymorphically, with derived instances being stored as base pointers/references, its base class’ destructor should be either "
+            ],
+            [
+              "virtual",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " or "
+            ],
+            [
+              "protected",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". In the former case, this will cause object destruction to check the "
+            ],
+            [
+              "vtable",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", automatically calling the correct destructor based on the dynamic type. In the latter case, destroying the object through a base class pointer/reference is disabled, and the object can only be deleted when explicitly treated as its actual type."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If a class is intended to be used polymorphically, with derived instances being stored as base pointers/references, its base class’ destructor should be either "
+          },
+          {
+            "Text": "virtual",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " or "
+          },
+          {
+            "Text": "protected",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". In the former case, this will cause object destruction to check the "
+          },
+          {
+            "Text": "vtable",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", automatically calling the correct destructor based on the dynamic type. In the latter case, destroying the object through a base class pointer/reference is disabled, and the object can only be deleted when explicitly treated as its actual type."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522408476,
+        "id": "be86577c-d313-49c0-a92c-2d1a0afe17fd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522408476,
+        "parent_id": "a48274b1-3717-4603-9761-e0b37bd18c6f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "struct VirtualDestructor {\n    virtual ~VirtualDestructor() = default;\n};\n\nstruct VirtualDerived : VirtualDestructor {};\n\nstruct ProtectedDestructor {\n  protected:\n    ~ProtectedDestructor() = default;\n};\n\nstruct ProtectedDerived : ProtectedDestructor {\n    ~ProtectedDerived() = default;\n};\n\n// ...\n\nVirtualDestructor* vd = new VirtualDerived;\ndelete vd; // Looks up VirtualDestructor::~VirtualDestructor() in vtable, sees it's\n           // VirtualDerived::~VirtualDerived(), calls that.\n\nProtectedDestructor* pd = new ProtectedDerived;\ndelete pd; // Error: ProtectedDestructor::~ProtectedDestructor() is protected.\ndelete static_cast\u003cProtectedDerived*\u003e(pd); // Good."
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "struct VirtualDestructor {\n    virtual ~VirtualDestructor() = default;\n};\n\nstruct VirtualDerived : VirtualDestructor {};\n\nstruct ProtectedDestructor {\n  protected:\n    ~ProtectedDestructor() = default;\n};\n\nstruct ProtectedDerived : ProtectedDestructor {\n    ~ProtectedDerived() = default;\n};\n\n// ...\n\nVirtualDestructor* vd = new VirtualDerived;\ndelete vd; // Looks up VirtualDestructor::~VirtualDestructor() in vtable, sees it's\n           // VirtualDerived::~VirtualDerived(), calls that.\n\nProtectedDestructor* pd = new ProtectedDerived;\ndelete pd; // Error: ProtectedDestructor::~ProtectedDestructor() is protected.\ndelete static_cast\u003cProtectedDerived*\u003e(pd); // Good.",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522408476,
+        "id": "3da9f3d8-ca91-47b7-846b-540a9a3c6c84",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522408476,
+        "parent_id": "a48274b1-3717-4603-9761-e0b37bd18c6f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Both of these practices guarantee that the derived class’ destructor will always be called on derived class instances, preventing memory leaks."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Both of these practices guarantee that the derived class’ destructor will always be called on derived class instances, preventing memory leaks."
+          }
+        ]
+      }
+    ],
+    "title": "Polymorphism Destructors",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -116,12 +116,31 @@ var (
 		// https://www.notion.so/kjkpublic/Essential-SQL-d1c8bb39bad4494e80abe28414c3d80e
 		NotionStartPageID: "d1c8bb39bad4494e80abe28414c3d80e",
 	}
+	bookCpp = &Book{
+		NoPublish: true,
+		Title: "C++",
+		TitleLong: "Essential C++",
+		Dir: "cpp",
+		CoverImageName: "Cpp.png",
+		// https://www.notion.so/kjkpublic/Essential-C-ad527dc6d4a7420b923494d0b9bfb560
+		NotionStartPageID: "ad527dc6d4a7420b923494d0b9bfb560",
+	}
+	bookIOS = &Book{
+		NoPublish: true,
+		Title: "iOS",
+		TitleLong: "Essential iOS",
+		Dir: "ios",
+		CoverImageName: "iOS.png",
+		// https://www.notion.so/kjkpublic/Essential-iOS-3626edc1bd044431afddc89648a7050f
+		NotionStartPageID: "3626edc1bd044431afddc89648a7050f",
+	}
 )
 
 var (
 	books = []*Book{
 		bookGo, bookCsharp, bookPython, bookKotlin, bookJavaScript,
-		bookDart, bookJava, bookAndroid, bookSql,
+		bookDart, bookJava, bookAndroid, bookSql, bookCpp, bookIOS,
+
 	}
 )
 
@@ -363,7 +382,6 @@ func redownloadOneReplit() {
 
 func initBook(book *Book) {
 	var err error
-	book.titleSafe = common.MakeURLSafe(book.Title)
 
 	createDirMust(book.OutputCacheDir())
 	createDirMust(book.NotionCacheDir())

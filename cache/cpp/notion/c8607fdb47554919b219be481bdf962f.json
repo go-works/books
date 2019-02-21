@@ -1,0 +1,432 @@
+{
+  "ID": "c8607fdb-4755-4919-b219-be481bdf962f",
+  "Root": {
+    "alive": true,
+    "content": [
+      "d03e596b-f30b-4378-b374-94c81a8b9d6f",
+      "64f9ec2c-160b-4239-a996-6c10216f9123",
+      "df4882a3-e53c-4364-a854-550e285c5172",
+      "0bb5e0de-6075-4a55-8e78-d2da2b01a85a",
+      "08ec86e1-81ef-41d2-bcea-b8ec27872f42",
+      "b31dc0c6-4ca7-4baa-b0b5-684ed10e85b6",
+      "5c6ccab6-c822-4ae6-addc-552532a629b4",
+      "09b6e92d-8b31-4bb5-840e-9a4ce14afa2d",
+      "5a0c4788-6104-4fba-b8c1-9cda2a5ae2e0"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550522280633,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "c8607fdb-4755-4919-b219-be481bdf962f",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550655240000,
+    "parent_id": "f1b860db-be5a-41ed-a67b-b7b0181ec59f",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Using std::async instead of std::thread"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 14,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522280626,
+        "id": "d03e596b-f30b-4378-b374-94c81a8b9d6f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522280626,
+        "parent_id": "c8607fdb-4755-4919-b219-be481bdf962f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "std::async",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is also able to make threads. Compared to "
+            ],
+            [
+              "std::thread",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " it is considered less powerful but easier to use when you just want to run a function asynchronously."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "std::async",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is also able to make threads. Compared to "
+          },
+          {
+            "Text": "std::thread",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " it is considered less powerful but easier to use when you just want to run a function asynchronously."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522280628,
+        "id": "64f9ec2c-160b-4239-a996-6c10216f9123",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522280628,
+        "parent_id": "c8607fdb-4755-4919-b219-be481bdf962f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Asynchronously calling a function"
+            ]
+          ]
+        },
+        "type": "sub_header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Asynchronously calling a function"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522280628,
+        "id": "df4882a3-e53c-4364-a854-550e285c5172",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522280628,
+        "parent_id": "c8607fdb-4755-4919-b219-be481bdf962f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003cfuture\u003e\n#include \u003ciostream\u003e\n\nunsigned int square(unsigned int i){\n    return i*i;\n}\n\nint main() {\n    auto f = std::async(std::launch::async, square, 8);\n    std::cout \u003c\u003c \"square currently running\\n\"; //do something while square is running\n    std::cout \u003c\u003c \"result is \" \u003c\u003c f.get() \u003c\u003c '\\n'; //getting the result from square\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \u003cfuture\u003e\n#include \u003ciostream\u003e\n\nunsigned int square(unsigned int i){\n    return i*i;\n}\n\nint main() {\n    auto f = std::async(std::launch::async, square, 8);\n    std::cout \u003c\u003c \"square currently running\\n\"; //do something while square is running\n    std::cout \u003c\u003c \"result is \" \u003c\u003c f.get() \u003c\u003c '\\n'; //getting the result from square\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522280629,
+        "id": "0bb5e0de-6075-4a55-8e78-d2da2b01a85a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522280629,
+        "parent_id": "c8607fdb-4755-4919-b219-be481bdf962f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Common Pitfalls"
+            ]
+          ]
+        },
+        "type": "sub_header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Common Pitfalls"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522280630,
+        "id": "08ec86e1-81ef-41d2-bcea-b8ec27872f42",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522280630,
+        "parent_id": "c8607fdb-4755-4919-b219-be481bdf962f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "std::async",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " returns a "
+            ],
+            [
+              "std::future",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " that holds the return value that will be calculated by the function. When that "
+            ],
+            [
+              "future",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " gets destroyed it waits until the thread completes, making your code effectively single threaded. This is easily overlooked when you don’t need the return value:"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "std::async",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " returns a "
+          },
+          {
+            "Text": "std::future",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " that holds the return value that will be calculated by the function. When that "
+          },
+          {
+            "Text": "future",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " gets destroyed it waits until the thread completes, making your code effectively single threaded. This is easily overlooked when you don’t need the return value:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522280630,
+        "id": "b31dc0c6-4ca7-4baa-b0b5-684ed10e85b6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522280630,
+        "parent_id": "c8607fdb-4755-4919-b219-be481bdf962f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "std::async(std::launch::async, square, 5);\n//thread already completed at this point, because the returning future got destroyed"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "std::async(std::launch::async, square, 5);\n//thread already completed at this point, because the returning future got destroyed",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522280631,
+        "id": "5c6ccab6-c822-4ae6-addc-552532a629b4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522280631,
+        "parent_id": "c8607fdb-4755-4919-b219-be481bdf962f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "std::async",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " works without a launch policy, so "
+            ],
+            [
+              "std::async(square, 5);",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " compiles. When you do that the system gets to decide if it wants to create a thread or not. The idea was that the system chooses to make a thread unless it is already running more threads than it can run efficiently. Unfortunately implementations commonly just choose not to create a thread in that situation, ever, so you need to override that behavior with "
+            ],
+            [
+              "std::launch::async",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " which forces the system to create a thread."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "std::async",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " works without a launch policy, so "
+          },
+          {
+            "Text": "std::async(square, 5);",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " compiles. When you do that the system gets to decide if it wants to create a thread or not. The idea was that the system chooses to make a thread unless it is already running more threads than it can run efficiently. Unfortunately implementations commonly just choose not to create a thread in that situation, ever, so you need to override that behavior with "
+          },
+          {
+            "Text": "std::launch::async",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " which forces the system to create a thread."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522280631,
+        "id": "09b6e92d-8b31-4bb5-840e-9a4ce14afa2d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522280631,
+        "parent_id": "c8607fdb-4755-4919-b219-be481bdf962f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Beware of race conditions."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Beware of race conditions."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550522280633,
+        "id": "5a0c4788-6104-4fba-b8c1-9cda2a5ae2e0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550522280633,
+        "parent_id": "c8607fdb-4755-4919-b219-be481bdf962f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "More on async on "
+            ],
+            [
+              "Futures and Promises",
+              [
+                [
+                  "a",
+                  "http://stackoverflow.com/documentation/c%2B%2B/9840/futures-and-promises#t=201704281532312052997"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "More on async on "
+          },
+          {
+            "Text": "Futures and Promises",
+            "Link": "http://stackoverflow.com/documentation/c%2B%2B/9840/futures-and-promises#t=201704281532312052997"
+          }
+        ]
+      }
+    ],
+    "title": "Using std::async instead of std::thread",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

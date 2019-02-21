@@ -1,0 +1,97 @@
+{
+  "ID": "8968eddd-a19d-4834-8264-e27eb0690bf5",
+  "Root": {
+    "alive": true,
+    "content": [
+      "14fb4af6-5026-4758-b570-998d4cf6c2f3",
+      "b356d4d5-3b79-413f-9832-3be6ae52b75c"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550525422010,
+    "id": "8968eddd-a19d-4834-8264-e27eb0690bf5",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550525422010,
+    "parent_id": "f0a4483b-95d9-4c82-8e41-15c96d864674",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "020 std mutex"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550525422007,
+        "id": "14fb4af6-5026-4758-b570-998d4cf6c2f3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550525422007,
+        "parent_id": "8968eddd-a19d-4834-8264-e27eb0690bf5",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "std::mutex is a simple, non-recursive synchronization structure that is used to protect data which is accessed by multiple threads."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "std::mutex is a simple, non-recursive synchronization structure that is used to protect data which is accessed by multiple threads."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550525422009,
+        "id": "b356d4d5-3b79-413f-9832-3be6ae52b75c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550525422009,
+        "parent_id": "8968eddd-a19d-4834-8264-e27eb0690bf5",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "std::atomic_int temp{0};\nstd::mutex _mutex;\n\nstd::thread t( [\u0026](){\n                  \n                  while( temp!= -1){\n                      std::this_thread::sleep_for(std::chrono::seconds(5));\n                      std::unique_lock\u003cstd::mutex\u003e lock( _mutex);\n                      \n                          temp=0;\n                  }\n              });\n\n\nwhile ( true )\n{\n    std::this_thread::sleep_for(std::chrono::milliseconds(1));\n    std::unique_lock\u003cstd::mutex\u003e lock( _mutex, std::try_to_lock);\n    if ( temp \u003c INT_MAX )\n        temp++;\n    cout \u003c\u003c temp \u003c\u003c endl;\n    \n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "std::atomic_int temp{0};\nstd::mutex _mutex;\n\nstd::thread t( [\u0026](){\n                  \n                  while( temp!= -1){\n                      std::this_thread::sleep_for(std::chrono::seconds(5));\n                      std::unique_lock\u003cstd::mutex\u003e lock( _mutex);\n                      \n                          temp=0;\n                  }\n              });\n\n\nwhile ( true )\n{\n    std::this_thread::sleep_for(std::chrono::milliseconds(1));\n    std::unique_lock\u003cstd::mutex\u003e lock( _mutex, std::try_to_lock);\n    if ( temp \u003c INT_MAX )\n        temp++;\n    cout \u003c\u003c temp \u003c\u003c endl;\n    \n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "020 std mutex"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

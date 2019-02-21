@@ -1,0 +1,489 @@
+{
+  "ID": "43daf6fc-9628-41e5-bd4e-4dbb5a753763",
+  "Root": {
+    "alive": true,
+    "content": [
+      "11c6e375-c4c3-42df-9bc3-941d7457a4ea",
+      "dff3da51-b86a-40ef-ab12-743525b3a3e9",
+      "216241d9-f8bd-49e1-b3d8-1c5cff4390f0",
+      "9277d2c0-f96f-490f-bf42-d58cf0218bf7",
+      "155d5df4-5bee-4e44-b899-64c34c9ed260",
+      "0e012856-7bdb-4f44-b223-24daf89fd10b"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550521959515,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "43daf6fc-9628-41e5-bd4e-4dbb5a753763",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550656680000,
+    "parent_id": "cbd900b3-1684-4f0d-977a-5a5b2a20aff3",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Tag Dispatching"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550521959513,
+        "id": "11c6e375-c4c3-42df-9bc3-941d7457a4ea",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550521959513,
+        "parent_id": "43daf6fc-9628-41e5-bd4e-4dbb5a753763",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "A simple way of selecting between functions at compile time is to dispatch a function to an overloaded pair of functions that take a tag as one (usually the last) argument. For example, to implement "
+            ],
+            [
+              "std::advance()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", we can dispatch on the iterator category:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "A simple way of selecting between functions at compile time is to dispatch a function to an overloaded pair of functions that take a tag as one (usually the last) argument. For example, to implement "
+          },
+          {
+            "Text": "std::advance()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", we can dispatch on the iterator category:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550521959513,
+        "id": "dff3da51-b86a-40ef-ab12-743525b3a3e9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550521959513,
+        "parent_id": "43daf6fc-9628-41e5-bd4e-4dbb5a753763",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "namespace details {\n    template \u003cclass RAIter, class Distance\u003e\n    void advance(RAIter\u0026 it, Distance n, std::random_access_iterator_tag) {\n        it += n;\n    }\n\n    template \u003cclass BidirIter, class Distance\u003e\n    void advance(BidirIter\u0026 it, Distance n, std::bidirectional_iterator_tag) {\n        if (n \u003e 0) {\n            while (n--) ++it;\n        }\n        else {\n            while (n++) --it;\n        }\n    }\n\n    template \u003cclass InputIter, class Distance\u003e\n    void advance(InputIter\u0026 it, Distance n, std::input_iterator_tag) {\n        while (n--) {\n            ++it;\n        }\n    }    \n}\n\ntemplate \u003cclass Iter, class Distance\u003e\nvoid advance(Iter\u0026 it, Distance n) {\n    details::advance(it, n, \n            typename std::iterator_traits\u003cIter\u003e::iterator_category{} );\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "namespace details {\n    template \u003cclass RAIter, class Distance\u003e\n    void advance(RAIter\u0026 it, Distance n, std::random_access_iterator_tag) {\n        it += n;\n    }\n\n    template \u003cclass BidirIter, class Distance\u003e\n    void advance(BidirIter\u0026 it, Distance n, std::bidirectional_iterator_tag) {\n        if (n \u003e 0) {\n            while (n--) ++it;\n        }\n        else {\n            while (n++) --it;\n        }\n    }\n\n    template \u003cclass InputIter, class Distance\u003e\n    void advance(InputIter\u0026 it, Distance n, std::input_iterator_tag) {\n        while (n--) {\n            ++it;\n        }\n    }    \n}\n\ntemplate \u003cclass Iter, class Distance\u003e\nvoid advance(Iter\u0026 it, Distance n) {\n    details::advance(it, n, \n            typename std::iterator_traits\u003cIter\u003e::iterator_category{} );\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550521959513,
+        "id": "216241d9-f8bd-49e1-b3d8-1c5cff4390f0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550521959513,
+        "parent_id": "43daf6fc-9628-41e5-bd4e-4dbb5a753763",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The "
+            ],
+            [
+              "std::XY_iterator_tag",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " arguments of the overloaded "
+            ],
+            [
+              "details::advance",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " functions are unused function parameters. The actual implementation does not matter (actually it is completely empty). Their only purpose is to allow the compiler to select an overload based on which tag class "
+            ],
+            [
+              "details::advance",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is called with."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The "
+          },
+          {
+            "Text": "std::XY_iterator_tag",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " arguments of the overloaded "
+          },
+          {
+            "Text": "details::advance",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " functions are unused function parameters. The actual implementation does not matter (actually it is completely empty). Their only purpose is to allow the compiler to select an overload based on which tag class "
+          },
+          {
+            "Text": "details::advance",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is called with."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550521959514,
+        "id": "9277d2c0-f96f-490f-bf42-d58cf0218bf7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550521959514,
+        "parent_id": "43daf6fc-9628-41e5-bd4e-4dbb5a753763",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In this example, "
+            ],
+            [
+              "advance",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " uses the "
+            ],
+            [
+              "iterator_traits\u003cT\u003e::iterator_category",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " metafunction which returns one of the "
+            ],
+            [
+              "iterator_tag",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " classes, depending on the actual type of "
+            ],
+            [
+              "Iter",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". A default-constructed object of the "
+            ],
+            [
+              "iterator_category\u003cIter\u003e::type",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " then lets the compiler select one of the different overloads of "
+            ],
+            [
+              "details::advance",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". (This function parameter is likely to be completely optimized away, as it is a default-constructed object of an empty "
+            ],
+            [
+              "struct",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and never used.)"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In this example, "
+          },
+          {
+            "Text": "advance",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " uses the "
+          },
+          {
+            "Text": "iterator_traits\u003cT\u003e::iterator_category",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " metafunction which returns one of the "
+          },
+          {
+            "Text": "iterator_tag",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " classes, depending on the actual type of "
+          },
+          {
+            "Text": "Iter",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". A default-constructed object of the "
+          },
+          {
+            "Text": "iterator_category\u003cIter\u003e::type",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " then lets the compiler select one of the different overloads of "
+          },
+          {
+            "Text": "details::advance",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". (This function parameter is likely to be completely optimized away, as it is a default-constructed object of an empty "
+          },
+          {
+            "Text": "struct",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and never used.)"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550521959514,
+        "id": "155d5df4-5bee-4e44-b899-64c34c9ed260",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550521959514,
+        "parent_id": "43daf6fc-9628-41e5-bd4e-4dbb5a753763",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Tag dispatching can give you code that’s much easier to read than the equivalents using SFINAE and "
+            ],
+            [
+              "enable_if",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Tag dispatching can give you code that’s much easier to read than the equivalents using SFINAE and "
+          },
+          {
+            "Text": "enable_if",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550521959515,
+        "id": "0e012856-7bdb-4f44-b223-24daf89fd10b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550521959515,
+        "parent_id": "43daf6fc-9628-41e5-bd4e-4dbb5a753763",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Note: while C++17’s ",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              "if constexpr",
+              [
+                [
+                  "i"
+                ],
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " may simplify the implementation of ",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              "advance",
+              [
+                [
+                  "i"
+                ],
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " in particular, it is not suitable for open implementations unlike tag dispatching.",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Note: while C++17’s ",
+            "AttrFlags": 4
+          },
+          {
+            "Text": "if constexpr",
+            "AttrFlags": 6
+          },
+          {
+            "Text": " may simplify the implementation of ",
+            "AttrFlags": 4
+          },
+          {
+            "Text": "advance",
+            "AttrFlags": 6
+          },
+          {
+            "Text": " in particular, it is not suitable for open implementations unlike tag dispatching.",
+            "AttrFlags": 4
+          }
+        ]
+      }
+    ],
+    "title": "Tag Dispatching",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}
