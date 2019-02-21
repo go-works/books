@@ -9,6 +9,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"runtime"
+	"strconv"
 	"strings"
 
 	"github.com/kjk/u"
@@ -378,4 +379,22 @@ func reverseStringSlice(a []string) {
 	for i := 0; i < n; i++ {
 		a[i], a[n-i] = a[n-i], a[i]
 	}
+}
+
+// turn "010 Defining a SetterGetter" to "Defining a SetterGetter"
+func cleanTitle(s string) string {
+	idx := strings.Index(s, " ")
+	if idx == -1 {
+		return s
+	}
+	if idx > 6 {
+		return s
+	}
+	maybeNum := s[:idx]
+	rest := s[idx+1:]
+	_, err := strconv.Atoi(maybeNum)
+	if err != nil {
+		return s
+	}
+	return strings.TrimSpace(rest)
 }

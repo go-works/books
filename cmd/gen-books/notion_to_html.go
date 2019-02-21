@@ -92,7 +92,7 @@ func (g *HTMLGenerator) getURLAndTitleForBlock(block *notionapi.Block) (string, 
 	id := normalizeID(block.ID)
 	page := g.book.idToPage[id]
 	if page == nil {
-		title := block.Title
+		title := cleanTitle(block.Title)
 		fmt.Printf("No article for id %s %s\n", id, title)
 		url := "/article/" + id + "/" + urlify(title)
 		return url, title
