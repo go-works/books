@@ -1,0 +1,177 @@
+{
+  "ID": "916fca26-cdc4-4a98-997c-94de46c51f40",
+  "Root": {
+    "alive": true,
+    "content": [
+      "8e97704d-6dc4-444a-8958-7c2229ee565e",
+      "1a72bf0a-c625-4a48-aad0-3a6eb6c5aa89",
+      "9b91d0d0-9d5d-4a18-b6b4-b9e01ac6c083",
+      "64341873-b4f1-4577-bdf3-4461601177ff",
+      "4b8eb773-284d-436c-94d1-eb21189e5a9a"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550385153159,
+    "id": "916fca26-cdc4-4a98-997c-94de46c51f40",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550480700000,
+    "parent_id": "0c02c8f2-6e29-480e-9bb2-cdeb1f224d96",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Basic PLpgSQL Function"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 6,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550385153158,
+        "id": "8e97704d-6dc4-444a-8958-7c2229ee565e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550385153158,
+        "parent_id": "916fca26-cdc4-4a98-997c-94de46c51f40",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "A simple PL/pgSQL function:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "A simple PL/pgSQL function:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550385153158,
+        "id": "1a72bf0a-c625-4a48-aad0-3a6eb6c5aa89",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550480700000,
+        "parent_id": "916fca26-cdc4-4a98-997c-94de46c51f40",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "SQL"
+            ]
+          ],
+          "title": [
+            [
+              "CREATE FUNCTION active_subscribers() RETURNS bigint AS $$\nDECLARE\n    -- variable for the following BEGIN ... END block\n    subscribers integer;\nBEGIN\n    -- SELECT must always be used with INTO\n    SELECT COUNT(user_id) INTO subscribers FROM users WHERE subscribed;\n    -- function result\n    RETURN subscribers;\nEXCEPTION\n    -- return NULL if table \"users\" does not exist\n    WHEN undefined_table\n    THEN RETURN NULL;\nEND;\n$$ LANGUAGE plpgsql;"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "CREATE FUNCTION active_subscribers() RETURNS bigint AS $$\nDECLARE\n    -- variable for the following BEGIN ... END block\n    subscribers integer;\nBEGIN\n    -- SELECT must always be used with INTO\n    SELECT COUNT(user_id) INTO subscribers FROM users WHERE subscribed;\n    -- function result\n    RETURN subscribers;\nEXCEPTION\n    -- return NULL if table \"users\" does not exist\n    WHEN undefined_table\n    THEN RETURN NULL;\nEND;\n$$ LANGUAGE plpgsql;",
+        "code_language": "SQL"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550385153159,
+        "id": "9b91d0d0-9d5d-4a18-b6b4-b9e01ac6c083",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550385153159,
+        "parent_id": "916fca26-cdc4-4a98-997c-94de46c51f40",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This could have been achieved with just the SQL statement but demonstrates the basic structure of a function."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This could have been achieved with just the SQL statement but demonstrates the basic structure of a function."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550385153159,
+        "id": "64341873-b4f1-4577-bdf3-4461601177ff",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550385153159,
+        "parent_id": "916fca26-cdc4-4a98-997c-94de46c51f40",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To execute the function do:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To execute the function do:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550385153159,
+        "id": "4b8eb773-284d-436c-94d1-eb21189e5a9a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550385153159,
+        "parent_id": "916fca26-cdc4-4a98-997c-94de46c51f40",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "select active_subscribers();"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "select active_subscribers();",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Basic PLpgSQL Function"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

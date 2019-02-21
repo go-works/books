@@ -134,13 +134,31 @@ var (
 		// https://www.notion.so/kjkpublic/Essential-iOS-3626edc1bd044431afddc89648a7050f
 		NotionStartPageID: "3626edc1bd044431afddc89648a7050f",
 	}
+	bookPostgresql = &Book{
+		NoPublish: true,
+		Title: "PostgreSQL",
+		TitleLong: "Essential PostgreSQL",
+		Dir: "postgresql",
+		CoverImageName: "PostgreSQL.png",
+		// https://www.notion.so/kjkpublic/Essential-PostgreSQL-799304340f2c4081b6c4b7eb28df368e
+		NotionStartPageID: "799304340f2c4081b6c4b7eb28df368e",
+	}
+	bookMysql = &Book{
+		NoPublish: true,
+		Title: "MySQL",
+		TitleLong: "Essential MySQL",
+		Dir: "mysql",
+		CoverImageName: "MySQL.png",
+		// https://www.notion.so/kjkpublic/Essential-MySQL-4489ab73989f4ae9912486561e165deb
+		NotionStartPageID: "4489ab73989f4ae9912486561e165deb",
+	}
 )
 
 var (
 	books = []*Book{
 		bookGo, bookCsharp, bookPython, bookKotlin, bookJavaScript,
 		bookDart, bookJava, bookAndroid, bookSql, bookCpp, bookIOS,
-
+		bookPostgresql, bookMysql,
 	}
 )
 

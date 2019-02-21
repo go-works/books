@@ -1,0 +1,173 @@
+{
+  "ID": "f359192c-2413-44c2-8767-f582983bf808",
+  "Root": {
+    "alive": true,
+    "content": [
+      "41e59f30-1ef9-41ef-ab5a-c5254023e8aa",
+      "363d30b7-a1b2-47ff-8913-a4ed23787286",
+      "f5ad47f3-14ee-4f96-8376-4097ad744b8f",
+      "f62c78e9-b3d8-4821-a9df-e1a630c36d3c"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550387198959,
+    "id": "f359192c-2413-44c2-8767-f582983bf808",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550480880000,
+    "parent_id": "5b31d6d9-d8d3-44d7-85da-edb02d8e7383",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "saveProdDb.sh"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 6,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550387198956,
+        "id": "41e59f30-1ef9-41ef-ab5a-c5254023e8aa",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550387198956,
+        "parent_id": "f359192c-2413-44c2-8767-f582983bf808",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In general, we tend to back up the DB with the pgAdmin client. The following is a sh script used to save the database (under linux) in two formats:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In general, we tend to back up the DB with the pgAdmin client. The following is a sh script used to save the database (under linux) in two formats:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550387198959,
+        "id": "363d30b7-a1b2-47ff-8913-a4ed23787286",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550387198959,
+        "parent_id": "f359192c-2413-44c2-8767-f582983bf808",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "SQL file",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              ": for a possible resume of data on any version of PostgreSQL."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "SQL file",
+            "AttrFlags": 1
+          },
+          {
+            "Text": ": for a possible resume of data on any version of PostgreSQL."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550387198959,
+        "id": "f5ad47f3-14ee-4f96-8376-4097ad744b8f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550387198959,
+        "parent_id": "f359192c-2413-44c2-8767-f582983bf808",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Dump file",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              ": for a higher version than the current version."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Dump file",
+            "AttrFlags": 1
+          },
+          {
+            "Text": ": for a higher version than the current version."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550387198959,
+        "id": "f62c78e9-b3d8-4821-a9df-e1a630c36d3c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550387198959,
+        "parent_id": "f359192c-2413-44c2-8767-f582983bf808",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#!/bin/sh\ncd /save_db\n#rm -R /save_db/*\nDATE=$(date +%d-%m-%Y-%Hh%M)\necho -e \"Sauvegarde de la base du ${DATE}\"\nmkdir prodDir${DATE}\ncd prodDir${DATE}\n\n#dump file\n/opt/postgres/9.0/bin/pg_dump -i -h localhost -p 5432 -U postgres -F c -b -w -v -f \"dbprod${DATE}.backup\" dbprod\n\n#SQL file\n/opt/postgres/9.0/bin/pg_dump -i -h localhost -p 5432 -U postgres --format plain --verbose  -f \"dbprod${DATE}.sql\" dbprod"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#!/bin/sh\ncd /save_db\n#rm -R /save_db/*\nDATE=$(date +%d-%m-%Y-%Hh%M)\necho -e \"Sauvegarde de la base du ${DATE}\"\nmkdir prodDir${DATE}\ncd prodDir${DATE}\n\n#dump file\n/opt/postgres/9.0/bin/pg_dump -i -h localhost -p 5432 -U postgres -F c -b -w -v -f \"dbprod${DATE}.backup\" dbprod\n\n#SQL file\n/opt/postgres/9.0/bin/pg_dump -i -h localhost -p 5432 -U postgres --format plain --verbose  -f \"dbprod${DATE}.sql\" dbprod",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "saveProdDb.sh"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,142 @@
+{
+  "ID": "d2ae8d10-8d69-4613-a546-ae8777077f7b",
+  "Root": {
+    "alive": true,
+    "content": [
+      "457141db-ec44-4af7-a90a-7c6a3e396cc7",
+      "9b7fa796-6a75-4ed4-8571-4ad1eff65314",
+      "91db6934-484e-421c-886e-457c5038bf11"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550384985174,
+    "id": "d2ae8d10-8d69-4613-a546-ae8777077f7b",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550480340000,
+    "parent_id": "f25f5b01-03a7-4c7d-8e93-9426f864b292",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Accessing Postgresql from .NET using the Npgsql provider"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 6,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550384985173,
+        "id": "457141db-ec44-4af7-a90a-7c6a3e396cc7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550384985173,
+        "parent_id": "d2ae8d10-8d69-4613-a546-ae8777077f7b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "One of the more popular .NET providers for Postgresql is "
+            ],
+            [
+              "Npgsql",
+              [
+                [
+                  "a",
+                  "http://www.npgsql.org/"
+                ]
+              ]
+            ],
+            [
+              ", which is ADO.NET compatible and is used nearly identically as other .NET database providers."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "One of the more popular .NET providers for Postgresql is "
+          },
+          {
+            "Text": "Npgsql",
+            "Link": "http://www.npgsql.org/"
+          },
+          {
+            "Text": ", which is ADO.NET compatible and is used nearly identically as other .NET database providers."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550384985174,
+        "id": "9b7fa796-6a75-4ed4-8571-4ad1eff65314",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550384985174,
+        "parent_id": "d2ae8d10-8d69-4613-a546-ae8777077f7b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "A typical query is performed by creating a command, binding parameters, and then executing the command. In C#:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "A typical query is performed by creating a command, binding parameters, and then executing the command. In C#:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550384985174,
+        "id": "91db6934-484e-421c-886e-457c5038bf11",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550384985174,
+        "parent_id": "d2ae8d10-8d69-4613-a546-ae8777077f7b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var connString = \"Host=myserv;Username=myuser;Password=mypass;Database=mydb\";\nusing (var conn = new NpgsqlConnection(connString))\n{\n    var querystring = \"INSERT INTO data (some_field) VALUES (@content)\";\n    \n    conn.Open();\n    // Create a new command with CommandText and Connection constructor\n    using (var cmd = new NpgsqlCommand(querystring, conn))\n    {\n        // Add a parameter and set its type with the NpgsqlDbType enum\n        var contentString = \"Hello World!\";\n        cmd.Parameters.Add(\"@content\", NpgsqlDbType.Text).Value = contentString;\n\n        // Execute a query that returns no results\n        cmd.ExecuteNonQuery();\n\n\n        /* It is possible to reuse a command object and open connection instead of creating new ones */\n\n        // Create a new query and set its parameters\n        int keyId = 101;\n        cmd.CommandText = \"SELECT primary_key, some_field FROM data WHERE primary_key = @keyId\";\n        cmd.Parameters.Clear();\n        cmd.Parameters.Add(\"@keyId\", NpgsqlDbType.Integer).Value = keyId;\n\n        // Execute the command and read through the rows one by one\n        using (NpgsqlDataReader reader = cmd.ExecuteReader())\n        {\n            while (reader.Read())   // Returns false for 0 rows, or after reading the last row of the results\n            {\n                // read an integer value\n                int primaryKey = reader.GetInt32(0);\n                // or \n                primaryKey = Convert.ToInt32(reader[\"primary_key\"]);\n\n                // read a text value\n                string someFieldText = reader[\"some_field\"].ToString();\n            }\n        }\n    }\n}    // the C# 'using' directive calls conn.Close() and conn.Dispose() for us"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var connString = \"Host=myserv;Username=myuser;Password=mypass;Database=mydb\";\nusing (var conn = new NpgsqlConnection(connString))\n{\n    var querystring = \"INSERT INTO data (some_field) VALUES (@content)\";\n    \n    conn.Open();\n    // Create a new command with CommandText and Connection constructor\n    using (var cmd = new NpgsqlCommand(querystring, conn))\n    {\n        // Add a parameter and set its type with the NpgsqlDbType enum\n        var contentString = \"Hello World!\";\n        cmd.Parameters.Add(\"@content\", NpgsqlDbType.Text).Value = contentString;\n\n        // Execute a query that returns no results\n        cmd.ExecuteNonQuery();\n\n\n        /* It is possible to reuse a command object and open connection instead of creating new ones */\n\n        // Create a new query and set its parameters\n        int keyId = 101;\n        cmd.CommandText = \"SELECT primary_key, some_field FROM data WHERE primary_key = @keyId\";\n        cmd.Parameters.Clear();\n        cmd.Parameters.Add(\"@keyId\", NpgsqlDbType.Integer).Value = keyId;\n\n        // Execute the command and read through the rows one by one\n        using (NpgsqlDataReader reader = cmd.ExecuteReader())\n        {\n            while (reader.Read())   // Returns false for 0 rows, or after reading the last row of the results\n            {\n                // read an integer value\n                int primaryKey = reader.GetInt32(0);\n                // or \n                primaryKey = Convert.ToInt32(reader[\"primary_key\"]);\n\n                // read a text value\n                string someFieldText = reader[\"some_field\"].ToString();\n            }\n        }\n    }\n}    // the C# 'using' directive calls conn.Close() and conn.Dispose() for us",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Accessing Postgresql from .NET using the Npgsql provider"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

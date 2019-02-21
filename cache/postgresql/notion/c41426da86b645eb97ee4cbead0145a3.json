@@ -1,0 +1,134 @@
+{
+  "ID": "c41426da-86b6-45eb-97ee-4cbead0145a3",
+  "Root": {
+    "alive": true,
+    "content": [
+      "c0e991c8-e09a-417b-8f85-63699fd7e986",
+      "2c20df54-d170-4f34-ad1c-8067ce41ed4d"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550387354227,
+    "id": "c41426da-86b6-45eb-97ee-4cbead0145a3",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550481120000,
+    "parent_id": "ed4d52f8-abc3-4fae-bd5e-08974843aa30",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Connecting with java.sql.DriverManager and Properties"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 6,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550387354226,
+        "id": "c0e991c8-e09a-417b-8f85-63699fd7e986",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550387354226,
+        "parent_id": "c41426da-86b6-45eb-97ee-4cbead0145a3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Instead of specifying connection parameters like user and password (see a complete list "
+            ],
+            [
+              "here",
+              [
+                [
+                  "a",
+                  "https://jdbc.postgresql.org/documentation/head/connect.html#connection-parameters"
+                ]
+              ]
+            ],
+            [
+              ") in the URL or a separate parameters, you can pack them into a "
+            ],
+            [
+              "java.util.Properties",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " object:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Instead of specifying connection parameters like user and password (see a complete list "
+          },
+          {
+            "Text": "here",
+            "Link": "https://jdbc.postgresql.org/documentation/head/connect.html#connection-parameters"
+          },
+          {
+            "Text": ") in the URL or a separate parameters, you can pack them into a "
+          },
+          {
+            "Text": "java.util.Properties",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " object:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550387354227,
+        "id": "2c20df54-d170-4f34-ad1c-8067ce41ed4d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550481120000,
+        "parent_id": "c41426da-86b6-45eb-97ee-4cbead0145a3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Java"
+            ]
+          ],
+          "title": [
+            [
+              "/**\n * Connect to a PostgreSQL database.\n * @param url the JDBC URL to connect to. Must start with \"jdbc:postgresql:\"\n * @param user the username for the connection\n * @param password the password for the connection\n * @return a connection object for the established connection\n * @throws ClassNotFoundException if the driver class cannot be found on the Java class path\n * @throws java.sql.SQLException if the connection to the database fails\n */\nprivate static java.sql.Connection connect(String url, String user, String password)\n    throws ClassNotFoundException, java.sql.SQLException\n{\n    /*\n     * Register the PostgreSQL JDBC driver.\n     * This may throw a ClassNotFoundException.\n     */\n    Class.forName(\"org.postgresql.Driver\");\n    java.util.Properties props = new java.util.Properties();\n    props.setProperty(\"user\", user);\n    props.setProperty(\"password\", password);\n    /* don't use server prepared statements */\n    props.setProperty(\"prepareThreshold\", \"0\");\n    /*\n     * Tell the driver manager to connect to the database specified with the URL.\n     * This may throw an SQLException.\n     */\n    return java.sql.DriverManager.getConnection(url, props);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "/**\n * Connect to a PostgreSQL database.\n * @param url the JDBC URL to connect to. Must start with \"jdbc:postgresql:\"\n * @param user the username for the connection\n * @param password the password for the connection\n * @return a connection object for the established connection\n * @throws ClassNotFoundException if the driver class cannot be found on the Java class path\n * @throws java.sql.SQLException if the connection to the database fails\n */\nprivate static java.sql.Connection connect(String url, String user, String password)\n    throws ClassNotFoundException, java.sql.SQLException\n{\n    /*\n     * Register the PostgreSQL JDBC driver.\n     * This may throw a ClassNotFoundException.\n     */\n    Class.forName(\"org.postgresql.Driver\");\n    java.util.Properties props = new java.util.Properties();\n    props.setProperty(\"user\", user);\n    props.setProperty(\"password\", password);\n    /* don't use server prepared statements */\n    props.setProperty(\"prepareThreshold\", \"0\");\n    /*\n     * Tell the driver manager to connect to the database specified with the URL.\n     * This may throw an SQLException.\n     */\n    return java.sql.DriverManager.getConnection(url, props);\n}",
+        "code_language": "Java"
+      }
+    ],
+    "title": "Connecting with java.sql.DriverManager and Properties"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

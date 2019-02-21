@@ -1,0 +1,169 @@
+{
+  "ID": "a245d6e3-9e7c-4b23-b2fc-e49b457ab27c",
+  "Root": {
+    "alive": true,
+    "content": [
+      "03cd480b-0983-4f57-99ac-512968f79e40",
+      "c913404b-2a2d-4290-a964-b00bd815a712",
+      "ec47a6fd-ba3b-4fec-90bd-c6128080063a",
+      "0b4fb13b-f8a4-4da1-9a12-b7d6cebe28ae"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550385672105,
+    "id": "a245d6e3-9e7c-4b23-b2fc-e49b457ab27c",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550480760000,
+    "parent_id": "584f9f2e-7a4f-4f37-8080-eb3de3eaf6d2",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Basic PLpgSQL Trigger Function"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 6,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550385672101,
+        "id": "03cd480b-0983-4f57-99ac-512968f79e40",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550385672101,
+        "parent_id": "a245d6e3-9e7c-4b23-b2fc-e49b457ab27c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This is a simple trigger function."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This is a simple trigger function."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550385672104,
+        "id": "c913404b-2a2d-4290-a964-b00bd815a712",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550480760000,
+        "parent_id": "a245d6e3-9e7c-4b23-b2fc-e49b457ab27c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "SQL"
+            ]
+          ],
+          "title": [
+            [
+              "CREATE OR REPLACE FUNCTION my_simple_trigger_function()\nRETURNS trigger AS\n$BODY$\n\nBEGIN\n    -- TG_TABLE_NAME :name of the table that caused the trigger invocation\nIF (TG_TABLE_NAME = 'users') THEN\n\n    --TG_OP : operation the trigger was fired\n  IF (TG_OP = 'INSERT') THEN \n    --NEW.id is holding the new database row value (in here id is the id column in users table)\n    --NEW will return null for DELETE operations\n    INSERT INTO log_table (date_and_time, description) VALUES (now(), 'New user inserted. User ID: '|| NEW.id);        \n    RETURN NEW;        \n\n  ELSIF (TG_OP = 'DELETE') THEN    \n    --OLD.id is holding the old database row value (in here id is the id column in users table)\n    --OLD will return null for INSERT operations\n    INSERT INTO log_table (date_and_time, description) VALUES (now(), 'User deleted.. User ID: ' || OLD.id);\n    RETURN OLD;        \n    \n  END IF;\n\nRETURN null;\nEND IF;\n\nEND;\n$BODY$\nLANGUAGE plpgsql VOLATILE\nCOST 100;"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "CREATE OR REPLACE FUNCTION my_simple_trigger_function()\nRETURNS trigger AS\n$BODY$\n\nBEGIN\n    -- TG_TABLE_NAME :name of the table that caused the trigger invocation\nIF (TG_TABLE_NAME = 'users') THEN\n\n    --TG_OP : operation the trigger was fired\n  IF (TG_OP = 'INSERT') THEN \n    --NEW.id is holding the new database row value (in here id is the id column in users table)\n    --NEW will return null for DELETE operations\n    INSERT INTO log_table (date_and_time, description) VALUES (now(), 'New user inserted. User ID: '|| NEW.id);        \n    RETURN NEW;        \n\n  ELSIF (TG_OP = 'DELETE') THEN    \n    --OLD.id is holding the old database row value (in here id is the id column in users table)\n    --OLD will return null for INSERT operations\n    INSERT INTO log_table (date_and_time, description) VALUES (now(), 'User deleted.. User ID: ' || OLD.id);\n    RETURN OLD;        \n    \n  END IF;\n\nRETURN null;\nEND IF;\n\nEND;\n$BODY$\nLANGUAGE plpgsql VOLATILE\nCOST 100;",
+        "code_language": "SQL"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550385672104,
+        "id": "ec47a6fd-ba3b-4fec-90bd-c6128080063a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550385672104,
+        "parent_id": "a245d6e3-9e7c-4b23-b2fc-e49b457ab27c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Adding this trigger function to the "
+            ],
+            [
+              "users",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " table"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Adding this trigger function to the "
+          },
+          {
+            "Text": "users",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " table"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550385672105,
+        "id": "0b4fb13b-f8a4-4da1-9a12-b7d6cebe28ae",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550480760000,
+        "parent_id": "a245d6e3-9e7c-4b23-b2fc-e49b457ab27c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "SQL"
+            ]
+          ],
+          "title": [
+            [
+              "CREATE TRIGGER my_trigger\nAFTER INSERT OR DELETE\nON users\nFOR EACH ROW\nEXECUTE PROCEDURE my_simple_trigger_function();"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "CREATE TRIGGER my_trigger\nAFTER INSERT OR DELETE\nON users\nFOR EACH ROW\nEXECUTE PROCEDURE my_simple_trigger_function();",
+        "code_language": "SQL"
+      }
+    ],
+    "title": "Basic PLpgSQL Trigger Function"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}
