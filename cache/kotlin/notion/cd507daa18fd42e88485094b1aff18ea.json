@@ -1,0 +1,97 @@
+{
+  "ID": "cd507daa-18fd-42e8-8485-094b1aff18ea",
+  "Root": {
+    "alive": true,
+    "content": [
+      "136f4cdc-9008-4700-a75a-c0255184141d",
+      "51eae39c-89c3-4c77-a9f8-17385211fe79"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550459215235,
+    "id": "cd507daa-18fd-42e8-8485-094b1aff18ea",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550479860000,
+    "parent_id": "1caac65f-a4f5-4488-ad6e-0bd2a6e67806",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Conflicts when Implementing Multiple Interfaces with Default Implementations"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 6,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550459215235,
+        "id": "136f4cdc-9008-4700-a75a-c0255184141d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550459215235,
+        "parent_id": "cd507daa-18fd-42e8-8485-094b1aff18ea",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "When implementing more than one interface that have methods of the same name that include default implementations, it is ambiguous to the compiler which implementation should be used. In the case of a conflict, the developer must override the conflicting method and provide a custom implementation. That implementation may chose to delegate to the default implementations or not."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "When implementing more than one interface that have methods of the same name that include default implementations, it is ambiguous to the compiler which implementation should be used. In the case of a conflict, the developer must override the conflicting method and provide a custom implementation. That implementation may chose to delegate to the default implementations or not."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550459215235,
+        "id": "51eae39c-89c3-4c77-a9f8-17385211fe79",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550479860000,
+        "parent_id": "cd507daa-18fd-42e8-8485-094b1aff18ea",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Kotlin"
+            ]
+          ],
+          "title": [
+            [
+              "interface FirstTrait {\n    fun foo() { print(\"first\") }\n    fun bar()\n}\n\ninterface SecondTrait {\n    fun foo() { print(\"second\") }\n    fun bar() { print(\"bar\") }\n}\n\nclass ClassWithConflict : FirstTrait, SecondTrait {\n    override fun foo() {\n        super\u003cFirstTrait\u003e.foo()  // delegate to the default implementation of FirstTrait\n        super\u003cSecondTrait\u003e.foo() // delegate to the default implementation of SecondTrait\n    }\n\n    // function bar() only has a default implementation in one interface and therefore is ok.\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "interface FirstTrait {\n    fun foo() { print(\"first\") }\n    fun bar()\n}\n\ninterface SecondTrait {\n    fun foo() { print(\"second\") }\n    fun bar() { print(\"bar\") }\n}\n\nclass ClassWithConflict : FirstTrait, SecondTrait {\n    override fun foo() {\n        super\u003cFirstTrait\u003e.foo()  // delegate to the default implementation of FirstTrait\n        super\u003cSecondTrait\u003e.foo() // delegate to the default implementation of SecondTrait\n    }\n\n    // function bar() only has a default implementation in one interface and therefore is ok.\n}",
+        "code_language": "Kotlin"
+      }
+    ],
+    "title": "Conflicts when Implementing Multiple Interfaces with Default Implementations"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

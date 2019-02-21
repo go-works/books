@@ -62,11 +62,20 @@ var (
 		// https://www.notion.so/kjkpublic/Essential-Python-12e6f78e68a5497290c96e1365ae6259
 		NotionStartPageID: "12e6f78e68a5497290c96e1365ae6259",
 	}
+	bookKotlin = &Book{
+		NoPublish: true,
+		Title: "Kotlin",
+		TitleLong: "Essential Kotlin",
+		Dir: "kotlin",
+		CoverImageName: "Bash.png", // TODO: need a cover
+		// https://www.notion.so/kjkpublic/Essential-Kotlin-2bdd47318f3a4e8681dda289a8b3472b
+		NotionStartPageID: "2bdd47318f3a4e8681dda289a8b3472b",
+	}
 )
 
 var (
 	books = []*Book{
-		bookGo, bookCsharp, bookPython,
+		bookGo, bookCsharp, bookPython, bookKotlin,
 	}
 )
 

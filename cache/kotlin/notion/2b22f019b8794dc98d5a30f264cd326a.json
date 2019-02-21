@@ -1,0 +1,269 @@
+{
+  "ID": "2b22f019-b879-4dc9-8d5a-30f264cd326a",
+  "Root": {
+    "alive": true,
+    "content": [
+      "2725bfd7-9b91-4596-a308-05031374fa32",
+      "518a4ecc-9b62-4e24-b3fa-0baf110a2400",
+      "53823c35-265e-4f64-bdc9-0598d3e6f6d9",
+      "836b08d3-9ed4-4e58-9a71-e264368850ed",
+      "2e5006c3-ff41-49fa-b62c-6668ff88b35a",
+      "e5209f55-2467-4455-bb5a-9949506ba4e4",
+      "cc41aff0-a1e4-48ef-b5a2-bd9eca5c3378"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550459226061,
+    "id": "2b22f019-b879-4dc9-8d5a-30f264cd326a",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550479980000,
+    "parent_id": "9714a780-3ee8-4e3d-95bb-973e02de4953",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Collect example 7b - Collect with SummarizingInt"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 6,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550459226057,
+        "id": "2725bfd7-9b91-4596-a308-05031374fa32",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550459226057,
+        "parent_id": "2b22f019-b879-4dc9-8d5a-30f264cd326a",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Java:\nIntSummaryStatistics ageSummary =\n    persons.stream()\n           .collect(Collectors.summarizingInt(p -\u003e p.age));\n\nSystem.out.println(ageSummary);\n// IntSummaryStatistics{count=4, sum=76, min=12, average=19.000000, max=23}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Java:\nIntSummaryStatistics ageSummary =\n    persons.stream()\n           .collect(Collectors.summarizingInt(p -\u003e p.age));\n\nSystem.out.println(ageSummary);\n// IntSummaryStatistics{count=4, sum=76, min=12, average=19.000000, max=23}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550459226060,
+        "id": "518a4ecc-9b62-4e24-b3fa-0baf110a2400",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550459226060,
+        "parent_id": "2b22f019-b879-4dc9-8d5a-30f264cd326a",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Kotlin:\n\n// something to hold the stats...\ndata class SummaryStatisticsInt(var count: Int = 0,  \n                                var sum: Int = 0, \n                                var min: Int = Int.MAX_VALUE, \n                                var max: Int = Int.MIN_VALUE, \n                                var avg: Double = 0.0) {\n    fun accumulate(newInt: Int): SummaryStatisticsInt {\n        count++\n        sum += newInt\n        min = min.coerceAtMost(newInt)\n        max = max.coerceAtLeast(newInt)\n        avg = sum.toDouble() / count\n        return this\n    }\n}\n\n// Now manually doing a fold, since Stream.collect is really just a fold\nval stats = persons.fold(SummaryStatisticsInt()) { stats, person -\u003e stats.accumulate(person.age) }\n\nprintln(stats)\n// output: SummaryStatisticsInt(count=4, sum=76, min=12, max=23, avg=19.0)"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Kotlin:\n\n// something to hold the stats...\ndata class SummaryStatisticsInt(var count: Int = 0,  \n                                var sum: Int = 0, \n                                var min: Int = Int.MAX_VALUE, \n                                var max: Int = Int.MIN_VALUE, \n                                var avg: Double = 0.0) {\n    fun accumulate(newInt: Int): SummaryStatisticsInt {\n        count++\n        sum += newInt\n        min = min.coerceAtMost(newInt)\n        max = max.coerceAtLeast(newInt)\n        avg = sum.toDouble() / count\n        return this\n    }\n}\n\n// Now manually doing a fold, since Stream.collect is really just a fold\nval stats = persons.fold(SummaryStatisticsInt()) { stats, person -\u003e stats.accumulate(person.age) }\n\nprintln(stats)\n// output: SummaryStatisticsInt(count=4, sum=76, min=12, max=23, avg=19.0)",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550459226060,
+        "id": "53823c35-265e-4f64-bdc9-0598d3e6f6d9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550459226060,
+        "parent_id": "2b22f019-b879-4dc9-8d5a-30f264cd326a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "But it is better to create an extension function, 2 actually to match styles in Kotlin stdlib:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "But it is better to create an extension function, 2 actually to match styles in Kotlin stdlib:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550459226060,
+        "id": "836b08d3-9ed4-4e58-9a71-e264368850ed",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550459226060,
+        "parent_id": "2b22f019-b879-4dc9-8d5a-30f264cd326a",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Kotlin:\ninline fun Collection\u003cInt\u003e.summarizingInt(): SummaryStatisticsInt\n        = this.fold(SummaryStatisticsInt()) { stats, num -\u003e stats.accumulate(num) }\n\ninline fun \u003cT: Any\u003e Collection\u003cT\u003e.summarizingInt(transform: (T)-\u003eInt): SummaryStatisticsInt =\n        this.fold(SummaryStatisticsInt()) { stats, item -\u003e stats.accumulate(transform(item)) }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Kotlin:\ninline fun Collection\u003cInt\u003e.summarizingInt(): SummaryStatisticsInt\n        = this.fold(SummaryStatisticsInt()) { stats, num -\u003e stats.accumulate(num) }\n\ninline fun \u003cT: Any\u003e Collection\u003cT\u003e.summarizingInt(transform: (T)-\u003eInt): SummaryStatisticsInt =\n        this.fold(SummaryStatisticsInt()) { stats, item -\u003e stats.accumulate(transform(item)) }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550459226060,
+        "id": "2e5006c3-ff41-49fa-b62c-6668ff88b35a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550459226060,
+        "parent_id": "2b22f019-b879-4dc9-8d5a-30f264cd326a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Now you have two ways to use the new "
+            ],
+            [
+              "summarizingInt",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " functions:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Now you have two ways to use the new "
+          },
+          {
+            "Text": "summarizingInt",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " functions:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550459226060,
+        "id": "e5209f55-2467-4455-bb5a-9949506ba4e4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550459226060,
+        "parent_id": "2b22f019-b879-4dc9-8d5a-30f264cd326a",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "val stats2 = persons.map { it.age }.summarizingInt()\n\n// or\n\nval stats3 = persons.summarizingInt { it.age }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "val stats2 = persons.map { it.age }.summarizingInt()\n\n// or\n\nval stats3 = persons.summarizingInt { it.age }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550459226061,
+        "id": "cc41aff0-a1e4-48ef-b5a2-bd9eca5c3378",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550459226061,
+        "parent_id": "2b22f019-b879-4dc9-8d5a-30f264cd326a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "And all of these produce the same results. We can also create this extension to work on "
+            ],
+            [
+              "Sequence",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and for appropriate primitive types."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "And all of these produce the same results. We can also create this extension to work on "
+          },
+          {
+            "Text": "Sequence",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and for appropriate primitive types."
+          }
+        ]
+      }
+    ],
+    "title": "Collect example 7b - Collect with SummarizingInt"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -127,6 +127,9 @@ func downloadAndCachePage(b *Book, c *notionapi.Client, pageID string) (*notiona
 	}
 	d, err := json.MarshalIndent(page, "", "  ")
 	if err == nil {
+
+		err = os.MkdirAll(filepath.Dir(cachedPath), 0755)
+		panicIfErr(err)
 		err = ioutil.WriteFile(cachedPath, d, 0644)
 		panicIfErr(err)
 	} else {
