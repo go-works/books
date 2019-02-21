@@ -1,0 +1,600 @@
+{
+  "ID": "c1212f9e-2710-4be6-8287-d59a4e09c77d",
+  "Root": {
+    "alive": true,
+    "content": [
+      "90b08935-4b40-416a-b870-14259dd917ec",
+      "990a3e77-9319-40c8-8fa2-924cf06a0239",
+      "a1cdb80b-0b87-4078-a413-c8d5fb19fbb6",
+      "e6803ac5-36ab-451d-9b92-e3c8f0271629",
+      "02b4163a-a9ed-4ed8-9bd1-e591b740a67a",
+      "cf7ac6fc-d889-40ee-ad07-bed5390f31e5",
+      "2f9504b3-4966-4254-8236-c7e353b34b66",
+      "90035790-514f-44ce-a880-f7ee6300935f",
+      "b5c167d5-c968-4868-9153-562ce95d6bd6"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550384000187,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "c1212f9e-2710-4be6-8287-d59a4e09c77d",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550645160000,
+    "parent_id": "f396a67b-3772-4b0e-af59-b16f2eba71a6",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Using and misusing GROUP BY"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 10,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550384000181,
+        "id": "90b08935-4b40-416a-b870-14259dd917ec",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550645160000,
+        "parent_id": "c1212f9e-2710-4be6-8287-d59a4e09c77d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "SQL"
+            ]
+          ],
+          "title": [
+            [
+              "SELECT item.item_id, item.name,     /* not SQL-92 */ \n       COUNT(*) number_of_uses\n FROM item \n JOIN uses ON item.item_id, uses.item_id\nGROUP BY item.item_id"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "SELECT item.item_id, item.name,     /* not SQL-92 */ \n       COUNT(*) number_of_uses\n FROM item \n JOIN uses ON item.item_id, uses.item_id\nGROUP BY item.item_id",
+        "code_language": "SQL"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550384000183,
+        "id": "990a3e77-9319-40c8-8fa2-924cf06a0239",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550384000183,
+        "parent_id": "c1212f9e-2710-4be6-8287-d59a4e09c77d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "will show the rows in a table called "
+            ],
+            [
+              "item",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", and show the count of related rows in a table called "
+            ],
+            [
+              "uses",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". This works well, but unfortunately it’s not standard SQL-92."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "will show the rows in a table called "
+          },
+          {
+            "Text": "item",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", and show the count of related rows in a table called "
+          },
+          {
+            "Text": "uses",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". This works well, but unfortunately it’s not standard SQL-92."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550384000184,
+        "id": "a1cdb80b-0b87-4078-a413-c8d5fb19fbb6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550384000184,
+        "parent_id": "c1212f9e-2710-4be6-8287-d59a4e09c77d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Why not? because the "
+            ],
+            [
+              "SELECT",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " clause (and the "
+            ],
+            [
+              "ORDER BY",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " clause) in "
+            ],
+            [
+              "GROUP BY",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " queries must contain columns that are"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Why not? because the "
+          },
+          {
+            "Text": "SELECT",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " clause (and the "
+          },
+          {
+            "Text": "ORDER BY",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " clause) in "
+          },
+          {
+            "Text": "GROUP BY",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " queries must contain columns that are"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550384000184,
+        "id": "e6803ac5-36ab-451d-9b92-e3c8f0271629",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550384000184,
+        "parent_id": "c1212f9e-2710-4be6-8287-d59a4e09c77d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "mentioned in the "
+            ],
+            [
+              "GROUP BY",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " clause, or"
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "mentioned in the "
+          },
+          {
+            "Text": "GROUP BY",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " clause, or"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550384000184,
+        "id": "02b4163a-a9ed-4ed8-9bd1-e591b740a67a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550384000184,
+        "parent_id": "c1212f9e-2710-4be6-8287-d59a4e09c77d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "aggregate functions such as "
+            ],
+            [
+              "COUNT()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", "
+            ],
+            [
+              "MIN()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", and the like."
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "aggregate functions such as "
+          },
+          {
+            "Text": "COUNT()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", "
+          },
+          {
+            "Text": "MIN()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", and the like."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550384000185,
+        "id": "cf7ac6fc-d889-40ee-ad07-bed5390f31e5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550384000185,
+        "parent_id": "c1212f9e-2710-4be6-8287-d59a4e09c77d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This example’s "
+            ],
+            [
+              "SELECT",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " clause mentions "
+            ],
+            [
+              "item.name",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", a column that does not meet either of those criteria. MySQL 5.6 and earlier will reject this query if the SQL mode contains "
+            ],
+            [
+              "ONLY_FULL_GROUP_BY",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This example’s "
+          },
+          {
+            "Text": "SELECT",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " clause mentions "
+          },
+          {
+            "Text": "item.name",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", a column that does not meet either of those criteria. MySQL 5.6 and earlier will reject this query if the SQL mode contains "
+          },
+          {
+            "Text": "ONLY_FULL_GROUP_BY",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550384000185,
+        "id": "2f9504b3-4966-4254-8236-c7e353b34b66",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550384000185,
+        "parent_id": "c1212f9e-2710-4be6-8287-d59a4e09c77d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This example query can be made to comply with the SQL-92 standard by changing the "
+            ],
+            [
+              "GROUP BY",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " clause, like this."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This example query can be made to comply with the SQL-92 standard by changing the "
+          },
+          {
+            "Text": "GROUP BY",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " clause, like this."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550384000185,
+        "id": "90035790-514f-44ce-a880-f7ee6300935f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550384000185,
+        "parent_id": "c1212f9e-2710-4be6-8287-d59a4e09c77d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "SELECT item.item_id, item.name, \n       COUNT(*) number_of_uses\n  FROM item \n  JOIN uses ON item.item_id, uses.item_id\n GROUP BY item.item_id, item.name"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "SELECT item.item_id, item.name, \n       COUNT(*) number_of_uses\n  FROM item \n  JOIN uses ON item.item_id, uses.item_id\n GROUP BY item.item_id, item.name",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550384000187,
+        "id": "b5c167d5-c968-4868-9153-562ce95d6bd6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550384000187,
+        "parent_id": "c1212f9e-2710-4be6-8287-d59a4e09c77d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The later SQL-99 standard allows a "
+            ],
+            [
+              "SELECT",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " statement to omit unaggregated columns from the group key if the DBMS can prove a functional dependence between them and the group key columns. Because "
+            ],
+            [
+              "item.name",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is functionally dependent on "
+            ],
+            [
+              "item.item_id",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", the initial example is valid SQL-99. MySQL gained a "
+            ],
+            [
+              "functional dependence prover",
+              [
+                [
+                  "a",
+                  "https://dev.mysql.com/doc/refman/5.7/en/group-by-functional-dependence.html"
+                ]
+              ]
+            ],
+            [
+              " in version 5.7. The original example works under "
+            ],
+            [
+              "ONLY_FULL_GROUP_BY",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The later SQL-99 standard allows a "
+          },
+          {
+            "Text": "SELECT",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " statement to omit unaggregated columns from the group key if the DBMS can prove a functional dependence between them and the group key columns. Because "
+          },
+          {
+            "Text": "item.name",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is functionally dependent on "
+          },
+          {
+            "Text": "item.item_id",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", the initial example is valid SQL-99. MySQL gained a "
+          },
+          {
+            "Text": "functional dependence prover",
+            "Link": "https://dev.mysql.com/doc/refman/5.7/en/group-by-functional-dependence.html"
+          },
+          {
+            "Text": " in version 5.7. The original example works under "
+          },
+          {
+            "Text": "ONLY_FULL_GROUP_BY",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      }
+    ],
+    "title": "Using and misusing GROUP BY",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -358,8 +358,15 @@ func (g *HTMLGenerator) genGitEmbed(block *notionapi.Block) {
 func (g *HTMLGenerator) genCollectionView(block *notionapi.Block) {
 	viewInfo := block.CollectionViews[0]
 	view := viewInfo.CollectionView
+	if view.Format == nil {
+		fmt.Printf("genCollectionView: missing view.Format block id: %s\n", block.ID)
+		return
+	}
+
+	s := `<table class="notion-table">`
+
 	columns := view.Format.TableProperties
-	s := `<table class="notion-table"><thead><tr>`
+	s += `<thead><tr>`
 	for _, col := range columns {
 		colName := col.Property
 		colInfo := viewInfo.Collection.CollectionSchema[colName]
@@ -372,6 +379,7 @@ func (g *HTMLGenerator) genCollectionView(block *notionapi.Block) {
 		s += `<th>` + html.EscapeString(name) + `</th>`
 	}
 	s += `</tr></thead>`
+
 	s += `<tbody>`
 	for _, row := range viewInfo.CollectionRows {
 		s += `<tr>`

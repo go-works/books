@@ -1,0 +1,368 @@
+{
+  "ID": "7a80f600-4bba-4640-8323-fe90e0a66003",
+  "Root": {
+    "alive": true,
+    "content": [
+      "acd3da3a-fc47-486f-87a3-dc7e2486b4cd",
+      "b647cdd7-a35b-44d8-8d2c-56aaff91679c",
+      "849b7645-6221-4cab-97a5-6b1d3305b1e3",
+      "da891fc8-997b-4b6c-abdb-18a8b53f7b54",
+      "243a051f-2207-42c0-b600-64f3777e192e",
+      "b15c2605-faf6-47d9-a874-afee14b993b0",
+      "fccec04a-5f2e-49b8-b826-eb9224cd07cd",
+      "3389c652-a89c-431a-93a4-fab56003202a",
+      "2bd95bc2-12d0-4cc7-b54b-ba840ee5400b"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550381295108,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "7a80f600-4bba-4640-8323-fe90e0a66003",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550563500000,
+    "parent_id": "de968e55-9310-4614-95f6-6bd52c22d03a",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Stored procedure with IN OUT INOUT parameters"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550381295102,
+        "id": "acd3da3a-fc47-486f-87a3-dc7e2486b4cd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550563500000,
+        "parent_id": "7a80f600-4bba-4640-8323-fe90e0a66003",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "SQL"
+            ]
+          ],
+          "title": [
+            [
+              "DELIMITER $$\n \nDROP PROCEDURE IF EXISTS sp_nested_loop$$\nCREATE PROCEDURE sp_nested_loop(IN i INT, IN j INT, OUT x INT, OUT y INT, INOUT z INT)\nBEGIN\n    DECLARE a INTEGER DEFAULT 0;\n    DECLARE b INTEGER DEFAULT 0;\n    DECLARE c INTEGER DEFAULT 0;\n    WHILE a \u003c i DO\n        WHILE b \u003c j DO\n            SET c = c + 1;\n            SET b = b + 1;\n        END WHILE;    \n        SET a = a + 1;\n        SET b = 0;        \n    END WHILE;\n    SET x = a, y = c;\n    SET z = x + y + z;\nEND $$\nDELIMITER ;"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "DELIMITER $$\n \nDROP PROCEDURE IF EXISTS sp_nested_loop$$\nCREATE PROCEDURE sp_nested_loop(IN i INT, IN j INT, OUT x INT, OUT y INT, INOUT z INT)\nBEGIN\n    DECLARE a INTEGER DEFAULT 0;\n    DECLARE b INTEGER DEFAULT 0;\n    DECLARE c INTEGER DEFAULT 0;\n    WHILE a \u003c i DO\n        WHILE b \u003c j DO\n            SET c = c + 1;\n            SET b = b + 1;\n        END WHILE;    \n        SET a = a + 1;\n        SET b = 0;        \n    END WHILE;\n    SET x = a, y = c;\n    SET z = x + y + z;\nEND $$\nDELIMITER ;",
+        "code_language": "SQL"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550381295107,
+        "id": "b647cdd7-a35b-44d8-8d2c-56aaff91679c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550381295107,
+        "parent_id": "7a80f600-4bba-4640-8323-fe90e0a66003",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Invokes ("
+            ],
+            [
+              "CALL",
+              [
+                [
+                  "a",
+                  "http://dev.mysql.com/doc/refman/5.7/en/call.html"
+                ]
+              ]
+            ],
+            [
+              ") the stored procedure:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Invokes ("
+          },
+          {
+            "Text": "CALL",
+            "Link": "http://dev.mysql.com/doc/refman/5.7/en/call.html"
+          },
+          {
+            "Text": ") the stored procedure:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550381295107,
+        "id": "849b7645-6221-4cab-97a5-6b1d3305b1e3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550563500000,
+        "parent_id": "7a80f600-4bba-4640-8323-fe90e0a66003",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "SQL"
+            ]
+          ],
+          "title": [
+            [
+              "SET @z = 30;\ncall sp_nested_loop(10, 20, @x, @y, @z);\nSELECT @x, @y, @z;"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "SET @z = 30;\ncall sp_nested_loop(10, 20, @x, @y, @z);\nSELECT @x, @y, @z;",
+        "code_language": "SQL"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550381295107,
+        "id": "da891fc8-997b-4b6c-abdb-18a8b53f7b54",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550381295107,
+        "parent_id": "7a80f600-4bba-4640-8323-fe90e0a66003",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Result:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Result:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550381295107,
+        "id": "243a051f-2207-42c0-b600-64f3777e192e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550381295107,
+        "parent_id": "7a80f600-4bba-4640-8323-fe90e0a66003",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "+------+------+------+\n|  @x  |  @y  |  @z  |\n+------+------+------+\n|  10  |  200 |  240 |\n+------+------+------+"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "+------+------+------+\n|  @x  |  @y  |  @z  |\n+------+------+------+\n|  10  |  200 |  240 |\n+------+------+------+",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550381295107,
+        "id": "b15c2605-faf6-47d9-a874-afee14b993b0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550381295107,
+        "parent_id": "7a80f600-4bba-4640-8323-fe90e0a66003",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "An "
+            ],
+            [
+              "IN",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " parameter passes a value into a procedure. The procedure might modify the value, but the modification is not visible to the caller when the procedure returns."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "An "
+          },
+          {
+            "Text": "IN",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " parameter passes a value into a procedure. The procedure might modify the value, but the modification is not visible to the caller when the procedure returns."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550381295108,
+        "id": "fccec04a-5f2e-49b8-b826-eb9224cd07cd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550381295108,
+        "parent_id": "7a80f600-4bba-4640-8323-fe90e0a66003",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "An "
+            ],
+            [
+              "OUT",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " parameter passes a value from the procedure back to the caller. Its initial value is NULL within the procedure, and its value is visible to the caller when the procedure returns."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "An "
+          },
+          {
+            "Text": "OUT",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " parameter passes a value from the procedure back to the caller. Its initial value is NULL within the procedure, and its value is visible to the caller when the procedure returns."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550381295108,
+        "id": "3389c652-a89c-431a-93a4-fab56003202a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550381295108,
+        "parent_id": "7a80f600-4bba-4640-8323-fe90e0a66003",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "An "
+            ],
+            [
+              "INOUT",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " parameter is initialized by the caller, can be modified by the procedure, and any change made by the procedure is visible to the caller when the procedure returns."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "An "
+          },
+          {
+            "Text": "INOUT",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " parameter is initialized by the caller, can be modified by the procedure, and any change made by the procedure is visible to the caller when the procedure returns."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550381295108,
+        "id": "2bd95bc2-12d0-4cc7-b54b-ba840ee5400b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550381295108,
+        "parent_id": "7a80f600-4bba-4640-8323-fe90e0a66003",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Ref: http://dev.mysql.com/doc/refman/5.7/en/create-procedure.html"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Ref: http://dev.mysql.com/doc/refman/5.7/en/create-procedure.html"
+          }
+        ]
+      }
+    ],
+    "title": "Stored procedure with IN OUT INOUT parameters",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

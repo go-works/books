@@ -1,0 +1,194 @@
+{
+  "ID": "02c8a411-ba87-43c5-b760-d2ee7af32ea5",
+  "Root": {
+    "alive": true,
+    "content": [
+      "be0480a5-f4e4-4685-ba95-f2041a39664c",
+      "ee8ca07a-d13d-4a30-8571-c12ea5d882c1",
+      "2b1cc039-31c3-4c74-ac28-228bc1248c80",
+      "c8751665-ddef-4a9a-8c68-533501c8a349"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550384045163,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "02c8a411-ba87-43c5-b760-d2ee7af32ea5",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550646120000,
+    "parent_id": "78907ef4-512f-456b-90d6-bf47f19fa4d1",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Read JSON Array value"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 10,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550384045161,
+        "id": "be0480a5-f4e4-4685-ba95-f2041a39664c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550384045161,
+        "parent_id": "02c8a411-ba87-43c5-b760-d2ee7af32ea5",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Create @myjson variable as JSON type ("
+            ],
+            [
+              "read more",
+              [
+                [
+                  "a",
+                  "http://stackoverflow.com/documentation/mysql/2985/json#t=201702101641199556166"
+                ]
+              ]
+            ],
+            [
+              "):"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Create @myjson variable as JSON type ("
+          },
+          {
+            "Text": "read more",
+            "Link": "http://stackoverflow.com/documentation/mysql/2985/json#t=201702101641199556166"
+          },
+          {
+            "Text": "):"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550384045162,
+        "id": "ee8ca07a-d13d-4a30-8571-c12ea5d882c1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550384045162,
+        "parent_id": "02c8a411-ba87-43c5-b760-d2ee7af32ea5",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "SET @myjson = CAST('[\"A\",\"B\",{\"id\":1,\"label\":\"C\"}]' as JSON) ;"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "SET @myjson = CAST('[\"A\",\"B\",{\"id\":1,\"label\":\"C\"}]' as JSON) ;",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550384045163,
+        "id": "2b1cc039-31c3-4c74-ac28-228bc1248c80",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550384045163,
+        "parent_id": "02c8a411-ba87-43c5-b760-d2ee7af32ea5",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "SELECT",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " some members!"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "SELECT",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " some members!"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550384045163,
+        "id": "c8751665-ddef-4a9a-8c68-533501c8a349",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550384045163,
+        "parent_id": "02c8a411-ba87-43c5-b760-d2ee7af32ea5",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "SELECT\n  JSON_EXTRACT( @myjson , '$[1]' ) ,\n  JSON_EXTRACT( @myjson , '$[*].label') ,\n  JSON_EXTRACT( @myjson , '$[1].*' ) ,\n  JSON_EXTRACT( @myjson , '$[2].*')\n;\n-- result values:\n'\\\"B\\\"', '[\\\"C\\\"]', NULL, '[1, \\\"C\\\"]'\n-- visually:\n\"B\", [\"C\"], NULL, [1, \"C\"]"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "SELECT\n  JSON_EXTRACT( @myjson , '$[1]' ) ,\n  JSON_EXTRACT( @myjson , '$[*].label') ,\n  JSON_EXTRACT( @myjson , '$[1].*' ) ,\n  JSON_EXTRACT( @myjson , '$[2].*')\n;\n-- result values:\n'\\\"B\\\"', '[\\\"C\\\"]', NULL, '[1, \\\"C\\\"]'\n-- visually:\n\"B\", [\"C\"], NULL, [1, \"C\"]",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Read JSON Array value",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

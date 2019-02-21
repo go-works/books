@@ -1,0 +1,230 @@
+{
+  "ID": "09867469-8757-44b8-a93c-308dd8eaca3a",
+  "Root": {
+    "alive": true,
+    "content": [
+      "9a865c48-d4db-4176-bf55-b905d27f61e7",
+      "e8c0a460-43a8-46f0-af96-c36cb0b97adc",
+      "3edaf7fe-21e8-446e-9c28-ee10afd3acb7",
+      "c4af7fc3-e09c-462f-9b90-04ab689eb012",
+      "90fd5076-30d8-46f2-bb59-19668f53c879",
+      "370ad92b-9931-4ceb-9bdf-970d141b9266"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550381297102,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "09867469-8757-44b8-a93c-308dd8eaca3a",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550563620000,
+    "parent_id": "de968e55-9310-4614-95f6-6bd52c22d03a",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Create Procedure with a Constructed Prepare"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550381297098,
+        "id": "9a865c48-d4db-4176-bf55-b905d27f61e7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550563620000,
+        "parent_id": "09867469-8757-44b8-a93c-308dd8eaca3a",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "SQL"
+            ]
+          ],
+          "title": [
+            [
+              "DROP PROCEDURE if exists displayNext100WithName;\nDELIMITER $$\nCREATE PROCEDURE displayNext100WithName\n(    nStart int,\n    tblName varchar(100)\n)\nBEGIN\n    DECLARE thesql varchar(500); -- holds the constructed sql string to execute\n\n    -- expands the sizing of the output buffer to accomodate the output (Max value is at least 4GB)\n    SET session group_concat_max_len = 4096; -- prevents group_concat from barfing with error 1160 or whatever it is\n\n    SET @thesql=CONCAT(\"select group_concat(qid order by qid SEPARATOR '%3B') as nums \",\"from (    select qid from \");\n    SET @thesql=CONCAT(@thesql,tblName,\" where qid\u003e? order by qid limit 100 )xDerived\");\n    PREPARE stmt1 FROM @thesql; -- create a statement object from the construct sql string to execute\n    SET @p1 = nStart; -- transfers parameter passed into a User Variable compatible with the below EXECUTE\n    EXECUTE stmt1 USING @p1;\n     \n    DEALLOCATE PREPARE stmt1; -- deallocate the statement object when finished\nEND$$\nDELIMITER ;"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "DROP PROCEDURE if exists displayNext100WithName;\nDELIMITER $$\nCREATE PROCEDURE displayNext100WithName\n(    nStart int,\n    tblName varchar(100)\n)\nBEGIN\n    DECLARE thesql varchar(500); -- holds the constructed sql string to execute\n\n    -- expands the sizing of the output buffer to accomodate the output (Max value is at least 4GB)\n    SET session group_concat_max_len = 4096; -- prevents group_concat from barfing with error 1160 or whatever it is\n\n    SET @thesql=CONCAT(\"select group_concat(qid order by qid SEPARATOR '%3B') as nums \",\"from (    select qid from \");\n    SET @thesql=CONCAT(@thesql,tblName,\" where qid\u003e? order by qid limit 100 )xDerived\");\n    PREPARE stmt1 FROM @thesql; -- create a statement object from the construct sql string to execute\n    SET @p1 = nStart; -- transfers parameter passed into a User Variable compatible with the below EXECUTE\n    EXECUTE stmt1 USING @p1;\n     \n    DEALLOCATE PREPARE stmt1; -- deallocate the statement object when finished\nEND$$\nDELIMITER ;",
+        "code_language": "SQL"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550381297101,
+        "id": "e8c0a460-43a8-46f0-af96-c36cb0b97adc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550381297101,
+        "parent_id": "09867469-8757-44b8-a93c-308dd8eaca3a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Creation of the stored procedure shows wrapping with a DELIMITER necessary in many client tools."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Creation of the stored procedure shows wrapping with a DELIMITER necessary in many client tools."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550381297101,
+        "id": "3edaf7fe-21e8-446e-9c28-ee10afd3acb7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550381297101,
+        "parent_id": "09867469-8757-44b8-a93c-308dd8eaca3a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Calling example:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Calling example:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550381297101,
+        "id": "c4af7fc3-e09c-462f-9b90-04ab689eb012",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550563620000,
+        "parent_id": "09867469-8757-44b8-a93c-308dd8eaca3a",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "SQL"
+            ]
+          ],
+          "title": [
+            [
+              "call displayNext100WithName(1,\"questions_mysql\");"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "call displayNext100WithName(1,\"questions_mysql\");",
+        "code_language": "SQL"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550381297101,
+        "id": "90fd5076-30d8-46f2-bb59-19668f53c879",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550381297101,
+        "parent_id": "09867469-8757-44b8-a93c-308dd8eaca3a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Sample output with "
+            ],
+            [
+              "%3B",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " (semi-colon) separator:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Sample output with "
+          },
+          {
+            "Text": "%3B",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " (semi-colon) separator:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550381297102,
+        "id": "370ad92b-9931-4ceb-9bdf-970d141b9266",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550381297102,
+        "parent_id": "09867469-8757-44b8-a93c-308dd8eaca3a",
+        "parent_table": "block",
+        "properties": {
+          "source": [
+            [
+              "http://i.stack.imgur.com/0ZADP.jpg"
+            ]
+          ]
+        },
+        "type": "image",
+        "version": 1,
+        "source": "http://i.stack.imgur.com/0ZADP.jpg",
+        "image_url": "https://www.notion.so/image/https:%2F%2Fwww.notion.sohttp:%2F%2Fi.stack.imgur.com%2F0ZADP.jpg"
+      }
+    ],
+    "title": "Create Procedure with a Constructed Prepare",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

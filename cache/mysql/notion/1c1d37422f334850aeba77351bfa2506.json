@@ -1,0 +1,243 @@
+{
+  "ID": "1c1d3742-2f33-4850-aeba-77351bfa2506",
+  "Root": {
+    "alive": true,
+    "content": [
+      "0447e899-35ba-4221-b340-8a99f9ad3525",
+      "4299e017-de32-4be2-b4df-e5bc89473ed3",
+      "e1e553be-cbb7-472e-a9f9-48e0325c4562",
+      "32098a28-60fc-488e-af59-6d1d7d40a12c"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550381255248,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "1c1d3742-2f33-4850-aeba-77351bfa2506",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550563800000,
+    "parent_id": "fab6427e-36e2-4262-adf5-b7dd46cbf44d",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "1236 impossible position in Replication"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 9,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550381255245,
+        "id": "0447e899-35ba-4221-b340-8a99f9ad3525",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550381255245,
+        "parent_id": "1c1d3742-2f33-4850-aeba-77351bfa2506",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Usually",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " this means that the Master crashed and that "
+            ],
+            [
+              "sync_binlog",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " was OFF. The solution is to "
+            ],
+            [
+              "CHANGE MASTER to POS=0",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " of the next binlog file (see the Master) on the Slave."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Usually",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " this means that the Master crashed and that "
+          },
+          {
+            "Text": "sync_binlog",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " was OFF. The solution is to "
+          },
+          {
+            "Text": "CHANGE MASTER to POS=0",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " of the next binlog file (see the Master) on the Slave."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550381255247,
+        "id": "4299e017-de32-4be2-b4df-e5bc89473ed3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550381255247,
+        "parent_id": "1c1d3742-2f33-4850-aeba-77351bfa2506",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The cause: The Master sends replication items to the Slave before flushing to its binlog (when "
+            ],
+            [
+              "sync_binlog=OFF",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "). If the Master crashes before the flush, the Slave has already logically moved past the end of file on the binlog. When the Master starts up again, it starts a new binlog, so CHANGEing to the beginning of that binlog is the best available solution."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The cause: The Master sends replication items to the Slave before flushing to its binlog (when "
+          },
+          {
+            "Text": "sync_binlog=OFF",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "). If the Master crashes before the flush, the Slave has already logically moved past the end of file on the binlog. When the Master starts up again, it starts a new binlog, so CHANGEing to the beginning of that binlog is the best available solution."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550381255248,
+        "id": "e1e553be-cbb7-472e-a9f9-48e0325c4562",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550381255248,
+        "parent_id": "1c1d3742-2f33-4850-aeba-77351bfa2506",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "A longer term solution is "
+            ],
+            [
+              "sync_binlog=ON",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", if you can afford the extra I/O that it causes."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "A longer term solution is "
+          },
+          {
+            "Text": "sync_binlog=ON",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", if you can afford the extra I/O that it causes."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550381255248,
+        "id": "32098a28-60fc-488e-af59-6d1d7d40a12c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550381255248,
+        "parent_id": "1c1d3742-2f33-4850-aeba-77351bfa2506",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "(If you are running with GTID, …?)"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "(If you are running with GTID, …?)"
+          }
+        ]
+      }
+    ],
+    "title": "1236 impossible position in Replication",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

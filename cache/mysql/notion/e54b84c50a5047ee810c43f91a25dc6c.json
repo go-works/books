@@ -1,0 +1,271 @@
+{
+  "ID": "e54b84c5-0a50-47ee-810c-43f91a25dc6c",
+  "Root": {
+    "alive": true,
+    "content": [
+      "2cd522be-1c79-4e33-9df9-f6d9594035ba",
+      "e2d46c15-5a76-4d47-bcdd-f08df8c09b78",
+      "f5ed9b30-da65-43e3-9470-3cd66fb24c86",
+      "f6a768f0-ba1d-4f82-ab1f-1389082f701a",
+      "50c87cd8-a1fa-4d02-9d0c-b79ce0e0083a",
+      "a075c4ef-d667-4de1-a757-6b8400b8d50d",
+      "cfd7c9fc-b96a-4699-88b5-809b8d63ea09",
+      "6b8289ed-76ba-4fb0-b878-8ee1ac829144"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550381774096,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "e54b84c5-0a50-47ee-810c-43f91a25dc6c",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550565240000,
+    "parent_id": "5142c632-f25e-465d-b2a1-5bb0cb8e0e08",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Retrieve customers with orders -- variations on a theme"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550381774092,
+        "id": "2cd522be-1c79-4e33-9df9-f6d9594035ba",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550381774092,
+        "parent_id": "e54b84c5-0a50-47ee-810c-43f91a25dc6c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This will get all the orders for all customers:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This will get all the orders for all customers:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550381774095,
+        "id": "e2d46c15-5a76-4d47-bcdd-f08df8c09b78",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550565240000,
+        "parent_id": "e54b84c5-0a50-47ee-810c-43f91a25dc6c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "SQL"
+            ]
+          ],
+          "title": [
+            [
+              "SELECT c.CustomerName, o.OrderID\n    FROM Customers AS c\n    INNER JOIN Orders AS o\n        ON c.CustomerID = o.CustomerID\n    ORDER BY c.CustomerName, o.OrderID;"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 4,
+        "code": "SELECT c.CustomerName, o.OrderID\n    FROM Customers AS c\n    INNER JOIN Orders AS o\n        ON c.CustomerID = o.CustomerID\n    ORDER BY c.CustomerName, o.OrderID;",
+        "code_language": "SQL"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550381774095,
+        "id": "f5ed9b30-da65-43e3-9470-3cd66fb24c86",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550381774095,
+        "parent_id": "e54b84c5-0a50-47ee-810c-43f91a25dc6c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This will count the number of orders for each customer:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This will count the number of orders for each customer:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550381774095,
+        "id": "f6a768f0-ba1d-4f82-ab1f-1389082f701a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550565240000,
+        "parent_id": "e54b84c5-0a50-47ee-810c-43f91a25dc6c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "SQL"
+            ]
+          ],
+          "title": [
+            [
+              "SELECT c.CustomerName, COUNT(*) AS 'Order Count'\n    FROM Customers AS c\n    INNER JOIN Orders AS o\n        ON c.CustomerID = o.CustomerID\n    GROUP BY c.CustomerID;\n    ORDER BY c.CustomerName;"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "SELECT c.CustomerName, COUNT(*) AS 'Order Count'\n    FROM Customers AS c\n    INNER JOIN Orders AS o\n        ON c.CustomerID = o.CustomerID\n    GROUP BY c.CustomerID;\n    ORDER BY c.CustomerName;",
+        "code_language": "SQL"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550381774095,
+        "id": "50c87cd8-a1fa-4d02-9d0c-b79ce0e0083a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550381774095,
+        "parent_id": "e54b84c5-0a50-47ee-810c-43f91a25dc6c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Also, counts, but probably faster:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Also, counts, but probably faster:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550381774095,
+        "id": "a075c4ef-d667-4de1-a757-6b8400b8d50d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550565240000,
+        "parent_id": "e54b84c5-0a50-47ee-810c-43f91a25dc6c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "SQL"
+            ]
+          ],
+          "title": [
+            [
+              "SELECT  c.CustomerName,\n        ( SELECT COUNT(*) FROM Orders WHERE CustomerID = c.CustomerID ) AS 'Order Count'\n    FROM Customers AS c\n    ORDER BY c.CustomerName;"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "SELECT  c.CustomerName,\n        ( SELECT COUNT(*) FROM Orders WHERE CustomerID = c.CustomerID ) AS 'Order Count'\n    FROM Customers AS c\n    ORDER BY c.CustomerName;",
+        "code_language": "SQL"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550381774095,
+        "id": "cfd7c9fc-b96a-4699-88b5-809b8d63ea09",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550381774095,
+        "parent_id": "e54b84c5-0a50-47ee-810c-43f91a25dc6c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "List only the customer with orders."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "List only the customer with orders."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550381774095,
+        "id": "6b8289ed-76ba-4fb0-b878-8ee1ac829144",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550565240000,
+        "parent_id": "e54b84c5-0a50-47ee-810c-43f91a25dc6c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "SQL"
+            ]
+          ],
+          "title": [
+            [
+              "SELECT  c.CustomerName,\n    FROM Customers AS c\n    WHERE EXISTS ( SELECT * FROM Orders WHERE CustomerID = c.CustomerID )\n    ORDER BY c.CustomerName;"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "SELECT  c.CustomerName,\n    FROM Customers AS c\n    WHERE EXISTS ( SELECT * FROM Orders WHERE CustomerID = c.CustomerID )\n    ORDER BY c.CustomerName;",
+        "code_language": "SQL"
+      }
+    ],
+    "title": "Retrieve customers with orders -- variations on a theme",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

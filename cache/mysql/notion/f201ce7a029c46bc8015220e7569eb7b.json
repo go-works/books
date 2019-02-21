@@ -1,0 +1,360 @@
+{
+  "ID": "f201ce7a-029c-46bc-8015-220e7569eb7b",
+  "Root": {
+    "alive": true,
+    "content": [
+      "75240ae3-86f7-4ea2-8a84-b9684985ed84",
+      "e6698bd7-873b-458b-a805-f85428d520a1",
+      "9bf42e1e-6356-4064-9909-23e0b713765f",
+      "dcabfb25-993f-4acd-9728-7c9b48aa7c15",
+      "287f9d7c-5ef0-41c0-b7b0-d9435743c349",
+      "33c18997-c7d9-441d-890f-17c95e4e9893",
+      "88138019-6186-4d95-aa5d-911c1159d401"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550384001079,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "f201ce7a-029c-46bc-8015-220e7569eb7b",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550645160000,
+    "parent_id": "f396a67b-3772-4b0e-af59-b16f2eba71a6",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "ANY VALUE"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550384001073,
+        "id": "75240ae3-86f7-4ea2-8a84-b9684985ed84",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550645160000,
+        "parent_id": "f201ce7a-029c-46bc-8015-220e7569eb7b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "SQL"
+            ]
+          ],
+          "title": [
+            [
+              "SELECT item.item_id, ANY_VALUE(uses.tag) tag,   \n       COUNT(*) number_of_uses\n FROM item \n JOIN uses ON item.item_id, uses.item_id\nGROUP BY item.item_id"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "SELECT item.item_id, ANY_VALUE(uses.tag) tag,   \n       COUNT(*) number_of_uses\n FROM item \n JOIN uses ON item.item_id, uses.item_id\nGROUP BY item.item_id",
+        "code_language": "SQL"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550384001076,
+        "id": "e6698bd7-873b-458b-a805-f85428d520a1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550384001076,
+        "parent_id": "f201ce7a-029c-46bc-8015-220e7569eb7b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "shows the rows in a table called "
+            ],
+            [
+              "item",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", the count of related rows, and one of the values in the related table called "
+            ],
+            [
+              "uses",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "shows the rows in a table called "
+          },
+          {
+            "Text": "item",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", the count of related rows, and one of the values in the related table called "
+          },
+          {
+            "Text": "uses",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550384001078,
+        "id": "9bf42e1e-6356-4064-9909-23e0b713765f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550384001078,
+        "parent_id": "f201ce7a-029c-46bc-8015-220e7569eb7b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "You can think of "
+            ],
+            [
+              "this ",
+              [
+                [
+                  "a",
+                  "http://dev.mysql.com/doc/refman/5.7/en/miscellaneous-functions.html#function_any-value"
+                ]
+              ]
+            ],
+            [
+              "ANY_VALUE()",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "http://dev.mysql.com/doc/refman/5.7/en/miscellaneous-functions.html#function_any-value"
+                ]
+              ]
+            ],
+            [
+              " function",
+              [
+                [
+                  "a",
+                  "http://dev.mysql.com/doc/refman/5.7/en/miscellaneous-functions.html#function_any-value"
+                ]
+              ]
+            ],
+            [
+              " as a strange a kind of aggregate function. Instead of returning a count, sum, or maximum, it instructs the MySQL server to choose, arbitrarily, one value from the group in question. It’s a way of working around Error 1055."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "You can think of "
+          },
+          {
+            "Text": "this ",
+            "Link": "http://dev.mysql.com/doc/refman/5.7/en/miscellaneous-functions.html#function_any-value"
+          },
+          {
+            "Text": "ANY_VALUE()",
+            "AttrFlags": 2,
+            "Link": "http://dev.mysql.com/doc/refman/5.7/en/miscellaneous-functions.html#function_any-value"
+          },
+          {
+            "Text": " function",
+            "Link": "http://dev.mysql.com/doc/refman/5.7/en/miscellaneous-functions.html#function_any-value"
+          },
+          {
+            "Text": " as a strange a kind of aggregate function. Instead of returning a count, sum, or maximum, it instructs the MySQL server to choose, arbitrarily, one value from the group in question. It’s a way of working around Error 1055."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550384001078,
+        "id": "dcabfb25-993f-4acd-9728-7c9b48aa7c15",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550384001078,
+        "parent_id": "f201ce7a-029c-46bc-8015-220e7569eb7b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Be careful when using "
+            ],
+            [
+              "ANY_VALUE()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " in queries in production applications."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Be careful when using "
+          },
+          {
+            "Text": "ANY_VALUE()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " in queries in production applications."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550384001078,
+        "id": "287f9d7c-5ef0-41c0-b7b0-d9435743c349",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550384001078,
+        "parent_id": "f201ce7a-029c-46bc-8015-220e7569eb7b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "It really should be called "
+            ],
+            [
+              "SURPRISE_ME()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". It returns the value of some row in the GROUP BY group. Which row it returns is indeterminate. That means it’s entirely up to the MySQL server. Formally, it returns an unpredictable value."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "It really should be called "
+          },
+          {
+            "Text": "SURPRISE_ME()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". It returns the value of some row in the GROUP BY group. Which row it returns is indeterminate. That means it’s entirely up to the MySQL server. Formally, it returns an unpredictable value."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550384001079,
+        "id": "33c18997-c7d9-441d-890f-17c95e4e9893",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550384001079,
+        "parent_id": "f201ce7a-029c-46bc-8015-220e7569eb7b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The server doesn’t choose a random value, it’s worse than that. It returns the same value every time you run the query, until it doesn’t. It can change, or not, when a table grows or shrinks, or when the server has more or less RAM, or when the server version changes, or when Mars is in retrograde (whatever that means), or for no reason at all."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The server doesn’t choose a random value, it’s worse than that. It returns the same value every time you run the query, until it doesn’t. It can change, or not, when a table grows or shrinks, or when the server has more or less RAM, or when the server version changes, or when Mars is in retrograde (whatever that means), or for no reason at all."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550384001079,
+        "id": "88138019-6186-4d95-aa5d-911c1159d401",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550384001079,
+        "parent_id": "f201ce7a-029c-46bc-8015-220e7569eb7b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "You have been warned."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "You have been warned."
+          }
+        ]
+      }
+    ],
+    "title": "ANY VALUE",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}
