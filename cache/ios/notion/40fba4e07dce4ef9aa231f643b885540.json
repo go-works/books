@@ -1,0 +1,207 @@
+{
+  "ID": "40fba4e0-7dce-4ef9-aa23-1f643b885540",
+  "Root": {
+    "alive": true,
+    "content": [
+      "ee614e47-32b5-4eea-9511-dabf051171a1",
+      "6cea39ae-7054-4d55-9fa2-f1c595cba58b",
+      "03377cec-49a7-4098-8b06-97941b601fd0",
+      "fff398f7-3b4d-4679-b822-e4c7e011f89e",
+      "d6ab07a8-5fc8-420f-99ff-6f12451bc532"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550442405915,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "40fba4e0-7dce-4ef9-aa23-1f643b885540",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550713860000,
+    "parent_id": "521f8346-9197-4556-87c6-5fac50ff72d6",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010Trigger Impact Haptic"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550442405912,
+        "id": "ee614e47-32b5-4eea-9511-dabf051171a1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550442405912,
+        "parent_id": "40fba4e0-7dce-4ef9-aa23-1f643b885540",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Example shows how to trigger an impact haptic using "
+            ],
+            [
+              "UIImpactFeedbackGenerator",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " after a button press."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Example shows how to trigger an impact haptic using "
+          },
+          {
+            "Text": "UIImpactFeedbackGenerator",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " after a button press."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550442405914,
+        "id": "6cea39ae-7054-4d55-9fa2-f1c595cba58b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550442405914,
+        "parent_id": "40fba4e0-7dce-4ef9-aa23-1f643b885540",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Swift"
+            ]
+          ]
+        },
+        "type": "sub_header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Swift"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550442405915,
+        "id": "03377cec-49a7-4098-8b06-97941b601fd0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550713860000,
+        "parent_id": "40fba4e0-7dce-4ef9-aa23-1f643b885540",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Swift"
+            ]
+          ],
+          "title": [
+            [
+              "class ViewController: UIViewController\n{\n    lazy var button: UIButton =\n    {\n        let button = UIButton()\n        button.translatesAutoresizingMaskIntoConstraints = false\n        self.view.addSubview(button)\n        button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true\n        button.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true\n        button.setTitle(\"Impact\", for: .normal)\n        button.setTitleColor(UIColor.gray, for: .normal)\n        return button\n    }()\n    \n    // Choose between heavy, medium, and light for style\n    let impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)\n    \n    override func viewDidLoad()\n    {\n        super.viewDidLoad()\n        button.addTarget(self, action: #selector(self.didPressButton(sender:)), for: .touchUpInside)\n\t\t\t\t// Primes feedback generator for upcoming events and reduces latency\n\t\t\t\timpactFeedbackGenerator.prepare()\n\t\t\t\t}\n\t\t\t\t\n\t\t\t\tfunc didPressButton(sender: UIButton)\n\t\t\t\t{\n\t\t\t\t\t// Triggers haptic\n\t\t\t\t\timpactFeedbackGenerator.impactOccurred()\n\t\t\t  }\n\t\t}\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 24,
+        "code": "class ViewController: UIViewController\n{\n    lazy var button: UIButton =\n    {\n        let button = UIButton()\n        button.translatesAutoresizingMaskIntoConstraints = false\n        self.view.addSubview(button)\n        button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true\n        button.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true\n        button.setTitle(\"Impact\", for: .normal)\n        button.setTitleColor(UIColor.gray, for: .normal)\n        return button\n    }()\n    \n    // Choose between heavy, medium, and light for style\n    let impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)\n    \n    override func viewDidLoad()\n    {\n        super.viewDidLoad()\n        button.addTarget(self, action: #selector(self.didPressButton(sender:)), for: .touchUpInside)\n\t\t\t\t// Primes feedback generator for upcoming events and reduces latency\n\t\t\t\timpactFeedbackGenerator.prepare()\n\t\t\t\t}\n\t\t\t\t\n\t\t\t\tfunc didPressButton(sender: UIButton)\n\t\t\t\t{\n\t\t\t\t\t// Triggers haptic\n\t\t\t\t\timpactFeedbackGenerator.impactOccurred()\n\t\t\t  }\n\t\t}\n}",
+        "code_language": "Swift"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550442405915,
+        "id": "fff398f7-3b4d-4679-b822-e4c7e011f89e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550442405915,
+        "parent_id": "40fba4e0-7dce-4ef9-aa23-1f643b885540",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Objective-C"
+            ]
+          ]
+        },
+        "type": "sub_header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Objective-C"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550442405915,
+        "id": "d6ab07a8-5fc8-420f-99ff-6f12451bc532",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550442405915,
+        "parent_id": "40fba4e0-7dce-4ef9-aa23-1f643b885540",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "@interface ViewController ()\n@property (nonatomic, strong) UIImpactFeedbackGenerator *impactFeedbackGenerator;\n@property (nonatomic, strong) UIButton *button;\n@end\n\n@implementation ViewController\n\n- (void)viewDidLoad\n{\n    [super viewDidLoad];\n    [self.button addTarget:self action:@selector(didPressButton:) forControlEvents:UIControlEventTouchUpInside];\n    \n    // Choose between heavy, medium, and light for style\n    self.impactFeedbackGenerator = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleHeavy];\n    \n    // Primes feedback generator for upcoming events and reduces latency\n    [self.impactFeedbackGenerator prepare];\n}\n\n- (void)didPressButton:(UIButton *)sender\n{\n    // Triggers haptic\n    [self.impactFeedbackGenerator impactOccurred];\n}\n\n#pragma mark - Lazy Init\n- (UIButton *)button\n{\n    if (!_button)\n    {\n        _button = [[UIButton alloc]init];\n        _button.translatesAutoresizingMaskIntoConstraints = NO;\n        [self.view addSubview:_button];\n        [_button.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;\n        [_button.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;\n        [_button setTitle:@\"Impact\" forState:UIControlStateNormal];\n        [_button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];\n    }\n    return _button;\n}\n\n@end"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "@interface ViewController ()\n@property (nonatomic, strong) UIImpactFeedbackGenerator *impactFeedbackGenerator;\n@property (nonatomic, strong) UIButton *button;\n@end\n\n@implementation ViewController\n\n- (void)viewDidLoad\n{\n    [super viewDidLoad];\n    [self.button addTarget:self action:@selector(didPressButton:) forControlEvents:UIControlEventTouchUpInside];\n    \n    // Choose between heavy, medium, and light for style\n    self.impactFeedbackGenerator = [[UIImpactFeedbackGenerator alloc] initWithStyle:UIImpactFeedbackStyleHeavy];\n    \n    // Primes feedback generator for upcoming events and reduces latency\n    [self.impactFeedbackGenerator prepare];\n}\n\n- (void)didPressButton:(UIButton *)sender\n{\n    // Triggers haptic\n    [self.impactFeedbackGenerator impactOccurred];\n}\n\n#pragma mark - Lazy Init\n- (UIButton *)button\n{\n    if (!_button)\n    {\n        _button = [[UIButton alloc]init];\n        _button.translatesAutoresizingMaskIntoConstraints = NO;\n        [self.view addSubview:_button];\n        [_button.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor].active = YES;\n        [_button.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor].active = YES;\n        [_button setTitle:@\"Impact\" forState:UIControlStateNormal];\n        [_button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];\n    }\n    return _button;\n}\n\n@end",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010Trigger Impact Haptic",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

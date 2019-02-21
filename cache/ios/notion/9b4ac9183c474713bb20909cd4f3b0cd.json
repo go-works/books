@@ -1,0 +1,82 @@
+{
+  "ID": "9b4ac918-3c47-4713-bb20-909cd4f3b0cd",
+  "Root": {
+    "alive": true,
+    "content": [
+      "192e65c7-c6d9-441f-a6f8-c20671cfc8c4"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550441690798,
+    "format": {
+      "page_small_text": true
+    },
+    "id": "9b4ac918-3c47-4713-bb20-909cd4f3b0cd",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550713260000,
+    "parent_id": "cbac01a1-36d1-413c-af76-05b73711fafe",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "DoggyPresenter.swift"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 7,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550441690797,
+        "id": "192e65c7-c6d9-441f-a6f8-c20671cfc8c4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550713260000,
+        "parent_id": "9b4ac918-3c47-4713-bb20-909cd4f3b0cd",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Swift"
+            ]
+          ],
+          "title": [
+            [
+              "import Foundation\n\nclass DoggyPresenter {\n\n    // MARK: - Private\n    fileprivate let dogService: DoggyService\n    weak fileprivate var dogView: DoggyView?\n\n    init(dogService: DoggyService){\n        self.dogService = dogService\n    }\n\n    func attachView(_ attach: Bool, view: DoggyView?) {\n        if attach {\n            dogView = nil\n        } else {\n            if let view = view { dogView = view }\n        }\n    }\n\n    func getDogs(){\n        self.dogView?.startLoading()\n    \n        dogService.deliverDoggies { [weak self] doggies in\n            self?.dogView?.finishLoading()\n        \n        if doggies.count == 0 {\n            self?.dogView?.setEmpty()\n        } else {\n            self?.dogView?.setDoggies(doggies.map {\n                return DoggyViewData(name: \"\\($0.name) \\($0.breed)\",\n                                      age: \"\\($0.age)\")\n                })\n            }\n        }\n    }\n}\n\nstruct DoggyViewData {\n    let name: String\n    let age:  String\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "import Foundation\n\nclass DoggyPresenter {\n\n    // MARK: - Private\n    fileprivate let dogService: DoggyService\n    weak fileprivate var dogView: DoggyView?\n\n    init(dogService: DoggyService){\n        self.dogService = dogService\n    }\n\n    func attachView(_ attach: Bool, view: DoggyView?) {\n        if attach {\n            dogView = nil\n        } else {\n            if let view = view { dogView = view }\n        }\n    }\n\n    func getDogs(){\n        self.dogView?.startLoading()\n    \n        dogService.deliverDoggies { [weak self] doggies in\n            self?.dogView?.finishLoading()\n        \n        if doggies.count == 0 {\n            self?.dogView?.setEmpty()\n        } else {\n            self?.dogView?.setDoggies(doggies.map {\n                return DoggyViewData(name: \"\\($0.name) \\($0.breed)\",\n                                      age: \"\\($0.age)\")\n                })\n            }\n        }\n    }\n}\n\nstruct DoggyViewData {\n    let name: String\n    let age:  String\n}",
+        "code_language": "Swift"
+      }
+    ],
+    "title": "DoggyPresenter.swift",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": false,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

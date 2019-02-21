@@ -1,0 +1,115 @@
+{
+  "ID": "1cca5cc5-d70c-4de5-9123-28cff767dab8",
+  "Root": {
+    "alive": true,
+    "content": [
+      "93687b07-4eea-4634-b83d-5d05aae82e90",
+      "aabc3a9a-892b-4b77-802c-758a3007ade9"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550398144001,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "1cca5cc5-d70c-4de5-9123-28cff767dab8",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550654040000,
+    "parent_id": "cd185718-00e1-4055-82db-654c8985c5a6",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Get iOS device model name"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 10,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550398144001,
+        "id": "93687b07-4eea-4634-b83d-5d05aae82e90",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550398144001,
+        "parent_id": "1cca5cc5-d70c-4de5-9123-28cff767dab8",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Swift 3",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Swift 3",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550398144001,
+        "id": "aabc3a9a-892b-4b77-802c-758a3007ade9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550398144001,
+        "parent_id": "1cca5cc5-d70c-4de5-9123-28cff767dab8",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import UIKit\n\npublic extension UIDevice {\n\n    var modelName: String {\n        var systemInfo = utsname()\n        uname(\u0026systemInfo)\n        let machineMirror = Mirror(reflecting: systemInfo.machine)\n        let identifier = machineMirror.children.reduce(\"\") { identifier, element in\n            guard let value = element.value as? Int8 , value != 0 else { return identifier     }\n            return identifier + String(UnicodeScalar(UInt8(value)))\n        }\n\n        switch identifier {\n        case \"iPod5,1\":                                 return \"iPod Touch 5\"\n        case \"iPod7,1\":                                 return \"iPod Touch 6\"\n        case \"iPhone3,1\", \"iPhone3,2\", \"iPhone3,3\":     return \"iPhone 4\"\n        case \"iPhone4,1\":                               return \"iPhone 4s\"\n        case \"iPhone5,1\", \"iPhone5,2\":                  return \"iPhone 5\"\n        case \"iPhone5,3\", \"iPhone5,4\":                  return \"iPhone 5c\"\n        case \"iPhone6,1\", \"iPhone6,2\":                  return \"iPhone 5s\"\n        case \"iPhone7,2\":                               return \"iPhone 6\"\n        case \"iPhone7,1\":                               return \"iPhone 6 Plus\"\n        case \"iPhone8,1\":                               return \"iPhone 6s\"\n        case \"iPhone8,2\":                               return \"iPhone 6s Plus\"\n        case \"iPhone9,1\", \"iPhone9,3\":                  return \"iPhone 7\"\n        case \"iPhone9,2\", \"iPhone9,4\":                  return \"iPhone 7 Plus\"\n        case \"iPhone8,4\":                               return \"iPhone SE\"\n        case \"iPad2,1\", \"iPad2,2\", \"iPad2,3\", \"iPad2,4\":return \"iPad 2\"\n        case \"iPad3,1\", \"iPad3,2\", \"iPad3,3\":           return \"iPad 3\"\n        case \"iPad3,4\", \"iPad3,5\", \"iPad3,6\":           return \"iPad 4\"\n        case \"iPad4,1\", \"iPad4,2\", \"iPad4,3\":           return \"iPad Air\"\n        case \"iPad5,3\", \"iPad5,4\":                      return \"iPad Air 2\"\n        case \"iPad2,5\", \"iPad2,6\", \"iPad2,7\":           return \"iPad Mini\"\n        case \"iPad4,4\", \"iPad4,5\", \"iPad4,6\":           return \"iPad Mini 2\"\n        case \"iPad4,7\", \"iPad4,8\", \"iPad4,9\":           return \"iPad Mini 3\"\n        case \"iPad5,1\", \"iPad5,2\":                      return \"iPad Mini 4\"\n        case \"iPad6,3\", \"iPad6,4\", \"iPad6,7\", \"iPad6,8\":return \"iPad Pro\"\n        case \"AppleTV5,3\":                              return \"Apple TV\"\n        case \"i386\", \"x86_64\":                          return \"Simulator\"\n        default:                                        return identifier\n        }\n    }\n}\n\nif UIDevice.current.modelName == \"iPhone 7\" {\n    // is an iPhone 7\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import UIKit\n\npublic extension UIDevice {\n\n    var modelName: String {\n        var systemInfo = utsname()\n        uname(\u0026systemInfo)\n        let machineMirror = Mirror(reflecting: systemInfo.machine)\n        let identifier = machineMirror.children.reduce(\"\") { identifier, element in\n            guard let value = element.value as? Int8 , value != 0 else { return identifier     }\n            return identifier + String(UnicodeScalar(UInt8(value)))\n        }\n\n        switch identifier {\n        case \"iPod5,1\":                                 return \"iPod Touch 5\"\n        case \"iPod7,1\":                                 return \"iPod Touch 6\"\n        case \"iPhone3,1\", \"iPhone3,2\", \"iPhone3,3\":     return \"iPhone 4\"\n        case \"iPhone4,1\":                               return \"iPhone 4s\"\n        case \"iPhone5,1\", \"iPhone5,2\":                  return \"iPhone 5\"\n        case \"iPhone5,3\", \"iPhone5,4\":                  return \"iPhone 5c\"\n        case \"iPhone6,1\", \"iPhone6,2\":                  return \"iPhone 5s\"\n        case \"iPhone7,2\":                               return \"iPhone 6\"\n        case \"iPhone7,1\":                               return \"iPhone 6 Plus\"\n        case \"iPhone8,1\":                               return \"iPhone 6s\"\n        case \"iPhone8,2\":                               return \"iPhone 6s Plus\"\n        case \"iPhone9,1\", \"iPhone9,3\":                  return \"iPhone 7\"\n        case \"iPhone9,2\", \"iPhone9,4\":                  return \"iPhone 7 Plus\"\n        case \"iPhone8,4\":                               return \"iPhone SE\"\n        case \"iPad2,1\", \"iPad2,2\", \"iPad2,3\", \"iPad2,4\":return \"iPad 2\"\n        case \"iPad3,1\", \"iPad3,2\", \"iPad3,3\":           return \"iPad 3\"\n        case \"iPad3,4\", \"iPad3,5\", \"iPad3,6\":           return \"iPad 4\"\n        case \"iPad4,1\", \"iPad4,2\", \"iPad4,3\":           return \"iPad Air\"\n        case \"iPad5,3\", \"iPad5,4\":                      return \"iPad Air 2\"\n        case \"iPad2,5\", \"iPad2,6\", \"iPad2,7\":           return \"iPad Mini\"\n        case \"iPad4,4\", \"iPad4,5\", \"iPad4,6\":           return \"iPad Mini 2\"\n        case \"iPad4,7\", \"iPad4,8\", \"iPad4,9\":           return \"iPad Mini 3\"\n        case \"iPad5,1\", \"iPad5,2\":                      return \"iPad Mini 4\"\n        case \"iPad6,3\", \"iPad6,4\", \"iPad6,7\", \"iPad6,8\":return \"iPad Pro\"\n        case \"AppleTV5,3\":                              return \"Apple TV\"\n        case \"i386\", \"x86_64\":                          return \"Simulator\"\n        default:                                        return identifier\n        }\n    }\n}\n\nif UIDevice.current.modelName == \"iPhone 7\" {\n    // is an iPhone 7\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Get iOS device model name",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

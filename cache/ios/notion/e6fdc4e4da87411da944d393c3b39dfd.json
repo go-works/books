@@ -1,0 +1,83 @@
+{
+  "ID": "e6fdc4e4-da87-411d-a944-d393c3b39dfd",
+  "Root": {
+    "alive": true,
+    "content": [
+      "315fc8aa-d5c9-4bd3-a7ef-ed3124fadd49"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550441693816,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "e6fdc4e4-da87-411d-a944-d393c3b39dfd",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550713260000,
+    "parent_id": "cbac01a1-36d1-413c-af76-05b73711fafe",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "DoggyListViewController.swift"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 9,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550441693813,
+        "id": "315fc8aa-d5c9-4bd3-a7ef-ed3124fadd49",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550713200000,
+        "parent_id": "e6fdc4e4-da87-411d-a944-d393c3b39dfd",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Swift"
+            ]
+          ],
+          "title": [
+            [
+              "import UIKit\n\nclass DoggyListViewController: UIViewController, UITableViewDataSource {\n\n    @IBOutlet weak var emptyView: UIView?\n    @IBOutlet weak var tableView: UITableView?\n    @IBOutlet weak var spinner:   UIActivityIndicatorView?\n\n    fileprivate let dogPresenter = DoggyPresenter(dogService: DoggyService())\n    fileprivate var dogsToDisplay = [DoggyViewData]()\n\n    override func viewDidLoad() {\n        super.viewDidLoad()\n    \n        tableView?.dataSource = self\n        spinner?.hidesWhenStopped = true\n        dogPresenter.attachView(true, view: self)\n        dogPresenter.getDogs()\n    }\n\n    // MARK: DataSource\n    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -\u003e Int {\n        return dogsToDisplay.count\n    }\n\n    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -\u003e UITableViewCell {\n        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: \"Cell\")\n        let userViewData = dogsToDisplay[indexPath.row]\n        cell.textLabel?.text = userViewData.name\n        cell.detailTextLabel?.text = userViewData.age\n        return cell\n    }\n}\n\nextension DoggyListViewController: DoggyView {\n\n    func startLoading() {\n        spinner?.startAnimating()\n    }\n\n    func finishLoading() {\n        spinner?.stopAnimating()\n    }\n\n    func setDoggies(_ doggies: [DoggyViewData]) {\n        dogsToDisplay = doggies\n        tableView?.isHidden = false\n        emptyView?.isHidden = true;\n        tableView?.reloadData()\n    }\n\n    func setEmpty() {\n        tableView?.isHidden = true\n        emptyView?.isHidden = false;\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "import UIKit\n\nclass DoggyListViewController: UIViewController, UITableViewDataSource {\n\n    @IBOutlet weak var emptyView: UIView?\n    @IBOutlet weak var tableView: UITableView?\n    @IBOutlet weak var spinner:   UIActivityIndicatorView?\n\n    fileprivate let dogPresenter = DoggyPresenter(dogService: DoggyService())\n    fileprivate var dogsToDisplay = [DoggyViewData]()\n\n    override func viewDidLoad() {\n        super.viewDidLoad()\n    \n        tableView?.dataSource = self\n        spinner?.hidesWhenStopped = true\n        dogPresenter.attachView(true, view: self)\n        dogPresenter.getDogs()\n    }\n\n    // MARK: DataSource\n    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -\u003e Int {\n        return dogsToDisplay.count\n    }\n\n    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -\u003e UITableViewCell {\n        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: \"Cell\")\n        let userViewData = dogsToDisplay[indexPath.row]\n        cell.textLabel?.text = userViewData.name\n        cell.detailTextLabel?.text = userViewData.age\n        return cell\n    }\n}\n\nextension DoggyListViewController: DoggyView {\n\n    func startLoading() {\n        spinner?.startAnimating()\n    }\n\n    func finishLoading() {\n        spinner?.stopAnimating()\n    }\n\n    func setDoggies(_ doggies: [DoggyViewData]) {\n        dogsToDisplay = doggies\n        tableView?.isHidden = false\n        emptyView?.isHidden = true;\n        tableView?.reloadData()\n    }\n\n    func setEmpty() {\n        tableView?.isHidden = true\n        emptyView?.isHidden = false;\n    }\n}",
+        "code_language": "Swift"
+      }
+    ],
+    "title": "DoggyListViewController.swift",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

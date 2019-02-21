@@ -1,0 +1,135 @@
+{
+  "ID": "32e142c0-d71a-482f-bc52-14edd53220a7",
+  "Root": {
+    "alive": true,
+    "content": [
+      "16750db9-e276-4543-9aaa-f5da21e8beab",
+      "ec290533-95e5-434b-9260-74656d9b2f87",
+      "874a04a5-9ffa-45cb-baab-75228bcac08d"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550397729048,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "32e142c0-d71a-482f-bc52-14edd53220a7",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550653140000,
+    "parent_id": "9b7effe3-3c92-47b3-890a-34980fc6c2ba",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Matching Dynamic Type Font Size in WKWebView"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397729047,
+        "id": "16750db9-e276-4543-9aaa-f5da21e8beab",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397729047,
+        "parent_id": "32e142c0-d71a-482f-bc52-14edd53220a7",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "WKWebView resizes the fonts on web content so that a full-sized web page will fit on the device’s form factor. If you want the web text in both portrait and landscape to be similar in size to the user’s preferred reading size, you need to set it explicitly."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "WKWebView resizes the fonts on web content so that a full-sized web page will fit on the device’s form factor. If you want the web text in both portrait and landscape to be similar in size to the user’s preferred reading size, you need to set it explicitly."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397729048,
+        "id": "ec290533-95e5-434b-9260-74656d9b2f87",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397729048,
+        "parent_id": "32e142c0-d71a-482f-bc52-14edd53220a7",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Swift"
+            ]
+          ]
+        },
+        "type": "header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Swift"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397729048,
+        "id": "874a04a5-9ffa-45cb-baab-75228bcac08d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397729048,
+        "parent_id": "32e142c0-d71a-482f-bc52-14edd53220a7",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// build HTML header for dynamic type and responsive design\nfunc buildHTMLHeader() -\u003e String {\n        \n    // Get preferred dynamic type font sizes for html styles\n    let bodySize = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body).pointSize\n    let h1Size = UIFont.preferredFont(forTextStyle: UIFontTextStyle.title1).pointSize\n    let h2Size = UIFont.preferredFont(forTextStyle: UIFontTextStyle.title2).pointSize\n    let h3Size = UIFont.preferredFont(forTextStyle: UIFontTextStyle.title3).pointSize\n        \n    // On iPad, landscape text is larger than preferred font size\n    var portraitMultiplier = CGFloat(1.0)\n    var landscapeMultiplier = CGFloat(0.5)\n    \n    // iPhone text is shrunken    \n    if UIDevice.current.model.range(of: \"iPhone\") != nil {\n        portraitMultiplier = CGFloat(3.0)\n        landscapeMultiplier = CGFloat(1.5)\n    }\n        \n    // Start HTML header text\n    let patternText = \"\u003chtml\u003e \u003chead\u003e \u003cstyle\u003e \"\n        \n    // Match Dynamic Type for this page.\n    + \"body { background-color: \\(backgroundColor);} \"\n    + \"@media all and (orientation:portrait) {img {max-width: 90%; height: auto;} \"\n    + \"p, li { font: -apple-system-body; font-family: Georgia, serif; font-size:calc(\\(bodySize * portraitMultiplier)px + 1.0vw); font-weight: normal; color: \\(fontColor) } \"\n    + \"h1 { font: -apple-system-headine; font-family: Verdana, sans-serif; font-size:calc(\\(h1Size * portraitMultiplier)px + 1.0vw); font-weight: bold; color: \\(headFontColor) } \"\n    + \"h2 { font: -apple-system-headine; font-family: Verdana, sans-serif; font-size:calc(\\(h2Size * portraitMultiplier)px + 1.0vw); font-weight: bold; color: \\(headFontColor) } \"\n    + \"h3, h4 { font: -apple-system-headine; font-family: Verdana, sans-serif; font-size:calc(\\(h3Size * portraitMultiplier)px + 1.0vw); font-weight: bold; color: \\(headFontColor) } } \"\n    + \"@media all and (orientation:landscape) {img {max-width: 65%; height: auto;}\"\n    + \"p, li { font: -apple-system-body; font-family: Georgia, serif; font-size:calc(\\(bodySize * landscapeMultiplier)px + 1.0vw); font-weight: normal; color: \\(fontColor) }\"\n    + \"h1 { font: -apple-system-headine; font-family: Verdana, sans-serif; font-size:calc(\\(h1Size * landscapeMultiplier)px + 1.0vw); font-weight: bold; color: \\(headFontColor) } \"\n    + \"h2 { font: -apple-system-headine; font-family: Verdana, sans-serif; font-size:calc(\\(h2Size * landscapeMultiplier)px + 1.0vw); font-weight: bold; color: \\(headFontColor) } \"\n    + \"h3, h4 { font: -apple-system-headine; font-family: Verdana, sans-serif; font-size:calc(\\(h3Size * landscapeMultiplier)px + 1.0vw); font-weight: bold; color: \\(headFontColor) } } \u003c/style\u003e\"\n    + \"\u003c/head\u003e\u003cbody\u003e\"\n    + \"\u003cmeta name=\\\"viewport\\\" content=\\\"width: device-width\\\"\u003e\"\n        \n    return patternText\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// build HTML header for dynamic type and responsive design\nfunc buildHTMLHeader() -\u003e String {\n        \n    // Get preferred dynamic type font sizes for html styles\n    let bodySize = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body).pointSize\n    let h1Size = UIFont.preferredFont(forTextStyle: UIFontTextStyle.title1).pointSize\n    let h2Size = UIFont.preferredFont(forTextStyle: UIFontTextStyle.title2).pointSize\n    let h3Size = UIFont.preferredFont(forTextStyle: UIFontTextStyle.title3).pointSize\n        \n    // On iPad, landscape text is larger than preferred font size\n    var portraitMultiplier = CGFloat(1.0)\n    var landscapeMultiplier = CGFloat(0.5)\n    \n    // iPhone text is shrunken    \n    if UIDevice.current.model.range(of: \"iPhone\") != nil {\n        portraitMultiplier = CGFloat(3.0)\n        landscapeMultiplier = CGFloat(1.5)\n    }\n        \n    // Start HTML header text\n    let patternText = \"\u003chtml\u003e \u003chead\u003e \u003cstyle\u003e \"\n        \n    // Match Dynamic Type for this page.\n    + \"body { background-color: \\(backgroundColor);} \"\n    + \"@media all and (orientation:portrait) {img {max-width: 90%; height: auto;} \"\n    + \"p, li { font: -apple-system-body; font-family: Georgia, serif; font-size:calc(\\(bodySize * portraitMultiplier)px + 1.0vw); font-weight: normal; color: \\(fontColor) } \"\n    + \"h1 { font: -apple-system-headine; font-family: Verdana, sans-serif; font-size:calc(\\(h1Size * portraitMultiplier)px + 1.0vw); font-weight: bold; color: \\(headFontColor) } \"\n    + \"h2 { font: -apple-system-headine; font-family: Verdana, sans-serif; font-size:calc(\\(h2Size * portraitMultiplier)px + 1.0vw); font-weight: bold; color: \\(headFontColor) } \"\n    + \"h3, h4 { font: -apple-system-headine; font-family: Verdana, sans-serif; font-size:calc(\\(h3Size * portraitMultiplier)px + 1.0vw); font-weight: bold; color: \\(headFontColor) } } \"\n    + \"@media all and (orientation:landscape) {img {max-width: 65%; height: auto;}\"\n    + \"p, li { font: -apple-system-body; font-family: Georgia, serif; font-size:calc(\\(bodySize * landscapeMultiplier)px + 1.0vw); font-weight: normal; color: \\(fontColor) }\"\n    + \"h1 { font: -apple-system-headine; font-family: Verdana, sans-serif; font-size:calc(\\(h1Size * landscapeMultiplier)px + 1.0vw); font-weight: bold; color: \\(headFontColor) } \"\n    + \"h2 { font: -apple-system-headine; font-family: Verdana, sans-serif; font-size:calc(\\(h2Size * landscapeMultiplier)px + 1.0vw); font-weight: bold; color: \\(headFontColor) } \"\n    + \"h3, h4 { font: -apple-system-headine; font-family: Verdana, sans-serif; font-size:calc(\\(h3Size * landscapeMultiplier)px + 1.0vw); font-weight: bold; color: \\(headFontColor) } } \u003c/style\u003e\"\n    + \"\u003c/head\u003e\u003cbody\u003e\"\n    + \"\u003cmeta name=\\\"viewport\\\" content=\\\"width: device-width\\\"\u003e\"\n        \n    return patternText\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Matching Dynamic Type Font Size in WKWebView",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

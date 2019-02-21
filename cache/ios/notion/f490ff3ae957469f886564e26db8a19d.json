@@ -1,0 +1,207 @@
+{
+  "ID": "f490ff3a-e957-469f-8865-64e26db8a19d",
+  "Root": {
+    "alive": true,
+    "content": [
+      "d96dd790-9733-4136-a9ec-c81f412a1215",
+      "7dbf3230-084e-4d44-82ac-3aae420c5d91",
+      "ee66b843-db1f-42f5-beff-1988f56f1720",
+      "8cda0108-09fd-47e9-a1ba-f4ef66bf51df",
+      "b181d137-95c2-4313-aba3-85e52dfa40dc"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550396846065,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "f490ff3a-e957-469f-8865-64e26db8a19d",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550652900000,
+    "parent_id": "bc18d381-67f8-4027-ae9b-966c7d186f67",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "UserDefaults uses in Swift 3"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550396846061,
+        "id": "d96dd790-9733-4136-a9ec-c81f412a1215",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550396846061,
+        "parent_id": "f490ff3a-e957-469f-8865-64e26db8a19d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Every application needed to store User Session or User related details inside application in UserDefaults.So we made whole logic inside a Class for managing UserDefaults better way.",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Every application needed to store User Session or User related details inside application in UserDefaults.So we made whole logic inside a Class for managing UserDefaults better way.",
+            "AttrFlags": 4
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550396846064,
+        "id": "7dbf3230-084e-4d44-82ac-3aae420c5d91",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550396846064,
+        "parent_id": "f490ff3a-e957-469f-8865-64e26db8a19d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Swift 3",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Swift 3",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550396846064,
+        "id": "ee66b843-db1f-42f5-beff-1988f56f1720",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550652900000,
+        "parent_id": "f490ff3a-e957-469f-8865-64e26db8a19d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Swift"
+            ]
+          ],
+          "title": [
+            [
+              "import Foundation\n\npublic struct Session {\n\n    fileprivate static let defaults = UserDefaults.standard\n\n    enum userValues: String {\n        case auth_token\n        case email\n        case fname\n        case mobile\n        case title\n        case userId\n        case userType\n        case OTP\n        case isApproved\n    }\n    \n    \n    //MARK: - Getting here User Details\n    static func getUserSessionDetails()-\u003e[String:AnyObject]? {\n        let dictionary = defaults.object(forKey: \"LoginSession\") as? [String:AnyObject]\n        return  dictionary\n    }\n    \n    //MARK: - Saving Device Token\n    static func saveDeviceToken(_ token:String){\n        guard (gettingDeviceToken() ?? \"\").isEmpty else {\n            return\n        }\n        defaults.removeObject(forKey: \"deviceToken\")\n        defaults.set(token, forKey: \"deviceToken\")\n        defaults.synchronize()\n    }\n    \n    //MARK: - Getting Token here\n    static func gettingDeviceToken()-\u003eString?{\n        let token = defaults.object(forKey: \"deviceToken\") as? String\n        if token == nil{\n            return \"\"\n        }else{ return token}\n    }\n    \n    //MARK: - Setting here User Details\n    static func setUserSessionDetails(_ dic :[String : AnyObject]){\n        defaults.removeObject(forKey: \"LoginSession\")\n        defaults.set(dic, forKey: \"LoginSession\")\n        defaults.synchronize()\n    }\n    \n    //MARK:- Removing here all Default Values\n    static func userSessionLogout(){\n        //Set Activity\n        defaults.removeObject(forKey: \"LoginSession\")\n        defaults.synchronize()\n    }\n    \n    //MARK: - Get value from session here\n    static func getUserValues(value: userValues) -\u003e String? {\n        let dic = getUserSessionDetails() ?? [:]\n        guard let value = dic[value.rawValue] else{\n            return \"\"\n        }\n        return value as? String\n    }\n    \n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "import Foundation\n\npublic struct Session {\n\n    fileprivate static let defaults = UserDefaults.standard\n\n    enum userValues: String {\n        case auth_token\n        case email\n        case fname\n        case mobile\n        case title\n        case userId\n        case userType\n        case OTP\n        case isApproved\n    }\n    \n    \n    //MARK: - Getting here User Details\n    static func getUserSessionDetails()-\u003e[String:AnyObject]? {\n        let dictionary = defaults.object(forKey: \"LoginSession\") as? [String:AnyObject]\n        return  dictionary\n    }\n    \n    //MARK: - Saving Device Token\n    static func saveDeviceToken(_ token:String){\n        guard (gettingDeviceToken() ?? \"\").isEmpty else {\n            return\n        }\n        defaults.removeObject(forKey: \"deviceToken\")\n        defaults.set(token, forKey: \"deviceToken\")\n        defaults.synchronize()\n    }\n    \n    //MARK: - Getting Token here\n    static func gettingDeviceToken()-\u003eString?{\n        let token = defaults.object(forKey: \"deviceToken\") as? String\n        if token == nil{\n            return \"\"\n        }else{ return token}\n    }\n    \n    //MARK: - Setting here User Details\n    static func setUserSessionDetails(_ dic :[String : AnyObject]){\n        defaults.removeObject(forKey: \"LoginSession\")\n        defaults.set(dic, forKey: \"LoginSession\")\n        defaults.synchronize()\n    }\n    \n    //MARK:- Removing here all Default Values\n    static func userSessionLogout(){\n        //Set Activity\n        defaults.removeObject(forKey: \"LoginSession\")\n        defaults.synchronize()\n    }\n    \n    //MARK: - Get value from session here\n    static func getUserValues(value: userValues) -\u003e String? {\n        let dic = getUserSessionDetails() ?? [:]\n        guard let value = dic[value.rawValue] else{\n            return \"\"\n        }\n        return value as? String\n    }\n    \n}",
+        "code_language": "Swift"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550396846064,
+        "id": "8cda0108-09fd-47e9-a1ba-f4ef66bf51df",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550396846064,
+        "parent_id": "f490ff3a-e957-469f-8865-64e26db8a19d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Use of UserDefaults Class",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Use of UserDefaults Class",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550396846065,
+        "id": "b181d137-95c2-4313-aba3-85e52dfa40dc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550396846065,
+        "parent_id": "f490ff3a-e957-469f-8865-64e26db8a19d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "//Saving user Details\nSession.setUserSessionDetails(json ?? [:])\n\n//Retriving user Details \nlet userId = Session.getUserValues(value: .userId) ?? \"\""
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "//Saving user Details\nSession.setUserSessionDetails(json ?? [:])\n\n//Retriving user Details \nlet userId = Session.getUserValues(value: .userId) ?? \"\"",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "UserDefaults uses in Swift 3",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,83 @@
+{
+  "ID": "7b049613-1f51-4f93-80dc-a7ef4c8d15b7",
+  "Root": {
+    "alive": true,
+    "content": [
+      "b270ab6c-7564-4423-9734-66c66a364f18"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550398145958,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "7b049613-1f51-4f93-80dc-a7ef4c8d15b7",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550654040000,
+    "parent_id": "cd185718-00e1-4055-82db-654c8985c5a6",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Getting Battery Status and Battery Level"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550398145956,
+        "id": "b270ab6c-7564-4423-9734-66c66a364f18",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550398145956,
+        "parent_id": "7b049613-1f51-4f93-80dc-a7ef4c8d15b7",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "override func viewDidLoad() {\n    super.viewDidLoad()\n    NotificationCenter.default.addObserver(self, selector: Selector((\"batteryStateDidChange:\")), name: NSNotification.Name.UIDeviceBatteryStateDidChange, object: nil)\n    NotificationCenter.default.addObserver(self, selector: Selector((\"batteryLevelDidChange:\")), name: NSNotification.Name.UIDeviceBatteryLevelDidChange, object: nil)\n\n    // Stuff...\n}\n\nfunc batteryStateDidChange(notification: NSNotification){\n    // The stage did change: plugged, unplugged, full charge...\n}\n\nfunc batteryLevelDidChange(notification: NSNotification){\n    \n    let batteryLevel = UIDevice.current.batteryLevel\n    if batteryLevel \u003c 0.0 {\n        print(\" -1.0 means battery state is UIDeviceBatteryStateUnknown\")\n        return\n    }\n    \n    print(\"Battery Level : \\(batteryLevel * 100)%\")\n    // The battery's level did change (98%, 99%, ...)\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "override func viewDidLoad() {\n    super.viewDidLoad()\n    NotificationCenter.default.addObserver(self, selector: Selector((\"batteryStateDidChange:\")), name: NSNotification.Name.UIDeviceBatteryStateDidChange, object: nil)\n    NotificationCenter.default.addObserver(self, selector: Selector((\"batteryLevelDidChange:\")), name: NSNotification.Name.UIDeviceBatteryLevelDidChange, object: nil)\n\n    // Stuff...\n}\n\nfunc batteryStateDidChange(notification: NSNotification){\n    // The stage did change: plugged, unplugged, full charge...\n}\n\nfunc batteryLevelDidChange(notification: NSNotification){\n    \n    let batteryLevel = UIDevice.current.batteryLevel\n    if batteryLevel \u003c 0.0 {\n        print(\" -1.0 means battery state is UIDeviceBatteryStateUnknown\")\n        return\n    }\n    \n    print(\"Battery Level : \\(batteryLevel * 100)%\")\n    // The battery's level did change (98%, 99%, ...)\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Getting Battery Status and Battery Level",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,147 @@
+{
+  "ID": "a91bd3c0-5b78-4f87-9d71-8013e5894096",
+  "Root": {
+    "alive": true,
+    "content": [
+      "617203ad-49fb-4d6d-9379-26b5d663d2e8",
+      "c83f872e-83be-4a40-8105-536b45a0a2c2",
+      "ff6c5849-4b1f-4f59-8cb8-3ea7c362e79d"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550395445037,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "a91bd3c0-5b78-4f87-9d71-8013e5894096",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550649780000,
+    "parent_id": "70285e23-8a3d-4791-9548-c1fb5ea195dc",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Emitter View with custom image"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550395445037,
+        "id": "617203ad-49fb-4d6d-9379-26b5d663d2e8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550395445037,
+        "parent_id": "a91bd3c0-5b78-4f87-9d71-8013e5894096",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "For example we will create view that contains emitter layer and animates particles."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "For example we will create view that contains emitter layer and animates particles."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550395445037,
+        "id": "c83f872e-83be-4a40-8105-536b45a0a2c2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550649780000,
+        "parent_id": "a91bd3c0-5b78-4f87-9d71-8013e5894096",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Swift"
+            ]
+          ],
+          "title": [
+            [
+              "import QuartzCore\n\nclass ConfettiView: UIView {\n    // main emitter layer\n    var emitter: CAEmitterLayer!\n\n    // array of color to emit\n    var colors: [UIColor]!\n\n    // intensity of appearance\n    var intensity: Float!\n    \n    private var active :Bool!\n    \n    required init?(coder aDecoder: NSCoder) {\n        super.init(coder: aDecoder)\n        setup()\n    }\n    \n    override init(frame: CGRect) {\n        super.init(frame: frame)\n        setup()\n    }\n    \n    func setup() {\n        // initialization\n        colors = [UIColor.redColor(),\n                  UIColor.greenColor(),\n                  UIColor.blueColor()\n                  ]\n        intensity = 0.2\n        \n        active = false\n    }\n    \n    func startConfetti() {\n        emitter = CAEmitterLayer()\n        \n        emitter.emitterPosition = CGPoint(x: frame.size.width / 2.0, y: -20)\n        emitter.emitterShape = kCAEmitterLayerLine\n        emitter.emitterSize = CGSize(width: frame.size.width, height: 1)\n        \n        var cells = [CAEmitterCell]()\n        for color in colors {\n            cells.append(confettiWithColor(color))\n        }\n        \n        emitter.emitterCells = cells\n        layer.addSublayer(emitter)\n        active = true\n    }\n    \n    func stopConfetti() {\n        emitter?.birthRate = 0\n        active = false\n    }\n    \n    func confettiWithColor(color: UIColor) -\u003e CAEmitterCell {\n        let confetti = CAEmitterCell()\n\n        confetti.birthRate = 10.0 * intensity\n        confetti.lifetime = 180.0 * intensity\n        confetti.lifetimeRange = 0\n        confetti.color = color.CGColor\n        confetti.velocity = CGFloat(350.0 * intensity)\n        confetti.velocityRange = CGFloat(40.0 * intensity)\n        confetti.emissionLongitude = CGFloat(M_PI)\n        confetti.emissionRange = CGFloat(M_PI_4)\n        confetti.spin = CGFloat(3.5 * intensity)\n        confetti.spinRange = CGFloat(4.0 * intensity)\n        \n        // WARNING: A layer can set this property to a CGImageRef to display the image as its contents.\n        confetti.contents = UIImage(named: \"confetti\")?.CGImage\n        return confetti\n    }\n    \n    internal func isActive() -\u003e Bool {\n        return self.active\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "import QuartzCore\n\nclass ConfettiView: UIView {\n    // main emitter layer\n    var emitter: CAEmitterLayer!\n\n    // array of color to emit\n    var colors: [UIColor]!\n\n    // intensity of appearance\n    var intensity: Float!\n    \n    private var active :Bool!\n    \n    required init?(coder aDecoder: NSCoder) {\n        super.init(coder: aDecoder)\n        setup()\n    }\n    \n    override init(frame: CGRect) {\n        super.init(frame: frame)\n        setup()\n    }\n    \n    func setup() {\n        // initialization\n        colors = [UIColor.redColor(),\n                  UIColor.greenColor(),\n                  UIColor.blueColor()\n                  ]\n        intensity = 0.2\n        \n        active = false\n    }\n    \n    func startConfetti() {\n        emitter = CAEmitterLayer()\n        \n        emitter.emitterPosition = CGPoint(x: frame.size.width / 2.0, y: -20)\n        emitter.emitterShape = kCAEmitterLayerLine\n        emitter.emitterSize = CGSize(width: frame.size.width, height: 1)\n        \n        var cells = [CAEmitterCell]()\n        for color in colors {\n            cells.append(confettiWithColor(color))\n        }\n        \n        emitter.emitterCells = cells\n        layer.addSublayer(emitter)\n        active = true\n    }\n    \n    func stopConfetti() {\n        emitter?.birthRate = 0\n        active = false\n    }\n    \n    func confettiWithColor(color: UIColor) -\u003e CAEmitterCell {\n        let confetti = CAEmitterCell()\n\n        confetti.birthRate = 10.0 * intensity\n        confetti.lifetime = 180.0 * intensity\n        confetti.lifetimeRange = 0\n        confetti.color = color.CGColor\n        confetti.velocity = CGFloat(350.0 * intensity)\n        confetti.velocityRange = CGFloat(40.0 * intensity)\n        confetti.emissionLongitude = CGFloat(M_PI)\n        confetti.emissionRange = CGFloat(M_PI_4)\n        confetti.spin = CGFloat(3.5 * intensity)\n        confetti.spinRange = CGFloat(4.0 * intensity)\n        \n        // WARNING: A layer can set this property to a CGImageRef to display the image as its contents.\n        confetti.contents = UIImage(named: \"confetti\")?.CGImage\n        return confetti\n    }\n    \n    internal func isActive() -\u003e Bool {\n        return self.active\n    }\n}",
+        "code_language": "Swift"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550395445037,
+        "id": "ff6c5849-4b1f-4f59-8cb8-3ea7c362e79d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550395445037,
+        "parent_id": "a91bd3c0-5b78-4f87-9d71-8013e5894096",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "You need to add “confetti” image or define rect with "
+            ],
+            [
+              "confetti.contentsRect",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "You need to add “confetti” image or define rect with "
+          },
+          {
+            "Text": "confetti.contentsRect",
+            "AttrFlags": 1
+          }
+        ]
+      }
+    ],
+    "title": "Emitter View with custom image",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

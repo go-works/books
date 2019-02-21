@@ -1,0 +1,213 @@
+{
+  "ID": "d88b5b71-d0e9-440e-b1af-fa38635d8675",
+  "Root": {
+    "alive": true,
+    "content": [
+      "72964952-b22c-45cd-b1fb-58b90962573d",
+      "3362f565-cff2-4e28-8b88-e891787c1b40",
+      "47ca0752-d22c-4283-bc88-e8bc17b47eb7"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550394285892,
+    "id": "d88b5b71-d0e9-440e-b1af-fa38635d8675",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550482680000,
+    "parent_id": "378b8c4b-615f-49cc-b272-6560a0b45048",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Passing data using closures passing data back"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 6,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550394285891,
+        "id": "72964952-b22c-45cd-b1fb-58b90962573d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550394285891,
+        "parent_id": "d88b5b71-d0e9-440e-b1af-fa38635d8675",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Instead of using the "
+            ],
+            [
+              "delegate pattern",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              ", that split the implementation in various part of the "
+            ],
+            [
+              "UIViewController",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " class, you can even use "
+            ],
+            [
+              "closures",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to pass data back and forward. By assuming that you’re using the "
+            ],
+            [
+              "UIStoryboardSegue",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", in the "
+            ],
+            [
+              "prepareForSegue",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method you can easily setup the new controller in one step"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Instead of using the "
+          },
+          {
+            "Text": "delegate pattern",
+            "AttrFlags": 1
+          },
+          {
+            "Text": ", that split the implementation in various part of the "
+          },
+          {
+            "Text": "UIViewController",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " class, you can even use "
+          },
+          {
+            "Text": "closures",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to pass data back and forward. By assuming that you’re using the "
+          },
+          {
+            "Text": "UIStoryboardSegue",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", in the "
+          },
+          {
+            "Text": "prepareForSegue",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method you can easily setup the new controller in one step"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550394285892,
+        "id": "3362f565-cff2-4e28-8b88-e891787c1b40",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550482680000,
+        "parent_id": "d88b5b71-d0e9-440e-b1af-fa38635d8675",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Swift"
+            ]
+          ],
+          "title": [
+            [
+              "final class DestinationViewController: UIViewController {\n    var onCompletion: ((success: Bool) -\u003e ())?\n\n    @IBAction func someButtonTapped(sender: AnyObject?) {\n        onCompletion?(success: true)\n    }\n}\n\nfinal class MyViewController: UIViewController {\n    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {\n    \n        guard let destinationController = segue.destinationViewController as? DestinationViewController else { return }\n    \n        destinationController.onCompletion = { success in\n            // this will be executed when `someButtonTapped(_:)` will be called\n            print(success)\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "final class DestinationViewController: UIViewController {\n    var onCompletion: ((success: Bool) -\u003e ())?\n\n    @IBAction func someButtonTapped(sender: AnyObject?) {\n        onCompletion?(success: true)\n    }\n}\n\nfinal class MyViewController: UIViewController {\n    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {\n    \n        guard let destinationController = segue.destinationViewController as? DestinationViewController else { return }\n    \n        destinationController.onCompletion = { success in\n            // this will be executed when `someButtonTapped(_:)` will be called\n            print(success)\n        }\n    }\n}",
+        "code_language": "Swift"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550394285892,
+        "id": "47ca0752-d22c-4283-bc88-e8bc17b47eb7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550394285892,
+        "parent_id": "d88b5b71-d0e9-440e-b1af-fa38635d8675",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This is an example of use and it’s better to use on Swift, Objective-C block’s syntax is not so easy to make the code more readable"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This is an example of use and it’s better to use on Swift, Objective-C block’s syntax is not so easy to make the code more readable"
+          }
+        ]
+      }
+    ],
+    "title": "Passing data using closures passing data back"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

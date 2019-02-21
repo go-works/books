@@ -1,0 +1,781 @@
+{
+  "ID": "792a54e4-a430-4c22-8ebd-c5291f071def",
+  "Root": {
+    "alive": true,
+    "content": [
+      "146e53ba-9c82-4ac6-b0a8-d5428eb663ea",
+      "173ebe9f-c278-480b-8327-ca0917bb40f4",
+      "647dd3dc-d58b-4732-a4e9-41a9e9d26b3e",
+      "a95f34d7-be11-4800-98f6-c1f80100d828",
+      "010b985b-8e44-48ed-ab78-75870f0cebd3",
+      "76d11058-11bc-46da-b44b-f5715054565b",
+      "f3295a43-810b-4d52-9edc-7d7042fcdbd2",
+      "27fd50cd-446c-46c1-b2ae-69c1ef55a7a8",
+      "768f5b7b-cec4-475c-b31f-bed318644b9a",
+      "cec65a16-f631-4ae6-b8c3-134d72da0fee",
+      "4b802e1c-dd10-40f0-b347-c2d63a3af78f",
+      "56f005a7-2f59-4b99-99e3-b7121a4dd556",
+      "c6fbc0e5-e3f9-4e67-aabe-c94c1d231e49",
+      "8098ac7c-71f8-465d-b44c-ca7cea4b7985",
+      "0161ddbe-5fc2-49df-b5da-37bd76e497f6",
+      "e60adb9b-bdef-4c73-9696-5c9b11bc3836",
+      "de6fac4c-453f-4b98-b039-e46f47140f6d",
+      "7bc89862-141a-4827-a1a8-19dafb3600b0",
+      "8d55d3bc-0b2d-4974-adb8-77cc79c44b20",
+      "3ca307c3-8aca-446a-84d0-b623797234dd",
+      "014cdf78-3d5e-4cce-911c-1fd4f28a4bac",
+      "af164a7e-5272-4b78-8b42-e5a5786f8b4d",
+      "03dbb63c-ce15-4e01-9078-503558873200"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550397885793,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "792a54e4-a430-4c22-8ebd-c5291f071def",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550654160000,
+    "parent_id": "652de3ae-3b9e-4364-b4df-f861bab62742",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Upload an image or a video to S3 using AWS SDK"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397885788,
+        "id": "146e53ba-9c82-4ac6-b0a8-d5428eb663ea",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397885788,
+        "parent_id": "792a54e4-a430-4c22-8ebd-c5291f071def",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Before starting with the example I’d recommend to create a Singleton with a delegate class member so you could achieve a use case of uploading a file in the background and let the user keep using your app while the files are being uploaded even when the app is the background."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Before starting with the example I’d recommend to create a Singleton with a delegate class member so you could achieve a use case of uploading a file in the background and let the user keep using your app while the files are being uploaded even when the app is the background."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397885789,
+        "id": "173ebe9f-c278-480b-8327-ca0917bb40f4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397885789,
+        "parent_id": "792a54e4-a430-4c22-8ebd-c5291f071def",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Let’s start, first, we should create an enum that represent the S3 configuration:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Let’s start, first, we should create an enum that represent the S3 configuration:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397885789,
+        "id": "647dd3dc-d58b-4732-a4e9-41a9e9d26b3e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397885789,
+        "parent_id": "792a54e4-a430-4c22-8ebd-c5291f071def",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "enum S3Configuration : String\n{\n    case IDENTITY_POOL_ID   = \"YourIdentityPoolId\"\n    case BUCKET_NAME        = \"YourBucketName\"\n    case CALLBACK_KEY       = \"YourCustomStringForCallBackWhenUploadingInTheBackground\"\n    case CONTENT_TYPE_IMAGE = \"image/png\"\n    case CONTENT_TYPE_VIDEO = \"video/mp4\"\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "enum S3Configuration : String\n{\n    case IDENTITY_POOL_ID   = \"YourIdentityPoolId\"\n    case BUCKET_NAME        = \"YourBucketName\"\n    case CALLBACK_KEY       = \"YourCustomStringForCallBackWhenUploadingInTheBackground\"\n    case CONTENT_TYPE_IMAGE = \"image/png\"\n    case CONTENT_TYPE_VIDEO = \"video/mp4\"\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397885789,
+        "id": "a95f34d7-be11-4800-98f6-c1f80100d828",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397885789,
+        "parent_id": "792a54e4-a430-4c22-8ebd-c5291f071def",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Now, we should set the credentials when your app launch for the first time, thus, we should set them inside the "
+            ],
+            [
+              "AppDelegate",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " at the "
+            ],
+            [
+              "didFinishLaunchingWithOptions",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method (pay attention that you should set your region at the "
+            ],
+            [
+              "regionType",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " param):"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Now, we should set the credentials when your app launch for the first time, thus, we should set them inside the "
+          },
+          {
+            "Text": "AppDelegate",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " at the "
+          },
+          {
+            "Text": "didFinishLaunchingWithOptions",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method (pay attention that you should set your region at the "
+          },
+          {
+            "Text": "regionType",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " param):"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397885790,
+        "id": "010b985b-8e44-48ed-ab78-75870f0cebd3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397885790,
+        "parent_id": "792a54e4-a430-4c22-8ebd-c5291f071def",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -\u003e Bool\n{\n  let credentialProvider = AWSCognitoCredentialsProvider(regionType: .EUWest1, identityPoolId: S3Configuration.IDENTITY_POOL_ID.rawValue)\n  let configuration = AWSServiceConfiguration(region: .EUWest1, credentialsProvider: credentialProvider)\n  AWSS3TransferUtility.registerS3TransferUtilityWithConfiguration(configuration, forKey: S3Configuration.CALLBACK_KEY.rawValue)\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -\u003e Bool\n{\n  let credentialProvider = AWSCognitoCredentialsProvider(regionType: .EUWest1, identityPoolId: S3Configuration.IDENTITY_POOL_ID.rawValue)\n  let configuration = AWSServiceConfiguration(region: .EUWest1, credentialsProvider: credentialProvider)\n  AWSS3TransferUtility.registerS3TransferUtilityWithConfiguration(configuration, forKey: S3Configuration.CALLBACK_KEY.rawValue)\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397885790,
+        "id": "76d11058-11bc-46da-b44b-f5715054565b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397885790,
+        "parent_id": "792a54e4-a430-4c22-8ebd-c5291f071def",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Since we are already inside the AppDelegate, we should implement the background callback that is handled by the AWS SDK:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Since we are already inside the AppDelegate, we should implement the background callback that is handled by the AWS SDK:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397885790,
+        "id": "f3295a43-810b-4d52-9edc-7d7042fcdbd2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397885790,
+        "parent_id": "792a54e4-a430-4c22-8ebd-c5291f071def",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "func application(application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: () -\u003e Void)\n{\n    //  Will print the identifer you have set at the enum: .CALLBACK_KEY\n    print(\"Identifier: \" + identifier)\n    //  Stores the completion handler.\n    AWSS3TransferUtility.interceptApplication(application,\n                                              handleEventsForBackgroundURLSession: identifier,\n                                              completionHandler: completionHandler)\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "func application(application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: () -\u003e Void)\n{\n    //  Will print the identifer you have set at the enum: .CALLBACK_KEY\n    print(\"Identifier: \" + identifier)\n    //  Stores the completion handler.\n    AWSS3TransferUtility.interceptApplication(application,\n                                              handleEventsForBackgroundURLSession: identifier,\n                                              completionHandler: completionHandler)\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397885790,
+        "id": "27fd50cd-446c-46c1-b2ae-69c1ef55a7a8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397885790,
+        "parent_id": "792a54e4-a430-4c22-8ebd-c5291f071def",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Now, when the user will move the app to the background your upload will continue the actual upload."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Now, when the user will move the app to the background your upload will continue the actual upload."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397885790,
+        "id": "768f5b7b-cec4-475c-b31f-bed318644b9a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397885790,
+        "parent_id": "792a54e4-a430-4c22-8ebd-c5291f071def",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In order to upload the file using the AWS SDK we will have to write the file to the device and give the SDK the actual path. For the sake of the example, imagine we have a UIImage (could be a video also..) and we will write it to a temp folder:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In order to upload the file using the AWS SDK we will have to write the file to the device and give the SDK the actual path. For the sake of the example, imagine we have a UIImage (could be a video also..) and we will write it to a temp folder:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397885790,
+        "id": "cec65a16-f631-4ae6-b8c3-134d72da0fee",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397885790,
+        "parent_id": "792a54e4-a430-4c22-8ebd-c5291f071def",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Some image....\nlet image = UIImage()\nlet fileURL = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent(fileName)\nlet filePath = fileURL.path!\nlet imageData = UIImageJPEGRepresentation(image, 1.0)\nimageData!.writeToFile(filePath, atomically: true)"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Some image....\nlet image = UIImage()\nlet fileURL = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent(fileName)\nlet filePath = fileURL.path!\nlet imageData = UIImageJPEGRepresentation(image, 1.0)\nimageData!.writeToFile(filePath, atomically: true)",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397885790,
+        "id": "4b802e1c-dd10-40f0-b347-c2d63a3af78f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397885790,
+        "parent_id": "792a54e4-a430-4c22-8ebd-c5291f071def",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "FileURL and fileName will be used for the actual uploading later."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "FileURL and fileName will be used for the actual uploading later."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397885791,
+        "id": "56f005a7-2f59-4b99-99e3-b7121a4dd556",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397885791,
+        "parent_id": "792a54e4-a430-4c22-8ebd-c5291f071def",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "There are 2 closures we will have to define that are provided by the AWS SDK,"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "There are 2 closures we will have to define that are provided by the AWS SDK,"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397885791,
+        "id": "c6fbc0e5-e3f9-4e67-aabe-c94c1d231e49",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397885791,
+        "parent_id": "792a54e4-a430-4c22-8ebd-c5291f071def",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "AWSS3TransferUtilityUploadCompletionHandlerBlock",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " - A closure that notifies when the upload is done (or not)"
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "AWSS3TransferUtilityUploadCompletionHandlerBlock",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " - A closure that notifies when the upload is done (or not)"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397885792,
+        "id": "8098ac7c-71f8-465d-b44c-ca7cea4b7985",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397885792,
+        "parent_id": "792a54e4-a430-4c22-8ebd-c5291f071def",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "AWSS3TransferUtilityUploadProgressBlock",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " - A closure that notifies each byte sent"
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "AWSS3TransferUtilityUploadProgressBlock",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " - A closure that notifies each byte sent"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397885792,
+        "id": "0161ddbe-5fc2-49df-b5da-37bd76e497f6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397885792,
+        "parent_id": "792a54e4-a430-4c22-8ebd-c5291f071def",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If you plan to have a Singleton you should define those types as class members. The implementation should look like this:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If you plan to have a Singleton you should define those types as class members. The implementation should look like this:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397885792,
+        "id": "e60adb9b-bdef-4c73-9696-5c9b11bc3836",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397885792,
+        "parent_id": "792a54e4-a430-4c22-8ebd-c5291f071def",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var completionHandler : AWSS3TransferUtilityUploadCompletionHandlerBlock? =\n    { (task, error) -\u003e Void in\n\n        if ((error) != nil)\n        {\n          print(\"Upload failed\")\n        }\n        else\n        {\n          print(\"File uploaded successfully\")\n        }\n    }\n\nvar progressBlock : AWSS3TransferUtilityUploadProgressBlock? = \n    { [unowned self] (task, bytesSent:Int64, totalBytesSent:Int64,  totalBytesExpectedToSend:Int64) -\u003e Void in\n\n     let progressInPercentage = Float(Double(totalBytesSent) / Double(totalBytesExpectedToSend)) * 100\n     print(progressInPercentage)\n    }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var completionHandler : AWSS3TransferUtilityUploadCompletionHandlerBlock? =\n    { (task, error) -\u003e Void in\n\n        if ((error) != nil)\n        {\n          print(\"Upload failed\")\n        }\n        else\n        {\n          print(\"File uploaded successfully\")\n        }\n    }\n\nvar progressBlock : AWSS3TransferUtilityUploadProgressBlock? = \n    { [unowned self] (task, bytesSent:Int64, totalBytesSent:Int64,  totalBytesExpectedToSend:Int64) -\u003e Void in\n\n     let progressInPercentage = Float(Double(totalBytesSent) / Double(totalBytesExpectedToSend)) * 100\n     print(progressInPercentage)\n    }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397885792,
+        "id": "de6fac4c-453f-4b98-b039-e46f47140f6d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397885792,
+        "parent_id": "792a54e4-a430-4c22-8ebd-c5291f071def",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "NOTE:",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " If you are using a Singleton you might want to define a delegate that will report back with progress or when the file is done. If you are not using a Singleton you can create a static method that would have the relevant types:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "NOTE:",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " If you are using a Singleton you might want to define a delegate that will report back with progress or when the file is done. If you are not using a Singleton you can create a static method that would have the relevant types:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397885792,
+        "id": "7bc89862-141a-4827-a1a8-19dafb3600b0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397885792,
+        "parent_id": "792a54e4-a430-4c22-8ebd-c5291f071def",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "static func uploadImageToS3(fileURL : NSURL,\n                           fileName : String,\n            progressFunctionUpdater : Float -\u003e Void,\n                        resultBlock : (NSError?) -\u003e Void)\n{\n//    Actual implementation .....\n//    ...\n//    ...\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "static func uploadImageToS3(fileURL : NSURL,\n                           fileName : String,\n            progressFunctionUpdater : Float -\u003e Void,\n                        resultBlock : (NSError?) -\u003e Void)\n{\n//    Actual implementation .....\n//    ...\n//    ...\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397885793,
+        "id": "8d55d3bc-0b2d-4974-adb8-77cc79c44b20",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397885793,
+        "parent_id": "792a54e4-a430-4c22-8ebd-c5291f071def",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "progressFunctionUpdater",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " - will report back to a function with progress."
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "progressFunctionUpdater",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " - will report back to a function with progress."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397885793,
+        "id": "3ca307c3-8aca-446a-84d0-b623797234dd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397885793,
+        "parent_id": "792a54e4-a430-4c22-8ebd-c5291f071def",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "resultBlock",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " - If you return nil then upload was successfully else, you send the error object"
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "resultBlock",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " - If you return nil then upload was successfully else, you send the error object"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397885793,
+        "id": "014cdf78-3d5e-4cce-911c-1fd4f28a4bac",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397885793,
+        "parent_id": "792a54e4-a430-4c22-8ebd-c5291f071def",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Ladies and gentlemen, the actual upload:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Ladies and gentlemen, the actual upload:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397885793,
+        "id": "af164a7e-5272-4b78-8b42-e5a5786f8b4d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397885793,
+        "parent_id": "792a54e4-a430-4c22-8ebd-c5291f071def",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "let fileData = NSData(contentsOfFile: fileURL.relativePath!)\n\nlet expression = AWSS3TransferUtilityUploadExpression()\nexpression.uploadProgress = progressBlock\n\nlet transferUtility = AWSS3TransferUtility.S3TransferUtilityForKey(S3Configuration.CALLBACK_KEY.rawValue)\n\ntransferUtility?.uploadData(fileData!,\n    bucket: S3Configuration.BUCKET_NAME.rawValue,\n    key: fileName,\n    contentType: S3Configuration.CONTENT_TYPE_IMAGE.rawData,\n    expression: expression,\n    completionHander: completionHandler).continueWithBlock\n    { (task : AWSTask) -\u003e AnyObject? in\n        \n        if let error = task.error\n        {\n            print(error)\n        }\n        if let exception = task.exception\n        {\n            print(\"Exception: \" + exception.description)\n        }\n        if let uploadTask = task.result as? AWSS3TransferUtilityUploadTask\n        {\n            print(\"Upload started...\")\n        }\n        \n        return nil\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "let fileData = NSData(contentsOfFile: fileURL.relativePath!)\n\nlet expression = AWSS3TransferUtilityUploadExpression()\nexpression.uploadProgress = progressBlock\n\nlet transferUtility = AWSS3TransferUtility.S3TransferUtilityForKey(S3Configuration.CALLBACK_KEY.rawValue)\n\ntransferUtility?.uploadData(fileData!,\n    bucket: S3Configuration.BUCKET_NAME.rawValue,\n    key: fileName,\n    contentType: S3Configuration.CONTENT_TYPE_IMAGE.rawData,\n    expression: expression,\n    completionHander: completionHandler).continueWithBlock\n    { (task : AWSTask) -\u003e AnyObject? in\n        \n        if let error = task.error\n        {\n            print(error)\n        }\n        if let exception = task.exception\n        {\n            print(\"Exception: \" + exception.description)\n        }\n        if let uploadTask = task.result as? AWSS3TransferUtilityUploadTask\n        {\n            print(\"Upload started...\")\n        }\n        \n        return nil\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397885793,
+        "id": "03dbb63c-ce15-4e01-9078-503558873200",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397885793,
+        "parent_id": "792a54e4-a430-4c22-8ebd-c5291f071def",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Happy S3 uploading :)"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Happy S3 uploading :)"
+          }
+        ]
+      }
+    ],
+    "title": "Upload an image or a video to S3 using AWS SDK",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

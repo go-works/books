@@ -1,0 +1,203 @@
+{
+  "ID": "9ac540af-8eba-40f2-9bd8-72cefc29683c",
+  "Root": {
+    "alive": true,
+    "content": [
+      "f1d0dd38-0de2-4a1d-957b-866384e7efbc",
+      "d20a25d8-38e0-4d23-a657-72a29af6f70f",
+      "12181d62-7e65-4b28-8100-00cffd782549",
+      "741b1c06-2635-4efd-8194-56e85a2093c8",
+      "1be570f4-b304-4324-b06b-80cbe7ba199e"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550396322249,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "9ac540af-8eba-40f2-9bd8-72cefc29683c",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550652120000,
+    "parent_id": "b3127aad-3837-47cb-96f5-ea111e47a2a6",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Create PDF from any Microsoft Document loaded in UIWebview"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550396322248,
+        "id": "f1d0dd38-0de2-4a1d-957b-866384e7efbc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550396322248,
+        "parent_id": "9ac540af-8eba-40f2-9bd8-72cefc29683c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#define kPaperSizeA4 CGSizeMake(595.2,841.8)"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#define kPaperSizeA4 CGSizeMake(595.2,841.8)",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550396322248,
+        "id": "d20a25d8-38e0-4d23-a657-72a29af6f70f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550396322248,
+        "parent_id": "9ac540af-8eba-40f2-9bd8-72cefc29683c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "First of all implement UIPrintPageRenderer protocol"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "First of all implement UIPrintPageRenderer protocol"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550396322249,
+        "id": "12181d62-7e65-4b28-8100-00cffd782549",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550396322249,
+        "parent_id": "9ac540af-8eba-40f2-9bd8-72cefc29683c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "@interface UIPrintPageRenderer (PDF)\n\n- (NSData*) printToPDF;\n\n@end\n\n@implementation UIPrintPageRenderer (PDF)\n\n- (NSData*) printToPDF\n{\n    NSMutableData *pdfData = [NSMutableData data];\n    UIGraphicsBeginPDFContextToData( pdfData, self.paperRect, nil );\n    [self prepareForDrawingPages: NSMakeRange(0, self.numberOfPages)];\n    CGRect bounds = UIGraphicsGetPDFContextBounds();\n    for ( int i = 0 ; i \u003c self.numberOfPages ; i++ )\n    {\n        UIGraphicsBeginPDFPage();\n        [self drawPageAtIndex: i inRect: bounds];\n    }\n    UIGraphicsEndPDFContext();\n    return pdfData;\n}\n@end"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "@interface UIPrintPageRenderer (PDF)\n\n- (NSData*) printToPDF;\n\n@end\n\n@implementation UIPrintPageRenderer (PDF)\n\n- (NSData*) printToPDF\n{\n    NSMutableData *pdfData = [NSMutableData data];\n    UIGraphicsBeginPDFContextToData( pdfData, self.paperRect, nil );\n    [self prepareForDrawingPages: NSMakeRange(0, self.numberOfPages)];\n    CGRect bounds = UIGraphicsGetPDFContextBounds();\n    for ( int i = 0 ; i \u003c self.numberOfPages ; i++ )\n    {\n        UIGraphicsBeginPDFPage();\n        [self drawPageAtIndex: i inRect: bounds];\n    }\n    UIGraphicsEndPDFContext();\n    return pdfData;\n}\n@end",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550396322249,
+        "id": "741b1c06-2635-4efd-8194-56e85a2093c8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550396322249,
+        "parent_id": "9ac540af-8eba-40f2-9bd8-72cefc29683c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Then, call below method after document finished loading in "
+            ],
+            [
+              "UIWebView",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Then, call below method after document finished loading in "
+          },
+          {
+            "Text": "UIWebView",
+            "AttrFlags": 2
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550396322249,
+        "id": "1be570f4-b304-4324-b06b-80cbe7ba199e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550396322249,
+        "parent_id": "9ac540af-8eba-40f2-9bd8-72cefc29683c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "-(void)createPDF:(UIWebView *)webView {\n\nUIPrintPageRenderer *render = [[UIPrintPageRenderer alloc] init];\n[render addPrintFormatter:webView.viewPrintFormatter startingAtPageAtIndex:0];\n\nfloat padding = 10.0f;\nCGRect paperRect = CGRectMake(0, 0, kPaperSizeA4.width, kPaperSizeA4.height);\nCGRect printableRect = CGRectMake(padding, padding, kPaperSizeA4.width-(padding * 2), kPaperSizeA4.height-(padding * 2));\n\n[render setValue:[NSValue valueWithCGRect:paperRect] forKey:@\"paperRect\"];\n[render setValue:[NSValue valueWithCGRect:printableRect] forKey:@\"printableRect\"];\n\nNSData *pdfData = [render printToPDF];\n\ndispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{\n    \n    if (pdfData) {\n        [pdfData writeToFile:directoryPath atomically: YES];\n    }\n    else\n    {\n        NSLog(@\"PDF couldnot be created\");\n    }\n});}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "-(void)createPDF:(UIWebView *)webView {\n\nUIPrintPageRenderer *render = [[UIPrintPageRenderer alloc] init];\n[render addPrintFormatter:webView.viewPrintFormatter startingAtPageAtIndex:0];\n\nfloat padding = 10.0f;\nCGRect paperRect = CGRectMake(0, 0, kPaperSizeA4.width, kPaperSizeA4.height);\nCGRect printableRect = CGRectMake(padding, padding, kPaperSizeA4.width-(padding * 2), kPaperSizeA4.height-(padding * 2));\n\n[render setValue:[NSValue valueWithCGRect:paperRect] forKey:@\"paperRect\"];\n[render setValue:[NSValue valueWithCGRect:printableRect] forKey:@\"printableRect\"];\n\nNSData *pdfData = [render printToPDF];\n\ndispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{\n    \n    if (pdfData) {\n        [pdfData writeToFile:directoryPath atomically: YES];\n    }\n    else\n    {\n        NSLog(@\"PDF couldnot be created\");\n    }\n});}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Create PDF from any Microsoft Document loaded in UIWebview",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

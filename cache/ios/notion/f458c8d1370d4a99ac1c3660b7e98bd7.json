@@ -1,0 +1,132 @@
+{
+  "ID": "f458c8d1-370d-4a99-ac1c-3660b7e98bd7",
+  "Root": {
+    "alive": true,
+    "content": [
+      "d729c674-0745-4cac-8834-c7b2783c5048",
+      "abc82451-7596-4aa9-bd56-05635bab54e8",
+      "58b5ccb9-f26a-40a5-9b2d-f544b148fa03"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550396276905,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "f458c8d1-370d-4a99-ac1c-3660b7e98bd7",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550652240000,
+    "parent_id": "5a2590eb-a5eb-4d4d-9bb8-734f29f98b62",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Manage Multiple Collection view with DataSource and Flowlayout"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550396276904,
+        "id": "d729c674-0745-4cac-8834-c7b2783c5048",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550396276904,
+        "parent_id": "f458c8d1-370d-4a99-ac1c-3660b7e98bd7",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Here we are managing multiple collection there delegate methods with didselect events."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Here we are managing multiple collection there delegate methods with didselect events."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550396276904,
+        "id": "abc82451-7596-4aa9-bd56-05635bab54e8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550396276904,
+        "parent_id": "f458c8d1-370d-4a99-ac1c-3660b7e98bd7",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "extension ProductsVC: UICollectionViewDelegate, UICollectionViewDataSource{\n        \n        // MARK: - UICollectionViewDataSource\n        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -\u003e Int {\n            guard collectionView == collectionCategory else {\n                return arrOfProducts.count\n            }\n            return arrOfCategory.count\n        }\n        \n        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -\u003e UICollectionViewCell {\n            \n            guard collectionView == collectionProduct else {\n                  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: \"ProductCategoryCell\", for: indexPath) as! ProductCategoryCell\n                  cell.viewBackground.layer.borderWidth = 0.5\n                  //Do some thing as per use\n                  return cell\n            }\n            \n            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! ProductCell\n            cell.contentView.layer.borderWidth = 0.5\n            cell.contentView.layer.borderColor = UIColor.black.cgColor\n            let json = arrOfProducts[indexPath.row]\n            //Do something as per use\n    \n            return cell\n        }\n        \n        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {\n            guard collectionView == collectionCategory else {\n                let json = arrOfProducts[indexPath.row]\n                // Do something for  collectionProduct here\n                return\n            }\n            let json = arrOfCategory[indexPath.row] as [String: AnyObject]\n            let id = json[\"cId\"] as? String ?? \"\"\n            // Do something\n        }\n    }\n    \n    extension ProductsVC: UICollectionViewDelegateFlowLayout{\n        \n        // MARK: - UICollectionViewDelegateFlowLayout\n        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -\u003e CGSize {\n            \n            let collectionWidth = collectionView.bounds.width\n            guard collectionView == collectionProduct else {\n                var itemWidth = collectionWidth / 4 - 1;\n                \n                if(UI_USER_INTERFACE_IDIOM() == .pad) {\n                    itemWidth = collectionWidth / 4 - 1;\n                }\n                return CGSize(width: itemWidth, height: 50)\n            }\n            \n            var itemWidth = collectionWidth / 2 - 1;\n            if(UI_USER_INTERFACE_IDIOM() == .pad) {\n                itemWidth = collectionWidth / 4 - 1;\n            }\n            return CGSize(width: itemWidth, height: 250);\n        }\n        \n        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -\u003e CGFloat {\n            return 1\n        }\n        \n        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -\u003e CGFloat {\n            return 1\n        }\n        \n    }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "extension ProductsVC: UICollectionViewDelegate, UICollectionViewDataSource{\n        \n        // MARK: - UICollectionViewDataSource\n        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -\u003e Int {\n            guard collectionView == collectionCategory else {\n                return arrOfProducts.count\n            }\n            return arrOfCategory.count\n        }\n        \n        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -\u003e UICollectionViewCell {\n            \n            guard collectionView == collectionProduct else {\n                  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: \"ProductCategoryCell\", for: indexPath) as! ProductCategoryCell\n                  cell.viewBackground.layer.borderWidth = 0.5\n                  //Do some thing as per use\n                  return cell\n            }\n            \n            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! ProductCell\n            cell.contentView.layer.borderWidth = 0.5\n            cell.contentView.layer.borderColor = UIColor.black.cgColor\n            let json = arrOfProducts[indexPath.row]\n            //Do something as per use\n    \n            return cell\n        }\n        \n        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {\n            guard collectionView == collectionCategory else {\n                let json = arrOfProducts[indexPath.row]\n                // Do something for  collectionProduct here\n                return\n            }\n            let json = arrOfCategory[indexPath.row] as [String: AnyObject]\n            let id = json[\"cId\"] as? String ?? \"\"\n            // Do something\n        }\n    }\n    \n    extension ProductsVC: UICollectionViewDelegateFlowLayout{\n        \n        // MARK: - UICollectionViewDelegateFlowLayout\n        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -\u003e CGSize {\n            \n            let collectionWidth = collectionView.bounds.width\n            guard collectionView == collectionProduct else {\n                var itemWidth = collectionWidth / 4 - 1;\n                \n                if(UI_USER_INTERFACE_IDIOM() == .pad) {\n                    itemWidth = collectionWidth / 4 - 1;\n                }\n                return CGSize(width: itemWidth, height: 50)\n            }\n            \n            var itemWidth = collectionWidth / 2 - 1;\n            if(UI_USER_INTERFACE_IDIOM() == .pad) {\n                itemWidth = collectionWidth / 4 - 1;\n            }\n            return CGSize(width: itemWidth, height: 250);\n        }\n        \n        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -\u003e CGFloat {\n            return 1\n        }\n        \n        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -\u003e CGFloat {\n            return 1\n        }\n        \n    }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550396276905,
+        "id": "58b5ccb9-f26a-40a5-9b2d-f544b148fa03",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550396276905,
+        "parent_id": "f458c8d1-370d-4a99-ac1c-3660b7e98bd7",
+        "parent_table": "block",
+        "properties": {
+          "source": [
+            [
+              "https://i.stack.imgur.com/qcnAj.png"
+            ]
+          ]
+        },
+        "type": "image",
+        "version": 1,
+        "source": "https://i.stack.imgur.com/qcnAj.png",
+        "image_url": "https://www.notion.so/image/https:%2F%2Fi.stack.imgur.com%2FqcnAj.png"
+      }
+    ],
+    "title": "Manage Multiple Collection view with DataSource and Flowlayout",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

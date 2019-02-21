@@ -1,0 +1,163 @@
+{
+  "ID": "b9e16c17-939d-4d3d-9385-61554628908a",
+  "Root": {
+    "alive": true,
+    "content": [
+      "cc359481-6d14-47b8-a8ea-88b40dd8f161",
+      "af6c467f-5d29-451e-8ca3-e540838369b2",
+      "d1f61cd9-50f6-4c6b-a8f2-0897d99a4e87",
+      "cf0e1883-2d04-4d79-ac66-c5565e2569da"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550439492059,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "b9e16c17-939d-4d3d-9385-61554628908a",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550654580000,
+    "parent_id": "ec2465ef-1d99-4aa2-aed0-12926b09bd1b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Delegate methods"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550439492058,
+        "id": "cc359481-6d14-47b8-a8ea-88b40dd8f161",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550439492058,
+        "parent_id": "b9e16c17-939d-4d3d-9385-61554628908a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "//conform the NSURLConnectionDelegate protocol."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "//conform the NSURLConnectionDelegate protocol."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550439492059,
+        "id": "af6c467f-5d29-451e-8ca3-e540838369b2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550439492059,
+        "parent_id": "b9e16c17-939d-4d3d-9385-61554628908a",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "@interface ViewController : UIViewController\u003cNSURLConnectionDelegate\u003e\n{\n    NSMutableData *_responseData;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "@interface ViewController : UIViewController\u003cNSURLConnectionDelegate\u003e\n{\n    NSMutableData *_responseData;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550439492059,
+        "id": "d1f61cd9-50f6-4c6b-a8f2-0897d99a4e87",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550439492059,
+        "parent_id": "b9e16c17-939d-4d3d-9385-61554628908a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "//Implementation of the NSURLConnection protocol methods."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "//Implementation of the NSURLConnection protocol methods."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550439492059,
+        "id": "cf0e1883-2d04-4d79-ac66-c5565e2569da",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550439492059,
+        "parent_id": "b9e16c17-939d-4d3d-9385-61554628908a",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#pragma mark NSURLConnection Delegate Methods\n \n- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {\n    // A response has been received, this is where we initialize the instance var you created\n    // so that we can append data to it in the didReceiveData method\n    // Furthermore, this method is called each time there is a redirect so reinitializing it\n    // also serves to clear it\n    _responseData = [[NSMutableData alloc] init];\n}\n \n- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {\n    // Append the new data to the instance variable you declared\n    [_responseData appendData:data];\n}\n \n- (NSCachedURLResponse *)connection:(NSURLConnection *)connection\n                  willCacheResponse:(NSCachedURLResponse*)cachedResponse {\n    // Return nil to indicate not necessary to store a cached response for this connection \n    return nil;\n}\n \n- (void)connectionDidFinishLoading:(NSURLConnection *)connection {\n    // The request is complete and data has been received\n    // You can parse the stuff in your instance variable now\n    \n}\n \n- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {\n    // The request has failed for some reason!\n    // Check the error var\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#pragma mark NSURLConnection Delegate Methods\n \n- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {\n    // A response has been received, this is where we initialize the instance var you created\n    // so that we can append data to it in the didReceiveData method\n    // Furthermore, this method is called each time there is a redirect so reinitializing it\n    // also serves to clear it\n    _responseData = [[NSMutableData alloc] init];\n}\n \n- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {\n    // Append the new data to the instance variable you declared\n    [_responseData appendData:data];\n}\n \n- (NSCachedURLResponse *)connection:(NSURLConnection *)connection\n                  willCacheResponse:(NSCachedURLResponse*)cachedResponse {\n    // Return nil to indicate not necessary to store a cached response for this connection \n    return nil;\n}\n \n- (void)connectionDidFinishLoading:(NSURLConnection *)connection {\n    // The request is complete and data has been received\n    // You can parse the stuff in your instance variable now\n    \n}\n \n- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {\n    // The request has failed for some reason!\n    // Check the error var\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Delegate methods",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

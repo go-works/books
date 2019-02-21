@@ -1,0 +1,191 @@
+{
+  "ID": "47bb971b-ed27-48e8-a243-dbd6d9220e66",
+  "Root": {
+    "alive": true,
+    "content": [
+      "ebf40acf-a5c0-4e7d-8e9a-bf2fb910c903",
+      "07d5ff6e-e563-414f-a04c-728f8cfa5d54",
+      "9a8c7758-0dd0-4265-a4f4-b82d4b4d4f24",
+      "97143651-7d58-4941-bb18-b5bc69587470"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550441932122,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "47bb971b-ed27-48e8-a243-dbd6d9220e66",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550713620000,
+    "parent_id": "6fdc376a-c2bb-4c7c-abe1-f8dcffd133b9",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Custom UITextField for Filtering Input Text"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550441932118,
+        "id": "ebf40acf-a5c0-4e7d-8e9a-bf2fb910c903",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550441932118,
+        "parent_id": "47bb971b-ed27-48e8-a243-dbd6d9220e66",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Here is an example of custom "
+            ],
+            [
+              "UITextField",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " that takes only numerical text and discards all other."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Here is an example of custom "
+          },
+          {
+            "Text": "UITextField",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " that takes only numerical text and discards all other."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550441932121,
+        "id": "07d5ff6e-e563-414f-a04c-728f8cfa5d54",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550441932121,
+        "parent_id": "47bb971b-ed27-48e8-a243-dbd6d9220e66",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "NOTE:",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " For iPhone it is easy to do this using Number type keyboard, but for iPad there is no keyboard with Numbers only"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "NOTE:",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " For iPhone it is easy to do this using Number type keyboard, but for iPad there is no keyboard with Numbers only"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550441932121,
+        "id": "9a8c7758-0dd0-4265-a4f4-b82d4b4d4f24",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550713620000,
+        "parent_id": "47bb971b-ed27-48e8-a243-dbd6d9220e66",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Swift"
+            ]
+          ],
+          "title": [
+            [
+              "class NumberTextField: UITextField {\n    \nrequired init(coder aDecoder: NSCoder) {\n    super.init(coder: aDecoder)\n    registerForTextFieldNotifications()\n}\n\noverride init(frame: CGRect) {\n    super.init(frame: frame)\n}\n\noverride func awakeFromNib() {\n    super.awakeFromNib()\n    keyboardType = .numberPad//useful for iPhone only\n}\n\nprivate func registerForTextFieldNotifications() {\n    NotificationCenter.default.addObserver(self, selector: #selector(NumberTextField.textDidChange), name: NSNotification.Name(rawValue: \"UITextFieldTextDidChangeNotification\"), object: self)\n}\n\ndeinit {\n    NotificationCenter.default.removeObserver(self)\n}\n\nfunc textDidChange() {\n    text = filteredText()\n}\nprivate func filteredText() -\u003e String {\n    let inverseSet = CharacterSet(charactersIn:\"0123456789\").inverted\n    let components = text!.components(separatedBy: inverseSet)\n    return components.joined(separator: \"\")\n}\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "class NumberTextField: UITextField {\n    \nrequired init(coder aDecoder: NSCoder) {\n    super.init(coder: aDecoder)\n    registerForTextFieldNotifications()\n}\n\noverride init(frame: CGRect) {\n    super.init(frame: frame)\n}\n\noverride func awakeFromNib() {\n    super.awakeFromNib()\n    keyboardType = .numberPad//useful for iPhone only\n}\n\nprivate func registerForTextFieldNotifications() {\n    NotificationCenter.default.addObserver(self, selector: #selector(NumberTextField.textDidChange), name: NSNotification.Name(rawValue: \"UITextFieldTextDidChangeNotification\"), object: self)\n}\n\ndeinit {\n    NotificationCenter.default.removeObserver(self)\n}\n\nfunc textDidChange() {\n    text = filteredText()\n}\nprivate func filteredText() -\u003e String {\n    let inverseSet = CharacterSet(charactersIn:\"0123456789\").inverted\n    let components = text!.components(separatedBy: inverseSet)\n    return components.joined(separator: \"\")\n}\n}",
+        "code_language": "Swift"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550441932121,
+        "id": "97143651-7d58-4941-bb18-b5bc69587470",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550441932121,
+        "parent_id": "47bb971b-ed27-48e8-a243-dbd6d9220e66",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "So, wherever we want text field which would take only numbers as input text, then we can use this custom UITextField"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "So, wherever we want text field which would take only numbers as input text, then we can use this custom UITextField"
+          }
+        ]
+      }
+    ],
+    "title": "Custom UITextField for Filtering Input Text",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

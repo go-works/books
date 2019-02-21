@@ -1,0 +1,163 @@
+{
+  "ID": "90bb6756-8d85-4d3b-8908-76a819f07ed0",
+  "Root": {
+    "alive": true,
+    "content": [
+      "238a235f-9423-4f32-ab4a-4bc872e71d57",
+      "2c761dcb-8123-4ec0-807f-26dc3e8b9891"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550395766068,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "90bb6756-8d85-4d3b-8908-76a819f07ed0",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550650560000,
+    "parent_id": "bd6930c5-69f6-41e6-97fd-c9dd073c68ba",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Moving scroll when UITextView becomes first responder"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550395766065,
+        "id": "238a235f-9423-4f32-ab4a-4bc872e71d57",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550395766065,
+        "parent_id": "90bb6756-8d85-4d3b-8908-76a819f07ed0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Observe the notifications "
+            ],
+            [
+              "UIKeyboardWillShowNotification",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "UIKeyboardWillHideNotification",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", update the "
+            ],
+            [
+              "scrollView",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " content insets according to keyboard height, then scroll to the focused control."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Observe the notifications "
+          },
+          {
+            "Text": "UIKeyboardWillShowNotification",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "UIKeyboardWillHideNotification",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", update the "
+          },
+          {
+            "Text": "scrollView",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " content insets according to keyboard height, then scroll to the focused control."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550395766068,
+        "id": "2c761dcb-8123-4ec0-807f-26dc3e8b9891",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550395766068,
+        "parent_id": "90bb6756-8d85-4d3b-8908-76a819f07ed0",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "- (void)viewDidLoad \n{\n    [super viewDidLoad];\n\n    // register for keyboard notifications\n    [[NSNotificationCenter defaultCenter] addObserver:self \n                                             selector:@selector(keyboardWillShow:) \n                                                 name:UIKeyboardWillShowNotification \n                                               object:self.view.window];\n    // register for keyboard notifications\n    [[NSNotificationCenter defaultCenter] addObserver:self \n                                             selector:@selector(keyboardWillHide:) \n                                                 name:UIKeyboardWillHideNotification \n                                               object:self.view.window];\n}\n\n// Called when UIKeyboardWillShowNotification is sent\n- (void)keyboardWillShow:(NSNotification*)notification\n{\n    // if we have no view or are not visible in any window, we don't care\n    if (!self.isViewLoaded || !self.view.window) {\n        return;\n    }\n    \n    NSDictionary *userInfo = [notification userInfo];\n    \n    CGRect keyboardFrameInWindow;\n    [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:\u0026keyboardFrameInWindow];\n    \n    // the keyboard frame is specified in window-level coordinates. this calculates the frame as if it were a subview of our view, making it a sibling of the scroll view\n    CGRect keyboardFrameInView = [self.view convertRect:keyboardFrameInWindow fromView:nil];\n    \n    CGRect scrollViewKeyboardIntersection = CGRectIntersection(_scrollView.frame, keyboardFrameInView);\n    UIEdgeInsets newContentInsets = UIEdgeInsetsMake(0, 0, scrollViewKeyboardIntersection.size.height, 0);\n    \n    // this is an old animation method, but the only one that retains compaitiblity between parameters (duration, curve) and the values contained in the userInfo-Dictionary.\n    [UIView beginAnimations:nil context:NULL];\n    [UIView setAnimationDuration:[[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue]];\n    [UIView setAnimationCurve:[[userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] intValue]];\n    \n    _scrollView.contentInset = newContentInsets;\n    _scrollView.scrollIndicatorInsets = newContentInsets;\n    \n    /*\n     * Depending on visual layout, _focusedControl should either be the input field (UITextField,..) or another element\n     * that should be visible, e.g. a purchase button below an amount text field\n     * it makes sense to set _focusedControl in delegates like -textFieldShouldBeginEditing: if you have multiple input fields\n     */\n    if (_focusedControl) {\n        CGRect controlFrameInScrollView = [_scrollView convertRect:_focusedControl.bounds fromView:_focusedControl]; // if the control is a deep in the hierarchy below the scroll view, this will calculate the frame as if it were a direct subview\n        controlFrameInScrollView = CGRectInset(controlFrameInScrollView, 0, -10); // replace 10 with any nice visual offset between control and keyboard or control and top of the scroll view.\n        \n        CGFloat controlVisualOffsetToTopOfScrollview = controlFrameInScrollView.origin.y - _scrollView.contentOffset.y;\n        CGFloat controlVisualBottom = controlVisualOffsetToTopOfScrollview + controlFrameInScrollView.size.height;\n        \n        // this is the visible part of the scroll view that is not hidden by the keyboard\n        CGFloat scrollViewVisibleHeight = _scrollView.frame.size.height - scrollViewKeyboardIntersection.size.height;\n        \n        if (controlVisualBottom \u003e scrollViewVisibleHeight) { // check if the keyboard will hide the control in question\n            // scroll up until the control is in place\n            CGPoint newContentOffset = _scrollView.contentOffset;\n            newContentOffset.y += (controlVisualBottom - scrollViewVisibleHeight);\n            \n            // make sure we don't set an impossible offset caused by the \"nice visual offset\"\n            // if a control is at the bottom of the scroll view, it will end up just above the keyboard to eliminate scrolling inconsistencies\n            newContentOffset.y = MIN(newContentOffset.y, _scrollView.contentSize.height - scrollViewVisibleHeight);\n            \n            [_scrollView setContentOffset:newContentOffset animated:NO]; // animated:NO because we have created our own animation context around this code\n        } else if (controlFrameInScrollView.origin.y \u003c _scrollView.contentOffset.y) {\n            // if the control is not fully visible, make it so (useful if the user taps on a partially visible input field\n            CGPoint newContentOffset = _scrollView.contentOffset;\n            newContentOffset.y = controlFrameInScrollView.origin.y;\n            \n            [_scrollView setContentOffset:newContentOffset animated:NO]; // animated:NO because we have created our own animation context around this code\n        }\n    }\n    \n    [UIView commitAnimations];\n}\n\n\n// Called when the UIKeyboardWillHideNotification is sent\n- (void)keyboardWillHide:(NSNotification*)notification\n{\n    // if we have no view or are not visible in any window, we don't care\n    if (!self.isViewLoaded || !self.view.window) {\n        return;\n    }\n    \n    NSDictionary *userInfo = notification.userInfo;\n    \n    [UIView beginAnimations:nil context:NULL];\n    [UIView setAnimationDuration:[[userInfo valueForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue]];\n    [UIView setAnimationCurve:[[userInfo valueForKey:UIKeyboardAnimationCurveUserInfoKey] intValue]];\n    \n    // undo all that keyboardWillShow-magic\n    // the scroll view will adjust its contentOffset apropriately\n    _scrollView.contentInset = UIEdgeInsetsZero;\n    _scrollView.scrollIndicatorInsets = UIEdgeInsetsZero;\n    \n    [UIView commitAnimations];\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "- (void)viewDidLoad \n{\n    [super viewDidLoad];\n\n    // register for keyboard notifications\n    [[NSNotificationCenter defaultCenter] addObserver:self \n                                             selector:@selector(keyboardWillShow:) \n                                                 name:UIKeyboardWillShowNotification \n                                               object:self.view.window];\n    // register for keyboard notifications\n    [[NSNotificationCenter defaultCenter] addObserver:self \n                                             selector:@selector(keyboardWillHide:) \n                                                 name:UIKeyboardWillHideNotification \n                                               object:self.view.window];\n}\n\n// Called when UIKeyboardWillShowNotification is sent\n- (void)keyboardWillShow:(NSNotification*)notification\n{\n    // if we have no view or are not visible in any window, we don't care\n    if (!self.isViewLoaded || !self.view.window) {\n        return;\n    }\n    \n    NSDictionary *userInfo = [notification userInfo];\n    \n    CGRect keyboardFrameInWindow;\n    [[userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] getValue:\u0026keyboardFrameInWindow];\n    \n    // the keyboard frame is specified in window-level coordinates. this calculates the frame as if it were a subview of our view, making it a sibling of the scroll view\n    CGRect keyboardFrameInView = [self.view convertRect:keyboardFrameInWindow fromView:nil];\n    \n    CGRect scrollViewKeyboardIntersection = CGRectIntersection(_scrollView.frame, keyboardFrameInView);\n    UIEdgeInsets newContentInsets = UIEdgeInsetsMake(0, 0, scrollViewKeyboardIntersection.size.height, 0);\n    \n    // this is an old animation method, but the only one that retains compaitiblity between parameters (duration, curve) and the values contained in the userInfo-Dictionary.\n    [UIView beginAnimations:nil context:NULL];\n    [UIView setAnimationDuration:[[userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue]];\n    [UIView setAnimationCurve:[[userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey] intValue]];\n    \n    _scrollView.contentInset = newContentInsets;\n    _scrollView.scrollIndicatorInsets = newContentInsets;\n    \n    /*\n     * Depending on visual layout, _focusedControl should either be the input field (UITextField,..) or another element\n     * that should be visible, e.g. a purchase button below an amount text field\n     * it makes sense to set _focusedControl in delegates like -textFieldShouldBeginEditing: if you have multiple input fields\n     */\n    if (_focusedControl) {\n        CGRect controlFrameInScrollView = [_scrollView convertRect:_focusedControl.bounds fromView:_focusedControl]; // if the control is a deep in the hierarchy below the scroll view, this will calculate the frame as if it were a direct subview\n        controlFrameInScrollView = CGRectInset(controlFrameInScrollView, 0, -10); // replace 10 with any nice visual offset between control and keyboard or control and top of the scroll view.\n        \n        CGFloat controlVisualOffsetToTopOfScrollview = controlFrameInScrollView.origin.y - _scrollView.contentOffset.y;\n        CGFloat controlVisualBottom = controlVisualOffsetToTopOfScrollview + controlFrameInScrollView.size.height;\n        \n        // this is the visible part of the scroll view that is not hidden by the keyboard\n        CGFloat scrollViewVisibleHeight = _scrollView.frame.size.height - scrollViewKeyboardIntersection.size.height;\n        \n        if (controlVisualBottom \u003e scrollViewVisibleHeight) { // check if the keyboard will hide the control in question\n            // scroll up until the control is in place\n            CGPoint newContentOffset = _scrollView.contentOffset;\n            newContentOffset.y += (controlVisualBottom - scrollViewVisibleHeight);\n            \n            // make sure we don't set an impossible offset caused by the \"nice visual offset\"\n            // if a control is at the bottom of the scroll view, it will end up just above the keyboard to eliminate scrolling inconsistencies\n            newContentOffset.y = MIN(newContentOffset.y, _scrollView.contentSize.height - scrollViewVisibleHeight);\n            \n            [_scrollView setContentOffset:newContentOffset animated:NO]; // animated:NO because we have created our own animation context around this code\n        } else if (controlFrameInScrollView.origin.y \u003c _scrollView.contentOffset.y) {\n            // if the control is not fully visible, make it so (useful if the user taps on a partially visible input field\n            CGPoint newContentOffset = _scrollView.contentOffset;\n            newContentOffset.y = controlFrameInScrollView.origin.y;\n            \n            [_scrollView setContentOffset:newContentOffset animated:NO]; // animated:NO because we have created our own animation context around this code\n        }\n    }\n    \n    [UIView commitAnimations];\n}\n\n\n// Called when the UIKeyboardWillHideNotification is sent\n- (void)keyboardWillHide:(NSNotification*)notification\n{\n    // if we have no view or are not visible in any window, we don't care\n    if (!self.isViewLoaded || !self.view.window) {\n        return;\n    }\n    \n    NSDictionary *userInfo = notification.userInfo;\n    \n    [UIView beginAnimations:nil context:NULL];\n    [UIView setAnimationDuration:[[userInfo valueForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue]];\n    [UIView setAnimationCurve:[[userInfo valueForKey:UIKeyboardAnimationCurveUserInfoKey] intValue]];\n    \n    // undo all that keyboardWillShow-magic\n    // the scroll view will adjust its contentOffset apropriately\n    _scrollView.contentInset = UIEdgeInsetsZero;\n    _scrollView.scrollIndicatorInsets = UIEdgeInsetsZero;\n    \n    [UIView commitAnimations];\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Moving scroll when UITextView becomes first responder",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

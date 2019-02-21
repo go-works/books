@@ -1,0 +1,161 @@
+{
+  "ID": "b399001d-82e4-4723-aa00-63f07961fe65",
+  "Root": {
+    "alive": true,
+    "content": [
+      "2ada4f80-f9f5-49d4-8972-0e657084387b",
+      "11805c77-2473-4b11-a436-2d1d262c431f",
+      "450516e4-2ebd-4311-af90-479d216ae817",
+      "5354874e-23be-4494-9c10-d0e9d9c12b86"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550398600026,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "b399001d-82e4-4723-aa00-63f07961fe65",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550654700000,
+    "parent_id": "a86b05ef-a1e2-4169-91f8-3a6ffc7c127c",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Getting Bundle by Path"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550398600025,
+        "id": "2ada4f80-f9f5-49d4-8972-0e657084387b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550398600025,
+        "parent_id": "b399001d-82e4-4723-aa00-63f07961fe65",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Locating a Cocoa bundle using its path"
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Locating a Cocoa bundle using its path"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550398600026,
+        "id": "11805c77-2473-4b11-a436-2d1d262c431f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550398600026,
+        "parent_id": "b399001d-82e4-4723-aa00-63f07961fe65",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To obtain the bundle at a specific path using Cocoa, call the bundleWithPath: class method of the NSBundle"
+            ]
+          ]
+        },
+        "type": "quote",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To obtain the bundle at a specific path using Cocoa, call the bundleWithPath: class method of the NSBundle"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550398600026,
+        "id": "450516e4-2ebd-4311-af90-479d216ae817",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550398600026,
+        "parent_id": "b399001d-82e4-4723-aa00-63f07961fe65",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "``` NSBundle *myBundle; // obtain a reference to a loadable bundle myBundle = [NSBundle bundleWithPath:@“/Library/MyBundle.bundle”;"
+            ]
+          ]
+        },
+        "type": "quote",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "``` NSBundle *myBundle; // obtain a reference to a loadable bundle myBundle = [NSBundle bundleWithPath:@“/Library/MyBundle.bundle”;"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550398600026,
+        "id": "5354874e-23be-4494-9c10-d0e9d9c12b86",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550398600026,
+        "parent_id": "b399001d-82e4-4723-aa00-63f07961fe65",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "2. Locating a Cocoa Foundation bundle using its Path\n\n\u003e To obtain the bundle at a specific path using Core Foundation, call the ***CFBundleCreate*** function and must use **CFURLRef** type.\n\n\u003e ```\n   CFURLRef bundleURL;\n   CFBundleRef myBundle;\n   // Make a CFURLRef from the CFString representation of the bundle's path.\n   bundleURL = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, CFSTR(\"/Library/MyBundle.bundle\"), kCFURLPOSIXPathStyle, true);\n   // Make a bundle instance using the URLRef.\n   myBundle = CFBundleCreate(kCFAllocatorDefault, bundeURL);\n   // You can release the URL now.\n   CFRelease(bundleURL);\n   // Use the bundle ...\n   // Release the bundle when done.\n   CFRelease(myBundle);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "2. Locating a Cocoa Foundation bundle using its Path\n\n\u003e To obtain the bundle at a specific path using Core Foundation, call the ***CFBundleCreate*** function and must use **CFURLRef** type.\n\n\u003e ```\n   CFURLRef bundleURL;\n   CFBundleRef myBundle;\n   // Make a CFURLRef from the CFString representation of the bundle's path.\n   bundleURL = CFURLCreateWithFileSystemPath(kCFAllocatorDefault, CFSTR(\"/Library/MyBundle.bundle\"), kCFURLPOSIXPathStyle, true);\n   // Make a bundle instance using the URLRef.\n   myBundle = CFBundleCreate(kCFAllocatorDefault, bundeURL);\n   // You can release the URL now.\n   CFRelease(bundleURL);\n   // Use the bundle ...\n   // Release the bundle when done.\n   CFRelease(myBundle);",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Getting Bundle by Path",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

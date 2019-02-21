@@ -1,0 +1,83 @@
+{
+  "ID": "15ddb642-75ca-4014-8f4e-38c9e18f19be",
+  "Root": {
+    "alive": true,
+    "content": [
+      "3738cb26-09ca-4633-95f1-a2d060501f13"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550441230800,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "15ddb642-75ca-4014-8f4e-38c9e18f19be",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550712540000,
+    "parent_id": "c1a44650-6bd4-4064-9ab2-e370661c09f2",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Watch kit controller WKInterfaceController"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550441230797,
+        "id": "3738cb26-09ca-4633-95f1-a2d060501f13",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550441230797,
+        "parent_id": "15ddb642-75ca-4014-8f4e-38c9e18f19be",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import WatchConnectivity\n\nvar watchSession : WCSession?\n\n    override func awake(withContext context: Any?) {\n        super.awake(withContext: context)\n        // Configure interface objects here.\n        startWatchSession()\n    }\n\nfunc startWatchSession(){\n        \n        if(WCSession.isSupported()){\n            watchSession = WCSession.default()\n            watchSession!.delegate = self\n            watchSession!.activate()\n        }\n    }\n    \n//Callback in below delegate method when iOS app triggers event\nfunc session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {\n        print(\"did ReceiveApplicationContext at watch\")\n    }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import WatchConnectivity\n\nvar watchSession : WCSession?\n\n    override func awake(withContext context: Any?) {\n        super.awake(withContext: context)\n        // Configure interface objects here.\n        startWatchSession()\n    }\n\nfunc startWatchSession(){\n        \n        if(WCSession.isSupported()){\n            watchSession = WCSession.default()\n            watchSession!.delegate = self\n            watchSession!.activate()\n        }\n    }\n    \n//Callback in below delegate method when iOS app triggers event\nfunc session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {\n        print(\"did ReceiveApplicationContext at watch\")\n    }",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Watch kit controller WKInterfaceController",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

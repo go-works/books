@@ -1,0 +1,189 @@
+{
+  "ID": "28459af7-2bcc-43b2-9fd7-5db7243e3fb3",
+  "Root": {
+    "alive": true,
+    "content": [
+      "1697af7d-f7df-4c25-bd13-9aeb60db2ad1",
+      "a0ddbd98-ab98-4352-a11f-2473da012ac5",
+      "16129e76-5075-4952-9204-c20bbfa30422",
+      "f24bce5d-35ee-4c02-9f92-13d8bc228f4c",
+      "57f1fcb8-aef2-4243-8e5f-d417aea26851"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550394218763,
+    "id": "28459af7-2bcc-43b2-9fd7-5db7243e3fb3",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550482560000,
+    "parent_id": "507d8674-6569-42dd-8593-e80c9a53fdd8",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Dynamic label frame from unknown text length"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 6,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550394218762,
+        "id": "1697af7d-f7df-4c25-bd13-9aeb60db2ad1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550394218762,
+        "parent_id": "28459af7-2bcc-43b2-9fd7-5db7243e3fb3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Sometimes we have to resize a UILabel based on dynamic content where the text length is unknown. In this example, width of the UILabel is fixed at 280 points and the height is infinite, lets say 9999. Estimating the frame with respect to the text style and maximumLabelSize."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Sometimes we have to resize a UILabel based on dynamic content where the text length is unknown. In this example, width of the UILabel is fixed at 280 points and the height is infinite, lets say 9999. Estimating the frame with respect to the text style and maximumLabelSize."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550394218763,
+        "id": "a0ddbd98-ab98-4352-a11f-2473da012ac5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550394218763,
+        "parent_id": "28459af7-2bcc-43b2-9fd7-5db7243e3fb3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Objective-C",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "sub_header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Objective-C",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550394218763,
+        "id": "16129e76-5075-4952-9204-c20bbfa30422",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550482560000,
+        "parent_id": "28459af7-2bcc-43b2-9fd7-5db7243e3fb3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Objective-C"
+            ]
+          ],
+          "title": [
+            [
+              "UILabel * label = [[UILabel alloc] init];\n\nNSString *message = @\"Some dynamic text for label\";\n\n//set the text and style if any.\nlabel.text = message;\n\nlabel.numberOfLines = 0;\n\nCGSize maximumLabelSize = CGSizeMake(280, 9999); //280:max width of label and 9999-max height of label.\n\n// use font information from the UILabel to calculate the size\nCGSize expectedLabelSize = [label sizeThatFits:maximumLabelSize];\n\n//Deprecated in iOS 7.0\n//CGSize expectedLabelSize = [message sizeWithFont:label.font constrainedToSize:maximumLabelSize lineBreakMode:NSLineBreakByWordWrapping];\n\n// create a frame that is filled with the UILabel frame data\nCGRect newFrame = label.frame;\n\n// resizing the frame to calculated size\nnewFrame.size.height = expectedLabelSize.height;\n\n// put calculated frame into UILabel frame\nlabel.frame = newFrame;"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "UILabel * label = [[UILabel alloc] init];\n\nNSString *message = @\"Some dynamic text for label\";\n\n//set the text and style if any.\nlabel.text = message;\n\nlabel.numberOfLines = 0;\n\nCGSize maximumLabelSize = CGSizeMake(280, 9999); //280:max width of label and 9999-max height of label.\n\n// use font information from the UILabel to calculate the size\nCGSize expectedLabelSize = [label sizeThatFits:maximumLabelSize];\n\n//Deprecated in iOS 7.0\n//CGSize expectedLabelSize = [message sizeWithFont:label.font constrainedToSize:maximumLabelSize lineBreakMode:NSLineBreakByWordWrapping];\n\n// create a frame that is filled with the UILabel frame data\nCGRect newFrame = label.frame;\n\n// resizing the frame to calculated size\nnewFrame.size.height = expectedLabelSize.height;\n\n// put calculated frame into UILabel frame\nlabel.frame = newFrame;",
+        "code_language": "Objective-C"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550394218763,
+        "id": "f24bce5d-35ee-4c02-9f92-13d8bc228f4c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550394218763,
+        "parent_id": "28459af7-2bcc-43b2-9fd7-5db7243e3fb3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Swift",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "sub_header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Swift",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550394218763,
+        "id": "57f1fcb8-aef2-4243-8e5f-d417aea26851",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550482560000,
+        "parent_id": "28459af7-2bcc-43b2-9fd7-5db7243e3fb3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Swift"
+            ]
+          ],
+          "title": [
+            [
+              "var message: String = \"Some dynamic text for label\"\n//set the text and style if any.\nlabel.text = message\nlabel.numberOfLines = 0\nvar maximumLabelSize: CGSize = CGSize(width: 280, height: 9999)\nvar expectedLabelSize: CGSize = label.sizeThatFits(maximumLabelSize)\n// create a frame that is filled with the UILabel frame data\nvar newFrame: CGRect = label.frame\n// resizing the frame to calculated size\nnewFrame.size.height = expectedLabelSize.height\n// put calculated frame into UILabel frame\nlabel.frame = newFrame"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "var message: String = \"Some dynamic text for label\"\n//set the text and style if any.\nlabel.text = message\nlabel.numberOfLines = 0\nvar maximumLabelSize: CGSize = CGSize(width: 280, height: 9999)\nvar expectedLabelSize: CGSize = label.sizeThatFits(maximumLabelSize)\n// create a frame that is filled with the UILabel frame data\nvar newFrame: CGRect = label.frame\n// resizing the frame to calculated size\nnewFrame.size.height = expectedLabelSize.height\n// put calculated frame into UILabel frame\nlabel.frame = newFrame",
+        "code_language": "Swift"
+      }
+    ],
+    "title": "Dynamic label frame from unknown text length"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

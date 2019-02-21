@@ -1,0 +1,83 @@
+{
+  "ID": "af94d3d9-a9fe-4086-b1f9-868d46c8f4f5",
+  "Root": {
+    "alive": true,
+    "content": [
+      "6def0506-6bc3-419e-985e-3b050c98a85a"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550398148770,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "af94d3d9-a9fe-4086-b1f9-868d46c8f4f5",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550654040000,
+    "parent_id": "cd185718-00e1-4055-82db-654c8985c5a6",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Getting the Device Battery State"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550398148767,
+        "id": "6def0506-6bc3-419e-985e-3b050c98a85a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550398148767,
+        "parent_id": "af94d3d9-a9fe-4086-b1f9-868d46c8f4f5",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "//Get permission for Battery Monitoring\n[[UIDevice currentDevice] setBatteryMonitoringEnabled:YES];\nUIDevice *myDevice = [UIDevice currentDevice];\n\n[myDevice setBatteryMonitoringEnabled:YES];\ndouble batLeft = (float)[myDevice batteryLevel] * 100;\nNSLog(@\"%.f\",batLeft);\n\nint d = myDevice.batteryState;\n//Returns an Integer Value \n//UIDeviceBatteryStateUnknown 0\n//UIDeviceBatteryStateUnplugged 1\n//UIDeviceBatteryStateCharging 2\n//UIDeviceBatteryStateFull 3\n\n//Using notifications for Battery Monitoring\n-(void)startMonitoringForBatteryChanges\n{\n// Enable monitoring of battery status\n[[UIDevice currentDevice] setBatteryMonitoringEnabled:YES];\n// Request to be notified when battery charge or state changes\n[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkBatteryStatus) name:UIDeviceBatteryLevelDidChangeNotification object:nil];\n[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkBatteryStatus) name:UIDeviceBatteryStateDidChangeNotification object:nil];\n}\n-(void) checkBatteryStatus\n{\nNSLog (@\"Battery Level is %.f\",[[UIDevice currentDevice] batteryLevel]*100);\n int d=[[UIDevice currentDevice] batteryState];\n    if (d==0)\n    {\n        NSLog(@\"Unknown\");\n    }\n    else if (d==1)\n    {\n        NSLog(@\"Unplugged\");\n    }\n    else if (d==2)\n    {\n        NSLog(@\"Charging\");\n    }\n    else if (d==3)\n    {\n        NSLog(@\"Battery Full\");\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "//Get permission for Battery Monitoring\n[[UIDevice currentDevice] setBatteryMonitoringEnabled:YES];\nUIDevice *myDevice = [UIDevice currentDevice];\n\n[myDevice setBatteryMonitoringEnabled:YES];\ndouble batLeft = (float)[myDevice batteryLevel] * 100;\nNSLog(@\"%.f\",batLeft);\n\nint d = myDevice.batteryState;\n//Returns an Integer Value \n//UIDeviceBatteryStateUnknown 0\n//UIDeviceBatteryStateUnplugged 1\n//UIDeviceBatteryStateCharging 2\n//UIDeviceBatteryStateFull 3\n\n//Using notifications for Battery Monitoring\n-(void)startMonitoringForBatteryChanges\n{\n// Enable monitoring of battery status\n[[UIDevice currentDevice] setBatteryMonitoringEnabled:YES];\n// Request to be notified when battery charge or state changes\n[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkBatteryStatus) name:UIDeviceBatteryLevelDidChangeNotification object:nil];\n[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkBatteryStatus) name:UIDeviceBatteryStateDidChangeNotification object:nil];\n}\n-(void) checkBatteryStatus\n{\nNSLog (@\"Battery Level is %.f\",[[UIDevice currentDevice] batteryLevel]*100);\n int d=[[UIDevice currentDevice] batteryState];\n    if (d==0)\n    {\n        NSLog(@\"Unknown\");\n    }\n    else if (d==1)\n    {\n        NSLog(@\"Unplugged\");\n    }\n    else if (d==2)\n    {\n        NSLog(@\"Charging\");\n    }\n    else if (d==3)\n    {\n        NSLog(@\"Battery Full\");\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Getting the Device Battery State",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

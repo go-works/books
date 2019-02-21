@@ -1,0 +1,83 @@
+{
+  "ID": "b577e18f-c017-4978-982e-b2d4687fffb4",
+  "Root": {
+    "alive": true,
+    "content": [
+      "631ac128-a028-4f85-b891-d14f28af40fa"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550398150002,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "b577e18f-c017-4978-982e-b2d4687fffb4",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550653980000,
+    "parent_id": "cd185718-00e1-4055-82db-654c8985c5a6",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Using the Proximity Sensor"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 7,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550398149999,
+        "id": "631ac128-a028-4f85-b891-d14f28af40fa",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550398149999,
+        "parent_id": "b577e18f-c017-4978-982e-b2d4687fffb4",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "//Enabling the proximity Sensor\n- (void)viewWillAppear:(BOOL)animated {\n\n    [super viewWillAppear:animated];\n    [[UIDevice currentDevice] setProximityMonitoringEnabled:YES];\n    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sensorStateMonitor:) name:@\"UIDeviceProximityStateDidChangeNotification\" object:nil];\n}\n\n- (void)sensorStateMonitor:(NSNotificationCenter *)notification\n{\n    if ([[UIDevice currentDevice] proximityState] == YES)\n    {\n        NSLog(@\"Device is close to user.\");\n    }\n\n    else\n    { \n        NSLog(@\"Device is not closer to user.\");\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "//Enabling the proximity Sensor\n- (void)viewWillAppear:(BOOL)animated {\n\n    [super viewWillAppear:animated];\n    [[UIDevice currentDevice] setProximityMonitoringEnabled:YES];\n    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(sensorStateMonitor:) name:@\"UIDeviceProximityStateDidChangeNotification\" object:nil];\n}\n\n- (void)sensorStateMonitor:(NSNotificationCenter *)notification\n{\n    if ([[UIDevice currentDevice] proximityState] == YES)\n    {\n        NSLog(@\"Device is close to user.\");\n    }\n\n    else\n    { \n        NSLog(@\"Device is not closer to user.\");\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Using the Proximity Sensor",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

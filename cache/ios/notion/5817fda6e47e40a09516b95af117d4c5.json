@@ -1,0 +1,109 @@
+{
+  "ID": "5817fda6-e47e-40a0-9516-b95af117d4c5",
+  "Root": {
+    "alive": true,
+    "content": [
+      "f10133c3-700e-4bf2-9d49-480ab141d534",
+      "4d65dc4b-d72d-4b1e-8d73-f483b6eccc62"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550441220144,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "5817fda6-e47e-40a0-9516-b95af117d4c5",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550712540000,
+    "parent_id": "e10567d9-4820-4d19-a89e-64d790f8a6a2",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Set up refreshControl on tableView "
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550441220141,
+        "id": "f10133c3-700e-4bf2-9d49-480ab141d534",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550441220141,
+        "parent_id": "5817fda6-e47e-40a0-9516-b95af117d4c5",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];\n[refreshControl addTarget:self action:@selector(pullToRefresh:) forControlEvents:UIControlEventValueChanged];\nself.scrollView.alwaysBounceVertical = YES;\n[self.scrollView addSubview:refreshControl];\n\n- (void)pullToRefresh:(UIRefreshControl*) sender{\n//Do work off the main thread\ndispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{\n    // Simulate network traffic (sleep for 2 seconds)\n    [NSThread sleepForTimeInterval:2];\n    //Update data\n    //Call complete on the main thread\n    dispatch_sync(dispatch_get_main_queue(), ^{\n        //Update network activity UI\n        NSLog(@\"COMPLETE\");\n        [sender endRefreshing];\n    });\n});"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];\n[refreshControl addTarget:self action:@selector(pullToRefresh:) forControlEvents:UIControlEventValueChanged];\nself.scrollView.alwaysBounceVertical = YES;\n[self.scrollView addSubview:refreshControl];\n\n- (void)pullToRefresh:(UIRefreshControl*) sender{\n//Do work off the main thread\ndispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{\n    // Simulate network traffic (sleep for 2 seconds)\n    [NSThread sleepForTimeInterval:2];\n    //Update data\n    //Call complete on the main thread\n    dispatch_sync(dispatch_get_main_queue(), ^{\n        //Update network activity UI\n        NSLog(@\"COMPLETE\");\n        [sender endRefreshing];\n    });\n});",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550441220143,
+        "id": "4d65dc4b-d72d-4b1e-8d73-f483b6eccc62",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550441220143,
+        "parent_id": "5817fda6-e47e-40a0-9516-b95af117d4c5",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "}"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "}"
+          }
+        ]
+      }
+    ],
+    "title": "Set up refreshControl on tableView ",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

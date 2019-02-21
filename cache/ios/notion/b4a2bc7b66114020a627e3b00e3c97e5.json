@@ -1,0 +1,227 @@
+{
+  "ID": "b4a2bc7b-6611-4020-a627-e3b00e3c97e5",
+  "Root": {
+    "alive": true,
+    "content": [
+      "ef48cc45-6f36-4f30-96b7-a20075878ed5",
+      "59a27462-120a-4472-b56a-c162676d56d4",
+      "8b043b02-4835-4f56-98d5-69b6381519c8",
+      "c50b1087-034a-42ca-be82-5d5140f5cc06",
+      "547a46bc-c00b-47f2-9379-c77d1adeb65b",
+      "887a3a40-5f71-4418-9e50-e82ddd3bfa92",
+      "3fc1a39a-3685-49a1-89c6-9768d3ed15ee"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550397604921,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "b4a2bc7b-6611-4020-a627-e3b00e3c97e5",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550653320000,
+    "parent_id": "ec3b4c9d-97ac-484c-b205-5fe729490cae",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Creating a Simple WebBrowser"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397604916,
+        "id": "ef48cc45-6f36-4f30-96b7-a20075878ed5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397604916,
+        "parent_id": "b4a2bc7b-6611-4020-a627-e3b00e3c97e5",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import UIKit\nimport WebKit\n\n\nclass ViewController: UIViewController, UISearchBarDelegate, WKNavigationDelegate, WKUIDelegate {\n    \n    var searchbar: UISearchBar! //All web-browsers have a search-bar.\n    var webView: WKWebView! //The WKWebView we'll use.\n    var toolbar: UIToolbar! //Toolbar at the bottom just like in Safari.\n    var activityIndicator: UIActivityIndicatorView! //Activity indicator to let the user know the page is loading.\n\n    override func viewDidLoad() {\n        super.viewDidLoad()\n        \n        self.initControls()\n        self.setTheme()\n        self.doLayout()\n    }\n\n    override func didReceiveMemoryWarning() {\n        super.didReceiveMemoryWarning()\n    }\n\n\n    func initControls() {\n        self.searchbar = UISearchBar()\n        \n        //WKUserContentController allows us to add Javascript scripts to our webView that will run either at the beginning of a page load OR at the end of a page load.\n\n        let configuration = WKWebViewConfiguration()\n        let contentController = WKUserContentController()\n        configuration.userContentController = contentController\n        \n        //create the webView with the custom configuration.\n        self.webView = WKWebView(frame: .zero, configuration: configuration)\n        \n        self.toolbar = UIToolbar()\n        self.layoutToolbar()\n\n        self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)\n        self.activityIndicator.hidesWhenStopped = true\n    }\n    \n    func setTheme() {\n        self.edgesForExtendedLayout = UIRectEdge(rawValue: 0)\n        self.navigationController?.navigationBar.barTintColor = UIColor.white()\n        \n        //Theme the keyboard and searchBar. Setup delegates.\n        self.searchbar.delegate = self\n        self.searchbar.returnKeyType = .go\n        self.searchbar.searchBarStyle = .prominent\n        self.searchbar.placeholder = \"Search or enter website name\"\n        self.searchbar.autocapitalizationType = .none\n        self.searchbar.autocorrectionType = .no\n        \n        //Set the WebView's delegate.\n        self.webView.navigationDelegate = self //Delegate that handles page navigation\n        self.webView.uiDelegate = self //Delegate that handles new tabs, windows, popups, layout, etc..\n\n        self.activityIndicator.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)\n    }\n    \n    func layoutToolbar() {\n        //Browsers typically have a back button, forward button, refresh button, and newTab/newWindow button.\n\n        var items = Array\u003cUIBarButtonItem\u003e()\n        \n        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)\n        \n        items.append(UIBarButtonItem(title: \"\u003c\", style: .plain, target: self, action: #selector(onBackButtonPressed)))\n        items.append(space)\n        items.append(UIBarButtonItem(title: \"\u003e\", style: .plain, target: self, action: #selector(onForwardButtonPressed)))\n        items.append(space)\n        items.append(UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(onRefreshPressed)))\n        items.append(space)\n        items.append(UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(onTabPressed)))\n        \n        self.toolbar.items = items\n    }\n    \n    func doLayout() {\n        //Add the searchBar to the navigationBar.\n        self.navigationItem.titleView = self.searchbar\n        \n        //Add all other subViews to self.view.\n        self.view.addSubview(self.webView)\n        self.view.addSubview(self.toolbar)\n        self.view.addSubview(self.activityIndicator)\n        \n        //Setup which views will be constrained.\n\n        let views: [String: AnyObject] = [\"webView\": self.webView, \"toolbar\": self.toolbar, \"activityIndicator\": self.activityIndicator];\n        var constraints = Array\u003cString\u003e();\n        \n        constraints.append(\"H:|-0-[webView]-0-|\")\n        constraints.append(\"H:|-0-[toolbar]-0-|\")\n        constraints.append(\"V:|-0-[webView]-0-[toolbar(50)]-0-|\")\n        \n        \n        //constrain the subviews using the above visual constraints.\n\n        for constraint in constraints {\n            self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: constraint, options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))\n        }\n        \n        for view in self.view.subviews {\n            view.translatesAutoresizingMaskIntoConstraints = false\n        }\n        \n        \n        //constraint the activity indicator to the center of the view.\n        self.view.addConstraint(NSLayoutConstraint(item: self.activityIndicator, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 0.0))\n        self.view.addConstraint(NSLayoutConstraint(item: self.activityIndicator, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: 0.0))\n    }\n    \n    //Searchbar Delegates\n    \n    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {\n        self.searchbar.resignFirstResponder()\n        \n        if let searchText = self.searchbar.text, url = URL(string: searchText) {\n            //Get the URL from the search bar. Create a new NSURLRequest with it and tell the webView to navigate to that URL/Page. Also specify a timeout for if the page takes too long. Also handles cookie/caching policy.\n\n            let request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 30)\n            self.webView.load(request)\n        }\n    }\n    \n    \n    //Toolbar Delegates\n    \n    func onBackButtonPressed(button: UIBarButtonItem) {\n        if (self.webView.canGoBack) { //allow the user to go back to the previous page.\n            self.webView.goBack()\n        }\n    }\n    \n    func onForwardButtonPressed(button: UIBarButtonItem) {\n        if (self.webView.canGoForward) { //allow the user to go forward to the next page.\n            self.webView.goForward()\n        }\n    }\n    \n    func onRefreshPressed(button: UIBarButtonItem) {\n        self.webView.reload()  //reload the current page.\n    }\n    \n    func onTabPressed(button: UIBarButtonItem) {\n        //TODO: Open a new tab or web-page.\n    }\n    \n    \n    //WebView Delegates\n    \n    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -\u003e Void) {\n        \n        decisionHandler(.allow) //allow the user to navigate to the requested page.\n    }\n    \n    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: (WKNavigationResponsePolicy) -\u003e Void) {\n        \n        decisionHandler(.allow) //allow the webView to process the response.\n    }\n    \n    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {\n        self.activityIndicator.startAnimating()\n    }\n    \n    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {\n        self.activityIndicator.stopAnimating()\n\n        //Handle the error. Display an alert to the user telling them what happened.\n        \n        let alert = UIAlertController(title: \"Error\", message: error.localizedDescription, preferredStyle: .alert)\n        let action = UIAlertAction(title: \"OK\", style: .default) { (action) in\n            alert.dismiss(animated: true, completion: nil)\n        }\n        alert.addAction(action)\n        self.present(alert, animated: true, completion: nil)\n    }\n    \n    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {\n        self.activityIndicator.stopAnimating()\n        \n        //Update our search bar with the webPage's final endpoint-URL.\n        if let url = self.webView.url {\n            self.searchbar.text = url.absoluteString ?? self.searchbar.text\n        }\n    }\n    \n    func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {\n        //When the webview receives a \"Redirect\" to a different page or endpoint, this is called.\n    }\n    \n    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {\n        //When the content for the webpage starts arriving, this is called.\n    }\n    \n    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: NSError) {\n        \n    }\n    \n    func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: (URLSession.AuthChallengeDisposition, URLCredential?) -\u003e Void) {\n        \n        completionHandler(.performDefaultHandling, .none) //Handle SSL connections by default. We aren't doing SSL pinning or custom certificate handling.\n        \n    }\n    \n    \n    //WebView's UINavigation Delegates\n    \n    //This is called when a webView or existing loaded page wants to open a new window/tab.\n    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -\u003e WKWebView? {\n        \n        //The view that represents the new tab/window. This view will have an X button at the top left corner + a webView.\n        let container = UIView()\n        \n        //New tabs need an exit button.\n        let XButton = UIButton()\n        XButton.addTarget(self, action: #selector(onWebViewExit), for: .touchUpInside)\n        XButton.layer.cornerRadius = 22.0\n        \n        //Create the new webView window.\n        let webView = WKWebView(frame: .zero, configuration: configuration)\n        webView.navigationDelegate = self\n        webView.uiDelegate = self\n        \n        //Layout the tab.\n        container.addSubview(XButton)\n        container.addSubview(webView)\n        \n        let views: [String: AnyObject] = [\"XButton\": XButton, \"webView\": webView];\n        var constraints = Array\u003cString\u003e()\n        \n        constraints.append(\"H:|-(-22)-[XButton(44)]\")\n        constraints.append(\"H:|-0-[webView]-0-|\")\n        constraints.append(\"V:|-(-22)-[XButton(44)]-0-[webView]-0-|\")\n        \n        \n        //constrain the subviews.\n        for constraint in constraints {\n            container.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: constraint, options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))\n        }\n        \n        for view in container.subviews {\n            view.translatesAutoresizingMaskIntoConstraints = false\n        }\n        \n        //TODO: Add the containerView to self.view or present it with a new controller. Keep track of tabs..\n        \n        return webView\n    }\n    \n    func onWebViewExit(button: UIButton) {\n        //TODO: Destroy the tab. Remove the new tab from the current window or controller.\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import UIKit\nimport WebKit\n\n\nclass ViewController: UIViewController, UISearchBarDelegate, WKNavigationDelegate, WKUIDelegate {\n    \n    var searchbar: UISearchBar! //All web-browsers have a search-bar.\n    var webView: WKWebView! //The WKWebView we'll use.\n    var toolbar: UIToolbar! //Toolbar at the bottom just like in Safari.\n    var activityIndicator: UIActivityIndicatorView! //Activity indicator to let the user know the page is loading.\n\n    override func viewDidLoad() {\n        super.viewDidLoad()\n        \n        self.initControls()\n        self.setTheme()\n        self.doLayout()\n    }\n\n    override func didReceiveMemoryWarning() {\n        super.didReceiveMemoryWarning()\n    }\n\n\n    func initControls() {\n        self.searchbar = UISearchBar()\n        \n        //WKUserContentController allows us to add Javascript scripts to our webView that will run either at the beginning of a page load OR at the end of a page load.\n\n        let configuration = WKWebViewConfiguration()\n        let contentController = WKUserContentController()\n        configuration.userContentController = contentController\n        \n        //create the webView with the custom configuration.\n        self.webView = WKWebView(frame: .zero, configuration: configuration)\n        \n        self.toolbar = UIToolbar()\n        self.layoutToolbar()\n\n        self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)\n        self.activityIndicator.hidesWhenStopped = true\n    }\n    \n    func setTheme() {\n        self.edgesForExtendedLayout = UIRectEdge(rawValue: 0)\n        self.navigationController?.navigationBar.barTintColor = UIColor.white()\n        \n        //Theme the keyboard and searchBar. Setup delegates.\n        self.searchbar.delegate = self\n        self.searchbar.returnKeyType = .go\n        self.searchbar.searchBarStyle = .prominent\n        self.searchbar.placeholder = \"Search or enter website name\"\n        self.searchbar.autocapitalizationType = .none\n        self.searchbar.autocorrectionType = .no\n        \n        //Set the WebView's delegate.\n        self.webView.navigationDelegate = self //Delegate that handles page navigation\n        self.webView.uiDelegate = self //Delegate that handles new tabs, windows, popups, layout, etc..\n\n        self.activityIndicator.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)\n    }\n    \n    func layoutToolbar() {\n        //Browsers typically have a back button, forward button, refresh button, and newTab/newWindow button.\n\n        var items = Array\u003cUIBarButtonItem\u003e()\n        \n        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)\n        \n        items.append(UIBarButtonItem(title: \"\u003c\", style: .plain, target: self, action: #selector(onBackButtonPressed)))\n        items.append(space)\n        items.append(UIBarButtonItem(title: \"\u003e\", style: .plain, target: self, action: #selector(onForwardButtonPressed)))\n        items.append(space)\n        items.append(UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(onRefreshPressed)))\n        items.append(space)\n        items.append(UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(onTabPressed)))\n        \n        self.toolbar.items = items\n    }\n    \n    func doLayout() {\n        //Add the searchBar to the navigationBar.\n        self.navigationItem.titleView = self.searchbar\n        \n        //Add all other subViews to self.view.\n        self.view.addSubview(self.webView)\n        self.view.addSubview(self.toolbar)\n        self.view.addSubview(self.activityIndicator)\n        \n        //Setup which views will be constrained.\n\n        let views: [String: AnyObject] = [\"webView\": self.webView, \"toolbar\": self.toolbar, \"activityIndicator\": self.activityIndicator];\n        var constraints = Array\u003cString\u003e();\n        \n        constraints.append(\"H:|-0-[webView]-0-|\")\n        constraints.append(\"H:|-0-[toolbar]-0-|\")\n        constraints.append(\"V:|-0-[webView]-0-[toolbar(50)]-0-|\")\n        \n        \n        //constrain the subviews using the above visual constraints.\n\n        for constraint in constraints {\n            self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: constraint, options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))\n        }\n        \n        for view in self.view.subviews {\n            view.translatesAutoresizingMaskIntoConstraints = false\n        }\n        \n        \n        //constraint the activity indicator to the center of the view.\n        self.view.addConstraint(NSLayoutConstraint(item: self.activityIndicator, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1.0, constant: 0.0))\n        self.view.addConstraint(NSLayoutConstraint(item: self.activityIndicator, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1.0, constant: 0.0))\n    }\n    \n    //Searchbar Delegates\n    \n    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {\n        self.searchbar.resignFirstResponder()\n        \n        if let searchText = self.searchbar.text, url = URL(string: searchText) {\n            //Get the URL from the search bar. Create a new NSURLRequest with it and tell the webView to navigate to that URL/Page. Also specify a timeout for if the page takes too long. Also handles cookie/caching policy.\n\n            let request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 30)\n            self.webView.load(request)\n        }\n    }\n    \n    \n    //Toolbar Delegates\n    \n    func onBackButtonPressed(button: UIBarButtonItem) {\n        if (self.webView.canGoBack) { //allow the user to go back to the previous page.\n            self.webView.goBack()\n        }\n    }\n    \n    func onForwardButtonPressed(button: UIBarButtonItem) {\n        if (self.webView.canGoForward) { //allow the user to go forward to the next page.\n            self.webView.goForward()\n        }\n    }\n    \n    func onRefreshPressed(button: UIBarButtonItem) {\n        self.webView.reload()  //reload the current page.\n    }\n    \n    func onTabPressed(button: UIBarButtonItem) {\n        //TODO: Open a new tab or web-page.\n    }\n    \n    \n    //WebView Delegates\n    \n    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -\u003e Void) {\n        \n        decisionHandler(.allow) //allow the user to navigate to the requested page.\n    }\n    \n    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: (WKNavigationResponsePolicy) -\u003e Void) {\n        \n        decisionHandler(.allow) //allow the webView to process the response.\n    }\n    \n    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {\n        self.activityIndicator.startAnimating()\n    }\n    \n    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {\n        self.activityIndicator.stopAnimating()\n\n        //Handle the error. Display an alert to the user telling them what happened.\n        \n        let alert = UIAlertController(title: \"Error\", message: error.localizedDescription, preferredStyle: .alert)\n        let action = UIAlertAction(title: \"OK\", style: .default) { (action) in\n            alert.dismiss(animated: true, completion: nil)\n        }\n        alert.addAction(action)\n        self.present(alert, animated: true, completion: nil)\n    }\n    \n    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {\n        self.activityIndicator.stopAnimating()\n        \n        //Update our search bar with the webPage's final endpoint-URL.\n        if let url = self.webView.url {\n            self.searchbar.text = url.absoluteString ?? self.searchbar.text\n        }\n    }\n    \n    func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {\n        //When the webview receives a \"Redirect\" to a different page or endpoint, this is called.\n    }\n    \n    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {\n        //When the content for the webpage starts arriving, this is called.\n    }\n    \n    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: NSError) {\n        \n    }\n    \n    func webView(_ webView: WKWebView, didReceive challenge: URLAuthenticationChallenge, completionHandler: (URLSession.AuthChallengeDisposition, URLCredential?) -\u003e Void) {\n        \n        completionHandler(.performDefaultHandling, .none) //Handle SSL connections by default. We aren't doing SSL pinning or custom certificate handling.\n        \n    }\n    \n    \n    //WebView's UINavigation Delegates\n    \n    //This is called when a webView or existing loaded page wants to open a new window/tab.\n    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -\u003e WKWebView? {\n        \n        //The view that represents the new tab/window. This view will have an X button at the top left corner + a webView.\n        let container = UIView()\n        \n        //New tabs need an exit button.\n        let XButton = UIButton()\n        XButton.addTarget(self, action: #selector(onWebViewExit), for: .touchUpInside)\n        XButton.layer.cornerRadius = 22.0\n        \n        //Create the new webView window.\n        let webView = WKWebView(frame: .zero, configuration: configuration)\n        webView.navigationDelegate = self\n        webView.uiDelegate = self\n        \n        //Layout the tab.\n        container.addSubview(XButton)\n        container.addSubview(webView)\n        \n        let views: [String: AnyObject] = [\"XButton\": XButton, \"webView\": webView];\n        var constraints = Array\u003cString\u003e()\n        \n        constraints.append(\"H:|-(-22)-[XButton(44)]\")\n        constraints.append(\"H:|-0-[webView]-0-|\")\n        constraints.append(\"V:|-(-22)-[XButton(44)]-0-[webView]-0-|\")\n        \n        \n        //constrain the subviews.\n        for constraint in constraints {\n            container.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: constraint, options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))\n        }\n        \n        for view in container.subviews {\n            view.translatesAutoresizingMaskIntoConstraints = false\n        }\n        \n        //TODO: Add the containerView to self.view or present it with a new controller. Keep track of tabs..\n        \n        return webView\n    }\n    \n    func onWebViewExit(button: UIButton) {\n        //TODO: Destroy the tab. Remove the new tab from the current window or controller.\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397604920,
+        "id": "59a27462-120a-4472-b56a-c162676d56d4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397604920,
+        "parent_id": "b4a2bc7b-6611-4020-a627-e3b00e3c97e5",
+        "parent_table": "block",
+        "type": "divider",
+        "version": 1
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397604920,
+        "id": "8b043b02-4835-4f56-98d5-69b6381519c8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397604920,
+        "parent_id": "b4a2bc7b-6611-4020-a627-e3b00e3c97e5",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Showing the custom "
+            ],
+            [
+              "GO",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " button in the keyboard:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Showing the custom "
+          },
+          {
+            "Text": "GO",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " button in the keyboard:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397604921,
+        "id": "c50b1087-034a-42ca-be82-5d5140f5cc06",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397604921,
+        "parent_id": "b4a2bc7b-6611-4020-a627-e3b00e3c97e5",
+        "parent_table": "block",
+        "properties": {
+          "source": [
+            [
+              "http://i.stack.imgur.com/ZA8YD.png"
+            ]
+          ]
+        },
+        "type": "image",
+        "version": 1,
+        "source": "http://i.stack.imgur.com/ZA8YD.png",
+        "image_url": "https://www.notion.so/image/https:%2F%2Fwww.notion.sohttp:%2F%2Fi.stack.imgur.com%2FZA8YD.png"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397604921,
+        "id": "547a46bc-c00b-47f2-9379-c77d1adeb65b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397604921,
+        "parent_id": "b4a2bc7b-6611-4020-a627-e3b00e3c97e5",
+        "parent_table": "block",
+        "type": "divider",
+        "version": 1
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397604921,
+        "id": "887a3a40-5f71-4418-9e50-e82ddd3bfa92",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397604921,
+        "parent_id": "b4a2bc7b-6611-4020-a627-e3b00e3c97e5",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Showing the toolbar and fully loaded page."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Showing the toolbar and fully loaded page."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550397604921,
+        "id": "3fc1a39a-3685-49a1-89c6-9768d3ed15ee",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550397604921,
+        "parent_id": "b4a2bc7b-6611-4020-a627-e3b00e3c97e5",
+        "parent_table": "block",
+        "properties": {
+          "source": [
+            [
+              "http://i.stack.imgur.com/fMRDe.png"
+            ]
+          ]
+        },
+        "type": "image",
+        "version": 1,
+        "source": "http://i.stack.imgur.com/fMRDe.png",
+        "image_url": "https://www.notion.so/image/https:%2F%2Fwww.notion.sohttp:%2F%2Fi.stack.imgur.com%2FfMRDe.png"
+      }
+    ],
+    "title": "Creating a Simple WebBrowser",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}
