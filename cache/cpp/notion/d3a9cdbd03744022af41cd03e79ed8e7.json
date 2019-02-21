@@ -22,7 +22,8 @@
       "1b1775d8-1c08-4b8f-bbc6-9f8f2e01817d",
       "86ed6460-f962-434c-9004-a0f7b036820f",
       "a894d170-8052-47e8-bf6c-c8a3c2882263",
-      "2add9c94-366d-4d9d-8227-60dab699174b"
+      "2add9c94-366d-4d9d-8227-60dab699174b",
+      "7181ad5e-8afc-4500-aa72-d4b0fe0d1bbc"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550521943512,
@@ -33,7 +34,7 @@
     "id": "d3a9cdbd-0374-4022-af41-cd03e79ed8e7",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550656920000,
+    "last_edited_time": 1550735340000,
     "parent_id": "069713c9-355d-43e5-bbe3-fe65ccc5d89f",
     "parent_table": "block",
     "properties": {
@@ -44,7 +45,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 13,
     "content_resolved": [
       {
         "alive": true,
@@ -227,13 +228,13 @@
         "id": "20e4e069-587a-4ffe-a051-ca0d96de42a7",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521943508,
+        "last_edited_time": 1550735040000,
         "parent_id": "d3a9cdbd-0374-4022-af41-cd03e79ed8e7",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "Makefile"
             ]
           ],
           "title": [
@@ -243,9 +244,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "# Set some variables to use in our command\n# First, we set the compiler to be g++\nCXX=g++\n\n# Then, we say that we want to compile with g++'s recommended warnings and some extra ones.\nCXXFLAGS=-Wall -Wextra -pedantic\n\n# This will be the output file\nEXE=app\n\nSRCS=main.cpp\n\n# When you call `make` at the command line, this \"target\" is called.\n# The $(EXE) at the right says that the `all` target depends on the `$(EXE)` target.\n# $(EXE) expands to be the content of the EXE variable\n# Note: Because this is the first target, it becomes the default target if `make` is called without target\nall: $(EXE)\n\n# This is equivalent to saying\n# app: $(SRCS)\n# $(SRCS) can be separated, which means that this target would depend on each file.\n# Note that this target has a \"method body\": the part indented by a tab (not four spaces).\n# When we build this target, make will execute the command, which is:\n# g++ -Wall -Wextra -pedantic -o app main.cpp\n# I.E. Compile main.cpp with warnings, and output to the file ./app\n$(EXE): $(SRCS)\n    @$(CXX) $(CXXFLAGS) -o $@ $(SRCS)\n\n# This target should reverse the `all` target. If you call\n# make with an argument, like `make clean`, the corresponding target\n# gets called.\nclean:\n    @rm -f $(EXE)",
-        "code_language": "Plain Text"
+        "code_language": "Makefile"
       },
       {
         "alive": true,
@@ -304,13 +305,13 @@
         "id": "01768530-6697-44fb-9a9b-4a18779e5376",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521943509,
+        "last_edited_time": 1550735040000,
         "parent_id": "d3a9cdbd-0374-4022-af41-cd03e79ed8e7",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "Makefile"
             ]
           ],
           "title": [
@@ -320,9 +321,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "$ cd ~/Path/to/project\n$ make\n$ ls\napp  main.cpp  Makefile\n\n$ ./app\nHello World!\n\n$ make clean\n$ ls\nmain.cpp  Makefile",
-        "code_language": "Plain Text"
+        "code_language": "Makefile"
       },
       {
         "alive": true,
@@ -543,13 +544,13 @@
         "id": "1b1775d8-1c08-4b8f-bbc6-9f8f2e01817d",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521943510,
+        "last_edited_time": 1550735040000,
         "parent_id": "d3a9cdbd-0374-4022-af41-cd03e79ed8e7",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "Makefile"
             ]
           ],
           "title": [
@@ -559,9 +560,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "CXX=g++\nCXXFLAGS=-Wall -Wextra -pedantic\nEXE=app\n\nSRCS_GLOB=src/*.cpp\nSRCS=$(wildcard $(SRCS_GLOB))\nOBJS=$(SRCS:.cpp=.o)\n\nall: $(EXE)\n\n$(EXE): $(OBJS)\n    @$(CXX) -o $@ $(OBJS)\n\ndepend: .depend\n\n.depend: $(SRCS)\n    @-rm -f ./.depend\n    @$(CXX) $(CXXFLAGS) -MM $^\u003e\u003e./.depend\n\nclean:\n    -rm -f $(EXE)\n    -rm $(OBJS)\n    -rm *~\n    -rm .depend\n\ninclude .depend",
-        "code_language": "Plain Text"
+        "code_language": "Makefile"
       },
       {
         "alive": true,
@@ -620,7 +621,7 @@
         "id": "2add9c94-366d-4d9d-8227-60dab699174b",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521943512,
+        "last_edited_time": 1550735040000,
         "parent_id": "d3a9cdbd-0374-4022-af41-cd03e79ed8e7",
         "parent_table": "block",
         "properties": {
@@ -638,19 +639,7 @@
               ]
             ],
             [
-              ", "
-            ],
-            [
-              "the stackoverflow documentation",
-              [
-                [
-                  "a",
-                  "https://stackoverflow.com/documentation/makefile"
-                ]
-              ]
-            ],
-            [
-              " and "
+              ", and "
             ],
             [
               "dmckee’s elaborate answer on stackoverflow",
@@ -667,7 +656,7 @@
           ]
         },
         "type": "text",
-        "version": 1,
+        "version": 33,
         "inline_content": [
           {
             "Text": "For more on make, see "
@@ -677,14 +666,7 @@
             "Link": "https://www.gnu.org/software/make/manual/"
           },
           {
-            "Text": ", "
-          },
-          {
-            "Text": "the stackoverflow documentation",
-            "Link": "https://stackoverflow.com/documentation/makefile"
-          },
-          {
-            "Text": " and "
+            "Text": ", and "
           },
           {
             "Text": "dmckee’s elaborate answer on stackoverflow",
@@ -694,6 +676,18 @@
             "Text": "."
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550735040000,
+        "id": "7181ad5e-8afc-4500-aa72-d4b0fe0d1bbc",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550735040000,
+        "parent_id": "d3a9cdbd-0374-4022-af41-cd03e79ed8e7",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "Compiling with GNU make",

@@ -29,6 +29,7 @@ var (
 	flgUpdateOutput   bool
 	flgRedownloadReplit bool
 	flgRedownloadOne string
+	flgRedownloadBook string
 	flgRedownloadOneReplit string
 
 	soUserIDToNameMap map[int]string
@@ -160,9 +161,10 @@ var (
 		bookDart, bookJava, bookAndroid, bookCpp, bookIOS,
 		bookPostgresql, bookMysql,
 	}
-	bookUnpublished = []*Book{
+	booksUnpublished = []*Book{
 		bookSql,
 	}
+	allBooks = append(books, booksUnpublished...)
 )
 
 func parseFlags() {
@@ -174,7 +176,7 @@ func parseFlags() {
 	flag.StringVar(&flgRedownloadOne, "redownload-one", "", "notion id of a page to re-download")
 	flag.BoolVar(&flgRedownloadReplit, "redownload-replit", false, "if true, redownloads replits")
 	flag.StringVar(&flgRedownloadOneReplit, "redownload-one-replit", "", "replit url and book to download")
-
+	flag.StringVar(&flgRedownloadBook, "redownload-book", "", "redownload a book")
 	flag.Parse()
 
 	if flgRedownloadOne != "" {
@@ -414,6 +416,31 @@ func initBook(book *Book) {
 	panicIfErr(err)
 }
 
+func findBook(id string) *Book {
+	for _, book := range allBooks {
+		// fuzzy match - whatever hits
+		parts := []string{book.Title, book.Dir, book.NotionStartPageID}
+		for _, s := range parts {
+			if strings.EqualFold(s, id) {
+				return book
+			}
+		}
+	}
+	return nil
+}
+
+func redownloadBook(id string) {
+	book := findBook(id)
+	if book == nil {
+		fmt.Printf("Didn't find a book with id '%s'\n", id)
+		os.Exit(1)
+	}
+	flgNoCache = true
+	client := &notionapi.Client{}
+	initBook(book)
+	downloadBook(client, book)
+}
+
 func main() {
 	parseFlags()
 
@@ -430,6 +457,11 @@ func main() {
 	os.RemoveAll("www")
 	createDirMust(filepath.Join("www", "s"))
 	createDirMust("log")
+
+	if flgRedownloadBook != "" {
+		redownloadBook(flgRedownloadBook)
+		return
+	}
 
 	client := &notionapi.Client{}
 	if flgRedownloadOne != "" {
