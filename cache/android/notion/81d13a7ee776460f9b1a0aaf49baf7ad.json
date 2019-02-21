@@ -1,0 +1,585 @@
+{
+  "ID": "81d13a7e-e776-460f-9b1a-0aaf49baf7ad",
+  "Root": {
+    "alive": true,
+    "content": [
+      "4fbdfacc-37d7-438f-8829-6cc573842144",
+      "b4bef93a-dff0-4e20-a77d-ad9148127adf",
+      "fe005721-10c1-48f0-b10e-f37867e7698a",
+      "dec38f0d-b3ac-4a7a-b459-067c4ab2f7ba",
+      "b7c8a5c6-0612-4041-ae76-a1bc5ce3994a",
+      "620ac9e2-bfb1-438e-b7cf-aa7d298c32bc",
+      "f29816f0-ddd3-4cf5-9bac-50191b19a512",
+      "39c95c88-2348-4c93-8153-d48365d612f8",
+      "f8763208-94e2-4885-935a-55e9f3088e83",
+      "1f607749-4e53-47d9-912e-1ed42f52a229",
+      "c04fb3c5-e3b4-4ce4-9cc2-2f631b4d6dbb",
+      "ea50e7b9-ec1b-40f2-a239-309e854b7f89",
+      "6c6a5fda-baa2-4e2d-9d1e-d8818c19b9bc",
+      "4fd4e5be-0085-423d-aa3a-e126edd93bdd"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550451073005,
+    "id": "81d13a7e-e776-460f-9b1a-0aaf49baf7ad",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550451073005,
+    "parent_id": "41515ac4-ab76-4fea-b463-e1a26b6f69bb",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Login example in the Model View Presenter MVP pattern"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451072999,
+        "id": "4fbdfacc-37d7-438f-8829-6cc573842144",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451072999,
+        "parent_id": "81d13a7e-e776-460f-9b1a-0aaf49baf7ad",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Let’s see MVP in action using a simple Login Screen. There are two "
+            ],
+            [
+              "Button",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "s—one for login action and another for a registration screen; two "
+            ],
+            [
+              "EditText",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "s—one for the email and the other for the password."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Let’s see MVP in action using a simple Login Screen. There are two "
+          },
+          {
+            "Text": "Button",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "s—one for login action and another for a registration screen; two "
+          },
+          {
+            "Text": "EditText",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "s—one for the email and the other for the password."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451073001,
+        "id": "b4bef93a-dff0-4e20-a77d-ad9148127adf",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451073001,
+        "parent_id": "81d13a7e-e776-460f-9b1a-0aaf49baf7ad",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "LoginFragment (The View)",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "LoginFragment (The View)",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451073001,
+        "id": "fe005721-10c1-48f0-b10e-f37867e7698a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451073001,
+        "parent_id": "81d13a7e-e776-460f-9b1a-0aaf49baf7ad",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class LoginFragment extends Fragment implements LoginContract.PresenterToView, View.OnClickListener {\n\n    private View view;\n    private EditText email, password;\n    private Button login, register;\n\n    private LoginContract.ToPresenter presenter;\n\n    @Nullable\n    @Override\n    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {\n        return inflater.inflate(R.layout.fragment_login, container, false);\n    }\n\n    @Override\n    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {\n        email = (EditText) view.findViewById(R.id.email_et);\n        password = (EditText) view.findViewById(R.id.password_et);\n        login = (Button) view.findViewById(R.id.login_btn);\n        login.setOnClickListener(this);\n        register = (Button) view.findViewById(R.id.register_btn);\n        register.setOnClickListener(this);\n\n        presenter = new LoginPresenter(this);\n\n        presenter.isLoggedIn();\n\n    }\n\n    @Override\n    public void onLoginResponse(boolean isLoginSuccess) {\n        if (isLoginSuccess) {\n            startActivity(new Intent(getActivity(), MapActivity.class));\n            getActivity().finish();\n        }\n    }\n\n    @Override\n    public void onError(String message) {\n        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();\n    }\n\n    @Override\n    public void isLoggedIn(boolean isLoggedIn) {\n        if (isLoggedIn) {\n            startActivity(new Intent(getActivity(), MapActivity.class));\n            getActivity().finish();\n        }\n    }\n\n    @Override\n    public void onClick(View view) {\n        switch (view.getId()) {\n            case R.id.login_btn:\n                LoginItem loginItem = new LoginItem();\n                loginItem.setPassword(password.getText().toString().trim());\n                loginItem.setEmail(email.getText().toString().trim());\n                presenter.login(loginItem);\n                break;\n            case R.id.register_btn:\n                startActivity(new Intent(getActivity(), RegisterActivity.class));\n                getActivity().finish();\n                break;\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class LoginFragment extends Fragment implements LoginContract.PresenterToView, View.OnClickListener {\n\n    private View view;\n    private EditText email, password;\n    private Button login, register;\n\n    private LoginContract.ToPresenter presenter;\n\n    @Nullable\n    @Override\n    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {\n        return inflater.inflate(R.layout.fragment_login, container, false);\n    }\n\n    @Override\n    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {\n        email = (EditText) view.findViewById(R.id.email_et);\n        password = (EditText) view.findViewById(R.id.password_et);\n        login = (Button) view.findViewById(R.id.login_btn);\n        login.setOnClickListener(this);\n        register = (Button) view.findViewById(R.id.register_btn);\n        register.setOnClickListener(this);\n\n        presenter = new LoginPresenter(this);\n\n        presenter.isLoggedIn();\n\n    }\n\n    @Override\n    public void onLoginResponse(boolean isLoginSuccess) {\n        if (isLoginSuccess) {\n            startActivity(new Intent(getActivity(), MapActivity.class));\n            getActivity().finish();\n        }\n    }\n\n    @Override\n    public void onError(String message) {\n        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();\n    }\n\n    @Override\n    public void isLoggedIn(boolean isLoggedIn) {\n        if (isLoggedIn) {\n            startActivity(new Intent(getActivity(), MapActivity.class));\n            getActivity().finish();\n        }\n    }\n\n    @Override\n    public void onClick(View view) {\n        switch (view.getId()) {\n            case R.id.login_btn:\n                LoginItem loginItem = new LoginItem();\n                loginItem.setPassword(password.getText().toString().trim());\n                loginItem.setEmail(email.getText().toString().trim());\n                presenter.login(loginItem);\n                break;\n            case R.id.register_btn:\n                startActivity(new Intent(getActivity(), RegisterActivity.class));\n                getActivity().finish();\n                break;\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451073001,
+        "id": "dec38f0d-b3ac-4a7a-b459-067c4ab2f7ba",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451073001,
+        "parent_id": "81d13a7e-e776-460f-9b1a-0aaf49baf7ad",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "LoginPresenter (The Presenter)",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "LoginPresenter (The Presenter)",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451073002,
+        "id": "b7c8a5c6-0612-4041-ae76-a1bc5ce3994a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451073002,
+        "parent_id": "81d13a7e-e776-460f-9b1a-0aaf49baf7ad",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class LoginPresenter implements LoginContract.ToPresenter {\n\n    private LoginContract.PresenterToModel model;\n    private LoginContract.PresenterToView view;\n\n    public LoginPresenter(LoginContract.PresenterToView view) {\n        this.view = view;\n        model = new LoginModel(this);\n    }\n\n    @Override\n    public void login(LoginItem userCredentials) {\n        model.login(userCredentials);\n    }\n\n    @Override\n    public void isLoggedIn() {\n        model.isLoggedIn();\n    }\n\n    @Override\n    public void onLoginResponse(boolean isLoginSuccess) {\n        view.onLoginResponse(isLoginSuccess);\n    }\n\n    @Override\n    public void onError(String message) {\n        view.onError(message);\n    }\n\n    @Override\n    public void isloggedIn(boolean isLoggedin) {\n        view.isLoggedIn(isLoggedin);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class LoginPresenter implements LoginContract.ToPresenter {\n\n    private LoginContract.PresenterToModel model;\n    private LoginContract.PresenterToView view;\n\n    public LoginPresenter(LoginContract.PresenterToView view) {\n        this.view = view;\n        model = new LoginModel(this);\n    }\n\n    @Override\n    public void login(LoginItem userCredentials) {\n        model.login(userCredentials);\n    }\n\n    @Override\n    public void isLoggedIn() {\n        model.isLoggedIn();\n    }\n\n    @Override\n    public void onLoginResponse(boolean isLoginSuccess) {\n        view.onLoginResponse(isLoginSuccess);\n    }\n\n    @Override\n    public void onError(String message) {\n        view.onError(message);\n    }\n\n    @Override\n    public void isloggedIn(boolean isLoggedin) {\n        view.isLoggedIn(isLoggedin);\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451073002,
+        "id": "620ac9e2-bfb1-438e-b7cf-aa7d298c32bc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451073002,
+        "parent_id": "81d13a7e-e776-460f-9b1a-0aaf49baf7ad",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "LoginModel (The Model)",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "LoginModel (The Model)",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451073002,
+        "id": "f29816f0-ddd3-4cf5-9bac-50191b19a512",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451073002,
+        "parent_id": "81d13a7e-e776-460f-9b1a-0aaf49baf7ad",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class LoginModel implements LoginContract.PresenterToModel, ResponseErrorListener.ErrorListener {\n\n    private static final String TAG = LoginModel.class.getSimpleName();\n    private LoginContract.ToPresenter presenter;\n\n    public LoginModel(LoginContract.ToPresenter presenter) {\n        this.presenter = presenter;\n    }\n\n    @Override\n    public void login(LoginItem userCredentials) {\n        if (validateData(userCredentials)) {\n            try {\n                performLoginOperation(userCredentials);\n            } catch (JSONException e) {\n                e.printStackTrace();\n            }\n        } else {\n            presenter.onError(BaseContext.getContext().getString(R.string.error_login_field_validation));\n        }\n    }\n\n    @Override\n    public void isLoggedIn() {\n        DatabaseHelper database = new DatabaseHelper(BaseContext.getContext());\n        presenter.isloggedIn(database.isLoggedIn());\n    }\n\n    private boolean validateData(LoginItem userCredentials) {\n        return Patterns.EMAIL_ADDRESS.matcher(userCredentials.getEmail()).matches()\n                \u0026\u0026 !userCredentials.getPassword().trim().equals(\"\");\n    }\n\n    private void performLoginOperation(final LoginItem userCredentials) throws JSONException {\n\n        JSONObject postData = new JSONObject();\n        postData.put(Constants.EMAIL, userCredentials.getEmail());\n        postData.put(Constants.PASSWORD, userCredentials.getPassword());\n\n        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, Url.AUTH, postData,\n                new Response.Listener\u003cJSONObject\u003e() {\n                    @Override\n                    public void onResponse(JSONObject response) {\n                        try {\n                            String token = response.getString(Constants.ACCESS_TOKEN);\n                            DatabaseHelper databaseHelper = new DatabaseHelper(BaseContext.getContext());\n                            databaseHelper.login(token);\n                            Log.d(TAG, \"onResponse: \" + token);\n                        } catch (JSONException e) {\n                            e.printStackTrace();\n                        }\n                        presenter.onLoginResponse(true);\n                    }\n                }, new ErrorResponse(this));\n\n        RequestQueue queue = Volley.newRequestQueue(BaseContext.getContext());\n        queue.add(request);\n    }\n\n    @Override\n    public void onError(String message) {\n        presenter.onError(message);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class LoginModel implements LoginContract.PresenterToModel, ResponseErrorListener.ErrorListener {\n\n    private static final String TAG = LoginModel.class.getSimpleName();\n    private LoginContract.ToPresenter presenter;\n\n    public LoginModel(LoginContract.ToPresenter presenter) {\n        this.presenter = presenter;\n    }\n\n    @Override\n    public void login(LoginItem userCredentials) {\n        if (validateData(userCredentials)) {\n            try {\n                performLoginOperation(userCredentials);\n            } catch (JSONException e) {\n                e.printStackTrace();\n            }\n        } else {\n            presenter.onError(BaseContext.getContext().getString(R.string.error_login_field_validation));\n        }\n    }\n\n    @Override\n    public void isLoggedIn() {\n        DatabaseHelper database = new DatabaseHelper(BaseContext.getContext());\n        presenter.isloggedIn(database.isLoggedIn());\n    }\n\n    private boolean validateData(LoginItem userCredentials) {\n        return Patterns.EMAIL_ADDRESS.matcher(userCredentials.getEmail()).matches()\n                \u0026\u0026 !userCredentials.getPassword().trim().equals(\"\");\n    }\n\n    private void performLoginOperation(final LoginItem userCredentials) throws JSONException {\n\n        JSONObject postData = new JSONObject();\n        postData.put(Constants.EMAIL, userCredentials.getEmail());\n        postData.put(Constants.PASSWORD, userCredentials.getPassword());\n\n        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, Url.AUTH, postData,\n                new Response.Listener\u003cJSONObject\u003e() {\n                    @Override\n                    public void onResponse(JSONObject response) {\n                        try {\n                            String token = response.getString(Constants.ACCESS_TOKEN);\n                            DatabaseHelper databaseHelper = new DatabaseHelper(BaseContext.getContext());\n                            databaseHelper.login(token);\n                            Log.d(TAG, \"onResponse: \" + token);\n                        } catch (JSONException e) {\n                            e.printStackTrace();\n                        }\n                        presenter.onLoginResponse(true);\n                    }\n                }, new ErrorResponse(this));\n\n        RequestQueue queue = Volley.newRequestQueue(BaseContext.getContext());\n        queue.add(request);\n    }\n\n    @Override\n    public void onError(String message) {\n        presenter.onError(message);\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451073002,
+        "id": "39c95c88-2348-4c93-8153-d48365d612f8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451073002,
+        "parent_id": "81d13a7e-e776-460f-9b1a-0aaf49baf7ad",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Class Diagram",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Class Diagram",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451073002,
+        "id": "f8763208-94e2-4885-935a-55e9f3088e83",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451073002,
+        "parent_id": "81d13a7e-e776-460f-9b1a-0aaf49baf7ad",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Let’s see the action in the form of class diagram."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Let’s see the action in the form of class diagram."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451073002,
+        "id": "1f607749-4e53-47d9-912e-1ed42f52a229",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451073002,
+        "parent_id": "81d13a7e-e776-460f-9b1a-0aaf49baf7ad",
+        "parent_table": "block",
+        "properties": {
+          "source": [
+            [
+              "http://i.stack.imgur.com/yM4gJ.png"
+            ]
+          ]
+        },
+        "type": "image",
+        "version": 1,
+        "source": "http://i.stack.imgur.com/yM4gJ.png",
+        "image_url": "https://www.notion.so/image/https:%2F%2Fwww.notion.sohttp:%2F%2Fi.stack.imgur.com%2FyM4gJ.png"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451073002,
+        "id": "c04fb3c5-e3b4-4ce4-9cc2-2f631b4d6dbb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451073002,
+        "parent_id": "81d13a7e-e776-460f-9b1a-0aaf49baf7ad",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Notes:"
+            ]
+          ]
+        },
+        "type": "sub_header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Notes:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451073004,
+        "id": "ea50e7b9-ec1b-40f2-a239-309e854b7f89",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451073004,
+        "parent_id": "81d13a7e-e776-460f-9b1a-0aaf49baf7ad",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This example uses "
+            ],
+            [
+              "Volley",
+              [
+                [
+                  "a",
+                  "https://developer.android.com/training/volley/index.html"
+                ]
+              ]
+            ],
+            [
+              " for network communication, but this library is not required for MVP"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This example uses "
+          },
+          {
+            "Text": "Volley",
+            "Link": "https://developer.android.com/training/volley/index.html"
+          },
+          {
+            "Text": " for network communication, but this library is not required for MVP"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451073005,
+        "id": "6c6a5fda-baa2-4e2d-9d1e-d8818c19b9bc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451073005,
+        "parent_id": "81d13a7e-e776-460f-9b1a-0aaf49baf7ad",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "UrlUtils",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is a class which contains all the links for my API Endpoints"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "UrlUtils",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is a class which contains all the links for my API Endpoints"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451073005,
+        "id": "4fd4e5be-0085-423d-aa3a-e126edd93bdd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451073005,
+        "parent_id": "81d13a7e-e776-460f-9b1a-0aaf49baf7ad",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "ResponseErrorListener.ErrorListener",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is an "
+            ],
+            [
+              "interface",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " that listens for error in "
+            ],
+            [
+              "ErrorResponse",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " that "
+            ],
+            [
+              "implements",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " Volley’s "
+            ],
+            [
+              "Response.ErrorListener",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "; these classes are not included here as they are not directly part of this example"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "ResponseErrorListener.ErrorListener",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is an "
+          },
+          {
+            "Text": "interface",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " that listens for error in "
+          },
+          {
+            "Text": "ErrorResponse",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " that "
+          },
+          {
+            "Text": "implements",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " Volley’s "
+          },
+          {
+            "Text": "Response.ErrorListener",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "; these classes are not included here as they are not directly part of this example"
+          }
+        ]
+      }
+    ],
+    "title": "010 Login example in the Model View Presenter MVP pattern"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,268 @@
+{
+  "ID": "5e044fe5-c014-439b-b56d-32e8873bbc19",
+  "Root": {
+    "alive": true,
+    "content": [
+      "395dce8d-ea01-4a3d-8a61-b916043f1fc4",
+      "e4f657d2-cc5a-4f9b-9402-0ad5a98c19aa"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550443989943,
+    "id": "5e044fe5-c014-439b-b56d-32e8873bbc19",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550443989943,
+    "parent_id": "b81f95e2-9af4-43b2-ae8a-eacf3d61b9e0",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 Read and write values to SharedPreferences"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550443989938,
+        "id": "395dce8d-ea01-4a3d-8a61-b916043f1fc4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550443989938,
+        "parent_id": "5e044fe5-c014-439b-b56d-32e8873bbc19",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class MyActivity extends Activity {\n\n    private static final String PREFS_FILE = \"NameOfYourPrefrenceFile\";\n    // PREFS_MODE defines which apps can access the file\n    private static final int PREFS_MODE = Context.MODE_PRIVATE;\n    // you can use live template \"key\" for quickly creating keys\n    private static final String KEY_BOOLEAN = \"KEY_FOR_YOUR_BOOLEAN\";\n    private static final String KEY_STRING = \"KEY_FOR_YOUR_STRING\";\n    private static final String KEY_FLOAT = \"KEY_FOR_YOUR_FLOAT\";\n    private static final String KEY_INT = \"KEY_FOR_YOUR_INT\";\n    private static final String KEY_LONG = \"KEY_FOR_YOUR_LONG\";\n\n    @Override\n    protected void onStart() {\n        super.onStart();\n    \n        // Get the saved flag (or default value if it hasn't been saved yet)\n        SharedPreferences settings = getSharedPreferences(PREFS_FILE, PREFS_MODE);\n        // read a boolean value (default false)\n        boolean booleanVal = settings.getBoolean(KEY_BOOLEAN, false);\n        // read an int value (Default 0)\n        int intVal = settings.getInt(KEY_INT, 0);\n        // read a string value (default \"my string\")\n        String str = settings.getString(KEY_STRING, \"my string\");\n        // read a long value (default 123456)\n        long longVal = settings.getLong(KEY_LONG, 123456);\n        // read a float value (default 3.14f)\n        float floatVal = settings.getFloat(KEY_FLOAT, 3.14f);\n    }\n\n    @Override\n    protected void onStop() {\n        super.onStop();\n        \n        // Save the flag\n        SharedPreferences settings = getSharedPreferences(PREFS_FILE, PREFS_MODE);\n        SharedPreferences.Editor editor = settings.edit();\n        // write a boolean value\n        editor.putBoolean(KEY_BOOLEAN, true);\n        // write an integer value\n        editor.putInt(KEY_INT, 123);\n        // write a string\n        editor.putString(KEY_STRING, \"string value\");\n        // write a long value\n        editor.putLong(KEY_LONG, 456876451);\n        // write a float value\n        editor.putFloat(KEY_FLOAT, 1.51f);\n        editor.apply();\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class MyActivity extends Activity {\n\n    private static final String PREFS_FILE = \"NameOfYourPrefrenceFile\";\n    // PREFS_MODE defines which apps can access the file\n    private static final int PREFS_MODE = Context.MODE_PRIVATE;\n    // you can use live template \"key\" for quickly creating keys\n    private static final String KEY_BOOLEAN = \"KEY_FOR_YOUR_BOOLEAN\";\n    private static final String KEY_STRING = \"KEY_FOR_YOUR_STRING\";\n    private static final String KEY_FLOAT = \"KEY_FOR_YOUR_FLOAT\";\n    private static final String KEY_INT = \"KEY_FOR_YOUR_INT\";\n    private static final String KEY_LONG = \"KEY_FOR_YOUR_LONG\";\n\n    @Override\n    protected void onStart() {\n        super.onStart();\n    \n        // Get the saved flag (or default value if it hasn't been saved yet)\n        SharedPreferences settings = getSharedPreferences(PREFS_FILE, PREFS_MODE);\n        // read a boolean value (default false)\n        boolean booleanVal = settings.getBoolean(KEY_BOOLEAN, false);\n        // read an int value (Default 0)\n        int intVal = settings.getInt(KEY_INT, 0);\n        // read a string value (default \"my string\")\n        String str = settings.getString(KEY_STRING, \"my string\");\n        // read a long value (default 123456)\n        long longVal = settings.getLong(KEY_LONG, 123456);\n        // read a float value (default 3.14f)\n        float floatVal = settings.getFloat(KEY_FLOAT, 3.14f);\n    }\n\n    @Override\n    protected void onStop() {\n        super.onStop();\n        \n        // Save the flag\n        SharedPreferences settings = getSharedPreferences(PREFS_FILE, PREFS_MODE);\n        SharedPreferences.Editor editor = settings.edit();\n        // write a boolean value\n        editor.putBoolean(KEY_BOOLEAN, true);\n        // write an integer value\n        editor.putInt(KEY_INT, 123);\n        // write a string\n        editor.putString(KEY_STRING, \"string value\");\n        // write a long value\n        editor.putLong(KEY_LONG, 456876451);\n        // write a float value\n        editor.putFloat(KEY_FLOAT, 1.51f);\n        editor.apply();\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550443989943,
+        "id": "e4f657d2-cc5a-4f9b-9402-0ad5a98c19aa",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550443989943,
+        "parent_id": "5e044fe5-c014-439b-b56d-32e8873bbc19",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "getSharedPreferences()",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "https://developer.android.com/reference/android/content/Context.html#getSharedPreferences(java.lang.String,%20int)"
+                ]
+              ]
+            ],
+            [
+              " is a method from the "
+            ],
+            [
+              "Context",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "https://developer.android.com/reference/android/content/Context.html"
+                ]
+              ]
+            ],
+            [
+              " class — which "
+            ],
+            [
+              "Activity",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "https://developer.android.com/reference/android/app/Activity.html"
+                ]
+              ]
+            ],
+            [
+              " extends. If you need to access the "
+            ],
+            [
+              "getSharedPreferences()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method from other classes, you can use "
+            ],
+            [
+              "context.getSharedPreferences()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " with a "
+            ],
+            [
+              "Context",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " Object reference from an "
+            ],
+            [
+              "Activity",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", "
+            ],
+            [
+              "View",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", or "
+            ],
+            [
+              "Application",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "getSharedPreferences()",
+            "AttrFlags": 2,
+            "Link": "https://developer.android.com/reference/android/content/Context.html#getSharedPreferences(java.lang.String,%20int)"
+          },
+          {
+            "Text": " is a method from the "
+          },
+          {
+            "Text": "Context",
+            "AttrFlags": 2,
+            "Link": "https://developer.android.com/reference/android/content/Context.html"
+          },
+          {
+            "Text": " class — which "
+          },
+          {
+            "Text": "Activity",
+            "AttrFlags": 2,
+            "Link": "https://developer.android.com/reference/android/app/Activity.html"
+          },
+          {
+            "Text": " extends. If you need to access the "
+          },
+          {
+            "Text": "getSharedPreferences()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method from other classes, you can use "
+          },
+          {
+            "Text": "context.getSharedPreferences()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " with a "
+          },
+          {
+            "Text": "Context",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " Object reference from an "
+          },
+          {
+            "Text": "Activity",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", "
+          },
+          {
+            "Text": "View",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", or "
+          },
+          {
+            "Text": "Application",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      }
+    ],
+    "title": "030 Read and write values to SharedPreferences"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

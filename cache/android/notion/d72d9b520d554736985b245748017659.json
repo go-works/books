@@ -1,0 +1,71 @@
+{
+  "ID": "d72d9b52-0d55-4736-985b-245748017659",
+  "Root": {
+    "alive": true,
+    "content": [
+      "d57c64d1-2a7c-4384-a90a-15a40d886dc2"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550450277135,
+    "id": "d72d9b52-0d55-4736-985b-245748017659",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550450277135,
+    "parent_id": "963e797e-dea4-4392-8454-e58d4d898886",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 Create a Firebase user"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450277135,
+        "id": "d57c64d1-2a7c-4384-a90a-15a40d886dc2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450277135,
+        "parent_id": "d72d9b52-0d55-4736-985b-245748017659",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class SignUpActivity extends BaseAppCompatActivity {\n\n    @BindView(R.id.tIETSignUpEmail)\n    EditText mEditEmail;\n    @BindView(R.id.tIETSignUpPassword)\n    EditText mEditPassword;\n\n    @Override\n    protected void onCreate(@Nullable Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        getSupportActionBar().setDisplayHomeAsUpEnabled(true);\n    }\n\n    @OnClick(R.id.btnSignUpSignUp)\n    void signUp() {\n\n        FormValidationUtils.clearErrors(mEditEmail, mEditPassword);\n\n        if (FormValidationUtils.isBlank(mEditEmail)) {\n            mEditEmail.setError(\"Please enter email\");\n            return;\n        }\n\n        if (!FormValidationUtils.isEmailValid(mEditEmail)) {\n            mEditEmail.setError(\"Please enter valid email\");\n            return;\n        }\n\n        if (TextUtils.isEmpty(mEditPassword.getText())) {\n            mEditPassword.setError(\"Please enter password\");\n            return;\n        }\n\n        createUserWithEmailAndPassword(mEditEmail.getText().toString(), mEditPassword.getText().toString());\n    }\n\n    private void createUserWithEmailAndPassword(String email, String password) {\n        DialogUtils.showProgressDialog(this, \"\", getString(R.string.str_creating_account), false);\n        mFirebaseAuth\n                .createUserWithEmailAndPassword(email, password)\n                .addOnCompleteListener(this, new OnCompleteListener\u003cAuthResult\u003e() {\n                    @Override\n                    public void onComplete(@NonNull Task\u003cAuthResult\u003e task) {\n                        if (!task.isSuccessful()) {\n                            Toast.makeText(SignUpActivity.this, task.getException().getMessage(),\n                                    Toast.LENGTH_SHORT).show();\n                            DialogUtils.dismissProgressDialog();\n                        } else {\n                            Toast.makeText(SignUpActivity.this, R.string.str_registration_successful, Toast.LENGTH_SHORT).show();\n                            DialogUtils.dismissProgressDialog();\n                            startActivity(new Intent(SignUpActivity.this, HomeActivity.class));\n                        }\n                    }\n                });\n    }\n\n    @Override\n    protected int getLayoutResourceId() {\n        return R.layout.activity_sign_up;\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class SignUpActivity extends BaseAppCompatActivity {\n\n    @BindView(R.id.tIETSignUpEmail)\n    EditText mEditEmail;\n    @BindView(R.id.tIETSignUpPassword)\n    EditText mEditPassword;\n\n    @Override\n    protected void onCreate(@Nullable Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        getSupportActionBar().setDisplayHomeAsUpEnabled(true);\n    }\n\n    @OnClick(R.id.btnSignUpSignUp)\n    void signUp() {\n\n        FormValidationUtils.clearErrors(mEditEmail, mEditPassword);\n\n        if (FormValidationUtils.isBlank(mEditEmail)) {\n            mEditEmail.setError(\"Please enter email\");\n            return;\n        }\n\n        if (!FormValidationUtils.isEmailValid(mEditEmail)) {\n            mEditEmail.setError(\"Please enter valid email\");\n            return;\n        }\n\n        if (TextUtils.isEmpty(mEditPassword.getText())) {\n            mEditPassword.setError(\"Please enter password\");\n            return;\n        }\n\n        createUserWithEmailAndPassword(mEditEmail.getText().toString(), mEditPassword.getText().toString());\n    }\n\n    private void createUserWithEmailAndPassword(String email, String password) {\n        DialogUtils.showProgressDialog(this, \"\", getString(R.string.str_creating_account), false);\n        mFirebaseAuth\n                .createUserWithEmailAndPassword(email, password)\n                .addOnCompleteListener(this, new OnCompleteListener\u003cAuthResult\u003e() {\n                    @Override\n                    public void onComplete(@NonNull Task\u003cAuthResult\u003e task) {\n                        if (!task.isSuccessful()) {\n                            Toast.makeText(SignUpActivity.this, task.getException().getMessage(),\n                                    Toast.LENGTH_SHORT).show();\n                            DialogUtils.dismissProgressDialog();\n                        } else {\n                            Toast.makeText(SignUpActivity.this, R.string.str_registration_successful, Toast.LENGTH_SHORT).show();\n                            DialogUtils.dismissProgressDialog();\n                            startActivity(new Intent(SignUpActivity.this, HomeActivity.class));\n                        }\n                    }\n                });\n    }\n\n    @Override\n    protected int getLayoutResourceId() {\n        return R.layout.activity_sign_up;\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "030 Create a Firebase user"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

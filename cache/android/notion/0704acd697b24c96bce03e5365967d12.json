@@ -1,0 +1,285 @@
+{
+  "ID": "0704acd6-97b2-4c96-bce0-3e5365967d12",
+  "Root": {
+    "alive": true,
+    "content": [
+      "2a391bec-c79f-4d91-8fc6-01aa2ad34f94",
+      "cc62ca9a-59bd-4084-8bb5-8e9c64f2c58a",
+      "cbcd8bdc-f85a-4b98-956e-ba5b661352e4",
+      "a1305228-02f1-4f6b-a3a4-c224ce1b061b",
+      "5e365268-4f90-4daa-b2fb-bd342c8f9807"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550443961861,
+    "id": "0704acd6-97b2-4c96-bce0-3e5365967d12",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550443961861,
+    "parent_id": "58b149d4-6a66-400d-bae4-6d84bc9e8211",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "040 Canceling AsyncTask"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550443961858,
+        "id": "2a391bec-c79f-4d91-8fc6-01aa2ad34f94",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550443961858,
+        "parent_id": "0704acd6-97b2-4c96-bce0-3e5365967d12",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "YourAsyncTask task = new YourAsyncTask();\ntask.execute();\ntask.cancel();"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "YourAsyncTask task = new YourAsyncTask();\ntask.execute();\ntask.cancel();",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550443961861,
+        "id": "cc62ca9a-59bd-4084-8bb5-8e9c64f2c58a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550443961861,
+        "parent_id": "0704acd6-97b2-4c96-bce0-3e5365967d12",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This doesn’t stop your task if it was in progress, it just sets the cancelled flag which can be checked by checking the return value of "
+            ],
+            [
+              "isCancelled()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " (assuming your code is currently running) by doing this:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This doesn’t stop your task if it was in progress, it just sets the cancelled flag which can be checked by checking the return value of "
+          },
+          {
+            "Text": "isCancelled()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " (assuming your code is currently running) by doing this:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550443961861,
+        "id": "cbcd8bdc-f85a-4b98-956e-ba5b661352e4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550443961861,
+        "parent_id": "0704acd6-97b2-4c96-bce0-3e5365967d12",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class YourAsyncTask extends AsyncTask\u003cVoid, Void, Void\u003e {\n    @Override\n    protected Void doInBackground(Void... params) {\n        while(!isCancelled()) {\n            ... doing long task stuff\n            //Do something, you need, upload part of file, for example\n            if (isCancelled()) {    \n                return null; // Task was detected as canceled\n            }\n            if (yourTaskCompleted) {\n                return null;\n            }\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class YourAsyncTask extends AsyncTask\u003cVoid, Void, Void\u003e {\n    @Override\n    protected Void doInBackground(Void... params) {\n        while(!isCancelled()) {\n            ... doing long task stuff\n            //Do something, you need, upload part of file, for example\n            if (isCancelled()) {    \n                return null; // Task was detected as canceled\n            }\n            if (yourTaskCompleted) {\n                return null;\n            }\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550443961861,
+        "id": "a1305228-02f1-4f6b-a3a4-c224ce1b061b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550443961861,
+        "parent_id": "0704acd6-97b2-4c96-bce0-3e5365967d12",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Note"
+            ]
+          ]
+        },
+        "type": "sub_header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Note"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550443961861,
+        "id": "5e365268-4f90-4daa-b2fb-bd342c8f9807",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550443961861,
+        "parent_id": "0704acd6-97b2-4c96-bce0-3e5365967d12",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If an AsyncTask is canceled while "
+            ],
+            [
+              "doInBackground(Params... params)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is still executing then the method "
+            ],
+            [
+              "onPostExecute(Result result)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " will "
+            ],
+            [
+              "NOT",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " be called after "
+            ],
+            [
+              "doInBackground(Params... params)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " returns. The AsyncTask will instead call the "
+            ],
+            [
+              "onCancelled(Result result)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to indicate that the task was cancelled during execution."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If an AsyncTask is canceled while "
+          },
+          {
+            "Text": "doInBackground(Params... params)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is still executing then the method "
+          },
+          {
+            "Text": "onPostExecute(Result result)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " will "
+          },
+          {
+            "Text": "NOT",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " be called after "
+          },
+          {
+            "Text": "doInBackground(Params... params)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " returns. The AsyncTask will instead call the "
+          },
+          {
+            "Text": "onCancelled(Result result)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to indicate that the task was cancelled during execution."
+          }
+        ]
+      }
+    ],
+    "title": "040 Canceling AsyncTask"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

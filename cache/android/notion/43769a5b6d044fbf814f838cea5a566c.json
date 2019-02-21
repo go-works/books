@@ -1,0 +1,151 @@
+{
+  "ID": "43769a5b-6d04-4fbf-814f-838cea5a566c",
+  "Root": {
+    "alive": true,
+    "content": [
+      "3c6b7e68-0174-484b-b723-e8c2da7356cb",
+      "870bef59-de81-4e73-bbc3-5b91eaf494ef",
+      "ea12259f-0fe4-4089-9ebc-980710178af7",
+      "f3dc8ff2-2191-4c6a-8e51-c49974f54706"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550456139013,
+    "id": "43769a5b-6d04-4fbf-814f-838cea5a566c",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550456139013,
+    "parent_id": "e74c5ca7-a98f-4cee-8a20-402df5f04c12",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "020 Getting frame from movie"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456139010,
+        "id": "3c6b7e68-0174-484b-b723-e8c2da7356cb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456139010,
+        "parent_id": "43769a5b-6d04-4fbf-814f-838cea5a566c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Getting a single frame from a movie ( supports only AVC, H.264 in MP4, ISO BMF, Quicktime container ):"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Getting a single frame from a movie ( supports only AVC, H.264 in MP4, ISO BMF, Quicktime container ):"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456139012,
+        "id": "870bef59-de81-4e73-bbc3-5b91eaf494ef",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456139012,
+        "parent_id": "43769a5b-6d04-4fbf-814f-838cea5a566c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "int frameNumber = 150;\nBufferedImage frame = FrameGrab.getFrame(new File(\"filename.mp4\"), frameNumber);\nImageIO.write(frame, \"png\", new File(\"frame_150.png\"));"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "int frameNumber = 150;\nBufferedImage frame = FrameGrab.getFrame(new File(\"filename.mp4\"), frameNumber);\nImageIO.write(frame, \"png\", new File(\"frame_150.png\"));",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456139013,
+        "id": "ea12259f-0fe4-4089-9ebc-980710178af7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456139013,
+        "parent_id": "43769a5b-6d04-4fbf-814f-838cea5a566c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Getting a sequence of frames from a movie ( supports only AVC, H.264 in MP4, ISO BMF, Quicktime container ):"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Getting a sequence of frames from a movie ( supports only AVC, H.264 in MP4, ISO BMF, Quicktime container ):"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456139013,
+        "id": "f3dc8ff2-2191-4c6a-8e51-c49974f54706",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456139013,
+        "parent_id": "43769a5b-6d04-4fbf-814f-838cea5a566c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "double startSec = 51.632;\nFileChannelWrapper ch = null;\ntry {\n    ch = NIOUtils.readableFileChannel(new File(\"filename.mp4\"));\n    FrameGrab fg = new FrameGrab(ch);\n    grab.seek(startSec);\n    for (int i = 0; i \u003c 100; i++) {\n        ImageIO.write(grab.getFrame(), \"png\",\n            new File(System.getProperty(\"user.home\"), String.format(\"Desktop/frame_%08d.png\", i)));\n    }\n} finally {\n    NIOUtils.closeQuietly(ch);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "double startSec = 51.632;\nFileChannelWrapper ch = null;\ntry {\n    ch = NIOUtils.readableFileChannel(new File(\"filename.mp4\"));\n    FrameGrab fg = new FrameGrab(ch);\n    grab.seek(startSec);\n    for (int i = 0; i \u003c 100; i++) {\n        ImageIO.write(grab.getFrame(), \"png\",\n            new File(System.getProperty(\"user.home\"), String.format(\"Desktop/frame_%08d.png\", i)));\n    }\n} finally {\n    NIOUtils.closeQuietly(ch);\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "020 Getting frame from movie"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

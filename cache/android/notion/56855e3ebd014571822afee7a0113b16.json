@@ -1,0 +1,521 @@
+{
+  "ID": "56855e3e-bd01-4571-822a-fee7a0113b16",
+  "Root": {
+    "alive": true,
+    "content": [
+      "dfedeabd-c416-4415-b99f-031c26d698b5",
+      "14d2fbd5-9b33-4bef-b677-014c0305b882",
+      "733cd693-d876-4355-b2b4-a9555305232c",
+      "eecef94c-c850-4acf-951a-c70f0877a7da",
+      "bf875b87-b4df-4ac0-95d1-d4d21fdd6d82",
+      "4f3f58d5-1bf4-4edc-aaa7-744334ba1d9b",
+      "c0d6c5a5-6a10-443b-8612-832940a68b0e",
+      "c7483b27-7c6c-498d-a026-49c9321e8698",
+      "a004b745-41b7-40c3-b1c2-cf353a04ff87",
+      "598bfd76-e548-460e-b257-080a8f135652",
+      "e3383fff-48da-4d38-937c-7c59be4ab18b",
+      "d097997d-3fdd-446c-8e6b-e8d48b28db27",
+      "7dea6514-7e69-4d2b-85a7-e39d8a76925a",
+      "87828f48-237f-4a29-b9a3-5d491c88564a",
+      "5b520db6-b0e0-4182-ad4c-83dcd321013d",
+      "bd4bcf10-3551-4eaa-8054-39026a916bd9",
+      "72e2cd4e-91df-4c44-83ef-e201cefdbf1e"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550452694999,
+    "id": "56855e3e-bd01-4571-822a-fee7a0113b16",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550452694999,
+    "parent_id": "f1c95c46-1481-4241-a8ee-571b2f83a310",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 GridLayoutManager with dynamic span count"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452694992,
+        "id": "dfedeabd-c416-4415-b99f-031c26d698b5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452694992,
+        "parent_id": "56855e3e-bd01-4571-822a-fee7a0113b16",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "When creating a recyclerview with a gridlayout layout manager you have to specify the span count in the constructor. Span count refers to the number of columns. This is fairly clunky and doesn’t take into account larger screen sizes or screen orientation. One approach is to create multiple layouts for the various screen sizes. Another more dynamic approach can be seen below."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "When creating a recyclerview with a gridlayout layout manager you have to specify the span count in the constructor. Span count refers to the number of columns. This is fairly clunky and doesn’t take into account larger screen sizes or screen orientation. One approach is to create multiple layouts for the various screen sizes. Another more dynamic approach can be seen below."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452694995,
+        "id": "14d2fbd5-9b33-4bef-b677-014c0305b882",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452694995,
+        "parent_id": "56855e3e-bd01-4571-822a-fee7a0113b16",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "First we create a custom RecyclerView class as follows:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "First we create a custom RecyclerView class as follows:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452694995,
+        "id": "733cd693-d876-4355-b2b4-a9555305232c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452694995,
+        "parent_id": "56855e3e-bd01-4571-822a-fee7a0113b16",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class AutofitRecyclerView extends RecyclerView {\n    private GridLayoutManager manager;\n    private int columnWidth = -1;\n\n    public AutofitRecyclerView(Context context) {\n        super(context);\n        init(context, null);\n    }\n\n    public AutofitRecyclerView(Context context, AttributeSet attrs) {\n        super(context, attrs);\n        init(context, attrs);\n    }\n\n    public AutofitRecyclerView(Context context, AttributeSet attrs, int defStyle) {\n        super(context, attrs, defStyle);\n        init(context, attrs);\n    }\n\n    private void init(Context context, AttributeSet attrs) {\n        if (attrs != null) {\n            int[] attrsArray = {\n                    android.R.attr.columnWidth\n            };\n            TypedArray array = context.obtainStyledAttributes(attrs, attrsArray);\n            columnWidth = array.getDimensionPixelSize(0, -1);\n            array.recycle();\n        }\n\n        manager = new GridLayoutManager(getContext(), 1);\n        setLayoutManager(manager);\n    }\n\n    @Override\n    protected void onMeasure(int widthSpec, int heightSpec) {\n        super.onMeasure(widthSpec, heightSpec);\n        if (columnWidth \u003e 0) {\n            int spanCount = Math.max(1, getMeasuredWidth() / columnWidth);\n            manager.setSpanCount(spanCount);\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class AutofitRecyclerView extends RecyclerView {\n    private GridLayoutManager manager;\n    private int columnWidth = -1;\n\n    public AutofitRecyclerView(Context context) {\n        super(context);\n        init(context, null);\n    }\n\n    public AutofitRecyclerView(Context context, AttributeSet attrs) {\n        super(context, attrs);\n        init(context, attrs);\n    }\n\n    public AutofitRecyclerView(Context context, AttributeSet attrs, int defStyle) {\n        super(context, attrs, defStyle);\n        init(context, attrs);\n    }\n\n    private void init(Context context, AttributeSet attrs) {\n        if (attrs != null) {\n            int[] attrsArray = {\n                    android.R.attr.columnWidth\n            };\n            TypedArray array = context.obtainStyledAttributes(attrs, attrsArray);\n            columnWidth = array.getDimensionPixelSize(0, -1);\n            array.recycle();\n        }\n\n        manager = new GridLayoutManager(getContext(), 1);\n        setLayoutManager(manager);\n    }\n\n    @Override\n    protected void onMeasure(int widthSpec, int heightSpec) {\n        super.onMeasure(widthSpec, heightSpec);\n        if (columnWidth \u003e 0) {\n            int spanCount = Math.max(1, getMeasuredWidth() / columnWidth);\n            manager.setSpanCount(spanCount);\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452694995,
+        "id": "eecef94c-c850-4acf-951a-c70f0877a7da",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452694995,
+        "parent_id": "56855e3e-bd01-4571-822a-fee7a0113b16",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This class determines how many columns can fit into the recyclerview. To use it you will need to put it into your layout.xml as follows:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This class determines how many columns can fit into the recyclerview. To use it you will need to put it into your layout.xml as follows:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452694995,
+        "id": "bf875b87-b4df-4ac0-95d1-d4d21fdd6d82",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452694995,
+        "parent_id": "56855e3e-bd01-4571-822a-fee7a0113b16",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003c?xml version=\"1.0\" encoding=\"utf-8\"?\u003e\n\u003ccom.path.to.your.class.autofitRecyclerView.AutofitRecyclerView\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    android:id=\"@+id/auto_fit_recycler_view\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:columnWidth=\"200dp\"\n    android:clipToPadding=\"false\"\n    /\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003c?xml version=\"1.0\" encoding=\"utf-8\"?\u003e\n\u003ccom.path.to.your.class.autofitRecyclerView.AutofitRecyclerView\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    android:id=\"@+id/auto_fit_recycler_view\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:columnWidth=\"200dp\"\n    android:clipToPadding=\"false\"\n    /\u003e",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452694995,
+        "id": "4f3f58d5-1bf4-4edc-aaa7-744334ba1d9b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452694995,
+        "parent_id": "56855e3e-bd01-4571-822a-fee7a0113b16",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Notice that we use the columnWidth attribute. The recyclerview will need it to determine how many columns will fit into the available space."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Notice that we use the columnWidth attribute. The recyclerview will need it to determine how many columns will fit into the available space."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452694995,
+        "id": "c0d6c5a5-6a10-443b-8612-832940a68b0e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452694995,
+        "parent_id": "56855e3e-bd01-4571-822a-fee7a0113b16",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In your activity/fragment you just get a reference to the recylerview and set an adapter to it (and any item decorations or animations that you want to add). "
+            ],
+            [
+              "DO NOT SET A LAYOUT MANAGER",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In your activity/fragment you just get a reference to the recylerview and set an adapter to it (and any item decorations or animations that you want to add). "
+          },
+          {
+            "Text": "DO NOT SET A LAYOUT MANAGER",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452694995,
+        "id": "c7483b27-7c6c-498d-a026-49c9321e8698",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452694995,
+        "parent_id": "56855e3e-bd01-4571-822a-fee7a0113b16",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "RecyclerView recyclerView = (RecyclerView) findViewById(R.id.auto_fit_recycler_view);\nrecyclerView.setAdapter(new MyAdapter());"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "RecyclerView recyclerView = (RecyclerView) findViewById(R.id.auto_fit_recycler_view);\nrecyclerView.setAdapter(new MyAdapter());",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452694996,
+        "id": "a004b745-41b7-40c3-b1c2-cf353a04ff87",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452694996,
+        "parent_id": "56855e3e-bd01-4571-822a-fee7a0113b16",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "(where MyAdapter is your adapter class)"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "(where MyAdapter is your adapter class)"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452694996,
+        "id": "598bfd76-e548-460e-b257-080a8f135652",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452694996,
+        "parent_id": "56855e3e-bd01-4571-822a-fee7a0113b16",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "You now have a recyclerview that will adjust the spancount (ie columns) to fit the screen size. As a final addition you might want to center the columns in the recyclerview (by default they are aligned to layout_start). You can do that by modifying the AutofitRecyclerView class a little. Start by creating an inner class in the recyclerview. This will be a class that extends from GridLayoutManager. It will add enough padding to the left and right in order to center the rows:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "You now have a recyclerview that will adjust the spancount (ie columns) to fit the screen size. As a final addition you might want to center the columns in the recyclerview (by default they are aligned to layout_start). You can do that by modifying the AutofitRecyclerView class a little. Start by creating an inner class in the recyclerview. This will be a class that extends from GridLayoutManager. It will add enough padding to the left and right in order to center the rows:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452694996,
+        "id": "e3383fff-48da-4d38-937c-7c59be4ab18b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452694996,
+        "parent_id": "56855e3e-bd01-4571-822a-fee7a0113b16",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class AutofitRecyclerView extends RecyclerView {\n\n    // etc see above\n\n    private class CenteredGridLayoutManager extends GridLayoutManager {\n\n        public CenteredGridLayoutManager(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {\n            super(context, attrs, defStyleAttr, defStyleRes);\n        }\n\n        public CenteredGridLayoutManager(Context context, int spanCount) {\n            super(context, spanCount);\n        }\n\n        public CenteredGridLayoutManager(Context context, int spanCount, int orientation, boolean reverseLayout) {\n            super(context, spanCount, orientation, reverseLayout);\n        }\n\n        @Override\n        public int getPaddingLeft() {\n            final int totalItemWidth = columnWidth * getSpanCount();\n            if (totalItemWidth \u003e= AutofitRecyclerView.this.getMeasuredWidth()) {\n                return super.getPaddingLeft(); // do nothing\n            } else {\n                return Math.round((AutofitRecyclerView.this.getMeasuredWidth() / (1f + getSpanCount())) - (totalItemWidth / (1f + getSpanCount())));\n            }\n        }\n\n        @Override\n        public int getPaddingRight() {\n            return getPaddingLeft();\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class AutofitRecyclerView extends RecyclerView {\n\n    // etc see above\n\n    private class CenteredGridLayoutManager extends GridLayoutManager {\n\n        public CenteredGridLayoutManager(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {\n            super(context, attrs, defStyleAttr, defStyleRes);\n        }\n\n        public CenteredGridLayoutManager(Context context, int spanCount) {\n            super(context, spanCount);\n        }\n\n        public CenteredGridLayoutManager(Context context, int spanCount, int orientation, boolean reverseLayout) {\n            super(context, spanCount, orientation, reverseLayout);\n        }\n\n        @Override\n        public int getPaddingLeft() {\n            final int totalItemWidth = columnWidth * getSpanCount();\n            if (totalItemWidth \u003e= AutofitRecyclerView.this.getMeasuredWidth()) {\n                return super.getPaddingLeft(); // do nothing\n            } else {\n                return Math.round((AutofitRecyclerView.this.getMeasuredWidth() / (1f + getSpanCount())) - (totalItemWidth / (1f + getSpanCount())));\n            }\n        }\n\n        @Override\n        public int getPaddingRight() {\n            return getPaddingLeft();\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452694996,
+        "id": "d097997d-3fdd-446c-8e6b-e8d48b28db27",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452694996,
+        "parent_id": "56855e3e-bd01-4571-822a-fee7a0113b16",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Then when you set the LayoutManager in the AutofitRecyclerView use the CenteredGridLayoutManager as follows:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Then when you set the LayoutManager in the AutofitRecyclerView use the CenteredGridLayoutManager as follows:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452694996,
+        "id": "7dea6514-7e69-4d2b-85a7-e39d8a76925a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452694996,
+        "parent_id": "56855e3e-bd01-4571-822a-fee7a0113b16",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "private void init(Context context, AttributeSet attrs) {\n    if (attrs != null) {\n        int[] attrsArray = {\n                android.R.attr.columnWidth\n        };\n        TypedArray array = context.obtainStyledAttributes(attrs, attrsArray);\n        columnWidth = array.getDimensionPixelSize(0, -1);\n        array.recycle();\n    }\n\n    manager = new CenteredGridLayoutManager(getContext(), 1);\n    setLayoutManager(manager);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "private void init(Context context, AttributeSet attrs) {\n    if (attrs != null) {\n        int[] attrsArray = {\n                android.R.attr.columnWidth\n        };\n        TypedArray array = context.obtainStyledAttributes(attrs, attrsArray);\n        columnWidth = array.getDimensionPixelSize(0, -1);\n        array.recycle();\n    }\n\n    manager = new CenteredGridLayoutManager(getContext(), 1);\n    setLayoutManager(manager);\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452694996,
+        "id": "87828f48-237f-4a29-b9a3-5d491c88564a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452694996,
+        "parent_id": "56855e3e-bd01-4571-822a-fee7a0113b16",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "And that’s it! You have a dynamic spancount, center aligned gridlayoutmanager based recyclerview."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "And that’s it! You have a dynamic spancount, center aligned gridlayoutmanager based recyclerview."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452694996,
+        "id": "5b520db6-b0e0-4182-ad4c-83dcd321013d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452694996,
+        "parent_id": "56855e3e-bd01-4571-822a-fee7a0113b16",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Sources:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Sources:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452694998,
+        "id": "bd4bcf10-3551-4eaa-8054-39026a916bd9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452694998,
+        "parent_id": "56855e3e-bd01-4571-822a-fee7a0113b16",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Chiu-Ki Chan’s Square Island blog",
+              [
+                [
+                  "a",
+                  "http://blog.sqisland.com/2014/12/recyclerview-autofit-grid.html"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Chiu-Ki Chan’s Square Island blog",
+            "Link": "http://blog.sqisland.com/2014/12/recyclerview-autofit-grid.html"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452694999,
+        "id": "72e2cd4e-91df-4c44-83ef-e201cefdbf1e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452694999,
+        "parent_id": "56855e3e-bd01-4571-822a-fee7a0113b16",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "StackOverflow",
+              [
+                [
+                  "a",
+                  "http://stackoverflow.com/questions/29117916/android-centering-item-in-recyclerview/30118826"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "StackOverflow",
+            "Link": "http://stackoverflow.com/questions/29117916/android-centering-item-in-recyclerview/30118826"
+          }
+        ]
+      }
+    ],
+    "title": "030 GridLayoutManager with dynamic span count"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

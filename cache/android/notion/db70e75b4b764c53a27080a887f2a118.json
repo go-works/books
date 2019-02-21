@@ -1,0 +1,323 @@
+{
+  "ID": "db70e75b-4b76-4c53-a270-80a887f2a118",
+  "Root": {
+    "alive": true,
+    "content": [
+      "ef3339c1-f148-4f90-8413-edfa7c91303f",
+      "e297231b-24a2-41b9-acf8-22609d4f2681",
+      "8bed4091-ed48-4c10-bccc-2d99909c6a07",
+      "c439171c-9976-4ba1-b217-562daaa82013",
+      "af567fd1-9163-4136-84a2-e5e26514d303",
+      "9eded1d7-7ec0-460a-aade-7689174ffe2c"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550450869986,
+    "id": "db70e75b-4b76-4c53-a270-80a887f2a118",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550450869986,
+    "parent_id": "d6acfbca-5bf9-4a01-93a6-9c974a46400e",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Basic AsyncTaskLoader"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450869982,
+        "id": "ef3339c1-f148-4f90-8413-edfa7c91303f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450869982,
+        "parent_id": "db70e75b-4b76-4c53-a270-80a887f2a118",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "AsyncTaskLoader",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is an abstract "
+            ],
+            [
+              "Loader",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " that provides an "
+            ],
+            [
+              "AsyncTask",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to do the work."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "AsyncTaskLoader",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is an abstract "
+          },
+          {
+            "Text": "Loader",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " that provides an "
+          },
+          {
+            "Text": "AsyncTask",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to do the work."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450869985,
+        "id": "e297231b-24a2-41b9-acf8-22609d4f2681",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450869985,
+        "parent_id": "db70e75b-4b76-4c53-a270-80a887f2a118",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Here some basic implementation:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Here some basic implementation:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450869985,
+        "id": "8bed4091-ed48-4c10-bccc-2d99909c6a07",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450869985,
+        "parent_id": "db70e75b-4b76-4c53-a270-80a887f2a118",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "final class BasicLoader extends AsyncTaskLoader\u003cString\u003e {\n\n    public BasicLoader(Context context) {\n        super(context);\n    }\n\n    @Override\n    public String loadInBackground() {\n        // Some work, e.g. load something from internet\n        return \"OK\";\n    }\n\n    @Override\n    public void deliverResult(String data) {\n        if (isStarted()) {\n            // Deliver result if loader is currently started\n            super.deliverResult(data);\n        }\n    }\n\n    @Override\n    protected void onStartLoading() {\n        // Start loading\n        forceLoad();\n    }\n\n    @Override\n    protected void onStopLoading() {\n        cancelLoad();\n    }\n\n    @Override\n    protected void onReset() {\n        super.onReset();\n\n        // Ensure the loader is stopped\n        onStopLoading();\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "final class BasicLoader extends AsyncTaskLoader\u003cString\u003e {\n\n    public BasicLoader(Context context) {\n        super(context);\n    }\n\n    @Override\n    public String loadInBackground() {\n        // Some work, e.g. load something from internet\n        return \"OK\";\n    }\n\n    @Override\n    public void deliverResult(String data) {\n        if (isStarted()) {\n            // Deliver result if loader is currently started\n            super.deliverResult(data);\n        }\n    }\n\n    @Override\n    protected void onStartLoading() {\n        // Start loading\n        forceLoad();\n    }\n\n    @Override\n    protected void onStopLoading() {\n        cancelLoad();\n    }\n\n    @Override\n    protected void onReset() {\n        super.onReset();\n\n        // Ensure the loader is stopped\n        onStopLoading();\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450869985,
+        "id": "c439171c-9976-4ba1-b217-562daaa82013",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450869985,
+        "parent_id": "db70e75b-4b76-4c53-a270-80a887f2a118",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Typically "
+            ],
+            [
+              "Loader",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is initialized within the activity’s "
+            ],
+            [
+              "onCreate()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method, or within the fragment’s "
+            ],
+            [
+              "onActivityCreated()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". Also usually activity or fragment implements "
+            ],
+            [
+              "LoaderManager.LoaderCallbacks",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " interface:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Typically "
+          },
+          {
+            "Text": "Loader",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is initialized within the activity’s "
+          },
+          {
+            "Text": "onCreate()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method, or within the fragment’s "
+          },
+          {
+            "Text": "onActivityCreated()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". Also usually activity or fragment implements "
+          },
+          {
+            "Text": "LoaderManager.LoaderCallbacks",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " interface:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450869985,
+        "id": "af567fd1-9163-4136-84a2-e5e26514d303",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450869985,
+        "parent_id": "db70e75b-4b76-4c53-a270-80a887f2a118",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class MainActivity extends Activity implements LoaderManager.LoaderCallbacks\u003cString\u003e {\n\n    // Unique id for loader\n    private static final int LDR_BASIC_ID = 1;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_main);\n\n        // Initialize loader; Some data can be passed as second param instead of Bundle.Empty\n        getLoaderManager().initLoader(LDR_BASIC_ID, Bundle.EMPTY, this);\n    }\n\n    @Override\n    public Loader\u003cString\u003e onCreateLoader(int id, Bundle args) {\n        return new BasicLoader(this);\n    }\n\n    @Override\n    public void onLoadFinished(Loader\u003cString\u003e loader, String data) {\n        Toast.makeText(this, data, Toast.LENGTH_LONG).show();\n    }\n\n    @Override\n    public void onLoaderReset(Loader\u003cString\u003e loader) {\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class MainActivity extends Activity implements LoaderManager.LoaderCallbacks\u003cString\u003e {\n\n    // Unique id for loader\n    private static final int LDR_BASIC_ID = 1;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_main);\n\n        // Initialize loader; Some data can be passed as second param instead of Bundle.Empty\n        getLoaderManager().initLoader(LDR_BASIC_ID, Bundle.EMPTY, this);\n    }\n\n    @Override\n    public Loader\u003cString\u003e onCreateLoader(int id, Bundle args) {\n        return new BasicLoader(this);\n    }\n\n    @Override\n    public void onLoadFinished(Loader\u003cString\u003e loader, String data) {\n        Toast.makeText(this, data, Toast.LENGTH_LONG).show();\n    }\n\n    @Override\n    public void onLoaderReset(Loader\u003cString\u003e loader) {\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450869986,
+        "id": "9eded1d7-7ec0-460a-aade-7689174ffe2c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450869986,
+        "parent_id": "db70e75b-4b76-4c53-a270-80a887f2a118",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In this example, when loader completed, toast with result will be shown."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In this example, when loader completed, toast with result will be shown."
+          }
+        ]
+      }
+    ],
+    "title": "010 Basic AsyncTaskLoader"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

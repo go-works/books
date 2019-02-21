@@ -1,0 +1,335 @@
+{
+  "ID": "9f27a40f-98f3-4352-a535-ce73460c8101",
+  "Root": {
+    "alive": true,
+    "content": [
+      "b0e09f0b-bc0d-4174-ba2a-6ff81880c949",
+      "440c93e0-cc9c-433f-90ba-e3349526aa43",
+      "840c5fcc-0495-48a7-a471-9b646b03cca4",
+      "ebe65f9d-7369-4828-abaa-c531399d3bb0",
+      "fe10b159-beb0-4472-a743-82c6e5a7925a",
+      "ed8f6a91-bb63-4627-8b9e-54a43fab2b4b",
+      "c04f54bf-2417-4001-96b3-f46c6c26b57b",
+      "8ac55e83-543f-441c-87de-cd25f545c94e",
+      "f739ddc7-8b56-461d-875c-49b2e537098e"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550444817889,
+    "id": "9f27a40f-98f3-4352-a535-ce73460c8101",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550444817889,
+    "parent_id": "b698fa46-dece-4676-a681-eecc1a3388d2",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "020 Add divider to RecyclerView"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444817884,
+        "id": "b0e09f0b-bc0d-4174-ba2a-6ff81880c949",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444817884,
+        "parent_id": "9f27a40f-98f3-4352-a535-ce73460c8101",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "First of all you need to create a class which extends "
+            ],
+            [
+              "RecyclerView.ItemDecoration",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " :"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "First of all you need to create a class which extends "
+          },
+          {
+            "Text": "RecyclerView.ItemDecoration",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " :"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444817887,
+        "id": "440c93e0-cc9c-433f-90ba-e3349526aa43",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444817887,
+        "parent_id": "9f27a40f-98f3-4352-a535-ce73460c8101",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class SimpleBlueDivider extends RecyclerView.ItemDecoration {\nprivate Drawable mDivider;\n\npublic SimpleBlueDivider(Context context) {\n    mDivider = context.getResources().getDrawable(R.drawable.divider_blue);\n}\n\n@Override\npublic void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {\n    //divider padding give some padding whatever u want or disable\n    int left =parent.getPaddingLeft()+80;\n    int right = parent.getWidth() - parent.getPaddingRight()-30;\n\n    int childCount = parent.getChildCount();\n    for (int i = 0; i \u003c childCount; i++) {\n        View child = parent.getChildAt(i);\n\n        RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();\n\n        int top = child.getBottom() + params.bottomMargin;\n        int bottom = top + mDivider.getIntrinsicHeight();\n\n        mDivider.setBounds(left, top, right, bottom);\n        mDivider.draw(c);\n    }\n}\n\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class SimpleBlueDivider extends RecyclerView.ItemDecoration {\nprivate Drawable mDivider;\n\npublic SimpleBlueDivider(Context context) {\n    mDivider = context.getResources().getDrawable(R.drawable.divider_blue);\n}\n\n@Override\npublic void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {\n    //divider padding give some padding whatever u want or disable\n    int left =parent.getPaddingLeft()+80;\n    int right = parent.getWidth() - parent.getPaddingRight()-30;\n\n    int childCount = parent.getChildCount();\n    for (int i = 0; i \u003c childCount; i++) {\n        View child = parent.getChildAt(i);\n\n        RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();\n\n        int top = child.getBottom() + params.bottomMargin;\n        int bottom = top + mDivider.getIntrinsicHeight();\n\n        mDivider.setBounds(left, top, right, bottom);\n        mDivider.draw(c);\n    }\n}\n\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444817887,
+        "id": "840c5fcc-0495-48a7-a471-9b646b03cca4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444817887,
+        "parent_id": "9f27a40f-98f3-4352-a535-ce73460c8101",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Add "
+            ],
+            [
+              "divider_blue.xml",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to your drawable folder :"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Add "
+          },
+          {
+            "Text": "divider_blue.xml",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to your drawable folder :"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444817887,
+        "id": "ebe65f9d-7369-4828-abaa-c531399d3bb0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444817887,
+        "parent_id": "9f27a40f-98f3-4352-a535-ce73460c8101",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003c?xml version=\"1.0\" encoding=\"utf-8\"?\u003e\n\u003cshape xmlns:android=\"http://schemas.android.com/apk/res/android\" android:shape=\"rectangle\"\u003e\n\u003csize android:width=\"1dp\" android:height=\"4dp\" /\u003e\n\u003csolid android:color=\"#AA123456\" /\u003e\n\u003c/shape\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003c?xml version=\"1.0\" encoding=\"utf-8\"?\u003e\n\u003cshape xmlns:android=\"http://schemas.android.com/apk/res/android\" android:shape=\"rectangle\"\u003e\n\u003csize android:width=\"1dp\" android:height=\"4dp\" /\u003e\n\u003csolid android:color=\"#AA123456\" /\u003e\n\u003c/shape\u003e",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444817887,
+        "id": "fe10b159-beb0-4472-a743-82c6e5a7925a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444817887,
+        "parent_id": "9f27a40f-98f3-4352-a535-ce73460c8101",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Then use it like :"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Then use it like :"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444817887,
+        "id": "ed8f6a91-bb63-4627-8b9e-54a43fab2b4b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444817887,
+        "parent_id": "9f27a40f-98f3-4352-a535-ce73460c8101",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "recyclerView.addItemDecoration(new SimpleBlueDivider(context));"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "recyclerView.addItemDecoration(new SimpleBlueDivider(context));",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444817887,
+        "id": "c04f54bf-2417-4001-96b3-f46c6c26b57b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444817887,
+        "parent_id": "9f27a40f-98f3-4352-a535-ce73460c8101",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The result will be like :"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The result will be like :"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444817887,
+        "id": "8ac55e83-543f-441c-87de-cd25f545c94e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444817887,
+        "parent_id": "9f27a40f-98f3-4352-a535-ce73460c8101",
+        "parent_table": "block",
+        "properties": {
+          "source": [
+            [
+              "http://i.stack.imgur.com/j70CI.png"
+            ]
+          ]
+        },
+        "type": "image",
+        "version": 1,
+        "source": "http://i.stack.imgur.com/j70CI.png",
+        "image_url": "https://www.notion.so/image/https:%2F%2Fwww.notion.sohttp:%2F%2Fi.stack.imgur.com%2Fj70CI.png"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444817889,
+        "id": "f739ddc7-8b56-461d-875c-49b2e537098e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444817889,
+        "parent_id": "9f27a40f-98f3-4352-a535-ce73460c8101",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This image is just an example how dividers working , if you want to follow Material Design specs when adding dividers please take a look at this link : "
+            ],
+            [
+              "dividers",
+              [
+                [
+                  "a",
+                  "https://material.google.com/components/dividers.html"
+                ]
+              ]
+            ],
+            [
+              " and thanks [@Brenden Kromhout](http://stackoverflow.com/users/2263250/brenden-kromhout) by providing link ."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This image is just an example how dividers working , if you want to follow Material Design specs when adding dividers please take a look at this link : "
+          },
+          {
+            "Text": "dividers",
+            "Link": "https://material.google.com/components/dividers.html"
+          },
+          {
+            "Text": " and thanks [@Brenden Kromhout](http://stackoverflow.com/users/2263250/brenden-kromhout) by providing link ."
+          }
+        ]
+      }
+    ],
+    "title": "020 Add divider to RecyclerView"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

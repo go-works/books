@@ -1,0 +1,71 @@
+{
+  "ID": "e6f5d0ba-8164-4b06-a126-84dd791b16df",
+  "Root": {
+    "alive": true,
+    "content": [
+      "beec2ea8-7b4e-419d-8ef7-bb928e58f73a"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550450281883,
+    "id": "e6f5d0ba-8164-4b06-a126-84dd791b16df",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550450281883,
+    "parent_id": "963e797e-dea4-4392-8454-e58d4d898886",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "080 Re-Authenticate Firebase user"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450281880,
+        "id": "beec2ea8-7b4e-419d-8ef7-bb928e58f73a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450281880,
+        "parent_id": "e6f5d0ba-8164-4b06-a126-84dd791b16df",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class ReAuthenticateDialogFragment extends DialogFragment {\n\n    @BindView(R.id.et_dialog_reauthenticate_email)\n    EditText mEditTextEmail;\n    @BindView(R.id.et_dialog_reauthenticate_password)\n    EditText mEditTextPassword;\n    private OnReauthenticateSuccessListener mOnReauthenticateSuccessListener;\n\n    @OnClick(R.id.btn_dialog_reauthenticate)\n    void onReauthenticateClick() {\n\n        FormValidationUtils.clearErrors(mEditTextEmail, mEditTextPassword);\n\n        if (FormValidationUtils.isBlank(mEditTextEmail)) {\n            FormValidationUtils.setError(null, mEditTextEmail, \"Please enter email\");\n            return;\n        }\n\n        if (!FormValidationUtils.isEmailValid(mEditTextEmail)) {\n            FormValidationUtils.setError(null, mEditTextEmail, \"Please enter valid email\");\n            return;\n        }\n\n        if (TextUtils.isEmpty(mEditTextPassword.getText())) {\n            FormValidationUtils.setError(null, mEditTextPassword, \"Please enter password\");\n            return;\n        }\n\n        reauthenticateUser(mEditTextEmail.getText().toString(), mEditTextPassword.getText().toString());\n    }\n\n    private void reauthenticateUser(String email, String password) {\n        DialogUtils.showProgressDialog(getActivity(), \"Re-Authenticating\", \"Please wait...\", false);\n        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();\n        AuthCredential authCredential = EmailAuthProvider.getCredential(email, password);\n        firebaseUser.reauthenticate(authCredential)\n                .addOnCompleteListener(new OnCompleteListener\u003cVoid\u003e() {\n                    @Override\n                    public void onComplete(@NonNull Task\u003cVoid\u003e task) {\n                        DialogUtils.dismissProgressDialog();\n                        if (task.isSuccessful()) {\n                            mOnReauthenticateSuccessListener.onReauthenticateSuccess();\n                            dismiss();\n                        } else {\n                            ((BaseAppCompatActivity) getActivity()).showToast(task.getException().getMessage());\n                        }\n                    }\n                });\n    }\n\n    @Override\n    public void onAttach(Context context) {\n        super.onAttach(context);\n        mOnReauthenticateSuccessListener = (OnReauthenticateSuccessListener) context;\n    }\n\n    @OnClick(R.id.btn_dialog_reauthenticate_cancel)\n    void onCancelClick() {\n        dismiss();\n    }\n\n    @Override\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\n                             Bundle savedInstanceState) {\n        View view = inflater.inflate(R.layout.dialog_reauthenticate, container);\n        ButterKnife.bind(this, view);\n        return view;\n    }\n\n    @Override\n    public void onResume() {\n        super.onResume();\n        Window window = getDialog().getWindow();\n        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);\n    }\n\n    interface OnReauthenticateSuccessListener {\n        void onReauthenticateSuccess();\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class ReAuthenticateDialogFragment extends DialogFragment {\n\n    @BindView(R.id.et_dialog_reauthenticate_email)\n    EditText mEditTextEmail;\n    @BindView(R.id.et_dialog_reauthenticate_password)\n    EditText mEditTextPassword;\n    private OnReauthenticateSuccessListener mOnReauthenticateSuccessListener;\n\n    @OnClick(R.id.btn_dialog_reauthenticate)\n    void onReauthenticateClick() {\n\n        FormValidationUtils.clearErrors(mEditTextEmail, mEditTextPassword);\n\n        if (FormValidationUtils.isBlank(mEditTextEmail)) {\n            FormValidationUtils.setError(null, mEditTextEmail, \"Please enter email\");\n            return;\n        }\n\n        if (!FormValidationUtils.isEmailValid(mEditTextEmail)) {\n            FormValidationUtils.setError(null, mEditTextEmail, \"Please enter valid email\");\n            return;\n        }\n\n        if (TextUtils.isEmpty(mEditTextPassword.getText())) {\n            FormValidationUtils.setError(null, mEditTextPassword, \"Please enter password\");\n            return;\n        }\n\n        reauthenticateUser(mEditTextEmail.getText().toString(), mEditTextPassword.getText().toString());\n    }\n\n    private void reauthenticateUser(String email, String password) {\n        DialogUtils.showProgressDialog(getActivity(), \"Re-Authenticating\", \"Please wait...\", false);\n        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();\n        AuthCredential authCredential = EmailAuthProvider.getCredential(email, password);\n        firebaseUser.reauthenticate(authCredential)\n                .addOnCompleteListener(new OnCompleteListener\u003cVoid\u003e() {\n                    @Override\n                    public void onComplete(@NonNull Task\u003cVoid\u003e task) {\n                        DialogUtils.dismissProgressDialog();\n                        if (task.isSuccessful()) {\n                            mOnReauthenticateSuccessListener.onReauthenticateSuccess();\n                            dismiss();\n                        } else {\n                            ((BaseAppCompatActivity) getActivity()).showToast(task.getException().getMessage());\n                        }\n                    }\n                });\n    }\n\n    @Override\n    public void onAttach(Context context) {\n        super.onAttach(context);\n        mOnReauthenticateSuccessListener = (OnReauthenticateSuccessListener) context;\n    }\n\n    @OnClick(R.id.btn_dialog_reauthenticate_cancel)\n    void onCancelClick() {\n        dismiss();\n    }\n\n    @Override\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\n                             Bundle savedInstanceState) {\n        View view = inflater.inflate(R.layout.dialog_reauthenticate, container);\n        ButterKnife.bind(this, view);\n        return view;\n    }\n\n    @Override\n    public void onResume() {\n        super.onResume();\n        Window window = getDialog().getWindow();\n        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);\n    }\n\n    interface OnReauthenticateSuccessListener {\n        void onReauthenticateSuccess();\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "080 Re-Authenticate Firebase user"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

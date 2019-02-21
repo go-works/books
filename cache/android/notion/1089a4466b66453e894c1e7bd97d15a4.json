@@ -1,0 +1,141 @@
+{
+  "ID": "1089a446-6b66-453e-894c-1e7bd97d15a4",
+  "Root": {
+    "alive": true,
+    "content": [
+      "1641e519-e307-4dc4-b97b-98aedacc72ba",
+      "100ca269-7cf8-497f-9ad6-3b7a80e1bcac",
+      "5149cc46-4a0f-4261-aa61-c0766c8741b7"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550444969695,
+    "id": "1089a446-6b66-453e-894c-1e7bd97d15a4",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550444969695,
+    "parent_id": "6190cb6e-dc43-458e-9fc6-34c0e0c69fa6",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "070 Performing a Transaction"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444969694,
+        "id": "1641e519-e307-4dc4-b97b-98aedacc72ba",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444969694,
+        "parent_id": "1089a446-6b66-453e-894c-1e7bd97d15a4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Transactions can be used to make multiple changes to the database atomically. Any normal transaction follows this pattern:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Transactions can be used to make multiple changes to the database atomically. Any normal transaction follows this pattern:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444969694,
+        "id": "100ca269-7cf8-497f-9ad6-3b7a80e1bcac",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444969694,
+        "parent_id": "1089a446-6b66-453e-894c-1e7bd97d15a4",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// You need a writable database to perform transactions\nfinal SQLiteDatabase database = openHelper.getWritableDatabase();\n\n// This call starts a transaction\ndatabase.beginTransaction();\n\n// Using try/finally is essential to reliably end transactions even \n// if exceptions or other problems occur.\ntry {\n\n    // Here you can make modifications to the database\n    database.insert(TABLE_CARS, null, productValues);\n    database.update(TABLE_BUILDINGS, buildingValues, COLUMN_ID + \" = ?\", new String[] { String.valueOf(buildingId) });\n    \n    // This call marks a transaction as successful. \n    // This causes the changes to be written to the database once the transaction ends.  \n    database.setTransactionSuccessful();\n} finally {\n    // This call ends a transaction.\n    // If setTransactionSuccessful() has not been called then all changes \n    // will be rolled back and the database will not be modified.\n    database.endTransaction();\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// You need a writable database to perform transactions\nfinal SQLiteDatabase database = openHelper.getWritableDatabase();\n\n// This call starts a transaction\ndatabase.beginTransaction();\n\n// Using try/finally is essential to reliably end transactions even \n// if exceptions or other problems occur.\ntry {\n\n    // Here you can make modifications to the database\n    database.insert(TABLE_CARS, null, productValues);\n    database.update(TABLE_BUILDINGS, buildingValues, COLUMN_ID + \" = ?\", new String[] { String.valueOf(buildingId) });\n    \n    // This call marks a transaction as successful. \n    // This causes the changes to be written to the database once the transaction ends.  \n    database.setTransactionSuccessful();\n} finally {\n    // This call ends a transaction.\n    // If setTransactionSuccessful() has not been called then all changes \n    // will be rolled back and the database will not be modified.\n    database.endTransaction();\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444969694,
+        "id": "5149cc46-4a0f-4261-aa61-c0766c8741b7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444969694,
+        "parent_id": "1089a446-6b66-453e-894c-1e7bd97d15a4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Calling "
+            ],
+            [
+              "beginTransaction()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " inside of an active transactions has no effect."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Calling "
+          },
+          {
+            "Text": "beginTransaction()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " inside of an active transactions has no effect."
+          }
+        ]
+      }
+    ],
+    "title": "070 Performing a Transaction"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

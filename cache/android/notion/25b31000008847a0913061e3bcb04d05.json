@@ -1,0 +1,237 @@
+{
+  "ID": "25b31000-0088-47a0-9130-61e3bcb04d05",
+  "Root": {
+    "alive": true,
+    "content": [
+      "553eccf2-c827-4fc3-83fb-5081ef52fc2d",
+      "7d11f6cc-3398-4e97-ae27-3765f1780219",
+      "dd45aae4-f017-43de-b7eb-db147965149e",
+      "f0d37318-2a8d-43d9-b1cd-611805e3bc70",
+      "3754a502-fc61-41b6-bc0c-ba8d9f17de5e",
+      "9bc17421-3639-459a-909a-bdd7f6c71422",
+      "89fc605e-b983-4d1f-bfc0-b0d25b4787ee"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550444821324,
+    "id": "25b31000-0088-47a0-9130-61e3bcb04d05",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550444821324,
+    "parent_id": "b698fa46-dece-4676-a681-eecc1a3388d2",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "050 ItemOffsetDecoration for GridLayoutManager in RecycleView"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444821320,
+        "id": "553eccf2-c827-4fc3-83fb-5081ef52fc2d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444821320,
+        "parent_id": "25b31000-0088-47a0-9130-61e3bcb04d05",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Following example will help to give equal space to an item in GridLayout."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Following example will help to give equal space to an item in GridLayout."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444821323,
+        "id": "7d11f6cc-3398-4e97-ae27-3765f1780219",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444821323,
+        "parent_id": "25b31000-0088-47a0-9130-61e3bcb04d05",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "ItemOffsetDecoration.java",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "ItemOffsetDecoration.java",
+            "AttrFlags": 4
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444821324,
+        "id": "dd45aae4-f017-43de-b7eb-db147965149e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444821324,
+        "parent_id": "25b31000-0088-47a0-9130-61e3bcb04d05",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class ItemOffsetDecoration extends RecyclerView.ItemDecoration {\n\n    private int mItemOffset;\n\n    private int spanCount = 2;\n\n    public ItemOffsetDecoration(int itemOffset) {\n        mItemOffset = itemOffset;\n    }\n\n    public ItemOffsetDecoration(@NonNull Context context, @DimenRes int itemOffsetId) {\n        this(context.getResources().getDimensionPixelSize(itemOffsetId));\n    }\n\n    @Override\n    public void getItemOffsets(Rect outRect, View view, RecyclerView parent,\n                               RecyclerView.State state) {\n        super.getItemOffsets(outRect, view, parent, state);\n\n        int position = parent.getChildLayoutPosition(view);\n\n        GridLayoutManager manager = (GridLayoutManager) parent.getLayoutManager();\n\n        if (position \u003c manager.getSpanCount())\n            outRect.top = mItemOffset;\n\n        if (position % 2 != 0) {\n            outRect.right = mItemOffset;\n        }\n\n        outRect.left = mItemOffset;\n        outRect.bottom = mItemOffset;\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class ItemOffsetDecoration extends RecyclerView.ItemDecoration {\n\n    private int mItemOffset;\n\n    private int spanCount = 2;\n\n    public ItemOffsetDecoration(int itemOffset) {\n        mItemOffset = itemOffset;\n    }\n\n    public ItemOffsetDecoration(@NonNull Context context, @DimenRes int itemOffsetId) {\n        this(context.getResources().getDimensionPixelSize(itemOffsetId));\n    }\n\n    @Override\n    public void getItemOffsets(Rect outRect, View view, RecyclerView parent,\n                               RecyclerView.State state) {\n        super.getItemOffsets(outRect, view, parent, state);\n\n        int position = parent.getChildLayoutPosition(view);\n\n        GridLayoutManager manager = (GridLayoutManager) parent.getLayoutManager();\n\n        if (position \u003c manager.getSpanCount())\n            outRect.top = mItemOffset;\n\n        if (position % 2 != 0) {\n            outRect.right = mItemOffset;\n        }\n\n        outRect.left = mItemOffset;\n        outRect.bottom = mItemOffset;\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444821324,
+        "id": "f0d37318-2a8d-43d9-b1cd-611805e3bc70",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444821324,
+        "parent_id": "25b31000-0088-47a0-9130-61e3bcb04d05",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "You can call ItemDecoration like below code."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "You can call ItemDecoration like below code."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444821324,
+        "id": "3754a502-fc61-41b6-bc0c-ba8d9f17de5e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444821324,
+        "parent_id": "25b31000-0088-47a0-9130-61e3bcb04d05",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);\n\nGridLayoutManager lLayout = new GridLayoutManager(getActivity(), 2);\n\nItemOffsetDecoration itemDecoration = new ItemOffsetDecoration(mActivity, R.dimen.item_offset);\nrecyclerView.addItemDecoration(itemDecoration);\n\nrecyclerView.setLayoutManager(lLayout);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "recyclerView = (RecyclerView) view.findViewById(R.id.recycler_view);\n\nGridLayoutManager lLayout = new GridLayoutManager(getActivity(), 2);\n\nItemOffsetDecoration itemDecoration = new ItemOffsetDecoration(mActivity, R.dimen.item_offset);\nrecyclerView.addItemDecoration(itemDecoration);\n\nrecyclerView.setLayoutManager(lLayout);",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444821324,
+        "id": "9bc17421-3639-459a-909a-bdd7f6c71422",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444821324,
+        "parent_id": "25b31000-0088-47a0-9130-61e3bcb04d05",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "and example item offset"
+            ]
+          ]
+        },
+        "type": "quote",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "and example item offset"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444821324,
+        "id": "89fc605e-b983-4d1f-bfc0-b0d25b4787ee",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444821324,
+        "parent_id": "25b31000-0088-47a0-9130-61e3bcb04d05",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003cdimen name=\"item_offset\"\u003e5dp\u003c/dimen\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003cdimen name=\"item_offset\"\u003e5dp\u003c/dimen\u003e",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "050 ItemOffsetDecoration for GridLayoutManager in RecycleView"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

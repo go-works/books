@@ -1,0 +1,506 @@
+{
+  "ID": "f70fc69b-f6fb-4846-9abc-470f2486ac80",
+  "Root": {
+    "alive": true,
+    "content": [
+      "683bb30d-54d9-4384-a29d-d5c9ab456049",
+      "aac84ac8-5738-4fde-a921-9b3b3ce8a18d",
+      "33de8655-364a-42dc-8820-1380b4d4f8d3",
+      "41c12be2-1881-4cd2-a644-4fb52cadf37c",
+      "33865893-aaf1-4742-8148-3bdb2c1e122c",
+      "d3743a04-4ae4-4b87-a14b-71bce3a0e1ee",
+      "2e8f15bf-57f7-4cd1-a671-67e8423679af",
+      "207f95e9-70b1-4454-a527-e594d9622b8b",
+      "7b69f524-8ad0-4db8-9f6f-1ffe7b3cb9a5",
+      "09ff9d72-e097-430c-aa18-454b05197704",
+      "cb92a5c4-4f08-4ddf-9a4a-df5da02f90c3",
+      "1d6a7978-e4d6-41b4-b572-dc14c0be94f7"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550447789250,
+    "id": "f70fc69b-f6fb-4846-9abc-470f2486ac80",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550447789250,
+    "parent_id": "2e2716b4-5b9a-4670-8a00-377992b3a547",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "040 Getting system ringtones"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447789244,
+        "id": "683bb30d-54d9-4384-a29d-d5c9ab456049",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447789244,
+        "parent_id": "f70fc69b-f6fb-4846-9abc-470f2486ac80",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This example demonstrates how to fetch the URI’s of system ringtones ("
+            ],
+            [
+              "RingtoneManager.TYPE_RINGTONE",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "):"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This example demonstrates how to fetch the URI’s of system ringtones ("
+          },
+          {
+            "Text": "RingtoneManager.TYPE_RINGTONE",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "):"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447789247,
+        "id": "aac84ac8-5738-4fde-a921-9b3b3ce8a18d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447789247,
+        "parent_id": "f70fc69b-f6fb-4846-9abc-470f2486ac80",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "private List\u003cUri\u003e loadLocalRingtonesUris() {\n        List\u003cUri\u003e alarms = new ArrayList\u003c\u003e();\n        try {\n            RingtoneManager ringtoneMgr = new RingtoneManager(getActivity());\n            ringtoneMgr.setType(RingtoneManager.TYPE_RINGTONE);\n\n            Cursor alarmsCursor = ringtoneMgr.getCursor();\n            int alarmsCount = alarmsCursor.getCount();\n            if (alarmsCount == 0 \u0026\u0026 !alarmsCursor.moveToFirst()) {\n                alarmsCursor.close();\n                return null;\n            }\n\n            while (!alarmsCursor.isAfterLast() \u0026\u0026 alarmsCursor.moveToNext()) {\n                int currentPosition = alarmsCursor.getPosition();\n                alarms.add(ringtoneMgr.getRingtoneUri(currentPosition));\n            }\n\n        } catch (Exception ex) {\n            ex.printStackTrace();\n        }\n\n        return alarms;\n    }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "private List\u003cUri\u003e loadLocalRingtonesUris() {\n        List\u003cUri\u003e alarms = new ArrayList\u003c\u003e();\n        try {\n            RingtoneManager ringtoneMgr = new RingtoneManager(getActivity());\n            ringtoneMgr.setType(RingtoneManager.TYPE_RINGTONE);\n\n            Cursor alarmsCursor = ringtoneMgr.getCursor();\n            int alarmsCount = alarmsCursor.getCount();\n            if (alarmsCount == 0 \u0026\u0026 !alarmsCursor.moveToFirst()) {\n                alarmsCursor.close();\n                return null;\n            }\n\n            while (!alarmsCursor.isAfterLast() \u0026\u0026 alarmsCursor.moveToNext()) {\n                int currentPosition = alarmsCursor.getPosition();\n                alarms.add(ringtoneMgr.getRingtoneUri(currentPosition));\n            }\n\n        } catch (Exception ex) {\n            ex.printStackTrace();\n        }\n\n        return alarms;\n    }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447789247,
+        "id": "33de8655-364a-42dc-8820-1380b4d4f8d3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447789247,
+        "parent_id": "f70fc69b-f6fb-4846-9abc-470f2486ac80",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The list depends on the types of requested ringtones. The possibilities are:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The list depends on the types of requested ringtones. The possibilities are:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447789247,
+        "id": "41c12be2-1881-4cd2-a644-4fb52cadf37c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447789247,
+        "parent_id": "f70fc69b-f6fb-4846-9abc-470f2486ac80",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "RingtoneManager.TYPE_RINGTONE",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "RingtoneManager.TYPE_RINGTONE",
+            "AttrFlags": 2
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447789248,
+        "id": "33865893-aaf1-4742-8148-3bdb2c1e122c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447789248,
+        "parent_id": "f70fc69b-f6fb-4846-9abc-470f2486ac80",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "RingtoneManager.TYPE_NOTIFICATION",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "RingtoneManager.TYPE_NOTIFICATION",
+            "AttrFlags": 2
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447789248,
+        "id": "d3743a04-4ae4-4b87-a14b-71bce3a0e1ee",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447789248,
+        "parent_id": "f70fc69b-f6fb-4846-9abc-470f2486ac80",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "RingtoneManager.TYPE_ALARM",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "RingtoneManager.TYPE_ALARM",
+            "AttrFlags": 2
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447789248,
+        "id": "2e8f15bf-57f7-4cd1-a671-67e8423679af",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447789248,
+        "parent_id": "f70fc69b-f6fb-4846-9abc-470f2486ac80",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "RingtoneManager.TYPE_ALL = TYPE_RINGTONE | TYPE_NOTIFICATION | TYPE_ALARM",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "RingtoneManager.TYPE_ALL = TYPE_RINGTONE | TYPE_NOTIFICATION | TYPE_ALARM",
+            "AttrFlags": 2
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447789248,
+        "id": "207f95e9-70b1-4454-a527-e594d9622b8b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447789248,
+        "parent_id": "f70fc69b-f6fb-4846-9abc-470f2486ac80",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In order to get the Ringtones as "
+            ],
+            [
+              "android.media.Ringtone",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " every "
+            ],
+            [
+              "Uri",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " must be resolved by the "
+            ],
+            [
+              "RingtoneManager",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ":"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In order to get the Ringtones as "
+          },
+          {
+            "Text": "android.media.Ringtone",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " every "
+          },
+          {
+            "Text": "Uri",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " must be resolved by the "
+          },
+          {
+            "Text": "RingtoneManager",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ":"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447789248,
+        "id": "7b69f524-8ad0-4db8-9f6f-1ffe7b3cb9a5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447789248,
+        "parent_id": "f70fc69b-f6fb-4846-9abc-470f2486ac80",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "android.media.Ringtone osRingtone = RingtoneManager.getRingtone(context, uri);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "android.media.Ringtone osRingtone = RingtoneManager.getRingtone(context, uri);",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447789249,
+        "id": "09ff9d72-e097-430c-aa18-454b05197704",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447789249,
+        "parent_id": "f70fc69b-f6fb-4846-9abc-470f2486ac80",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To play the sound, use the method:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To play the sound, use the method:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447789249,
+        "id": "cb92a5c4-4f08-4ddf-9a4a-df5da02f90c3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447789249,
+        "parent_id": "f70fc69b-f6fb-4846-9abc-470f2486ac80",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public void setDataSource(Context context, Uri uri)"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public void setDataSource(Context context, Uri uri)",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447789250,
+        "id": "1d6a7978-e4d6-41b4-b572-dc14c0be94f7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447789250,
+        "parent_id": "f70fc69b-f6fb-4846-9abc-470f2486ac80",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "from "
+            ],
+            [
+              "android.media.MediaPlayer",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". "
+            ],
+            [
+              "MediaPlayer",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " must be initialised and prepared according to the "
+            ],
+            [
+              "State diagram",
+              [
+                [
+                  "a",
+                  "https://developer.android.com/reference/android/media/MediaPlayer.html#StateDiagram"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "from "
+          },
+          {
+            "Text": "android.media.MediaPlayer",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". "
+          },
+          {
+            "Text": "MediaPlayer",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " must be initialised and prepared according to the "
+          },
+          {
+            "Text": "State diagram",
+            "Link": "https://developer.android.com/reference/android/media/MediaPlayer.html#StateDiagram"
+          }
+        ]
+      }
+    ],
+    "title": "040 Getting system ringtones"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

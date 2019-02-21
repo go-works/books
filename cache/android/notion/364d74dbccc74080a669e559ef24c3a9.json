@@ -1,0 +1,220 @@
+{
+  "ID": "364d74db-ccc7-4080-a669-e559ef24c3a9",
+  "Root": {
+    "alive": true,
+    "content": [
+      "8d42b90e-9d12-491d-8ee4-540c15a91a4b",
+      "f1f4ef3e-7779-4ede-aa2f-a36ae4f318ef",
+      "21f73491-1105-41f4-9450-91ddd896c799",
+      "6225f1c5-7d7f-419a-8dbc-534b31d199e5",
+      "7e5e852b-3e97-4517-974a-7d3ba5db946c",
+      "4b429d4a-8536-4c4c-95bd-e0e1634b3f65"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550451647253,
+    "id": "364d74db-ccc7-4080-a669-e559ef24c3a9",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550451647253,
+    "parent_id": "3d365296-5561-464b-9301-04d4f320fea9",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "070 Listening for child updates"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451647247,
+        "id": "8d42b90e-9d12-491d-8ee4-540c15a91a4b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451647247,
+        "parent_id": "364d74db-ccc7-4080-a669-e559ef24c3a9",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Take a use case, like a chat app or a collaborative grocery list app (that basically requires a list of objects to be synced across users). If you use firebase database and add a value event listener to the chat parent node or grocery list parent node, you will end with entire chat structure from the beginning of time (i meant beginning of your chat) every time a chat node is added (i.e. anyone says hi). That we don’t want to do, what we are interested in is only the new node or only the old node that got deleted or modified, the unchanged ones should not be returned."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Take a use case, like a chat app or a collaborative grocery list app (that basically requires a list of objects to be synced across users). If you use firebase database and add a value event listener to the chat parent node or grocery list parent node, you will end with entire chat structure from the beginning of time (i meant beginning of your chat) every time a chat node is added (i.e. anyone says hi). That we don’t want to do, what we are interested in is only the new node or only the old node that got deleted or modified, the unchanged ones should not be returned."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451647252,
+        "id": "f1f4ef3e-7779-4ede-aa2f-a36ae4f318ef",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451647252,
+        "parent_id": "364d74db-ccc7-4080-a669-e559ef24c3a9",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In this case we can use "
+            ],
+            [
+              "ChildEvenListener",
+              [
+                [
+                  "a",
+                  "https://firebase.google.com/docs/reference/android/com/google/firebase/database/ChildEventListener"
+                ]
+              ]
+            ],
+            [
+              ". Without any further adieu, here is code sample (see prev sections for sample JSON data):"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In this case we can use "
+          },
+          {
+            "Text": "ChildEvenListener",
+            "Link": "https://firebase.google.com/docs/reference/android/com/google/firebase/database/ChildEventListener"
+          },
+          {
+            "Text": ". Without any further adieu, here is code sample (see prev sections for sample JSON data):"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451647252,
+        "id": "21f73491-1105-41f4-9450-91ddd896c799",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451647252,
+        "parent_id": "364d74db-ccc7-4080-a669-e559ef24c3a9",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "userDBRef.addChildEventListener(new ChildEventListener() {\n    @Override\n    public void onChildAdded(DataSnapshot dataSnapshot, String s) {\n    }\n\n    @Override\n    public void onChildChanged(DataSnapshot dataSnapshot, String s) {\n    }\n\n    @Override\n    public void onChildRemoved(DataSnapshot dataSnapshot) {\n    }\n\n    @Override\n    public void onChildMoved(DataSnapshot dataSnapshot, String s) {\n        //If not dealing with ordered data forget about this\n    }\n\n    @Override\n    public void onCancelled(DatabaseError databaseError) {\n    });"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "userDBRef.addChildEventListener(new ChildEventListener() {\n    @Override\n    public void onChildAdded(DataSnapshot dataSnapshot, String s) {\n    }\n\n    @Override\n    public void onChildChanged(DataSnapshot dataSnapshot, String s) {\n    }\n\n    @Override\n    public void onChildRemoved(DataSnapshot dataSnapshot) {\n    }\n\n    @Override\n    public void onChildMoved(DataSnapshot dataSnapshot, String s) {\n        //If not dealing with ordered data forget about this\n    }\n\n    @Override\n    public void onCancelled(DatabaseError databaseError) {\n    });",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451647252,
+        "id": "6225f1c5-7d7f-419a-8dbc-534b31d199e5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451647252,
+        "parent_id": "364d74db-ccc7-4080-a669-e559ef24c3a9",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Method names are self explanatory. As you can see whenever a new user is added or some property of existing user is modified or user is deleted or removed appropriate callback method of child event listener is called with relevant data. So if you are keeping UI refreshed for say chat app, get the JSON from onChildAdded() parse into POJO and fit it in your UI. Just remember to remove your listener when user leaves the screen."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Method names are self explanatory. As you can see whenever a new user is added or some property of existing user is modified or user is deleted or removed appropriate callback method of child event listener is called with relevant data. So if you are keeping UI refreshed for say chat app, get the JSON from onChildAdded() parse into POJO and fit it in your UI. Just remember to remove your listener when user leaves the screen."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451647252,
+        "id": "7e5e852b-3e97-4517-974a-7d3ba5db946c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451647252,
+        "parent_id": "364d74db-ccc7-4080-a669-e559ef24c3a9",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "onChildChanged() gives the entire child value with changed properties (new ones)."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "onChildChanged() gives the entire child value with changed properties (new ones)."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451647252,
+        "id": "4b429d4a-8536-4c4c-95bd-e0e1634b3f65",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451647252,
+        "parent_id": "364d74db-ccc7-4080-a669-e559ef24c3a9",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "onChiledRemoved() returns the removed child node."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "onChiledRemoved() returns the removed child node."
+          }
+        ]
+      }
+    ],
+    "title": "070 Listening for child updates"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

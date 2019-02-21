@@ -1,0 +1,241 @@
+{
+  "ID": "97b071e0-2fd2-4470-bac0-f0ce79d3a797",
+  "Root": {
+    "alive": true,
+    "content": [
+      "b049225c-dbc1-4061-95d5-a219f8979f6e",
+      "89549ea4-c65f-499e-9259-135ba3440f82",
+      "53036974-096e-431a-808f-9ddcc8753164",
+      "36199c21-93f2-4c58-8190-ab7bdda5975b"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550444531994,
+    "id": "97b071e0-2fd2-4470-bac0-f0ce79d3a797",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550444531994,
+    "parent_id": "9cd3cdb2-fb8b-4bc2-916b-a38f0022b43b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "050 Creating Bound Service with help of Binder"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444531991,
+        "id": "b049225c-dbc1-4061-95d5-a219f8979f6e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444531991,
+        "parent_id": "97b071e0-2fd2-4470-bac0-f0ce79d3a797",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Create a class which extends "
+            ],
+            [
+              "Service",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " class and in overridden method "
+            ],
+            [
+              "onBind",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " return your local binder instance:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Create a class which extends "
+          },
+          {
+            "Text": "Service",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " class and in overridden method "
+          },
+          {
+            "Text": "onBind",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " return your local binder instance:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444531993,
+        "id": "89549ea4-c65f-499e-9259-135ba3440f82",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444531993,
+        "parent_id": "97b071e0-2fd2-4470-bac0-f0ce79d3a797",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class LocalService extends Service {\n    // Binder given to clients\n    private final IBinder mBinder = new LocalBinder();\n\n    /**\n     * Class used for the client Binder.  Because we know this service always\n     * runs in the same process as its clients, we don't need to deal with IPC.\n     */\n    public class LocalBinder extends Binder {\n        LocalService getService() {\n            // Return this instance of LocalService so clients can call public methods\n            return LocalService.this;\n        }\n    }\n\n    @Override\n    public IBinder onBind(Intent intent) {\n        return mBinder;\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class LocalService extends Service {\n    // Binder given to clients\n    private final IBinder mBinder = new LocalBinder();\n\n    /**\n     * Class used for the client Binder.  Because we know this service always\n     * runs in the same process as its clients, we don't need to deal with IPC.\n     */\n    public class LocalBinder extends Binder {\n        LocalService getService() {\n            // Return this instance of LocalService so clients can call public methods\n            return LocalService.this;\n        }\n    }\n\n    @Override\n    public IBinder onBind(Intent intent) {\n        return mBinder;\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444531994,
+        "id": "53036974-096e-431a-808f-9ddcc8753164",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444531994,
+        "parent_id": "97b071e0-2fd2-4470-bac0-f0ce79d3a797",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Then in your activity bind to service in "
+            ],
+            [
+              "onStart",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " callback, using "
+            ],
+            [
+              "ServiceConnection",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " instance and unbind from it in "
+            ],
+            [
+              "onStop",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ":"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Then in your activity bind to service in "
+          },
+          {
+            "Text": "onStart",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " callback, using "
+          },
+          {
+            "Text": "ServiceConnection",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " instance and unbind from it in "
+          },
+          {
+            "Text": "onStop",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ":"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444531994,
+        "id": "36199c21-93f2-4c58-8190-ab7bdda5975b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444531994,
+        "parent_id": "97b071e0-2fd2-4470-bac0-f0ce79d3a797",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class BindingActivity extends Activity {\n    LocalService mService;\n    boolean mBound = false;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.main);\n    }\n\n    @Override\n    protected void onStart() {\n        super.onStart();\n        // Bind to LocalService\n        Intent intent = new Intent(this, LocalService.class);\n        bindService(intent, mConnection, Context.BIND_AUTO_CREATE);\n    }\n\n    @Override\n    protected void onStop() {\n        super.onStop();\n        // Unbind from the service\n        if (mBound) {\n            unbindService(mConnection);\n            mBound = false;\n        }\n    }\n\n    /** Defines callbacks for service binding, passed to bindService() */\n    private ServiceConnection mConnection = new ServiceConnection() {\n\n        @Override\n        public void onServiceConnected(ComponentName className,\n                IBinder service) {\n            // We've bound to LocalService, cast the IBinder and get LocalService instance\n            LocalBinder binder = (LocalBinder) service;\n            mService = binder.getService();\n            mBound = true;\n        }\n\n        @Override\n        public void onServiceDisconnected(ComponentName arg0) {\n            mBound = false;\n        }\n    };\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class BindingActivity extends Activity {\n    LocalService mService;\n    boolean mBound = false;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.main);\n    }\n\n    @Override\n    protected void onStart() {\n        super.onStart();\n        // Bind to LocalService\n        Intent intent = new Intent(this, LocalService.class);\n        bindService(intent, mConnection, Context.BIND_AUTO_CREATE);\n    }\n\n    @Override\n    protected void onStop() {\n        super.onStop();\n        // Unbind from the service\n        if (mBound) {\n            unbindService(mConnection);\n            mBound = false;\n        }\n    }\n\n    /** Defines callbacks for service binding, passed to bindService() */\n    private ServiceConnection mConnection = new ServiceConnection() {\n\n        @Override\n        public void onServiceConnected(ComponentName className,\n                IBinder service) {\n            // We've bound to LocalService, cast the IBinder and get LocalService instance\n            LocalBinder binder = (LocalBinder) service;\n            mService = binder.getService();\n            mBound = true;\n        }\n\n        @Override\n        public void onServiceDisconnected(ComponentName arg0) {\n            mBound = false;\n        }\n    };\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "050 Creating Bound Service with help of Binder"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

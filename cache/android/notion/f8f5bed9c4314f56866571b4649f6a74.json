@@ -1,0 +1,97 @@
+{
+  "ID": "f8f5bed9-c431-4f56-8665-71b4649f6a74",
+  "Root": {
+    "alive": true,
+    "content": [
+      "e6e7475d-ce1e-448b-b3cc-3738cd075325",
+      "3ce3fc15-aa9f-41d2-a98c-de9be0a9d1e2"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550447443060,
+    "id": "f8f5bed9-c431-4f56-8665-71b4649f6a74",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550447443060,
+    "parent_id": "cf2c473f-5e00-4648-971f-43398123cc33",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Android 6.0 multiple permissions"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447443057,
+        "id": "e6e7475d-ce1e-448b-b3cc-3738cd075325",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447443057,
+        "parent_id": "f8f5bed9-c431-4f56-8665-71b4649f6a74",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This example shows how to check permissions at runtime in Android 6 and later."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This example shows how to check permissions at runtime in Android 6 and later."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447443060,
+        "id": "3ce3fc15-aa9f-41d2-a98c-de9be0a9d1e2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447443060,
+        "parent_id": "f8f5bed9-c431-4f56-8665-71b4649f6a74",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public static final int MULTIPLE_PERMISSIONS = 10; // code you want.\n\nString[] permissions = new String[] {\n    Manifest.permission.WRITE_EXTERNAL_STORAGE,\n    Manifest.permission.CAMERA,\n    Manifest.permission.ACCESS_COARSE_LOCATION,\n    Manifest.permission.ACCESS_FINE_LOCATION\n};\n\n@Override\nvoid onStart() {\n    if (checkPermissions()){\n        // permissions granted.    \n    } else {\n        // show dialog informing them that we lack certain permissions\n    }\n}\n\nprivate boolean checkPermissions() {\n    int result;\n    List\u003cString\u003e listPermissionsNeeded = new ArrayList\u003c\u003e();\n    for (String p:permissions) {\n        result = ContextCompat.checkSelfPermission(getActivity(),p);\n        if (result != PackageManager.PERMISSION_GRANTED) {\n            listPermissionsNeeded.add(p);\n        }\n    }\n    if (!listPermissionsNeeded.isEmpty()) {\n        ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), MULTIPLE_PERMISSIONS);\n        return false;\n    }\n    return true;\n}\n\n@Override\npublic void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {\n    switch (requestCode) {\n        case MULTIPLE_PERMISSIONS:{\n            if(grantResults.length \u003e 0 \u0026\u0026 grantResults[0] == PackageManager.PERMISSION_GRANTED){\n                // permissions granted.\n            } else {\n                // no permissions granted.\n            }\n            return;\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public static final int MULTIPLE_PERMISSIONS = 10; // code you want.\n\nString[] permissions = new String[] {\n    Manifest.permission.WRITE_EXTERNAL_STORAGE,\n    Manifest.permission.CAMERA,\n    Manifest.permission.ACCESS_COARSE_LOCATION,\n    Manifest.permission.ACCESS_FINE_LOCATION\n};\n\n@Override\nvoid onStart() {\n    if (checkPermissions()){\n        // permissions granted.    \n    } else {\n        // show dialog informing them that we lack certain permissions\n    }\n}\n\nprivate boolean checkPermissions() {\n    int result;\n    List\u003cString\u003e listPermissionsNeeded = new ArrayList\u003c\u003e();\n    for (String p:permissions) {\n        result = ContextCompat.checkSelfPermission(getActivity(),p);\n        if (result != PackageManager.PERMISSION_GRANTED) {\n            listPermissionsNeeded.add(p);\n        }\n    }\n    if (!listPermissionsNeeded.isEmpty()) {\n        ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), MULTIPLE_PERMISSIONS);\n        return false;\n    }\n    return true;\n}\n\n@Override\npublic void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {\n    switch (requestCode) {\n        case MULTIPLE_PERMISSIONS:{\n            if(grantResults.length \u003e 0 \u0026\u0026 grantResults[0] == PackageManager.PERMISSION_GRANTED){\n                // permissions granted.\n            } else {\n                // no permissions granted.\n            }\n            return;\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 Android 6.0 multiple permissions"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

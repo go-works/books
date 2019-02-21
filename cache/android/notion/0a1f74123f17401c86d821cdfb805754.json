@@ -1,0 +1,353 @@
+{
+  "ID": "0a1f7412-3f17-401c-86d8-21cdfb805754",
+  "Root": {
+    "alive": true,
+    "content": [
+      "e5580d83-58ac-4020-a524-6ffd73b52e87",
+      "45807c5b-ce09-4f64-aa7f-f948f6cc08a6",
+      "de5d179f-5c42-4eb4-aa64-b88209042639",
+      "e5076eb2-858d-4a64-81aa-4d1e426b18c1",
+      "d48b8b48-6766-474d-a52a-2bc6fbc8ad7e",
+      "6ab08fb0-b092-4c17-b7b0-8609e05674b4",
+      "71c0ad42-99f0-48d1-a982-b14f151972a0",
+      "66464482-1301-4a64-9b63-12c1ce1dd791",
+      "9e28d8ff-c9d2-4bbe-b1c2-67664474bf8d"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550447686153,
+    "id": "0a1f7412-3f17-401c-86d8-21cdfb805754",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550447686153,
+    "parent_id": "c170b80b-c39f-46ce-b311-2debae2f2082",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "050 Register geofence"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447686149,
+        "id": "e5580d83-58ac-4020-a524-6ffd73b52e87",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447686149,
+        "parent_id": "0a1f7412-3f17-401c-86d8-21cdfb805754",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "I have created "
+            ],
+            [
+              "GeoFenceObserversationService",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " "
+            ],
+            [
+              "singleton",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " class."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "I have created "
+          },
+          {
+            "Text": "GeoFenceObserversationService",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " "
+          },
+          {
+            "Text": "singleton",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " class."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447686151,
+        "id": "45807c5b-ce09-4f64-aa7f-f948f6cc08a6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447686151,
+        "parent_id": "0a1f7412-3f17-401c-86d8-21cdfb805754",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "GeoFenceObserversationService.java",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              ":"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "GeoFenceObserversationService.java",
+            "AttrFlags": 1
+          },
+          {
+            "Text": ":"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447686152,
+        "id": "de5d179f-5c42-4eb4-aa64-b88209042639",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447686152,
+        "parent_id": "0a1f7412-3f17-401c-86d8-21cdfb805754",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class GeoFenceObserversationService extends Service implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, ResultCallback\u003cStatus\u003e {\n\n    protected static final String TAG = \"GeoFenceObserversationService\";\n    protected GoogleApiClient mGoogleApiClient;\n    protected ArrayList\u003cGeofence\u003e mGeofenceList;\n    private boolean mGeofencesAdded;\n    private SharedPreferences mSharedPreferences;\n    private static GeoFenceObserversationService mInstant;\n    public static GeoFenceObserversationService getInstant(){\n        return mInstant;\n    }\n\n    @Override\n    public void onCreate() {\n        super.onCreate();\n        mInstant = this;\n        mGeofenceList = new ArrayList\u003cGeofence\u003e();\n        mSharedPreferences = getSharedPreferences(AppConstants.SHARED_PREFERENCES_NAME, MODE_PRIVATE);\n        mGeofencesAdded = mSharedPreferences.getBoolean(AppConstants.GEOFENCES_ADDED_KEY, false);\n\n        buildGoogleApiClient();\n    }\n\n\n    @Override\n    public void onDestroy() {\n        mGoogleApiClient.disconnect();\n        super.onDestroy();\n    }\n\n    @Nullable\n    @Override\n    public IBinder onBind(Intent intent) {\n        return null;\n    }\n\n    @Override\n    public int onStartCommand(Intent intent, int flags, int startId) {\n        return START_STICKY;\n    }\n\n    protected void buildGoogleApiClient() {\n        mGoogleApiClient = new GoogleApiClient.Builder(this)\n                .addConnectionCallbacks(this)\n                .addOnConnectionFailedListener(this)\n                .addApi(LocationServices.API)\n                .build();\n        mGoogleApiClient.connect();\n    }\n\n    @Override\n    public void onConnected(Bundle connectionHint) {\n    }\n\n    @Override\n    public void onConnectionFailed(ConnectionResult result) {\n    }\n\n    @Override\n    public void onConnectionSuspended(int cause) {\n\n    }\n\n    private GeofencingRequest getGeofencingRequest() {\n\n        GeofencingRequest.Builder builder = new GeofencingRequest.Builder();\n        builder.setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER);\n        builder.addGeofences(mGeofenceList);\n        return builder.build();\n    }\n\n\n    public void addGeofences() {\n            if (!mGoogleApiClient.isConnected()) {\n                Toast.makeText(this, getString(R.string.not_connected), Toast.LENGTH_SHORT).show();\n                return;\n            }\n\n        populateGeofenceList();\n        if(!mGeofenceList.isEmpty()){\n            try {\n                LocationServices.GeofencingApi.addGeofences(mGoogleApiClient, getGeofencingRequest(), getGeofencePendingIntent()).setResultCallback(this);\n            } catch (SecurityException securityException) {\n                securityException.printStackTrace();\n            }\n        }\n\n        }\n\n    public void removeGeofences() {\n        if (!mGoogleApiClient.isConnected()) {\n            Toast.makeText(this, getString(R.string.not_connected), Toast.LENGTH_SHORT).show();\n            return;\n        }\n        try {\n            LocationServices.GeofencingApi.removeGeofences(mGoogleApiClient,getGeofencePendingIntent()).setResultCallback(this);\n        } catch (SecurityException securityException) {\n            securityException.printStackTrace();\n        }\n    }\n\n\n    public void onResult(Status status) {\n\n        if (status.isSuccess()) {\n            mGeofencesAdded = !mGeofencesAdded;\n            SharedPreferences.Editor editor = mSharedPreferences.edit();\n            editor.putBoolean(AppConstants.GEOFENCES_ADDED_KEY, mGeofencesAdded);\n            editor.apply();\n        } else {\n            String errorMessage = AppConstants.getErrorString(this,status.getStatusCode());\n            Log.i(\"Geofence\", errorMessage);\n        }\n    }\n\n    private PendingIntent getGeofencePendingIntent() {\n        Intent intent = new Intent(this, GeofenceTransitionsIntentService.class);\n        return PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);\n    }\n\n    private void populateGeofenceList() {\n        mGeofenceList.clear();\n        List\u003cGeoFencingResponce\u003e geoFenceList = getGeofencesList;\n        if(geoFenceList!=null\u0026\u0026!geoFenceList.isEmpty()){\n            for (GeoFencingResponce obj : geoFenceList){\n                mGeofenceList.add(obj.getGeofence());\n                Log.i(TAG,\"Registered Geofences : \" + obj.Id+\"-\"+obj.Name+\"-\"+obj.Lattitude+\"-\"+obj.Longitude);\n            }\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class GeoFenceObserversationService extends Service implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, ResultCallback\u003cStatus\u003e {\n\n    protected static final String TAG = \"GeoFenceObserversationService\";\n    protected GoogleApiClient mGoogleApiClient;\n    protected ArrayList\u003cGeofence\u003e mGeofenceList;\n    private boolean mGeofencesAdded;\n    private SharedPreferences mSharedPreferences;\n    private static GeoFenceObserversationService mInstant;\n    public static GeoFenceObserversationService getInstant(){\n        return mInstant;\n    }\n\n    @Override\n    public void onCreate() {\n        super.onCreate();\n        mInstant = this;\n        mGeofenceList = new ArrayList\u003cGeofence\u003e();\n        mSharedPreferences = getSharedPreferences(AppConstants.SHARED_PREFERENCES_NAME, MODE_PRIVATE);\n        mGeofencesAdded = mSharedPreferences.getBoolean(AppConstants.GEOFENCES_ADDED_KEY, false);\n\n        buildGoogleApiClient();\n    }\n\n\n    @Override\n    public void onDestroy() {\n        mGoogleApiClient.disconnect();\n        super.onDestroy();\n    }\n\n    @Nullable\n    @Override\n    public IBinder onBind(Intent intent) {\n        return null;\n    }\n\n    @Override\n    public int onStartCommand(Intent intent, int flags, int startId) {\n        return START_STICKY;\n    }\n\n    protected void buildGoogleApiClient() {\n        mGoogleApiClient = new GoogleApiClient.Builder(this)\n                .addConnectionCallbacks(this)\n                .addOnConnectionFailedListener(this)\n                .addApi(LocationServices.API)\n                .build();\n        mGoogleApiClient.connect();\n    }\n\n    @Override\n    public void onConnected(Bundle connectionHint) {\n    }\n\n    @Override\n    public void onConnectionFailed(ConnectionResult result) {\n    }\n\n    @Override\n    public void onConnectionSuspended(int cause) {\n\n    }\n\n    private GeofencingRequest getGeofencingRequest() {\n\n        GeofencingRequest.Builder builder = new GeofencingRequest.Builder();\n        builder.setInitialTrigger(GeofencingRequest.INITIAL_TRIGGER_ENTER);\n        builder.addGeofences(mGeofenceList);\n        return builder.build();\n    }\n\n\n    public void addGeofences() {\n            if (!mGoogleApiClient.isConnected()) {\n                Toast.makeText(this, getString(R.string.not_connected), Toast.LENGTH_SHORT).show();\n                return;\n            }\n\n        populateGeofenceList();\n        if(!mGeofenceList.isEmpty()){\n            try {\n                LocationServices.GeofencingApi.addGeofences(mGoogleApiClient, getGeofencingRequest(), getGeofencePendingIntent()).setResultCallback(this);\n            } catch (SecurityException securityException) {\n                securityException.printStackTrace();\n            }\n        }\n\n        }\n\n    public void removeGeofences() {\n        if (!mGoogleApiClient.isConnected()) {\n            Toast.makeText(this, getString(R.string.not_connected), Toast.LENGTH_SHORT).show();\n            return;\n        }\n        try {\n            LocationServices.GeofencingApi.removeGeofences(mGoogleApiClient,getGeofencePendingIntent()).setResultCallback(this);\n        } catch (SecurityException securityException) {\n            securityException.printStackTrace();\n        }\n    }\n\n\n    public void onResult(Status status) {\n\n        if (status.isSuccess()) {\n            mGeofencesAdded = !mGeofencesAdded;\n            SharedPreferences.Editor editor = mSharedPreferences.edit();\n            editor.putBoolean(AppConstants.GEOFENCES_ADDED_KEY, mGeofencesAdded);\n            editor.apply();\n        } else {\n            String errorMessage = AppConstants.getErrorString(this,status.getStatusCode());\n            Log.i(\"Geofence\", errorMessage);\n        }\n    }\n\n    private PendingIntent getGeofencePendingIntent() {\n        Intent intent = new Intent(this, GeofenceTransitionsIntentService.class);\n        return PendingIntent.getService(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);\n    }\n\n    private void populateGeofenceList() {\n        mGeofenceList.clear();\n        List\u003cGeoFencingResponce\u003e geoFenceList = getGeofencesList;\n        if(geoFenceList!=null\u0026\u0026!geoFenceList.isEmpty()){\n            for (GeoFencingResponce obj : geoFenceList){\n                mGeofenceList.add(obj.getGeofence());\n                Log.i(TAG,\"Registered Geofences : \" + obj.Id+\"-\"+obj.Name+\"-\"+obj.Lattitude+\"-\"+obj.Longitude);\n            }\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447686152,
+        "id": "e5076eb2-858d-4a64-81aa-4d1e426b18c1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447686152,
+        "parent_id": "0a1f7412-3f17-401c-86d8-21cdfb805754",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "AppConstant",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              ":"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "AppConstant",
+            "AttrFlags": 1
+          },
+          {
+            "Text": ":"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447686152,
+        "id": "d48b8b48-6766-474d-a52a-2bc6fbc8ad7e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447686152,
+        "parent_id": "0a1f7412-3f17-401c-86d8-21cdfb805754",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public static final String SHARED_PREFERENCES_NAME = PACKAGE_NAME + \".SHARED_PREFERENCES_NAME\";\n public static final String GEOFENCES_ADDED_KEY = PACKAGE_NAME + \".GEOFENCES_ADDED_KEY\";\n public static final String DETECTED_GEOFENCES = \"detected_geofences\";\n public static final String DETECTED_BEACONS = \"detected_beacons\";\n\n public static String getErrorString(Context context, int errorCode) {\n     Resources mResources = context.getResources();\n     switch (errorCode) {\n         case GeofenceStatusCodes.GEOFENCE_NOT_AVAILABLE:\n             return mResources.getString(R.string.geofence_not_available);\n         case GeofenceStatusCodes.GEOFENCE_TOO_MANY_GEOFENCES:\n             return mResources.getString(R.string.geofence_too_many_geofences);\n         case GeofenceStatusCodes.GEOFENCE_TOO_MANY_PENDING_INTENTS:\n             return mResources.getString(R.string.geofence_too_many_pending_intents);\n         default:\n             return mResources.getString(R.string.unknown_geofence_error);\n     }\n }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public static final String SHARED_PREFERENCES_NAME = PACKAGE_NAME + \".SHARED_PREFERENCES_NAME\";\n public static final String GEOFENCES_ADDED_KEY = PACKAGE_NAME + \".GEOFENCES_ADDED_KEY\";\n public static final String DETECTED_GEOFENCES = \"detected_geofences\";\n public static final String DETECTED_BEACONS = \"detected_beacons\";\n\n public static String getErrorString(Context context, int errorCode) {\n     Resources mResources = context.getResources();\n     switch (errorCode) {\n         case GeofenceStatusCodes.GEOFENCE_NOT_AVAILABLE:\n             return mResources.getString(R.string.geofence_not_available);\n         case GeofenceStatusCodes.GEOFENCE_TOO_MANY_GEOFENCES:\n             return mResources.getString(R.string.geofence_too_many_geofences);\n         case GeofenceStatusCodes.GEOFENCE_TOO_MANY_PENDING_INTENTS:\n             return mResources.getString(R.string.geofence_too_many_pending_intents);\n         default:\n             return mResources.getString(R.string.unknown_geofence_error);\n     }\n }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447686152,
+        "id": "6ab08fb0-b092-4c17-b7b0-8609e05674b4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447686152,
+        "parent_id": "0a1f7412-3f17-401c-86d8-21cdfb805754",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Where I started Service ? From Application class"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Where I started Service ? From Application class"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447686152,
+        "id": "71c0ad42-99f0-48d1-a982-b14f151972a0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447686152,
+        "parent_id": "0a1f7412-3f17-401c-86d8-21cdfb805754",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "startService(new Intent(getApplicationContext(),GeoFenceObserversationService.class));",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "startService(new Intent(getApplicationContext(),GeoFenceObserversationService.class));",
+            "AttrFlags": 2
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447686153,
+        "id": "66464482-1301-4a64-9b63-12c1ce1dd791",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447686153,
+        "parent_id": "0a1f7412-3f17-401c-86d8-21cdfb805754",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "How I registered Geofences ?"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "How I registered Geofences ?"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447686153,
+        "id": "9e28d8ff-c9d2-4bbe-b1c2-67664474bf8d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447686153,
+        "parent_id": "0a1f7412-3f17-401c-86d8-21cdfb805754",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "GeoFenceObserversationService.getInstant().addGeofences();",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "GeoFenceObserversationService.getInstant().addGeofences();",
+            "AttrFlags": 2
+          }
+        ]
+      }
+    ],
+    "title": "050 Register geofence"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

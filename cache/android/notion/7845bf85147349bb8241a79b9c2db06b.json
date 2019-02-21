@@ -1,0 +1,305 @@
+{
+  "ID": "7845bf85-1473-49bb-8241-a79b9c2db06b",
+  "Root": {
+    "alive": true,
+    "content": [
+      "68007a89-ab1e-450a-8426-b3e4993dfef3",
+      "54992030-6340-411e-be12-867ed93dc74c",
+      "33b5a64f-2e24-4b78-b4cb-f1d28472073f",
+      "151bef7c-981b-45ab-ab27-92dfc67ab16f",
+      "04f39ffe-d2fe-4c8a-8120-a5c34258fc57",
+      "ad7b1c95-6262-4fa6-84c2-4562e83adfbc",
+      "77fce368-901c-4113-8915-35c507ce7e51",
+      "2691a198-3fa5-46ab-980b-7af0a491ce45",
+      "78d88c03-2c19-4f83-a750-318e44f0beaa"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550450513035,
+    "id": "7845bf85-1473-49bb-8241-a79b9c2db06b",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550450513035,
+    "parent_id": "8dc4486d-cab9-46ba-a583-6946731415e6",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "080 TextView customization"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450513032,
+        "id": "68007a89-ab1e-450a-8426-b3e4993dfef3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450513032,
+        "parent_id": "7845bf85-1473-49bb-8241-a79b9c2db06b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class CustomTextView extends TextView {\n\n    private float strokeWidth;\n    private Integer strokeColor;\n    private Paint.Join strokeJoin;\n    private float strokeMiter;\n\n\n    public CustomTextView(Context context) {\n        super(context);\n        init(null);\n    }\n\n    public CustomTextView(Context context, AttributeSet attrs) {\n        super(context, attrs);\n        init(attrs);\n    }\n\n    public CustomTextView(Context context, AttributeSet attrs, int defStyle) {\n        super(context, attrs, defStyle);\n        init(attrs);\n    }\n\n    public void init(AttributeSet attrs) {\n\n        if (attrs != null) {\n            TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.CustomTextView);\n\n            if (a.hasValue(R.styleable.CustomTextView_strokeColor)) {\n                float strokeWidth = a.getDimensionPixelSize(R.styleable.CustomTextView_strokeWidth, 1);\n                int strokeColor = a.getColor(R.styleable.CustomTextView_strokeColor, 0xff000000);\n                float strokeMiter = a.getDimensionPixelSize(R.styleable.CustomTextView_strokeMiter, 10);\n                Paint.Join strokeJoin = null;\n                switch (a.getInt(R.styleable.CustomTextView_strokeJoinStyle, 0)) {\n                    case (0):\n                        strokeJoin = Paint.Join.MITER;\n                        break;\n                    case (1):\n                        strokeJoin = Paint.Join.BEVEL;\n                        break;\n                    case (2):\n                        strokeJoin = Paint.Join.ROUND;\n                        break;\n                }\n                this.setStroke(strokeWidth, strokeColor, strokeJoin, strokeMiter);\n            }\n        }\n    }\n\n    public void setStroke(float width, int color, Paint.Join join, float miter) {\n        strokeWidth = width;\n        strokeColor = color;\n        strokeJoin = join;\n        strokeMiter = miter;\n    }\n\n    @Override\n    public void onDraw(Canvas canvas) {\n        super.onDraw(canvas);\n\n        int restoreColor = this.getCurrentTextColor();\n        if (strokeColor != null) {\n            TextPaint paint = this.getPaint();\n            paint.setStyle(Paint.Style.STROKE);\n            paint.setStrokeJoin(strokeJoin);\n            paint.setStrokeMiter(strokeMiter);\n            this.setTextColor(strokeColor);\n            paint.setStrokeWidth(strokeWidth);\n            super.onDraw(canvas);\n            paint.setStyle(Paint.Style.FILL);\n            this.setTextColor(restoreColor);\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class CustomTextView extends TextView {\n\n    private float strokeWidth;\n    private Integer strokeColor;\n    private Paint.Join strokeJoin;\n    private float strokeMiter;\n\n\n    public CustomTextView(Context context) {\n        super(context);\n        init(null);\n    }\n\n    public CustomTextView(Context context, AttributeSet attrs) {\n        super(context, attrs);\n        init(attrs);\n    }\n\n    public CustomTextView(Context context, AttributeSet attrs, int defStyle) {\n        super(context, attrs, defStyle);\n        init(attrs);\n    }\n\n    public void init(AttributeSet attrs) {\n\n        if (attrs != null) {\n            TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.CustomTextView);\n\n            if (a.hasValue(R.styleable.CustomTextView_strokeColor)) {\n                float strokeWidth = a.getDimensionPixelSize(R.styleable.CustomTextView_strokeWidth, 1);\n                int strokeColor = a.getColor(R.styleable.CustomTextView_strokeColor, 0xff000000);\n                float strokeMiter = a.getDimensionPixelSize(R.styleable.CustomTextView_strokeMiter, 10);\n                Paint.Join strokeJoin = null;\n                switch (a.getInt(R.styleable.CustomTextView_strokeJoinStyle, 0)) {\n                    case (0):\n                        strokeJoin = Paint.Join.MITER;\n                        break;\n                    case (1):\n                        strokeJoin = Paint.Join.BEVEL;\n                        break;\n                    case (2):\n                        strokeJoin = Paint.Join.ROUND;\n                        break;\n                }\n                this.setStroke(strokeWidth, strokeColor, strokeJoin, strokeMiter);\n            }\n        }\n    }\n\n    public void setStroke(float width, int color, Paint.Join join, float miter) {\n        strokeWidth = width;\n        strokeColor = color;\n        strokeJoin = join;\n        strokeMiter = miter;\n    }\n\n    @Override\n    public void onDraw(Canvas canvas) {\n        super.onDraw(canvas);\n\n        int restoreColor = this.getCurrentTextColor();\n        if (strokeColor != null) {\n            TextPaint paint = this.getPaint();\n            paint.setStyle(Paint.Style.STROKE);\n            paint.setStrokeJoin(strokeJoin);\n            paint.setStrokeMiter(strokeMiter);\n            this.setTextColor(strokeColor);\n            paint.setStrokeWidth(strokeWidth);\n            super.onDraw(canvas);\n            paint.setStyle(Paint.Style.FILL);\n            this.setTextColor(restoreColor);\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450513034,
+        "id": "54992030-6340-411e-be12-867ed93dc74c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450513034,
+        "parent_id": "7845bf85-1473-49bb-8241-a79b9c2db06b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Usage:",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Usage:",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450513035,
+        "id": "33b5a64f-2e24-4b78-b4cb-f1d28472073f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450513035,
+        "parent_id": "7845bf85-1473-49bb-8241-a79b9c2db06b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class MainActivity extends Activity {\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_main);\n\n        CustomTextView customTextView = (CustomTextView) findViewById(R.id.pager_title);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class MainActivity extends Activity {\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_main);\n\n        CustomTextView customTextView = (CustomTextView) findViewById(R.id.pager_title);\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450513035,
+        "id": "151bef7c-981b-45ab-ab27-92dfc67ab16f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450513035,
+        "parent_id": "7845bf85-1473-49bb-8241-a79b9c2db06b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Layout:",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Layout:",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450513035,
+        "id": "04f39ffe-d2fe-4c8a-8120-a5c34258fc57",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450513035,
+        "parent_id": "7845bf85-1473-49bb-8241-a79b9c2db06b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003cRelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    android:layout_width=\"fill_parent\"\n    android:layout_height=\"fill_parent\"\n    android:background=\"@mipmap/background\"\u003e\n\n\n    \u003cpk.sohail.gallerytest.activity.CustomTextView\n        android:id=\"@+id/pager_title\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_centerHorizontal=\"true\"\n        android:layout_centerVertical=\"true\"\n        android:gravity=\"center\"\n        android:text=\"@string/txt_title_photo_gallery\"\n        android:textColor=\"@color/white\"\n        android:textSize=\"30dp\"\n        android:textStyle=\"bold\"\n        app:outerShadowRadius=\"10dp\"\n        app:strokeColor=\"@color/title_text_color\"\n        app:strokeJoinStyle=\"miter\"\n        app:strokeWidth=\"2dp\" /\u003e\n\n\u003c/RelativeLayout\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003cRelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    android:layout_width=\"fill_parent\"\n    android:layout_height=\"fill_parent\"\n    android:background=\"@mipmap/background\"\u003e\n\n\n    \u003cpk.sohail.gallerytest.activity.CustomTextView\n        android:id=\"@+id/pager_title\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_centerHorizontal=\"true\"\n        android:layout_centerVertical=\"true\"\n        android:gravity=\"center\"\n        android:text=\"@string/txt_title_photo_gallery\"\n        android:textColor=\"@color/white\"\n        android:textSize=\"30dp\"\n        android:textStyle=\"bold\"\n        app:outerShadowRadius=\"10dp\"\n        app:strokeColor=\"@color/title_text_color\"\n        app:strokeJoinStyle=\"miter\"\n        app:strokeWidth=\"2dp\" /\u003e\n\n\u003c/RelativeLayout\u003e",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450513035,
+        "id": "ad7b1c95-6262-4fa6-84c2-4562e83adfbc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450513035,
+        "parent_id": "7845bf85-1473-49bb-8241-a79b9c2db06b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "attars:",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "attars:",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450513035,
+        "id": "77fce368-901c-4113-8915-35c507ce7e51",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450513035,
+        "parent_id": "7845bf85-1473-49bb-8241-a79b9c2db06b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003c?xml version=\"1.0\" encoding=\"utf-8\"?\u003e\n\u003cresources\u003e\n\n    \u003cdeclare-styleable name=\"CustomTextView\"\u003e\n\n        \u003cattr name=\"outerShadowRadius\" format=\"dimension\" /\u003e\n        \u003cattr name=\"strokeWidth\" format=\"dimension\" /\u003e\n        \u003cattr name=\"strokeMiter\" format=\"dimension\" /\u003e\n        \u003cattr name=\"strokeColor\" format=\"color\" /\u003e\n        \u003cattr name=\"strokeJoinStyle\"\u003e\n            \u003cenum name=\"miter\" value=\"0\" /\u003e\n            \u003cenum name=\"bevel\" value=\"1\" /\u003e\n            \u003cenum name=\"round\" value=\"2\" /\u003e\n        \u003c/attr\u003e\n    \u003c/declare-styleable\u003e\n\n\u003c/resources\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003c?xml version=\"1.0\" encoding=\"utf-8\"?\u003e\n\u003cresources\u003e\n\n    \u003cdeclare-styleable name=\"CustomTextView\"\u003e\n\n        \u003cattr name=\"outerShadowRadius\" format=\"dimension\" /\u003e\n        \u003cattr name=\"strokeWidth\" format=\"dimension\" /\u003e\n        \u003cattr name=\"strokeMiter\" format=\"dimension\" /\u003e\n        \u003cattr name=\"strokeColor\" format=\"color\" /\u003e\n        \u003cattr name=\"strokeJoinStyle\"\u003e\n            \u003cenum name=\"miter\" value=\"0\" /\u003e\n            \u003cenum name=\"bevel\" value=\"1\" /\u003e\n            \u003cenum name=\"round\" value=\"2\" /\u003e\n        \u003c/attr\u003e\n    \u003c/declare-styleable\u003e\n\n\u003c/resources\u003e",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450513035,
+        "id": "2691a198-3fa5-46ab-980b-7af0a491ce45",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450513035,
+        "parent_id": "7845bf85-1473-49bb-8241-a79b9c2db06b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Programmatically usage:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Programmatically usage:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450513035,
+        "id": "78d88c03-2c19-4f83-a750-318e44f0beaa",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450513035,
+        "parent_id": "7845bf85-1473-49bb-8241-a79b9c2db06b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "CustomTextView mtxt_name = (CustomTextView) findViewById(R.id.pager_title); \n//then use \nsetStroke(float width, int color, Paint.Join join, float miter);\n//method before setting \nsetText(\"Sample Text\");"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "CustomTextView mtxt_name = (CustomTextView) findViewById(R.id.pager_title); \n//then use \nsetStroke(float width, int color, Paint.Join join, float miter);\n//method before setting \nsetText(\"Sample Text\");",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "080 TextView customization"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

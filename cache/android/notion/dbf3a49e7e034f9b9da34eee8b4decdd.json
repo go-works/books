@@ -1,0 +1,97 @@
+{
+  "ID": "dbf3a49e-7e03-4f9b-9da3-4eee8b4decdd",
+  "Root": {
+    "alive": true,
+    "content": [
+      "ca1c4285-7796-451f-b717-79348bb18df9",
+      "f1b25554-09ac-4520-9157-ae43385279cb"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550444974970,
+    "id": "dbf3a49e-7e03-4f9b-9da3-4eee8b4decdd",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550444974970,
+    "parent_id": "6190cb6e-dc43-458e-9fc6-34c0e0c69fa6",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "120 Exporting and importing a database"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444974970,
+        "id": "ca1c4285-7796-451f-b717-79348bb18df9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444974970,
+        "parent_id": "dbf3a49e-7e03-4f9b-9da3-4eee8b4decdd",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "You might want to import and export your database for bacukups for example. Dont forget about the permissions."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "You might want to import and export your database for bacukups for example. Dont forget about the permissions."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444974970,
+        "id": "f1b25554-09ac-4520-9157-ae43385279cb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444974970,
+        "parent_id": "dbf3a49e-7e03-4f9b-9da3-4eee8b4decdd",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public void exportDatabase(){\n    try\n    {\n        File sd = Environment.getExternalStorageDirectory();\n        File data = Environment.getDataDirectory();\n\n        String currentDBPath = \"//data//MY.PACKAGE.NAME//databases//MY_DATABASE_NAME\";\n        String backupDBPath = \"MY_DATABASE_FILE.db\";\n        File currentDB = new File(data, currentDBPath);\n        File backupDB = new File(sd, backupDBPath);\n\n        FileChannel src = new FileInputStream(currentDB).getChannel();\n        FileChannel dst = new FileOutputStream(backupDB).getChannel();\n        dst.transferFrom(src, 0, src.size());\n        src.close();\n        dst.close();\n\n        Toast.makeText(c, c.getResources().getString(R.string.exporterenToast), Toast.LENGTH_SHORT).show();\n    }\n    catch (Exception e) {\n        Toast.makeText(c, c.getResources().getString(R.string.portError), Toast.LENGTH_SHORT).show();\n        Log.d(\"Main\", e.toString());\n    }\n}\n\npublic void importDatabase(){\n    try\n    {\n        File sd = Environment.getExternalStorageDirectory();\n        File data = Environment.getDataDirectory();\n\n        String currentDBPath = \"//data//\" + \"MY.PACKAGE.NAME\" + \"//databases//\" + \"MY_DATABASE_NAME\";\n        String backupDBPath = \"MY_DATABASE_FILE.db\";\n        File backupDB = new File(data, currentDBPath);\n        File currentDB = new File(sd, backupDBPath);\n\n        FileChannel src = new FileInputStream(currentDB).getChannel();\n        FileChannel dst = new FileOutputStream(backupDB).getChannel();\n        dst.transferFrom(src, 0, src.size());\n        src.close();\n        dst.close();\n        Toast.makeText(c, c.getResources().getString(R.string.importerenToast), Toast.LENGTH_LONG).show();\n    }\n    catch (Exception e) {\n        Toast.makeText(c, c.getResources().getString(R.string.portError), Toast.LENGTH_SHORT).show();\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public void exportDatabase(){\n    try\n    {\n        File sd = Environment.getExternalStorageDirectory();\n        File data = Environment.getDataDirectory();\n\n        String currentDBPath = \"//data//MY.PACKAGE.NAME//databases//MY_DATABASE_NAME\";\n        String backupDBPath = \"MY_DATABASE_FILE.db\";\n        File currentDB = new File(data, currentDBPath);\n        File backupDB = new File(sd, backupDBPath);\n\n        FileChannel src = new FileInputStream(currentDB).getChannel();\n        FileChannel dst = new FileOutputStream(backupDB).getChannel();\n        dst.transferFrom(src, 0, src.size());\n        src.close();\n        dst.close();\n\n        Toast.makeText(c, c.getResources().getString(R.string.exporterenToast), Toast.LENGTH_SHORT).show();\n    }\n    catch (Exception e) {\n        Toast.makeText(c, c.getResources().getString(R.string.portError), Toast.LENGTH_SHORT).show();\n        Log.d(\"Main\", e.toString());\n    }\n}\n\npublic void importDatabase(){\n    try\n    {\n        File sd = Environment.getExternalStorageDirectory();\n        File data = Environment.getDataDirectory();\n\n        String currentDBPath = \"//data//\" + \"MY.PACKAGE.NAME\" + \"//databases//\" + \"MY_DATABASE_NAME\";\n        String backupDBPath = \"MY_DATABASE_FILE.db\";\n        File backupDB = new File(data, currentDBPath);\n        File currentDB = new File(sd, backupDBPath);\n\n        FileChannel src = new FileInputStream(currentDB).getChannel();\n        FileChannel dst = new FileOutputStream(backupDB).getChannel();\n        dst.transferFrom(src, 0, src.size());\n        src.close();\n        dst.close();\n        Toast.makeText(c, c.getResources().getString(R.string.importerenToast), Toast.LENGTH_LONG).show();\n    }\n    catch (Exception e) {\n        Toast.makeText(c, c.getResources().getString(R.string.portError), Toast.LENGTH_SHORT).show();\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "120 Exporting and importing a database"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

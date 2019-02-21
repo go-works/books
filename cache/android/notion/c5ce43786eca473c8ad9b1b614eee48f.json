@@ -1,0 +1,537 @@
+{
+  "ID": "c5ce4378-6eca-473c-8ad9-b1b614eee48f",
+  "Root": {
+    "alive": true,
+    "content": [
+      "de7edeb8-8a9e-4895-8ce6-ddd35070221a",
+      "09cee0a3-fc59-430b-b27c-bb3f87d70588",
+      "08ba6df2-29cb-408a-8169-f91757e8eb75",
+      "2ef86aa5-5688-434a-82c7-463fa57724c2",
+      "6ad644da-89e2-4614-9f03-57f035180fa4",
+      "2da3992d-2f26-4c34-a65e-09e0db05468e",
+      "ce0ecb01-7ed9-4afd-a878-df3f0526364c",
+      "f6121092-3ae5-4246-a4a4-104ee4f26375",
+      "00880b61-d12d-4e39-b290-bd7afe0eb84e",
+      "f3c69545-a212-45ea-8496-dc7f0ed13170",
+      "5fe9b3e5-35e9-4196-9b6c-95b1eb343bb5"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550448020954,
+    "id": "c5ce4378-6eca-473c-8ad9-b1b614eee48f",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550448020954,
+    "parent_id": "322f7adc-aa8e-4dd0-90bc-e3822856448b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "050 Adding custom headers to your requests e.g. for basic auth"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448020949,
+        "id": "de7edeb8-8a9e-4895-8ce6-ddd35070221a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448020949,
+        "parent_id": "c5ce4378-6eca-473c-8ad9-b1b614eee48f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If you need to add custom headers to your volley requests, you can’t do this after initialisation, as the headers are saved in a private variable."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If you need to add custom headers to your volley requests, you can’t do this after initialisation, as the headers are saved in a private variable."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448020952,
+        "id": "09cee0a3-fc59-430b-b27c-bb3f87d70588",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448020952,
+        "parent_id": "c5ce4378-6eca-473c-8ad9-b1b614eee48f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Instead, you need to override the "
+            ],
+            [
+              "getHeaders()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method of "
+            ],
+            [
+              "Request.class",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " as such:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Instead, you need to override the "
+          },
+          {
+            "Text": "getHeaders()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method of "
+          },
+          {
+            "Text": "Request.class",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " as such:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448020952,
+        "id": "08ba6df2-29cb-408a-8169-f91757e8eb75",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448020952,
+        "parent_id": "c5ce4378-6eca-473c-8ad9-b1b614eee48f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "new JsonObjectRequest(REQUEST_METHOD, REQUEST_URL, REQUEST_BODY, RESP_LISTENER, ERR_LISTENER) {\n    @Override\n    public Map\u003cString, String\u003e getHeaders() throws AuthFailureError {\n        HashMap\u003cString, String\u003e customHeaders = new Hashmap\u003c\u003e();\n\n        customHeaders.put(\"KEY_0\", \"VALUE_0\");\n        ...\n        customHeaders.put(\"KEY_N\", \"VALUE_N\");\n\n        return customHeaders;\n    }\n};"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "new JsonObjectRequest(REQUEST_METHOD, REQUEST_URL, REQUEST_BODY, RESP_LISTENER, ERR_LISTENER) {\n    @Override\n    public Map\u003cString, String\u003e getHeaders() throws AuthFailureError {\n        HashMap\u003cString, String\u003e customHeaders = new Hashmap\u003c\u003e();\n\n        customHeaders.put(\"KEY_0\", \"VALUE_0\");\n        ...\n        customHeaders.put(\"KEY_N\", \"VALUE_N\");\n\n        return customHeaders;\n    }\n};",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448020952,
+        "id": "2ef86aa5-5688-434a-82c7-463fa57724c2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448020952,
+        "parent_id": "c5ce4378-6eca-473c-8ad9-b1b614eee48f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Explanation of the parameters:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Explanation of the parameters:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448020953,
+        "id": "6ad644da-89e2-4614-9f03-57f035180fa4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448020953,
+        "parent_id": "c5ce4378-6eca-473c-8ad9-b1b614eee48f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "REQUEST_METHOD",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " - Either of the "
+            ],
+            [
+              "Request.Method.*",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " constants."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "REQUEST_METHOD",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " - Either of the "
+          },
+          {
+            "Text": "Request.Method.*",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " constants."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448020953,
+        "id": "2da3992d-2f26-4c34-a65e-09e0db05468e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448020953,
+        "parent_id": "c5ce4378-6eca-473c-8ad9-b1b614eee48f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "REQUEST_URL",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " - The full URL to send your request to."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "REQUEST_URL",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " - The full URL to send your request to."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448020953,
+        "id": "ce0ecb01-7ed9-4afd-a878-df3f0526364c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448020953,
+        "parent_id": "c5ce4378-6eca-473c-8ad9-b1b614eee48f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "REQUEST_BODY",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " - A "
+            ],
+            [
+              "JSONObject",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " containing the POST-Body to be sent (or null)."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "REQUEST_BODY",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " - A "
+          },
+          {
+            "Text": "JSONObject",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " containing the POST-Body to be sent (or null)."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448020954,
+        "id": "f6121092-3ae5-4246-a4a4-104ee4f26375",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448020954,
+        "parent_id": "c5ce4378-6eca-473c-8ad9-b1b614eee48f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "RESP_LISTENER",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " - A "
+            ],
+            [
+              "Response.Listener\u003c?\u003e",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " object, whose "
+            ],
+            [
+              "onResponse(T data)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method is called upon successful completion."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "RESP_LISTENER",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " - A "
+          },
+          {
+            "Text": "Response.Listener\u003c?\u003e",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " object, whose "
+          },
+          {
+            "Text": "onResponse(T data)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method is called upon successful completion."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448020954,
+        "id": "00880b61-d12d-4e39-b290-bd7afe0eb84e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448020954,
+        "parent_id": "c5ce4378-6eca-473c-8ad9-b1b614eee48f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "ERR_LISTENER",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " - A "
+            ],
+            [
+              "Response.ErrorListener",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " object, whose "
+            ],
+            [
+              "onErrorResponse(VolleyError e)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method is called upon a unsuccessful request."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "ERR_LISTENER",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " - A "
+          },
+          {
+            "Text": "Response.ErrorListener",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " object, whose "
+          },
+          {
+            "Text": "onErrorResponse(VolleyError e)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method is called upon a unsuccessful request."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448020954,
+        "id": "f3c69545-a212-45ea-8496-dc7f0ed13170",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448020954,
+        "parent_id": "c5ce4378-6eca-473c-8ad9-b1b614eee48f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If you want to build a custom request, you can add the headers in it as well:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If you want to build a custom request, you can add the headers in it as well:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448020954,
+        "id": "5fe9b3e5-35e9-4196-9b6c-95b1eb343bb5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448020954,
+        "parent_id": "c5ce4378-6eca-473c-8ad9-b1b614eee48f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class MyCustomRequest extends Request {\n    ...\n    @Override\n    public Map\u003cString, String\u003e getHeaders() throws AuthFailureError {\n        HashMap\u003cString, String\u003e customHeaders = new Hashmap\u003c\u003e();\n\n        customHeaders.put(\"KEY_0\", \"VALUE_0\");\n        ...\n        customHeaders.put(\"KEY_N\", \"VALUE_N\");\n\n        return customHeaders;\n    }\n    ...\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class MyCustomRequest extends Request {\n    ...\n    @Override\n    public Map\u003cString, String\u003e getHeaders() throws AuthFailureError {\n        HashMap\u003cString, String\u003e customHeaders = new Hashmap\u003c\u003e();\n\n        customHeaders.put(\"KEY_0\", \"VALUE_0\");\n        ...\n        customHeaders.put(\"KEY_N\", \"VALUE_N\");\n\n        return customHeaders;\n    }\n    ...\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "050 Adding custom headers to your requests e.g. for basic auth"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,71 @@
+{
+  "ID": "0f434cb8-9c22-42fc-9859-d691f6b88f28",
+  "Root": {
+    "alive": true,
+    "content": [
+      "e300fea1-99e6-4e92-878a-567f5ccc4e78"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550443932886,
+    "id": "0f434cb8-9c22-42fc-9859-d691f6b88f28",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550443932886,
+    "parent_id": "b504a8f4-8c84-4c2e-8acd-bca678ce8ae8",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Calculating initial View dimensions in an Activity"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550443932883,
+        "id": "e300fea1-99e6-4e92-878a-567f5ccc4e78",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550443932883,
+        "parent_id": "0f434cb8-9c22-42fc-9859-d691f6b88f28",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "package com.example;\n\nimport android.os.Bundle;\nimport android.support.annotation.Nullable;\nimport android.util.Log;\nimport android.view.View;\nimport android.view.ViewTreeObserver;\n\npublic class ExampleActivity extends Activity {\n\n    @Override\n    protected void onCreate(@Nullable final Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_example);\n\n        final View viewToMeasure = findViewById(R.id.view_to_measure);\n\n        // viewToMeasure dimensions are not known at this point.\n        // viewToMeasure.getWidth() and viewToMeasure.getHeight() both return 0,\n        // regardless of on-screen size.\n\n        viewToMeasure.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {\n            @Override\n            public boolean onPreDraw() {\n                // viewToMeasure is now measured and laid out, and displayed dimensions are known.\n                logComputedViewDimensions(viewToMeasure.getWidth(), viewToMeasure.getHeight());\n                \n                // Remove this listener, as we have now successfully calculated the desired dimensions.\n                viewToMeasure.getViewTreeObserver().removeOnPreDrawListener(this);\n\n                // Always return true to continue drawing.\n                return true; \n            }\n        });\n    }\n\n    private void logComputedViewDimensions(final int width, final int height) {\n        Log.d(\"example\", \"viewToMeasure has width \" + width);\n        Log.d(\"example\", \"viewToMeasure has height \" + height);\n    }\n\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "package com.example;\n\nimport android.os.Bundle;\nimport android.support.annotation.Nullable;\nimport android.util.Log;\nimport android.view.View;\nimport android.view.ViewTreeObserver;\n\npublic class ExampleActivity extends Activity {\n\n    @Override\n    protected void onCreate(@Nullable final Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_example);\n\n        final View viewToMeasure = findViewById(R.id.view_to_measure);\n\n        // viewToMeasure dimensions are not known at this point.\n        // viewToMeasure.getWidth() and viewToMeasure.getHeight() both return 0,\n        // regardless of on-screen size.\n\n        viewToMeasure.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {\n            @Override\n            public boolean onPreDraw() {\n                // viewToMeasure is now measured and laid out, and displayed dimensions are known.\n                logComputedViewDimensions(viewToMeasure.getWidth(), viewToMeasure.getHeight());\n                \n                // Remove this listener, as we have now successfully calculated the desired dimensions.\n                viewToMeasure.getViewTreeObserver().removeOnPreDrawListener(this);\n\n                // Always return true to continue drawing.\n                return true; \n            }\n        });\n    }\n\n    private void logComputedViewDimensions(final int width, final int height) {\n        Log.d(\"example\", \"viewToMeasure has width \" + width);\n        Log.d(\"example\", \"viewToMeasure has height \" + height);\n    }\n\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 Calculating initial View dimensions in an Activity"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

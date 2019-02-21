@@ -1,0 +1,71 @@
+{
+  "ID": "8a9cf9c2-cb2d-45a6-8411-ab1b873ab6b8",
+  "Root": {
+    "alive": true,
+    "content": [
+      "4d84bc88-e662-418a-a976-3b520258592c"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550444965860,
+    "id": "8a9cf9c2-cb2d-45a6-8411-ab1b873ab6b8",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550444965860,
+    "parent_id": "6190cb6e-dc43-458e-9fc6-34c0e0c69fa6",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "040 Insert data into database"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444965857,
+        "id": "4d84bc88-e662-418a-a976-3b520258592c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444965857,
+        "parent_id": "8a9cf9c2-cb2d-45a6-8411-ab1b873ab6b8",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// You need a writable database to insert data\nfinal SQLiteDatabase database = openHelper.getWritableDatabase();\n\n// Create a ContentValues instance which contains the data for each column\n// You do not need to specify a value for the PRIMARY KEY column.\n// Unique values for these are automatically generated.\nfinal ContentValues values = new ContentValues();\nvalues.put(COLUMN_NAME, model.getName());\nvalues.put(COLUMN_DESCRIPTION, model.getDescription());\nvalues.put(COLUMN_VALUE, model.getValue());\n\n// This call performs the update\n// The return value is the rowId or primary key value for the new row!\n// If this method returns -1 then the insert has failed.\nfinal int id = database.insert(\n        TABLE_NAME, // The table name in which the data will be inserted\n        null,       // String: optional; may be null. If your provided values is empty,\n                    // no column names are known and an empty row can't be inserted.\n                    // If not set to null, this parameter provides the name\n                    // of nullable column name to explicitly insert a NULL\n\n        values      // The ContentValues instance which contains the data\n);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// You need a writable database to insert data\nfinal SQLiteDatabase database = openHelper.getWritableDatabase();\n\n// Create a ContentValues instance which contains the data for each column\n// You do not need to specify a value for the PRIMARY KEY column.\n// Unique values for these are automatically generated.\nfinal ContentValues values = new ContentValues();\nvalues.put(COLUMN_NAME, model.getName());\nvalues.put(COLUMN_DESCRIPTION, model.getDescription());\nvalues.put(COLUMN_VALUE, model.getValue());\n\n// This call performs the update\n// The return value is the rowId or primary key value for the new row!\n// If this method returns -1 then the insert has failed.\nfinal int id = database.insert(\n        TABLE_NAME, // The table name in which the data will be inserted\n        null,       // String: optional; may be null. If your provided values is empty,\n                    // no column names are known and an empty row can't be inserted.\n                    // If not set to null, this parameter provides the name\n                    // of nullable column name to explicitly insert a NULL\n\n        values      // The ContentValues instance which contains the data\n);",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "040 Insert data into database"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

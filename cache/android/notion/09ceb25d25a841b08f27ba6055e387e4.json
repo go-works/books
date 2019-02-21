@@ -1,0 +1,151 @@
+{
+  "ID": "09ceb25d-25a8-41b0-8f27-ba6055e387e4",
+  "Root": {
+    "alive": true,
+    "content": [
+      "7902614c-8dfe-4e0f-8b45-4c5f7a55ec80",
+      "2676b87a-7053-4421-9ad9-63e0a83ad9be",
+      "d1d8db7e-ea4d-4b40-bde7-7936de8cf3fb",
+      "a0f09422-5489-42d9-957f-ea1094113d39"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550447448245,
+    "id": "09ceb25d-25a8-41b0-8f27-ba6055e387e4",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550447448245,
+    "parent_id": "cf2c473f-5e00-4648-971f-43398123cc33",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "050 Include all permission-related code to an abstract base class and extend the activity of this base class to achieve cleanerreusable code"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447448244,
+        "id": "7902614c-8dfe-4e0f-8b45-4c5f7a55ec80",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447448244,
+        "parent_id": "09ceb25d-25a8-41b0-8f27-ba6055e387e4",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public abstract class BaseActivity extends AppCompatActivity {\n    private Map\u003cInteger, PermissionCallback\u003e permissionCallbackMap = new HashMap\u003c\u003e();\n\n    @Override\n    protected void onStart() {\n        super.onStart();\n        ...\n    }\n\n    @Override\n    public void setContentView(int layoutResId) {\n        super.setContentView(layoutResId);\n        bindViews();\n    }\n\n    ...\n\n    @Override\n    public void onRequestPermissionsResult(\n            int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {\n        super.onRequestPermissionsResult(requestCode, permissions, grantResults);\n        PermissionCallback callback = permissionCallbackMap.get(requestCode);\n\n        if (callback == null) return;\n\n        // Check whether the permission request was rejected.\n        if (grantResults.length \u003c 0 \u0026\u0026 permissions.length \u003e 0) {\n            callback.onPermissionDenied(permissions);\n            return;\n        }\n\n        List\u003cString\u003e grantedPermissions = new ArrayList\u003c\u003e();\n        List\u003cString\u003e blockedPermissions = new ArrayList\u003c\u003e();\n        List\u003cString\u003e deniedPermissions = new ArrayList\u003c\u003e();\n        int index = 0;\n\n        for (String permission : permissions) {\n            List\u003cString\u003e permissionList = grantResults[index] == PackageManager.PERMISSION_GRANTED\n                    ? grantedPermissions\n                    : ! ActivityCompat.shouldShowRequestPermissionRationale(this, permission)\n                        ? blockedPermissions\n                        : deniedPermissions;\n            permissionList.add(permission);\n            index ++;\n        }\n\n        if (grantedPermissions.size() \u003e 0) {\n            callback.onPermissionGranted(\n                    grantedPermissions.toArray(new String[grantedPermissions.size()]));\n        }\n\n        if (deniedPermissions.size() \u003e 0) {\n            callback.onPermissionDenied(\n                    deniedPermissions.toArray(new String[deniedPermissions.size()]));\n        }\n\n        if (blockedPermissions.size() \u003e 0) {\n            callback.onPermissionBlocked(\n                    blockedPermissions.toArray(new String[blockedPermissions.size()]));\n        }\n\n        permissionCallbackMap.remove(requestCode);\n    }\n\n    /**\n     * Check whether a permission is granted or not.\n     *\n     * @param permission\n     * @return\n     */\n    public boolean hasPermission(String permission) {\n        return ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED;\n    }\n\n    /**\n     * Request permissions and get the result on callback.\n     *\n     * @param permissions\n     * @param callback\n     */\n    public void requestPermission(String [] permissions, @NonNull PermissionCallback callback) {\n        int requestCode = permissionCallbackMap.size() + 1;\n        permissionCallbackMap.put(requestCode, callback);\n        ActivityCompat.requestPermissions(this, permissions, requestCode);\n    }\n\n    /**\n     * Request permission and get the result on callback.\n     *\n     * @param permission\n     * @param callback\n     */\n    public void requestPermission(String permission, @NonNull PermissionCallback callback) {\n        int requestCode = permissionCallbackMap.size() + 1;\n        permissionCallbackMap.put(requestCode, callback);\n        ActivityCompat.requestPermissions(this, new String[] { permission }, requestCode);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public abstract class BaseActivity extends AppCompatActivity {\n    private Map\u003cInteger, PermissionCallback\u003e permissionCallbackMap = new HashMap\u003c\u003e();\n\n    @Override\n    protected void onStart() {\n        super.onStart();\n        ...\n    }\n\n    @Override\n    public void setContentView(int layoutResId) {\n        super.setContentView(layoutResId);\n        bindViews();\n    }\n\n    ...\n\n    @Override\n    public void onRequestPermissionsResult(\n            int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {\n        super.onRequestPermissionsResult(requestCode, permissions, grantResults);\n        PermissionCallback callback = permissionCallbackMap.get(requestCode);\n\n        if (callback == null) return;\n\n        // Check whether the permission request was rejected.\n        if (grantResults.length \u003c 0 \u0026\u0026 permissions.length \u003e 0) {\n            callback.onPermissionDenied(permissions);\n            return;\n        }\n\n        List\u003cString\u003e grantedPermissions = new ArrayList\u003c\u003e();\n        List\u003cString\u003e blockedPermissions = new ArrayList\u003c\u003e();\n        List\u003cString\u003e deniedPermissions = new ArrayList\u003c\u003e();\n        int index = 0;\n\n        for (String permission : permissions) {\n            List\u003cString\u003e permissionList = grantResults[index] == PackageManager.PERMISSION_GRANTED\n                    ? grantedPermissions\n                    : ! ActivityCompat.shouldShowRequestPermissionRationale(this, permission)\n                        ? blockedPermissions\n                        : deniedPermissions;\n            permissionList.add(permission);\n            index ++;\n        }\n\n        if (grantedPermissions.size() \u003e 0) {\n            callback.onPermissionGranted(\n                    grantedPermissions.toArray(new String[grantedPermissions.size()]));\n        }\n\n        if (deniedPermissions.size() \u003e 0) {\n            callback.onPermissionDenied(\n                    deniedPermissions.toArray(new String[deniedPermissions.size()]));\n        }\n\n        if (blockedPermissions.size() \u003e 0) {\n            callback.onPermissionBlocked(\n                    blockedPermissions.toArray(new String[blockedPermissions.size()]));\n        }\n\n        permissionCallbackMap.remove(requestCode);\n    }\n\n    /**\n     * Check whether a permission is granted or not.\n     *\n     * @param permission\n     * @return\n     */\n    public boolean hasPermission(String permission) {\n        return ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED;\n    }\n\n    /**\n     * Request permissions and get the result on callback.\n     *\n     * @param permissions\n     * @param callback\n     */\n    public void requestPermission(String [] permissions, @NonNull PermissionCallback callback) {\n        int requestCode = permissionCallbackMap.size() + 1;\n        permissionCallbackMap.put(requestCode, callback);\n        ActivityCompat.requestPermissions(this, permissions, requestCode);\n    }\n\n    /**\n     * Request permission and get the result on callback.\n     *\n     * @param permission\n     * @param callback\n     */\n    public void requestPermission(String permission, @NonNull PermissionCallback callback) {\n        int requestCode = permissionCallbackMap.size() + 1;\n        permissionCallbackMap.put(requestCode, callback);\n        ActivityCompat.requestPermissions(this, new String[] { permission }, requestCode);\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447448244,
+        "id": "2676b87a-7053-4421-9ad9-63e0a83ad9be",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447448244,
+        "parent_id": "09ceb25d-25a8-41b0-8f27-ba6055e387e4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Example usage in the activity"
+            ]
+          ]
+        },
+        "type": "header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Example usage in the activity"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447448244,
+        "id": "d1d8db7e-ea4d-4b40-bde7-7936de8cf3fb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447448244,
+        "parent_id": "09ceb25d-25a8-41b0-8f27-ba6055e387e4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The activity should extend the abstract base class defined above as follows:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The activity should extend the abstract base class defined above as follows:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447448244,
+        "id": "a0f09422-5489-42d9-957f-ea1094113d39",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447448244,
+        "parent_id": "09ceb25d-25a8-41b0-8f27-ba6055e387e4",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "private void requestLocationAfterPermissionCheck() {\n    if (hasPermission(Manifest.permission.ACCESS_FINE_LOCATION)) {\n        requestLocation();\n        return;\n    }\n\n    // Call the base class method.\n    requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, new PermissionCallback() {\n        @Override\n        public void onPermissionGranted(String[] grantedPermissions) {\n            requestLocation();\n        }\n\n        @Override\n        public void onPermissionDenied(String[] deniedPermissions) {\n            // Do something.\n        }\n\n        @Override\n        public void onPermissionBlocked(String[] blockedPermissions) {\n            // Do something.\n        }\n    });\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "private void requestLocationAfterPermissionCheck() {\n    if (hasPermission(Manifest.permission.ACCESS_FINE_LOCATION)) {\n        requestLocation();\n        return;\n    }\n\n    // Call the base class method.\n    requestPermission(Manifest.permission.ACCESS_FINE_LOCATION, new PermissionCallback() {\n        @Override\n        public void onPermissionGranted(String[] grantedPermissions) {\n            requestLocation();\n        }\n\n        @Override\n        public void onPermissionDenied(String[] deniedPermissions) {\n            // Do something.\n        }\n\n        @Override\n        public void onPermissionBlocked(String[] blockedPermissions) {\n            // Do something.\n        }\n    });\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "050 Include all permission-related code to an abstract base class and extend the activity of this base class to achieve cleanerreusable code"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

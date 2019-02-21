@@ -1,0 +1,125 @@
+{
+  "ID": "862c66e6-2b12-4824-a9bd-c92a18d8a346",
+  "Root": {
+    "alive": true,
+    "content": [
+      "c0e5d7a8-43c3-4d9b-bc01-0f0fa34b3073",
+      "bcb153ca-d637-4765-8e68-083e2637cf21",
+      "db903b77-334c-43a8-9eeb-e8f48b5d2515"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550456721030,
+    "id": "862c66e6-2b12-4824-a9bd-c92a18d8a346",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550456721030,
+    "parent_id": "03d85aeb-9a2e-46de-8eee-c72d3db4f4ec",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 ViewModel with LiveData transformations"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456721027,
+        "id": "c0e5d7a8-43c3-4d9b-bc01-0f0fa34b3073",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456721027,
+        "parent_id": "862c66e6-2b12-4824-a9bd-c92a18d8a346",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class BaseViewModel extends ViewModel {\n    private static final int TAG_SEGMENT_INDEX = 2;\n    private static final int VIDEOS_LIMIT = 100;\n\n    // We save input params here\n    private final MutableLiveData\u003cPair\u003cString, String\u003e\u003e urlWithReferrerLiveData = new MutableLiveData\u003c\u003e();\n\n    // transform specific uri param to \"tag\"\n    private final LiveData\u003cString\u003e currentTagLiveData = Transformations.map(urlWithReferrerLiveData, pair -\u003e {\n        Uri uri = Uri.parse(pair.first);\n        List\u003cString\u003e segments = uri.getPathSegments();\n        if (segments.size() \u003e TAG_SEGMENT_INDEX)\n            return segments.get(TAG_SEGMENT_INDEX);\n        return null;\n    });\n\n    // transform \"tag\" to videos list\n    private final LiveData\u003cList\u003cVideoItem\u003e\u003e videoByTagData = Transformations.switchMap(currentTagLiveData, tag -\u003e contentRepository.getVideoByTag(tag, VIDEOS_LIMIT));\n\n    ContentRepository contentRepository;\n\n    public BaseViewModel() {\n        // some inits\n    }\n\n    public void setUrlWithReferrer(String url, String referrer) {\n        // set value activates observers and transformations\n        urlWithReferrerLiveData.setValue(new Pair\u003c\u003e(url, referrer));\n    }\n\n    public LiveData\u003cList\u003cVideoItem\u003e\u003e getVideoByTagData() {\n        return videoByTagData;\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class BaseViewModel extends ViewModel {\n    private static final int TAG_SEGMENT_INDEX = 2;\n    private static final int VIDEOS_LIMIT = 100;\n\n    // We save input params here\n    private final MutableLiveData\u003cPair\u003cString, String\u003e\u003e urlWithReferrerLiveData = new MutableLiveData\u003c\u003e();\n\n    // transform specific uri param to \"tag\"\n    private final LiveData\u003cString\u003e currentTagLiveData = Transformations.map(urlWithReferrerLiveData, pair -\u003e {\n        Uri uri = Uri.parse(pair.first);\n        List\u003cString\u003e segments = uri.getPathSegments();\n        if (segments.size() \u003e TAG_SEGMENT_INDEX)\n            return segments.get(TAG_SEGMENT_INDEX);\n        return null;\n    });\n\n    // transform \"tag\" to videos list\n    private final LiveData\u003cList\u003cVideoItem\u003e\u003e videoByTagData = Transformations.switchMap(currentTagLiveData, tag -\u003e contentRepository.getVideoByTag(tag, VIDEOS_LIMIT));\n\n    ContentRepository contentRepository;\n\n    public BaseViewModel() {\n        // some inits\n    }\n\n    public void setUrlWithReferrer(String url, String referrer) {\n        // set value activates observers and transformations\n        urlWithReferrerLiveData.setValue(new Pair\u003c\u003e(url, referrer));\n    }\n\n    public LiveData\u003cList\u003cVideoItem\u003e\u003e getVideoByTagData() {\n        return videoByTagData;\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456721030,
+        "id": "bcb153ca-d637-4765-8e68-083e2637cf21",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456721030,
+        "parent_id": "862c66e6-2b12-4824-a9bd-c92a18d8a346",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Somewhere in UI:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Somewhere in UI:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456721030,
+        "id": "db903b77-334c-43a8-9eeb-e8f48b5d2515",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456721030,
+        "parent_id": "862c66e6-2b12-4824-a9bd-c92a18d8a346",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class VideoActivity extends BaseCompatLifecycleActivity {\n    private VideoViewModel viewModel;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n\n        // Get ViewModel\n        viewModel = ViewModelProviders.of(this).get(BaseViewModel.class);\n        // Add observer\n        viewModel.getVideoByTagData().observe(this, data -\u003e {\n            // some checks\n            adapter.updateData(data);\n        });\n\n        ...\n        if (savedInstanceState == null) {\n            // init loading only at first creation\n            // you just set params and \n            viewModel.setUrlWithReferrer(url, referrer);\n        }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class VideoActivity extends BaseCompatLifecycleActivity {\n    private VideoViewModel viewModel;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n\n        // Get ViewModel\n        viewModel = ViewModelProviders.of(this).get(BaseViewModel.class);\n        // Add observer\n        viewModel.getVideoByTagData().observe(this, data -\u003e {\n            // some checks\n            adapter.updateData(data);\n        });\n\n        ...\n        if (savedInstanceState == null) {\n            // init loading only at first creation\n            // you just set params and \n            viewModel.setUrlWithReferrer(url, referrer);\n        }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "030 ViewModel with LiveData transformations"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

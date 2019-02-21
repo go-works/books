@@ -1,0 +1,71 @@
+{
+  "ID": "9ecc3886-1ea1-4e7b-914b-c3e0b25b1249",
+  "Root": {
+    "alive": true,
+    "content": [
+      "936c532b-9db4-49e3-9d7e-a8608d82f644"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550444972851,
+    "id": "9ecc3886-1ea1-4e7b-914b-c3e0b25b1249",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550444972851,
+    "parent_id": "6190cb6e-dc43-458e-9fc6-34c0e0c69fa6",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "100 Updating a row in a table"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444972849,
+        "id": "936c532b-9db4-49e3-9d7e-a8608d82f644",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444972849,
+        "parent_id": "9ecc3886-1ea1-4e7b-914b-c3e0b25b1249",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// You need a writable database to update a row\nfinal SQLiteDatabase database = openHelper.getWritableDatabase();\n\n// Create a ContentValues instance which contains the up to date data for each column\n// Unlike when inserting data you need to specify the value for the PRIMARY KEY column as well\nfinal ContentValues values = new ContentValues();\nvalues.put(COLUMN_ID, model.getId());\nvalues.put(COLUMN_NAME, model.getName());\nvalues.put(COLUMN_DESCRIPTION, model.getDescription());\nvalues.put(COLUMN_VALUE, model.getValue());\n\n// This call performs the update\n// The return value tells you how many rows have been updated.\nfinal int count = database.update(\n        TABLE_NAME,         // The table name in which the data will be updated\n        values,             // The ContentValues instance with the new data\n        COLUMN_ID + \" = ?\", // The selection which specifies which row is updated. ? symbols are parameters.\n        new String[] {      // The actual parameters for the selection as a String[]. \n                String.valueOf(model.getId()) \n        }  \n);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// You need a writable database to update a row\nfinal SQLiteDatabase database = openHelper.getWritableDatabase();\n\n// Create a ContentValues instance which contains the up to date data for each column\n// Unlike when inserting data you need to specify the value for the PRIMARY KEY column as well\nfinal ContentValues values = new ContentValues();\nvalues.put(COLUMN_ID, model.getId());\nvalues.put(COLUMN_NAME, model.getName());\nvalues.put(COLUMN_DESCRIPTION, model.getDescription());\nvalues.put(COLUMN_VALUE, model.getValue());\n\n// This call performs the update\n// The return value tells you how many rows have been updated.\nfinal int count = database.update(\n        TABLE_NAME,         // The table name in which the data will be updated\n        values,             // The ContentValues instance with the new data\n        COLUMN_ID + \" = ?\", // The selection which specifies which row is updated. ? symbols are parameters.\n        new String[] {      // The actual parameters for the selection as a String[]. \n                String.valueOf(model.getId()) \n        }  \n);",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "100 Updating a row in a table"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,241 @@
+{
+  "ID": "828b2c0c-2c91-4539-b4c3-7d4080ccd134",
+  "Root": {
+    "alive": true,
+    "content": [
+      "c5b3e8bf-992c-48ad-8d27-008afcca9754",
+      "46cc32f9-7238-462d-80a0-221696122486"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550447659007,
+    "id": "828b2c0c-2c91-4539-b4c3-7d4080ccd134",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550447659007,
+    "parent_id": "3d7c457d-2120-4fab-9620-ddd6e746e8ef",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "020 Fade inout animation"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447659004,
+        "id": "c5b3e8bf-992c-48ad-8d27-008afcca9754",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447659004,
+        "parent_id": "828b2c0c-2c91-4539-b4c3-7d4080ccd134",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In order to get a view to slowly fade in or out of view, use an "
+            ],
+            [
+              "ObjectAnimator",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". As seen in the code below, set a duration using "
+            ],
+            [
+              ".setDuration(millis)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " where the "
+            ],
+            [
+              "millis",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " parameter is the duration (in milliseconds) of the animation. In the below code, the views will fade in / out over 500 milliseconds, or 1/2 second. To start the "
+            ],
+            [
+              "ObjectAnimator",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "‘s animation, call "
+            ],
+            [
+              ".start()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". Once the animation is complete, "
+            ],
+            [
+              "onAnimationEnd(Animator animation)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is called. Here is a good place to set your view’s visibility to "
+            ],
+            [
+              "View.GONE",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " or "
+            ],
+            [
+              "View.VISIBLE",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In order to get a view to slowly fade in or out of view, use an "
+          },
+          {
+            "Text": "ObjectAnimator",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". As seen in the code below, set a duration using "
+          },
+          {
+            "Text": ".setDuration(millis)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " where the "
+          },
+          {
+            "Text": "millis",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " parameter is the duration (in milliseconds) of the animation. In the below code, the views will fade in / out over 500 milliseconds, or 1/2 second. To start the "
+          },
+          {
+            "Text": "ObjectAnimator",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "‘s animation, call "
+          },
+          {
+            "Text": ".start()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". Once the animation is complete, "
+          },
+          {
+            "Text": "onAnimationEnd(Animator animation)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is called. Here is a good place to set your view’s visibility to "
+          },
+          {
+            "Text": "View.GONE",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " or "
+          },
+          {
+            "Text": "View.VISIBLE",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447659007,
+        "id": "46cc32f9-7238-462d-80a0-221696122486",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447659007,
+        "parent_id": "828b2c0c-2c91-4539-b4c3-7d4080ccd134",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import android.animation.Animator;\nimport android.animation.AnimatorListenerAdapter;\nimport android.animation.ValueAnimator;\n\nvoid fadeOutAnimation(View viewToFadeOut) {\n    ObjectAnimator fadeOut = ObjectAnimator.ofFloat(viewToFadeOut, \"alpha\", 1f, 0f);\n\n    fadeOut.setDuration(500);\n    fadeOut.addListener(new AnimatorListenerAdapter() {\n        @Override\n        public void onAnimationEnd(Animator animation) {\n            // We wanna set the view to GONE, after it's fade out. so it actually disappear from the layout \u0026 don't take up space.\n            viewToFadeOut.setVisibility(View.GONE);\n        }\n    });\n\n    fadeOut.start();\n}\n\nvoid fadeInAnimation(View viewToFadeIn) {\n    ObjectAnimator fadeIn = ObjectAnimator.ofFloat(viewToFadeIn, \"alpha\", 0f, 1f);\n    fadeIn.setDuration(500);\n\n    fadeIn.addListener(new AnimatorListenerAdapter() {\n        @Override\n        public void onAnimationStar(Animator animation) {\n            // We wanna set the view to VISIBLE, but with alpha 0. So it appear invisible in the layout.\n            viewToFadeIn.setVisibility(View.VISIBLE);\n            viewToFadeIn.setAlpha(0);\n        }\n    });\n\n    fadeIn.start();\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import android.animation.Animator;\nimport android.animation.AnimatorListenerAdapter;\nimport android.animation.ValueAnimator;\n\nvoid fadeOutAnimation(View viewToFadeOut) {\n    ObjectAnimator fadeOut = ObjectAnimator.ofFloat(viewToFadeOut, \"alpha\", 1f, 0f);\n\n    fadeOut.setDuration(500);\n    fadeOut.addListener(new AnimatorListenerAdapter() {\n        @Override\n        public void onAnimationEnd(Animator animation) {\n            // We wanna set the view to GONE, after it's fade out. so it actually disappear from the layout \u0026 don't take up space.\n            viewToFadeOut.setVisibility(View.GONE);\n        }\n    });\n\n    fadeOut.start();\n}\n\nvoid fadeInAnimation(View viewToFadeIn) {\n    ObjectAnimator fadeIn = ObjectAnimator.ofFloat(viewToFadeIn, \"alpha\", 0f, 1f);\n    fadeIn.setDuration(500);\n\n    fadeIn.addListener(new AnimatorListenerAdapter() {\n        @Override\n        public void onAnimationStar(Animator animation) {\n            // We wanna set the view to VISIBLE, but with alpha 0. So it appear invisible in the layout.\n            viewToFadeIn.setVisibility(View.VISIBLE);\n            viewToFadeIn.setAlpha(0);\n        }\n    });\n\n    fadeIn.start();\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "020 Fade inout animation"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,123 @@
+{
+  "ID": "65d783f7-6b8e-40dc-9164-a7d04d4ea427",
+  "Root": {
+    "alive": true,
+    "content": [
+      "0ec0eb5a-9d28-4379-ad31-012b8c1375fc",
+      "2fa69cbc-d7b5-4096-ae66-290bf91cc60e",
+      "3dd227ae-3219-4060-85ef-1bf467fc020f"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550447766933,
+    "id": "65d783f7-6b8e-40dc-9164-a7d04d4ea427",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550447766933,
+    "parent_id": "331f90f3-9311-486a-8bcd-c5e4e171ee84",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "020 Parcelable object containing another Parcelable object"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447766930,
+        "id": "0ec0eb5a-9d28-4379-ad31-012b8c1375fc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447766930,
+        "parent_id": "65d783f7-6b8e-40dc-9164-a7d04d4ea427",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "An example of a class that contains a parcelable class inside:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "An example of a class that contains a parcelable class inside:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447766932,
+        "id": "2fa69cbc-d7b5-4096-ae66-290bf91cc60e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447766932,
+        "parent_id": "65d783f7-6b8e-40dc-9164-a7d04d4ea427",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class Repository implements Parcelable {\n    private String name;\n    private Owner owner;\n    private boolean isPrivate;\n \n    public Repository(String name, Owner owner, boolean isPrivate) {\n        this.name = name;      \n        this.owner = owner;\n        this.isPrivate = isPrivate;\n    }\n \n    protected Repository(Parcel in) {      \n        name = in.readString();\n        owner = in.readParcelable(Owner.class.getClassLoader());\n        isPrivate = in.readByte() != 0;\n    }\n \n    @Override\n    public void writeToParcel(Parcel dest, int flags) {\n        dest.writeString(name);\n        dest.writeParcelable(owner, flags);\n        dest.writeByte((byte) (isPrivate ? 1 : 0));\n    }\n \n    @Override\n    public int describeContents() {\n        return 0;\n    }\n \n    public static final Creator\u003cRepository\u003e CREATOR = new Creator\u003cRepository\u003e() {\n        @Override\n        public Repository createFromParcel(Parcel in) {\n            return new Repository(in);\n        }\n \n        @Override\n        public Repository[] newArray(int size) {\n            return new Repository[size];\n        }\n    };\n \n    //getters and setters\n \n    public String getName() {\n        return name;\n    }\n \n    public void setName(String name) {\n        this.name = name;\n    }\n \n    public Owner getOwner() {\n        return owner;\n    }\n \n    public void setOwner(Owner owner) {\n        this.owner = owner;\n    }\n   \n     public boolean isPrivate() {\n        return isPrivate;\n    }\n \n    public void setPrivate(boolean isPrivate) {\n        this.isPrivate = isPrivate;\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class Repository implements Parcelable {\n    private String name;\n    private Owner owner;\n    private boolean isPrivate;\n \n    public Repository(String name, Owner owner, boolean isPrivate) {\n        this.name = name;      \n        this.owner = owner;\n        this.isPrivate = isPrivate;\n    }\n \n    protected Repository(Parcel in) {      \n        name = in.readString();\n        owner = in.readParcelable(Owner.class.getClassLoader());\n        isPrivate = in.readByte() != 0;\n    }\n \n    @Override\n    public void writeToParcel(Parcel dest, int flags) {\n        dest.writeString(name);\n        dest.writeParcelable(owner, flags);\n        dest.writeByte((byte) (isPrivate ? 1 : 0));\n    }\n \n    @Override\n    public int describeContents() {\n        return 0;\n    }\n \n    public static final Creator\u003cRepository\u003e CREATOR = new Creator\u003cRepository\u003e() {\n        @Override\n        public Repository createFromParcel(Parcel in) {\n            return new Repository(in);\n        }\n \n        @Override\n        public Repository[] newArray(int size) {\n            return new Repository[size];\n        }\n    };\n \n    //getters and setters\n \n    public String getName() {\n        return name;\n    }\n \n    public void setName(String name) {\n        this.name = name;\n    }\n \n    public Owner getOwner() {\n        return owner;\n    }\n \n    public void setOwner(Owner owner) {\n        this.owner = owner;\n    }\n   \n     public boolean isPrivate() {\n        return isPrivate;\n    }\n \n    public void setPrivate(boolean isPrivate) {\n        this.isPrivate = isPrivate;\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447766933,
+        "id": "3dd227ae-3219-4060-85ef-1bf467fc020f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447766933,
+        "parent_id": "65d783f7-6b8e-40dc-9164-a7d04d4ea427",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Owner is just a normal parcelable class."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Owner is just a normal parcelable class."
+          }
+        ]
+      }
+    ],
+    "title": "020 Parcelable object containing another Parcelable object"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

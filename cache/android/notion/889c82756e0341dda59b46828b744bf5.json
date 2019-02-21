@@ -1,0 +1,394 @@
+{
+  "ID": "889c8275-6e03-41dd-a59b-46828b744bf5",
+  "Root": {
+    "alive": true,
+    "content": [
+      "d5730f4e-0667-4b12-84cd-ed949df30c79",
+      "20c28708-53d7-4ec2-837d-2a829c2a81fe",
+      "2b295bd3-0988-4019-9518-febc87b51f85",
+      "2570c1fe-fde4-4e88-8629-1ef119a3b72f",
+      "d0c5d5ce-4281-4691-821f-b927a17d9119",
+      "e9efe800-6934-47ac-9ad5-798905c27b18",
+      "c14211b7-bd28-46e5-8f72-92adea4ef0db",
+      "58594bc3-ef34-4dba-98c0-e2d650272290",
+      "2bc9e4cd-8e8e-4c10-aa77-ad44a87352e2",
+      "a0e16d00-0a9a-4d0e-b0a5-66625d49f883",
+      "8549363b-175b-41ae-98d1-a644cc66290d",
+      "c60953fb-5135-4812-b293-aa2ce8722275"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550447682361,
+    "id": "889c8275-6e03-41dd-a59b-46828b744bf5",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550447682361,
+    "parent_id": "c170b80b-c39f-46ce-b311-2debae2f2082",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Fused location API"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447682356,
+        "id": "d5730f4e-0667-4b12-84cd-ed949df30c79",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447682356,
+        "parent_id": "889c8275-6e03-41dd-a59b-46828b744bf5",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Example Using Activity w/ LocationRequest"
+            ]
+          ]
+        },
+        "type": "header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Example Using Activity w/ LocationRequest"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447682358,
+        "id": "20c28708-53d7-4ec2-837d-2a829c2a81fe",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447682358,
+        "parent_id": "889c8275-6e03-41dd-a59b-46828b744bf5",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "/*\n * This example is useful if you only want to receive updates in this \n * activity only, and have no use for location anywhere else.\n */\npublic class LocationActivity extends AppCompatActivity implements\n        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {\n\n    private GoogleApiClient mGoogleApiClient;\n    private LocationRequest mLocationRequest;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_main);\n\n        mGoogleApiClient = new GoogleApiClient.Builder(this)\n                .addConnectionCallbacks(this)\n                .addOnConnectionFailedListener(this)\n                .addApi(LocationServices.API)\n                .build();\n\n        mLocationRequest = new LocationRequest()\n                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY) //GPS quality location points\n                .setInterval(2000) //At least once every 2 seconds\n                .setFastestInterval(1000); //At most once a second\n    }\n\n    @Override\n    protected void onStart(){\n        super.onStart();\n        mGoogleApiClient.connect();\n    }\n    \n    @Override\n    protected void onResume(){\n        super.onResume();\n        //Permission check for Android 6.0+\n        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {\n            if(mGoogleApiClient.isConnected()) {\n                LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);\n            }\n        }\n    }\n    \n    @Override\n    protected void onPause(){\n        super.onPause();\n        //Permission check for Android 6.0+\n        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {\n            if(mGoogleApiClient.isConnected()) {\n                LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);\n            }\n        }\n    }\n    \n    @Override\n    protected void onStop(){\n        super.onStop();\n        mGoogleApiClient.disconnect();\n    }\n\n    @Override\n    public void onConnected(@Nullable Bundle bundle) {\n        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {\n            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);\n        }\n    }\n\n    @Override\n    public void onConnectionSuspended(int i) {\n        mGoogleApiClient.connect();\n    }\n\n    @Override\n    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {\n    }\n\n    @Override\n    public void onLocationChanged(Location location) {\n        //Handle your location update code here\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "/*\n * This example is useful if you only want to receive updates in this \n * activity only, and have no use for location anywhere else.\n */\npublic class LocationActivity extends AppCompatActivity implements\n        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {\n\n    private GoogleApiClient mGoogleApiClient;\n    private LocationRequest mLocationRequest;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_main);\n\n        mGoogleApiClient = new GoogleApiClient.Builder(this)\n                .addConnectionCallbacks(this)\n                .addOnConnectionFailedListener(this)\n                .addApi(LocationServices.API)\n                .build();\n\n        mLocationRequest = new LocationRequest()\n                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY) //GPS quality location points\n                .setInterval(2000) //At least once every 2 seconds\n                .setFastestInterval(1000); //At most once a second\n    }\n\n    @Override\n    protected void onStart(){\n        super.onStart();\n        mGoogleApiClient.connect();\n    }\n    \n    @Override\n    protected void onResume(){\n        super.onResume();\n        //Permission check for Android 6.0+\n        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {\n            if(mGoogleApiClient.isConnected()) {\n                LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);\n            }\n        }\n    }\n    \n    @Override\n    protected void onPause(){\n        super.onPause();\n        //Permission check for Android 6.0+\n        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {\n            if(mGoogleApiClient.isConnected()) {\n                LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);\n            }\n        }\n    }\n    \n    @Override\n    protected void onStop(){\n        super.onStop();\n        mGoogleApiClient.disconnect();\n    }\n\n    @Override\n    public void onConnected(@Nullable Bundle bundle) {\n        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {\n            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);\n        }\n    }\n\n    @Override\n    public void onConnectionSuspended(int i) {\n        mGoogleApiClient.connect();\n    }\n\n    @Override\n    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {\n    }\n\n    @Override\n    public void onLocationChanged(Location location) {\n        //Handle your location update code here\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447682358,
+        "id": "2b295bd3-0988-4019-9518-febc87b51f85",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447682358,
+        "parent_id": "889c8275-6e03-41dd-a59b-46828b744bf5",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Example Using Service w/ PendingIntent and BroadcastReceiver"
+            ]
+          ]
+        },
+        "type": "header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Example Using Service w/ PendingIntent and BroadcastReceiver"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447682358,
+        "id": "2570c1fe-fde4-4e88-8629-1ef119a3b72f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447682358,
+        "parent_id": "889c8275-6e03-41dd-a59b-46828b744bf5",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "ExampleActivity",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "ExampleActivity",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447682360,
+        "id": "d0c5d5ce-4281-4691-821f-b927a17d9119",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447682360,
+        "parent_id": "889c8275-6e03-41dd-a59b-46828b744bf5",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Recommended reading: "
+            ],
+            [
+              "LocalBroadcastManager",
+              [
+                [
+                  "a",
+                  "https://developer.android.com/reference/android/support/v4/content/LocalBroadcastManager.html"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Recommended reading: "
+          },
+          {
+            "Text": "LocalBroadcastManager",
+            "Link": "https://developer.android.com/reference/android/support/v4/content/LocalBroadcastManager.html"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447682360,
+        "id": "e9efe800-6934-47ac-9ad5-798905c27b18",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447682360,
+        "parent_id": "889c8275-6e03-41dd-a59b-46828b744bf5",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "/*\n * This example is useful if you have many different classes that should be \n * receiving location updates, but want more granular control over which ones\n * listen to the updates.\n * \n * For example, this activity will stop getting updates when it is not visible, but a database\n * class with a registered local receiver will continue to receive updates, until \"stopUpdates()\" is called here.\n *\n */\npublic class ExampleActivity extends AppCompatActivity {\n\n    private InternalLocationReceiver mInternalLocationReceiver;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState){\n        super.onCreate(savedInstanceState);\n        \n        //Create internal receiver object in this method only.\n        mInternalLocationReceiver = new InternalLocationReceiver(this);\n    }\n\n    @Override\n    protected void onResume(){\n        super.onResume();\n        \n        //Register to receive updates in activity only when activity is visible\n        LocalBroadcastManager.getInstance(this).registerReceiver(mInternalLocationReceiver, new IntentFilter(\"googleLocation\"));\n    }\n\n    @Override\n    protected void onPause(){\n        super.onPause();\n        \n        //Unregister to stop receiving updates in activity when it is not visible.\n        //NOTE: You will still receive updates even if this activity is killed.\n        LocalBroadcastManager.getInstance(this).unregisterReceiver(mInternalLocationReceiver);\n    }\n\n    //Helper method to get updates\n    private void requestUpdates(){\n        startService(new Intent(this, LocationService.class).putExtra(\"request\", true));\n    }\n\n    //Helper method to stop updates\n    private void stopUpdates(){\n        startService(new Intent(this, LocationService.class).putExtra(\"remove\", true));\n    }\n\n    /*\n     * Internal receiver used to get location updates for this activity.\n     * \n     * This receiver and any receiver registered with LocalBroadcastManager does\n     * not need to be registered in the Manifest.\n     *\n     */\n    private static class InternalLocationReceiver extends BroadcastReceiver{\n\n        private ExampleActivity mActivity;\n\n        InternalLocationReceiver(ExampleActivity activity){\n            mActivity = activity;\n        }\n\n        @Override\n        public void onReceive(Context context, Intent intent) {\n            final ExampleActivity activity = mActivity;\n            if(activity != null) {\n                LocationResult result = intent.getParcelableExtra(\"result\");\n                //Handle location update here\n            }\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "/*\n * This example is useful if you have many different classes that should be \n * receiving location updates, but want more granular control over which ones\n * listen to the updates.\n * \n * For example, this activity will stop getting updates when it is not visible, but a database\n * class with a registered local receiver will continue to receive updates, until \"stopUpdates()\" is called here.\n *\n */\npublic class ExampleActivity extends AppCompatActivity {\n\n    private InternalLocationReceiver mInternalLocationReceiver;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState){\n        super.onCreate(savedInstanceState);\n        \n        //Create internal receiver object in this method only.\n        mInternalLocationReceiver = new InternalLocationReceiver(this);\n    }\n\n    @Override\n    protected void onResume(){\n        super.onResume();\n        \n        //Register to receive updates in activity only when activity is visible\n        LocalBroadcastManager.getInstance(this).registerReceiver(mInternalLocationReceiver, new IntentFilter(\"googleLocation\"));\n    }\n\n    @Override\n    protected void onPause(){\n        super.onPause();\n        \n        //Unregister to stop receiving updates in activity when it is not visible.\n        //NOTE: You will still receive updates even if this activity is killed.\n        LocalBroadcastManager.getInstance(this).unregisterReceiver(mInternalLocationReceiver);\n    }\n\n    //Helper method to get updates\n    private void requestUpdates(){\n        startService(new Intent(this, LocationService.class).putExtra(\"request\", true));\n    }\n\n    //Helper method to stop updates\n    private void stopUpdates(){\n        startService(new Intent(this, LocationService.class).putExtra(\"remove\", true));\n    }\n\n    /*\n     * Internal receiver used to get location updates for this activity.\n     * \n     * This receiver and any receiver registered with LocalBroadcastManager does\n     * not need to be registered in the Manifest.\n     *\n     */\n    private static class InternalLocationReceiver extends BroadcastReceiver{\n\n        private ExampleActivity mActivity;\n\n        InternalLocationReceiver(ExampleActivity activity){\n            mActivity = activity;\n        }\n\n        @Override\n        public void onReceive(Context context, Intent intent) {\n            final ExampleActivity activity = mActivity;\n            if(activity != null) {\n                LocationResult result = intent.getParcelableExtra(\"result\");\n                //Handle location update here\n            }\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447682360,
+        "id": "c14211b7-bd28-46e5-8f72-92adea4ef0db",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447682360,
+        "parent_id": "889c8275-6e03-41dd-a59b-46828b744bf5",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "LocationService",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "LocationService",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447682360,
+        "id": "58594bc3-ef34-4dba-98c0-e2d650272290",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447682360,
+        "parent_id": "889c8275-6e03-41dd-a59b-46828b744bf5",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "NOTE: Don’t forget to register this service in the Manifest!"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "NOTE: Don’t forget to register this service in the Manifest!"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447682361,
+        "id": "2bc9e4cd-8e8e-4c10-aa77-ad44a87352e2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447682361,
+        "parent_id": "889c8275-6e03-41dd-a59b-46828b744bf5",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class LocationService extends Service implements\n        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {\n\n    private GoogleApiClient mGoogleApiClient;\n    private LocationRequest mLocationRequest;\n\n    @Override\n    public void onCreate(){\n        super.onCreate();\n        mGoogleApiClient = new GoogleApiClient.Builder(this)\n                .addConnectionCallbacks(this)\n                .addOnConnectionFailedListener(this)\n                .addApi(LocationServices.API)\n                .build();\n\n        mLocationRequest = new LocationRequest()\n                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY) //GPS quality location points\n                .setInterval(2000) //At least once every 2 seconds\n                .setFastestInterval(1000); //At most once a second\n    }\n\n    @Override\n    public int onStartCommand(Intent intent, int flags, int startId){\n        super.onStartCommand(intent, flags, startId);\n        //Permission check for Android 6.0+\n        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {\n            if (intent.getBooleanExtra(\"request\", false)) {\n                if (mGoogleApiClient.isConnected()) {\n                    LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, getPendingIntent());\n                } else {\n                    mGoogleApiClient.connect();\n                }\n            }\n            else if(intent.getBooleanExtra(\"remove\", false)){\n                stopSelf();\n            }\n        }\n\n        return START_STICKY;\n    }\n\n    @Override\n    public void onDestroy(){\n        super.onDestroy();\n        if(mGoogleApiClient.isConnected()){\n            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, getPendingIntent());\n            mGoogleApiClient.disconnect();\n        }\n    }\n    \n    private PendingIntent getPendingIntent(){\n        \n        //Example for IntentService\n        //return PendingIntent.getService(this, 0, new Intent(this, **YOUR_INTENT_SERVICE_CLASS_HERE**), PendingIntent.FLAG_UPDATE_CURRENT);\n        \n        //Example for BroadcastReceiver\n        return PendingIntent.getBroadcast(this, 0, new Intent(this, LocationReceiver.class), PendingIntent.FLAG_UPDATE_CURRENT);\n    }\n\n    @Override\n    public void onConnected(@Nullable Bundle bundle) {\n        //Permission check for Android 6.0+\n        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {\n            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, getPendingIntent());\n        }\n    }\n\n    @Override\n    public void onConnectionSuspended(int i) {\n        mGoogleApiClient.connect();\n    }\n\n    @Override\n    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {\n\n    }\n\n    @Nullable\n    @Override\n    public IBinder onBind(Intent intent) {\n        return null;\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class LocationService extends Service implements\n        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {\n\n    private GoogleApiClient mGoogleApiClient;\n    private LocationRequest mLocationRequest;\n\n    @Override\n    public void onCreate(){\n        super.onCreate();\n        mGoogleApiClient = new GoogleApiClient.Builder(this)\n                .addConnectionCallbacks(this)\n                .addOnConnectionFailedListener(this)\n                .addApi(LocationServices.API)\n                .build();\n\n        mLocationRequest = new LocationRequest()\n                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY) //GPS quality location points\n                .setInterval(2000) //At least once every 2 seconds\n                .setFastestInterval(1000); //At most once a second\n    }\n\n    @Override\n    public int onStartCommand(Intent intent, int flags, int startId){\n        super.onStartCommand(intent, flags, startId);\n        //Permission check for Android 6.0+\n        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {\n            if (intent.getBooleanExtra(\"request\", false)) {\n                if (mGoogleApiClient.isConnected()) {\n                    LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, getPendingIntent());\n                } else {\n                    mGoogleApiClient.connect();\n                }\n            }\n            else if(intent.getBooleanExtra(\"remove\", false)){\n                stopSelf();\n            }\n        }\n\n        return START_STICKY;\n    }\n\n    @Override\n    public void onDestroy(){\n        super.onDestroy();\n        if(mGoogleApiClient.isConnected()){\n            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, getPendingIntent());\n            mGoogleApiClient.disconnect();\n        }\n    }\n    \n    private PendingIntent getPendingIntent(){\n        \n        //Example for IntentService\n        //return PendingIntent.getService(this, 0, new Intent(this, **YOUR_INTENT_SERVICE_CLASS_HERE**), PendingIntent.FLAG_UPDATE_CURRENT);\n        \n        //Example for BroadcastReceiver\n        return PendingIntent.getBroadcast(this, 0, new Intent(this, LocationReceiver.class), PendingIntent.FLAG_UPDATE_CURRENT);\n    }\n\n    @Override\n    public void onConnected(@Nullable Bundle bundle) {\n        //Permission check for Android 6.0+\n        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {\n            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, getPendingIntent());\n        }\n    }\n\n    @Override\n    public void onConnectionSuspended(int i) {\n        mGoogleApiClient.connect();\n    }\n\n    @Override\n    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {\n\n    }\n\n    @Nullable\n    @Override\n    public IBinder onBind(Intent intent) {\n        return null;\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447682361,
+        "id": "a0e16d00-0a9a-4d0e-b0a5-66625d49f883",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447682361,
+        "parent_id": "889c8275-6e03-41dd-a59b-46828b744bf5",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "LocationReceiver",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "LocationReceiver",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447682361,
+        "id": "8549363b-175b-41ae-98d1-a644cc66290d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447682361,
+        "parent_id": "889c8275-6e03-41dd-a59b-46828b744bf5",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "NOTE: Don’t forget to register this receiver in the Manifest!"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "NOTE: Don’t forget to register this receiver in the Manifest!"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447682361,
+        "id": "c60953fb-5135-4812-b293-aa2ce8722275",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447682361,
+        "parent_id": "889c8275-6e03-41dd-a59b-46828b744bf5",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class LocationReceiver extends BroadcastReceiver {\n\n    @Override\n    public void onReceive(Context context, Intent intent) {\n        if(LocationResult.hasResult(intent)){\n            LocationResult locationResult = LocationResult.extractResult(intent);\n            LocalBroadcastManager.getInstance(context).sendBroadcast(new Intent(\"googleLocation\").putExtra(\"result\", locationResult));\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class LocationReceiver extends BroadcastReceiver {\n\n    @Override\n    public void onReceive(Context context, Intent intent) {\n        if(LocationResult.hasResult(intent)){\n            LocationResult locationResult = LocationResult.extractResult(intent);\n            LocalBroadcastManager.getInstance(context).sendBroadcast(new Intent(\"googleLocation\").putExtra(\"result\", locationResult));\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 Fused location API"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

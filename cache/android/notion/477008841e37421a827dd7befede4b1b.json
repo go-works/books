@@ -1,0 +1,169 @@
+{
+  "ID": "47700884-1e37-421a-827d-d7befede4b1b",
+  "Root": {
+    "alive": true,
+    "content": [
+      "14dd46a4-0a44-406a-a080-b51a8dbcbfeb",
+      "48eb35d8-8c98-4cfd-8301-60a76ee7a137",
+      "b40d3a43-04af-4407-8f2c-c4e6e525d11f",
+      "32180739-b9f1-42ba-a588-764d09d0375a"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550444819874,
+    "id": "47700884-1e37-421a-827d-d7befede4b1b",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550444819874,
+    "parent_id": "b698fa46-dece-4676-a681-eecc1a3388d2",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "040 Per-item margins with ItemDecoration"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444819871,
+        "id": "14dd46a4-0a44-406a-a080-b51a8dbcbfeb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444819871,
+        "parent_id": "47700884-1e37-421a-827d-d7befede4b1b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "You can use a "
+            ],
+            [
+              "RecyclerView.ItemDecoration",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to put extra margins around each item in a RecyclerView. This can in some cases clean up both your adapter implementation and your item view XML."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "You can use a "
+          },
+          {
+            "Text": "RecyclerView.ItemDecoration",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to put extra margins around each item in a RecyclerView. This can in some cases clean up both your adapter implementation and your item view XML."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444819873,
+        "id": "48eb35d8-8c98-4cfd-8301-60a76ee7a137",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444819873,
+        "parent_id": "47700884-1e37-421a-827d-d7befede4b1b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class MyItemDecoration\n    extends RecyclerView.ItemDecoration {\n\n    private final int extraMargin;\n\n    @Override\n    public void getItemOffsets(Rect outRect, View view,\n            RecyclerView parent, RecyclerView.State state) {\n\n        int position = parent.getChildAdapterPosition(view);\n\n        // It's easy to put extra margin on the last item...\n        if (position + 1 == parent.getAdapter().getItemCount()) {\n            outRect.bottom = extraMargin; // unit is px\n        }\n\n        // ...or you could give each item in the RecyclerView different\n        // margins based on its position...\n        if (position % 2 == 0) {\n            outRect.right = extraMargin;\n        } else {\n            outRect.left = extraMargin;\n        }\n\n        // ...or based on some property of the item itself\n        MyListItem item = parent.getAdapter().getItem(position);\n        if (item.isFirstItemInSection()) {\n            outRect.top = extraMargin;\n        }\n    }\n\n    public MyItemDecoration(Context context) {\n        extraMargin = context.getResources()\n                .getDimensionPixelOffset(R.dimen.extra_margin);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class MyItemDecoration\n    extends RecyclerView.ItemDecoration {\n\n    private final int extraMargin;\n\n    @Override\n    public void getItemOffsets(Rect outRect, View view,\n            RecyclerView parent, RecyclerView.State state) {\n\n        int position = parent.getChildAdapterPosition(view);\n\n        // It's easy to put extra margin on the last item...\n        if (position + 1 == parent.getAdapter().getItemCount()) {\n            outRect.bottom = extraMargin; // unit is px\n        }\n\n        // ...or you could give each item in the RecyclerView different\n        // margins based on its position...\n        if (position % 2 == 0) {\n            outRect.right = extraMargin;\n        } else {\n            outRect.left = extraMargin;\n        }\n\n        // ...or based on some property of the item itself\n        MyListItem item = parent.getAdapter().getItem(position);\n        if (item.isFirstItemInSection()) {\n            outRect.top = extraMargin;\n        }\n    }\n\n    public MyItemDecoration(Context context) {\n        extraMargin = context.getResources()\n                .getDimensionPixelOffset(R.dimen.extra_margin);\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444819874,
+        "id": "b40d3a43-04af-4407-8f2c-c4e6e525d11f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444819874,
+        "parent_id": "47700884-1e37-421a-827d-d7befede4b1b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To enable the decoration, simply add it to your RecyclerView:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To enable the decoration, simply add it to your RecyclerView:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444819874,
+        "id": "32180739-b9f1-42ba-a588-764d09d0375a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444819874,
+        "parent_id": "47700884-1e37-421a-827d-d7befede4b1b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// in your onCreate()\nRecyclerView rv = (RecyclerView) findItemById(R.id.myList);\nrv.addItemDecoration(new MyItemDecoration(context));"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// in your onCreate()\nRecyclerView rv = (RecyclerView) findItemById(R.id.myList);\nrv.addItemDecoration(new MyItemDecoration(context));",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "040 Per-item margins with ItemDecoration"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

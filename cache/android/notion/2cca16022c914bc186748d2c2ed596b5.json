@@ -1,0 +1,115 @@
+{
+  "ID": "2cca1602-2c91-4bc1-8674-8d2c2ed596b5",
+  "Root": {
+    "alive": true,
+    "content": [
+      "f808a67d-6fe2-4ddc-b729-c0e7f8c09c59",
+      "1e331729-cfe2-4955-b9e4-78c7d018f661"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550455623751,
+    "id": "2cca1602-2c91-4bc1-8674-8d2c2ed596b5",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550455623751,
+    "parent_id": "f0b1f166-bf21-4323-a98c-97cb5ce7179b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Buttons"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550455623747,
+        "id": "f808a67d-6fe2-4ddc-b729-c0e7f8c09c59",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550455623747,
+        "parent_id": "2cca1602-2c91-4bc1-8674-8d2c2ed596b5",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Touch events related to a "
+            ],
+            [
+              "Button",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " can be checked as follows:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Touch events related to a "
+          },
+          {
+            "Text": "Button",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " can be checked as follows:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550455623751,
+        "id": "1e331729-cfe2-4955-b9e4-78c7d018f661",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550455623751,
+        "parent_id": "2cca1602-2c91-4bc1-8674-8d2c2ed596b5",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class ExampleClass extends Activity implements View.OnClickListener, View.OnLongClickListener{\n    public Button onLong, onClick;\n\n    @Override\n    public void onCreate(Bundle sis){\n        super.onCreate(sis);\n        setContentView(R.layout.layout);\n        onLong = (Button) findViewById(R.id.onLong);\n        onClick = (Button) findViewById(R.id.onClick);\n        // The buttons are created. Now we need to tell the system that\n        // these buttons have a listener to check for touch events.\n        // \"this\" refers to this class, as it contains the appropriate event listeners.\n        onLong.setOnLongClickListener(this);\n        onClick.setOnClickListener(this);\n\n        [OR]\n\n        onClick.setOnClickListener(new View.OnClickListener(){\n            @Override\n            public void onClick(View v){\n                // Take action. This listener is only designed for one button.\n                // This means, no other input will come here.\n                // This makes a switch statement unnecessary here.\n            }\n        });\n\n        onLong.setOnLongClickListener(new View.OnLongClickListener(){\n            @Override\n            public boolean onLongClick(View v){\n                // See comment in onClick.setOnClickListener().\n            }\n        });\n    }\n\n    @Override\n    public void onClick(View v) {\n        // If you have several buttons to handle, use a switch to handle them.\n        switch(v.getId()){\n            case R.id.onClick:\n                // Take action.\n                break;\n        }\n    }\n\n    @Override\n    public boolean onLongClick(View v) {\n        // If you have several buttons to handle, use a switch to handle them.\n        switch(v.getId()){\n            case R.id.onLong:\n                // Take action.\n                break;\n        }\n        return false;\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class ExampleClass extends Activity implements View.OnClickListener, View.OnLongClickListener{\n    public Button onLong, onClick;\n\n    @Override\n    public void onCreate(Bundle sis){\n        super.onCreate(sis);\n        setContentView(R.layout.layout);\n        onLong = (Button) findViewById(R.id.onLong);\n        onClick = (Button) findViewById(R.id.onClick);\n        // The buttons are created. Now we need to tell the system that\n        // these buttons have a listener to check for touch events.\n        // \"this\" refers to this class, as it contains the appropriate event listeners.\n        onLong.setOnLongClickListener(this);\n        onClick.setOnClickListener(this);\n\n        [OR]\n\n        onClick.setOnClickListener(new View.OnClickListener(){\n            @Override\n            public void onClick(View v){\n                // Take action. This listener is only designed for one button.\n                // This means, no other input will come here.\n                // This makes a switch statement unnecessary here.\n            }\n        });\n\n        onLong.setOnLongClickListener(new View.OnLongClickListener(){\n            @Override\n            public boolean onLongClick(View v){\n                // See comment in onClick.setOnClickListener().\n            }\n        });\n    }\n\n    @Override\n    public void onClick(View v) {\n        // If you have several buttons to handle, use a switch to handle them.\n        switch(v.getId()){\n            case R.id.onClick:\n                // Take action.\n                break;\n        }\n    }\n\n    @Override\n    public boolean onLongClick(View v) {\n        // If you have several buttons to handle, use a switch to handle them.\n        switch(v.getId()){\n            case R.id.onLong:\n                // Take action.\n                break;\n        }\n        return false;\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 Buttons"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

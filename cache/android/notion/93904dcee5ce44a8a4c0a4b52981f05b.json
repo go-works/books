@@ -1,0 +1,99 @@
+{
+  "ID": "93904dce-e5ce-44a8-a4c0-a4b52981f05b",
+  "Root": {
+    "alive": true,
+    "content": [
+      "76ab0e4d-0ea8-4f9f-8c84-90fc1b7578f8",
+      "8d76d368-6e80-46b3-b5b3-67a298d60bbc"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550452387045,
+    "id": "93904dce-e5ce-44a8-a4c0-a4b52981f05b",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550452387045,
+    "parent_id": "deb49da5-8f12-4105-b9da-710ff265582f",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "020 Mapping a NAT port"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452387042,
+        "id": "76ab0e4d-0ea8-4f9f-8c84-90fc1b7578f8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452387042,
+        "parent_id": "93904dce-e5ce-44a8-a4c0-a4b52981f05b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "String myIp = getIpAddress();\nint port = 55555;\n\n//creates a port mapping configuration with the external/internal port, an internal host IP, the protocol and an optional description\nPortMapping[] desiredMapping = new PortMapping[2];\ndesiredMapping[0] = new PortMapping(port,myIp, PortMapping.Protocol.TCP);\ndesiredMapping[1] = new PortMapping(port,myIp, PortMapping.Protocol.UDP);\n\n//starting the UPnP service\nUpnpService upnpService = new UpnpServiceImpl(new AndroidUpnpServiceConfiguration());\nRegistryListener registryListener = new PortMappingListener(desiredMapping);\nupnpService.getRegistry().addListener(registryListener);\nupnpService.getControlPoint().search();"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "String myIp = getIpAddress();\nint port = 55555;\n\n//creates a port mapping configuration with the external/internal port, an internal host IP, the protocol and an optional description\nPortMapping[] desiredMapping = new PortMapping[2];\ndesiredMapping[0] = new PortMapping(port,myIp, PortMapping.Protocol.TCP);\ndesiredMapping[1] = new PortMapping(port,myIp, PortMapping.Protocol.UDP);\n\n//starting the UPnP service\nUpnpService upnpService = new UpnpServiceImpl(new AndroidUpnpServiceConfiguration());\nRegistryListener registryListener = new PortMappingListener(desiredMapping);\nupnpService.getRegistry().addListener(registryListener);\nupnpService.getControlPoint().search();",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452387045,
+        "id": "8d76d368-6e80-46b3-b5b3-67a298d60bbc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452387045,
+        "parent_id": "93904dce-e5ce-44a8-a4c0-a4b52981f05b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "//method for getting local ip\nprivate String getIpAddress() {\n    String ip = \"\";\n    try {\n        Enumeration\u003cNetworkInterface\u003e enumNetworkInterfaces = NetworkInterface\n                .getNetworkInterfaces();\n        while (enumNetworkInterfaces.hasMoreElements()) {\n            NetworkInterface networkInterface = enumNetworkInterfaces\n                    .nextElement();\n            Enumeration\u003cInetAddress\u003e enumInetAddress = networkInterface\n                    .getInetAddresses();\n            while (enumInetAddress.hasMoreElements()) {\n                InetAddress inetAddress = enumInetAddress.nextElement();\n\n                if (inetAddress.isSiteLocalAddress()) {\n                    ip +=inetAddress.getHostAddress();\n                }\n            }\n        }\n    } catch (SocketException e) {\n        // TODO Auto-generated catch block\n        e.printStackTrace();\n        ip += \"Something Wrong! \" + e.toString() + \"\\n\";\n    }\n    return ip;\n   }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "//method for getting local ip\nprivate String getIpAddress() {\n    String ip = \"\";\n    try {\n        Enumeration\u003cNetworkInterface\u003e enumNetworkInterfaces = NetworkInterface\n                .getNetworkInterfaces();\n        while (enumNetworkInterfaces.hasMoreElements()) {\n            NetworkInterface networkInterface = enumNetworkInterfaces\n                    .nextElement();\n            Enumeration\u003cInetAddress\u003e enumInetAddress = networkInterface\n                    .getInetAddresses();\n            while (enumInetAddress.hasMoreElements()) {\n                InetAddress inetAddress = enumInetAddress.nextElement();\n\n                if (inetAddress.isSiteLocalAddress()) {\n                    ip +=inetAddress.getHostAddress();\n                }\n            }\n        }\n    } catch (SocketException e) {\n        // TODO Auto-generated catch block\n        e.printStackTrace();\n        ip += \"Something Wrong! \" + e.toString() + \"\\n\";\n    }\n    return ip;\n   }",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "020 Mapping a NAT port"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

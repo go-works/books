@@ -1,0 +1,216 @@
+{
+  "ID": "ea682d90-ef5d-45ce-ae82-4c6b34ba37ef",
+  "Root": {
+    "alive": true,
+    "content": [
+      "cc350d6a-e20b-4864-b788-f8ec5636a7fd",
+      "a9c5af17-7898-4f9a-ba58-bdd12e776519",
+      "839698d6-114f-4a53-937c-a2ce419853ba",
+      "e86b95e1-6d6d-43d4-a74d-ec63073d8228",
+      "8d3d2506-ffde-457e-8565-5f36f041153e"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550451788138,
+    "id": "ea682d90-ef5d-45ce-ae82-4c6b34ba37ef",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550451788138,
+    "parent_id": "dc81327b-cb66-4261-865d-bb7d14306f11",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "070 Custom Click Listener to prevent multiple fast clicks"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451788135,
+        "id": "cc350d6a-e20b-4864-b788-f8ec5636a7fd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451788135,
+        "parent_id": "ea682d90-ef5d-45ce-ae82-4c6b34ba37ef",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In order to "
+            ],
+            [
+              "prevent a button from firing multiple times within a short period of time",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " (let’s say 2 clicks within 1 second, which may cause serious problems if the flow is not controlled), one can implement a custom "
+            ],
+            [
+              "SingleClickListener",
+              [
+                [
+                  "b"
+                ],
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In order to "
+          },
+          {
+            "Text": "prevent a button from firing multiple times within a short period of time",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " (let’s say 2 clicks within 1 second, which may cause serious problems if the flow is not controlled), one can implement a custom "
+          },
+          {
+            "Text": "SingleClickListener",
+            "AttrFlags": 5
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451788137,
+        "id": "a9c5af17-7898-4f9a-ba58-bdd12e776519",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451788137,
+        "parent_id": "ea682d90-ef5d-45ce-ae82-4c6b34ba37ef",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This ClickListener sets a specific time interval as threshold (for instance, 1000ms).\nWhen the button is clicked, a check will be ran to see if the trigger was executed in the past amount of time you defined, and if not it will trigger it."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This ClickListener sets a specific time interval as threshold (for instance, 1000ms).\nWhen the button is clicked, a check will be ran to see if the trigger was executed in the past amount of time you defined, and if not it will trigger it."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451788138,
+        "id": "839698d6-114f-4a53-937c-a2ce419853ba",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451788138,
+        "parent_id": "ea682d90-ef5d-45ce-ae82-4c6b34ba37ef",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class SingleClickListener implements View.OnClickListener {\n\n    protected int defaultInterval;\n    private long lastTimeClicked = 0;\n\n    public SingleClickListener() {\n        this(1000);\n    }\n\n    public SingleClickListener(int minInterval) {\n        this.defaultInterval = minInterval;\n    }\n\n    @Override\n    public void onClick(View v) {\n        if (SystemClock.elapsedRealtime() - lastTimeClicked \u003c defaultInterval) {\n            return;\n        }\n        lastTimeClicked = SystemClock.elapsedRealtime();\n        performClick(v);\n    }\n\n    public abstract void performClick(View v);\n\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class SingleClickListener implements View.OnClickListener {\n\n    protected int defaultInterval;\n    private long lastTimeClicked = 0;\n\n    public SingleClickListener() {\n        this(1000);\n    }\n\n    public SingleClickListener(int minInterval) {\n        this.defaultInterval = minInterval;\n    }\n\n    @Override\n    public void onClick(View v) {\n        if (SystemClock.elapsedRealtime() - lastTimeClicked \u003c defaultInterval) {\n            return;\n        }\n        lastTimeClicked = SystemClock.elapsedRealtime();\n        performClick(v);\n    }\n\n    public abstract void performClick(View v);\n\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451788138,
+        "id": "e86b95e1-6d6d-43d4-a74d-ec63073d8228",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451788138,
+        "parent_id": "ea682d90-ef5d-45ce-ae82-4c6b34ba37ef",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "And in the class, the SingleClickListener is associated to the Button at stake"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "And in the class, the SingleClickListener is associated to the Button at stake"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451788138,
+        "id": "8d3d2506-ffde-457e-8565-5f36f041153e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451788138,
+        "parent_id": "ea682d90-ef5d-45ce-ae82-4c6b34ba37ef",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "myButton = (Button) findViewById(R.id.my_button);\nmyButton.setOnClickListener(new SingleClickListener() {\n    @Override\n    public void performClick(View view) {\n        // do stuff\n    }\n});"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "myButton = (Button) findViewById(R.id.my_button);\nmyButton.setOnClickListener(new SingleClickListener() {\n    @Override\n    public void performClick(View view) {\n        // do stuff\n    }\n});",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "070 Custom Click Listener to prevent multiple fast clicks"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

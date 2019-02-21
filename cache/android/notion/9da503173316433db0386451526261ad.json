@@ -1,0 +1,376 @@
+{
+  "ID": "9da50317-3316-433d-b038-6451526261ad",
+  "Root": {
+    "alive": true,
+    "content": [
+      "9ca4321f-d2c3-44b4-93f1-d1152221d0de",
+      "dadc9e60-5175-431a-83b9-59b42effd55b",
+      "50722ca0-7c19-460f-8d18-a06f755e98f3",
+      "3874efe6-3460-438d-a788-aa540a05a6df",
+      "e1d111e4-dda9-4f5a-8f6d-70ac78dceaaa",
+      "60398a82-3263-4a61-8944-204578dc1bb0",
+      "ee0b5408-197f-469c-99cc-c1126eab6d3b",
+      "30307199-a018-40f9-b611-5237a3987b91",
+      "22ab9d0b-dbee-4ec2-8ef9-cd4c7019c837",
+      "8d8d3c20-ae46-4fbb-a577-78723af394a2"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550447901851,
+    "id": "9da50317-3316-433d-b038-6451526261ad",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550447901851,
+    "parent_id": "e8b25d81-c867-4e20-8829-1264867cb1b8",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "020 Circular Avatars with Picasso"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447901849,
+        "id": "9ca4321f-d2c3-44b4-93f1-d1152221d0de",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447901849,
+        "parent_id": "9da50317-3316-433d-b038-6451526261ad",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Here is an example Picasso Circle Transform class based on "
+            ],
+            [
+              "the original",
+              [
+                [
+                  "a",
+                  "https://gist.github.com/julianshen/5829333"
+                ]
+              ]
+            ],
+            [
+              ", with the addition of a thin border, and also includes functionality for an optional separator for stacking:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Here is an example Picasso Circle Transform class based on "
+          },
+          {
+            "Text": "the original",
+            "Link": "https://gist.github.com/julianshen/5829333"
+          },
+          {
+            "Text": ", with the addition of a thin border, and also includes functionality for an optional separator for stacking:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447901850,
+        "id": "dadc9e60-5175-431a-83b9-59b42effd55b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447901850,
+        "parent_id": "9da50317-3316-433d-b038-6451526261ad",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import android.graphics.Bitmap;\nimport android.graphics.BitmapShader;\nimport android.graphics.Canvas;\nimport android.graphics.Color;\nimport android.graphics.Paint;\nimport android.graphics.Paint.Style;\n\nimport com.squareup.picasso.Transformation;\n\npublic class CircleTransform implements Transformation {\n\n    boolean mCircleSeparator = false;\n\n    public CircleTransform(){\n    }\n\n    public CircleTransform(boolean circleSeparator){\n        mCircleSeparator = circleSeparator;\n    }\n\n    @Override\n    public Bitmap transform(Bitmap source) {\n        int size = Math.min(source.getWidth(), source.getHeight());\n\n        int x = (source.getWidth() - size) / 2;\n        int y = (source.getHeight() - size) / 2;\n\n        Bitmap squaredBitmap = Bitmap.createBitmap(source, x, y, size, size);\n\n        if (squaredBitmap != source) {\n            source.recycle();\n        }\n\n        Bitmap bitmap = Bitmap.createBitmap(size, size, source.getConfig());\n\n        Canvas canvas = new Canvas(bitmap);\n        BitmapShader shader = new BitmapShader(squaredBitmap, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP);\n        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG | Paint.FILTER_BITMAP_FLAG);\n        paint.setShader(shader);\n\n        float r = size/2f;\n        canvas.drawCircle(r, r, r-1, paint);\n\n        // Make the thin border:\n        Paint paintBorder = new Paint();\n        paintBorder.setStyle(Style.STROKE);\n        paintBorder.setColor(Color.argb(84,0,0,0));\n        paintBorder.setAntiAlias(true);\n        paintBorder.setStrokeWidth(1);\n        canvas.drawCircle(r, r, r-1, paintBorder);\n\n        // Optional separator for stacking:\n        if (mCircleSeparator) {\n            Paint paintBorderSeparator = new Paint();\n            paintBorderSeparator.setStyle(Style.STROKE);\n            paintBorderSeparator.setColor(Color.parseColor(\"#ffffff\"));\n            paintBorderSeparator.setAntiAlias(true);\n            paintBorderSeparator.setStrokeWidth(4);\n            canvas.drawCircle(r, r, r+1, paintBorderSeparator);\n        }\n\n        squaredBitmap.recycle();\n        return bitmap;\n    }\n\n    @Override\n    public String key() {\n        return \"circle\";\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import android.graphics.Bitmap;\nimport android.graphics.BitmapShader;\nimport android.graphics.Canvas;\nimport android.graphics.Color;\nimport android.graphics.Paint;\nimport android.graphics.Paint.Style;\n\nimport com.squareup.picasso.Transformation;\n\npublic class CircleTransform implements Transformation {\n\n    boolean mCircleSeparator = false;\n\n    public CircleTransform(){\n    }\n\n    public CircleTransform(boolean circleSeparator){\n        mCircleSeparator = circleSeparator;\n    }\n\n    @Override\n    public Bitmap transform(Bitmap source) {\n        int size = Math.min(source.getWidth(), source.getHeight());\n\n        int x = (source.getWidth() - size) / 2;\n        int y = (source.getHeight() - size) / 2;\n\n        Bitmap squaredBitmap = Bitmap.createBitmap(source, x, y, size, size);\n\n        if (squaredBitmap != source) {\n            source.recycle();\n        }\n\n        Bitmap bitmap = Bitmap.createBitmap(size, size, source.getConfig());\n\n        Canvas canvas = new Canvas(bitmap);\n        BitmapShader shader = new BitmapShader(squaredBitmap, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP);\n        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG | Paint.FILTER_BITMAP_FLAG);\n        paint.setShader(shader);\n\n        float r = size/2f;\n        canvas.drawCircle(r, r, r-1, paint);\n\n        // Make the thin border:\n        Paint paintBorder = new Paint();\n        paintBorder.setStyle(Style.STROKE);\n        paintBorder.setColor(Color.argb(84,0,0,0));\n        paintBorder.setAntiAlias(true);\n        paintBorder.setStrokeWidth(1);\n        canvas.drawCircle(r, r, r-1, paintBorder);\n\n        // Optional separator for stacking:\n        if (mCircleSeparator) {\n            Paint paintBorderSeparator = new Paint();\n            paintBorderSeparator.setStyle(Style.STROKE);\n            paintBorderSeparator.setColor(Color.parseColor(\"#ffffff\"));\n            paintBorderSeparator.setAntiAlias(true);\n            paintBorderSeparator.setStrokeWidth(4);\n            canvas.drawCircle(r, r, r+1, paintBorderSeparator);\n        }\n\n        squaredBitmap.recycle();\n        return bitmap;\n    }\n\n    @Override\n    public String key() {\n        return \"circle\";\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447901850,
+        "id": "50722ca0-7c19-460f-8d18-a06f755e98f3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447901850,
+        "parent_id": "9da50317-3316-433d-b038-6451526261ad",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Here is how to use it when loading an image (assuming "
+            ],
+            [
+              "this",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is an Activity Context, and "
+            ],
+            [
+              "url",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is a String with the url of the image to load):"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Here is how to use it when loading an image (assuming "
+          },
+          {
+            "Text": "this",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is an Activity Context, and "
+          },
+          {
+            "Text": "url",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is a String with the url of the image to load):"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447901850,
+        "id": "3874efe6-3460-438d-a788-aa540a05a6df",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447901850,
+        "parent_id": "9da50317-3316-433d-b038-6451526261ad",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "ImageView ivAvatar = (ImageView) itemView.findViewById(R.id.avatar);\nPicasso.with(this).load(url)\n    .fit()\n    .transform(new CircleTransform())\n    .into(ivAvatar);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "ImageView ivAvatar = (ImageView) itemView.findViewById(R.id.avatar);\nPicasso.with(this).load(url)\n    .fit()\n    .transform(new CircleTransform())\n    .into(ivAvatar);",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447901850,
+        "id": "e1d111e4-dda9-4f5a-8f6d-70ac78dceaaa",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447901850,
+        "parent_id": "9da50317-3316-433d-b038-6451526261ad",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Result:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Result:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447901850,
+        "id": "60398a82-3263-4a61-8944-204578dc1bb0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447901850,
+        "parent_id": "9da50317-3316-433d-b038-6451526261ad",
+        "parent_table": "block",
+        "properties": {
+          "source": [
+            [
+              "http://i.stack.imgur.com/tIMMe.png"
+            ]
+          ]
+        },
+        "type": "image",
+        "version": 1,
+        "source": "http://i.stack.imgur.com/tIMMe.png",
+        "image_url": "https://www.notion.so/image/https:%2F%2Fwww.notion.sohttp:%2F%2Fi.stack.imgur.com%2FtIMMe.png"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447901850,
+        "id": "ee0b5408-197f-469c-99cc-c1126eab6d3b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447901850,
+        "parent_id": "9da50317-3316-433d-b038-6451526261ad",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "For use with the separator, give "
+            ],
+            [
+              "true",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to the constructor for the top image:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "For use with the separator, give "
+          },
+          {
+            "Text": "true",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to the constructor for the top image:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447901851,
+        "id": "30307199-a018-40f9-b611-5237a3987b91",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447901851,
+        "parent_id": "9da50317-3316-433d-b038-6451526261ad",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "ImageView ivAvatar = (ImageView) itemView.findViewById(R.id.avatar);\nPicasso.with(this).load(url)\n    .fit()\n    .transform(new CircleTransform(true))\n    .into(ivAvatar);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "ImageView ivAvatar = (ImageView) itemView.findViewById(R.id.avatar);\nPicasso.with(this).load(url)\n    .fit()\n    .transform(new CircleTransform(true))\n    .into(ivAvatar);",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447901851,
+        "id": "22ab9d0b-dbee-4ec2-8ef9-cd4c7019c837",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447901851,
+        "parent_id": "9da50317-3316-433d-b038-6451526261ad",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Result (two ImageViews in a FrameLayout):"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Result (two ImageViews in a FrameLayout):"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447901851,
+        "id": "8d8d3c20-ae46-4fbb-a577-78723af394a2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447901851,
+        "parent_id": "9da50317-3316-433d-b038-6451526261ad",
+        "parent_table": "block",
+        "properties": {
+          "source": [
+            [
+              "http://i.stack.imgur.com/vXOMg.png"
+            ]
+          ]
+        },
+        "type": "image",
+        "version": 1,
+        "source": "http://i.stack.imgur.com/vXOMg.png",
+        "image_url": "https://www.notion.so/image/https:%2F%2Fwww.notion.sohttp:%2F%2Fi.stack.imgur.com%2FvXOMg.png"
+      }
+    ],
+    "title": "020 Circular Avatars with Picasso"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

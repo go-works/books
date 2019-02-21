@@ -1,0 +1,125 @@
+{
+  "ID": "bdbaf5b7-97ae-4339-a857-53e7a3579c1f",
+  "Root": {
+    "alive": true,
+    "content": [
+      "86a76f2f-72a8-4cc0-b778-dddbdc3ab0d5",
+      "3639c0b1-a3d9-45e9-91db-6ed1ea49fe5e",
+      "75e26c73-53ac-4765-832f-ef1597decb54"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550443639024,
+    "id": "bdbaf5b7-97ae-4339-a857-53e7a3579c1f",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550443639024,
+    "parent_id": "b9098913-7e61-4386-8d02-ca92ab88b324",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "020 RecyclerView Click listener"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550443639021,
+        "id": "86a76f2f-72a8-4cc0-b778-dddbdc3ab0d5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550443639021,
+        "parent_id": "bdbaf5b7-97ae-4339-a857-53e7a3579c1f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public  class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {\n\n    private GestureDetector gestureDetector;\n    private RecyclerTouchListener.ClickListener clickListener;\n\n    public RecyclerTouchListener(Context context, final RecyclerView recyclerView, final RecyclerTouchListener.ClickListener clickListener) {\n        this.clickListener = clickListener;\n\n        gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {\n            @Override\n            public boolean onSingleTapUp(MotionEvent e) {\n                return true;\n            }\n            @Override\n            public void onLongPress(MotionEvent e) {\n                View child = recyclerView.findChildViewUnder(e.getX(), e.getY());\n                if (child != null \u0026\u0026 clickListener != null) {\n                    clickListener.onLongClick(child, recyclerView.getChildPosition(child));\n                }\n            }\n        });\n    }\n\n\n    @Override\n    public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {\n        View child = rv.findChildViewUnder(e.getX(), e.getY());\n        if (child != null \u0026\u0026 clickListener != null \u0026\u0026 gestureDetector.onTouchEvent(e)) {\n            clickListener.onClick(child, rv.getChildPosition(child));\n        }\n        return false;\n    }\n\n    @Override\n    public void onTouchEvent(RecyclerView rv, MotionEvent e) {\n\n    }\n\n    @Override\n    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {\n\n    }\n\n    public interface ClickListener {\n        void onLongClick(View child, int childPosition);\n\n        void onClick(View child, int childPosition);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public  class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {\n\n    private GestureDetector gestureDetector;\n    private RecyclerTouchListener.ClickListener clickListener;\n\n    public RecyclerTouchListener(Context context, final RecyclerView recyclerView, final RecyclerTouchListener.ClickListener clickListener) {\n        this.clickListener = clickListener;\n\n        gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {\n            @Override\n            public boolean onSingleTapUp(MotionEvent e) {\n                return true;\n            }\n            @Override\n            public void onLongPress(MotionEvent e) {\n                View child = recyclerView.findChildViewUnder(e.getX(), e.getY());\n                if (child != null \u0026\u0026 clickListener != null) {\n                    clickListener.onLongClick(child, recyclerView.getChildPosition(child));\n                }\n            }\n        });\n    }\n\n\n    @Override\n    public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {\n        View child = rv.findChildViewUnder(e.getX(), e.getY());\n        if (child != null \u0026\u0026 clickListener != null \u0026\u0026 gestureDetector.onTouchEvent(e)) {\n            clickListener.onClick(child, rv.getChildPosition(child));\n        }\n        return false;\n    }\n\n    @Override\n    public void onTouchEvent(RecyclerView rv, MotionEvent e) {\n\n    }\n\n    @Override\n    public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {\n\n    }\n\n    public interface ClickListener {\n        void onLongClick(View child, int childPosition);\n\n        void onClick(View child, int childPosition);\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550443639024,
+        "id": "3639c0b1-a3d9-45e9-91db-6ed1ea49fe5e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550443639024,
+        "parent_id": "bdbaf5b7-97ae-4339-a857-53e7a3579c1f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In MainActivity"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In MainActivity"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550443639024,
+        "id": "75e26c73-53ac-4765-832f-ef1597decb54",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550443639024,
+        "parent_id": "bdbaf5b7-97ae-4339-a857-53e7a3579c1f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "RecyclerView recyclerView =(RecyclerView) findViewById(R.id.recyclerview);\n recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(),recyclerView, new RecyclerTouchListener.ClickListener() {\n      @Override\n      public void onLongClick(View child, int childPosition) {\n\n      }\n\n      @Override\n      public void onClick(View child, int childPosition) {\n\n       \n     }\n    }));"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "RecyclerView recyclerView =(RecyclerView) findViewById(R.id.recyclerview);\n recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(),recyclerView, new RecyclerTouchListener.ClickListener() {\n      @Override\n      public void onLongClick(View child, int childPosition) {\n\n      }\n\n      @Override\n      public void onClick(View child, int childPosition) {\n\n       \n     }\n    }));",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "020 RecyclerView Click listener"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

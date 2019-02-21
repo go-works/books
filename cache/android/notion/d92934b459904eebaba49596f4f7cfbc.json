@@ -1,0 +1,115 @@
+{
+  "ID": "d92934b4-5990-4eeb-aba4-9596f4f7cfbc",
+  "Root": {
+    "alive": true,
+    "content": [
+      "d6f0ca96-80fe-4e74-b2a2-b9ccd829c71f",
+      "8cff7e4b-83e2-463a-8411-b33df7289734"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550451052949,
+    "id": "d92934b4-5990-4eeb-aba4-9596f4f7cfbc",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550451052949,
+    "parent_id": "b4ea2393-6248-4273-be5c-b3ff2586a146",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 Taking a screenshot of a particular view"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451052939,
+        "id": "d6f0ca96-80fe-4e74-b2a2-b9ccd829c71f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451052939,
+        "parent_id": "d92934b4-5990-4eeb-aba4-9596f4f7cfbc",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If you want to take a screenshot of a particular View "
+            ],
+            [
+              "v",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", then you can use the following code:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If you want to take a screenshot of a particular View "
+          },
+          {
+            "Text": "v",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", then you can use the following code:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451052949,
+        "id": "8cff7e4b-83e2-463a-8411-b33df7289734",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451052949,
+        "parent_id": "d92934b4-5990-4eeb-aba4-9596f4f7cfbc",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "Bitmap viewBitmap = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.RGB_565);\nCanvas viewCanvas = new Canvas(viewBitmap);\nDrawable backgroundDrawable = v.getBackground();\n\nif(backgroundDrawable != null){\n    // Draw the background onto the canvas.\n    backgroundDrawable.draw(viewCanvas);\n}\nelse{\n    viewCanvas.drawColor(Color.GREEN);\n    // Draw the view onto the canvas.\n    v.draw(viewCanvas) \n}\n\n// Write the bitmap generated above into a file.\nString fileStamp = new SimpleDateFormat(\"yyyyMMdd_HHmmss\").format(new Date());\nOutputStream outputStream = null;\ntry{\n    imgFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), fileStamp + \".png\");\n    outputStream = new FileOutputStream(imgFile);\n    viewBitmap.compress(Bitmap.CompressFormat.PNG, 40, outputStream);\n    outputStream.close();\n}\ncatch(Exception e){\n    e.printStackTrace();\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "Bitmap viewBitmap = Bitmap.createBitmap(v.getWidth(), v.getHeight(), Bitmap.Config.RGB_565);\nCanvas viewCanvas = new Canvas(viewBitmap);\nDrawable backgroundDrawable = v.getBackground();\n\nif(backgroundDrawable != null){\n    // Draw the background onto the canvas.\n    backgroundDrawable.draw(viewCanvas);\n}\nelse{\n    viewCanvas.drawColor(Color.GREEN);\n    // Draw the view onto the canvas.\n    v.draw(viewCanvas) \n}\n\n// Write the bitmap generated above into a file.\nString fileStamp = new SimpleDateFormat(\"yyyyMMdd_HHmmss\").format(new Date());\nOutputStream outputStream = null;\ntry{\n    imgFile = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), fileStamp + \".png\");\n    outputStream = new FileOutputStream(imgFile);\n    viewBitmap.compress(Bitmap.CompressFormat.PNG, 40, outputStream);\n    outputStream.close();\n}\ncatch(Exception e){\n    e.printStackTrace();\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "030 Taking a screenshot of a particular view"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

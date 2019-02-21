@@ -1,0 +1,234 @@
+{
+  "ID": "4569d399-9c52-4e26-9c99-f9562777e876",
+  "Root": {
+    "alive": true,
+    "content": [
+      "4ec3de07-dee0-4f82-be2c-7ad070d40bc6",
+      "6e974c0c-4d56-4c02-9c1c-602b488b3cff",
+      "70b5c3cd-1db9-45c6-bbb6-88bd32d12b7f",
+      "bda0bce4-e1a4-473f-8c0e-643db4c71d23",
+      "63e59790-e09b-40e2-95b4-1c41cf2d9e81"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550452809985,
+    "id": "4569d399-9c52-4e26-9c99-f9562777e876",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550452809985,
+    "parent_id": "c8ac0909-a19f-471e-a271-487222887abd",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "020 Updating the UI from a Background Thread"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452809980,
+        "id": "4ec3de07-dee0-4f82-be2c-7ad070d40bc6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452809980,
+        "parent_id": "4569d399-9c52-4e26-9c99-f9562777e876",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "It is common to use a background Thread for doing network operations or long running tasks, and then update the UI with the results when needed."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "It is common to use a background Thread for doing network operations or long running tasks, and then update the UI with the results when needed."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452809983,
+        "id": "6e974c0c-4d56-4c02-9c1c-602b488b3cff",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452809983,
+        "parent_id": "4569d399-9c52-4e26-9c99-f9562777e876",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This poses a problem, as only the main thread can update the UI."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This poses a problem, as only the main thread can update the UI."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452809985,
+        "id": "70b5c3cd-1db9-45c6-bbb6-88bd32d12b7f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452809985,
+        "parent_id": "4569d399-9c52-4e26-9c99-f9562777e876",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The solution is to use the "
+            ],
+            [
+              "runOnUiThread()",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "https://developer.android.com/reference/android/app/Activity.html#runOnUiThread(java.lang.Runnable)"
+                ]
+              ]
+            ],
+            [
+              " method, as it allows you to initiate code execution on the UI thread from a background Thread."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The solution is to use the "
+          },
+          {
+            "Text": "runOnUiThread()",
+            "AttrFlags": 2,
+            "Link": "https://developer.android.com/reference/android/app/Activity.html#runOnUiThread(java.lang.Runnable)"
+          },
+          {
+            "Text": " method, as it allows you to initiate code execution on the UI thread from a background Thread."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452809985,
+        "id": "bda0bce4-e1a4-473f-8c0e-643db4c71d23",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452809985,
+        "parent_id": "4569d399-9c52-4e26-9c99-f9562777e876",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In this simple example, a Thread is started when the Activity is created, runs until the magic number of "
+            ],
+            [
+              "42",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is randomly generated, and then uses the "
+            ],
+            [
+              "runOnUiThread()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method to update the UI once this condition is met."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In this simple example, a Thread is started when the Activity is created, runs until the magic number of "
+          },
+          {
+            "Text": "42",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is randomly generated, and then uses the "
+          },
+          {
+            "Text": "runOnUiThread()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method to update the UI once this condition is met."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452809985,
+        "id": "63e59790-e09b-40e2-95b4-1c41cf2d9e81",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452809985,
+        "parent_id": "4569d399-9c52-4e26-9c99-f9562777e876",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class MainActivity extends AppCompatActivity {\n\n    TextView mTextView;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_main);\n        mTextView = (TextView) findViewById(R.id.my_text_view);\n\n        new Thread(new Runnable() {\n            @Override\n            public void run() {\n                while (true) {\n                    //do stuff....\n                    Random r = new Random();\n                    if (r.nextInt(100) == 42) {\n                       break;\n                    }\n                }\n\n                runOnUiThread(new Runnable() {\n                    @Override\n                    public void run() {\n                        mTextView.setText(\"Ready Player One\");\n                    }\n                });\n            }\n        }).start();\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class MainActivity extends AppCompatActivity {\n\n    TextView mTextView;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_main);\n        mTextView = (TextView) findViewById(R.id.my_text_view);\n\n        new Thread(new Runnable() {\n            @Override\n            public void run() {\n                while (true) {\n                    //do stuff....\n                    Random r = new Random();\n                    if (r.nextInt(100) == 42) {\n                       break;\n                    }\n                }\n\n                runOnUiThread(new Runnable() {\n                    @Override\n                    public void run() {\n                        mTextView.setText(\"Ready Player One\");\n                    }\n                });\n            }\n        }).start();\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "020 Updating the UI from a Background Thread"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

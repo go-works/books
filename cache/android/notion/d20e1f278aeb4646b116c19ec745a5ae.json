@@ -1,0 +1,123 @@
+{
+  "ID": "d20e1f27-8aeb-4646-b116-c19ec745a5ae",
+  "Root": {
+    "alive": true,
+    "content": [
+      "c7fb1bf8-dbe3-4cf1-b360-1bf3021f06a8",
+      "463c56be-9a30-4712-8392-f04b4cb0623f",
+      "8a7ac861-f7f3-4887-938c-a4fd1c57f73f"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550450396913,
+    "id": "d20e1f27-8aeb-4646-b116-c19ec745a5ae",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550450396913,
+    "parent_id": "574bb08c-f784-4dcb-b2e1-98fb6ef32949",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Place Picker Usage Example"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450396910,
+        "id": "c7fb1bf8-dbe3-4cf1-b360-1bf3021f06a8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450396910,
+        "parent_id": "d20e1f27-8aeb-4646-b116-c19ec745a5ae",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Place Picker is a really simple UI widget provided by Places API. It provides a built-in map, current location, nearby places, search abilities and autocomplete."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Place Picker is a really simple UI widget provided by Places API. It provides a built-in map, current location, nearby places, search abilities and autocomplete."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450396913,
+        "id": "463c56be-9a30-4712-8392-f04b4cb0623f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450396913,
+        "parent_id": "d20e1f27-8aeb-4646-b116-c19ec745a5ae",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This is a sample usage of Place Picker UI widget."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This is a sample usage of Place Picker UI widget."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450396913,
+        "id": "8a7ac861-f7f3-4887-938c-a4fd1c57f73f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450396913,
+        "parent_id": "d20e1f27-8aeb-4646-b116-c19ec745a5ae",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "private static int PLACE_PICKER_REQUEST = 1;\n\nprivate TextView txtPlaceName;\n\n@Override\nprotected void onCreate(Bundle savedInstanceState) {\n    super.onCreate(savedInstanceState);\n    setContentView(R.layout.activity_place_picker_sample);\n\n    txtPlaceName = (TextView) this.findViewById(R.id.txtPlaceName);\n    Button btnSelectPlace = (Button) this.findViewById(R.id.btnSelectPlace);\n    btnSelectPlace.setOnClickListener(new View.OnClickListener() {\n        @Override\n        public void onClick(View view) {\n            openPlacePickerView();\n        }\n    });\n\n}\n\nprivate void openPlacePickerView(){\n    PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();\n    try {\n        startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST);\n    } catch (GooglePlayServicesRepairableException e) {\n        e.printStackTrace();\n    } catch (GooglePlayServicesNotAvailableException e) {\n        e.printStackTrace();\n    }\n}\n\nprotected void onActivityResult(int requestCode, int resultCode, Intent data) {\n    if (requestCode == PLACE_PICKER_REQUEST) {\n        if (resultCode == RESULT_OK) {\n            Place place = PlacePicker.getPlace(this, data);\n            Log.i(LOG_TAG, String.format(\"Place Name : %s\", place.getName()));\n            Log.i(LOG_TAG, String.format(\"Place Address : %s\", place.getAddress()));\n            Log.i(LOG_TAG, String.format(\"Place Id : %s\", place.getId()));\n\n            txtPlaceName.setText(String.format(\"Place : %s - %s\" , place.getName() , place.getAddress()));\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "private static int PLACE_PICKER_REQUEST = 1;\n\nprivate TextView txtPlaceName;\n\n@Override\nprotected void onCreate(Bundle savedInstanceState) {\n    super.onCreate(savedInstanceState);\n    setContentView(R.layout.activity_place_picker_sample);\n\n    txtPlaceName = (TextView) this.findViewById(R.id.txtPlaceName);\n    Button btnSelectPlace = (Button) this.findViewById(R.id.btnSelectPlace);\n    btnSelectPlace.setOnClickListener(new View.OnClickListener() {\n        @Override\n        public void onClick(View view) {\n            openPlacePickerView();\n        }\n    });\n\n}\n\nprivate void openPlacePickerView(){\n    PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();\n    try {\n        startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST);\n    } catch (GooglePlayServicesRepairableException e) {\n        e.printStackTrace();\n    } catch (GooglePlayServicesNotAvailableException e) {\n        e.printStackTrace();\n    }\n}\n\nprotected void onActivityResult(int requestCode, int resultCode, Intent data) {\n    if (requestCode == PLACE_PICKER_REQUEST) {\n        if (resultCode == RESULT_OK) {\n            Place place = PlacePicker.getPlace(this, data);\n            Log.i(LOG_TAG, String.format(\"Place Name : %s\", place.getName()));\n            Log.i(LOG_TAG, String.format(\"Place Address : %s\", place.getAddress()));\n            Log.i(LOG_TAG, String.format(\"Place Id : %s\", place.getId()));\n\n            txtPlaceName.setText(String.format(\"Place : %s - %s\" , place.getName() , place.getAddress()));\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 Place Picker Usage Example"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

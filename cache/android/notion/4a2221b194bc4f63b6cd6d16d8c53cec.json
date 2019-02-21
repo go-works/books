@@ -1,0 +1,278 @@
+{
+  "ID": "4a2221b1-94bc-4f63-b6cd-6d16d8c53cec",
+  "Root": {
+    "alive": true,
+    "content": [
+      "0e59af28-f8e6-4725-859d-3532e36c9686",
+      "ed19bff9-de74-4a33-8889-023cc4cd33a1",
+      "ca75a653-d94a-4e56-aca3-5f294f3903ec",
+      "606e4747-cb1c-49b7-992f-ad17ea27b7c7",
+      "5dfcac76-6085-4e21-b7c8-542a70e8a750",
+      "18086ed3-c823-4661-9bc3-e6ede0972f73",
+      "871aa9e3-bbd6-4ec1-9449-6b24c63a2dad",
+      "999ccebc-b370-441f-82e5-d72d319fd3b2"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550454764133,
+    "id": "4a2221b1-94bc-4f63-b6cd-6d16d8c53cec",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550454764133,
+    "parent_id": "71e5a001-12f9-41d1-aa62-8c79dd517256",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "020 Compiling and Linking GLSL-ES Shaders from asset file"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550454764131,
+        "id": "0e59af28-f8e6-4725-859d-3532e36c9686",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550454764131,
+        "parent_id": "4a2221b1-94bc-4f63-b6cd-6d16d8c53cec",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The "
+            ],
+            [
+              "Assets",
+              [
+                [
+                  "a",
+                  "http://stackoverflow.com/a/18302624/6300197"
+                ]
+              ]
+            ],
+            [
+              " folder is the most common place to store your GLSL-ES shader files. To use them in your OpenGL ES application you need to load them to a string in the first place. This functions creates a string from the asset file:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The "
+          },
+          {
+            "Text": "Assets",
+            "Link": "http://stackoverflow.com/a/18302624/6300197"
+          },
+          {
+            "Text": " folder is the most common place to store your GLSL-ES shader files. To use them in your OpenGL ES application you need to load them to a string in the first place. This functions creates a string from the asset file:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550454764132,
+        "id": "ed19bff9-de74-4a33-8889-023cc4cd33a1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550454764132,
+        "parent_id": "4a2221b1-94bc-4f63-b6cd-6d16d8c53cec",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "private String loadStringFromAssetFile(Context myContext, String filePath){\n    StringBuilder shaderSource = new StringBuilder();\n    try {\n        BufferedReader reader = new BufferedReader(new InputStreamReader(myContext.getAssets().open(filePath)));\n        String line;\n        while((line = reader.readLine()) != null){\n            shaderSource.append(line).append(\"\\n\");\n        }\n        reader.close();\n        return shaderSource.toString();\n    } catch (IOException e) {\n        e.printStackTrace();\n        Log.e(TAG, \"Could not load shader file\");\n        return null;\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "private String loadStringFromAssetFile(Context myContext, String filePath){\n    StringBuilder shaderSource = new StringBuilder();\n    try {\n        BufferedReader reader = new BufferedReader(new InputStreamReader(myContext.getAssets().open(filePath)));\n        String line;\n        while((line = reader.readLine()) != null){\n            shaderSource.append(line).append(\"\\n\");\n        }\n        reader.close();\n        return shaderSource.toString();\n    } catch (IOException e) {\n        e.printStackTrace();\n        Log.e(TAG, \"Could not load shader file\");\n        return null;\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550454764132,
+        "id": "ca75a653-d94a-4e56-aca3-5f294f3903ec",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550454764132,
+        "parent_id": "4a2221b1-94bc-4f63-b6cd-6d16d8c53cec",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Now you need to create a function that compiles a shader stored in a sting:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Now you need to create a function that compiles a shader stored in a sting:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550454764132,
+        "id": "606e4747-cb1c-49b7-992f-ad17ea27b7c7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550454764132,
+        "parent_id": "4a2221b1-94bc-4f63-b6cd-6d16d8c53cec",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "private int compileShader(int shader_type, String shaderString){\n    \n    // This compiles the shader from the string\n    int shader = glCreateShader(shader_type);\n    glShaderSource(shader, shaderString); \n    glCompileShader(shader);\n\n    // This checks for for compilation errors\n    int[] compiled = new int[1];\n    glGetShaderiv(shader, GL_COMPILE_STATUS, compiled, 0);\n    if (compiled[0] == 0) {\n        String log = glGetShaderInfoLog(shader);\n\n        Log.e(TAG, \"Shader compilation error: \");\n        Log.e(TAG, log);\n    }\n    return shader;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "private int compileShader(int shader_type, String shaderString){\n    \n    // This compiles the shader from the string\n    int shader = glCreateShader(shader_type);\n    glShaderSource(shader, shaderString); \n    glCompileShader(shader);\n\n    // This checks for for compilation errors\n    int[] compiled = new int[1];\n    glGetShaderiv(shader, GL_COMPILE_STATUS, compiled, 0);\n    if (compiled[0] == 0) {\n        String log = glGetShaderInfoLog(shader);\n\n        Log.e(TAG, \"Shader compilation error: \");\n        Log.e(TAG, log);\n    }\n    return shader;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550454764132,
+        "id": "5dfcac76-6085-4e21-b7c8-542a70e8a750",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550454764132,
+        "parent_id": "4a2221b1-94bc-4f63-b6cd-6d16d8c53cec",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Now you can load, compile and link your shaders:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Now you can load, compile and link your shaders:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550454764132,
+        "id": "18086ed3-c823-4661-9bc3-e6ede0972f73",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550454764132,
+        "parent_id": "4a2221b1-94bc-4f63-b6cd-6d16d8c53cec",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Load shaders from file\nString vertexShaderString = loadStringFromAssetFile(context, \"your_vertex_shader.glsl\");\nString fragmentShaderString = loadStringFromAssetFile(context, \"your_fragment_shader.glsl\");\n\n// Compile shaders\nint vertexShader = compileShader(GL_VERTEX_SHADER, vertexShaderString);\nint fragmentShader = compileShader(GL_FRAGMENT_SHADER, fragmentShaderString);\n\n// Link shaders and create shader program\nint shaderProgram = glCreateProgram();\nglAttachShader(shaderProgram , vertexShader);\nglAttachShader(shaderProgram , fragmentShader);\nglLinkProgram(shaderProgram);\n\n// Check for linking errors:\nint linkStatus[] = new int[1];\nglGetProgramiv(shaderProgram, GL_LINK_STATUS, linkStatus, 0);\nif (linkStatus[0] != GL_TRUE) {\n    String log = glGetProgramInfoLog(shaderProgram);\n\n    Log.e(TAG,\"Could not link shader program: \");\n    Log.e(TAG, log);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Load shaders from file\nString vertexShaderString = loadStringFromAssetFile(context, \"your_vertex_shader.glsl\");\nString fragmentShaderString = loadStringFromAssetFile(context, \"your_fragment_shader.glsl\");\n\n// Compile shaders\nint vertexShader = compileShader(GL_VERTEX_SHADER, vertexShaderString);\nint fragmentShader = compileShader(GL_FRAGMENT_SHADER, fragmentShaderString);\n\n// Link shaders and create shader program\nint shaderProgram = glCreateProgram();\nglAttachShader(shaderProgram , vertexShader);\nglAttachShader(shaderProgram , fragmentShader);\nglLinkProgram(shaderProgram);\n\n// Check for linking errors:\nint linkStatus[] = new int[1];\nglGetProgramiv(shaderProgram, GL_LINK_STATUS, linkStatus, 0);\nif (linkStatus[0] != GL_TRUE) {\n    String log = glGetProgramInfoLog(shaderProgram);\n\n    Log.e(TAG,\"Could not link shader program: \");\n    Log.e(TAG, log);\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550454764133,
+        "id": "871aa9e3-bbd6-4ec1-9449-6b24c63a2dad",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550454764133,
+        "parent_id": "4a2221b1-94bc-4f63-b6cd-6d16d8c53cec",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If there are no errors, your shader program is ready to use:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If there are no errors, your shader program is ready to use:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550454764133,
+        "id": "999ccebc-b370-441f-82e5-d72d319fd3b2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550454764133,
+        "parent_id": "4a2221b1-94bc-4f63-b6cd-6d16d8c53cec",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "glUseProgram(shaderProgram);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "glUseProgram(shaderProgram);",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "020 Compiling and Linking GLSL-ES Shaders from asset file"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

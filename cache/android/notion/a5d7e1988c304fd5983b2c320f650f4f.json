@@ -1,0 +1,153 @@
+{
+  "ID": "a5d7e198-8c30-4fd5-983b-2c320f650f4f",
+  "Root": {
+    "alive": true,
+    "content": [
+      "d44c973a-161c-4c16-bcff-a14610ede52b",
+      "9a33e247-532a-4991-b511-b6cf81749b29",
+      "dd5a0e72-361f-4416-8f32-5811e9fb9652",
+      "3fb8eb83-d44e-4b00-811a-16305b95383b"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550445330967,
+    "id": "a5d7e198-8c30-4fd5-983b-2c320f650f4f",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550445330967,
+    "parent_id": "1ef1aff9-7d3c-456d-abfd-937eb8756547",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "070 Set custom notification icon using Picasso library."
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550445330966,
+        "id": "d44c973a-161c-4c16-bcff-a14610ede52b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550445330966,
+        "parent_id": "a5d7e198-8c30-4fd5-983b-2c320f650f4f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "PendingIntent pendingIntent = PendingIntent.getActivity(context,\nuniqueIntentId, intent, PendingIntent.FLAG_CANCEL_CURRENT);\n\nfinal RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.remote_view_notification);\nremoteViews.setImageViewResource(R.id.remoteview_notification_icon, R.mipmap.ic_navigation_favorites);\n\nUri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);\nNotificationCompat.Builder notificationBuilder =\n        new NotificationCompat.Builder(context)\n                .setSmallIcon(R.mipmap.ic_navigation_favorites) //just dummy icon\n                .setContent(remoteViews) // here we apply our view\n                .setAutoCancel(true)\n                .setContentIntent(pendingIntent)\n                .setPriority(NotificationCompat.PRIORITY_DEFAULT);\n\nfinal Notification notification = notificationBuilder.build();\n\nif (android.os.Build.VERSION.SDK_INT \u003e= 16) {\n    notification.bigContentView = remoteViews;\n}\n\nNotificationManager notificationManager =\n        (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);\n\nnotificationManager.notify(uniqueIntentId, notification);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "PendingIntent pendingIntent = PendingIntent.getActivity(context,\nuniqueIntentId, intent, PendingIntent.FLAG_CANCEL_CURRENT);\n\nfinal RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.remote_view_notification);\nremoteViews.setImageViewResource(R.id.remoteview_notification_icon, R.mipmap.ic_navigation_favorites);\n\nUri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);\nNotificationCompat.Builder notificationBuilder =\n        new NotificationCompat.Builder(context)\n                .setSmallIcon(R.mipmap.ic_navigation_favorites) //just dummy icon\n                .setContent(remoteViews) // here we apply our view\n                .setAutoCancel(true)\n                .setContentIntent(pendingIntent)\n                .setPriority(NotificationCompat.PRIORITY_DEFAULT);\n\nfinal Notification notification = notificationBuilder.build();\n\nif (android.os.Build.VERSION.SDK_INT \u003e= 16) {\n    notification.bigContentView = remoteViews;\n}\n\nNotificationManager notificationManager =\n        (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);\n\nnotificationManager.notify(uniqueIntentId, notification);",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550445330966,
+        "id": "9a33e247-532a-4991-b511-b6cf81749b29",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550445330966,
+        "parent_id": "a5d7e198-8c30-4fd5-983b-2c320f650f4f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "//don't forget to include picasso to your build.gradle file.\nPicasso.with(context)\n        .load(avatar)\n        .into(remoteViews, R.id.remoteview_notification_icon, uniqueIntentId, notification);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "//don't forget to include picasso to your build.gradle file.\nPicasso.with(context)\n        .load(avatar)\n        .into(remoteViews, R.id.remoteview_notification_icon, uniqueIntentId, notification);",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550445330967,
+        "id": "dd5a0e72-361f-4416-8f32-5811e9fb9652",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550445330967,
+        "parent_id": "a5d7e198-8c30-4fd5-983b-2c320f650f4f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "And then define a layout inside your layouts folder:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "And then define a layout inside your layouts folder:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550445330967,
+        "id": "3fb8eb83-d44e-4b00-811a-16305b95383b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550445330967,
+        "parent_id": "a5d7e198-8c30-4fd5-983b-2c320f650f4f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003c?xml version=\"1.0\" encoding=\"utf-8\"?\u003e\n\u003cLinearLayout\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"wrap_content\"\n    android:background=\"@android:color/white\"\n    android:orientation=\"vertical\"\u003e\n\n\n\n    \u003cImageView\n        android:id=\"@+id/remoteview_notification_icon\"\n        android:layout_width=\"60dp\"\n        android:layout_height=\"60dp\"\n        android:layout_marginRight=\"2dp\"\n        android:layout_weight=\"0\"\n        android:scaleType=\"centerCrop\"/\u003e\n\u003c/LinearLayout\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003c?xml version=\"1.0\" encoding=\"utf-8\"?\u003e\n\u003cLinearLayout\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"wrap_content\"\n    android:background=\"@android:color/white\"\n    android:orientation=\"vertical\"\u003e\n\n\n\n    \u003cImageView\n        android:id=\"@+id/remoteview_notification_icon\"\n        android:layout_width=\"60dp\"\n        android:layout_height=\"60dp\"\n        android:layout_marginRight=\"2dp\"\n        android:layout_weight=\"0\"\n        android:scaleType=\"centerCrop\"/\u003e\n\u003c/LinearLayout\u003e",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "070 Set custom notification icon using Picasso library."
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

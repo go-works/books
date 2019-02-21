@@ -1,0 +1,71 @@
+{
+  "ID": "717ee6ea-814f-4fbb-a6c8-839686edbe5b",
+  "Root": {
+    "alive": true,
+    "content": [
+      "8e9d9533-6573-4f2f-b094-0e4a681cbdb9"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550450278065,
+    "id": "717ee6ea-814f-4fbb-a6c8-839686edbe5b",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550450278065,
+    "parent_id": "963e797e-dea4-4392-8454-e58d4d898886",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "040 Change Password"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450278063,
+        "id": "8e9d9533-6573-4f2f-b094-0e4a681cbdb9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450278063,
+        "parent_id": "717ee6ea-814f-4fbb-a6c8-839686edbe5b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class ChangePasswordActivity extends BaseAppCompatActivity implements ReAuthenticateDialogFragment.OnReauthenticateSuccessListener {\n    @BindView(R.id.et_change_password)\n    EditText mEditText;\n    private FirebaseUser mFirebaseUser;\n\n    @OnClick(R.id.btn_change_password)\n    void onChangePasswordClick() {\n\n        FormValidationUtils.clearErrors(mEditText);\n\n        if (FormValidationUtils.isBlank(mEditText)) {\n            FormValidationUtils.setError(null, mEditText, \"Please enter password\");\n            return;\n        }\n\n        changePassword(mEditText.getText().toString());\n    }\n\n    private void changePassword(String password) {\n        DialogUtils.showProgressDialog(this, \"Changing Password\", \"Please wait...\", false);\n        mFirebaseUser.updatePassword(password)\n                .addOnCompleteListener(new OnCompleteListener\u003cVoid\u003e() {\n                    @Override\n                    public void onComplete(@NonNull Task\u003cVoid\u003e task) {\n                        DialogUtils.dismissProgressDialog();\n                        if (task.isSuccessful()) {\n                            showToast(\"Password updated successfully.\");\n                            return;\n                        }\n\n                        if (task.getException() instanceof FirebaseAuthRecentLoginRequiredException) {\n                            FragmentManager fm = getSupportFragmentManager();\n                            ReAuthenticateDialogFragment reAuthenticateDialogFragment = new ReAuthenticateDialogFragment();\n                            reAuthenticateDialogFragment.show(fm, reAuthenticateDialogFragment.getClass().getSimpleName());\n                        }\n                    }\n                });\n    }\n\n    @Override\n    protected void onCreate(@Nullable Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        getSupportActionBar().setDisplayHomeAsUpEnabled(true);\n        mFirebaseUser = mFirebaseAuth.getCurrentUser();\n    }\n\n    @Override\n    protected int getLayoutResourceId() {\n        return R.layout.activity_change_password;\n    }\n\n    @Override\n    public void onReauthenticateSuccess() {\n        changePassword(mEditText.getText().toString());\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class ChangePasswordActivity extends BaseAppCompatActivity implements ReAuthenticateDialogFragment.OnReauthenticateSuccessListener {\n    @BindView(R.id.et_change_password)\n    EditText mEditText;\n    private FirebaseUser mFirebaseUser;\n\n    @OnClick(R.id.btn_change_password)\n    void onChangePasswordClick() {\n\n        FormValidationUtils.clearErrors(mEditText);\n\n        if (FormValidationUtils.isBlank(mEditText)) {\n            FormValidationUtils.setError(null, mEditText, \"Please enter password\");\n            return;\n        }\n\n        changePassword(mEditText.getText().toString());\n    }\n\n    private void changePassword(String password) {\n        DialogUtils.showProgressDialog(this, \"Changing Password\", \"Please wait...\", false);\n        mFirebaseUser.updatePassword(password)\n                .addOnCompleteListener(new OnCompleteListener\u003cVoid\u003e() {\n                    @Override\n                    public void onComplete(@NonNull Task\u003cVoid\u003e task) {\n                        DialogUtils.dismissProgressDialog();\n                        if (task.isSuccessful()) {\n                            showToast(\"Password updated successfully.\");\n                            return;\n                        }\n\n                        if (task.getException() instanceof FirebaseAuthRecentLoginRequiredException) {\n                            FragmentManager fm = getSupportFragmentManager();\n                            ReAuthenticateDialogFragment reAuthenticateDialogFragment = new ReAuthenticateDialogFragment();\n                            reAuthenticateDialogFragment.show(fm, reAuthenticateDialogFragment.getClass().getSimpleName());\n                        }\n                    }\n                });\n    }\n\n    @Override\n    protected void onCreate(@Nullable Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        getSupportActionBar().setDisplayHomeAsUpEnabled(true);\n        mFirebaseUser = mFirebaseAuth.getCurrentUser();\n    }\n\n    @Override\n    protected int getLayoutResourceId() {\n        return R.layout.activity_change_password;\n    }\n\n    @Override\n    public void onReauthenticateSuccess() {\n        changePassword(mEditText.getText().toString());\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "040 Change Password"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

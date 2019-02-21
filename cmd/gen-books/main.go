@@ -102,16 +102,26 @@ var (
 		NoPublish: true,
 		Title: "Android",
 		TitleLong: "Essential Android",
+		Dir: "android",
 		CoverImageName: "Android.png",
 		// https://www.notion.so/kjkpublic/Essential-Android-f90b0a6b648343e28dc5ed6e8f5c0780
 		NotionStartPageID: "f90b0a6b648343e28dc5ed6e8f5c0780",
+	}
+	bookSql = &Book{
+		NoPublish: true,
+		Title: "SQL",
+		TitleLong: "Essential SQL",
+		Dir: "sql",
+		CoverImageName: "SQL.png",
+		// https://www.notion.so/kjkpublic/Essential-SQL-d1c8bb39bad4494e80abe28414c3d80e
+		NotionStartPageID: "d1c8bb39bad4494e80abe28414c3d80e",
 	}
 )
 
 var (
 	books = []*Book{
 		bookGo, bookCsharp, bookPython, bookKotlin, bookJavaScript,
-		bookDart, bookJava, bookAndroid,
+		bookDart, bookJava, bookAndroid, bookSql,
 	}
 )
 

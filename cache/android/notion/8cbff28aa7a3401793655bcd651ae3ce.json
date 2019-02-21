@@ -1,0 +1,151 @@
+{
+  "ID": "8cbff28a-a7a3-4017-9365-5bcd651ae3ce",
+  "Root": {
+    "alive": true,
+    "content": [
+      "952c398a-2933-4a3b-b272-e1ba7e984c8a",
+      "e867845d-f2cc-480b-ad74-2bb568552fdb",
+      "8951c16e-b98f-4e2d-8cfd-616f448e6cd3",
+      "5395020d-9ff8-4a77-9843-033f5060c5a1"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550445352933,
+    "id": "8cbff28a-a7a3-4017-9365-5bcd651ae3ce",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550445352933,
+    "parent_id": "6a6fe5f1-6362-47c6-bac7-61c76a0a464d",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "040 Run an intent at a later time"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550445352930,
+        "id": "952c398a-2933-4a3b-b272-e1ba7e984c8a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550445352930,
+        "parent_id": "8cbff28a-a7a3-4017-9365-5bcd651ae3ce",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Create a receiver. This class will receive the intent and handle it how you wish."
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Create a receiver. This class will receive the intent and handle it how you wish."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550445352930,
+        "id": "e867845d-f2cc-480b-ad74-2bb568552fdb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550445352930,
+        "parent_id": "8cbff28a-a7a3-4017-9365-5bcd651ae3ce",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class AlarmReceiver extends BroadcastReceiver\n{\n    @Override\n    public void onReceive(Context context, Intent intent)\n    {\n        // Handle intent\n        int reqCode = intent.getExtras().getInt(\"requestCode\");\n        ...\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class AlarmReceiver extends BroadcastReceiver\n{\n    @Override\n    public void onReceive(Context context, Intent intent)\n    {\n        // Handle intent\n        int reqCode = intent.getExtras().getInt(\"requestCode\");\n        ...\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550445352933,
+        "id": "8951c16e-b98f-4e2d-8cfd-616f448e6cd3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550445352933,
+        "parent_id": "8cbff28a-a7a3-4017-9365-5bcd651ae3ce",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Give an intent to AlarmManager. This example will trigger the intent to be sent to AlarmReceiver after 1 minute."
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Give an intent to AlarmManager. This example will trigger the intent to be sent to AlarmReceiver after 1 minute."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550445352933,
+        "id": "5395020d-9ff8-4a77-9843-033f5060c5a1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550445352933,
+        "parent_id": "8cbff28a-a7a3-4017-9365-5bcd651ae3ce",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "final int requestCode = 1337;\nAlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);\nIntent intent = new Intent(context, AlarmReceiver.class);\nPendingIntent pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);\nam.set( AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 60000 , pendingIntent );"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "final int requestCode = 1337;\nAlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);\nIntent intent = new Intent(context, AlarmReceiver.class);\nPendingIntent pendingIntent = PendingIntent.getBroadcast(context, requestCode, intent, PendingIntent.FLAG_UPDATE_CURRENT);\nam.set( AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 60000 , pendingIntent );",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "040 Run an intent at a later time"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

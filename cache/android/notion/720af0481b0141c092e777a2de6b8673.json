@@ -1,0 +1,133 @@
+{
+  "ID": "720af048-1b01-41c0-92e7-77a2de6b8673",
+  "Root": {
+    "alive": true,
+    "content": [
+      "ee2008d2-7b25-4afc-bc45-48983770bfef",
+      "8f5290cd-f622-4e30-b85f-8389c77874bf"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550444685876,
+    "id": "720af048-1b01-41c0-92e7-77a2de6b8673",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550444685876,
+    "parent_id": "577ee794-a9c3-4ded-8824-6307ea4044f3",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "020 Smoother loading of items"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444685873,
+        "id": "ee2008d2-7b25-4afc-bc45-48983770bfef",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444685873,
+        "parent_id": "720af048-1b01-41c0-92e7-77a2de6b8673",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If the items in your "
+            ],
+            [
+              "RecyclerView",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " load data from the network (commonly images) or carry out other processing, that can take a significant amount of time and you may end up with items on-screen but not fully loaded. To avoid this you can extend the existing "
+            ],
+            [
+              "LinearLayoutManager",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to preload a number of items before they become visible on-screen:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If the items in your "
+          },
+          {
+            "Text": "RecyclerView",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " load data from the network (commonly images) or carry out other processing, that can take a significant amount of time and you may end up with items on-screen but not fully loaded. To avoid this you can extend the existing "
+          },
+          {
+            "Text": "LinearLayoutManager",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to preload a number of items before they become visible on-screen:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444685876,
+        "id": "8f5290cd-f622-4e30-b85f-8389c77874bf",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444685876,
+        "parent_id": "720af048-1b01-41c0-92e7-77a2de6b8673",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "package com.example;\n\nimport android.content.Context;\nimport android.support.v7.widget.LinearLayoutManager;\nimport android.support.v7.widget.OrientationHelper;\nimport android.support.v7.widget.RecyclerView;\n\n/**\n * A LinearLayoutManager that preloads items off-screen.\n * \u003cp\u003e\n * Preloading is useful in situations where items might take some time to load\n * fully, commonly because they have maps, images or other items that require\n * network requests to complete before they can be displayed.\n * \u003cp\u003e\n * By default, this layout will load a single additional page's worth of items,\n * a page being a pixel measure equivalent to the on-screen size of the\n * recycler view.  This can be altered using the relevant constructor, or\n * through the {@link #setPages(int)} method.\n */\npublic class PreLoadingLinearLayoutManager extends LinearLayoutManager {\n  private int mPages = 1;\n  private OrientationHelper mOrientationHelper;\n\n  public PreLoadingLinearLayoutManager(final Context context) {\n    super(context);\n  }\n\n  public PreLoadingLinearLayoutManager(final Context context, final int pages) {\n    super(context);\n    this.mPages = pages;\n  }\n\n  public PreLoadingLinearLayoutManager(final Context context, final int orientation, final boolean reverseLayout) {\n    super(context, orientation, reverseLayout);\n  }\n\n  @Override\n  public void setOrientation(final int orientation) {\n    super.setOrientation(orientation);\n    mOrientationHelper = null;\n  }\n\n  /**\n   * Set the number of pages of layout that will be preloaded off-screen,\n   * a page being a pixel measure equivalent to the on-screen size of the\n   * recycler view.\n   * @param pages the number of pages; can be {@code 0} to disable preloading\n   */\n  public void setPages(final int pages) {\n    this.mPages = pages;\n  }\n\n  @Override\n  protected int getExtraLayoutSpace(final RecyclerView.State state) {\n    if (mOrientationHelper == null) {\n      mOrientationHelper = OrientationHelper.createOrientationHelper(this, getOrientation());\n    }\n    return mOrientationHelper.getTotalSpace() * mPages;\n  }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "package com.example;\n\nimport android.content.Context;\nimport android.support.v7.widget.LinearLayoutManager;\nimport android.support.v7.widget.OrientationHelper;\nimport android.support.v7.widget.RecyclerView;\n\n/**\n * A LinearLayoutManager that preloads items off-screen.\n * \u003cp\u003e\n * Preloading is useful in situations where items might take some time to load\n * fully, commonly because they have maps, images or other items that require\n * network requests to complete before they can be displayed.\n * \u003cp\u003e\n * By default, this layout will load a single additional page's worth of items,\n * a page being a pixel measure equivalent to the on-screen size of the\n * recycler view.  This can be altered using the relevant constructor, or\n * through the {@link #setPages(int)} method.\n */\npublic class PreLoadingLinearLayoutManager extends LinearLayoutManager {\n  private int mPages = 1;\n  private OrientationHelper mOrientationHelper;\n\n  public PreLoadingLinearLayoutManager(final Context context) {\n    super(context);\n  }\n\n  public PreLoadingLinearLayoutManager(final Context context, final int pages) {\n    super(context);\n    this.mPages = pages;\n  }\n\n  public PreLoadingLinearLayoutManager(final Context context, final int orientation, final boolean reverseLayout) {\n    super(context, orientation, reverseLayout);\n  }\n\n  @Override\n  public void setOrientation(final int orientation) {\n    super.setOrientation(orientation);\n    mOrientationHelper = null;\n  }\n\n  /**\n   * Set the number of pages of layout that will be preloaded off-screen,\n   * a page being a pixel measure equivalent to the on-screen size of the\n   * recycler view.\n   * @param pages the number of pages; can be {@code 0} to disable preloading\n   */\n  public void setPages(final int pages) {\n    this.mPages = pages;\n  }\n\n  @Override\n  protected int getExtraLayoutSpace(final RecyclerView.State state) {\n    if (mOrientationHelper == null) {\n      mOrientationHelper = OrientationHelper.createOrientationHelper(this, getOrientation());\n    }\n    return mOrientationHelper.getTotalSpace() * mPages;\n  }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "020 Smoother loading of items"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

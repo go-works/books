@@ -1,0 +1,205 @@
+{
+  "ID": "4375701c-90c7-40f9-bb40-fa35e0796da8",
+  "Root": {
+    "alive": true,
+    "content": [
+      "928fadfc-7858-47c6-8b1e-49b705903ed9",
+      "d5bbf2db-6665-40cf-a0bf-009b22ba7306",
+      "9d67a1fa-f7b5-4c55-b465-a2a719d6f6ed",
+      "86de6863-bb64-48e3-b6af-aaad9281980e",
+      "e5a97a5c-2299-4358-826e-a857d11e7f53",
+      "f2854956-0e52-4c02-be70-8d3e2106f590"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550453106995,
+    "id": "4375701c-90c7-40f9-bb40-fa35e0796da8",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550453106995,
+    "parent_id": "d0f4d361-3ebe-433f-8d61-aa782fae1629",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "040 YoutubePlayerFragment in portrait Activty"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550453106993,
+        "id": "928fadfc-7858-47c6-8b1e-49b705903ed9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550453106993,
+        "parent_id": "4375701c-90c7-40f9-bb40-fa35e0796da8",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The following code implements a simple YoutubePlayerFragment. The activity’s layout is locked in portrait mode and when orientation changes or the user clicks full screen at the YoutubePlayer it turns to lansscape with the YoutubePlayer filling the screen. The YoutubePlayerFragment does not need to extend an activity provided by the Youtube library. It needs to implement YouTubePlayer.OnInitializedListener in order to get the YoutubePlayer initialized. So our Activity’s class is the following"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The following code implements a simple YoutubePlayerFragment. The activity’s layout is locked in portrait mode and when orientation changes or the user clicks full screen at the YoutubePlayer it turns to lansscape with the YoutubePlayer filling the screen. The YoutubePlayerFragment does not need to extend an activity provided by the Youtube library. It needs to implement YouTubePlayer.OnInitializedListener in order to get the YoutubePlayer initialized. So our Activity’s class is the following"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550453106994,
+        "id": "d5bbf2db-6665-40cf-a0bf-009b22ba7306",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550453106994,
+        "parent_id": "4375701c-90c7-40f9-bb40-fa35e0796da8",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import android.os.Bundle;\nimport android.support.v7.app.AppCompatActivity;\nimport android.util.Log;\nimport android.widget.Toast;\n\nimport com.google.android.youtube.player.YouTubeInitializationResult;\nimport com.google.android.youtube.player.YouTubePlayer;\nimport com.google.android.youtube.player.YouTubePlayerFragment;\n\npublic class MainActivity extends AppCompatActivity implements YouTubePlayer.OnInitializedListener {\n   \n    public static final String API_KEY ;\n    public static final String VIDEO_ID = \"B08iLAtS3AQ\";\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_main);\n\n        YouTubePlayerFragment youTubePlayerFragment = (YouTubePlayerFragment) getFragmentManager()\n                .findFragmentById(R.id.youtubeplayerfragment);\n\n        youTubePlayerFragment.initialize(API_KEY, this);\n\n    }\n\n    /**\n     *\n     * @param provider The provider which was used to initialize the YouTubePlayer\n     * @param youTubePlayer A YouTubePlayer which can be used to control video playback in the provider.\n     * @param wasRestored Whether the player was restored from a previously saved state, as part of the YouTubePlayerView\n     *                    or YouTubePlayerFragment restoring its state. true usually means playback is resuming from where\n     *                    the user expects it would, and that a new video should not be loaded\n     */\n    @Override\n    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {\n                 \nyouTubePlayer.setFullscreenControlFlags(YouTubePlayer.FULLSCREEN_FLAG_CONTROL_ORIENTATION |\n                    YouTubePlayer.FULLSCREEN_FLAG_ALWAYS_FULLSCREEN_IN_LANDSCAPE);\n\n\n        if(!wasRestored) {\n            youTubePlayer.cueVideo(VIDEO_ID);\n        }\n    }\n\n    /**\n     *\n     * @param provider The provider which failed to initialize a YouTubePlayer.\n     * @param error The reason for this failure, along with potential resolutions to this failure.\n     */\n    @Override\n    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult error) {\n        \n        final int REQUEST_CODE = 1;\n\n        if(error.isUserRecoverableError()) {\n            error.getErrorDialog(this,REQUEST_CODE).show();\n        } else {\n            String errorMessage = String.format(\"There was an error initializing the YoutubePlayer (%1$s)\", error.toString());\n            Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import android.os.Bundle;\nimport android.support.v7.app.AppCompatActivity;\nimport android.util.Log;\nimport android.widget.Toast;\n\nimport com.google.android.youtube.player.YouTubeInitializationResult;\nimport com.google.android.youtube.player.YouTubePlayer;\nimport com.google.android.youtube.player.YouTubePlayerFragment;\n\npublic class MainActivity extends AppCompatActivity implements YouTubePlayer.OnInitializedListener {\n   \n    public static final String API_KEY ;\n    public static final String VIDEO_ID = \"B08iLAtS3AQ\";\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_main);\n\n        YouTubePlayerFragment youTubePlayerFragment = (YouTubePlayerFragment) getFragmentManager()\n                .findFragmentById(R.id.youtubeplayerfragment);\n\n        youTubePlayerFragment.initialize(API_KEY, this);\n\n    }\n\n    /**\n     *\n     * @param provider The provider which was used to initialize the YouTubePlayer\n     * @param youTubePlayer A YouTubePlayer which can be used to control video playback in the provider.\n     * @param wasRestored Whether the player was restored from a previously saved state, as part of the YouTubePlayerView\n     *                    or YouTubePlayerFragment restoring its state. true usually means playback is resuming from where\n     *                    the user expects it would, and that a new video should not be loaded\n     */\n    @Override\n    public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {\n                 \nyouTubePlayer.setFullscreenControlFlags(YouTubePlayer.FULLSCREEN_FLAG_CONTROL_ORIENTATION |\n                    YouTubePlayer.FULLSCREEN_FLAG_ALWAYS_FULLSCREEN_IN_LANDSCAPE);\n\n\n        if(!wasRestored) {\n            youTubePlayer.cueVideo(VIDEO_ID);\n        }\n    }\n\n    /**\n     *\n     * @param provider The provider which failed to initialize a YouTubePlayer.\n     * @param error The reason for this failure, along with potential resolutions to this failure.\n     */\n    @Override\n    public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult error) {\n        \n        final int REQUEST_CODE = 1;\n\n        if(error.isUserRecoverableError()) {\n            error.getErrorDialog(this,REQUEST_CODE).show();\n        } else {\n            String errorMessage = String.format(\"There was an error initializing the YoutubePlayer (%1$s)\", error.toString());\n            Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show();\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550453106994,
+        "id": "9d67a1fa-f7b5-4c55-b465-a2a719d6f6ed",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550453106994,
+        "parent_id": "4375701c-90c7-40f9-bb40-fa35e0796da8",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "A YoutubePlayerFragment can be added to the activity’s layout xaml as followed"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "A YoutubePlayerFragment can be added to the activity’s layout xaml as followed"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550453106994,
+        "id": "86de6863-bb64-48e3-b6af-aaad9281980e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550453106994,
+        "parent_id": "4375701c-90c7-40f9-bb40-fa35e0796da8",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003cLinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n              xmlns:tools=\"http://schemas.android.com/tools\"\n              android:layout_width=\"match_parent\"\n              android:layout_height=\"match_parent\"\n              android:orientation=\"vertical\"\n              android:paddingBottom=\"@dimen/activity_vertical_margin\"\n              android:paddingLeft=\"@dimen/activity_horizontal_margin\"\n              android:paddingRight=\"@dimen/activity_horizontal_margin\"\n              android:paddingTop=\"@dimen/activity_vertical_margin\"\n              tools:context=\".MainActivity\"\u003e\n\n    \u003cfragment\n        android:id=\"@+id/youtubeplayerfragment\"\n        android:name=\"com.google.android.youtube.player.YouTubePlayerFragment\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"/\u003e\n\n\n    \u003cScrollView\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\"\u003e\n\n        \u003cLinearLayout\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"wrap_content\"\n            android:orientation=\"vertical\"\u003e\n\n\n            \u003cTextView\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_gravity=\"center_horizontal\"\n                android:layout_marginTop=\"20dp\"\n                android:text=\"This is a YoutubePlayerFragment example\"\n                android:textStyle=\"bold\"/\u003e\n\n            \u003cTextView\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n\n                android:layout_gravity=\"center_horizontal\"\n                android:layout_marginTop=\"20dp\"\n                android:text=\"This is a YoutubePlayerFragment example\"\n                android:textStyle=\"bold\"/\u003e\n\n            \u003cTextView\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_gravity=\"center_horizontal\"\n                android:layout_marginTop=\"20dp\"\n                android:text=\"This is a YoutubePlayerFragment example\"\n                android:textStyle=\"bold\"/\u003e\n\n            \u003cTextView\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_gravity=\"center_horizontal\"\n                android:layout_marginTop=\"20dp\"\n                android:text=\"This is a YoutubePlayerFragment example\"\n                android:textStyle=\"bold\"/\u003e\n\n            \u003cTextView\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_gravity=\"center_horizontal\"\n                android:layout_marginTop=\"20dp\"\n                android:text=\"This is a YoutubePlayerFragment example\"\n                android:textStyle=\"bold\"/\u003e\n            \u003cTextView\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_gravity=\"center_horizontal\"\n                android:layout_marginTop=\"20dp\"\n                android:text=\"This is a YoutubePlayerFragment example\"\n                android:textStyle=\"bold\"/\u003e\n            \u003cTextView\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_gravity=\"center_horizontal\"\n                android:layout_marginTop=\"20dp\"\n                android:text=\"This is a YoutubePlayerFragment example\"\n                android:textStyle=\"bold\"/\u003e\n\n        \u003c/LinearLayout\u003e\n    \u003c/ScrollView\u003e\n\n\u003c/LinearLayout\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003cLinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n              xmlns:tools=\"http://schemas.android.com/tools\"\n              android:layout_width=\"match_parent\"\n              android:layout_height=\"match_parent\"\n              android:orientation=\"vertical\"\n              android:paddingBottom=\"@dimen/activity_vertical_margin\"\n              android:paddingLeft=\"@dimen/activity_horizontal_margin\"\n              android:paddingRight=\"@dimen/activity_horizontal_margin\"\n              android:paddingTop=\"@dimen/activity_vertical_margin\"\n              tools:context=\".MainActivity\"\u003e\n\n    \u003cfragment\n        android:id=\"@+id/youtubeplayerfragment\"\n        android:name=\"com.google.android.youtube.player.YouTubePlayerFragment\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"/\u003e\n\n\n    \u003cScrollView\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\"\u003e\n\n        \u003cLinearLayout\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"wrap_content\"\n            android:orientation=\"vertical\"\u003e\n\n\n            \u003cTextView\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_gravity=\"center_horizontal\"\n                android:layout_marginTop=\"20dp\"\n                android:text=\"This is a YoutubePlayerFragment example\"\n                android:textStyle=\"bold\"/\u003e\n\n            \u003cTextView\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n\n                android:layout_gravity=\"center_horizontal\"\n                android:layout_marginTop=\"20dp\"\n                android:text=\"This is a YoutubePlayerFragment example\"\n                android:textStyle=\"bold\"/\u003e\n\n            \u003cTextView\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_gravity=\"center_horizontal\"\n                android:layout_marginTop=\"20dp\"\n                android:text=\"This is a YoutubePlayerFragment example\"\n                android:textStyle=\"bold\"/\u003e\n\n            \u003cTextView\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_gravity=\"center_horizontal\"\n                android:layout_marginTop=\"20dp\"\n                android:text=\"This is a YoutubePlayerFragment example\"\n                android:textStyle=\"bold\"/\u003e\n\n            \u003cTextView\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_gravity=\"center_horizontal\"\n                android:layout_marginTop=\"20dp\"\n                android:text=\"This is a YoutubePlayerFragment example\"\n                android:textStyle=\"bold\"/\u003e\n            \u003cTextView\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_gravity=\"center_horizontal\"\n                android:layout_marginTop=\"20dp\"\n                android:text=\"This is a YoutubePlayerFragment example\"\n                android:textStyle=\"bold\"/\u003e\n            \u003cTextView\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_gravity=\"center_horizontal\"\n                android:layout_marginTop=\"20dp\"\n                android:text=\"This is a YoutubePlayerFragment example\"\n                android:textStyle=\"bold\"/\u003e\n\n        \u003c/LinearLayout\u003e\n    \u003c/ScrollView\u003e\n\n\u003c/LinearLayout\u003e",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550453106995,
+        "id": "e5a97a5c-2299-4358-826e-a857d11e7f53",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550453106995,
+        "parent_id": "4375701c-90c7-40f9-bb40-fa35e0796da8",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Lastly you need to add the following attributes in your Manifest file inside the activity’s tag"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Lastly you need to add the following attributes in your Manifest file inside the activity’s tag"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550453106995,
+        "id": "f2854956-0e52-4c02-be70-8d3e2106f590",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550453106995,
+        "parent_id": "4375701c-90c7-40f9-bb40-fa35e0796da8",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "android:configChanges=\"keyboardHidden|orientation|screenSize\"\nandroid:screenOrientation=\"portrait\""
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "android:configChanges=\"keyboardHidden|orientation|screenSize\"\nandroid:screenOrientation=\"portrait\"",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "040 YoutubePlayerFragment in portrait Activty"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

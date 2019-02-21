@@ -1,0 +1,203 @@
+{
+  "ID": "9088a4b5-c52c-4a74-8ffe-919bceefce23",
+  "Root": {
+    "alive": true,
+    "content": [
+      "f8cbd35f-2a18-4e97-b4a7-4a5bdf2d2e06",
+      "ebb0ac72-9597-4fe2-ba70-91207092e9fe",
+      "0d807b23-0f13-4bfe-847d-90d652a4d086",
+      "de666421-338c-4b3a-b876-83c998f58dbb",
+      "91786bf2-17ec-42c3-b0f1-cddb51ad070f",
+      "73a9f0dd-8bc3-403c-a4e6-71c6a28792e5"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550451879204,
+    "id": "9088a4b5-c52c-4a74-8ffe-919bceefce23",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550451879204,
+    "parent_id": "96cf5a86-7732-431c-be7c-7c753d92a46a",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "040 Icon or button inside Custom Edit Text and its action and click listeners."
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451879187,
+        "id": "f8cbd35f-2a18-4e97-b4a7-4a5bdf2d2e06",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451879187,
+        "parent_id": "9088a4b5-c52c-4a74-8ffe-919bceefce23",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This example will help to have the Edit text with the icon at the right side."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This example will help to have the Edit text with the icon at the right side."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451879203,
+        "id": "ebb0ac72-9597-4fe2-ba70-91207092e9fe",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451879203,
+        "parent_id": "9088a4b5-c52c-4a74-8ffe-919bceefce23",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Note: In this just I am using setCompoundDrawablesWithIntrinsicBounds, So if you want to change the icon position you can achieve that using setCompoundDrawablesWithIntrinsicBounds in setIcon."
+            ]
+          ]
+        },
+        "type": "quote",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Note: In this just I am using setCompoundDrawablesWithIntrinsicBounds, So if you want to change the icon position you can achieve that using setCompoundDrawablesWithIntrinsicBounds in setIcon."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451879204,
+        "id": "0d807b23-0f13-4bfe-847d-90d652a4d086",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451879204,
+        "parent_id": "9088a4b5-c52c-4a74-8ffe-919bceefce23",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class MKEditText extends AppCompatEditText {\n\n    public interface IconClickListener {\n        public void onClick();\n    }\n\n    private IconClickListener mIconClickListener;\n\n    private static final String TAG = MKEditText.class.getSimpleName();\n\n    private final int EXTRA_TOUCH_AREA = 50;\n    private Drawable mDrawable;\n    private boolean touchDown;\n\n    public MKEditText(Context context, AttributeSet attrs, int defStyle) {\n        super(context, attrs, defStyle);\n    }\n\n    public MKEditText(Context context) {\n        super(context);\n    }\n\n    public MKEditText(Context context, AttributeSet attrs) {\n        super(context, attrs);\n    }\n\n    public void showRightIcon() {\n        mDrawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_android_black_24dp);\n\n        setIcon();\n    }\n\n    public void setIconClickListener(IconClickListener iconClickListener) {\n        mIconClickListener = iconClickListener;\n    }\n\n    private void setIcon() {\n        Drawable[] drawables = getCompoundDrawables();\n\n        setCompoundDrawablesWithIntrinsicBounds(drawables[0], drawables[1], mDrawable, drawables[3]);\n\n        setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);\n        setSelection(getText().length());\n    }\n\n    @Override\n    public boolean onTouchEvent(MotionEvent event) {\n        final int right = getRight();\n        final int drawableSize = getCompoundPaddingRight();\n        final int x = (int) event.getX();\n        switch (event.getAction()) {\n            case MotionEvent.ACTION_DOWN:\n                if (x + EXTRA_TOUCH_AREA \u003e= right - drawableSize \u0026\u0026 x \u003c= right + EXTRA_TOUCH_AREA) {\n                    touchDown = true;\n                    return true;\n                }\n                break;\n            case MotionEvent.ACTION_UP:\n                if (x + EXTRA_TOUCH_AREA \u003e= right - drawableSize \u0026\u0026 x \u003c= right + EXTRA_TOUCH_AREA \u0026\u0026 touchDown) {\n                    touchDown = false;\n                    if (mIconClickListener != null) {\n                        mIconClickListener.onClick();\n                    }\n                    return true;\n                }\n                touchDown = false;\n                break;\n\n        }\n        return super.onTouchEvent(event);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class MKEditText extends AppCompatEditText {\n\n    public interface IconClickListener {\n        public void onClick();\n    }\n\n    private IconClickListener mIconClickListener;\n\n    private static final String TAG = MKEditText.class.getSimpleName();\n\n    private final int EXTRA_TOUCH_AREA = 50;\n    private Drawable mDrawable;\n    private boolean touchDown;\n\n    public MKEditText(Context context, AttributeSet attrs, int defStyle) {\n        super(context, attrs, defStyle);\n    }\n\n    public MKEditText(Context context) {\n        super(context);\n    }\n\n    public MKEditText(Context context, AttributeSet attrs) {\n        super(context, attrs);\n    }\n\n    public void showRightIcon() {\n        mDrawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_android_black_24dp);\n\n        setIcon();\n    }\n\n    public void setIconClickListener(IconClickListener iconClickListener) {\n        mIconClickListener = iconClickListener;\n    }\n\n    private void setIcon() {\n        Drawable[] drawables = getCompoundDrawables();\n\n        setCompoundDrawablesWithIntrinsicBounds(drawables[0], drawables[1], mDrawable, drawables[3]);\n\n        setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);\n        setSelection(getText().length());\n    }\n\n    @Override\n    public boolean onTouchEvent(MotionEvent event) {\n        final int right = getRight();\n        final int drawableSize = getCompoundPaddingRight();\n        final int x = (int) event.getX();\n        switch (event.getAction()) {\n            case MotionEvent.ACTION_DOWN:\n                if (x + EXTRA_TOUCH_AREA \u003e= right - drawableSize \u0026\u0026 x \u003c= right + EXTRA_TOUCH_AREA) {\n                    touchDown = true;\n                    return true;\n                }\n                break;\n            case MotionEvent.ACTION_UP:\n                if (x + EXTRA_TOUCH_AREA \u003e= right - drawableSize \u0026\u0026 x \u003c= right + EXTRA_TOUCH_AREA \u0026\u0026 touchDown) {\n                    touchDown = false;\n                    if (mIconClickListener != null) {\n                        mIconClickListener.onClick();\n                    }\n                    return true;\n                }\n                touchDown = false;\n                break;\n\n        }\n        return super.onTouchEvent(event);\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451879204,
+        "id": "de666421-338c-4b3a-b876-83c998f58dbb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451879204,
+        "parent_id": "9088a4b5-c52c-4a74-8ffe-919bceefce23",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If you want to change the touch area you can change the EXTRA_TOUCH_AREA values default I gave as 50."
+            ]
+          ]
+        },
+        "type": "quote",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If you want to change the touch area you can change the EXTRA_TOUCH_AREA values default I gave as 50."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451879204,
+        "id": "91786bf2-17ec-42c3-b0f1-cddb51ad070f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451879204,
+        "parent_id": "9088a4b5-c52c-4a74-8ffe-919bceefce23",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "And for Enable the button and click listener you can call from your Activity or Fragment like this,"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "And for Enable the button and click listener you can call from your Activity or Fragment like this,"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451879204,
+        "id": "73a9f0dd-8bc3-403c-a4e6-71c6a28792e5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451879204,
+        "parent_id": "9088a4b5-c52c-4a74-8ffe-919bceefce23",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "MKEditText mkEditText = (MKEditText) findViewById(R.id.password);\nmkEditText.showRightIcon();\nmkEditText.setIconClickListener(new MKEditText.IconClickListener() {\n            @Override\n            public void onClick() {\n              // You can do action here for the icon.\n               \n            }\n        });"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "MKEditText mkEditText = (MKEditText) findViewById(R.id.password);\nmkEditText.showRightIcon();\nmkEditText.setIconClickListener(new MKEditText.IconClickListener() {\n            @Override\n            public void onClick() {\n              // You can do action here for the icon.\n               \n            }\n        });",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "040 Icon or button inside Custom Edit Text and its action and click listeners."
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

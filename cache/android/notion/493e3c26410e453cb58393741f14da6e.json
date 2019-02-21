@@ -1,0 +1,286 @@
+{
+  "ID": "493e3c26-410e-453c-b583-93741f14da6e",
+  "Root": {
+    "alive": true,
+    "content": [
+      "3d6f3a43-963c-430f-826d-eda2951ca110",
+      "11d16e38-9ff0-4fb5-8a7c-396acc4f4be2",
+      "e47502ed-c52f-4b33-9bf1-38e322a0e4e3",
+      "e0ec3c17-b4be-4fe7-9906-213e1696b1b5",
+      "670e7cd2-a364-4b9b-a3fd-1cde7b8ff0d2",
+      "83774c8a-e780-4262-b5fa-514b998be888",
+      "0625d6ca-e32a-489a-a814-36d86807e351"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550454763046,
+    "id": "493e3c26-410e-453c-b583-93741f14da6e",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550454763046,
+    "parent_id": "71e5a001-12f9-41d1-aa62-8c79dd517256",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Setting up GLSurfaceView and OpenGL ES 2.0 "
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550454763041,
+        "id": "3d6f3a43-963c-430f-826d-eda2951ca110",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550454763041,
+        "parent_id": "493e3c26-410e-453c-b583-93741f14da6e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To use OpenGL ES in your application you must add this to the manifest:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To use OpenGL ES in your application you must add this to the manifest:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550454763043,
+        "id": "11d16e38-9ff0-4fb5-8a7c-396acc4f4be2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550454763043,
+        "parent_id": "493e3c26-410e-453c-b583-93741f14da6e",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003cuses-feature android:glEsVersion=\"0x00020000\" android:required=\"true\"/\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003cuses-feature android:glEsVersion=\"0x00020000\" android:required=\"true\"/\u003e",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550454763044,
+        "id": "e47502ed-c52f-4b33-9bf1-38e322a0e4e3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550454763044,
+        "parent_id": "493e3c26-410e-453c-b583-93741f14da6e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Create your extended GLSurfaceView:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Create your extended GLSurfaceView:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550454763044,
+        "id": "e0ec3c17-b4be-4fe7-9906-213e1696b1b5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550454763044,
+        "parent_id": "493e3c26-410e-453c-b583-93741f14da6e",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import static android.opengl.GLES20.*; // To use all OpenGL ES 2.0 methods and constants statically\n\npublic class MyGLSurfaceView extends GLSurfaceView {\n    \n    public MyGLSurfaceView(Context context, AttributeSet attrs) {\n        super(context, attrs);\n\n        setEGLContextClientVersion(2); // OpenGL ES version 2.0\n        setRenderer(new MyRenderer());\n        setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);\n    }\n\n    public final class MyRenderer implements GLSurfaceView.Renderer{\n        public final void onSurfaceCreated(GL10 unused, EGLConfig config) {\n            // Your OpenGL ES init methods\n            glClearColor(1f, 0f, 0f, 1f);\n        }\n        public final void onSurfaceChanged(GL10 unused, int width, int height) {\n            glViewport(0, 0, width, height);\n        }\n\n        public final void onDrawFrame(GL10 unused) {\n            // Your OpenGL ES draw methods\n            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import static android.opengl.GLES20.*; // To use all OpenGL ES 2.0 methods and constants statically\n\npublic class MyGLSurfaceView extends GLSurfaceView {\n    \n    public MyGLSurfaceView(Context context, AttributeSet attrs) {\n        super(context, attrs);\n\n        setEGLContextClientVersion(2); // OpenGL ES version 2.0\n        setRenderer(new MyRenderer());\n        setRenderMode(GLSurfaceView.RENDERMODE_CONTINUOUSLY);\n    }\n\n    public final class MyRenderer implements GLSurfaceView.Renderer{\n        public final void onSurfaceCreated(GL10 unused, EGLConfig config) {\n            // Your OpenGL ES init methods\n            glClearColor(1f, 0f, 0f, 1f);\n        }\n        public final void onSurfaceChanged(GL10 unused, int width, int height) {\n            glViewport(0, 0, width, height);\n        }\n\n        public final void onDrawFrame(GL10 unused) {\n            // Your OpenGL ES draw methods\n            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550454763044,
+        "id": "670e7cd2-a364-4b9b-a3fd-1cde7b8ff0d2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550454763044,
+        "parent_id": "493e3c26-410e-453c-b583-93741f14da6e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Add "
+            ],
+            [
+              "MyGLSurfaceView",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to your layout:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Add "
+          },
+          {
+            "Text": "MyGLSurfaceView",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to your layout:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550454763044,
+        "id": "83774c8a-e780-4262-b5fa-514b998be888",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550454763044,
+        "parent_id": "493e3c26-410e-453c-b583-93741f14da6e",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003ccom.example.app.MyGLSurfaceView\n    android:id=\"@+id/gles_renderer\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"/\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003ccom.example.app.MyGLSurfaceView\n    android:id=\"@+id/gles_renderer\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"/\u003e",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550454763046,
+        "id": "0625d6ca-e32a-489a-a814-36d86807e351",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550454763046,
+        "parent_id": "493e3c26-410e-453c-b583-93741f14da6e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To use newer "
+            ],
+            [
+              "version of OpenGL ES",
+              [
+                [
+                  "a",
+                  "http://stackoverflow.com/documentation/opengl-es/5831/getting-started-with-opengl-es#t=20161229142910274369\u0026a=versions"
+                ]
+              ]
+            ],
+            [
+              " just change the version number in your manifest, in the static import and change "
+            ],
+            [
+              "setEGLContextClientVersion",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To use newer "
+          },
+          {
+            "Text": "version of OpenGL ES",
+            "Link": "http://stackoverflow.com/documentation/opengl-es/5831/getting-started-with-opengl-es#t=20161229142910274369\u0026a=versions"
+          },
+          {
+            "Text": " just change the version number in your manifest, in the static import and change "
+          },
+          {
+            "Text": "setEGLContextClientVersion",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      }
+    ],
+    "title": "010 Setting up GLSurfaceView and OpenGL ES 2.0 "
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

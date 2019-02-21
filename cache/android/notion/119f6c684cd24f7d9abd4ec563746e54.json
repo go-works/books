@@ -1,0 +1,71 @@
+{
+  "ID": "119f6c68-4cd2-4f7d-9abd-4ec563746e54",
+  "Root": {
+    "alive": true,
+    "content": [
+      "42d4f179-ac49-4eb4-9202-0950b386f52d"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550447927043,
+    "id": "119f6c68-4cd2-4f7d-9abd-4ec563746e54",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550447927043,
+    "parent_id": "e3584a94-a9f0-4362-8875-ecc7887d08a7",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "020 Check if bluetooth is enabled"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447927040,
+        "id": "42d4f179-ac49-4eb4-9202-0950b386f52d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447927040,
+        "parent_id": "119f6c68-4cd2-4f7d-9abd-4ec563746e54",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "private static final int REQUEST_ENABLE_BT = 1; // Unique request code\nBluetoothAdapter mBluetoothAdapter;\n\n// ...\n\nif (!mBluetoothAdapter.isEnabled()) {\n    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);\n    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);\n}\n\n// ...\n\n@Override\nprotected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {\n    super.onActivityResult(requestCode, resultCode, data);\n\n    if (requestCode == REQUEST_ENABLE_BT) {\n        if (resultCode == RESULT_OK) {\n            // Bluetooth was enabled\n        } else if (resultCode == RESULT_CANCELED) {\n            // Bluetooth was not enabled\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "private static final int REQUEST_ENABLE_BT = 1; // Unique request code\nBluetoothAdapter mBluetoothAdapter;\n\n// ...\n\nif (!mBluetoothAdapter.isEnabled()) {\n    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);\n    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);\n}\n\n// ...\n\n@Override\nprotected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {\n    super.onActivityResult(requestCode, resultCode, data);\n\n    if (requestCode == REQUEST_ENABLE_BT) {\n        if (resultCode == RESULT_OK) {\n            // Bluetooth was enabled\n        } else if (resultCode == RESULT_CANCELED) {\n            // Bluetooth was not enabled\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "020 Check if bluetooth is enabled"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

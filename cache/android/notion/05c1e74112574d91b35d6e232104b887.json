@@ -1,0 +1,214 @@
+{
+  "ID": "05c1e741-1257-4d91-b35d-6e232104b887",
+  "Root": {
+    "alive": true,
+    "content": [
+      "e3332bc0-8b82-4e05-a5c7-dc6bdd067c12",
+      "f9384ab0-0256-4d53-b999-7681c3f717aa",
+      "a522cfe0-4a9e-40d1-a33e-8c857020d843",
+      "6a55b9cb-50c2-44e5-b2c1-28ffd9498d6b",
+      "99244844-db81-4048-b52d-9d3b07e595b3"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550451462978,
+    "id": "05c1e741-1257-4d91-b35d-6e232104b887",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550451462978,
+    "parent_id": "77f833e9-2996-4ded-b5af-7e17de12e8bf",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 Blur an image"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451462976,
+        "id": "e3332bc0-8b82-4e05-a5c7-dc6bdd067c12",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451462976,
+        "parent_id": "05c1e741-1257-4d91-b35d-6e232104b887",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This example demonstrates how to use Renderscript API to blur an image (using Bitmap). This example uses "
+            ],
+            [
+              "ScriptInstrinsicBlur",
+              [
+                [
+                  "a",
+                  "https://developer.android.com/reference/android/renderscript/ScriptIntrinsicBlur.html"
+                ]
+              ]
+            ],
+            [
+              " provided by android Renderscript API (API \u003e= 17)."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This example demonstrates how to use Renderscript API to blur an image (using Bitmap). This example uses "
+          },
+          {
+            "Text": "ScriptInstrinsicBlur",
+            "Link": "https://developer.android.com/reference/android/renderscript/ScriptIntrinsicBlur.html"
+          },
+          {
+            "Text": " provided by android Renderscript API (API \u003e= 17)."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451462977,
+        "id": "f9384ab0-0256-4d53-b999-7681c3f717aa",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451462977,
+        "parent_id": "05c1e741-1257-4d91-b35d-6e232104b887",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class BlurProcessor {\n    \n    private RenderScript rs;\n    private Allocation inAllocation;\n    private Allocation outAllocation;\n    private int width;\n    private int height;\n\n    private ScriptIntrinsicBlur blurScript;\n\n    public BlurProcessor(RenderScript rs) {\n        this.rs = rs;\n    }\n    \n    public void initialize(int width, int height) {\n        blurScript = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));\n        blurScript.setRadius(7f); // Set blur radius. 25 is max\n\n        if (outAllocation != null) {\n            outAllocation.destroy();\n            outAllocation = null;\n        }\n        \n        // Bitmap must have ARGB_8888 config for this type\n        Type bitmapType = new Type.Builder(rs, Element.RGBA_8888(rs))\n            .setX(width)\n            .setY(height)\n            .setMipmaps(false) // We are using MipmapControl.MIPMAP_NONE\n            .create();\n        \n        // Create output allocation\n        outAllocation = Allocation.createTyped(rs, bitmapType);\n\n        // Create input allocation with same type as output allocation\n        inAllocation = Allocation.createTyped(rs, bitmapType);\n    }\n\n    public void release() {\n        \n        if (blurScript != null) {\n            blurScript.destroy();\n            blurScript = null;\n        }\n    \n        if (inAllocation != null) {\n            inAllocation.destroy();\n            inAllocation = null;\n        }\n\n        if (outAllocation != null) {\n            outAllocation.destroy();\n            outAllocation = null;\n        }\n    }\n\n    public Bitmap process(Bitmap bitmap, boolean createNewBitmap) {\n        if (bitmap.getWidth() != width || bitmap.getHeight() != height) {\n            // Throw error if required\n            return null;\n        }\n        \n        // Copy data from bitmap to input allocations\n        inAllocation.copyFrom(bitmap);\n\n        // Set input for blur script\n        blurScript.setInput(inAllocation);\n\n        // process and set data to the output allocation\n        blurScript.forEach(outAllocation);\n        \n        if (createNewBitmap) {\n            Bitmap returnVal = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);\n            outAllocation.copyTo(returnVal);\n            return returnVal;\n        }\n\n        outAllocation.copyTo(bitmap);\n        return bitmap;\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class BlurProcessor {\n    \n    private RenderScript rs;\n    private Allocation inAllocation;\n    private Allocation outAllocation;\n    private int width;\n    private int height;\n\n    private ScriptIntrinsicBlur blurScript;\n\n    public BlurProcessor(RenderScript rs) {\n        this.rs = rs;\n    }\n    \n    public void initialize(int width, int height) {\n        blurScript = ScriptIntrinsicBlur.create(rs, Element.U8_4(rs));\n        blurScript.setRadius(7f); // Set blur radius. 25 is max\n\n        if (outAllocation != null) {\n            outAllocation.destroy();\n            outAllocation = null;\n        }\n        \n        // Bitmap must have ARGB_8888 config for this type\n        Type bitmapType = new Type.Builder(rs, Element.RGBA_8888(rs))\n            .setX(width)\n            .setY(height)\n            .setMipmaps(false) // We are using MipmapControl.MIPMAP_NONE\n            .create();\n        \n        // Create output allocation\n        outAllocation = Allocation.createTyped(rs, bitmapType);\n\n        // Create input allocation with same type as output allocation\n        inAllocation = Allocation.createTyped(rs, bitmapType);\n    }\n\n    public void release() {\n        \n        if (blurScript != null) {\n            blurScript.destroy();\n            blurScript = null;\n        }\n    \n        if (inAllocation != null) {\n            inAllocation.destroy();\n            inAllocation = null;\n        }\n\n        if (outAllocation != null) {\n            outAllocation.destroy();\n            outAllocation = null;\n        }\n    }\n\n    public Bitmap process(Bitmap bitmap, boolean createNewBitmap) {\n        if (bitmap.getWidth() != width || bitmap.getHeight() != height) {\n            // Throw error if required\n            return null;\n        }\n        \n        // Copy data from bitmap to input allocations\n        inAllocation.copyFrom(bitmap);\n\n        // Set input for blur script\n        blurScript.setInput(inAllocation);\n\n        // process and set data to the output allocation\n        blurScript.forEach(outAllocation);\n        \n        if (createNewBitmap) {\n            Bitmap returnVal = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);\n            outAllocation.copyTo(returnVal);\n            return returnVal;\n        }\n\n        outAllocation.copyTo(bitmap);\n        return bitmap;\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451462978,
+        "id": "a522cfe0-4a9e-40d1-a33e-8c857020d843",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451462978,
+        "parent_id": "05c1e741-1257-4d91-b35d-6e232104b887",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Each script has a kernel which processes the data and it is generally invoked via "
+            ],
+            [
+              "forEach",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Each script has a kernel which processes the data and it is generally invoked via "
+          },
+          {
+            "Text": "forEach",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451462978,
+        "id": "6a55b9cb-50c2-44e5-b2c1-28ffd9498d6b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451462978,
+        "parent_id": "05c1e741-1257-4d91-b35d-6e232104b887",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class BlurActivity extends AppCompatActivity {\n    private BlurProcessor blurProcessor;\n\n    @Override\n    public void onCreate(Bundle savedInstanceState) {\n        // setup layout and other stuff\n\n        \n        blurProcessor = new BlurProcessor(Renderscript.create(getApplicationContext()));\n    }\n\n    private void loadImage(String path) {\n        // Load image to bitmap\n        Bitmap bitmap = loadBitmapFromPath(path);\n        \n        // Initialize processor for this bitmap\n        blurProcessor.release();\n        blurProcessor.initialize(bitmap.getWidth(), bitmap.getHeight());\n        \n        // Blur image\n        Bitmap blurImage = blurProcessor.process(bitmap, true); // Use newBitamp as false if you don't want to create a new bitmap\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class BlurActivity extends AppCompatActivity {\n    private BlurProcessor blurProcessor;\n\n    @Override\n    public void onCreate(Bundle savedInstanceState) {\n        // setup layout and other stuff\n\n        \n        blurProcessor = new BlurProcessor(Renderscript.create(getApplicationContext()));\n    }\n\n    private void loadImage(String path) {\n        // Load image to bitmap\n        Bitmap bitmap = loadBitmapFromPath(path);\n        \n        // Initialize processor for this bitmap\n        blurProcessor.release();\n        blurProcessor.initialize(bitmap.getWidth(), bitmap.getHeight());\n        \n        // Blur image\n        Bitmap blurImage = blurProcessor.process(bitmap, true); // Use newBitamp as false if you don't want to create a new bitmap\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451462978,
+        "id": "99244844-db81-4048-b52d-9d3b07e595b3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451462978,
+        "parent_id": "05c1e741-1257-4d91-b35d-6e232104b887",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This concluded the example here. It is advised to do the processing in a background thread."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This concluded the example here. It is advised to do the processing in a background thread."
+          }
+        ]
+      }
+    ],
+    "title": "030 Blur an image"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

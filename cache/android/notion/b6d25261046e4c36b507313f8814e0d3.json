@@ -1,0 +1,277 @@
+{
+  "ID": "b6d25261-046e-4c36-b507-313f8814e0d3",
+  "Root": {
+    "alive": true,
+    "content": [
+      "b2572f06-e075-4ad9-ad49-53a6c25637fd",
+      "1f18dd9d-e6bf-4270-a924-c49e15e4674b",
+      "380e5558-e48e-4937-84bb-7f54463c7572",
+      "c63226b0-0342-46ef-85eb-a973b653c7d3",
+      "69272bae-ee15-4165-8375-7d3214011f89",
+      "1b4989df-fcde-46ce-a6c9-90325392e416",
+      "3847bcb0-d128-4323-a222-2fe9ed7b37fe",
+      "e9aa0618-4d49-4325-8440-aec929114194"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550444932475,
+    "id": "b6d25261-046e-4c36-b507-313f8814e0d3",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550444932475,
+    "parent_id": "1096b9a5-3f3a-425e-ac66-0adc4166be45",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "040 Sending an HTTP POST request with parameters"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444932471,
+        "id": "b2572f06-e075-4ad9-ad49-53a6c25637fd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444932471,
+        "parent_id": "b6d25261-046e-4c36-b507-313f8814e0d3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Use a HashMap to store the parameters that should be sent to the server through POST parameters:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Use a HashMap to store the parameters that should be sent to the server through POST parameters:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444932474,
+        "id": "1f18dd9d-e6bf-4270-a924-c49e15e4674b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444932474,
+        "parent_id": "b6d25261-046e-4c36-b507-313f8814e0d3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "HashMap\u003cString, String\u003e params;"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "HashMap\u003cString, String\u003e params;",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444932474,
+        "id": "380e5558-e48e-4937-84bb-7f54463c7572",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444932474,
+        "parent_id": "b6d25261-046e-4c36-b507-313f8814e0d3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Once the "
+            ],
+            [
+              "params",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " HashMap is populated, create the StringBuilder that will be used to send them to the server:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Once the "
+          },
+          {
+            "Text": "params",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " HashMap is populated, create the StringBuilder that will be used to send them to the server:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444932474,
+        "id": "c63226b0-0342-46ef-85eb-a973b653c7d3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444932474,
+        "parent_id": "b6d25261-046e-4c36-b507-313f8814e0d3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "StringBuilder sbParams = new StringBuilder();\nint i = 0;\nfor (String key : params.keySet()) {\n    try {\n        if (i != 0){\n            sbParams.append(\"\u0026\");\n        }\n        sbParams.append(key).append(\"=\")\n                .append(URLEncoder.encode(params.get(key), \"UTF-8\"));\n\n    } catch (UnsupportedEncodingException e) {\n        e.printStackTrace();\n    }\n    i++;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "StringBuilder sbParams = new StringBuilder();\nint i = 0;\nfor (String key : params.keySet()) {\n    try {\n        if (i != 0){\n            sbParams.append(\"\u0026\");\n        }\n        sbParams.append(key).append(\"=\")\n                .append(URLEncoder.encode(params.get(key), \"UTF-8\"));\n\n    } catch (UnsupportedEncodingException e) {\n        e.printStackTrace();\n    }\n    i++;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444932475,
+        "id": "69272bae-ee15-4165-8375-7d3214011f89",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444932475,
+        "parent_id": "b6d25261-046e-4c36-b507-313f8814e0d3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Then, create the HttpURLConnection, open the connection, and send the POST parameters:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Then, create the HttpURLConnection, open the connection, and send the POST parameters:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444932475,
+        "id": "1b4989df-fcde-46ce-a6c9-90325392e416",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444932475,
+        "parent_id": "b6d25261-046e-4c36-b507-313f8814e0d3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "try{\n    String url = \"http://www.example.com/test.php\";\n    URL urlObj = new URL(url);\n    HttpURLConnection conn = (HttpURLConnection) urlObj.openConnection();\n    conn.setDoOutput(true);\n    conn.setRequestMethod(\"POST\");\n    conn.setRequestProperty(\"Accept-Charset\", \"UTF-8\");\n    \n    conn.setReadTimeout(10000);\n    conn.setConnectTimeout(15000);\n    \n    conn.connect();\n    \n    String paramsString = sbParams.toString();\n    \n    DataOutputStream wr = new DataOutputStream(conn.getOutputStream());\n    wr.writeBytes(paramsString);\n    wr.flush();\n    wr.close();\n} catch (IOException e) {\n  e.printStackTrace();\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "try{\n    String url = \"http://www.example.com/test.php\";\n    URL urlObj = new URL(url);\n    HttpURLConnection conn = (HttpURLConnection) urlObj.openConnection();\n    conn.setDoOutput(true);\n    conn.setRequestMethod(\"POST\");\n    conn.setRequestProperty(\"Accept-Charset\", \"UTF-8\");\n    \n    conn.setReadTimeout(10000);\n    conn.setConnectTimeout(15000);\n    \n    conn.connect();\n    \n    String paramsString = sbParams.toString();\n    \n    DataOutputStream wr = new DataOutputStream(conn.getOutputStream());\n    wr.writeBytes(paramsString);\n    wr.flush();\n    wr.close();\n} catch (IOException e) {\n  e.printStackTrace();\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444932475,
+        "id": "3847bcb0-d128-4323-a222-2fe9ed7b37fe",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444932475,
+        "parent_id": "b6d25261-046e-4c36-b507-313f8814e0d3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Then receive the result that the server sends back:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Then receive the result that the server sends back:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444932475,
+        "id": "e9aa0618-4d49-4325-8440-aec929114194",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444932475,
+        "parent_id": "b6d25261-046e-4c36-b507-313f8814e0d3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "try {\n  InputStream in = new BufferedInputStream(conn.getInputStream());\n  BufferedReader reader = new BufferedReader(new InputStreamReader(in));\n  StringBuilder result = new StringBuilder();\n  String line;\n  while ((line = reader.readLine()) != null) {\n    result.append(line);\n  }\n\n  Log.d(\"test\", \"result from server: \" + result.toString());\n\n} catch (IOException e) {\n  e.printStackTrace();\n} finally {\n    if (conn != null) {\n        conn.disconnect();\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "try {\n  InputStream in = new BufferedInputStream(conn.getInputStream());\n  BufferedReader reader = new BufferedReader(new InputStreamReader(in));\n  StringBuilder result = new StringBuilder();\n  String line;\n  while ((line = reader.readLine()) != null) {\n    result.append(line);\n  }\n\n  Log.d(\"test\", \"result from server: \" + result.toString());\n\n} catch (IOException e) {\n  e.printStackTrace();\n} finally {\n    if (conn != null) {\n        conn.disconnect();\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "040 Sending an HTTP POST request with parameters"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

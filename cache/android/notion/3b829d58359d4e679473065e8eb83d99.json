@@ -1,0 +1,262 @@
+{
+  "ID": "3b829d58-359d-4e67-9473-065e8eb83d99",
+  "Root": {
+    "alive": true,
+    "content": [
+      "1464aead-7a67-438b-b9a7-9e279b803442",
+      "9883f8c9-8b06-493e-bda0-2afbdb87c900",
+      "0fa59e42-66f5-42f2-b7ae-c4bcfa1718bd",
+      "ba91a2a3-d2a5-4485-ac16-75b20312c13f",
+      "e3127c3d-8334-432a-8718-ed4b3ffb2524",
+      "73f33af7-850b-434e-8ca1-7b5753750722",
+      "d1556471-2a64-4cce-b490-14377db5fb13"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550444689122,
+    "id": "3b829d58-359d-4e67-9473-065e8eb83d99",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550444689122,
+    "parent_id": "577ee794-a9c3-4ded-8824-6307ea4044f3",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "050 Popup menu with recyclerView"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444689118,
+        "id": "1464aead-7a67-438b-b9a7-9e279b803442",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444689118,
+        "parent_id": "3b829d58-359d-4e67-9473-065e8eb83d99",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "put this code inside your ViewHolder"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "put this code inside your ViewHolder"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444689121,
+        "id": "9883f8c9-8b06-493e-bda0-2afbdb87c900",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444689121,
+        "parent_id": "3b829d58-359d-4e67-9473-065e8eb83d99",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "note: In this code I am using "
+            ],
+            [
+              "btnExpand",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " click-event, for whole "
+            ],
+            [
+              "recyclerview",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " click event you can set listener to itemView object."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "note: In this code I am using "
+          },
+          {
+            "Text": "btnExpand",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " click-event, for whole "
+          },
+          {
+            "Text": "recyclerview",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " click event you can set listener to itemView object."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444689122,
+        "id": "0fa59e42-66f5-42f2-b7ae-c4bcfa1718bd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444689122,
+        "parent_id": "3b829d58-359d-4e67-9473-065e8eb83d99",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class MyViewHolder extends RecyclerView.ViewHolder{\n        CardView cv;\n        TextView recordName, visibleFile, date, time;\n        Button btnIn, btnExpand;\n\n        public MyViewHolder(final View itemView) {\n            super(itemView);\n\n            cv = (CardView)itemView.findViewById(R.id.cardview);\n            recordName = (TextView)itemView.findViewById(R.id.tv_record);\n            visibleFile = (TextView)itemView.findViewById(R.id.visible_file);\n            date = (TextView)itemView.findViewById(R.id.date);\n            time = (TextView)itemView.findViewById(R.id.time);\n            btnIn = (Button)itemView.findViewById(R.id.btn_in_out);\n\n            btnExpand = (Button) itemView.findViewById(R.id.btn_expand);\n\n            btnExpand.setOnClickListener(new View.OnClickListener() {\n                @Override\n                public void onClick(View v) {\n                    PopupMenu popup = new PopupMenu(btnExpand.getContext(), itemView);\n\n                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {\n                        @Override\n                        public boolean onMenuItemClick(MenuItem item) {\n                            switch (item.getItemId()) {\n                                case R.id.action_delete:\n                                    moveFile(recordName.getText().toString(), getAdapterPosition());\n                                    return true;\n                                case R.id.action_play:\n                                    String valueOfPath = recordName.getText().toString();\n                                    Intent intent = new Intent();\n                                    intent.setAction(android.content.Intent.ACTION_VIEW);\n                                    File file = new File(valueOfPath);\n                                    intent.setDataAndType(Uri.fromFile(file), \"audio/*\");\n                                    context.startActivity(intent);\n                                    return true;\n                                case R.id.action_share:\n                                    String valueOfPath = recordName.getText().toString();\n                                    File filee = new File(valueOfPath);\n                                    try {\n                                        Intent sendIntent = new Intent();\n                                        sendIntent.setAction(Intent.ACTION_SEND);\n                                        sendIntent.setType(\"audio/*\");\n                                        sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(filee));\n                                        context.startActivity(sendIntent);\n                                    } catch (NoSuchMethodError | IllegalArgumentException | NullPointerException e) {\n                                        e.printStackTrace();\n                                    } catch (Exception e) {\n                                        e.printStackTrace();\n                                    }\n                                    return true;\n                                default:\n                                    return false;\n                            }\n                        }\n                    });\n                    // here you can inflate your menu\n                    popup.inflate(R.menu.my_menu_item);\n                    popup.setGravity(Gravity.RIGHT);\n\n                    // if you want icon with menu items then write this try-catch block.\n                    try {\n                        Field mFieldPopup=popup.getClass().getDeclaredField(\"mPopup\");\n                        mFieldPopup.setAccessible(true);\n                        MenuPopupHelper mPopup = (MenuPopupHelper) mFieldPopup.get(popup);\n                        mPopup.setForceShowIcon(true);\n                    } catch (Exception e) {\n\n                    }\n                    popup.show();\n                }\n            });\n\n        }\n    }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class MyViewHolder extends RecyclerView.ViewHolder{\n        CardView cv;\n        TextView recordName, visibleFile, date, time;\n        Button btnIn, btnExpand;\n\n        public MyViewHolder(final View itemView) {\n            super(itemView);\n\n            cv = (CardView)itemView.findViewById(R.id.cardview);\n            recordName = (TextView)itemView.findViewById(R.id.tv_record);\n            visibleFile = (TextView)itemView.findViewById(R.id.visible_file);\n            date = (TextView)itemView.findViewById(R.id.date);\n            time = (TextView)itemView.findViewById(R.id.time);\n            btnIn = (Button)itemView.findViewById(R.id.btn_in_out);\n\n            btnExpand = (Button) itemView.findViewById(R.id.btn_expand);\n\n            btnExpand.setOnClickListener(new View.OnClickListener() {\n                @Override\n                public void onClick(View v) {\n                    PopupMenu popup = new PopupMenu(btnExpand.getContext(), itemView);\n\n                    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {\n                        @Override\n                        public boolean onMenuItemClick(MenuItem item) {\n                            switch (item.getItemId()) {\n                                case R.id.action_delete:\n                                    moveFile(recordName.getText().toString(), getAdapterPosition());\n                                    return true;\n                                case R.id.action_play:\n                                    String valueOfPath = recordName.getText().toString();\n                                    Intent intent = new Intent();\n                                    intent.setAction(android.content.Intent.ACTION_VIEW);\n                                    File file = new File(valueOfPath);\n                                    intent.setDataAndType(Uri.fromFile(file), \"audio/*\");\n                                    context.startActivity(intent);\n                                    return true;\n                                case R.id.action_share:\n                                    String valueOfPath = recordName.getText().toString();\n                                    File filee = new File(valueOfPath);\n                                    try {\n                                        Intent sendIntent = new Intent();\n                                        sendIntent.setAction(Intent.ACTION_SEND);\n                                        sendIntent.setType(\"audio/*\");\n                                        sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(filee));\n                                        context.startActivity(sendIntent);\n                                    } catch (NoSuchMethodError | IllegalArgumentException | NullPointerException e) {\n                                        e.printStackTrace();\n                                    } catch (Exception e) {\n                                        e.printStackTrace();\n                                    }\n                                    return true;\n                                default:\n                                    return false;\n                            }\n                        }\n                    });\n                    // here you can inflate your menu\n                    popup.inflate(R.menu.my_menu_item);\n                    popup.setGravity(Gravity.RIGHT);\n\n                    // if you want icon with menu items then write this try-catch block.\n                    try {\n                        Field mFieldPopup=popup.getClass().getDeclaredField(\"mPopup\");\n                        mFieldPopup.setAccessible(true);\n                        MenuPopupHelper mPopup = (MenuPopupHelper) mFieldPopup.get(popup);\n                        mPopup.setForceShowIcon(true);\n                    } catch (Exception e) {\n\n                    }\n                    popup.show();\n                }\n            });\n\n        }\n    }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444689122,
+        "id": "ba91a2a3-d2a5-4485-ac16-75b20312c13f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444689122,
+        "parent_id": "3b829d58-359d-4e67-9473-065e8eb83d99",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "alternative way to show icons in menu"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "alternative way to show icons in menu"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444689122,
+        "id": "e3127c3d-8334-432a-8718-ed4b3ffb2524",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444689122,
+        "parent_id": "3b829d58-359d-4e67-9473-065e8eb83d99",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "try {\n    Field[] fields = popup.getClass().getDeclaredFields();\n    for (Field field : fields) {\n        if (\"mPopup\".equals(field.getName())) {\n            field.setAccessible(true);\n            Object menuPopupHelper = field.get(popup);\n            Class\u003c?\u003e classPopupHelper = Class.forName(menuPopupHelper\n                .getClass().getName());\n            Method setForceIcons = classPopupHelper.getMethod(\n                \"setForceShowIcon\", boolean.class);\n            setForceIcons.invoke(menuPopupHelper, true);\n            break;\n        }\n    }\n} catch (Exception e) {\n\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "try {\n    Field[] fields = popup.getClass().getDeclaredFields();\n    for (Field field : fields) {\n        if (\"mPopup\".equals(field.getName())) {\n            field.setAccessible(true);\n            Object menuPopupHelper = field.get(popup);\n            Class\u003c?\u003e classPopupHelper = Class.forName(menuPopupHelper\n                .getClass().getName());\n            Method setForceIcons = classPopupHelper.getMethod(\n                \"setForceShowIcon\", boolean.class);\n            setForceIcons.invoke(menuPopupHelper, true);\n            break;\n        }\n    }\n} catch (Exception e) {\n\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444689122,
+        "id": "73f33af7-850b-434e-8ca1-7b5753750722",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444689122,
+        "parent_id": "3b829d58-359d-4e67-9473-065e8eb83d99",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Here is the output:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Here is the output:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444689122,
+        "id": "d1556471-2a64-4cce-b490-14377db5fb13",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444689122,
+        "parent_id": "3b829d58-359d-4e67-9473-065e8eb83d99",
+        "parent_table": "block",
+        "properties": {
+          "source": [
+            [
+              "https://i.stack.imgur.com/FthDk.png"
+            ]
+          ]
+        },
+        "type": "image",
+        "version": 1,
+        "source": "https://i.stack.imgur.com/FthDk.png",
+        "image_url": "https://www.notion.so/image/https:%2F%2Fi.stack.imgur.com%2FFthDk.png"
+      }
+    ],
+    "title": "050 Popup menu with recyclerView"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

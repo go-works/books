@@ -1,0 +1,151 @@
+{
+  "ID": "901df022-f6bb-4094-a408-202e1e7a08fa",
+  "Root": {
+    "alive": true,
+    "content": [
+      "8c3b0c62-97c7-42ad-8aae-e4a0918e2095",
+      "546c6411-3d8f-47a2-92fe-55296acb2b19",
+      "0ba7a2e5-0c65-41fd-857e-847d1b98cfc6",
+      "88af0aa4-4906-4e55-873b-b2c7aedd65b2"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550448024857,
+    "id": "901df022-f6bb-4094-a408-202e1e7a08fa",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550448024857,
+    "parent_id": "322f7adc-aa8e-4dd0-90bc-e3822856448b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "090 Boolean variable response from server with json request in volley"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448024856,
+        "id": "8c3b0c62-97c7-42ad-8aae-e4a0918e2095",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448024856,
+        "parent_id": "901df022-f6bb-4094-a408-202e1e7a08fa",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "you can custom class below one"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "you can custom class below one"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448024857,
+        "id": "546c6411-3d8f-47a2-92fe-55296acb2b19",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448024857,
+        "parent_id": "901df022-f6bb-4094-a408-202e1e7a08fa",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "private final String PROTOCOL_CONTENT_TYPE = String.format(\"application/json; charset=%s\", PROTOCOL_CHARSET);\n\n    public BooleanRequest(int method, String url, String requestBody, Response.Listener\u003cBoolean\u003e listener, Response.ErrorListener errorListener) {\n        super(method, url, errorListener);\n        this.mListener = listener;\n        this.mErrorListener = errorListener;\n        this.mRequestBody = requestBody;\n    }\n\n    @Override\n    protected Response\u003cBoolean\u003e parseNetworkResponse(NetworkResponse response) {\n        Boolean parsed;\n        try {\n            parsed = Boolean.valueOf(new String(response.data, HttpHeaderParser.parseCharset(response.headers)));\n        } catch (UnsupportedEncodingException e) {\n            parsed = Boolean.valueOf(new String(response.data));\n        }\n        return Response.success(parsed, HttpHeaderParser.parseCacheHeaders(response));\n    }\n\n    @Override\n    protected VolleyError parseNetworkError(VolleyError volleyError) {\n        return super.parseNetworkError(volleyError);\n    }\n\n    @Override\n    protected void deliverResponse(Boolean response) {\n        mListener.onResponse(response);\n    }\n\n    @Override\n    public void deliverError(VolleyError error) {\n        mErrorListener.onErrorResponse(error);\n    }\n\n    @Override\n    public String getBodyContentType() {\n        return PROTOCOL_CONTENT_TYPE;\n    }\n\n    @Override\n    public byte[] getBody() throws AuthFailureError {\n        try {\n            return mRequestBody == null ? null : mRequestBody.getBytes(PROTOCOL_CHARSET);\n        } catch (UnsupportedEncodingException uee) {\n            VolleyLog.wtf(\"Unsupported Encoding while trying to get the bytes of %s using %s\",\n                    mRequestBody, PROTOCOL_CHARSET);\n            return null;\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "private final String PROTOCOL_CONTENT_TYPE = String.format(\"application/json; charset=%s\", PROTOCOL_CHARSET);\n\n    public BooleanRequest(int method, String url, String requestBody, Response.Listener\u003cBoolean\u003e listener, Response.ErrorListener errorListener) {\n        super(method, url, errorListener);\n        this.mListener = listener;\n        this.mErrorListener = errorListener;\n        this.mRequestBody = requestBody;\n    }\n\n    @Override\n    protected Response\u003cBoolean\u003e parseNetworkResponse(NetworkResponse response) {\n        Boolean parsed;\n        try {\n            parsed = Boolean.valueOf(new String(response.data, HttpHeaderParser.parseCharset(response.headers)));\n        } catch (UnsupportedEncodingException e) {\n            parsed = Boolean.valueOf(new String(response.data));\n        }\n        return Response.success(parsed, HttpHeaderParser.parseCacheHeaders(response));\n    }\n\n    @Override\n    protected VolleyError parseNetworkError(VolleyError volleyError) {\n        return super.parseNetworkError(volleyError);\n    }\n\n    @Override\n    protected void deliverResponse(Boolean response) {\n        mListener.onResponse(response);\n    }\n\n    @Override\n    public void deliverError(VolleyError error) {\n        mErrorListener.onErrorResponse(error);\n    }\n\n    @Override\n    public String getBodyContentType() {\n        return PROTOCOL_CONTENT_TYPE;\n    }\n\n    @Override\n    public byte[] getBody() throws AuthFailureError {\n        try {\n            return mRequestBody == null ? null : mRequestBody.getBytes(PROTOCOL_CHARSET);\n        } catch (UnsupportedEncodingException uee) {\n            VolleyLog.wtf(\"Unsupported Encoding while trying to get the bytes of %s using %s\",\n                    mRequestBody, PROTOCOL_CHARSET);\n            return null;\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448024857,
+        "id": "0ba7a2e5-0c65-41fd-857e-847d1b98cfc6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448024857,
+        "parent_id": "901df022-f6bb-4094-a408-202e1e7a08fa",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "use this with your activity"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "use this with your activity"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448024857,
+        "id": "88af0aa4-4906-4e55-873b-b2c7aedd65b2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448024857,
+        "parent_id": "901df022-f6bb-4094-a408-202e1e7a08fa",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "try {\n        JSONObject jsonBody;\n        jsonBody = new JSONObject();\n        jsonBody.put(\"Title\", \"Android Demo\");\n        jsonBody.put(\"Author\", \"BNK\");\n        jsonBody.put(\"Date\", \"2015/08/28\");\n        String requestBody = jsonBody.toString();\n        BooleanRequest booleanRequest = new BooleanRequest(0, url, requestBody, new Response.Listener\u003cBoolean\u003e() {\n            @Override\n            public void onResponse(Boolean response) {\n                Toast.makeText(mContext, String.valueOf(response), Toast.LENGTH_SHORT).show();\n            }\n        }, new Response.ErrorListener() {\n            @Override\n            public void onErrorResponse(VolleyError error) {\n                Toast.makeText(mContext, error.toString(), Toast.LENGTH_SHORT).show();\n            }\n        });\n        // Add the request to the RequestQueue.\n        queue.add(booleanRequest);\n    } catch (JSONException e) {\n        e.printStackTrace();\n    }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "try {\n        JSONObject jsonBody;\n        jsonBody = new JSONObject();\n        jsonBody.put(\"Title\", \"Android Demo\");\n        jsonBody.put(\"Author\", \"BNK\");\n        jsonBody.put(\"Date\", \"2015/08/28\");\n        String requestBody = jsonBody.toString();\n        BooleanRequest booleanRequest = new BooleanRequest(0, url, requestBody, new Response.Listener\u003cBoolean\u003e() {\n            @Override\n            public void onResponse(Boolean response) {\n                Toast.makeText(mContext, String.valueOf(response), Toast.LENGTH_SHORT).show();\n            }\n        }, new Response.ErrorListener() {\n            @Override\n            public void onErrorResponse(VolleyError error) {\n                Toast.makeText(mContext, error.toString(), Toast.LENGTH_SHORT).show();\n            }\n        });\n        // Add the request to the RequestQueue.\n        queue.add(booleanRequest);\n    } catch (JSONException e) {\n        e.printStackTrace();\n    }",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "090 Boolean variable response from server with json request in volley"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,151 @@
+{
+  "ID": "ce376104-cdd3-42cf-adec-456dd8c4dfa3",
+  "Root": {
+    "alive": true,
+    "content": [
+      "0ac7dc2d-467e-4c98-ad45-6e29c9877163",
+      "9e9bca6e-a25c-49e1-991e-2b175999a270",
+      "a3780c38-3786-41d8-af0f-838efdb65433",
+      "667a124b-32bb-425c-a066-81c4627288af"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550444967032,
+    "id": "ce376104-cdd3-42cf-adec-456dd8c4dfa3",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550444967032,
+    "parent_id": "6190cb6e-dc43-458e-9fc6-34c0e0c69fa6",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "050 Bulk insert"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444967029,
+        "id": "0ac7dc2d-467e-4c98-ad45-6e29c9877163",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444967029,
+        "parent_id": "ce376104-cdd3-42cf-adec-456dd8c4dfa3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Here is an example of inserting large chunks of data at once. All the data you want to insert is gathered inside of a ContentValues array."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Here is an example of inserting large chunks of data at once. All the data you want to insert is gathered inside of a ContentValues array."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444967032,
+        "id": "9e9bca6e-a25c-49e1-991e-2b175999a270",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444967032,
+        "parent_id": "ce376104-cdd3-42cf-adec-456dd8c4dfa3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "@Override\npublic int bulkInsert(Uri uri, ContentValues[] values) {\n    int count = 0;\n    String table = null;\n\n    int uriType = IChatContract.MessageColumns.uriMatcher.match(uri);\n    switch (uriType) {\n        case IChatContract.MessageColumns.MESSAGES:\n            table = IChatContract.MessageColumns.TABLE_NAME;\n            break;\n    }\n    mDatabase.beginTransaction();\n    try {\n        for (ContentValues cv : values) {\n            long rowID = mDatabase.insert(table, \" \", cv);\n            if (rowID \u003c= 0) {\n                throw new SQLException(\"Failed to insert row into \" + uri);\n            }\n        }\n        mDatabase.setTransactionSuccessful();\n        getContext().getContentResolver().notifyChange(uri, null);\n        count = values.length;\n    } finally {\n        mDatabase.endTransaction();\n    }\n    return count;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "@Override\npublic int bulkInsert(Uri uri, ContentValues[] values) {\n    int count = 0;\n    String table = null;\n\n    int uriType = IChatContract.MessageColumns.uriMatcher.match(uri);\n    switch (uriType) {\n        case IChatContract.MessageColumns.MESSAGES:\n            table = IChatContract.MessageColumns.TABLE_NAME;\n            break;\n    }\n    mDatabase.beginTransaction();\n    try {\n        for (ContentValues cv : values) {\n            long rowID = mDatabase.insert(table, \" \", cv);\n            if (rowID \u003c= 0) {\n                throw new SQLException(\"Failed to insert row into \" + uri);\n            }\n        }\n        mDatabase.setTransactionSuccessful();\n        getContext().getContentResolver().notifyChange(uri, null);\n        count = values.length;\n    } finally {\n        mDatabase.endTransaction();\n    }\n    return count;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444967032,
+        "id": "a3780c38-3786-41d8-af0f-838efdb65433",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444967032,
+        "parent_id": "ce376104-cdd3-42cf-adec-456dd8c4dfa3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "And here is an example of how to use it:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "And here is an example of how to use it:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444967032,
+        "id": "667a124b-32bb-425c-a066-81c4627288af",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444967032,
+        "parent_id": "ce376104-cdd3-42cf-adec-456dd8c4dfa3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "ContentResolver resolver = mContext.getContentResolver();\nContentValues[] valueList = new ContentValues[object.size()];\n//add whatever you like to the valueList\nresolver.bulkInsert(IChatContract.MessageColumns.CONTENT_URI, valueList);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "ContentResolver resolver = mContext.getContentResolver();\nContentValues[] valueList = new ContentValues[object.size()];\n//add whatever you like to the valueList\nresolver.bulkInsert(IChatContract.MessageColumns.CONTENT_URI, valueList);",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "050 Bulk insert"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

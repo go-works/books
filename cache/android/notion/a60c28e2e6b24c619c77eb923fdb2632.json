@@ -1,0 +1,71 @@
+{
+  "ID": "a60c28e2-e6b2-4c61-9c77-eb923fdb2632",
+  "Root": {
+    "alive": true,
+    "content": [
+      "235990a0-5e59-45c4-b7a9-30469417b3c0"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550444752852,
+    "id": "a60c28e2-e6b2-4c61-9c77-eb923fdb2632",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550444752852,
+    "parent_id": "daef7c65-a1e3-4cb4-a562-7e81aabc337c",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 Apply a radial mask vignette to a bitmap using PorterDuffXfermode"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444752850,
+        "id": "235990a0-5e59-45c4-b7a9-30469417b3c0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444752850,
+        "parent_id": "a60c28e2-e6b2-4c61-9c77-eb923fdb2632",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "/**\n * Apply a radial mask (vignette, i.e. fading to black at the borders) to a bitmap\n * @param imageToApplyMaskTo Bitmap to modify\n */\npublic static void radialMask(final Bitmap imageToApplyMaskTo) {\n    Canvas canvas = new Canvas(imageToApplyMaskTo);\n\n    final float centerX = imageToApplyMaskTo.getWidth() * 0.5f;\n    final float centerY = imageToApplyMaskTo.getHeight() * 0.5f;\n    final float radius = imageToApplyMaskTo.getHeight() * 0.7f;\n\n    RadialGradient gradient = new RadialGradient(centerX, centerY, radius,\n            0x00000000, 0xFF000000, android.graphics.Shader.TileMode.CLAMP);\n\n    Paint p = new Paint();\n    p.setShader(gradient);\n    p.setColor(0xFF000000);\n    p.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));\n    canvas.drawRect(0, 0, imageToApplyMaskTo.getWidth(), imageToApplyMaskTo.getHeight(), p);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "/**\n * Apply a radial mask (vignette, i.e. fading to black at the borders) to a bitmap\n * @param imageToApplyMaskTo Bitmap to modify\n */\npublic static void radialMask(final Bitmap imageToApplyMaskTo) {\n    Canvas canvas = new Canvas(imageToApplyMaskTo);\n\n    final float centerX = imageToApplyMaskTo.getWidth() * 0.5f;\n    final float centerY = imageToApplyMaskTo.getHeight() * 0.5f;\n    final float radius = imageToApplyMaskTo.getHeight() * 0.7f;\n\n    RadialGradient gradient = new RadialGradient(centerX, centerY, radius,\n            0x00000000, 0xFF000000, android.graphics.Shader.TileMode.CLAMP);\n\n    Paint p = new Paint();\n    p.setShader(gradient);\n    p.setColor(0xFF000000);\n    p.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));\n    canvas.drawRect(0, 0, imageToApplyMaskTo.getWidth(), imageToApplyMaskTo.getHeight(), p);\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "030 Apply a radial mask vignette to a bitmap using PorterDuffXfermode"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

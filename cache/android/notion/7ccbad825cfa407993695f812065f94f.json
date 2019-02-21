@@ -1,0 +1,97 @@
+{
+  "ID": "7ccbad82-5cfa-4079-9369-5f812065f94f",
+  "Root": {
+    "alive": true,
+    "content": [
+      "625b38d2-d81f-4f49-806c-28abdeb49dc5",
+      "331e90ec-8938-4330-8db2-aabe15d64460"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550448022194,
+    "id": "7ccbad82-5cfa-4079-9369-5f812065f94f",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550448022194,
+    "parent_id": "322f7adc-aa8e-4dd0-90bc-e3822856448b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "060 Remote server authentication using StringRequest through POST method"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448022191,
+        "id": "625b38d2-d81f-4f49-806c-28abdeb49dc5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448022191,
+        "parent_id": "7ccbad82-5cfa-4079-9369-5f812065f94f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "For the sake of this example, let us assume that we have a server for handling the POST requests that we will be making from our Android app:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "For the sake of this example, let us assume that we have a server for handling the POST requests that we will be making from our Android app:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448022194,
+        "id": "331e90ec-8938-4330-8db2-aabe15d64460",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448022194,
+        "parent_id": "7ccbad82-5cfa-4079-9369-5f812065f94f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// User input data.\nString email = \"my@email.com\";\nString password = \"123\";\n\n// Our server URL for handling POST requests.\nString URL = \"http://my.server.com/login.php\";\n\n// When we create a StringRequest (or a JSONRequest) for sending\n// data with Volley, we specify the Request Method as POST, and \n// the URL that will be receiving our data.\nStringRequest stringRequest = \n    new StringRequest(Request.Method.POST, URL, \n    new Response.Listener\u003cString\u003e() {\n        @Override\n        public void onResponse(String response) {\n            // At this point, Volley has sent the data to your URL\n            // and has a response back from it. I'm going to assume\n            // that the server sends an \"OK\" string.\n            if (response.equals(\"OK\")) {\n                // Do login stuff.\n            } else {\n                // So the server didn't return an \"OK\" response.\n                // Depending on what you did to handle errors on your\n                // server, you can decide what action to take here.\n            }\n        }\n    },\n    new Response.ErrorListener() {\n        @Override\n        public void onErrorResponse(VolleyError error) {      \n            // This is when errors related to Volley happen.\n            // It's up to you what to do if that should happen, but\n            // it's usually not a good idea to be too clear as to\n            // what happened here to your users.\n        }\n    }) {\n        @Override\n        protected Map\u003cString, String\u003e getParams() throws AuthFailureError {\n            // Here is where we tell Volley what it should send in\n            // our POST request. For this example, we want to send\n            // both the email and the password. \n            \n            // We will need key ids for our data, so our server can know\n            // what is what.\n            String key_email = \"email\";\n            String key_password = \"password\";\n\n            Map\u003cString, String\u003e map = new HashMap\u003cString, String\u003e();\n            // map.put(key, value);\n            map.put(key_email, email);\n            map.put(key_password, password);\n            return map;\n        }\n    };\n\n    // This is a policy that we need to specify to tell Volley, what\n    // to do if it gets a timeout, how many times to retry, etc.\n    stringRequest.setRetryPolicy(new RetryPolicy() {\n            @Override\n            public int getCurrentTimeout() {\n                // Here goes the timeout.\n                // The number is in milliseconds, 5000 is usually enough,\n                // but you can up or low that number to fit your needs.\n                return 50000;\n            }\n            @Override\n            public int getCurrentRetryCount() {\n                // The maximum number of attempts.\n                // Again, the number can be anything you need.\n                return 50000;\n            }\n            @Override\n            public void retry(VolleyError error) throws VolleyError {\n                // Here you could check if the retry count has gotten\n                // to the maximum number, and if so, send a VolleyError\n                // message or similar. For the sake of the example, I'll \n                // show a Toast.  \n                Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();\n            }\n    });\n    \n    // And finally, we create a Volley Queue. For this example, I'm using\n    // getContext(), because I was working with a Fragment. But context could\n    // be \"this\", \"getContext()\", etc.\n    RequestQueue requestQueue = Volley.newRequestQueue(getContext());\n    requestQueue.add(stringRequest);\n\n} else { \n    // If, for example, the user inputs an email that is not currently\n    // on your remote DB, here's where we can inform the user.\n    Toast.makeText(getContext(), \"Wrong email\", Toast.LENGTH_LONG).show();\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// User input data.\nString email = \"my@email.com\";\nString password = \"123\";\n\n// Our server URL for handling POST requests.\nString URL = \"http://my.server.com/login.php\";\n\n// When we create a StringRequest (or a JSONRequest) for sending\n// data with Volley, we specify the Request Method as POST, and \n// the URL that will be receiving our data.\nStringRequest stringRequest = \n    new StringRequest(Request.Method.POST, URL, \n    new Response.Listener\u003cString\u003e() {\n        @Override\n        public void onResponse(String response) {\n            // At this point, Volley has sent the data to your URL\n            // and has a response back from it. I'm going to assume\n            // that the server sends an \"OK\" string.\n            if (response.equals(\"OK\")) {\n                // Do login stuff.\n            } else {\n                // So the server didn't return an \"OK\" response.\n                // Depending on what you did to handle errors on your\n                // server, you can decide what action to take here.\n            }\n        }\n    },\n    new Response.ErrorListener() {\n        @Override\n        public void onErrorResponse(VolleyError error) {      \n            // This is when errors related to Volley happen.\n            // It's up to you what to do if that should happen, but\n            // it's usually not a good idea to be too clear as to\n            // what happened here to your users.\n        }\n    }) {\n        @Override\n        protected Map\u003cString, String\u003e getParams() throws AuthFailureError {\n            // Here is where we tell Volley what it should send in\n            // our POST request. For this example, we want to send\n            // both the email and the password. \n            \n            // We will need key ids for our data, so our server can know\n            // what is what.\n            String key_email = \"email\";\n            String key_password = \"password\";\n\n            Map\u003cString, String\u003e map = new HashMap\u003cString, String\u003e();\n            // map.put(key, value);\n            map.put(key_email, email);\n            map.put(key_password, password);\n            return map;\n        }\n    };\n\n    // This is a policy that we need to specify to tell Volley, what\n    // to do if it gets a timeout, how many times to retry, etc.\n    stringRequest.setRetryPolicy(new RetryPolicy() {\n            @Override\n            public int getCurrentTimeout() {\n                // Here goes the timeout.\n                // The number is in milliseconds, 5000 is usually enough,\n                // but you can up or low that number to fit your needs.\n                return 50000;\n            }\n            @Override\n            public int getCurrentRetryCount() {\n                // The maximum number of attempts.\n                // Again, the number can be anything you need.\n                return 50000;\n            }\n            @Override\n            public void retry(VolleyError error) throws VolleyError {\n                // Here you could check if the retry count has gotten\n                // to the maximum number, and if so, send a VolleyError\n                // message or similar. For the sake of the example, I'll \n                // show a Toast.  \n                Toast.makeText(getContext(), error.toString(), Toast.LENGTH_LONG).show();\n            }\n    });\n    \n    // And finally, we create a Volley Queue. For this example, I'm using\n    // getContext(), because I was working with a Fragment. But context could\n    // be \"this\", \"getContext()\", etc.\n    RequestQueue requestQueue = Volley.newRequestQueue(getContext());\n    requestQueue.add(stringRequest);\n\n} else { \n    // If, for example, the user inputs an email that is not currently\n    // on your remote DB, here's where we can inform the user.\n    Toast.makeText(getContext(), \"Wrong email\", Toast.LENGTH_LONG).show();\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "060 Remote server authentication using StringRequest through POST method"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,71 @@
+{
+  "ID": "5f798d3a-cd23-4b2f-9bb0-0977bae868c2",
+  "Root": {
+    "alive": true,
+    "content": [
+      "7fb38ae4-06fd-484d-83a5-ed289ac5385b"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550447660888,
+    "id": "5f798d3a-cd23-4b2f-9bb0-0977bae868c2",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550447660888,
+    "parent_id": "3d7c457d-2120-4fab-9620-ddd6e746e8ef",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "040 Expand and Collapse animation of View"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447660886,
+        "id": "7fb38ae4-06fd-484d-83a5-ed289ac5385b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447660886,
+        "parent_id": "5f798d3a-cd23-4b2f-9bb0-0977bae868c2",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class ViewAnimationUtils {\n        \n        public static void expand(final View v) {\n            v.measure(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);\n            final int targtetHeight = v.getMeasuredHeight();\n    \n            v.getLayoutParams().height = 0;\n            v.setVisibility(View.VISIBLE);\n            Animation a = new Animation()\n            {\n                @Override\n                protected void applyTransformation(float interpolatedTime, Transformation t) {\n                    v.getLayoutParams().height = interpolatedTime == 1\n                            ? LayoutParams.WRAP_CONTENT\n                            : (int)(targtetHeight * interpolatedTime);\n                    v.requestLayout();\n                }\n    \n                @Override\n                public boolean willChangeBounds() {\n                    return true;\n                }\n            };\n    \n            a.setDuration((int)(targtetHeight / v.getContext().getResources().getDisplayMetrics().density));\n            v.startAnimation(a);\n        }\n    \n        public static void collapse(final View v) {\n            final int initialHeight = v.getMeasuredHeight();\n    \n            Animation a = new Animation()\n            {\n                @Override\n                protected void applyTransformation(float interpolatedTime, Transformation t) {\n                    if(interpolatedTime == 1){\n                        v.setVisibility(View.GONE);\n                    }else{\n                        v.getLayoutParams().height = initialHeight - (int)(initialHeight * interpolatedTime);\n                        v.requestLayout();\n                    }\n                }\n    \n                @Override\n                public boolean willChangeBounds() {\n                    return true;\n                }\n            };\n    \n            a.setDuration((int)(initialHeight / v.getContext().getResources().getDisplayMetrics().density));\n            v.startAnimation(a);\n        }\n    }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class ViewAnimationUtils {\n        \n        public static void expand(final View v) {\n            v.measure(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);\n            final int targtetHeight = v.getMeasuredHeight();\n    \n            v.getLayoutParams().height = 0;\n            v.setVisibility(View.VISIBLE);\n            Animation a = new Animation()\n            {\n                @Override\n                protected void applyTransformation(float interpolatedTime, Transformation t) {\n                    v.getLayoutParams().height = interpolatedTime == 1\n                            ? LayoutParams.WRAP_CONTENT\n                            : (int)(targtetHeight * interpolatedTime);\n                    v.requestLayout();\n                }\n    \n                @Override\n                public boolean willChangeBounds() {\n                    return true;\n                }\n            };\n    \n            a.setDuration((int)(targtetHeight / v.getContext().getResources().getDisplayMetrics().density));\n            v.startAnimation(a);\n        }\n    \n        public static void collapse(final View v) {\n            final int initialHeight = v.getMeasuredHeight();\n    \n            Animation a = new Animation()\n            {\n                @Override\n                protected void applyTransformation(float interpolatedTime, Transformation t) {\n                    if(interpolatedTime == 1){\n                        v.setVisibility(View.GONE);\n                    }else{\n                        v.getLayoutParams().height = initialHeight - (int)(initialHeight * interpolatedTime);\n                        v.requestLayout();\n                    }\n                }\n    \n                @Override\n                public boolean willChangeBounds() {\n                    return true;\n                }\n            };\n    \n            a.setDuration((int)(initialHeight / v.getContext().getResources().getDisplayMetrics().density));\n            v.startAnimation(a);\n        }\n    }",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "040 Expand and Collapse animation of View"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

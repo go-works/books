@@ -1,0 +1,143 @@
+{
+  "ID": "79ef2bda-c762-48ff-88b4-4704d465e718",
+  "Root": {
+    "alive": true,
+    "content": [
+      "f6ed2d7b-1e2a-4f70-af79-5c15074e22f4",
+      "ecc7158f-a4db-4c6a-9558-78aae73794de",
+      "1f5fb8a1-9aa2-4ae1-96c2-ce0fde1af8c0"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550450821935,
+    "id": "79ef2bda-c762-48ff-88b4-4704d465e718",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550450821935,
+    "parent_id": "03c9507a-d4bc-4e38-a41b-437f05849261",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 Filtering with CursorAdapter"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450821932,
+        "id": "f6ed2d7b-1e2a-4f70-af79-5c15074e22f4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450821932,
+        "parent_id": "79ef2bda-c762-48ff-88b4-4704d465e718",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Get the reference to your ListView\nListView listResults = (ListView) findViewById(R.id.listResults);\n\n// Set its adapter\nlistResults.setAdapter(adapter);\n\n// Enable filtering in ListView\nlistResults.setTextFilterEnabled(true);\n\n// Prepare your adapter for filtering    \nadapter.setFilterQueryProvider(new FilterQueryProvider() {\n    @Override\n    public Cursor runQuery(CharSequence constraint) {\n\n        // in real life, do something more secure than concatenation\n        // but it will depend on your schema\n        // This is the query that will run on filtering\n        String query = \"SELECT _ID as _id, name FROM MYTABLE \"\n                       + \"where name like '%\" + constraint + \"%' \"\n                       + \"ORDER BY NAME ASC\";\n        return db.rawQuery(query, null);\n     }\n});"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Get the reference to your ListView\nListView listResults = (ListView) findViewById(R.id.listResults);\n\n// Set its adapter\nlistResults.setAdapter(adapter);\n\n// Enable filtering in ListView\nlistResults.setTextFilterEnabled(true);\n\n// Prepare your adapter for filtering    \nadapter.setFilterQueryProvider(new FilterQueryProvider() {\n    @Override\n    public Cursor runQuery(CharSequence constraint) {\n\n        // in real life, do something more secure than concatenation\n        // but it will depend on your schema\n        // This is the query that will run on filtering\n        String query = \"SELECT _ID as _id, name FROM MYTABLE \"\n                       + \"where name like '%\" + constraint + \"%' \"\n                       + \"ORDER BY NAME ASC\";\n        return db.rawQuery(query, null);\n     }\n});",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450821935,
+        "id": "ecc7158f-a4db-4c6a-9558-78aae73794de",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450821935,
+        "parent_id": "79ef2bda-c762-48ff-88b4-4704d465e718",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Let’s say your query will run every time the user types in an "
+            ],
+            [
+              "EditText",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ":"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Let’s say your query will run every time the user types in an "
+          },
+          {
+            "Text": "EditText",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ":"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450821935,
+        "id": "1f5fb8a1-9aa2-4ae1-96c2-ce0fde1af8c0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450821935,
+        "parent_id": "79ef2bda-c762-48ff-88b4-4704d465e718",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "EditText queryText = (EditText) findViewById(R.id.textQuery);\n    queryText.addTextChangedListener(new TextWatcher() {\n        @Override\n        public void beforeTextChanged(final CharSequence s, final int start, final int count, final int after) {\n\n        }\n\n        @Override\n        public void onTextChanged(final CharSequence s, final int start, final int before, final int count) {\n            // This is the filter in action\n            adapter.getFilter().filter(s.toString());\n            // Don't forget to notify the adapter\n            adapter.notifyDataSetChanged();\n        }\n\n        @Override\n        public void afterTextChanged(final Editable s) {\n\n        }\n    });"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "EditText queryText = (EditText) findViewById(R.id.textQuery);\n    queryText.addTextChangedListener(new TextWatcher() {\n        @Override\n        public void beforeTextChanged(final CharSequence s, final int start, final int count, final int after) {\n\n        }\n\n        @Override\n        public void onTextChanged(final CharSequence s, final int start, final int before, final int count) {\n            // This is the filter in action\n            adapter.getFilter().filter(s.toString());\n            // Don't forget to notify the adapter\n            adapter.notifyDataSetChanged();\n        }\n\n        @Override\n        public void afterTextChanged(final Editable s) {\n\n        }\n    });",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "030 Filtering with CursorAdapter"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

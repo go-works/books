@@ -1,0 +1,242 @@
+{
+  "ID": "5a5fcfcf-fb0b-425d-9a79-bb66f1d1cd50",
+  "Root": {
+    "alive": true,
+    "content": [
+      "f10fdca6-bcdd-45d4-ae08-c7cf124dc9ea",
+      "8d2be392-c25f-4bab-89a6-6fc75cfe344e",
+      "8e5f73b7-70d8-4058-9efb-7bbb11739f9a",
+      "1505bab6-16f7-42a6-8a8c-bb466deccdc3",
+      "674412ec-1a4b-4280-b802-b70a29956f1e",
+      "df6043d0-d740-4f22-a17b-c77e0861ac2c",
+      "18165bb7-0075-4063-b584-329dc0b617ed"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550444689901,
+    "id": "5a5fcfcf-fb0b-425d-9a79-bb66f1d1cd50",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550444689901,
+    "parent_id": "577ee794-a9c3-4ded-8824-6307ea4044f3",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "060 Adding header view to recyclerview with gridlayout manager"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444689899,
+        "id": "f10fdca6-bcdd-45d4-ae08-c7cf124dc9ea",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444689899,
+        "parent_id": "5a5fcfcf-fb0b-425d-9a79-bb66f1d1cd50",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To add a header to a recyclerview with a gridlayout, first the adapter needs to be told that the header view is the first position - rather than the standard cell used for the content. Next, the layout manager must be told that the first position should have a span equal to the *span count of the entire list. *"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To add a header to a recyclerview with a gridlayout, first the adapter needs to be told that the header view is the first position - rather than the standard cell used for the content. Next, the layout manager must be told that the first position should have a span equal to the *span count of the entire list. *"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444689900,
+        "id": "8d2be392-c25f-4bab-89a6-6fc75cfe344e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444689900,
+        "parent_id": "5a5fcfcf-fb0b-425d-9a79-bb66f1d1cd50",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Take a regular RecyclerView.Adapter class and configure it as follows:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Take a regular RecyclerView.Adapter class and configure it as follows:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444689900,
+        "id": "8e5f73b7-70d8-4058-9efb-7bbb11739f9a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444689900,
+        "parent_id": "5a5fcfcf-fb0b-425d-9a79-bb66f1d1cd50",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class HeaderAdapter extends RecyclerView.Adapter\u003cRecyclerView.ViewHolder\u003e {\n\n    private static final int ITEM_VIEW_TYPE_HEADER = 0;\n    private static final int ITEM_VIEW_TYPE_ITEM = 1;\n\n    private List\u003cYourModel\u003e mModelList;\n\n    public HeaderAdapter (List\u003cYourModel\u003e modelList) {\n        mModelList = modelList;\n    }\n\n    public boolean isHeader(int position) {\n        return position == 0;\n    }\n\n    @Override\n    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {\n        LayoutInflater inflater = LayoutInflater.from(parent.getContext());\n\n        if (viewType == ITEM_VIEW_TYPE_HEADER) {\n            View headerView = inflater.inflate(R.layout.header, parent, false);\n            return new HeaderHolder(headerView);\n        }\n\n        View cellView = inflater.inflate(R.layout.gridcell, parent, false);\n        return new ModelHolder(cellView);\n    }\n\n    @Override\n    public int getItemViewType(int position) {\n        return isHeader(position) ? ITEM_VIEW_TYPE_HEADER : ITEM_VIEW_TYPE_ITEM;\n    }\n\n    @Override\n    public void onBindViewHolder(RecyclerView.ViewHolder h, int position) {\n        if (isHeader(position)) {\n            return;\n        }\n\n        final YourModel model = mModelList.get(position -1 ); // Subtract 1 for header\n\n        ModelHolder holder = (ModelHolder) h;\n        // populate your holder with data from your model as usual\n    }\n\n    @Override\n    public int getItemCount() {\n        return _categories.size() + 1; // add one for the header\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class HeaderAdapter extends RecyclerView.Adapter\u003cRecyclerView.ViewHolder\u003e {\n\n    private static final int ITEM_VIEW_TYPE_HEADER = 0;\n    private static final int ITEM_VIEW_TYPE_ITEM = 1;\n\n    private List\u003cYourModel\u003e mModelList;\n\n    public HeaderAdapter (List\u003cYourModel\u003e modelList) {\n        mModelList = modelList;\n    }\n\n    public boolean isHeader(int position) {\n        return position == 0;\n    }\n\n    @Override\n    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {\n        LayoutInflater inflater = LayoutInflater.from(parent.getContext());\n\n        if (viewType == ITEM_VIEW_TYPE_HEADER) {\n            View headerView = inflater.inflate(R.layout.header, parent, false);\n            return new HeaderHolder(headerView);\n        }\n\n        View cellView = inflater.inflate(R.layout.gridcell, parent, false);\n        return new ModelHolder(cellView);\n    }\n\n    @Override\n    public int getItemViewType(int position) {\n        return isHeader(position) ? ITEM_VIEW_TYPE_HEADER : ITEM_VIEW_TYPE_ITEM;\n    }\n\n    @Override\n    public void onBindViewHolder(RecyclerView.ViewHolder h, int position) {\n        if (isHeader(position)) {\n            return;\n        }\n\n        final YourModel model = mModelList.get(position -1 ); // Subtract 1 for header\n\n        ModelHolder holder = (ModelHolder) h;\n        // populate your holder with data from your model as usual\n    }\n\n    @Override\n    public int getItemCount() {\n        return _categories.size() + 1; // add one for the header\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444689900,
+        "id": "1505bab6-16f7-42a6-8a8c-bb466deccdc3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444689900,
+        "parent_id": "5a5fcfcf-fb0b-425d-9a79-bb66f1d1cd50",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Then in the activity/fragment:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Then in the activity/fragment:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444689900,
+        "id": "674412ec-1a4b-4280-b802-b70a29956f1e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444689900,
+        "parent_id": "5a5fcfcf-fb0b-425d-9a79-bb66f1d1cd50",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "final HeaderAdapter adapter = new HeaderAdapter (mModelList);\nfinal GridLayoutManager manager = new GridLayoutManager(); \nmanager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {\n    @Override\n    public int getSpanSize(int position) {\n        return adapter.isHeader(position) ? manager.getSpanCount() : 1;\n    }\n});\nmRecyclerView.setLayoutManager(manager);\nmRecyclerView.setAdapter(adapter);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "final HeaderAdapter adapter = new HeaderAdapter (mModelList);\nfinal GridLayoutManager manager = new GridLayoutManager(); \nmanager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {\n    @Override\n    public int getSpanSize(int position) {\n        return adapter.isHeader(position) ? manager.getSpanCount() : 1;\n    }\n});\nmRecyclerView.setLayoutManager(manager);\nmRecyclerView.setAdapter(adapter);",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444689900,
+        "id": "df6043d0-d740-4f22-a17b-c77e0861ac2c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444689900,
+        "parent_id": "5a5fcfcf-fb0b-425d-9a79-bb66f1d1cd50",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The same approach can be used add a footer in addition to or instead of a header."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The same approach can be used add a footer in addition to or instead of a header."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444689901,
+        "id": "18165bb7-0075-4063-b584-329dc0b617ed",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444689901,
+        "parent_id": "5a5fcfcf-fb0b-425d-9a79-bb66f1d1cd50",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Source: "
+            ],
+            [
+              "Chiu-Ki Chan’s Square Island blog",
+              [
+                [
+                  "a",
+                  "http://blog.sqisland.com/2014/12/recyclerview-grid-with-header.html"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Source: "
+          },
+          {
+            "Text": "Chiu-Ki Chan’s Square Island blog",
+            "Link": "http://blog.sqisland.com/2014/12/recyclerview-grid-with-header.html"
+          }
+        ]
+      }
+    ],
+    "title": "060 Adding header view to recyclerview with gridlayout manager"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

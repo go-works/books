@@ -1,0 +1,186 @@
+{
+  "ID": "1a9311a0-edb1-4873-ac9e-ebf215e78454",
+  "Root": {
+    "alive": true,
+    "content": [
+      "c7cf5c6f-1400-438f-8d21-35561ec898e6",
+      "41c14171-569e-4726-8565-d0cec5204587",
+      "3acffa7a-35fd-4a31-a0b7-12006f6b10ad",
+      "ac6ddb6c-a16d-4b2a-a1c5-85db7b80e9ed"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550451647940,
+    "id": "1a9311a0-edb1-4873-ac9e-ebf215e78454",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550451647940,
+    "parent_id": "3d365296-5561-464b-9301-04d4f320fea9",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "080 Retrieving data with pagination"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451647939,
+        "id": "c7cf5c6f-1400-438f-8d21-35561ec898e6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451647939,
+        "parent_id": "1a9311a0-edb1-4873-ac9e-ebf215e78454",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "When you have a huge JSON database, adding a value event listener doesn’t make sense. It will return the huge JSON and parsing it would be time consuming. In such cases we can use pagination and fetch part of data and display or process it. Kind of like lazy loading or like fetching old chats when user clicks on show older chat. In this case "
+            ],
+            [
+              "Query",
+              [
+                [
+                  "a",
+                  "https://firebase.google.com/docs/reference/android/com/google/firebase/database/Query"
+                ]
+              ]
+            ],
+            [
+              " can used."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "When you have a huge JSON database, adding a value event listener doesn’t make sense. It will return the huge JSON and parsing it would be time consuming. In such cases we can use pagination and fetch part of data and display or process it. Kind of like lazy loading or like fetching old chats when user clicks on show older chat. In this case "
+          },
+          {
+            "Text": "Query",
+            "Link": "https://firebase.google.com/docs/reference/android/com/google/firebase/database/Query"
+          },
+          {
+            "Text": " can used."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451647939,
+        "id": "41c14171-569e-4726-8565-d0cec5204587",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451647939,
+        "parent_id": "1a9311a0-edb1-4873-ac9e-ebf215e78454",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Let’s take the our old example in previous sections. The user base contains 3 users, if it grows to say 3 hundred thousand user and you want to fetch the user list in batches of 50:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Let’s take the our old example in previous sections. The user base contains 3 users, if it grows to say 3 hundred thousand user and you want to fetch the user list in batches of 50:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451647939,
+        "id": "3acffa7a-35fd-4a31-a0b7-12006f6b10ad",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451647939,
+        "parent_id": "1a9311a0-edb1-4873-ac9e-ebf215e78454",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// class level\nfinal int limit = 50;\nint start = 0;\n\n// event level\nQuery userListQuery = userDBRef.orderByChild(\"email\").limitToFirst(limit)\n        .startAt(start)\nuserListQuery.addValueEventListener(new ValueEventListener() {\n    @Override\n        public void onDataChange(DataSnapshot dataSnapshot) {\n        // Do something\n        start += (limit+1);\n    }\n\n    @Override\n    public void onCancelled(DatabaseError databaseError) {\n        // Do something about the error\n    });"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// class level\nfinal int limit = 50;\nint start = 0;\n\n// event level\nQuery userListQuery = userDBRef.orderByChild(\"email\").limitToFirst(limit)\n        .startAt(start)\nuserListQuery.addValueEventListener(new ValueEventListener() {\n    @Override\n        public void onDataChange(DataSnapshot dataSnapshot) {\n        // Do something\n        start += (limit+1);\n    }\n\n    @Override\n    public void onCancelled(DatabaseError databaseError) {\n        // Do something about the error\n    });",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550451647940,
+        "id": "ac6ddb6c-a16d-4b2a-a1c5-85db7b80e9ed",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550451647940,
+        "parent_id": "1a9311a0-edb1-4873-ac9e-ebf215e78454",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Here value or child events can be added and listened to. Call query again to fetch next 50. "
+            ],
+            [
+              "Make sure to add the orderByChild() method",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              ", this will not work without that. Firebase needs to know the order by which you are paginating."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Here value or child events can be added and listened to. Call query again to fetch next 50. "
+          },
+          {
+            "Text": "Make sure to add the orderByChild() method",
+            "AttrFlags": 1
+          },
+          {
+            "Text": ", this will not work without that. Firebase needs to know the order by which you are paginating."
+          }
+        ]
+      }
+    ],
+    "title": "080 Retrieving data with pagination"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

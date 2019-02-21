@@ -1,0 +1,109 @@
+{
+  "ID": "b3387fdd-ed8d-4982-888b-39adb739a583",
+  "Root": {
+    "alive": true,
+    "content": [
+      "b2283010-8d59-410b-bfd1-af0f8544846e",
+      "bba35425-370e-408f-a26e-ed91a043e4ff"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550443597014,
+    "id": "b3387fdd-ed8d-4982-888b-39adb739a583",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550443597014,
+    "parent_id": "40c765e7-6562-4ee9-8ed0-8024e3def515",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "090 Changing output apk name and add version name "
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550443597011,
+        "id": "b2283010-8d59-410b-bfd1-af0f8544846e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550443597011,
+        "parent_id": "b3387fdd-ed8d-4982-888b-39adb739a583",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This is the code for changing output application file name (.apk). The name can be configured by assigning a different value to "
+            ],
+            [
+              "newName",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This is the code for changing output application file name (.apk). The name can be configured by assigning a different value to "
+          },
+          {
+            "Text": "newName",
+            "AttrFlags": 2
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550443597014,
+        "id": "bba35425-370e-408f-a26e-ed91a043e4ff",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550443597014,
+        "parent_id": "b3387fdd-ed8d-4982-888b-39adb739a583",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "android {\n\n    applicationVariants.all { variant -\u003e\n        def newName = \"ApkName\";\n        variant.outputs.each { output -\u003e\n            def apk = output.outputFile;\n\n            newName += \"-v\" + defaultConfig.versionName;\n            if (variant.buildType.name == \"release\") {\n                newName += \"-release.apk\";\n            } else {\n                newName += \".apk\";\n            }\n            if (!output.zipAlign) {\n                newName = newName.replace(\".apk\", \"-unaligned.apk\");\n            }\n\n            output.outputFile = new File(apk.parentFile, newName);\n            logger.info(\"INFO: Set outputFile to \" \n                        + output.outputFile \n                        + \" for [\" + output.name + \"]\");\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "android {\n\n    applicationVariants.all { variant -\u003e\n        def newName = \"ApkName\";\n        variant.outputs.each { output -\u003e\n            def apk = output.outputFile;\n\n            newName += \"-v\" + defaultConfig.versionName;\n            if (variant.buildType.name == \"release\") {\n                newName += \"-release.apk\";\n            } else {\n                newName += \".apk\";\n            }\n            if (!output.zipAlign) {\n                newName = newName.replace(\".apk\", \"-unaligned.apk\");\n            }\n\n            output.outputFile = new File(apk.parentFile, newName);\n            logger.info(\"INFO: Set outputFile to \" \n                        + output.outputFile \n                        + \" for [\" + output.name + \"]\");\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "090 Changing output apk name and add version name "
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

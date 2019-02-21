@@ -1,0 +1,187 @@
+{
+  "ID": "fa6bf020-d187-41c9-8f71-497b8340bffb",
+  "Root": {
+    "alive": true,
+    "content": [
+      "ca2dc6db-2cd9-4d06-be0f-a53f023ca7c0",
+      "df955e30-ab47-43f0-a4ac-1d5546134851",
+      "4f0c4c70-cb22-4863-a30b-21153582c88b",
+      "d5d7da83-928b-4842-9f76-52066a90997a"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550453126126,
+    "id": "fa6bf020-d187-41c9-8f71-497b8340bffb",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550453126126,
+    "parent_id": "da4ebfb0-d0f7-4d87-b12a-91812d2c6a04",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 Nested requests example multiple requests combine results"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550453126123,
+        "id": "ca2dc6db-2cd9-4d06-be0f-a53f023ca7c0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550453126123,
+        "parent_id": "fa6bf020-d187-41c9-8f71-497b8340bffb",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Suppose we have an API which allows us to get object metadata in single request ("
+            ],
+            [
+              "getAllPets",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "), and other request which have full data of single resource ("
+            ],
+            [
+              "getSinglePet",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "). How we can query all of them in a single chain?"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Suppose we have an API which allows us to get object metadata in single request ("
+          },
+          {
+            "Text": "getAllPets",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "), and other request which have full data of single resource ("
+          },
+          {
+            "Text": "getSinglePet",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "). How we can query all of them in a single chain?"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550453126126,
+        "id": "df955e30-ab47-43f0-a4ac-1d5546134851",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550453126126,
+        "parent_id": "fa6bf020-d187-41c9-8f71-497b8340bffb",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class PetsFetcher {"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class PetsFetcher {",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550453126126,
+        "id": "4f0c4c70-cb22-4863-a30b-21153582c88b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550453126126,
+        "parent_id": "fa6bf020-d187-41c9-8f71-497b8340bffb",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "static class PetRepository {\n    List\u003cInteger\u003e ids;\n}\n\nstatic class Pet {\n    int id;\n    String name;\n    int weight;\n    int height;\n}\n\ninterface PetApi {\n\n    @GET(\"pets\") Observable\u003cPetRepository\u003e getAllPets();\n\n    @GET(\"pet/{id}\") Observable\u003cPet\u003e getSinglePet(@Path(\"id\") int id);\n\n}\n\nPetApi petApi;\n\nDisposable petsDisposable;\n\npublic void requestAllPets() {\n\n    petApi.getAllPets()\n            .doOnSubscribe(new Consumer\u003cDisposable\u003e() {\n                @Override public void accept(Disposable disposable) throws Exception {\n                    petsDisposable = disposable;\n                }\n            })\n            .flatMap(new Function\u003cPetRepository, ObservableSource\u003cInteger\u003e\u003e() {\n                @Override\n                public ObservableSource\u003cInteger\u003e apply(PetRepository petRepository) throws Exception {\n                    List\u003cInteger\u003e petIds = petRepository.ids;\n                    return Observable.fromIterable(petIds);\n                }\n            })\n            .flatMap(new Function\u003cInteger, ObservableSource\u003cPet\u003e\u003e() {\n                @Override public ObservableSource\u003cPet\u003e apply(Integer id) throws Exception {\n                    return petApi.getSinglePet(id);\n                }\n            })\n            .toList()\n            .toObservable()\n            .subscribeOn(Schedulers.io())\n            .observeOn(AndroidSchedulers.mainThread())\n            .subscribe(new Consumer\u003cList\u003cPet\u003e\u003e() {\n                @Override public void accept(List\u003cPet\u003e pets) throws Exception {\n                    //use your pets here\n                }\n            }, new Consumer\u003cThrowable\u003e() {\n                @Override public void accept(Throwable throwable) throws Exception {\n                    //show user something goes wrong\n                }\n            });\n\n}\n\nvoid cancelRequests(){\n    if (petsDisposable!=null){\n        petsDisposable.dispose();\n        petsDisposable = null;\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "static class PetRepository {\n    List\u003cInteger\u003e ids;\n}\n\nstatic class Pet {\n    int id;\n    String name;\n    int weight;\n    int height;\n}\n\ninterface PetApi {\n\n    @GET(\"pets\") Observable\u003cPetRepository\u003e getAllPets();\n\n    @GET(\"pet/{id}\") Observable\u003cPet\u003e getSinglePet(@Path(\"id\") int id);\n\n}\n\nPetApi petApi;\n\nDisposable petsDisposable;\n\npublic void requestAllPets() {\n\n    petApi.getAllPets()\n            .doOnSubscribe(new Consumer\u003cDisposable\u003e() {\n                @Override public void accept(Disposable disposable) throws Exception {\n                    petsDisposable = disposable;\n                }\n            })\n            .flatMap(new Function\u003cPetRepository, ObservableSource\u003cInteger\u003e\u003e() {\n                @Override\n                public ObservableSource\u003cInteger\u003e apply(PetRepository petRepository) throws Exception {\n                    List\u003cInteger\u003e petIds = petRepository.ids;\n                    return Observable.fromIterable(petIds);\n                }\n            })\n            .flatMap(new Function\u003cInteger, ObservableSource\u003cPet\u003e\u003e() {\n                @Override public ObservableSource\u003cPet\u003e apply(Integer id) throws Exception {\n                    return petApi.getSinglePet(id);\n                }\n            })\n            .toList()\n            .toObservable()\n            .subscribeOn(Schedulers.io())\n            .observeOn(AndroidSchedulers.mainThread())\n            .subscribe(new Consumer\u003cList\u003cPet\u003e\u003e() {\n                @Override public void accept(List\u003cPet\u003e pets) throws Exception {\n                    //use your pets here\n                }\n            }, new Consumer\u003cThrowable\u003e() {\n                @Override public void accept(Throwable throwable) throws Exception {\n                    //show user something goes wrong\n                }\n            });\n\n}\n\nvoid cancelRequests(){\n    if (petsDisposable!=null){\n        petsDisposable.dispose();\n        petsDisposable = null;\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550453126126,
+        "id": "d5d7da83-928b-4842-9f76-52066a90997a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550453126126,
+        "parent_id": "fa6bf020-d187-41c9-8f71-497b8340bffb",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "}"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "}"
+          }
+        ]
+      }
+    ],
+    "title": "030 Nested requests example multiple requests combine results"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

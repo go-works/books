@@ -1,0 +1,182 @@
+{
+  "ID": "52fe2b70-2286-493c-b29b-ebdd0982891f",
+  "Root": {
+    "alive": true,
+    "content": [
+      "fbd81cc5-136a-4631-92f7-3c6c37a06221",
+      "7d6c0d47-345c-48e0-84bb-22b3a04ea348",
+      "71b2a59f-f6bd-481b-9b28-340ff53a2df4"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550443608842,
+    "id": "52fe2b70-2286-493c-b29b-ebdd0982891f",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550443608842,
+    "parent_id": "40c765e7-6562-4ee9-8ed0-8024e3def515",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "200 Delete unaligned apk automatically"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550443608837,
+        "id": "fbd81cc5-136a-4631-92f7-3c6c37a06221",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550443608837,
+        "parent_id": "52fe2b70-2286-493c-b29b-ebdd0982891f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If you don’t need automatically generated apk files with "
+            ],
+            [
+              "unaligned",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " suffix (which you probably don’t), you may add the following code to "
+            ],
+            [
+              "build.gradle",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " file:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If you don’t need automatically generated apk files with "
+          },
+          {
+            "Text": "unaligned",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " suffix (which you probably don’t), you may add the following code to "
+          },
+          {
+            "Text": "build.gradle",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " file:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550443608840,
+        "id": "7d6c0d47-345c-48e0-84bb-22b3a04ea348",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550443608840,
+        "parent_id": "52fe2b70-2286-493c-b29b-ebdd0982891f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// delete unaligned files\nandroid.applicationVariants.all { variant -\u003e\n  variant.assemble.doLast {\n    variant.outputs.each { output -\u003e\n        println \"aligned \" + output.outputFile\n        println \"unaligned \" + output.packageApplication.outputFile\n\n        File unaligned = output.packageApplication.outputFile;\n        File aligned = output.outputFile\n        if (!unaligned.getName().equalsIgnoreCase(aligned.getName())) {\n            println \"deleting \" + unaligned.getName()\n            unaligned.delete()\n        }\n    }\n  }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// delete unaligned files\nandroid.applicationVariants.all { variant -\u003e\n  variant.assemble.doLast {\n    variant.outputs.each { output -\u003e\n        println \"aligned \" + output.outputFile\n        println \"unaligned \" + output.packageApplication.outputFile\n\n        File unaligned = output.packageApplication.outputFile;\n        File aligned = output.outputFile\n        if (!unaligned.getName().equalsIgnoreCase(aligned.getName())) {\n            println \"deleting \" + unaligned.getName()\n            unaligned.delete()\n        }\n    }\n  }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550443608842,
+        "id": "71b2a59f-f6bd-481b-9b28-340ff53a2df4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550443608842,
+        "parent_id": "52fe2b70-2286-493c-b29b-ebdd0982891f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "From ",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              "here",
+              [
+                [
+                  "i"
+                ],
+                [
+                  "a",
+                  "http://stackoverflow.com/a/30826071/4378400"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "From ",
+            "AttrFlags": 4
+          },
+          {
+            "Text": "here",
+            "AttrFlags": 4,
+            "Link": "http://stackoverflow.com/a/30826071/4378400"
+          }
+        ]
+      }
+    ],
+    "title": "200 Delete unaligned apk automatically"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

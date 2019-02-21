@@ -1,0 +1,97 @@
+{
+  "ID": "a6fa4a0a-b15c-45cd-b8ce-504e792bd583",
+  "Root": {
+    "alive": true,
+    "content": [
+      "6dbeb883-4112-478a-a851-172dc86b81f0",
+      "7e16653f-a91d-4e48-9659-2d4acdd350cb"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550448308887,
+    "id": "a6fa4a0a-b15c-45cd-b8ce-504e792bd583",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550448308887,
+    "parent_id": "91c05e15-76e6-4d60-ba05-c776f6f8fda9",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "020 Connect with WPA2 encryption"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448308884,
+        "id": "6dbeb883-4112-478a-a851-172dc86b81f0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448308884,
+        "parent_id": "a6fa4a0a-b15c-45cd-b8ce-504e792bd583",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This example connects to a Wi-Fi access point with WPA2 encryption."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This example connects to a Wi-Fi access point with WPA2 encryption."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448308887,
+        "id": "7e16653f-a91d-4e48-9659-2d4acdd350cb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448308887,
+        "parent_id": "a6fa4a0a-b15c-45cd-b8ce-504e792bd583",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public boolean ConnectToNetworkWPA(String networkSSID, String password) {\n  try {\n    WifiConfiguration conf = new WifiConfiguration();\n    conf.SSID = \"\\\"\" + networkSSID + \"\\\"\";   // Please note the quotes. String should contain SSID in quotes\n\n    conf.preSharedKey = \"\\\"\" + password + \"\\\"\";\n\n    conf.status = WifiConfiguration.Status.ENABLED;\n    conf.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP);\n    conf.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.CCMP);\n    conf.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.WPA_PSK);\n    conf.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.TKIP);\n    conf.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP);\n\n    Log.d(\"connecting\", conf.SSID + \" \" + conf.preSharedKey);\n\n    WifiManager wifiManager = (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);\n    wifiManager.addNetwork(conf);\n\n    Log.d(\"after connecting\", conf.SSID + \" \" + conf.preSharedKey);\n\n    List\u003cWifiConfiguration\u003e list = wifiManager.getConfiguredNetworks();\n    for( WifiConfiguration i : list ) {\n      if(i.SSID != null \u0026\u0026 i.SSID.equals(\"\\\"\" + networkSSID + \"\\\"\")) {\n        wifiManager.disconnect();\n        wifiManager.enableNetwork(i.networkId, true);\n        wifiManager.reconnect();\n        Log.d(\"re connecting\", i.SSID + \" \" + conf.preSharedKey);\n\n        break;\n      }\n    }\n\n    //WiFi Connection success, return true\n    return true;\n  } catch (Exception ex) {\n    System.out.println(Arrays.toString(ex.getStackTrace()));\n    return false;\n  }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public boolean ConnectToNetworkWPA(String networkSSID, String password) {\n  try {\n    WifiConfiguration conf = new WifiConfiguration();\n    conf.SSID = \"\\\"\" + networkSSID + \"\\\"\";   // Please note the quotes. String should contain SSID in quotes\n\n    conf.preSharedKey = \"\\\"\" + password + \"\\\"\";\n\n    conf.status = WifiConfiguration.Status.ENABLED;\n    conf.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP);\n    conf.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.CCMP);\n    conf.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.WPA_PSK);\n    conf.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.TKIP);\n    conf.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP);\n\n    Log.d(\"connecting\", conf.SSID + \" \" + conf.preSharedKey);\n\n    WifiManager wifiManager = (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);\n    wifiManager.addNetwork(conf);\n\n    Log.d(\"after connecting\", conf.SSID + \" \" + conf.preSharedKey);\n\n    List\u003cWifiConfiguration\u003e list = wifiManager.getConfiguredNetworks();\n    for( WifiConfiguration i : list ) {\n      if(i.SSID != null \u0026\u0026 i.SSID.equals(\"\\\"\" + networkSSID + \"\\\"\")) {\n        wifiManager.disconnect();\n        wifiManager.enableNetwork(i.networkId, true);\n        wifiManager.reconnect();\n        Log.d(\"re connecting\", i.SSID + \" \" + conf.preSharedKey);\n\n        break;\n      }\n    }\n\n    //WiFi Connection success, return true\n    return true;\n  } catch (Exception ex) {\n    System.out.println(Arrays.toString(ex.getStackTrace()));\n    return false;\n  }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "020 Connect with WPA2 encryption"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

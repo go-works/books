@@ -1,0 +1,169 @@
+{
+  "ID": "c06ccd18-7281-4291-ad72-506b035dc433",
+  "Root": {
+    "alive": true,
+    "content": [
+      "f1240c38-c029-47fc-a9d4-647f1d8bcd1b",
+      "c6cc170a-042a-47c8-a6ca-510a81ab3adc",
+      "2cb80e92-3548-4f61-9bfe-52fbc067b45a",
+      "ac63bc88-e46e-4b13-afd4-4a07f10b11c9"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550456339233,
+    "id": "c06ccd18-7281-4291-ad72-506b035dc433",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550456339233,
+    "parent_id": "e64074c1-1af7-4c9b-b712-3fc5e62da994",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "040 Subscribing to Notifications from the Gatt Server"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456339230,
+        "id": "f1240c38-c029-47fc-a9d4-647f1d8bcd1b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456339230,
+        "parent_id": "c06ccd18-7281-4291-ad72-506b035dc433",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "You can request to be notified from the Gatt Server when the value of a characteristic has been changed:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "You can request to be notified from the Gatt Server when the value of a characteristic has been changed:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456339232,
+        "id": "c6cc170a-042a-47c8-a6ca-510a81ab3adc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456339232,
+        "parent_id": "c06ccd18-7281-4291-ad72-506b035dc433",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "gatt.setCharacteristicNotification(characteristic, true);\nBluetoothGattDescriptor descriptor = characteristic.getDescriptor(\n   UUID.fromString(\"00002902-0000-1000-8000-00805f9b34fb\");\ndescriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);\nmBluetoothGatt.writeDescriptor(descriptor);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "gatt.setCharacteristicNotification(characteristic, true);\nBluetoothGattDescriptor descriptor = characteristic.getDescriptor(\n   UUID.fromString(\"00002902-0000-1000-8000-00805f9b34fb\");\ndescriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);\nmBluetoothGatt.writeDescriptor(descriptor);",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456339233,
+        "id": "2cb80e92-3548-4f61-9bfe-52fbc067b45a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456339233,
+        "parent_id": "c06ccd18-7281-4291-ad72-506b035dc433",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "All notifications from the server will be received in the "
+            ],
+            [
+              "onCharacteristicChanged",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method of your BluetoothGattCallback:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "All notifications from the server will be received in the "
+          },
+          {
+            "Text": "onCharacteristicChanged",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method of your BluetoothGattCallback:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456339233,
+        "id": "ac63bc88-e46e-4b13-afd4-4a07f10b11c9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456339233,
+        "parent_id": "c06ccd18-7281-4291-ad72-506b035dc433",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "@Override\npublic void onCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) {\nsuper.onCharacteristicChanged(gatt, characteristic);\nbyte[] newValue = characteristic.getValue();\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "@Override\npublic void onCharacteristicChanged(BluetoothGatt gatt, BluetoothGattCharacteristic characteristic) {\nsuper.onCharacteristicChanged(gatt, characteristic);\nbyte[] newValue = characteristic.getValue();\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "040 Subscribing to Notifications from the Gatt Server"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

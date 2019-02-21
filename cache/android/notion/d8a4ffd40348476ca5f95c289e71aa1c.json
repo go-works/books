@@ -1,0 +1,125 @@
+{
+  "ID": "d8a4ffd4-0348-476c-a5f9-5c289e71aa1c",
+  "Root": {
+    "alive": true,
+    "content": [
+      "741b1376-4813-4b26-948d-11a0132bdc2e",
+      "febfca6f-dba9-42d2-bcc4-a83963bc9c12",
+      "d7d8cd6f-0ac6-4068-90fe-f5e441b138d5"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550452275019,
+    "id": "d8a4ffd4-0348-476c-a5f9-5c289e71aa1c",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550452275019,
+    "parent_id": "a23d145a-771f-4f05-b84c-07d16a56a6aa",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "020 A More Complex Example"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452275019,
+        "id": "741b1376-4813-4b26-948d-11a0132bdc2e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452275019,
+        "parent_id": "d8a4ffd4-0348-476c-a5f9-5c289e71aa1c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In this example, we will pause/resume the CountDownTimer based off of the Activity lifecycle."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In this example, we will pause/resume the CountDownTimer based off of the Activity lifecycle."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452275019,
+        "id": "febfca6f-dba9-42d2-bcc4-a83963bc9c12",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452275019,
+        "parent_id": "d8a4ffd4-0348-476c-a5f9-5c289e71aa1c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "private static final long TIMER_DURATION = 60000L;\nprivate static final long TIMER_INTERVAL = 1000L;\n\nprivate CountDownTimer mCountDownTimer;\nprivate TextView textView;\n\nprivate long mTimeRemaining;\n\n@Override\nprotected void onCreate(Bundle savedInstanceState) {\n    super.onCreate(savedInstanceState);\n    setContentView(R.layout.activity_main);\n\n    textView = (TextView)findViewById(R.id.text_view); // Define in xml layout.\n\n    mCountDownTimer = new CountDownTimer(TIMER_DURATION, TIMER_INTERVAL) {\n        \n        @Override\n        public void onTick(long millisUntilFinished) {\n            textView.setText(String.format(Locale.getDefault(), \"%d sec.\", millisUntilFinished / 1000L));\n            mTimeRemaining = millisUntilFinished; // Saving timeRemaining in Activity for pause/resume of CountDownTimer.\n        }\n\n        @Override\n        public void onFinish() {\n            textView.setText(\"Done.\");\n        }\n    }.start();\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "private static final long TIMER_DURATION = 60000L;\nprivate static final long TIMER_INTERVAL = 1000L;\n\nprivate CountDownTimer mCountDownTimer;\nprivate TextView textView;\n\nprivate long mTimeRemaining;\n\n@Override\nprotected void onCreate(Bundle savedInstanceState) {\n    super.onCreate(savedInstanceState);\n    setContentView(R.layout.activity_main);\n\n    textView = (TextView)findViewById(R.id.text_view); // Define in xml layout.\n\n    mCountDownTimer = new CountDownTimer(TIMER_DURATION, TIMER_INTERVAL) {\n        \n        @Override\n        public void onTick(long millisUntilFinished) {\n            textView.setText(String.format(Locale.getDefault(), \"%d sec.\", millisUntilFinished / 1000L));\n            mTimeRemaining = millisUntilFinished; // Saving timeRemaining in Activity for pause/resume of CountDownTimer.\n        }\n\n        @Override\n        public void onFinish() {\n            textView.setText(\"Done.\");\n        }\n    }.start();\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452275019,
+        "id": "d7d8cd6f-0ac6-4068-90fe-f5e441b138d5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452275019,
+        "parent_id": "d8a4ffd4-0348-476c-a5f9-5c289e71aa1c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "@Override\nprotected void onResume() {\n    super.onResume();\n    \n    if (mCountDownTimer == null) { // Timer was paused, re-create with saved time.\n        mCountDownTimer = new CountDownTimer(timeRemaining, INTERVAL) {\n            @Override\n            public void onTick(long millisUntilFinished) {\n                textView.setText(String.format(Locale.getDefault(), \"%d sec.\", millisUntilFinished / 1000L));\n                timeRemaining = millisUntilFinished;\n            }\n\n            @Override\n            public void onFinish() {\n                textView.setText(\"Done.\");\n            }\n        }.start();\n    }\n}\n\n@Override\nprotected void onPause() {\n    super.onPause();\n    mCountDownTimer.cancel();\n    mCountDownTimer = null;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "@Override\nprotected void onResume() {\n    super.onResume();\n    \n    if (mCountDownTimer == null) { // Timer was paused, re-create with saved time.\n        mCountDownTimer = new CountDownTimer(timeRemaining, INTERVAL) {\n            @Override\n            public void onTick(long millisUntilFinished) {\n                textView.setText(String.format(Locale.getDefault(), \"%d sec.\", millisUntilFinished / 1000L));\n                timeRemaining = millisUntilFinished;\n            }\n\n            @Override\n            public void onFinish() {\n                textView.setText(\"Done.\");\n            }\n        }.start();\n    }\n}\n\n@Override\nprotected void onPause() {\n    super.onPause();\n    mCountDownTimer.cancel();\n    mCountDownTimer = null;\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "020 A More Complex Example"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

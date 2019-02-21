@@ -1,0 +1,189 @@
+{
+  "ID": "1448a66f-1675-4d7d-925f-8a4804526afe",
+  "Root": {
+    "alive": true,
+    "content": [
+      "58375f94-56ad-4bcb-856d-7789fea20e12",
+      "b7dc70c7-1438-480d-a2b5-f2b87e536c01",
+      "fd27b69b-4373-4b7f-a9c2-b42fcb8366c5",
+      "562230a8-8637-46ff-8113-9b7385b60b13",
+      "7c1b5ef3-727b-440e-a099-99c748bd2abc"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550444932940,
+    "id": "1448a66f-1675-4d7d-925f-8a4804526afe",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550444932940,
+    "parent_id": "1096b9a5-3f3a-425e-ac66-0adc4166be45",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "050 Use HttpURLConnection for multipartform-data"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444932937,
+        "id": "58375f94-56ad-4bcb-856d-7789fea20e12",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444932937,
+        "parent_id": "1448a66f-1675-4d7d-925f-8a4804526afe",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Create custom class for calling multipart/form-data HttpURLConnection request"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Create custom class for calling multipart/form-data HttpURLConnection request"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444932940,
+        "id": "b7dc70c7-1438-480d-a2b5-f2b87e536c01",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444932940,
+        "parent_id": "1448a66f-1675-4d7d-925f-8a4804526afe",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "MultipartUtility.java",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "MultipartUtility.java",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444932940,
+        "id": "fd27b69b-4373-4b7f-a9c2-b42fcb8366c5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444932940,
+        "parent_id": "1448a66f-1675-4d7d-925f-8a4804526afe",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class MultipartUtility {\n        private final String boundary;\n        private static final String LINE_FEED = \"\\r\\n\";\n        private HttpURLConnection httpConn;\n        private String charset;\n        private OutputStream outputStream;\n        private PrintWriter writer;\n    \n        /**\n         * This constructor initializes a new HTTP POST request with content type\n         * is set to multipart/form-data\n         *\n         * @param requestURL\n         * @param charset\n         * @throws IOException\n         */\n        public MultipartUtility(String requestURL, String charset)\n                throws IOException {\n            this.charset = charset;\n    \n            // creates a unique boundary based on time stamp\n            boundary = \"===\" + System.currentTimeMillis() + \"===\";\n            URL url = new URL(requestURL);\n            httpConn = (HttpURLConnection) url.openConnection();\n            httpConn.setUseCaches(false);\n            httpConn.setDoOutput(true);    // indicates POST method\n            httpConn.setDoInput(true);\n            httpConn.setRequestProperty(\"Content-Type\",\n                    \"multipart/form-data; boundary=\" + boundary);\n            outputStream = httpConn.getOutputStream();\n            writer = new PrintWriter(new OutputStreamWriter(outputStream, charset),\n                    true);\n        }\n    \n        /**\n         * Adds a form field to the request\n         *\n         * @param name  field name\n         * @param value field value\n         */\n        public void addFormField(String name, String value) {\n            writer.append(\"--\" + boundary).append(LINE_FEED);\n            writer.append(\"Content-Disposition: form-data; name=\\\"\" + name + \"\\\"\")\n                    .append(LINE_FEED);\n            writer.append(\"Content-Type: text/plain; charset=\" + charset).append(\n                    LINE_FEED);\n            writer.append(LINE_FEED);\n            writer.append(value).append(LINE_FEED);\n            writer.flush();\n        }\n    \n        /**\n         * Adds a upload file section to the request\n         *\n         * @param fieldName  name attribute in \u003cinput type=\"file\" name=\"...\" /\u003e\n         * @param uploadFile a File to be uploaded\n         * @throws IOException\n         */\n        public void addFilePart(String fieldName, File uploadFile)\n                throws IOException {\n            String fileName = uploadFile.getName();\n            writer.append(\"--\" + boundary).append(LINE_FEED);\n            writer.append(\n                    \"Content-Disposition: form-data; name=\\\"\" + fieldName\n                            + \"\\\"; filename=\\\"\" + fileName + \"\\\"\")\n                    .append(LINE_FEED);\n            writer.append(\n                    \"Content-Type: \"\n                            + URLConnection.guessContentTypeFromName(fileName))\n                    .append(LINE_FEED);\n            writer.append(\"Content-Transfer-Encoding: binary\").append(LINE_FEED);\n            writer.append(LINE_FEED);\n            writer.flush();\n    \n            FileInputStream inputStream = new FileInputStream(uploadFile);\n            byte[] buffer = new byte[4096];\n            int bytesRead = -1;\n            while ((bytesRead = inputStream.read(buffer)) != -1) {\n                outputStream.write(buffer, 0, bytesRead);\n            }\n            outputStream.flush();\n            inputStream.close();\n            writer.append(LINE_FEED);\n            writer.flush();\n        }\n    \n        /**\n         * Adds a header field to the request.\n         *\n         * @param name  - name of the header field\n         * @param value - value of the header field\n         */\n        public void addHeaderField(String name, String value) {\n            writer.append(name + \": \" + value).append(LINE_FEED);\n            writer.flush();\n        }\n    \n        /**\n         * Completes the request and receives response from the server.\n         *\n         * @return a list of Strings as response in case the server returned\n         * status OK, otherwise an exception is thrown.\n         * @throws IOException\n         */\n        public List\u003cString\u003e finish() throws IOException {\n            List\u003cString\u003e response = new ArrayList\u003cString\u003e();\n            writer.append(LINE_FEED).flush();\n            writer.append(\"--\" + boundary + \"--\").append(LINE_FEED);\n            writer.close();\n    \n            // checks server's status code first\n            int status = httpConn.getResponseCode();\n            if (status == HttpURLConnection.HTTP_OK) {\n                BufferedReader reader = new BufferedReader(new InputStreamReader(\n                        httpConn.getInputStream()));\n                String line = null;\n                while ((line = reader.readLine()) != null) {\n                    response.add(line);\n                }\n                reader.close();\n                httpConn.disconnect();\n            } else {\n                throw new IOException(\"Server returned non-OK status: \" + status);\n            }\n            return response;\n        }\n    }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class MultipartUtility {\n        private final String boundary;\n        private static final String LINE_FEED = \"\\r\\n\";\n        private HttpURLConnection httpConn;\n        private String charset;\n        private OutputStream outputStream;\n        private PrintWriter writer;\n    \n        /**\n         * This constructor initializes a new HTTP POST request with content type\n         * is set to multipart/form-data\n         *\n         * @param requestURL\n         * @param charset\n         * @throws IOException\n         */\n        public MultipartUtility(String requestURL, String charset)\n                throws IOException {\n            this.charset = charset;\n    \n            // creates a unique boundary based on time stamp\n            boundary = \"===\" + System.currentTimeMillis() + \"===\";\n            URL url = new URL(requestURL);\n            httpConn = (HttpURLConnection) url.openConnection();\n            httpConn.setUseCaches(false);\n            httpConn.setDoOutput(true);    // indicates POST method\n            httpConn.setDoInput(true);\n            httpConn.setRequestProperty(\"Content-Type\",\n                    \"multipart/form-data; boundary=\" + boundary);\n            outputStream = httpConn.getOutputStream();\n            writer = new PrintWriter(new OutputStreamWriter(outputStream, charset),\n                    true);\n        }\n    \n        /**\n         * Adds a form field to the request\n         *\n         * @param name  field name\n         * @param value field value\n         */\n        public void addFormField(String name, String value) {\n            writer.append(\"--\" + boundary).append(LINE_FEED);\n            writer.append(\"Content-Disposition: form-data; name=\\\"\" + name + \"\\\"\")\n                    .append(LINE_FEED);\n            writer.append(\"Content-Type: text/plain; charset=\" + charset).append(\n                    LINE_FEED);\n            writer.append(LINE_FEED);\n            writer.append(value).append(LINE_FEED);\n            writer.flush();\n        }\n    \n        /**\n         * Adds a upload file section to the request\n         *\n         * @param fieldName  name attribute in \u003cinput type=\"file\" name=\"...\" /\u003e\n         * @param uploadFile a File to be uploaded\n         * @throws IOException\n         */\n        public void addFilePart(String fieldName, File uploadFile)\n                throws IOException {\n            String fileName = uploadFile.getName();\n            writer.append(\"--\" + boundary).append(LINE_FEED);\n            writer.append(\n                    \"Content-Disposition: form-data; name=\\\"\" + fieldName\n                            + \"\\\"; filename=\\\"\" + fileName + \"\\\"\")\n                    .append(LINE_FEED);\n            writer.append(\n                    \"Content-Type: \"\n                            + URLConnection.guessContentTypeFromName(fileName))\n                    .append(LINE_FEED);\n            writer.append(\"Content-Transfer-Encoding: binary\").append(LINE_FEED);\n            writer.append(LINE_FEED);\n            writer.flush();\n    \n            FileInputStream inputStream = new FileInputStream(uploadFile);\n            byte[] buffer = new byte[4096];\n            int bytesRead = -1;\n            while ((bytesRead = inputStream.read(buffer)) != -1) {\n                outputStream.write(buffer, 0, bytesRead);\n            }\n            outputStream.flush();\n            inputStream.close();\n            writer.append(LINE_FEED);\n            writer.flush();\n        }\n    \n        /**\n         * Adds a header field to the request.\n         *\n         * @param name  - name of the header field\n         * @param value - value of the header field\n         */\n        public void addHeaderField(String name, String value) {\n            writer.append(name + \": \" + value).append(LINE_FEED);\n            writer.flush();\n        }\n    \n        /**\n         * Completes the request and receives response from the server.\n         *\n         * @return a list of Strings as response in case the server returned\n         * status OK, otherwise an exception is thrown.\n         * @throws IOException\n         */\n        public List\u003cString\u003e finish() throws IOException {\n            List\u003cString\u003e response = new ArrayList\u003cString\u003e();\n            writer.append(LINE_FEED).flush();\n            writer.append(\"--\" + boundary + \"--\").append(LINE_FEED);\n            writer.close();\n    \n            // checks server's status code first\n            int status = httpConn.getResponseCode();\n            if (status == HttpURLConnection.HTTP_OK) {\n                BufferedReader reader = new BufferedReader(new InputStreamReader(\n                        httpConn.getInputStream()));\n                String line = null;\n                while ((line = reader.readLine()) != null) {\n                    response.add(line);\n                }\n                reader.close();\n                httpConn.disconnect();\n            } else {\n                throw new IOException(\"Server returned non-OK status: \" + status);\n            }\n            return response;\n        }\n    }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444932940,
+        "id": "562230a8-8637-46ff-8113-9b7385b60b13",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444932940,
+        "parent_id": "1448a66f-1675-4d7d-925f-8a4804526afe",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Use it (Async way)",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Use it (Async way)",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444932940,
+        "id": "7c1b5ef3-727b-440e-a099-99c748bd2abc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444932940,
+        "parent_id": "1448a66f-1675-4d7d-925f-8a4804526afe",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "MultipartUtility multipart = new MultipartUtility(requestURL, charset);\n\n// In your case you are not adding form data so ignore this\n            /*This is to add parameter values */\n            for (int i = 0; i \u003c myFormDataArray.size(); i++) {\n                multipart.addFormField(myFormDataArray.get(i).getParamName(),\n                        myFormDataArray.get(i).getParamValue());\n            }\n\n\n//add your file here.\n            /*This is to add file content*/\n            for (int i = 0; i \u003c myFileArray.size(); i++) {\n                multipart.addFilePart(myFileArray.getParamName(),\n                        new File(myFileArray.getFileName()));\n            }\n\n            List\u003cString\u003e response = multipart.finish();\n            Debug.e(TAG, \"SERVER REPLIED:\");\n            for (String line : response) {\n                Debug.e(TAG, \"Upload Files Response:::\" + line);\n// get your server response here.\n                responseString = line;\n            }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "MultipartUtility multipart = new MultipartUtility(requestURL, charset);\n\n// In your case you are not adding form data so ignore this\n            /*This is to add parameter values */\n            for (int i = 0; i \u003c myFormDataArray.size(); i++) {\n                multipart.addFormField(myFormDataArray.get(i).getParamName(),\n                        myFormDataArray.get(i).getParamValue());\n            }\n\n\n//add your file here.\n            /*This is to add file content*/\n            for (int i = 0; i \u003c myFileArray.size(); i++) {\n                multipart.addFilePart(myFileArray.getParamName(),\n                        new File(myFileArray.getFileName()));\n            }\n\n            List\u003cString\u003e response = multipart.finish();\n            Debug.e(TAG, \"SERVER REPLIED:\");\n            for (String line : response) {\n                Debug.e(TAG, \"Upload Files Response:::\" + line);\n// get your server response here.\n                responseString = line;\n            }",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "050 Use HttpURLConnection for multipartform-data"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

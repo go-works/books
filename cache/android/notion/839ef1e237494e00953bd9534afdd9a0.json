@@ -1,0 +1,97 @@
+{
+  "ID": "839ef1e2-3749-4e00-953b-d9534afdd9a0",
+  "Root": {
+    "alive": true,
+    "content": [
+      "bda55c6e-4557-40ee-98d6-add47f1575e1",
+      "368b8a17-62dc-4963-8c26-d7f0e5e22a01"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550443907980,
+    "id": "839ef1e2-3749-4e00-953b-d9534afdd9a0",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550443907980,
+    "parent_id": "60c44f62-2826-4f4e-b62c-62999d7b5b08",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "050 UncaughtException"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550443907978,
+        "id": "bda55c6e-4557-40ee-98d6-add47f1575e1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550443907978,
+        "parent_id": "839ef1e2-3749-4e00-953b-d9534afdd9a0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If you want to handle uncaught exceptions try to catch them all in onCreate method of you Application class:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If you want to handle uncaught exceptions try to catch them all in onCreate method of you Application class:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550443907980,
+        "id": "368b8a17-62dc-4963-8c26-d7f0e5e22a01",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550443907980,
+        "parent_id": "839ef1e2-3749-4e00-953b-d9534afdd9a0",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class MyApp extends Application {\n    @Override\n    public void onCreate() {\n        super.onCreate();\n        try {\n            Thread\n                .setDefaultUncaughtExceptionHandler(\n                            new Thread.UncaughtExceptionHandler() {\n\n                @Override\n                public void uncaughtException(Thread thread, Throwable e) {\n                    Log.e(TAG, \n                            \"Uncaught Exception thread: \"+thread.getName()+\"\n                             \"+e.getStackTrace());\n                    handleUncaughtException (thread, e);\n                }\n            });\n        } catch (SecurityException e) {\n            Log.e(TAG, \n                    \"Could not set the Default Uncaught Exception Handler:\"\n                    +e.getStackTrace());\n        }\n    }\n\n    private void handleUncaughtException (Thread thread, Throwable e){\n        Log.e(TAG, \"uncaughtException:\");\n        e.printStackTrace();\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class MyApp extends Application {\n    @Override\n    public void onCreate() {\n        super.onCreate();\n        try {\n            Thread\n                .setDefaultUncaughtExceptionHandler(\n                            new Thread.UncaughtExceptionHandler() {\n\n                @Override\n                public void uncaughtException(Thread thread, Throwable e) {\n                    Log.e(TAG, \n                            \"Uncaught Exception thread: \"+thread.getName()+\"\n                             \"+e.getStackTrace());\n                    handleUncaughtException (thread, e);\n                }\n            });\n        } catch (SecurityException e) {\n            Log.e(TAG, \n                    \"Could not set the Default Uncaught Exception Handler:\"\n                    +e.getStackTrace());\n        }\n    }\n\n    private void handleUncaughtException (Thread thread, Throwable e){\n        Log.e(TAG, \"uncaughtException:\");\n        e.printStackTrace();\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "050 UncaughtException"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

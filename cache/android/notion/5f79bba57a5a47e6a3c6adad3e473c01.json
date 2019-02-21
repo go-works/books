@@ -1,0 +1,244 @@
+{
+  "ID": "5f79bba5-7a5a-47e6-a3c6-adad3e473c01",
+  "Root": {
+    "alive": true,
+    "content": [
+      "edeec7e1-388d-4688-8a43-9e52e0973a5d",
+      "49f53959-2363-49e9-a613-685711a353dd",
+      "5e635ca7-4072-49f8-bc4c-eae3be1fa735",
+      "302c0fb7-d886-43ee-bee5-04597836dc47",
+      "4acab92d-0cf0-4127-ba3f-a92bd930a1dd",
+      "30f1498e-dd2f-489b-a54e-577a14b8ba8c",
+      "9da654d1-5ad1-429a-bd27-4a28dd5e4706"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550444000924,
+    "id": "5f79bba5-7a5a-47e6-a3c6-adad3e473c01",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550444000924,
+    "parent_id": "b81f95e2-9af4-43b2-ae8a-eacf3d61b9e0",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "130 Support pre-Honeycomb with StringSet"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444000919,
+        "id": "edeec7e1-388d-4688-8a43-9e52e0973a5d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444000919,
+        "parent_id": "5f79bba5-7a5a-47e6-a3c6-adad3e473c01",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Here’s the utility class:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Here’s the utility class:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444000922,
+        "id": "49f53959-2363-49e9-a613-685711a353dd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444000922,
+        "parent_id": "5f79bba5-7a5a-47e6-a3c6-adad3e473c01",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class SharedPreferencesCompat {\n\n    public static void putStringSet(SharedPreferences.Editor editor, String key, Set\u003cString\u003e values) {\n            if (Build.VERSION.SDK_INT \u003e= 11) {\n                while (true) {\n                    try {\n                        editor.putStringSet(key, values).apply();\n                        break;\n                    } catch (ClassCastException ex) {\n                        // Clear stale JSON string from before system upgrade\n                        editor.remove(key);\n                    }\n                }\n            } else putStringSetToJson(editor, key, values);\n    }\n\n    public static Set\u003cString\u003e getStringSet(SharedPreferences prefs, String key, Set\u003cString\u003e defaultReturnValue) {\n        if (Build.VERSION.SDK_INT \u003e= 11) {\n            try {\n                return prefs.getStringSet(key, defaultReturnValue);\n            } catch (ClassCastException ex) {\n                // If user upgraded from Gingerbread to something higher read the stale JSON string\n                return getStringSetFromJson(prefs, key, defaultReturnValue);\n            }\n        } else return getStringSetFromJson(prefs, key, defaultReturnValue);\n    }\n\n    private static Set\u003cString\u003e getStringSetFromJson(SharedPreferences prefs, String key, Set\u003cString\u003e defaultReturnValue) {\n        final String input = prefs.getString(key, null);\n        if (input == null) return defaultReturnValue;\n\n        try {\n            HashSet\u003cString\u003e set = new HashSet\u003c\u003e();\n            JSONArray json = new JSONArray(input);\n            for (int i = 0, size = json.length(); i \u003c size; i++) {\n                String value = json.getString(i);\n                set.add(value);\n            }\n            return set;\n        } catch (JSONException e) {\n            e.printStackTrace();\n            return defaultReturnValue;\n        }\n    }\n\n    private static void putStringSetToJson(SharedPreferences.Editor editor, String key, Set\u003cString\u003e values) {\n        JSONArray json = new JSONArray(values);\n        if (Build.VERSION.SDK_INT \u003e= 9)\n            editor.putString(key, json.toString()).apply();\n        else\n            editor.putString(key, json.toString()).commit();\n    }\n\n    private SharedPreferencesCompat() {}\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class SharedPreferencesCompat {\n\n    public static void putStringSet(SharedPreferences.Editor editor, String key, Set\u003cString\u003e values) {\n            if (Build.VERSION.SDK_INT \u003e= 11) {\n                while (true) {\n                    try {\n                        editor.putStringSet(key, values).apply();\n                        break;\n                    } catch (ClassCastException ex) {\n                        // Clear stale JSON string from before system upgrade\n                        editor.remove(key);\n                    }\n                }\n            } else putStringSetToJson(editor, key, values);\n    }\n\n    public static Set\u003cString\u003e getStringSet(SharedPreferences prefs, String key, Set\u003cString\u003e defaultReturnValue) {\n        if (Build.VERSION.SDK_INT \u003e= 11) {\n            try {\n                return prefs.getStringSet(key, defaultReturnValue);\n            } catch (ClassCastException ex) {\n                // If user upgraded from Gingerbread to something higher read the stale JSON string\n                return getStringSetFromJson(prefs, key, defaultReturnValue);\n            }\n        } else return getStringSetFromJson(prefs, key, defaultReturnValue);\n    }\n\n    private static Set\u003cString\u003e getStringSetFromJson(SharedPreferences prefs, String key, Set\u003cString\u003e defaultReturnValue) {\n        final String input = prefs.getString(key, null);\n        if (input == null) return defaultReturnValue;\n\n        try {\n            HashSet\u003cString\u003e set = new HashSet\u003c\u003e();\n            JSONArray json = new JSONArray(input);\n            for (int i = 0, size = json.length(); i \u003c size; i++) {\n                String value = json.getString(i);\n                set.add(value);\n            }\n            return set;\n        } catch (JSONException e) {\n            e.printStackTrace();\n            return defaultReturnValue;\n        }\n    }\n\n    private static void putStringSetToJson(SharedPreferences.Editor editor, String key, Set\u003cString\u003e values) {\n        JSONArray json = new JSONArray(values);\n        if (Build.VERSION.SDK_INT \u003e= 9)\n            editor.putString(key, json.toString()).apply();\n        else\n            editor.putString(key, json.toString()).commit();\n    }\n\n    private SharedPreferencesCompat() {}\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444000922,
+        "id": "5e635ca7-4072-49f8-bc4c-eae3be1fa735",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444000922,
+        "parent_id": "5f79bba5-7a5a-47e6-a3c6-adad3e473c01",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "An example to save preferences as StringSet data type is:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "An example to save preferences as StringSet data type is:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444000922,
+        "id": "302c0fb7-d886-43ee-bee5-04597836dc47",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444000922,
+        "parent_id": "5f79bba5-7a5a-47e6-a3c6-adad3e473c01",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "Set\u003cString\u003e sets = new HashSet\u003c\u003e();\nsets.add(\"John\");\nsets.add(\"Nicko\");\nSharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);\nSharedPreferencesCompat.putStringSet(preferences.edit(), \"pref_people\", sets);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "Set\u003cString\u003e sets = new HashSet\u003c\u003e();\nsets.add(\"John\");\nsets.add(\"Nicko\");\nSharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);\nSharedPreferencesCompat.putStringSet(preferences.edit(), \"pref_people\", sets);",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444000922,
+        "id": "4acab92d-0cf0-4127-ba3f-a92bd930a1dd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444000922,
+        "parent_id": "5f79bba5-7a5a-47e6-a3c6-adad3e473c01",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To retrieve them back:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To retrieve them back:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444000922,
+        "id": "30f1498e-dd2f-489b-a54e-577a14b8ba8c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444000922,
+        "parent_id": "5f79bba5-7a5a-47e6-a3c6-adad3e473c01",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "Set\u003cString\u003e people = SharedPreferencesCompat.getStringSet(preferences, \"pref_people\", new HashSet\u003cString\u003e());"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "Set\u003cString\u003e people = SharedPreferencesCompat.getStringSet(preferences, \"pref_people\", new HashSet\u003cString\u003e());",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444000924,
+        "id": "9da654d1-5ad1-429a-bd27-4a28dd5e4706",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444000924,
+        "parent_id": "5f79bba5-7a5a-47e6-a3c6-adad3e473c01",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Reference: "
+            ],
+            [
+              "Android Support Preference",
+              [
+                [
+                  "a",
+                  "https://github.com/consp1racy/android-support-preference"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Reference: "
+          },
+          {
+            "Text": "Android Support Preference",
+            "Link": "https://github.com/consp1racy/android-support-preference"
+          }
+        ]
+      }
+    ],
+    "title": "130 Support pre-Honeycomb with StringSet"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,97 @@
+{
+  "ID": "c6448cc3-9a41-444a-8add-f88674d5dbb6",
+  "Root": {
+    "alive": true,
+    "content": [
+      "268ce43e-af9a-417c-aed5-977006614d6b",
+      "c677e7d2-6f3e-4f59-95fb-a3205d08ff29"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550445283898,
+    "id": "c6448cc3-9a41-444a-8add-f88674d5dbb6",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550445283898,
+    "parent_id": "826a2947-547d-46b5-8714-0282f94a1967",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Helper methods for SELECT INSERT DELETE UPDATE queries"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550445283895,
+        "id": "268ce43e-af9a-417c-aed5-977006614d6b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550445283895,
+        "parent_id": "c6448cc3-9a41-444a-8add-f88674d5dbb6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This example shows a helper class that contains methods useful, when executing the queries for data. Every method here uses Java Generic’s in order to be very flexible."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This example shows a helper class that contains methods useful, when executing the queries for data. Every method here uses Java Generic’s in order to be very flexible."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550445283898,
+        "id": "c677e7d2-6f3e-4f59-95fb-a3205d08ff29",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550445283898,
+        "parent_id": "c6448cc3-9a41-444a-8add-f88674d5dbb6",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public \u003cT\u003e List\u003cT\u003e selectElements(AbstractDao\u003cT, ?\u003e dao) {\n    if (dao == null) {\n        return null;\n    }\n    QueryBuilder\u003cT\u003e qb = dao.queryBuilder();\n    return qb.list();\n}\n\npublic \u003cT\u003e void insertElements(AbstractDao\u003cT, ?\u003e absDao, List\u003cT\u003e items) {\n    if (items == null || items.size() == 0 || absDao == null) {\n        return;\n    }\n    absDao.insertOrReplaceInTx(items);\n}\n\npublic \u003cT\u003e T insertElement(AbstractDao\u003cT, ?\u003e absDao, T item) {\n    if (item == null || absDao == null) {\n        return null;\n    }\n    absDao.insertOrReplaceInTx(item);\n    return item;\n}\n\npublic \u003cT\u003e void updateElements(AbstractDao\u003cT, ?\u003e absDao, List\u003cT\u003e items) {\n    if (items == null || items.size() == 0 || absDao == null) {\n        return;\n    }\n    absDao.updateInTx(items);\n}\n\npublic \u003cT\u003e T selectElementByCondition(AbstractDao\u003cT, ?\u003e absDao,\n                                      WhereCondition... conditions) {\n    if (absDao == null) {\n        return null;\n    }\n    QueryBuilder\u003cT\u003e qb = absDao.queryBuilder();\n    for (WhereCondition condition : conditions) {\n        qb = qb.where(condition);\n    }\n    List\u003cT\u003e items = qb.list();\n    return items != null \u0026\u0026 items.size() \u003e 0 ? items.get(0) : null;\n}\n\npublic \u003cT\u003e List\u003cT\u003e selectElementsByCondition(AbstractDao\u003cT, ?\u003e absDao,\n                                             WhereCondition... conditions) {\n    if (absDao == null) {\n        return null;\n    }\n    QueryBuilder\u003cT\u003e qb = absDao.queryBuilder();\n    for (WhereCondition condition : conditions) {\n        qb = qb.where(condition);\n    }\n    List\u003cT\u003e items = qb.list();\n    return items != null ? items : null;\n}\n\npublic \u003cT\u003e List\u003cT\u003e selectElementsByConditionAndSort(AbstractDao\u003cT, ?\u003e absDao,\n                                                    Property sortProperty,\n                                                    String sortStrategy,\n                                                    WhereCondition... conditions) {\n    if (absDao == null) {\n        return null;\n    }\n    QueryBuilder\u003cT\u003e qb = absDao.queryBuilder();\n    for (WhereCondition condition : conditions) {\n        qb = qb.where(condition);\n    }\n    qb.orderCustom(sortProperty, sortStrategy);\n    List\u003cT\u003e items = qb.list();\n    return items != null ? items : null;\n}\n\npublic \u003cT\u003e List\u003cT\u003e selectElementsByConditionAndSortWithNullHandling(AbstractDao\u003cT, ?\u003e absDao,\n                                                                    Property sortProperty,\n                                                                    boolean handleNulls,\n                                                                    String sortStrategy,\n                                                                    WhereCondition... conditions) {\n    if (!handleNulls) {\n        return selectElementsByConditionAndSort(absDao, sortProperty, sortStrategy, conditions);\n    }\n    if (absDao == null) {\n        return null;\n    }\n    QueryBuilder\u003cT\u003e qb = absDao.queryBuilder();\n    for (WhereCondition condition : conditions) {\n        qb = qb.where(condition);\n    }\n    qb.orderRaw(\"(CASE WHEN \" + \"T.\" + sortProperty.columnName + \" IS NULL then 1 ELSE 0 END),\" + \"T.\" + sortProperty.columnName + \" \" + sortStrategy);\n    List\u003cT\u003e items = qb.list();\n    return items != null ? items : null;\n}\n\npublic \u003cT, V extends Class\u003e List\u003cT\u003e selectByJoin(AbstractDao\u003cT, ?\u003e absDao,\n                                                 V className,\n                                                 Property property, WhereCondition whereCondition) {\n    QueryBuilder\u003cT\u003e qb = absDao.queryBuilder();\n    qb.join(className, property).where(whereCondition);\n    return qb.list();\n}\n\npublic \u003cT\u003e void deleteElementsByCondition(AbstractDao\u003cT, ?\u003e absDao,\n                                          WhereCondition... conditions) {\n    if (absDao == null) {\n        return;\n    }\n    QueryBuilder\u003cT\u003e qb = absDao.queryBuilder();\n    for (WhereCondition condition : conditions) {\n        qb = qb.where(condition);\n    }\n    List\u003cT\u003e list = qb.list();\n    absDao.deleteInTx(list);\n}\n\npublic \u003cT\u003e T deleteElement(DaoSession session, AbstractDao\u003cT, ?\u003e absDao, T object) {\n    if (absDao == null) {\n        return null;\n    }\n    absDao.delete(object);\n    session.clear();\n    return object;\n}\n\npublic \u003cT, V extends Class\u003e void deleteByJoin(AbstractDao\u003cT, ?\u003e absDao,\n                                              V className,\n                                              Property property, WhereCondition whereCondition) {\n    QueryBuilder\u003cT\u003e qb = absDao.queryBuilder();\n    qb.join(className, property).where(whereCondition);\n    qb.buildDelete().executeDeleteWithoutDetachingEntities();\n}\n\npublic \u003cT\u003e void deleteAllFromTable(AbstractDao\u003cT, ?\u003e absDao) {\n    if (absDao == null) {\n        return;\n    }\n    absDao.deleteAll();\n}\n\npublic \u003cT\u003e long countElements(AbstractDao\u003cT, ?\u003e absDao) {\n    if (absDao == null) {\n        return 0;\n    }\n    return absDao.count();\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public \u003cT\u003e List\u003cT\u003e selectElements(AbstractDao\u003cT, ?\u003e dao) {\n    if (dao == null) {\n        return null;\n    }\n    QueryBuilder\u003cT\u003e qb = dao.queryBuilder();\n    return qb.list();\n}\n\npublic \u003cT\u003e void insertElements(AbstractDao\u003cT, ?\u003e absDao, List\u003cT\u003e items) {\n    if (items == null || items.size() == 0 || absDao == null) {\n        return;\n    }\n    absDao.insertOrReplaceInTx(items);\n}\n\npublic \u003cT\u003e T insertElement(AbstractDao\u003cT, ?\u003e absDao, T item) {\n    if (item == null || absDao == null) {\n        return null;\n    }\n    absDao.insertOrReplaceInTx(item);\n    return item;\n}\n\npublic \u003cT\u003e void updateElements(AbstractDao\u003cT, ?\u003e absDao, List\u003cT\u003e items) {\n    if (items == null || items.size() == 0 || absDao == null) {\n        return;\n    }\n    absDao.updateInTx(items);\n}\n\npublic \u003cT\u003e T selectElementByCondition(AbstractDao\u003cT, ?\u003e absDao,\n                                      WhereCondition... conditions) {\n    if (absDao == null) {\n        return null;\n    }\n    QueryBuilder\u003cT\u003e qb = absDao.queryBuilder();\n    for (WhereCondition condition : conditions) {\n        qb = qb.where(condition);\n    }\n    List\u003cT\u003e items = qb.list();\n    return items != null \u0026\u0026 items.size() \u003e 0 ? items.get(0) : null;\n}\n\npublic \u003cT\u003e List\u003cT\u003e selectElementsByCondition(AbstractDao\u003cT, ?\u003e absDao,\n                                             WhereCondition... conditions) {\n    if (absDao == null) {\n        return null;\n    }\n    QueryBuilder\u003cT\u003e qb = absDao.queryBuilder();\n    for (WhereCondition condition : conditions) {\n        qb = qb.where(condition);\n    }\n    List\u003cT\u003e items = qb.list();\n    return items != null ? items : null;\n}\n\npublic \u003cT\u003e List\u003cT\u003e selectElementsByConditionAndSort(AbstractDao\u003cT, ?\u003e absDao,\n                                                    Property sortProperty,\n                                                    String sortStrategy,\n                                                    WhereCondition... conditions) {\n    if (absDao == null) {\n        return null;\n    }\n    QueryBuilder\u003cT\u003e qb = absDao.queryBuilder();\n    for (WhereCondition condition : conditions) {\n        qb = qb.where(condition);\n    }\n    qb.orderCustom(sortProperty, sortStrategy);\n    List\u003cT\u003e items = qb.list();\n    return items != null ? items : null;\n}\n\npublic \u003cT\u003e List\u003cT\u003e selectElementsByConditionAndSortWithNullHandling(AbstractDao\u003cT, ?\u003e absDao,\n                                                                    Property sortProperty,\n                                                                    boolean handleNulls,\n                                                                    String sortStrategy,\n                                                                    WhereCondition... conditions) {\n    if (!handleNulls) {\n        return selectElementsByConditionAndSort(absDao, sortProperty, sortStrategy, conditions);\n    }\n    if (absDao == null) {\n        return null;\n    }\n    QueryBuilder\u003cT\u003e qb = absDao.queryBuilder();\n    for (WhereCondition condition : conditions) {\n        qb = qb.where(condition);\n    }\n    qb.orderRaw(\"(CASE WHEN \" + \"T.\" + sortProperty.columnName + \" IS NULL then 1 ELSE 0 END),\" + \"T.\" + sortProperty.columnName + \" \" + sortStrategy);\n    List\u003cT\u003e items = qb.list();\n    return items != null ? items : null;\n}\n\npublic \u003cT, V extends Class\u003e List\u003cT\u003e selectByJoin(AbstractDao\u003cT, ?\u003e absDao,\n                                                 V className,\n                                                 Property property, WhereCondition whereCondition) {\n    QueryBuilder\u003cT\u003e qb = absDao.queryBuilder();\n    qb.join(className, property).where(whereCondition);\n    return qb.list();\n}\n\npublic \u003cT\u003e void deleteElementsByCondition(AbstractDao\u003cT, ?\u003e absDao,\n                                          WhereCondition... conditions) {\n    if (absDao == null) {\n        return;\n    }\n    QueryBuilder\u003cT\u003e qb = absDao.queryBuilder();\n    for (WhereCondition condition : conditions) {\n        qb = qb.where(condition);\n    }\n    List\u003cT\u003e list = qb.list();\n    absDao.deleteInTx(list);\n}\n\npublic \u003cT\u003e T deleteElement(DaoSession session, AbstractDao\u003cT, ?\u003e absDao, T object) {\n    if (absDao == null) {\n        return null;\n    }\n    absDao.delete(object);\n    session.clear();\n    return object;\n}\n\npublic \u003cT, V extends Class\u003e void deleteByJoin(AbstractDao\u003cT, ?\u003e absDao,\n                                              V className,\n                                              Property property, WhereCondition whereCondition) {\n    QueryBuilder\u003cT\u003e qb = absDao.queryBuilder();\n    qb.join(className, property).where(whereCondition);\n    qb.buildDelete().executeDeleteWithoutDetachingEntities();\n}\n\npublic \u003cT\u003e void deleteAllFromTable(AbstractDao\u003cT, ?\u003e absDao) {\n    if (absDao == null) {\n        return;\n    }\n    absDao.deleteAll();\n}\n\npublic \u003cT\u003e long countElements(AbstractDao\u003cT, ?\u003e absDao) {\n    if (absDao == null) {\n        return 0;\n    }\n    return absDao.count();\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 Helper methods for SELECT INSERT DELETE UPDATE queries"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

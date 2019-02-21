@@ -1,0 +1,244 @@
+{
+  "ID": "dcdd4fa7-9fcc-481a-a70d-5de15fef697a",
+  "Root": {
+    "alive": true,
+    "content": [
+      "83326863-1899-411f-8ddc-998cff0029a9",
+      "44361818-e20a-4d0f-abf8-14840e6ef27f",
+      "1fe34878-9039-4ecf-8d5b-c85fd75f962f",
+      "ff3dce37-b80d-4460-8033-17a144666528",
+      "dd4fd77e-e669-43ac-a048-6ba760798218",
+      "46b63a05-9558-4f97-8b44-c4e61d0191e7"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550445371006,
+    "id": "dcdd4fa7-9fcc-481a-a70d-5de15fef697a",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550445371006,
+    "parent_id": "fad6acf8-b0d5-4770-85ab-bd87a2e5410d",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "020 The newInstance pattern"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550445371001,
+        "id": "83326863-1899-411f-8ddc-998cff0029a9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550445371001,
+        "parent_id": "dcdd4fa7-9fcc-481a-a70d-5de15fef697a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Although it is possible to create a fragment constructor with parameters, Android internally calls the zero-argument constructor when recreating fragments (for example, if they are being restored after being killed for Android’s own reasons). For this reason, it is not advisable to rely on a constructor that has parameters."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Although it is possible to create a fragment constructor with parameters, Android internally calls the zero-argument constructor when recreating fragments (for example, if they are being restored after being killed for Android’s own reasons). For this reason, it is not advisable to rely on a constructor that has parameters."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550445371004,
+        "id": "44361818-e20a-4d0f-abf8-14840e6ef27f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550445371004,
+        "parent_id": "dcdd4fa7-9fcc-481a-a70d-5de15fef697a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To ensure that your expected fragment arguments are always present you can use a static "
+            ],
+            [
+              "newInstance()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method to create the fragment, and put whatever parameters you want in to a bundle that will be available when creating a new instance."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To ensure that your expected fragment arguments are always present you can use a static "
+          },
+          {
+            "Text": "newInstance()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method to create the fragment, and put whatever parameters you want in to a bundle that will be available when creating a new instance."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550445371004,
+        "id": "1fe34878-9039-4ecf-8d5b-c85fd75f962f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550445371004,
+        "parent_id": "dcdd4fa7-9fcc-481a-a70d-5de15fef697a",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import android.os.Bundle;\nimport android.support.v4.app.Fragment;\n\npublic class MyFragment extends Fragment\n{\n  // Our identifier for obtaining the name from arguments\n  private static final String NAME_ARG = \"name\";\n\n  private String mName;\n\n  // Required\n  public MyFragment(){}\n\n  // The static constructor.  This is the only way that you should instantiate\n  // the fragment yourself\n  public static MyFragment newInstance(final String name) {\n    final MyFragment myFragment = new MyFragment();\n    // The 1 below is an optimization, being the number of arguments that will\n    // be added to this bundle.  If you know the number of arguments you will add\n    // to the bundle it stops additional allocations of the backing map.  If\n    // unsure, you can construct Bundle without any arguments\n    final Bundle args = new Bundle(1);\n\n    // This stores the argument as an argument in the bundle.  Note that even if\n    // the 'name' parameter is NULL then this will work, so you should consider\n    // at this point if the parameter is mandatory and if so check for NULL and\n    // throw an appropriate error if so\n    args.putString(NAME_ARG, name);\n\n    myFragment.setArguments(args);\n    return myFragment;\n  }\n\n  @Override\n  public void onCreate(final Bundle savedInstanceState) {\n    super.onCreate(savedInstanceState);\n    final Bundle arguments = getArguments();\n    if (arguments == null || !arguments.containsKey(NAME_ARG)) {\n      // Set a default or error as you see fit\n    } else {\n      mName = arguments.getString(NAME_ARG);\n    }\n  }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import android.os.Bundle;\nimport android.support.v4.app.Fragment;\n\npublic class MyFragment extends Fragment\n{\n  // Our identifier for obtaining the name from arguments\n  private static final String NAME_ARG = \"name\";\n\n  private String mName;\n\n  // Required\n  public MyFragment(){}\n\n  // The static constructor.  This is the only way that you should instantiate\n  // the fragment yourself\n  public static MyFragment newInstance(final String name) {\n    final MyFragment myFragment = new MyFragment();\n    // The 1 below is an optimization, being the number of arguments that will\n    // be added to this bundle.  If you know the number of arguments you will add\n    // to the bundle it stops additional allocations of the backing map.  If\n    // unsure, you can construct Bundle without any arguments\n    final Bundle args = new Bundle(1);\n\n    // This stores the argument as an argument in the bundle.  Note that even if\n    // the 'name' parameter is NULL then this will work, so you should consider\n    // at this point if the parameter is mandatory and if so check for NULL and\n    // throw an appropriate error if so\n    args.putString(NAME_ARG, name);\n\n    myFragment.setArguments(args);\n    return myFragment;\n  }\n\n  @Override\n  public void onCreate(final Bundle savedInstanceState) {\n    super.onCreate(savedInstanceState);\n    final Bundle arguments = getArguments();\n    if (arguments == null || !arguments.containsKey(NAME_ARG)) {\n      // Set a default or error as you see fit\n    } else {\n      mName = arguments.getString(NAME_ARG);\n    }\n  }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550445371004,
+        "id": "ff3dce37-b80d-4460-8033-17a144666528",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550445371004,
+        "parent_id": "dcdd4fa7-9fcc-481a-a70d-5de15fef697a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Now, in the Activity:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Now, in the Activity:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550445371005,
+        "id": "dd4fd77e-e669-43ac-a048-6ba760798218",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550445371005,
+        "parent_id": "dcdd4fa7-9fcc-481a-a70d-5de15fef697a",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "FragmentTransaction ft = getSupportFragmentManager().beginTransaction();\nMyFragment mFragment = MyFragment.newInstance(\"my name\");\nft.replace(R.id.placeholder, mFragment);\n//R.id.placeholder is where we want to load our fragment\nft.commit();"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "FragmentTransaction ft = getSupportFragmentManager().beginTransaction();\nMyFragment mFragment = MyFragment.newInstance(\"my name\");\nft.replace(R.id.placeholder, mFragment);\n//R.id.placeholder is where we want to load our fragment\nft.commit();",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550445371006,
+        "id": "46b63a05-9558-4f97-8b44-c4e61d0191e7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550445371006,
+        "parent_id": "dcdd4fa7-9fcc-481a-a70d-5de15fef697a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This pattern is a best practice to ensure that all the needed arguments will be passed to fragments on creation. Note that when the system destroys the fragment and re-creates it later, it will automatically restore its state - but you must provide it with an "
+            ],
+            [
+              "onSaveInstanceState(Bundle)",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "https://developer.android.com/reference/android/app/Fragment.html#onSaveInstanceState(android.os.Bundle)"
+                ]
+              ]
+            ],
+            [
+              " implementation."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This pattern is a best practice to ensure that all the needed arguments will be passed to fragments on creation. Note that when the system destroys the fragment and re-creates it later, it will automatically restore its state - but you must provide it with an "
+          },
+          {
+            "Text": "onSaveInstanceState(Bundle)",
+            "AttrFlags": 2,
+            "Link": "https://developer.android.com/reference/android/app/Fragment.html#onSaveInstanceState(android.os.Bundle)"
+          },
+          {
+            "Text": " implementation."
+          }
+        ]
+      }
+    ],
+    "title": "020 The newInstance pattern"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

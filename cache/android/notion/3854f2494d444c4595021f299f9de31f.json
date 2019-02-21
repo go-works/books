@@ -1,0 +1,181 @@
+{
+  "ID": "3854f249-4d44-4c45-9502-1f299f9de31f",
+  "Root": {
+    "alive": true,
+    "content": [
+      "5bfa5134-9936-4904-ac21-5b5dad51f56b",
+      "49247047-327a-459e-903a-1a4af8ff5f79",
+      "c6b039ca-c19c-4bbb-9537-7b56a116b4b6",
+      "4a79d068-4822-4f5f-a680-01f3fc2214f0",
+      "c4d4fcf4-2334-496e-9b1f-1eda77f6393d"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550447787320,
+    "id": "3854f249-4d44-4c45-9502-1f299f9de31f",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550447787320,
+    "parent_id": "2e2716b4-5b9a-4670-8a00-377992b3a547",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "020 Media Player with Buffer progress and play position"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447787316,
+        "id": "5bfa5134-9936-4904-ac21-5b5dad51f56b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447787316,
+        "parent_id": "3854f249-4d44-4c45-9502-1f299f9de31f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class SoundActivity extends Activity  {\n \n    private MediaPlayer mediaPlayer;\n    ProgressBar progress_bar;\n    \n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_tool_sound);\n        mediaPlayer = new MediaPlayer();\n        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);\n        progress_bar = (ProgressBar) findViewById(R.id.progress_bar);\n   \n        btn_play_stop.setEnabled(false);\n        btn_play_stop.setOnClickListener(new View.OnClickListener() {\n            @Override\n            public void onClick(View view) {\n                if(mediaPlayer.isPlaying()) {\n                    mediaPlayer.pause();\n                    btn_play_stop.setImageResource(R.drawable.ic_pause_black_24dp);\n                } else {\n                    mediaPlayer.start();\n                    btn_play_stop.setImageResource(R.drawable.ic_play_arrow_black_24px);\n                }\n            }\n        });\n\n        mediaPlayer.setDataSource(proxyUrl);\n        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {\n            @Override\n            public void onCompletion(MediaPlayer mp) {\n                observer.stop();\n                progress_bar.setProgress(mp.getCurrentPosition());\n                // TODO Auto-generated method stub\n                mediaPlayer.stop();\n                mediaPlayer.reset();\n            }\n        });\n        mediaPlayer.setOnBufferingUpdateListener(new MediaPlayer.OnBufferingUpdateListener() {\n            @Override\n            public void onBufferingUpdate(MediaPlayer mp, int percent) {\n                progress_bar.setSecondaryProgress(percent);\n            }\n        });\n        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {\n            @Override\n            public void onPrepared(MediaPlayer mediaPlayer) {\n                btn_play_stop.setEnabled(true);\n\n            }\n        });\n        observer = new MediaObserver();\n        mediaPlayer.prepare();\n        mediaPlayer.start();\n        new Thread(observer).start();\n    }\n\n   \n    private MediaObserver observer = null;\n\n    private class MediaObserver implements Runnable {\n        private AtomicBoolean stop = new AtomicBoolean(false);\n\n        public void stop() {\n            stop.set(true);\n        }\n\n        @Override\n        public void run() {\n            while (!stop.get()) {\n                progress_bar.setProgress((int)((double)mediaPlayer.getCurrentPosition() / (double)mediaPlayer.getDuration()*100));\n                try {\n                    Thread.sleep(200);\n                } catch (Exception ex) {\n                    Logger.log(ToolSoundActivity.this, ex);\n                }\n\n            }\n        }\n    }\n \n    @Override\n    protected void onDestroy() {\n        super.onDestroy();\n        mediaPlayer.stop();\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class SoundActivity extends Activity  {\n \n    private MediaPlayer mediaPlayer;\n    ProgressBar progress_bar;\n    \n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_tool_sound);\n        mediaPlayer = new MediaPlayer();\n        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);\n        progress_bar = (ProgressBar) findViewById(R.id.progress_bar);\n   \n        btn_play_stop.setEnabled(false);\n        btn_play_stop.setOnClickListener(new View.OnClickListener() {\n            @Override\n            public void onClick(View view) {\n                if(mediaPlayer.isPlaying()) {\n                    mediaPlayer.pause();\n                    btn_play_stop.setImageResource(R.drawable.ic_pause_black_24dp);\n                } else {\n                    mediaPlayer.start();\n                    btn_play_stop.setImageResource(R.drawable.ic_play_arrow_black_24px);\n                }\n            }\n        });\n\n        mediaPlayer.setDataSource(proxyUrl);\n        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {\n            @Override\n            public void onCompletion(MediaPlayer mp) {\n                observer.stop();\n                progress_bar.setProgress(mp.getCurrentPosition());\n                // TODO Auto-generated method stub\n                mediaPlayer.stop();\n                mediaPlayer.reset();\n            }\n        });\n        mediaPlayer.setOnBufferingUpdateListener(new MediaPlayer.OnBufferingUpdateListener() {\n            @Override\n            public void onBufferingUpdate(MediaPlayer mp, int percent) {\n                progress_bar.setSecondaryProgress(percent);\n            }\n        });\n        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {\n            @Override\n            public void onPrepared(MediaPlayer mediaPlayer) {\n                btn_play_stop.setEnabled(true);\n\n            }\n        });\n        observer = new MediaObserver();\n        mediaPlayer.prepare();\n        mediaPlayer.start();\n        new Thread(observer).start();\n    }\n\n   \n    private MediaObserver observer = null;\n\n    private class MediaObserver implements Runnable {\n        private AtomicBoolean stop = new AtomicBoolean(false);\n\n        public void stop() {\n            stop.set(true);\n        }\n\n        @Override\n        public void run() {\n            while (!stop.get()) {\n                progress_bar.setProgress((int)((double)mediaPlayer.getCurrentPosition() / (double)mediaPlayer.getDuration()*100));\n                try {\n                    Thread.sleep(200);\n                } catch (Exception ex) {\n                    Logger.log(ToolSoundActivity.this, ex);\n                }\n\n            }\n        }\n    }\n \n    @Override\n    protected void onDestroy() {\n        super.onDestroy();\n        mediaPlayer.stop();\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447787319,
+        "id": "49247047-327a-459e-903a-1a4af8ff5f79",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447787319,
+        "parent_id": "3854f249-4d44-4c45-9502-1f299f9de31f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "\u003cLinearLayout xmlns:android=“http://schemas.android.com/apk/res/android”"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "\u003cLinearLayout xmlns:android=“http://schemas.android.com/apk/res/android”"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447787319,
+        "id": "c6b039ca-c19c-4bbb-9537-7b56a116b4b6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447787319,
+        "parent_id": "3854f249-4d44-4c45-9502-1f299f9de31f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "xmlns:app=\"http://schemas.android.com/apk/res-auto\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:orientation=\"vertical\"\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "xmlns:app=\"http://schemas.android.com/apk/res-auto\"\nandroid:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\nandroid:orientation=\"vertical\"\u003e",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447787319,
+        "id": "4a79d068-4822-4f5f-a680-01f3fc2214f0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447787319,
+        "parent_id": "3854f249-4d44-4c45-9502-1f299f9de31f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003cLinearLayout\n    android:gravity=\"bottom\"\n    android:layout_gravity=\"bottom\"\n    android:orientation=\"vertical\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"0dp\"\n    android:layout_weight=\"1\"\n    android:weightSum=\"1\"\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003cLinearLayout\n    android:gravity=\"bottom\"\n    android:layout_gravity=\"bottom\"\n    android:orientation=\"vertical\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"0dp\"\n    android:layout_weight=\"1\"\n    android:weightSum=\"1\"\u003e",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447787319,
+        "id": "c4d4fcf4-2334-496e-9b1f-1eda77f6393d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447787319,
+        "parent_id": "3854f249-4d44-4c45-9502-1f299f9de31f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003cLinearLayout\n    android:orientation=\"horizontal\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"wrap_content\"\u003e\n\n    \u003cImageButton\n        app:srcCompat=\"@drawable/ic_play_arrow_black_24px\"\n        android:layout_width=\"48dp\"\n        android:layout_height=\"48dp\"\n        android:id=\"@+id/btn_play_stop\" /\u003e\n\n    \u003cProgressBar\n        android:padding=\"8dp\"\n        android:progress=\"0\"\n        android:id=\"@+id/progress_bar\"\n        style=\"@style/Widget.AppCompat.ProgressBar.Horizontal\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_gravity=\"center\" /\u003e\n\n\u003c/LinearLayout\u003e\n\n\u003c/LinearLayout\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003cLinearLayout\n    android:orientation=\"horizontal\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"wrap_content\"\u003e\n\n    \u003cImageButton\n        app:srcCompat=\"@drawable/ic_play_arrow_black_24px\"\n        android:layout_width=\"48dp\"\n        android:layout_height=\"48dp\"\n        android:id=\"@+id/btn_play_stop\" /\u003e\n\n    \u003cProgressBar\n        android:padding=\"8dp\"\n        android:progress=\"0\"\n        android:id=\"@+id/progress_bar\"\n        style=\"@style/Widget.AppCompat.ProgressBar.Horizontal\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_gravity=\"center\" /\u003e\n\n\u003c/LinearLayout\u003e\n\n\u003c/LinearLayout\u003e",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "020 Media Player with Buffer progress and play position"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

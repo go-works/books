@@ -1,0 +1,143 @@
+{
+  "ID": "2f0c9dda-78c4-492c-833a-c341707488b7",
+  "Root": {
+    "alive": true,
+    "content": [
+      "6b1e5880-29a0-4893-9bf8-5378faa243bb",
+      "46e107c6-66f0-4c55-ad26-e2ab2f7f4e74",
+      "b5d9f3b7-7b4a-4310-88f1-b98d2512ab3a"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550448400873,
+    "id": "2f0c9dda-78c4-492c-833a-c341707488b7",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550448400873,
+    "parent_id": "4ed76ccc-0516-40c8-97cc-501741884fac",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 Custom font to whole activity"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448400872,
+        "id": "6b1e5880-29a0-4893-9bf8-5378faa243bb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448400872,
+        "parent_id": "2f0c9dda-78c4-492c-833a-c341707488b7",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class ReplaceFont {\n\npublic static void changeDefaultFont(Context context, String oldFont, String assetsFont) {\n    Typeface typeface = Typeface.createFromAsset(context.getAssets(), assetsFont);\n    replaceFont(oldFont, typeface);\n}\n\nprivate static void replaceFont(String oldFont, Typeface typeface) {\n    try {\n        Field myField = Typeface.class.getDeclaredField(oldFont);\n        myField.setAccessible(true);\n        myField.set(null, typeface);\n    } catch (NoSuchFieldException e) {\n        e.printStackTrace();\n    } catch (IllegalAccessException e) {\n        e.printStackTrace();\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class ReplaceFont {\n\npublic static void changeDefaultFont(Context context, String oldFont, String assetsFont) {\n    Typeface typeface = Typeface.createFromAsset(context.getAssets(), assetsFont);\n    replaceFont(oldFont, typeface);\n}\n\nprivate static void replaceFont(String oldFont, Typeface typeface) {\n    try {\n        Field myField = Typeface.class.getDeclaredField(oldFont);\n        myField.setAccessible(true);\n        myField.set(null, typeface);\n    } catch (NoSuchFieldException e) {\n        e.printStackTrace();\n    } catch (IllegalAccessException e) {\n        e.printStackTrace();\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448400873,
+        "id": "46e107c6-66f0-4c55-ad26-e2ab2f7f4e74",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448400873,
+        "parent_id": "2f0c9dda-78c4-492c-833a-c341707488b7",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Then in your activity, in "
+            ],
+            [
+              "onCreate()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Then in your activity, in "
+          },
+          {
+            "Text": "onCreate()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448400873,
+        "id": "b5d9f3b7-7b4a-4310-88f1-b98d2512ab3a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448400873,
+        "parent_id": "2f0c9dda-78c4-492c-833a-c341707488b7",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Put your font to assets folder...\n\nReplaceFont.changeDefaultFont(getApplication(), \"DEFAULT\", \"LinLibertine.ttf\");"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Put your font to assets folder...\n\nReplaceFont.changeDefaultFont(getApplication(), \"DEFAULT\", \"LinLibertine.ttf\");",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "030 Custom font to whole activity"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

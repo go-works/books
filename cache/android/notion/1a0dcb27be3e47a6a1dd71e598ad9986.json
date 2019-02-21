@@ -1,0 +1,189 @@
+{
+  "ID": "1a0dcb27-be3e-47a6-a1dd-71e598ad9986",
+  "Root": {
+    "alive": true,
+    "content": [
+      "121de7ab-a949-4b8f-90a8-53d1a44d6b6b",
+      "9f67b6bf-eb4a-405f-badc-c0b6f92c2ed5",
+      "d95cb0f7-e702-4a6d-941c-2c3a8aa8bf26",
+      "886472b8-aa13-4505-bda4-73df973dff5c",
+      "78e955e5-44cd-404b-8877-36a83a6236dc"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550455604072,
+    "id": "1a0dcb27-be3e-47a6-a1dd-71e598ad9986",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550455604072,
+    "parent_id": "2baf451b-0056-4891-8d40-684b89573e1b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 MainActivity.java"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550455604069,
+        "id": "121de7ab-a949-4b8f-90a8-53d1a44d6b6b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550455604069,
+        "parent_id": "1a0dcb27-be3e-47a6-a1dd-71e598ad9986",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import android.os.Bundle;\nimport android.os.Handler;\nimport android.support.v7.app.AppCompatActivity;\nimport android.support.v7.widget.LinearLayoutManager;\nimport android.support.v7.widget.RecyclerView;\nimport android.support.v7.widget.Toolbar;\nimport android.util.Log;\nimport android.widget.TextView;\n\nimport com.android.volley.Request;\nimport com.android.volley.Response;\nimport com.android.volley.VolleyError;\nimport com.android.volley.VolleyLog;\n\nimport org.json.JSONArray;\nimport org.json.JSONException;\nimport org.json.JSONObject;\n\nimport java.util.ArrayList;\nimport java.util.HashMap;\nimport java.util.List;\nimport java.util.Map;\n\npublic class MainActivity extends AppCompatActivity {\n\n    private static final String TAG = \"MainActivity\";\n    private Toolbar toolbar;\n\n    private TextView tvEmptyView;\n    private RecyclerView mRecyclerView;\n    private DataAdapter mAdapter;\n    private LinearLayoutManager mLayoutManager;\n    private int mStart=0,mEnd=20;\n    private List\u003cStudent\u003e studentList;\n    private List\u003cStudent\u003e mTempCheck;\n    public static int pageNumber;\n    public int total_size=0;\n\n\n    protected Handler handler;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_main);\n        pageNumber = 1;\n        toolbar = (Toolbar) findViewById(R.id.toolbar);\n        tvEmptyView = (TextView) findViewById(R.id.empty_view);\n        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);\n        studentList = new ArrayList\u003c\u003e();\n        mTempCheck=new ArrayList\u003c\u003e();\n        handler = new Handler();\n        if (toolbar != null) {\n            setSupportActionBar(toolbar);\n            getSupportActionBar().setTitle(\"Android Students\");\n\n        }\n\n        mRecyclerView.setHasFixedSize(true);\n        mLayoutManager = new LinearLayoutManager(this);\n        mRecyclerView.setLayoutManager(mLayoutManager);\n        mAdapter = new DataAdapter(studentList, mRecyclerView);\n        mRecyclerView.setAdapter(mAdapter);\n        GetGroupData(\"\" + mStart, \"\" + mEnd);\n        mAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {\n            @Override\n            public void onLoadMore() {\n                if( mTempCheck.size()\u003e 0) {\n                    studentList.add(null);\n                    mAdapter.notifyItemInserted(studentList.size() - 1);\n                    int start = pageNumber * 20;\n                    start = start + 1;\n                    ++ pageNumber;\n                    mTempCheck.clear();\n                    GetData(\"\" + start,\"\"+ mEnd);\n                }\n            }\n        });\n    }\n\n    public void GetData(final String LimitStart, final String LimitEnd) {\n        Map\u003cString, String\u003e params = new HashMap\u003c\u003e();\n        params.put(\"LimitStart\", LimitStart);\n        params.put(\"Limit\", LimitEnd);\n        Custom_Volly_Request jsonObjReq = new Custom_Volly_Request(Request.Method.POST,\n                \"Your php file link\", params,\n                new Response.Listener\u003cJSONObject\u003e() {\n                    @Override\n                    public void onResponse(JSONObject response) {\n                        Log.d(\"ResponseSuccess\",response.toString());\n                        // handle the data from the servoce\n                    }\n                }, new Response.ErrorListener() {\n\n            @Override\n            public void onErrorResponse(VolleyError error) {\n                VolleyLog.d(\"ResponseErrorVolly: \" + error.getMessage());\n\n            }});\n       \n    }\n    // load initial data\n    private void loadData(int start,int end,boolean notifyadapter) {\n        for (int i = start; i \u003c= end; i++) {\n            studentList.add(new Student(\"Student \" + i, \"androidstudent\" + i + \"@gmail.com\"));\n            if(notifyadapter)\n                mAdapter.notifyItemInserted(studentList.size());\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import android.os.Bundle;\nimport android.os.Handler;\nimport android.support.v7.app.AppCompatActivity;\nimport android.support.v7.widget.LinearLayoutManager;\nimport android.support.v7.widget.RecyclerView;\nimport android.support.v7.widget.Toolbar;\nimport android.util.Log;\nimport android.widget.TextView;\n\nimport com.android.volley.Request;\nimport com.android.volley.Response;\nimport com.android.volley.VolleyError;\nimport com.android.volley.VolleyLog;\n\nimport org.json.JSONArray;\nimport org.json.JSONException;\nimport org.json.JSONObject;\n\nimport java.util.ArrayList;\nimport java.util.HashMap;\nimport java.util.List;\nimport java.util.Map;\n\npublic class MainActivity extends AppCompatActivity {\n\n    private static final String TAG = \"MainActivity\";\n    private Toolbar toolbar;\n\n    private TextView tvEmptyView;\n    private RecyclerView mRecyclerView;\n    private DataAdapter mAdapter;\n    private LinearLayoutManager mLayoutManager;\n    private int mStart=0,mEnd=20;\n    private List\u003cStudent\u003e studentList;\n    private List\u003cStudent\u003e mTempCheck;\n    public static int pageNumber;\n    public int total_size=0;\n\n\n    protected Handler handler;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_main);\n        pageNumber = 1;\n        toolbar = (Toolbar) findViewById(R.id.toolbar);\n        tvEmptyView = (TextView) findViewById(R.id.empty_view);\n        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);\n        studentList = new ArrayList\u003c\u003e();\n        mTempCheck=new ArrayList\u003c\u003e();\n        handler = new Handler();\n        if (toolbar != null) {\n            setSupportActionBar(toolbar);\n            getSupportActionBar().setTitle(\"Android Students\");\n\n        }\n\n        mRecyclerView.setHasFixedSize(true);\n        mLayoutManager = new LinearLayoutManager(this);\n        mRecyclerView.setLayoutManager(mLayoutManager);\n        mAdapter = new DataAdapter(studentList, mRecyclerView);\n        mRecyclerView.setAdapter(mAdapter);\n        GetGroupData(\"\" + mStart, \"\" + mEnd);\n        mAdapter.setOnLoadMoreListener(new OnLoadMoreListener() {\n            @Override\n            public void onLoadMore() {\n                if( mTempCheck.size()\u003e 0) {\n                    studentList.add(null);\n                    mAdapter.notifyItemInserted(studentList.size() - 1);\n                    int start = pageNumber * 20;\n                    start = start + 1;\n                    ++ pageNumber;\n                    mTempCheck.clear();\n                    GetData(\"\" + start,\"\"+ mEnd);\n                }\n            }\n        });\n    }\n\n    public void GetData(final String LimitStart, final String LimitEnd) {\n        Map\u003cString, String\u003e params = new HashMap\u003c\u003e();\n        params.put(\"LimitStart\", LimitStart);\n        params.put(\"Limit\", LimitEnd);\n        Custom_Volly_Request jsonObjReq = new Custom_Volly_Request(Request.Method.POST,\n                \"Your php file link\", params,\n                new Response.Listener\u003cJSONObject\u003e() {\n                    @Override\n                    public void onResponse(JSONObject response) {\n                        Log.d(\"ResponseSuccess\",response.toString());\n                        // handle the data from the servoce\n                    }\n                }, new Response.ErrorListener() {\n\n            @Override\n            public void onErrorResponse(VolleyError error) {\n                VolleyLog.d(\"ResponseErrorVolly: \" + error.getMessage());\n\n            }});\n       \n    }\n    // load initial data\n    private void loadData(int start,int end,boolean notifyadapter) {\n        for (int i = start; i \u003c= end; i++) {\n            studentList.add(new Student(\"Student \" + i, \"androidstudent\" + i + \"@gmail.com\"));\n            if(notifyadapter)\n                mAdapter.notifyItemInserted(studentList.size());\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550455604072,
+        "id": "9f67b6bf-eb4a-405f-badc-c0b6f92c2ed5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550455604072,
+        "parent_id": "1a0dcb27-be3e-47a6-a1dd-71e598ad9986",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "OnLoadMoreListener.java",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "OnLoadMoreListener.java",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550455604072,
+        "id": "d95cb0f7-e702-4a6d-941c-2c3a8aa8bf26",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550455604072,
+        "parent_id": "1a0dcb27-be3e-47a6-a1dd-71e598ad9986",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "public interface OnLoadMoreListener { void onLoadMore(); }"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "public interface OnLoadMoreListener { void onLoadMore(); }"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550455604072,
+        "id": "886472b8-aa13-4505-bda4-73df973dff5c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550455604072,
+        "parent_id": "1a0dcb27-be3e-47a6-a1dd-71e598ad9986",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "DataAdapter.java",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "DataAdapter.java",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550455604072,
+        "id": "78e955e5-44cd-404b-8877-36a83a6236dc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550455604072,
+        "parent_id": "1a0dcb27-be3e-47a6-a1dd-71e598ad9986",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import android.support.v7.widget.LinearLayoutManager;\nimport android.support.v7.widget.RecyclerView;\nimport android.view.LayoutInflater;\nimport android.view.View;\nimport android.view.View.OnClickListener;\nimport android.view.ViewGroup;\nimport android.widget.ProgressBar;\nimport android.widget.TextView;\nimport android.widget.Toast;\n\nimport java.util.List;\n\npublic class DataAdapter extends RecyclerView.Adapter {\n    private final int VIEW_ITEM = 1;\n    private final int VIEW_PROG = 0;\n\n    private List\u003cStudent\u003e studentList;\n\n    // The minimum amount of items to have below your current scroll position\n    // before loading more.\n    private int visibleThreshold = 5;\n    private int lastVisibleItem, totalItemCount;\n    private boolean loading;\n    private OnLoadMoreListener onLoadMoreListener;\n\n\n\n    public DataAdapter(List\u003cStudent\u003e students, RecyclerView recyclerView) {\n        studentList = students;\n        if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {\n            final LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();\n                    recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {\n                        @Override\n                        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {\n                            super.onScrolled(recyclerView, dx, dy);\n                            totalItemCount = linearLayoutManager.getItemCount();\n                            lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();\n                            if (! loading \u0026\u0026 totalItemCount \u003c= (lastVisibleItem + visibleThreshold)) {\n                                if (onLoadMoreListener != null) {\n                                    onLoadMoreListener.onLoadMore();\n                                }\n                                loading = true;\n                            }\n                        }\n                    });\n        }\n    }\n\n    @Override\n    public int getItemViewType(int position) {\n\n            return studentList.get(position) != null ? VIEW_ITEM : VIEW_PROG;\n    }\n\n    @Override\n    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {\n        RecyclerView.ViewHolder vh;\n        if (viewType == VIEW_ITEM) {\n            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_row, parent, false);\n            vh = new StudentViewHolder(v);\n        } else {\n            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.progress_item, parent, false);\n            vh = new ProgressViewHolder(v);\n        }\n        return vh;\n    }\n\n    @Override\n    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {\n        if (holder instanceof StudentViewHolder) {\n            Student singleStudent=studentList.get(position);\n            ((StudentViewHolder) holder).tvName.setText(singleStudent.getName());\n            ((StudentViewHolder) holder).tvEmailId.setText(singleStudent.getEmailId());\n            ((StudentViewHolder) holder).student= singleStudent;\n        } else {\n            ((ProgressViewHolder) holder).progressBar.setIndeterminate(true);\n        }\n    }\n\n    public void setLoaded(boolean state) {\n        loading = state;\n    }\n\n    @Override\n    public int getItemCount() {\n        return studentList.size();\n    }\n\n    public void setOnLoadMoreListener(OnLoadMoreListener onLoadMoreListener) {\n        this.onLoadMoreListener = onLoadMoreListener;\n    }\n\n\n    //\n    public static class StudentViewHolder extends RecyclerView.ViewHolder {\n        public TextView tvName;\n        \n        public TextView tvEmailId;\n        \n        public Student student;\n\n        public StudentViewHolder(View v) {\n            super(v);\n            tvName = (TextView) v.findViewById(R.id.tvName);\n            tvEmailId = (TextView) v.findViewById(R.id.tvEmailId);\n\n            \n        }\n    }\n\n    public static class ProgressViewHolder extends RecyclerView.ViewHolder {\n        public ProgressBar progressBar;\n\n        public ProgressViewHolder(View v) {\n            super(v);\n            progressBar = (ProgressBar) v.findViewById(R.id.progressBar1);\n        }\n    }\n\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import android.support.v7.widget.LinearLayoutManager;\nimport android.support.v7.widget.RecyclerView;\nimport android.view.LayoutInflater;\nimport android.view.View;\nimport android.view.View.OnClickListener;\nimport android.view.ViewGroup;\nimport android.widget.ProgressBar;\nimport android.widget.TextView;\nimport android.widget.Toast;\n\nimport java.util.List;\n\npublic class DataAdapter extends RecyclerView.Adapter {\n    private final int VIEW_ITEM = 1;\n    private final int VIEW_PROG = 0;\n\n    private List\u003cStudent\u003e studentList;\n\n    // The minimum amount of items to have below your current scroll position\n    // before loading more.\n    private int visibleThreshold = 5;\n    private int lastVisibleItem, totalItemCount;\n    private boolean loading;\n    private OnLoadMoreListener onLoadMoreListener;\n\n\n\n    public DataAdapter(List\u003cStudent\u003e students, RecyclerView recyclerView) {\n        studentList = students;\n        if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {\n            final LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();\n                    recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {\n                        @Override\n                        public void onScrolled(RecyclerView recyclerView, int dx, int dy) {\n                            super.onScrolled(recyclerView, dx, dy);\n                            totalItemCount = linearLayoutManager.getItemCount();\n                            lastVisibleItem = linearLayoutManager.findLastVisibleItemPosition();\n                            if (! loading \u0026\u0026 totalItemCount \u003c= (lastVisibleItem + visibleThreshold)) {\n                                if (onLoadMoreListener != null) {\n                                    onLoadMoreListener.onLoadMore();\n                                }\n                                loading = true;\n                            }\n                        }\n                    });\n        }\n    }\n\n    @Override\n    public int getItemViewType(int position) {\n\n            return studentList.get(position) != null ? VIEW_ITEM : VIEW_PROG;\n    }\n\n    @Override\n    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {\n        RecyclerView.ViewHolder vh;\n        if (viewType == VIEW_ITEM) {\n            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_row, parent, false);\n            vh = new StudentViewHolder(v);\n        } else {\n            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.progress_item, parent, false);\n            vh = new ProgressViewHolder(v);\n        }\n        return vh;\n    }\n\n    @Override\n    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {\n        if (holder instanceof StudentViewHolder) {\n            Student singleStudent=studentList.get(position);\n            ((StudentViewHolder) holder).tvName.setText(singleStudent.getName());\n            ((StudentViewHolder) holder).tvEmailId.setText(singleStudent.getEmailId());\n            ((StudentViewHolder) holder).student= singleStudent;\n        } else {\n            ((ProgressViewHolder) holder).progressBar.setIndeterminate(true);\n        }\n    }\n\n    public void setLoaded(boolean state) {\n        loading = state;\n    }\n\n    @Override\n    public int getItemCount() {\n        return studentList.size();\n    }\n\n    public void setOnLoadMoreListener(OnLoadMoreListener onLoadMoreListener) {\n        this.onLoadMoreListener = onLoadMoreListener;\n    }\n\n\n    //\n    public static class StudentViewHolder extends RecyclerView.ViewHolder {\n        public TextView tvName;\n        \n        public TextView tvEmailId;\n        \n        public Student student;\n\n        public StudentViewHolder(View v) {\n            super(v);\n            tvName = (TextView) v.findViewById(R.id.tvName);\n            tvEmailId = (TextView) v.findViewById(R.id.tvEmailId);\n\n            \n        }\n    }\n\n    public static class ProgressViewHolder extends RecyclerView.ViewHolder {\n        public ProgressBar progressBar;\n\n        public ProgressViewHolder(View v) {\n            super(v);\n            progressBar = (ProgressBar) v.findViewById(R.id.progressBar1);\n        }\n    }\n\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 MainActivity.java"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

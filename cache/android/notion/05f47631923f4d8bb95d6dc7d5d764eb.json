@@ -1,0 +1,205 @@
+{
+  "ID": "05f47631-923f-4d8b-b95d-6dc7d5d764eb",
+  "Root": {
+    "alive": true,
+    "content": [
+      "40492479-fe86-4898-8a40-a5d586940b1a",
+      "7869179b-7048-4ef6-beb0-c4e51fb111a2",
+      "d7ec7de9-8e1f-4156-be77-49ca9df71b67",
+      "bee1a5bd-dc92-467a-8b15-5d315d4e0193",
+      "07278f93-5065-4486-90b5-677252e8a2dd",
+      "44497629-217c-4915-a44b-5a0b4007a778"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550455911342,
+    "id": "05f47631-923f-4d8b-b95d-6dc7d5d764eb",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550455911342,
+    "parent_id": "58505de6-57ea-4156-83ec-21d3e032fcee",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 AIDL Service"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550455911339,
+        "id": "40492479-fe86-4898-8a40-a5d586940b1a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550455911339,
+        "parent_id": "05f47631-923f-4d8b-b95d-6dc7d5d764eb",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "ICalculator.aidl"
+            ]
+          ]
+        },
+        "type": "quote",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "ICalculator.aidl"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550455911341,
+        "id": "7869179b-7048-4ef6-beb0-c4e51fb111a2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550455911341,
+        "parent_id": "05f47631-923f-4d8b-b95d-6dc7d5d764eb",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Declare any non-default types here with import statements\n\n    interface ICalculator {\n        int add(int x,int y);\n        int sub(int x,int y);\n    }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Declare any non-default types here with import statements\n\n    interface ICalculator {\n        int add(int x,int y);\n        int sub(int x,int y);\n    }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550455911342,
+        "id": "d7ec7de9-8e1f-4156-be77-49ca9df71b67",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550455911342,
+        "parent_id": "05f47631-923f-4d8b-b95d-6dc7d5d764eb",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "AidlService.java"
+            ]
+          ]
+        },
+        "type": "quote",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "AidlService.java"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550455911342,
+        "id": "bee1a5bd-dc92-467a-8b15-5d315d4e0193",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550455911342,
+        "parent_id": "05f47631-923f-4d8b-b95d-6dc7d5d764eb",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class AidlService extends Service {\n\n    private static final String TAG = \"AIDLServiceLogs\";\n    private static final String className = \" AidlService\";\n\n    public AidlService() {\n        Log.i(TAG, className+\" Constructor\");\n    }\n\n    @Override\n    public IBinder onBind(Intent intent) {\n        // TODO: Return the communication channel to the service.\n        Log.i(TAG, className+\" onBind\");\n        return iCalculator.asBinder();\n    }\n\n    @Override\n    public void onCreate() {\n        super.onCreate();\n        Log.i(TAG, className+\" onCreate\");\n    }\n\n    @Override\n    public void onDestroy() {\n        super.onDestroy();\n        Log.i(TAG, className+\" onDestroy\");\n    }\n\n\n    ICalculator.Stub iCalculator = new ICalculator.Stub() {\n        @Override\n        public int add(int x, int y) throws RemoteException {\n            Log.i(TAG, className+\" add Thread Name: \"+Thread.currentThread().getName());\n            int z = x+y;\n            return z;\n        }\n\n        @Override\n        public int sub(int x, int y) throws RemoteException {\n            Log.i(TAG, className+\" add Thread Name: \"+Thread.currentThread().getName());\n            int z = x-y;\n            return z;\n        }\n    };\n\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class AidlService extends Service {\n\n    private static final String TAG = \"AIDLServiceLogs\";\n    private static final String className = \" AidlService\";\n\n    public AidlService() {\n        Log.i(TAG, className+\" Constructor\");\n    }\n\n    @Override\n    public IBinder onBind(Intent intent) {\n        // TODO: Return the communication channel to the service.\n        Log.i(TAG, className+\" onBind\");\n        return iCalculator.asBinder();\n    }\n\n    @Override\n    public void onCreate() {\n        super.onCreate();\n        Log.i(TAG, className+\" onCreate\");\n    }\n\n    @Override\n    public void onDestroy() {\n        super.onDestroy();\n        Log.i(TAG, className+\" onDestroy\");\n    }\n\n\n    ICalculator.Stub iCalculator = new ICalculator.Stub() {\n        @Override\n        public int add(int x, int y) throws RemoteException {\n            Log.i(TAG, className+\" add Thread Name: \"+Thread.currentThread().getName());\n            int z = x+y;\n            return z;\n        }\n\n        @Override\n        public int sub(int x, int y) throws RemoteException {\n            Log.i(TAG, className+\" add Thread Name: \"+Thread.currentThread().getName());\n            int z = x-y;\n            return z;\n        }\n    };\n\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550455911342,
+        "id": "07278f93-5065-4486-90b5-677252e8a2dd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550455911342,
+        "parent_id": "05f47631-923f-4d8b-b95d-6dc7d5d764eb",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Service Connection"
+            ]
+          ]
+        },
+        "type": "quote",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Service Connection"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550455911342,
+        "id": "44497629-217c-4915-a44b-5a0b4007a778",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550455911342,
+        "parent_id": "05f47631-923f-4d8b-b95d-6dc7d5d764eb",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Return the stub as interface\nServiceConnection serviceConnection = new ServiceConnection() {\n       @Override\n       public void onServiceConnected(ComponentName name, IBinder service) {\n           Log.i(TAG, className + \" onServiceConnected\");\n           iCalculator = ICalculator.Stub.asInterface(service);\n       }\n\n       @Override\n       public void onServiceDisconnected(ComponentName name) {\n\n           unbindService(serviceConnection);\n       }\n   };"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Return the stub as interface\nServiceConnection serviceConnection = new ServiceConnection() {\n       @Override\n       public void onServiceConnected(ComponentName name, IBinder service) {\n           Log.i(TAG, className + \" onServiceConnected\");\n           iCalculator = ICalculator.Stub.asInterface(service);\n       }\n\n       @Override\n       public void onServiceDisconnected(ComponentName name) {\n\n           unbindService(serviceConnection);\n       }\n   };",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 AIDL Service"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

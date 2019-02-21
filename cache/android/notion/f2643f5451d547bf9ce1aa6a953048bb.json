@@ -1,0 +1,97 @@
+{
+  "ID": "f2643f54-51d5-47bf-9ce1-aa6a953048bb",
+  "Root": {
+    "alive": true,
+    "content": [
+      "afdb1b80-b076-4f61-adcf-ea7e25ade207",
+      "070b5528-4f5d-4102-a0f3-1ff7c8d5112b"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550447768230,
+    "id": "f2643f54-51d5-47bf-9ce1-aa6a953048bb",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550447768230,
+    "parent_id": "331f90f3-9311-486a-8bcd-c5e4e171ee84",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 Using Enums with Parcelable"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447768227,
+        "id": "afdb1b80-b076-4f61-adcf-ea7e25ade207",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447768227,
+        "parent_id": "f2643f54-51d5-47bf-9ce1-aa6a953048bb",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "/**\n * Created by Nick Cardoso on 03/08/16.\n * This is not a complete parcelable implementation, it only highlights the easiest \n * way to read and write your Enum values to your parcel\n */\npublic class Foo implements Parcelable {\n\n    private final MyEnum myEnumVariable;\n    private final MyEnum mySaferEnumVariableExample;\n\n    public Foo(Parcel in) {\n\n        //the simplest way\n        myEnumVariable = MyEnum.valueOf( in.readString() );\n\n        //with some error checking\n        try {\n            mySaferEnumVariableExample= MyEnum.valueOf( in.readString() );\n        } catch (IllegalArgumentException e) { //bad string or null value\n            mySaferEnumVariableExample= MyEnum.DEFAULT;\n        }\n\n    }\n    \n    ...\n\n    @Override\n    public void writeToParcel(Parcel dest, int flags) {\n\n        //the simple way\n        dest.writeString(myEnumVariable.name()); \n\n        //avoiding NPEs with some error checking\n        dest.writeString(mySaferEnumVariableExample == null? null : mySaferEnumVariableExample.name());\n\n    }\n    \n}\n\npublic enum MyEnum {\n    VALUE_1,\n    VALUE_2,\n    DEFAULT\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "/**\n * Created by Nick Cardoso on 03/08/16.\n * This is not a complete parcelable implementation, it only highlights the easiest \n * way to read and write your Enum values to your parcel\n */\npublic class Foo implements Parcelable {\n\n    private final MyEnum myEnumVariable;\n    private final MyEnum mySaferEnumVariableExample;\n\n    public Foo(Parcel in) {\n\n        //the simplest way\n        myEnumVariable = MyEnum.valueOf( in.readString() );\n\n        //with some error checking\n        try {\n            mySaferEnumVariableExample= MyEnum.valueOf( in.readString() );\n        } catch (IllegalArgumentException e) { //bad string or null value\n            mySaferEnumVariableExample= MyEnum.DEFAULT;\n        }\n\n    }\n    \n    ...\n\n    @Override\n    public void writeToParcel(Parcel dest, int flags) {\n\n        //the simple way\n        dest.writeString(myEnumVariable.name()); \n\n        //avoiding NPEs with some error checking\n        dest.writeString(mySaferEnumVariableExample == null? null : mySaferEnumVariableExample.name());\n\n    }\n    \n}\n\npublic enum MyEnum {\n    VALUE_1,\n    VALUE_2,\n    DEFAULT\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447768230,
+        "id": "070b5528-4f5d-4102-a0f3-1ff7c8d5112b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447768230,
+        "parent_id": "f2643f54-51d5-47bf-9ce1-aa6a953048bb",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This is preferable to (for example) using an ordinal, because inserting new values into your enum will not affect previously stored values"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This is preferable to (for example) using an ordinal, because inserting new values into your enum will not affect previously stored values"
+          }
+        ]
+      }
+    ],
+    "title": "030 Using Enums with Parcelable"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

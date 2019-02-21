@@ -1,0 +1,247 @@
+{
+  "ID": "13a48483-01f8-4dac-8724-02644b363e70",
+  "Root": {
+    "alive": true,
+    "content": [
+      "450f5d07-8ad8-4be0-bfe7-29407cf600a0",
+      "a5e2e79d-caf1-4893-abcb-30492ae654da",
+      "a4a55af3-3564-41a7-bd45-89770e2299aa",
+      "7dadaf08-2f0c-4a78-97b8-d74319dd26ec"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550448442893,
+    "id": "13a48483-01f8-4dac-8724-02644b363e70",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550448442893,
+    "parent_id": "6068a6db-1477-454d-9131-f7d2eef506e8",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 Get changes in user activity with Fence API"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448442891,
+        "id": "450f5d07-8ad8-4be0-bfe7-29407cf600a0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448442891,
+        "parent_id": "13a48483-01f8-4dac-8724-02644b363e70",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If you want to detect when your user starts or finishes an activity such as walking, running, or any other activity of the "
+            ],
+            [
+              "DetectedActivityFence",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "https://developers.google.com/android/reference/com/google/android/gms/awareness/fence/DetectedActivityFence"
+                ]
+              ]
+            ],
+            [
+              " class, you can create a "
+            ],
+            [
+              "fence",
+              [
+                [
+                  "a",
+                  "https://developers.google.com/awareness/android-api/fence-api-overview"
+                ]
+              ]
+            ],
+            [
+              " for the activity that you want to detect, and get notified when your user starts/finishes this activity. By using a "
+            ],
+            [
+              "BroadcastReceiver",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", you will get an "
+            ],
+            [
+              "Intent",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " with data that contains the activity:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If you want to detect when your user starts or finishes an activity such as walking, running, or any other activity of the "
+          },
+          {
+            "Text": "DetectedActivityFence",
+            "AttrFlags": 2,
+            "Link": "https://developers.google.com/android/reference/com/google/android/gms/awareness/fence/DetectedActivityFence"
+          },
+          {
+            "Text": " class, you can create a "
+          },
+          {
+            "Text": "fence",
+            "Link": "https://developers.google.com/awareness/android-api/fence-api-overview"
+          },
+          {
+            "Text": " for the activity that you want to detect, and get notified when your user starts/finishes this activity. By using a "
+          },
+          {
+            "Text": "BroadcastReceiver",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", you will get an "
+          },
+          {
+            "Text": "Intent",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " with data that contains the activity:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448442892,
+        "id": "a5e2e79d-caf1-4893-abcb-30492ae654da",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448442892,
+        "parent_id": "13a48483-01f8-4dac-8724-02644b363e70",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Your own action filter, like the ones used in the Manifest.\nprivate static final String FENCE_RECEIVER_ACTION = BuildConfig.APPLICATION_ID +\n    \"FENCE_RECEIVER_ACTION\";\nprivate static final String FENCE_KEY = \"walkingFenceKey\";\nprivate FenceReceiver mFenceReceiver;\nprivate PendingIntent mPendingIntent;\n\n// Make sure to initialize your client as described in the Remarks section.\nprotected void onCreate(Bundle savedInstanceState) {\n    super.onCreate(savedInstanceState);\n    // etc.\n\n    // The 0 is a standard Activity request code that can be changed to your needs.\n    mPendingIntent = PendingIntent.getBroadcast(this, 0, \n        new Intent(FENCE_RECEIVER_ACTION), 0);\n    registerReceiver(mFenceReceiver, new IntentFilter(FENCE_RECEIVER_ACTION));\n\n    // Create the fence.\n    AwarenessFence fence = DetectedActivityFence.during(DetectedActivityFence.WALKING);\n    // Register the fence to receive callbacks.\n    Awareness.FenceApi.updateFences(client, new FenceUpdateRequest.Builder()\n        .addFence(FENCE_KEY, fence, mPendingIntent)\n        .build())\n        .setResultCallback(new ResultCallback\u003cStatus\u003e() {\n            @Override\n            public void onResult(@NonNull Status status) {\n                if (status.isSuccess()) {\n                    Log.i(FENCE_KEY, \"Successfully registered.\");\n                } else {\n                    Log.e(FENCE_KEY, \"Could not be registered: \" + status);\n                }\n            }\n        });\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Your own action filter, like the ones used in the Manifest.\nprivate static final String FENCE_RECEIVER_ACTION = BuildConfig.APPLICATION_ID +\n    \"FENCE_RECEIVER_ACTION\";\nprivate static final String FENCE_KEY = \"walkingFenceKey\";\nprivate FenceReceiver mFenceReceiver;\nprivate PendingIntent mPendingIntent;\n\n// Make sure to initialize your client as described in the Remarks section.\nprotected void onCreate(Bundle savedInstanceState) {\n    super.onCreate(savedInstanceState);\n    // etc.\n\n    // The 0 is a standard Activity request code that can be changed to your needs.\n    mPendingIntent = PendingIntent.getBroadcast(this, 0, \n        new Intent(FENCE_RECEIVER_ACTION), 0);\n    registerReceiver(mFenceReceiver, new IntentFilter(FENCE_RECEIVER_ACTION));\n\n    // Create the fence.\n    AwarenessFence fence = DetectedActivityFence.during(DetectedActivityFence.WALKING);\n    // Register the fence to receive callbacks.\n    Awareness.FenceApi.updateFences(client, new FenceUpdateRequest.Builder()\n        .addFence(FENCE_KEY, fence, mPendingIntent)\n        .build())\n        .setResultCallback(new ResultCallback\u003cStatus\u003e() {\n            @Override\n            public void onResult(@NonNull Status status) {\n                if (status.isSuccess()) {\n                    Log.i(FENCE_KEY, \"Successfully registered.\");\n                } else {\n                    Log.e(FENCE_KEY, \"Could not be registered: \" + status);\n                }\n            }\n        });\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448442892,
+        "id": "a4a55af3-3564-41a7-bd45-89770e2299aa",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448442892,
+        "parent_id": "13a48483-01f8-4dac-8724-02644b363e70",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Now you can receive the intent with a "
+            ],
+            [
+              "BroadcastReceiver",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to get callbacks when the user changes the activity:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Now you can receive the intent with a "
+          },
+          {
+            "Text": "BroadcastReceiver",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to get callbacks when the user changes the activity:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448442892,
+        "id": "7dadaf08-2f0c-4a78-97b8-d74319dd26ec",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448442892,
+        "parent_id": "13a48483-01f8-4dac-8724-02644b363e70",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class FenceReceiver extends BroadcastReceiver {\n\n    private static final String TAG = \"FenceReceiver\";\n\n    @Override\n    public void onReceive(Context context, Intent intent) {\n        // Get the fence state\n        FenceState fenceState = FenceState.extract(intent);\n\n        switch (fenceState.getCurrentState()) {\n            case FenceState.TRUE:\n                Log.i(TAG, \"User is walking\");\n                break;\n            case FenceState.FALSE:\n                Log.i(TAG, \"User is not walking\");\n                break;\n            case FenceState.UNKNOWN:\n                Log.i(TAG, \"User is doing something unknown\");\n                break;\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class FenceReceiver extends BroadcastReceiver {\n\n    private static final String TAG = \"FenceReceiver\";\n\n    @Override\n    public void onReceive(Context context, Intent intent) {\n        // Get the fence state\n        FenceState fenceState = FenceState.extract(intent);\n\n        switch (fenceState.getCurrentState()) {\n            case FenceState.TRUE:\n                Log.i(TAG, \"User is walking\");\n                break;\n            case FenceState.FALSE:\n                Log.i(TAG, \"User is not walking\");\n                break;\n            case FenceState.UNKNOWN:\n                Log.i(TAG, \"User is doing something unknown\");\n                break;\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "030 Get changes in user activity with Fence API"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

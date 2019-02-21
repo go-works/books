@@ -1,0 +1,71 @@
+{
+  "ID": "49c4b8d8-c64e-4a26-bd13-69ff7966daec",
+  "Root": {
+    "alive": true,
+    "content": [
+      "3a9f424f-b548-473b-9cb9-38424b64aed3"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550448225015,
+    "id": "49c4b8d8-c64e-4a26-bd13-69ff7966daec",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550448225015,
+    "parent_id": "ca11d4e6-9cd7-4136-9232-859b2e1467de",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "040 Using Subcomponent instead of Componentdependencies ..."
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448225012,
+        "id": "3a9f424f-b548-473b-9cb9-38424b64aed3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448225012,
+        "parent_id": "49c4b8d8-c64e-4a26-bd13-69ff7966daec",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "@Singleton\n@Component(modules = AppModule.class)\npublic interface AppComponent {\n    void inject(App app);\n\n    Context provideContext();\n    Gson provideGson();\n\n    MainActivityComponent mainActivityComponent(ActivityModule activityModule);\n}\n\n@ActivityScope\n@Subcomponent(modules = ActivityModule.class)\npublic interface MainActivityComponent {\n    void inject(MainActivity activity);\n}\n\npublic class MainActivity extends AppCompatActivity {\n\n    @Inject\n    Gson mGson;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_main);\n\n        ((App)getApplication()).getAppComponent()\n                .mainActivityComponent(new ActivityModule(this)).inject(this);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "@Singleton\n@Component(modules = AppModule.class)\npublic interface AppComponent {\n    void inject(App app);\n\n    Context provideContext();\n    Gson provideGson();\n\n    MainActivityComponent mainActivityComponent(ActivityModule activityModule);\n}\n\n@ActivityScope\n@Subcomponent(modules = ActivityModule.class)\npublic interface MainActivityComponent {\n    void inject(MainActivity activity);\n}\n\npublic class MainActivity extends AppCompatActivity {\n\n    @Inject\n    Gson mGson;\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_main);\n\n        ((App)getApplication()).getAppComponent()\n                .mainActivityComponent(new ActivityModule(this)).inject(this);\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "040 Using Subcomponent instead of Componentdependencies ..."
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

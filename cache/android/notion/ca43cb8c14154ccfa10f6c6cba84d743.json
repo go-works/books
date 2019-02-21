@@ -1,0 +1,479 @@
+{
+  "ID": "ca43cb8c-1415-4ccf-a10f-6c6cba84d743",
+  "Root": {
+    "alive": true,
+    "content": [
+      "7000b24c-fb57-4b75-8da4-ad84ccab2a73",
+      "b9c78f3d-2fcf-4a2a-9005-71c617c674cf",
+      "cb178526-68f4-4752-a49e-8f35836dd853",
+      "478b71a8-11ac-4899-b0ae-0628c092c99e",
+      "9a879e29-cdf7-4b27-8422-b77d2af6b98b",
+      "f15f2fbd-755c-4dc8-a1f7-33d08a9d49bf",
+      "f4f1042d-f05b-48cf-9169-c9410ffd1ff5",
+      "17617b9b-3332-4da6-8209-8c9f1adb6fee",
+      "b65770e0-e35c-49fd-869e-8050341a98e8",
+      "7aa5bdbe-0409-40f1-9543-b754743806a9",
+      "3c137726-78dc-48c2-a3f5-cb7d1f2e8209",
+      "3b08e068-e793-461f-8854-ef5fb26ed32b",
+      "17b896b6-e58a-4c01-b7e9-92dcefd1b108",
+      "359210b1-716d-4884-a9cf-18f850b5bf87",
+      "dfd7ddad-adec-4034-80bb-0a7a6178f5c2",
+      "9658c000-71ca-4a3a-a824-45627acdd458"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550456722112,
+    "id": "ca43cb8c-1415-4ccf-a10f-6c6cba84d743",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550456722112,
+    "parent_id": "03d85aeb-9a2e-46de-8eee-c72d3db4f4ec",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "040 Room peristence"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456722108,
+        "id": "7000b24c-fb57-4b75-8da4-ad84ccab2a73",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456722108,
+        "parent_id": "ca43cb8c-1415-4ccf-a10f-6c6cba84d743",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Room require four parts: Database class, DAO classes, Entity classes and Migration classes (now you may use "
+            ],
+            [
+              "only DDL methods",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              "):"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Room require four parts: Database class, DAO classes, Entity classes and Migration classes (now you may use "
+          },
+          {
+            "Text": "only DDL methods",
+            "AttrFlags": 1
+          },
+          {
+            "Text": "):"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456722110,
+        "id": "b9c78f3d-2fcf-4a2a-9005-71c617c674cf",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456722110,
+        "parent_id": "ca43cb8c-1415-4ccf-a10f-6c6cba84d743",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Entity classes"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Entity classes"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456722111,
+        "id": "cb178526-68f4-4752-a49e-8f35836dd853",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456722111,
+        "parent_id": "ca43cb8c-1415-4ccf-a10f-6c6cba84d743",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Set custom table name, add indexes\n@Entity(tableName = \"videos\",\n        indices = {@Index(\"title\")}\n)\npublic final class VideoItem {\n    @PrimaryKey // required\n    public long articleId;\n    public String title;\n    public String url;\n}\n\n// Use ForeignKey for setup table relation\n@Entity(tableName = \"tags\",\n        indices = {@Index(\"score\"), @Index(\"videoId\"), @Index(\"value\")},\n        foreignKeys = @ForeignKey(entity = VideoItem.class,\n                parentColumns = \"articleId\",\n                childColumns = \"videoId\",\n                onDelete = ForeignKey.CASCADE)\n)\npublic final class VideoTag {\n    @PrimaryKey\n    public long id;\n    public long videoId;\n    public String displayName;\n    public String value;\n    public double score;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Set custom table name, add indexes\n@Entity(tableName = \"videos\",\n        indices = {@Index(\"title\")}\n)\npublic final class VideoItem {\n    @PrimaryKey // required\n    public long articleId;\n    public String title;\n    public String url;\n}\n\n// Use ForeignKey for setup table relation\n@Entity(tableName = \"tags\",\n        indices = {@Index(\"score\"), @Index(\"videoId\"), @Index(\"value\")},\n        foreignKeys = @ForeignKey(entity = VideoItem.class,\n                parentColumns = \"articleId\",\n                childColumns = \"videoId\",\n                onDelete = ForeignKey.CASCADE)\n)\npublic final class VideoTag {\n    @PrimaryKey\n    public long id;\n    public long videoId;\n    public String displayName;\n    public String value;\n    public double score;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456722111,
+        "id": "478b71a8-11ac-4899-b0ae-0628c092c99e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456722111,
+        "parent_id": "ca43cb8c-1415-4ccf-a10f-6c6cba84d743",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "DAO classes"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "DAO classes"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456722111,
+        "id": "9a879e29-cdf7-4b27-8422-b77d2af6b98b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456722111,
+        "parent_id": "ca43cb8c-1415-4ccf-a10f-6c6cba84d743",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "@Dao\npublic interface VideoDao {\n    // Create insert with custom conflict strategy\n    @Insert(onConflict = OnConflictStrategy.REPLACE)\n    void saveVideos(List\u003cVideoItem\u003e videos);\n\n    // Simple update\n    @Update\n    void updateVideos(VideoItem... videos);\n\n    @Query(\"DELETE FROM tags WHERE videoId = :videoId\")\n    void deleteTagsByVideoId(long videoId);\n\n    // Custom query, you may use select/delete here\n    @Query(\"SELECT v.* FROM tags t LEFT JOIN videos v ON v.articleId = t.videoId WHERE t.value = :tag ORDER BY updatedAt DESC LIMIT :limit\")\n    LiveData\u003cList\u003cVideoItem\u003e\u003e getVideosByTag(String tag, int limit);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "@Dao\npublic interface VideoDao {\n    // Create insert with custom conflict strategy\n    @Insert(onConflict = OnConflictStrategy.REPLACE)\n    void saveVideos(List\u003cVideoItem\u003e videos);\n\n    // Simple update\n    @Update\n    void updateVideos(VideoItem... videos);\n\n    @Query(\"DELETE FROM tags WHERE videoId = :videoId\")\n    void deleteTagsByVideoId(long videoId);\n\n    // Custom query, you may use select/delete here\n    @Query(\"SELECT v.* FROM tags t LEFT JOIN videos v ON v.articleId = t.videoId WHERE t.value = :tag ORDER BY updatedAt DESC LIMIT :limit\")\n    LiveData\u003cList\u003cVideoItem\u003e\u003e getVideosByTag(String tag, int limit);\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456722111,
+        "id": "f15f2fbd-755c-4dc8-a1f7-33d08a9d49bf",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456722111,
+        "parent_id": "ca43cb8c-1415-4ccf-a10f-6c6cba84d743",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Database class"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Database class"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456722111,
+        "id": "f4f1042d-f05b-48cf-9169-c9410ffd1ff5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456722111,
+        "parent_id": "ca43cb8c-1415-4ccf-a10f-6c6cba84d743",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// register your entities and DAOs\n@Database(entities = {VideoItem.class, VideoTag.class}, version = 2)\npublic abstract class ContentDatabase extends RoomDatabase {\n    public abstract VideoDao videoDao();\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// register your entities and DAOs\n@Database(entities = {VideoItem.class, VideoTag.class}, version = 2)\npublic abstract class ContentDatabase extends RoomDatabase {\n    public abstract VideoDao videoDao();\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456722111,
+        "id": "17617b9b-3332-4da6-8209-8c9f1adb6fee",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456722111,
+        "parent_id": "ca43cb8c-1415-4ccf-a10f-6c6cba84d743",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Migrations"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Migrations"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456722111,
+        "id": "b65770e0-e35c-49fd-869e-8050341a98e8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456722111,
+        "parent_id": "ca43cb8c-1415-4ccf-a10f-6c6cba84d743",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public final class Migrations {\n    private static final Migration MIGRATION_1_2 = new Migration(1, 2) {\n        @Override\n        public void migrate(SupportSQLiteDatabase database) {\n            final String[] sqlQueries = {\n                    \"CREATE TABLE IF NOT EXISTS `tags` (`id` INTEGER PRIMARY KEY AUTOINCREMENT,\" +\n                            \" `videoId` INTEGER, `displayName` TEXT, `value` TEXT, `score` REAL,\" +\n                            \" FOREIGN KEY(`videoId`) REFERENCES `videos`(`articleId`)\" +\n                            \" ON UPDATE NO ACTION ON DELETE CASCADE )\",\n                    \"CREATE  INDEX `index_tags_score` ON `tags` (`score`)\",\n                    \"CREATE  INDEX `index_tags_videoId` ON `tags` (`videoId`)\"};\n            for (String query : sqlQueries) {\n                database.execSQL(query);\n            }\n        }\n    };\n\n    public static final Migration[] ALL = {MIGRATION_1_2};\n\n    private Migrations() {\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public final class Migrations {\n    private static final Migration MIGRATION_1_2 = new Migration(1, 2) {\n        @Override\n        public void migrate(SupportSQLiteDatabase database) {\n            final String[] sqlQueries = {\n                    \"CREATE TABLE IF NOT EXISTS `tags` (`id` INTEGER PRIMARY KEY AUTOINCREMENT,\" +\n                            \" `videoId` INTEGER, `displayName` TEXT, `value` TEXT, `score` REAL,\" +\n                            \" FOREIGN KEY(`videoId`) REFERENCES `videos`(`articleId`)\" +\n                            \" ON UPDATE NO ACTION ON DELETE CASCADE )\",\n                    \"CREATE  INDEX `index_tags_score` ON `tags` (`score`)\",\n                    \"CREATE  INDEX `index_tags_videoId` ON `tags` (`videoId`)\"};\n            for (String query : sqlQueries) {\n                database.execSQL(query);\n            }\n        }\n    };\n\n    public static final Migration[] ALL = {MIGRATION_1_2};\n\n    private Migrations() {\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456722111,
+        "id": "7aa5bdbe-0409-40f1-9543-b754743806a9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456722111,
+        "parent_id": "ca43cb8c-1415-4ccf-a10f-6c6cba84d743",
+        "parent_table": "block",
+        "type": "divider",
+        "version": 1
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456722111,
+        "id": "3c137726-78dc-48c2-a3f5-cb7d1f2e8209",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456722111,
+        "parent_id": "ca43cb8c-1415-4ccf-a10f-6c6cba84d743",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Use in Application class or provide via Dagger"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Use in Application class or provide via Dagger"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456722111,
+        "id": "3b08e068-e793-461f-8854-ef5fb26ed32b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456722111,
+        "parent_id": "ca43cb8c-1415-4ccf-a10f-6c6cba84d743",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "ContentDatabase provideContentDatabase() {\n    return Room.databaseBuilder(context, ContentDatabase.class, \"data.db\")\n            .addMigrations(Migrations.ALL).build();\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "ContentDatabase provideContentDatabase() {\n    return Room.databaseBuilder(context, ContentDatabase.class, \"data.db\")\n            .addMigrations(Migrations.ALL).build();\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456722112,
+        "id": "17b896b6-e58a-4c01-b7e9-92dcefd1b108",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456722112,
+        "parent_id": "ca43cb8c-1415-4ccf-a10f-6c6cba84d743",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Write your repository:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Write your repository:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456722112,
+        "id": "359210b1-716d-4884-a9cf-18f850b5bf87",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456722112,
+        "parent_id": "ca43cb8c-1415-4ccf-a10f-6c6cba84d743",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public final class ContentRepository {\n    private final ContentDatabase db;\n    private final VideoDao videoDao;\n\n    public ContentRepository(ContentDatabase contentDatabase, VideoDao videoDao) {\n        this.db = contentDatabase;\n        this.videoDao = videoDao;\n    }\n\n    public LiveData\u003cList\u003cVideoItem\u003e\u003e getVideoByTag(@Nullable String tag, int limit) {\n        // you may fetch from network, save to database\n        ....\n        return videoDao.getVideosByTag(tag, limit);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public final class ContentRepository {\n    private final ContentDatabase db;\n    private final VideoDao videoDao;\n\n    public ContentRepository(ContentDatabase contentDatabase, VideoDao videoDao) {\n        this.db = contentDatabase;\n        this.videoDao = videoDao;\n    }\n\n    public LiveData\u003cList\u003cVideoItem\u003e\u003e getVideoByTag(@Nullable String tag, int limit) {\n        // you may fetch from network, save to database\n        ....\n        return videoDao.getVideosByTag(tag, limit);\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456722112,
+        "id": "dfd7ddad-adec-4034-80bb-0a7a6178f5c2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456722112,
+        "parent_id": "ca43cb8c-1415-4ccf-a10f-6c6cba84d743",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Use in ViewModel:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Use in ViewModel:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456722112,
+        "id": "9658c000-71ca-4a3a-a824-45627acdd458",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456722112,
+        "parent_id": "ca43cb8c-1415-4ccf-a10f-6c6cba84d743",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "ContentRepository contentRepository = ...;\ncontentRepository.getVideoByTag(tag, limit);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "ContentRepository contentRepository = ...;\ncontentRepository.getVideoByTag(tag, limit);",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "040 Room peristence"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

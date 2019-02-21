@@ -1,0 +1,259 @@
+{
+  "ID": "ca9526ae-67ee-4598-9594-b8d467fb25da",
+  "Root": {
+    "alive": true,
+    "content": [
+      "3b3e4543-3c1d-44de-ba04-d1806001e831",
+      "17a03bd6-1f7e-4bbb-99f2-359a56b9d1b6",
+      "9c32754e-a6e1-4de7-881d-2437ed7190c0",
+      "3a9154a2-d148-47d9-8046-005f9fc30f35",
+      "338950c8-3fc7-47dd-b990-92fbdc222c80",
+      "d3f1bd4a-86ee-4f9b-aa24-551e0ae5c857",
+      "b2d1a036-8771-4c5e-9dce-7038088f2741",
+      "4eb3eaeb-11d7-4771-b96f-5a52ef67473d"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550444972465,
+    "id": "ca9526ae-67ee-4598-9594-b8d467fb25da",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550444972465,
+    "parent_id": "6190cb6e-dc43-458e-9fc6-34c0e0c69fa6",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "090 Create Database from assets folder"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444972462,
+        "id": "3b3e4543-3c1d-44de-ba04-d1806001e831",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444972462,
+        "parent_id": "ca9526ae-67ee-4598-9594-b8d467fb25da",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Put your dbname.sqlite or dbname.db file in assets folder of your project."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Put your dbname.sqlite or dbname.db file in assets folder of your project."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444972464,
+        "id": "17a03bd6-1f7e-4bbb-99f2-359a56b9d1b6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444972464,
+        "parent_id": "ca9526ae-67ee-4598-9594-b8d467fb25da",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class Databasehelper extends SQLiteOpenHelper {\n        public static final String TAG = Databasehelper.class.getSimpleName();\n        public static int flag;\n        // Exact Name of you db file that you put in assets folder with extension.\n        static String DB_NAME = \"dbname.sqlite\";\n        private final Context myContext;\n        String outFileName = \"\";\n        private String DB_PATH;\n        private SQLiteDatabase db;\n    \n        public Databasehelper(Context context) {\n            super(context, DB_NAME, null, 1);\n            this.myContext = context;\n            ContextWrapper cw = new ContextWrapper(context);\n            DB_PATH = cw.getFilesDir().getAbsolutePath() + \"/databases/\";\n            Log.e(TAG, \"Databasehelper: DB_PATH \" + DB_PATH);\n            outFileName = DB_PATH + DB_NAME;\n            File file = new File(DB_PATH);\n            Log.e(TAG, \"Databasehelper: \" + file.exists());\n            if (!file.exists()) {\n                file.mkdir();\n            }\n        }\n    \n        /**\n         * Creates a empty database on the system and rewrites it with your own database.\n         */\n        public void createDataBase() throws IOException {\n            boolean dbExist = checkDataBase();\n            if (dbExist) {\n                //do nothing - database already exist\n            } else {\n                //By calling this method and empty database will be created into the default system path\n                //of your application so we are gonna be able to overwrite that database with our database.\n                this.getReadableDatabase();\n                try {\n                    copyDataBase();\n                } catch (IOException e) {\n                    throw new Error(\"Error copying database\");\n                }\n            }\n        }\n    \n        /**\n         * Check if the database already exist to avoid re-copying the file each time you open the application.\n         *\n         * @return true if it exists, false if it doesn't\n         */\n        private boolean checkDataBase() {\n            SQLiteDatabase checkDB = null;\n            try {\n                checkDB = SQLiteDatabase.openDatabase(outFileName, null, SQLiteDatabase.OPEN_READWRITE);\n            } catch (SQLiteException e) {\n                try {\n                    copyDataBase();\n                } catch (IOException e1) {\n                    e1.printStackTrace();\n                }\n            }\n    \n            if (checkDB != null) {\n                checkDB.close();\n            }\n            return checkDB != null ? true : false;\n        }\n    \n        /**\n         * Copies your database from your local assets-folder to the just created empty database in the\n         * system folder, from where it can be accessed and handled.\n         * This is done by transfering bytestream.\n         */\n    \n        private void copyDataBase() throws IOException {\n            \n            Log.i(\"Database\",\n                    \"New database is being copied to device!\");\n            byte[] buffer = new byte[1024];\n            OutputStream myOutput = null;\n            int length;\n            // Open your local db as the input stream\n            InputStream myInput = null;\n            try {\n                myInput = myContext.getAssets().open(DB_NAME);\n                // transfer bytes from the inputfile to the\n                // outputfile\n                myOutput = new FileOutputStream(DB_PATH + DB_NAME);\n                while ((length = myInput.read(buffer)) \u003e 0) {\n                    myOutput.write(buffer, 0, length);\n                }\n                myOutput.close();\n                myOutput.flush();\n                myInput.close();\n                Log.i(\"Database\",\n                        \"New database has been copied to device!\");\n            } catch (IOException e) {\n                e.printStackTrace();\n            }\n        }\n    \n        public void openDataBase() throws SQLException {\n            //Open the database\n            String myPath = DB_PATH + DB_NAME;\n            db = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);\n            Log.e(TAG, \"openDataBase: Open \" + db.isOpen());\n        }\n    \n        @Override\n        public synchronized void close() {\n            if (db != null)\n                db.close();\n            super.close();\n        }\n    \n        public void onCreate(SQLiteDatabase arg0) {\n    \n        }\n    \n        @Override\n        public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {\n    \n        }\n    }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class Databasehelper extends SQLiteOpenHelper {\n        public static final String TAG = Databasehelper.class.getSimpleName();\n        public static int flag;\n        // Exact Name of you db file that you put in assets folder with extension.\n        static String DB_NAME = \"dbname.sqlite\";\n        private final Context myContext;\n        String outFileName = \"\";\n        private String DB_PATH;\n        private SQLiteDatabase db;\n    \n        public Databasehelper(Context context) {\n            super(context, DB_NAME, null, 1);\n            this.myContext = context;\n            ContextWrapper cw = new ContextWrapper(context);\n            DB_PATH = cw.getFilesDir().getAbsolutePath() + \"/databases/\";\n            Log.e(TAG, \"Databasehelper: DB_PATH \" + DB_PATH);\n            outFileName = DB_PATH + DB_NAME;\n            File file = new File(DB_PATH);\n            Log.e(TAG, \"Databasehelper: \" + file.exists());\n            if (!file.exists()) {\n                file.mkdir();\n            }\n        }\n    \n        /**\n         * Creates a empty database on the system and rewrites it with your own database.\n         */\n        public void createDataBase() throws IOException {\n            boolean dbExist = checkDataBase();\n            if (dbExist) {\n                //do nothing - database already exist\n            } else {\n                //By calling this method and empty database will be created into the default system path\n                //of your application so we are gonna be able to overwrite that database with our database.\n                this.getReadableDatabase();\n                try {\n                    copyDataBase();\n                } catch (IOException e) {\n                    throw new Error(\"Error copying database\");\n                }\n            }\n        }\n    \n        /**\n         * Check if the database already exist to avoid re-copying the file each time you open the application.\n         *\n         * @return true if it exists, false if it doesn't\n         */\n        private boolean checkDataBase() {\n            SQLiteDatabase checkDB = null;\n            try {\n                checkDB = SQLiteDatabase.openDatabase(outFileName, null, SQLiteDatabase.OPEN_READWRITE);\n            } catch (SQLiteException e) {\n                try {\n                    copyDataBase();\n                } catch (IOException e1) {\n                    e1.printStackTrace();\n                }\n            }\n    \n            if (checkDB != null) {\n                checkDB.close();\n            }\n            return checkDB != null ? true : false;\n        }\n    \n        /**\n         * Copies your database from your local assets-folder to the just created empty database in the\n         * system folder, from where it can be accessed and handled.\n         * This is done by transfering bytestream.\n         */\n    \n        private void copyDataBase() throws IOException {\n            \n            Log.i(\"Database\",\n                    \"New database is being copied to device!\");\n            byte[] buffer = new byte[1024];\n            OutputStream myOutput = null;\n            int length;\n            // Open your local db as the input stream\n            InputStream myInput = null;\n            try {\n                myInput = myContext.getAssets().open(DB_NAME);\n                // transfer bytes from the inputfile to the\n                // outputfile\n                myOutput = new FileOutputStream(DB_PATH + DB_NAME);\n                while ((length = myInput.read(buffer)) \u003e 0) {\n                    myOutput.write(buffer, 0, length);\n                }\n                myOutput.close();\n                myOutput.flush();\n                myInput.close();\n                Log.i(\"Database\",\n                        \"New database has been copied to device!\");\n            } catch (IOException e) {\n                e.printStackTrace();\n            }\n        }\n    \n        public void openDataBase() throws SQLException {\n            //Open the database\n            String myPath = DB_PATH + DB_NAME;\n            db = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);\n            Log.e(TAG, \"openDataBase: Open \" + db.isOpen());\n        }\n    \n        @Override\n        public synchronized void close() {\n            if (db != null)\n                db.close();\n            super.close();\n        }\n    \n        public void onCreate(SQLiteDatabase arg0) {\n    \n        }\n    \n        @Override\n        public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {\n    \n        }\n    }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444972465,
+        "id": "9c32754e-a6e1-4de7-881d-2437ed7190c0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444972465,
+        "parent_id": "ca9526ae-67ee-4598-9594-b8d467fb25da",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Here is How you can access database object to your activity."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Here is How you can access database object to your activity."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444972465,
+        "id": "3a9154a2-d148-47d9-8046-005f9fc30f35",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444972465,
+        "parent_id": "ca9526ae-67ee-4598-9594-b8d467fb25da",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Create Databasehelper class object in your activity.\n   private Databasehelper db;"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Create Databasehelper class object in your activity.\n   private Databasehelper db;",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444972465,
+        "id": "338950c8-3fc7-47dd-b990-92fbdc222c80",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444972465,
+        "parent_id": "ca9526ae-67ee-4598-9594-b8d467fb25da",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Then in onCreate Method initialize it and call createDatabase() Method as show below."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Then in onCreate Method initialize it and call createDatabase() Method as show below."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444972465,
+        "id": "d3f1bd4a-86ee-4f9b-aa24-551e0ae5c857",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444972465,
+        "parent_id": "ca9526ae-67ee-4598-9594-b8d467fb25da",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "db = new Databasehelper(MainActivity.this);\n        try {\n            db.createDataBase();\n        } catch (Exception e) {\n            e.printStackTrace();\n        }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "db = new Databasehelper(MainActivity.this);\n        try {\n            db.createDataBase();\n        } catch (Exception e) {\n            e.printStackTrace();\n        }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444972465,
+        "id": "b2d1a036-8771-4c5e-9dce-7038088f2741",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444972465,
+        "parent_id": "ca9526ae-67ee-4598-9594-b8d467fb25da",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Perform all of your insert, update, delete and select operation as shown below."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Perform all of your insert, update, delete and select operation as shown below."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444972465,
+        "id": "4eb3eaeb-11d7-4771-b96f-5a52ef67473d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444972465,
+        "parent_id": "ca9526ae-67ee-4598-9594-b8d467fb25da",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "String query = \"select Max(Id) as Id from \" + TABLE_NAME;\n        db.openDataBase();\n        int count = db.getId(query);\n        db.close();"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "String query = \"select Max(Id) as Id from \" + TABLE_NAME;\n        db.openDataBase();\n        int count = db.getId(query);\n        db.close();",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "090 Create Database from assets folder"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

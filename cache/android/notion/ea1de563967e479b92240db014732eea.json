@@ -1,0 +1,205 @@
+{
+  "ID": "ea1de563-967e-479b-9224-0db014732eea",
+  "Root": {
+    "alive": true,
+    "content": [
+      "c994d049-4b6b-4513-9feb-26f4d91bdca0",
+      "e889ce8b-82c5-408e-8dab-b2e27ad3e723",
+      "22e943e2-7dfe-434c-9839-94f529dd04b3",
+      "494fcff0-4e75-4131-9d37-a87c2f8ac8fa",
+      "f4671541-f937-4665-b8fb-768b407806ab",
+      "eff1ae79-ea9f-4455-8970-7c74264aed11"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550447686988,
+    "id": "ea1de563-967e-479b-9224-0db014732eea",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550447686988,
+    "parent_id": "c170b80b-c39f-46ce-b311-2debae2f2082",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "060 Getting location updates in a BroadcastReceiver"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447686984,
+        "id": "c994d049-4b6b-4513-9feb-26f4d91bdca0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447686984,
+        "parent_id": "ea1de563-967e-479b-9224-0db014732eea",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "First create a BroadcastReceiver class to handle the incoming Location updates:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "First create a BroadcastReceiver class to handle the incoming Location updates:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447686986,
+        "id": "e889ce8b-82c5-408e-8dab-b2e27ad3e723",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447686986,
+        "parent_id": "ea1de563-967e-479b-9224-0db014732eea",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class LocationReceiver extends BroadcastReceiver implements Constants {\n\n    @Override\n     public void onReceive(Context context, Intent intent) {\n\n        if (LocationResult.hasResult(intent)) {\n            LocationResult locationResult = LocationResult.extractResult(intent);\n            Location location = locationResult.getLastLocation();\n            if (location != null) {\n                // Do something with your location\n            } else {\n                Log.d(LocationReceiver.class.getSimpleName(), \"*** location object is null ***\");\n            }\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class LocationReceiver extends BroadcastReceiver implements Constants {\n\n    @Override\n     public void onReceive(Context context, Intent intent) {\n\n        if (LocationResult.hasResult(intent)) {\n            LocationResult locationResult = LocationResult.extractResult(intent);\n            Location location = locationResult.getLastLocation();\n            if (location != null) {\n                // Do something with your location\n            } else {\n                Log.d(LocationReceiver.class.getSimpleName(), \"*** location object is null ***\");\n            }\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447686987,
+        "id": "22e943e2-7dfe-434c-9839-94f529dd04b3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447686987,
+        "parent_id": "ea1de563-967e-479b-9224-0db014732eea",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Then when you connect to the GoogleApiClient in the onConnected callback:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Then when you connect to the GoogleApiClient in the onConnected callback:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447686988,
+        "id": "494fcff0-4e75-4131-9d37-a87c2f8ac8fa",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447686988,
+        "parent_id": "ea1de563-967e-479b-9224-0db014732eea",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "@Override\npublic void onConnected(Bundle connectionHint) {\n    Intent backgroundIntent = new Intent(this, LocationReceiver.class);\n    mBackgroundPendingIntent = backgroundPendingIntent.getBroadcast(getApplicationContext(), LOCATION_REUEST_CODE, backgroundIntent, PendingIntent.FLAG_CANCEL_CURRENT);\n    mFusedLocationProviderApi.requestLocationUpdates(mLocationClient, mLocationRequest, backgroundPendingIntent);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "@Override\npublic void onConnected(Bundle connectionHint) {\n    Intent backgroundIntent = new Intent(this, LocationReceiver.class);\n    mBackgroundPendingIntent = backgroundPendingIntent.getBroadcast(getApplicationContext(), LOCATION_REUEST_CODE, backgroundIntent, PendingIntent.FLAG_CANCEL_CURRENT);\n    mFusedLocationProviderApi.requestLocationUpdates(mLocationClient, mLocationRequest, backgroundPendingIntent);\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447686988,
+        "id": "f4671541-f937-4665-b8fb-768b407806ab",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447686988,
+        "parent_id": "ea1de563-967e-479b-9224-0db014732eea",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Don’t forget to remove the location update intent in the appropriate lifecycle callback:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Don’t forget to remove the location update intent in the appropriate lifecycle callback:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447686988,
+        "id": "eff1ae79-ea9f-4455-8970-7c74264aed11",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447686988,
+        "parent_id": "ea1de563-967e-479b-9224-0db014732eea",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "@Override\npublic void onDestroy() {\n    if (servicesAvailable \u0026\u0026 mLocationClient != null) {\n        if (mLocationClient.isConnected()) {\n            fusedLocationProviderApi.removeLocationUpdates(mLocationClient, backgroundPendingIntent);\n            // Destroy the current location client\n            mLocationClient = null;\n        } else {\n            mLocationClient.unregisterConnectionCallbacks(this);\n            mLocationClient = null;\n        }\n    }\n    super.onDestroy();\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "@Override\npublic void onDestroy() {\n    if (servicesAvailable \u0026\u0026 mLocationClient != null) {\n        if (mLocationClient.isConnected()) {\n            fusedLocationProviderApi.removeLocationUpdates(mLocationClient, backgroundPendingIntent);\n            // Destroy the current location client\n            mLocationClient = null;\n        } else {\n            mLocationClient.unregisterConnectionCallbacks(this);\n            mLocationClient = null;\n        }\n    }\n    super.onDestroy();\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "060 Getting location updates in a BroadcastReceiver"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

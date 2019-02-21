@@ -1,0 +1,125 @@
+{
+  "ID": "c4ced65c-25ab-48f5-89fe-1726db147c1d",
+  "Root": {
+    "alive": true,
+    "content": [
+      "43cbbdea-c0a2-4983-947e-b0129b3940a8",
+      "9bfe67a7-0fac-439b-80b1-cafe7fd1071b",
+      "ce8dd4ee-665d-48fe-bd5e-f3e03f07508f"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550447858000,
+    "id": "c4ced65c-25ab-48f5-89fe-1726db147c1d",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550447858000,
+    "parent_id": "8abb0bb2-e8f7-4eec-bab7-3a47c7c1bffd",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "020 Apply custom font to Menu"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447857997,
+        "id": "43cbbdea-c0a2-4983-947e-b0129b3940a8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447857997,
+        "parent_id": "c4ced65c-25ab-48f5-89fe-1726db147c1d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public static void applyFontToMenu(Menu m, Context mContext){\n    for(int i=0;i\u003cm.size();i++) {\n        applyFontToMenuItem(m.getItem(i),mContext);\n    }\n}\npublic static void applyFontToMenuItem(MenuItem mi, Context mContext) {\n    if(mi.hasSubMenu())\n        for(int i=0;i\u003cmi.getSubMenu().size();i++) {\n            applyFontToMenuItem(mi.getSubMenu().getItem(i),mContext);\n        }\n    Typeface font = Typeface.createFromAsset(mContext.getAssets(), \"fonts/yourCustomFont.ttf\");\n    SpannableString mNewTitle = new SpannableString(mi.getTitle());\n    mNewTitle.setSpan(new CustomTypefaceSpan(\"\", font, mContext), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);\n    mi.setTitle(mNewTitle);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public static void applyFontToMenu(Menu m, Context mContext){\n    for(int i=0;i\u003cm.size();i++) {\n        applyFontToMenuItem(m.getItem(i),mContext);\n    }\n}\npublic static void applyFontToMenuItem(MenuItem mi, Context mContext) {\n    if(mi.hasSubMenu())\n        for(int i=0;i\u003cmi.getSubMenu().size();i++) {\n            applyFontToMenuItem(mi.getSubMenu().getItem(i),mContext);\n        }\n    Typeface font = Typeface.createFromAsset(mContext.getAssets(), \"fonts/yourCustomFont.ttf\");\n    SpannableString mNewTitle = new SpannableString(mi.getTitle());\n    mNewTitle.setSpan(new CustomTypefaceSpan(\"\", font, mContext), 0, mNewTitle.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);\n    mi.setTitle(mNewTitle);\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447857999,
+        "id": "9bfe67a7-0fac-439b-80b1-cafe7fd1071b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447857999,
+        "parent_id": "c4ced65c-25ab-48f5-89fe-1726db147c1d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "and then in the Activity:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "and then in the Activity:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550447857999,
+        "id": "ce8dd4ee-665d-48fe-bd5e-f3e03f07508f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550447857999,
+        "parent_id": "c4ced65c-25ab-48f5-89fe-1726db147c1d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "@Override\npublic boolean onCreateOptionsMenu(Menu menu) {\n    getMenuInflater().inflate(R.menu.main, menu);\n    applyFontToMenu(menu,this);\n    return true;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "@Override\npublic boolean onCreateOptionsMenu(Menu menu) {\n    getMenuInflater().inflate(R.menu.main, menu);\n    applyFontToMenu(menu,this);\n    return true;\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "020 Apply custom font to Menu"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

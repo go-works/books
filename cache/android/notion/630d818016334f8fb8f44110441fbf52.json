@@ -1,0 +1,71 @@
+{
+  "ID": "630d8180-1633-4f8f-b8f4-4110441fbf52",
+  "Root": {
+    "alive": true,
+    "content": [
+      "f0e77f28-c4c1-4646-aa12-b17c195a34a9"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550448023960,
+    "id": "630d8180-1633-4f8f-b8f4-4110441fbf52",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550448023960,
+    "parent_id": "322f7adc-aa8e-4dd0-90bc-e3822856448b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "080 Helper Class for Handling Volley Errors"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448023958,
+        "id": "f0e77f28-c4c1-4646-aa12-b17c195a34a9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448023958,
+        "parent_id": "630d8180-1633-4f8f-b8f4-4110441fbf52",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class VolleyErrorHelper {\n        /**\n         * Returns appropriate message which is to be displayed to the user\n         * against the specified error object.\n         *\n         * @param error\n         * @param context\n         * @return\n         */\n\n        public static String getMessage (Object error , Context context){\n            if(error instanceof TimeoutError){\n                return context.getResources().getString(R.string.timeout);\n            }else if (isServerProblem(error)){\n                return handleServerError(error ,context);\n\n            }else if(isNetworkProblem(error)){\n                return context.getResources().getString(R.string.nointernet);\n            }\n            return context.getResources().getString(R.string.generic_error);\n\n        }\n\n        private static String handleServerError(Object error, Context context) {\n\n            VolleyError er = (VolleyError)error;\n            NetworkResponse response = er.networkResponse;\n            if(response != null){\n                switch (response.statusCode){\n\n                    case 404:\n                    case 422:\n                    case 401:\n                        try {\n                            // server might return error like this { \"error\": \"Some error occured\" }\n                            // Use \"Gson\" to parse the result\n                            HashMap\u003cString, String\u003e result = new Gson().fromJson(new String(response.data),\n                                    new TypeToken\u003cMap\u003cString, String\u003e\u003e() {\n                                    }.getType());\n\n                            if (result != null \u0026\u0026 result.containsKey(\"error\")) {\n                                return result.get(\"error\");\n                            }\n\n                        } catch (Exception e) {\n                            e.printStackTrace();\n                        }\n                        // invalid request\n                        return ((VolleyError) error).getMessage();\n\n                    default:\n                        return context.getResources().getString(R.string.timeout);\n                }\n            }\n\n            return context.getResources().getString(R.string.generic_error);\n        }\n\n        private static boolean isServerProblem(Object error) {\n            return (error instanceof ServerError || error instanceof AuthFailureError);\n        }\n\n        private static boolean isNetworkProblem (Object error){\n            return (error instanceof NetworkError || error instanceof NoConnectionError);\n        }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class VolleyErrorHelper {\n        /**\n         * Returns appropriate message which is to be displayed to the user\n         * against the specified error object.\n         *\n         * @param error\n         * @param context\n         * @return\n         */\n\n        public static String getMessage (Object error , Context context){\n            if(error instanceof TimeoutError){\n                return context.getResources().getString(R.string.timeout);\n            }else if (isServerProblem(error)){\n                return handleServerError(error ,context);\n\n            }else if(isNetworkProblem(error)){\n                return context.getResources().getString(R.string.nointernet);\n            }\n            return context.getResources().getString(R.string.generic_error);\n\n        }\n\n        private static String handleServerError(Object error, Context context) {\n\n            VolleyError er = (VolleyError)error;\n            NetworkResponse response = er.networkResponse;\n            if(response != null){\n                switch (response.statusCode){\n\n                    case 404:\n                    case 422:\n                    case 401:\n                        try {\n                            // server might return error like this { \"error\": \"Some error occured\" }\n                            // Use \"Gson\" to parse the result\n                            HashMap\u003cString, String\u003e result = new Gson().fromJson(new String(response.data),\n                                    new TypeToken\u003cMap\u003cString, String\u003e\u003e() {\n                                    }.getType());\n\n                            if (result != null \u0026\u0026 result.containsKey(\"error\")) {\n                                return result.get(\"error\");\n                            }\n\n                        } catch (Exception e) {\n                            e.printStackTrace();\n                        }\n                        // invalid request\n                        return ((VolleyError) error).getMessage();\n\n                    default:\n                        return context.getResources().getString(R.string.timeout);\n                }\n            }\n\n            return context.getResources().getString(R.string.generic_error);\n        }\n\n        private static boolean isServerProblem(Object error) {\n            return (error instanceof ServerError || error instanceof AuthFailureError);\n        }\n\n        private static boolean isNetworkProblem (Object error){\n            return (error instanceof NetworkError || error instanceof NoConnectionError);\n        }",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "080 Helper Class for Handling Volley Errors"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

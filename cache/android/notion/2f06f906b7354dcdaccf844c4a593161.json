@@ -1,0 +1,297 @@
+{
+  "ID": "2f06f906-b735-4dcd-accf-844c4a593161",
+  "Root": {
+    "alive": true,
+    "content": [
+      "1ee3c451-1cec-4849-b56d-a2f2207c31a2",
+      "91a8facd-53cd-44a4-8eef-3c78f5d2721f",
+      "dc93b4bb-40b5-4562-9550-5b4636ab4e2c",
+      "e51747ec-37ce-46cc-a7d5-3d01fa26f981",
+      "daf4a2ec-dd8b-4e8e-a48b-63f7019652af",
+      "be811c7c-aa86-4a4b-8413-7f976f39ab82",
+      "ee4b1a5f-c5f6-4b79-90e9-d2e7fd27631f",
+      "c121d3b5-f739-49cf-b537-afcfa274080c",
+      "d448e9c4-79ba-4e5d-badb-9c9121a860b9"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550450399074,
+    "id": "2f06f906-b735-4dcd-accf-844c4a593161",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550450399074,
+    "parent_id": "574bb08c-f784-4dcb-b2e1-98fb6ef32949",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 Place Autocomplete Integration"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450399071,
+        "id": "1ee3c451-1cec-4849-b56d-a2f2207c31a2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450399071,
+        "parent_id": "2f06f906-b735-4dcd-accf-844c4a593161",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The autocomplete feature in the Google Places API for Android provides place predictions to user. While user types in the search box, autocomplete shows places according to user’s queries."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The autocomplete feature in the Google Places API for Android provides place predictions to user. While user types in the search box, autocomplete shows places according to user’s queries."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450399073,
+        "id": "91a8facd-53cd-44a4-8eef-3c78f5d2721f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450399073,
+        "parent_id": "2f06f906-b735-4dcd-accf-844c4a593161",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "AutoCompleteActivity.java",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "AutoCompleteActivity.java",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450399074,
+        "id": "dc93b4bb-40b5-4562-9550-5b4636ab4e2c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450399074,
+        "parent_id": "2f06f906-b735-4dcd-accf-844c4a593161",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "private TextView txtSelectedPlaceName;\n\n@Override\nprotected void onCreate(@Nullable Bundle savedInstanceState) {\n    super.onCreate(savedInstanceState);\n    setContentView(R.layout.activity_autocomplete);\n\n    txtSelectedPlaceName = (TextView) this.findViewById(R.id.txtSelectedPlaceName);\n\n    PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)\n            getFragmentManager().findFragmentById(R.id.fragment_autocomplete);\n\n    autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {\n        @Override\n        public void onPlaceSelected(Place place) {\n            Log.i(LOG_TAG, \"Place: \" + place.getName());\n            txtSelectedPlaceName.setText(String.format(\"Selected places : %s  - %s\" , place.getName(), place.getAddress()));\n        }\n\n        @Override\n        public void onError(Status status) {\n            Log.i(LOG_TAG, \"An error occurred: \" + status);\n            Toast.makeText(AutoCompleteActivity.this, \"Place cannot be selected!!\", Toast.LENGTH_SHORT).show();\n        }\n    });\n\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "private TextView txtSelectedPlaceName;\n\n@Override\nprotected void onCreate(@Nullable Bundle savedInstanceState) {\n    super.onCreate(savedInstanceState);\n    setContentView(R.layout.activity_autocomplete);\n\n    txtSelectedPlaceName = (TextView) this.findViewById(R.id.txtSelectedPlaceName);\n\n    PlaceAutocompleteFragment autocompleteFragment = (PlaceAutocompleteFragment)\n            getFragmentManager().findFragmentById(R.id.fragment_autocomplete);\n\n    autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {\n        @Override\n        public void onPlaceSelected(Place place) {\n            Log.i(LOG_TAG, \"Place: \" + place.getName());\n            txtSelectedPlaceName.setText(String.format(\"Selected places : %s  - %s\" , place.getName(), place.getAddress()));\n        }\n\n        @Override\n        public void onError(Status status) {\n            Log.i(LOG_TAG, \"An error occurred: \" + status);\n            Toast.makeText(AutoCompleteActivity.this, \"Place cannot be selected!!\", Toast.LENGTH_SHORT).show();\n        }\n    });\n\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450399074,
+        "id": "e51747ec-37ce-46cc-a7d5-3d01fa26f981",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450399074,
+        "parent_id": "2f06f906-b735-4dcd-accf-844c4a593161",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "}"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "}"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450399074,
+        "id": "daf4a2ec-dd8b-4e8e-a48b-63f7019652af",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450399074,
+        "parent_id": "2f06f906-b735-4dcd-accf-844c4a593161",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "activity_autocomplete.xml",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "activity_autocomplete.xml",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450399074,
+        "id": "be811c7c-aa86-4a4b-8413-7f976f39ab82",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450399074,
+        "parent_id": "2f06f906-b735-4dcd-accf-844c4a593161",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "\u003cLinearLayout xmlns:android=“http://schemas.android.com/apk/res/android”"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "\u003cLinearLayout xmlns:android=“http://schemas.android.com/apk/res/android”"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450399074,
+        "id": "ee4b1a5f-c5f6-4b79-90e9-d2e7fd27631f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450399074,
+        "parent_id": "2f06f906-b735-4dcd-accf-844c4a593161",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "android:orientation=\"vertical\" android:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "android:orientation=\"vertical\" android:layout_width=\"match_parent\"\nandroid:layout_height=\"match_parent\"\u003e",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450399074,
+        "id": "c121d3b5-f739-49cf-b537-afcfa274080c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450399074,
+        "parent_id": "2f06f906-b735-4dcd-accf-844c4a593161",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003cfragment\n    android:id=\"@+id/fragment_autocomplete\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"wrap_content\"\n    android:name=\"com.google.android.gms.location.places.ui.PlaceAutocompleteFragment\"\n    /\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003cfragment\n    android:id=\"@+id/fragment_autocomplete\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"wrap_content\"\n    android:name=\"com.google.android.gms.location.places.ui.PlaceAutocompleteFragment\"\n    /\u003e",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450399074,
+        "id": "d448e9c4-79ba-4e5d-badb-9c9121a860b9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450399074,
+        "parent_id": "2f06f906-b735-4dcd-accf-844c4a593161",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003cTextView\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"wrap_content\"\n    android:id=\"@+id/txtSelectedPlaceName\"\n    android:layout_margin=\"20dp\"\n    android:padding=\"15dp\"\n    android:hint=\"@string/txt_select_place_hint\"\n    android:textSize=\"@dimen/place_autocomplete_prediction_primary_text\"/\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003cTextView\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"wrap_content\"\n    android:id=\"@+id/txtSelectedPlaceName\"\n    android:layout_margin=\"20dp\"\n    android:padding=\"15dp\"\n    android:hint=\"@string/txt_select_place_hint\"\n    android:textSize=\"@dimen/place_autocomplete_prediction_primary_text\"/\u003e",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "030 Place Autocomplete Integration"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

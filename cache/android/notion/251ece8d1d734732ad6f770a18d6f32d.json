@@ -1,0 +1,151 @@
+{
+  "ID": "251ece8d-1d73-4732-ad6f-770a18d6f32d",
+  "Root": {
+    "alive": true,
+    "content": [
+      "568b2cde-50e9-479a-a9a5-06168d58858d",
+      "fb4c6c20-5c54-4a9e-afee-7c6cfa72438f",
+      "20762043-c1e6-41b3-b07b-5f759782f6c6",
+      "9702cba1-eda2-4093-981d-8f3f4a59fe98"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550445518160,
+    "id": "251ece8d-1d73-4732-ad6f-770a18d6f32d",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550445518160,
+    "parent_id": "80a93a9d-a581-423a-8907-8a480a93f52d",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "040 End Application with exclude from Recents"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550445518158,
+        "id": "568b2cde-50e9-479a-a9a5-06168d58858d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550445518158,
+        "parent_id": "251ece8d-1d73-4732-ad6f-770a18d6f32d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "First define an ExitActivity in the AndroidManifest.xml"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "First define an ExitActivity in the AndroidManifest.xml"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550445518160,
+        "id": "fb4c6c20-5c54-4a9e-afee-7c6cfa72438f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550445518160,
+        "parent_id": "251ece8d-1d73-4732-ad6f-770a18d6f32d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003cactivity\n        android:name=\"com.your_example_app.activities.ExitActivity\"\n        android:autoRemoveFromRecents=\"true\"\n        android:theme=\"@android:style/Theme.NoDisplay\" /\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003cactivity\n        android:name=\"com.your_example_app.activities.ExitActivity\"\n        android:autoRemoveFromRecents=\"true\"\n        android:theme=\"@android:style/Theme.NoDisplay\" /\u003e",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550445518160,
+        "id": "20762043-c1e6-41b3-b07b-5f759782f6c6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550445518160,
+        "parent_id": "251ece8d-1d73-4732-ad6f-770a18d6f32d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Afterwards the ExitActivity-class"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Afterwards the ExitActivity-class"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550445518160,
+        "id": "9702cba1-eda2-4093-981d-8f3f4a59fe98",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550445518160,
+        "parent_id": "251ece8d-1d73-4732-ad6f-770a18d6f32d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "/**\n * Activity to exit Application without staying in the stack of last opened applications\n */\npublic class ExitActivity extends Activity {\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n\n        if (Utils.hasLollipop()) {\n            finishAndRemoveTask();\n        } else if (Utils.hasJellyBean()) {\n            finishAffinity();\n        } else {\n            finish();\n        }\n    }\n\n   /**\n    * Exit Application and Exclude from Recents\n    *\n    * @param context Context to use\n    */\n    public static void exitApplication(ApplicationContext context) {\n        Intent intent = new Intent(context, ExitActivity.class);\n        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);\n        context.startActivity(intent);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "/**\n * Activity to exit Application without staying in the stack of last opened applications\n */\npublic class ExitActivity extends Activity {\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n\n        if (Utils.hasLollipop()) {\n            finishAndRemoveTask();\n        } else if (Utils.hasJellyBean()) {\n            finishAffinity();\n        } else {\n            finish();\n        }\n    }\n\n   /**\n    * Exit Application and Exclude from Recents\n    *\n    * @param context Context to use\n    */\n    public static void exitApplication(ApplicationContext context) {\n        Intent intent = new Intent(context, ExitActivity.class);\n        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);\n        context.startActivity(intent);\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "040 End Application with exclude from Recents"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

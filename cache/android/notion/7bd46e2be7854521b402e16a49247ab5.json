@@ -1,0 +1,151 @@
+{
+  "ID": "7bd46e2b-e785-4521-b402-e16a49247ab5",
+  "Root": {
+    "alive": true,
+    "content": [
+      "40cca68d-18ef-4287-b5d3-214244fa2a0e",
+      "6206ff03-a217-4976-9ee2-cf7a929b4205",
+      "e6523c6e-23b9-4033-9f46-5ceb4269791d",
+      "321de2bf-d694-4b87-b797-841d5201f91e"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550454787154,
+    "id": "7bd46e2b-e785-4521-b402-e16a49247ab5",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550454787154,
+    "parent_id": "1ed90bad-9ded-4cad-879b-073029c2669a",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 Utility method in JNI layer"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550454787151,
+        "id": "40cca68d-18ef-4287-b5d3-214244fa2a0e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550454787151,
+        "parent_id": "7bd46e2b-e785-4521-b402-e16a49247ab5",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This method will help to get the Java string from C++ string."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This method will help to get the Java string from C++ string."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550454787154,
+        "id": "6206ff03-a217-4976-9ee2-cf7a929b4205",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550454787154,
+        "parent_id": "7bd46e2b-e785-4521-b402-e16a49247ab5",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "jstring getJavaStringFromCPPString(JNIEnv *global_env, const char* cstring) {\n\n        jstring nullString = global_env-\u003eNewStringUTF(NULL);\n\n        if (!cstring) {\n            return nullString;\n        }\n\n        jclass strClass = global_env-\u003eFindClass(\"java/lang/String\");\n        jmethodID ctorID = global_env-\u003eGetMethodID(strClass, \"\u003cinit\u003e\",\n                \"([BLjava/lang/String;)V\");\n        jstring encoding = global_env-\u003eNewStringUTF(\"UTF-8\");\n\n        jbyteArray bytes = global_env-\u003eNewByteArray(strlen(cstring));\n        global_env-\u003eSetByteArrayRegion(bytes, 0, strlen(cstring), (jbyte*) cstring);\n        jstring str = (jstring) global_env-\u003eNewObject(strClass, ctorID, bytes,\n                encoding);\n\n        global_env-\u003eDeleteLocalRef(strClass);\n        global_env-\u003eDeleteLocalRef(encoding);\n        global_env-\u003eDeleteLocalRef(bytes);\n\n        return str;\n    }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "jstring getJavaStringFromCPPString(JNIEnv *global_env, const char* cstring) {\n\n        jstring nullString = global_env-\u003eNewStringUTF(NULL);\n\n        if (!cstring) {\n            return nullString;\n        }\n\n        jclass strClass = global_env-\u003eFindClass(\"java/lang/String\");\n        jmethodID ctorID = global_env-\u003eGetMethodID(strClass, \"\u003cinit\u003e\",\n                \"([BLjava/lang/String;)V\");\n        jstring encoding = global_env-\u003eNewStringUTF(\"UTF-8\");\n\n        jbyteArray bytes = global_env-\u003eNewByteArray(strlen(cstring));\n        global_env-\u003eSetByteArrayRegion(bytes, 0, strlen(cstring), (jbyte*) cstring);\n        jstring str = (jstring) global_env-\u003eNewObject(strClass, ctorID, bytes,\n                encoding);\n\n        global_env-\u003eDeleteLocalRef(strClass);\n        global_env-\u003eDeleteLocalRef(encoding);\n        global_env-\u003eDeleteLocalRef(bytes);\n\n        return str;\n    }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550454787154,
+        "id": "e6523c6e-23b9-4033-9f46-5ceb4269791d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550454787154,
+        "parent_id": "7bd46e2b-e785-4521-b402-e16a49247ab5",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This method will help you to convert jbyteArray to char"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This method will help you to convert jbyteArray to char"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550454787154,
+        "id": "321de2bf-d694-4b87-b797-841d5201f91e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550454787154,
+        "parent_id": "7bd46e2b-e785-4521-b402-e16a49247ab5",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "char* as_unsigned_char_array(JNIEnv *env, jbyteArray array) {\n    jsize length = env-\u003eGetArrayLength(array);\n    jbyte* buffer = new jbyte[length + 1];\n\n    env-\u003eGetByteArrayRegion(array, 0, length, buffer);\n    buffer[length] = '\\0';\n\n    return (char*) buffer;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "char* as_unsigned_char_array(JNIEnv *env, jbyteArray array) {\n    jsize length = env-\u003eGetArrayLength(array);\n    jbyte* buffer = new jbyte[length + 1];\n\n    env-\u003eGetByteArrayRegion(array, 0, length, buffer);\n    buffer[length] = '\\0';\n\n    return (char*) buffer;\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "030 Utility method in JNI layer"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

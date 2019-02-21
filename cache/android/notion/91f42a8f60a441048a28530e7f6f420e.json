@@ -1,0 +1,283 @@
+{
+  "ID": "91f42a8f-60a4-4104-8a28-530e7f6f420e",
+  "Root": {
+    "alive": true,
+    "content": [
+      "3fffa6f1-e3b1-4027-85f8-374c9c54e8a7",
+      "5df0824b-0380-4e31-b0e2-7ae3fc46f38a",
+      "cf30d35c-2514-4044-8d96-3fdbcf1e08b1",
+      "2f4feb4a-7996-4c19-8064-24f74d3d7aa0",
+      "7337e81b-f1c7-455a-b53a-9332083d84af",
+      "c8b34d9f-6a63-47c2-a1cb-fb3e7e84d49f",
+      "a0916f3c-3a2f-4a29-b978-c2998be51428",
+      "2b7689da-29d7-41fa-ae02-702ab5a70313",
+      "635e4e83-7451-4754-aa70-5668fa425d53"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550448377916,
+    "id": "91f42a8f-60a4-4104-8a28-530e7f6f420e",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550448377916,
+    "parent_id": "095bece4-4a5b-4544-a96a-9b32ab97785f",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "040 Creating Custom Progress Dialog"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448377912,
+        "id": "3fffa6f1-e3b1-4027-85f8-374c9c54e8a7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448377912,
+        "parent_id": "91f42a8f-60a4-4104-8a28-530e7f6f420e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "By Creating Custom Progress Dialog class, the dialog can be used to show in UI instance, without recreating the dialog."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "By Creating Custom Progress Dialog class, the dialog can be used to show in UI instance, without recreating the dialog."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448377915,
+        "id": "5df0824b-0380-4e31-b0e2-7ae3fc46f38a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448377915,
+        "parent_id": "91f42a8f-60a4-4104-8a28-530e7f6f420e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "First Create a Custom Progress Dialog Class."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "First Create a Custom Progress Dialog Class."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448377915,
+        "id": "cf30d35c-2514-4044-8d96-3fdbcf1e08b1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448377915,
+        "parent_id": "91f42a8f-60a4-4104-8a28-530e7f6f420e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "CustomProgress.java"
+            ]
+          ]
+        },
+        "type": "quote",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "CustomProgress.java"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448377915,
+        "id": "2f4feb4a-7996-4c19-8064-24f74d3d7aa0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448377915,
+        "parent_id": "91f42a8f-60a4-4104-8a28-530e7f6f420e",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class CustomProgress {\n\n   public static CustomProgress customProgress = null;\n   private Dialog mDialog;\n\n   public static CustomProgress getInstance() {\n       if (customProgress == null) {\n           customProgress = new CustomProgress();\n       }\n       return customProgress;\n   }\n\n   public void showProgress(Context context, String message, boolean cancelable) {\n       mDialog = new Dialog(context);\n    // no tile for the dialog\n       mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);\n       mDialog.setContentView(R.layout.prograss_bar_dialog);\n       mProgressBar = (ProgressBar) mDialog.findViewById(R.id.progress_bar);\n    //  mProgressBar.getIndeterminateDrawable().setColorFilter(context.getResources()\n    // .getColor(R.color.material_blue_gray_500), PorterDuff.Mode.SRC_IN);\n       TextView progressText = (TextView) mDialog.findViewById(R.id.progress_text);\n       progressText.setText(\"\" + message);\n       progressText.setVisibility(View.VISIBLE);\n       mProgressBar.setVisibility(View.VISIBLE);\n    // you can change or add this line according to your need\n       mProgressBar.setIndeterminate(true);\n       mDialog.setCancelable(cancelable);\n       mDialog.setCanceledOnTouchOutside(cancelable);\n       mDialog.show();\n   }\n\n   public void hideProgress() {\n       if (mDialog != null) {\n           mDialog.dismiss();\n           mDialog = null;\n       }\n   }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class CustomProgress {\n\n   public static CustomProgress customProgress = null;\n   private Dialog mDialog;\n\n   public static CustomProgress getInstance() {\n       if (customProgress == null) {\n           customProgress = new CustomProgress();\n       }\n       return customProgress;\n   }\n\n   public void showProgress(Context context, String message, boolean cancelable) {\n       mDialog = new Dialog(context);\n    // no tile for the dialog\n       mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);\n       mDialog.setContentView(R.layout.prograss_bar_dialog);\n       mProgressBar = (ProgressBar) mDialog.findViewById(R.id.progress_bar);\n    //  mProgressBar.getIndeterminateDrawable().setColorFilter(context.getResources()\n    // .getColor(R.color.material_blue_gray_500), PorterDuff.Mode.SRC_IN);\n       TextView progressText = (TextView) mDialog.findViewById(R.id.progress_text);\n       progressText.setText(\"\" + message);\n       progressText.setVisibility(View.VISIBLE);\n       mProgressBar.setVisibility(View.VISIBLE);\n    // you can change or add this line according to your need\n       mProgressBar.setIndeterminate(true);\n       mDialog.setCancelable(cancelable);\n       mDialog.setCanceledOnTouchOutside(cancelable);\n       mDialog.show();\n   }\n\n   public void hideProgress() {\n       if (mDialog != null) {\n           mDialog.dismiss();\n           mDialog = null;\n       }\n   }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448377915,
+        "id": "7337e81b-f1c7-455a-b53a-9332083d84af",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448377915,
+        "parent_id": "91f42a8f-60a4-4104-8a28-530e7f6f420e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Now creating the custom progress layout"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Now creating the custom progress layout"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448377915,
+        "id": "c8b34d9f-6a63-47c2-a1cb-fb3e7e84d49f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448377915,
+        "parent_id": "91f42a8f-60a4-4104-8a28-530e7f6f420e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "prograss_bar_dialog.xml"
+            ]
+          ]
+        },
+        "type": "quote",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "prograss_bar_dialog.xml"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448377916,
+        "id": "a0916f3c-3a2f-4a29-b978-c2998be51428",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448377916,
+        "parent_id": "91f42a8f-60a4-4104-8a28-530e7f6f420e",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003c?xml version=\"1.0\" encoding=\"utf-8\"?\u003e\n\u003cRelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    android:layout_width=\"wrap_content\"\n    android:layout_height=\"65dp\"\n    android:background=\"@android:color/background_dark\"\n    android:orientation=\"vertical\"\u003e\n\n    \u003cTextView\n        android:id=\"@+id/progress_text\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"40dp\"\n        android:layout_above=\"@+id/progress_bar\"\n        android:layout_marginLeft=\"10dp\"\n        android:layout_marginStart=\"10dp\"\n        android:background=\"@android:color/transparent\"\n        android:gravity=\"center_vertical\"\n        android:text=\"\"\n        android:textColor=\"@android:color/white\"\n        android:textSize=\"16sp\"\n        android:visibility=\"gone\" /\u003e\n\n    \u003c-- Where the style can be changed to any kind of ProgressBar --\u003e\n\n    \u003cProgressBar\n        android:id=\"@+id/progress_bar\"\n        style=\"@android:style/Widget.DeviceDefault.ProgressBar.Horizontal\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"30dp\"\n        android:layout_alignParentBottom=\"true\"\n        android:layout_alignParentLeft=\"true\"\n        android:layout_alignParentStart=\"true\"\n        android:layout_gravity=\"center\"\n        android:background=\"@color/cardview_dark_background\"\n        android:maxHeight=\"20dp\"\n        android:minHeight=\"20dp\" /\u003e\n\n\u003c/RelativeLayout\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003c?xml version=\"1.0\" encoding=\"utf-8\"?\u003e\n\u003cRelativeLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    android:layout_width=\"wrap_content\"\n    android:layout_height=\"65dp\"\n    android:background=\"@android:color/background_dark\"\n    android:orientation=\"vertical\"\u003e\n\n    \u003cTextView\n        android:id=\"@+id/progress_text\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"40dp\"\n        android:layout_above=\"@+id/progress_bar\"\n        android:layout_marginLeft=\"10dp\"\n        android:layout_marginStart=\"10dp\"\n        android:background=\"@android:color/transparent\"\n        android:gravity=\"center_vertical\"\n        android:text=\"\"\n        android:textColor=\"@android:color/white\"\n        android:textSize=\"16sp\"\n        android:visibility=\"gone\" /\u003e\n\n    \u003c-- Where the style can be changed to any kind of ProgressBar --\u003e\n\n    \u003cProgressBar\n        android:id=\"@+id/progress_bar\"\n        style=\"@android:style/Widget.DeviceDefault.ProgressBar.Horizontal\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"30dp\"\n        android:layout_alignParentBottom=\"true\"\n        android:layout_alignParentLeft=\"true\"\n        android:layout_alignParentStart=\"true\"\n        android:layout_gravity=\"center\"\n        android:background=\"@color/cardview_dark_background\"\n        android:maxHeight=\"20dp\"\n        android:minHeight=\"20dp\" /\u003e\n\n\u003c/RelativeLayout\u003e",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448377916,
+        "id": "2b7689da-29d7-41fa-ae02-702ab5a70313",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448377916,
+        "parent_id": "91f42a8f-60a4-4104-8a28-530e7f6f420e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This is it. Now for calling the Dialog in Code"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This is it. Now for calling the Dialog in Code"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550448377916,
+        "id": "635e4e83-7451-4754-aa70-5668fa425d53",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550448377916,
+        "parent_id": "91f42a8f-60a4-4104-8a28-530e7f6f420e",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "CustomProgress customProgress = CustomProgress.getInstance();\n\n// now you have the instance of CustomProgres\n// for showing the ProgressBar\n\ncustomProgress.showProgress(#Context, getString(#StringId), #boolean);\n\n// for hiding the ProgressBar\n\ncustomProgress.hideProgress();"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "CustomProgress customProgress = CustomProgress.getInstance();\n\n// now you have the instance of CustomProgres\n// for showing the ProgressBar\n\ncustomProgress.showProgress(#Context, getString(#StringId), #boolean);\n\n// for hiding the ProgressBar\n\ncustomProgress.hideProgress();",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "040 Creating Custom Progress Dialog"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

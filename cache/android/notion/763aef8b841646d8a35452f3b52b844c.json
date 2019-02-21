@@ -1,0 +1,71 @@
+{
+  "ID": "763aef8b-8416-46d8-a354-52f3b52b844c",
+  "Root": {
+    "alive": true,
+    "content": [
+      "31e86ff7-5103-469e-b94a-ed1b8ee730b0"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550450372854,
+    "id": "763aef8b-8416-46d8-a354-52f3b52b844c",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550450372854,
+    "parent_id": "8011ec06-ee27-49a4-bcbc-493592df26b0",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Unzip file"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550450372851,
+        "id": "31e86ff7-5103-469e-b94a-ed1b8ee730b0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550450372851,
+        "parent_id": "763aef8b-8416-46d8-a354-52f3b52b844c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "private boolean unpackZip(String path, String zipname){       \n InputStream is;\n ZipInputStream zis;\n try \n {\n     String filename;\n     is = new FileInputStream(path + zipname);\n     zis = new ZipInputStream(new BufferedInputStream(is));          \n     ZipEntry ze;\n     byte[] buffer = new byte[1024];\n     int count;\n\n     while ((ze = zis.getNextEntry()) != null){\n         // zapis do souboru\n         filename = ze.getName();\n\n         // Need to create directories if not exists, or\n         // it will generate an Exception...\n         if (ze.isDirectory()) {\n            File fmd = new File(path + filename);\n            fmd.mkdirs();\n            continue;\n         }\n\n         FileOutputStream fout = new FileOutputStream(path + filename);\n\n         // cteni zipu a zapis\n         while ((count = zis.read(buffer)) != -1){\n             fout.write(buffer, 0, count);             \n         }\n\n         fout.close();               \n         zis.closeEntry();\n     }\n\n     zis.close();\n } \n catch(IOException e){\n     e.printStackTrace();\n     return false;\n }\n\nreturn true;}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "private boolean unpackZip(String path, String zipname){       \n InputStream is;\n ZipInputStream zis;\n try \n {\n     String filename;\n     is = new FileInputStream(path + zipname);\n     zis = new ZipInputStream(new BufferedInputStream(is));          \n     ZipEntry ze;\n     byte[] buffer = new byte[1024];\n     int count;\n\n     while ((ze = zis.getNextEntry()) != null){\n         // zapis do souboru\n         filename = ze.getName();\n\n         // Need to create directories if not exists, or\n         // it will generate an Exception...\n         if (ze.isDirectory()) {\n            File fmd = new File(path + filename);\n            fmd.mkdirs();\n            continue;\n         }\n\n         FileOutputStream fout = new FileOutputStream(path + filename);\n\n         // cteni zipu a zapis\n         while ((count = zis.read(buffer)) != -1){\n             fout.write(buffer, 0, count);             \n         }\n\n         fout.close();               \n         zis.closeEntry();\n     }\n\n     zis.close();\n } \n catch(IOException e){\n     e.printStackTrace();\n     return false;\n }\n\nreturn true;}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 Unzip file"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

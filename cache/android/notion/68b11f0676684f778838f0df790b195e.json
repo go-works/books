@@ -1,0 +1,215 @@
+{
+  "ID": "68b11f06-7668-4f77-8838-f0df790b195e",
+  "Root": {
+    "alive": true,
+    "content": [
+      "976974ba-d773-4da3-83fe-e2fe1eccc016",
+      "00bc71f9-6f5c-44ff-8fb8-8f73ecf954a0",
+      "075decbc-0600-4ac2-a94a-4794acdb698c",
+      "42132d30-8b81-4a37-b130-c9b50c9e6178",
+      "5bbfc431-6141-4c94-952f-57be6756235c",
+      "42bfa3eb-b4d9-49de-a964-a6541c878c81"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550445489078,
+    "id": "68b11f06-7668-4f77-8838-f0df790b195e",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550445489078,
+    "parent_id": "6a7c57a2-8f24-43b5-974d-d38ab99fdee8",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "090 Communicate two activities through custom Broadcast receiver"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550445489077,
+        "id": "976974ba-d773-4da3-83fe-e2fe1eccc016",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550445489077,
+        "parent_id": "68b11f06-7668-4f77-8838-f0df790b195e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "You can communicate two activities so that Activity A can be notified of an event happening in Activity B."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "You can communicate two activities so that Activity A can be notified of an event happening in Activity B."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550445489078,
+        "id": "00bc71f9-6f5c-44ff-8fb8-8f73ecf954a0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550445489078,
+        "parent_id": "68b11f06-7668-4f77-8838-f0df790b195e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Activity A",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Activity A",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550445489078,
+        "id": "075decbc-0600-4ac2-a94a-4794acdb698c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550445489078,
+        "parent_id": "68b11f06-7668-4f77-8838-f0df790b195e",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "final String eventName = \"your.package.goes.here.EVENT\";\n\n@Override\nprotected void onCreate(Bundle savedInstanceState) {\n    registerEventReceiver();\n    super.onCreate(savedInstanceState);\n}\n\n@Override\nprotected void onDestroy() {\n    unregisterEventReceiver(eventReceiver);\n    super.onDestroy();\n}\n\nprivate void registerEventReceiver() {\n    IntentFilter eventFilter = new IntentFilter();\n    eventFilter.addAction(eventName);\n    registerReceiver(eventReceiver, eventFilter);\n}\n\nprivate BroadcastReceiver eventReceiver = new BroadcastReceiver() {\n    @Override\n    public void onReceive(Context context, Intent intent) {\n         //This code will be executed when the broadcast in activity B is launched\n    }\n};"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "final String eventName = \"your.package.goes.here.EVENT\";\n\n@Override\nprotected void onCreate(Bundle savedInstanceState) {\n    registerEventReceiver();\n    super.onCreate(savedInstanceState);\n}\n\n@Override\nprotected void onDestroy() {\n    unregisterEventReceiver(eventReceiver);\n    super.onDestroy();\n}\n\nprivate void registerEventReceiver() {\n    IntentFilter eventFilter = new IntentFilter();\n    eventFilter.addAction(eventName);\n    registerReceiver(eventReceiver, eventFilter);\n}\n\nprivate BroadcastReceiver eventReceiver = new BroadcastReceiver() {\n    @Override\n    public void onReceive(Context context, Intent intent) {\n         //This code will be executed when the broadcast in activity B is launched\n    }\n};",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550445489078,
+        "id": "42132d30-8b81-4a37-b130-c9b50c9e6178",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550445489078,
+        "parent_id": "68b11f06-7668-4f77-8838-f0df790b195e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Activity B",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Activity B",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550445489078,
+        "id": "5bbfc431-6141-4c94-952f-57be6756235c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550445489078,
+        "parent_id": "68b11f06-7668-4f77-8838-f0df790b195e",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "final String eventName = \"your.package.goes.here.EVENT\";\n\nprivate void launchEvent() {\n    Intent eventIntent = new Intent(eventName);\n    this.sendBroadcast(eventIntent);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "final String eventName = \"your.package.goes.here.EVENT\";\n\nprivate void launchEvent() {\n    Intent eventIntent = new Intent(eventName);\n    this.sendBroadcast(eventIntent);\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550445489078,
+        "id": "42bfa3eb-b4d9-49de-a964-a6541c878c81",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550445489078,
+        "parent_id": "68b11f06-7668-4f77-8838-f0df790b195e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Of course you can add more information to the broadcast adding extras to the Intent that is passed between the activities. Not added to keep the example as simple as possible."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Of course you can add more information to the broadcast adding extras to the Intent that is passed between the activities. Not added to keep the example as simple as possible."
+          }
+        ]
+      }
+    ],
+    "title": "090 Communicate two activities through custom Broadcast receiver"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

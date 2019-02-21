@@ -1,0 +1,123 @@
+{
+  "ID": "25cc53a3-2e76-4a87-84d0-bea9ae7318e5",
+  "Root": {
+    "alive": true,
+    "content": [
+      "20f10ce2-cf84-4396-a49e-79079a6f31ce",
+      "366c9a8f-9a1d-4b59-a43e-2d37163f4579",
+      "dcd5b695-9bc4-45b4-955f-7f64c5efa555"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550456723287,
+    "id": "25cc53a3-2e76-4a87-84d0-bea9ae7318e5",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550456723287,
+    "parent_id": "03d85aeb-9a2e-46de-8eee-c72d3db4f4ec",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "050 Custom LiveData"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456723284,
+        "id": "20f10ce2-cf84-4396-a49e-79079a6f31ce",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456723284,
+        "parent_id": "25cc53a3-2e76-4a87-84d0-bea9ae7318e5",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "You may write custom LiveData, if you need custom logic."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "You may write custom LiveData, if you need custom logic."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456723287,
+        "id": "366c9a8f-9a1d-4b59-a43e-2d37163f4579",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456723287,
+        "parent_id": "25cc53a3-2e76-4a87-84d0-bea9ae7318e5",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Don’t write custom class, if you only need to transform data (use Transformations class)"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Don’t write custom class, if you only need to transform data (use Transformations class)"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550456723287,
+        "id": "dcd5b695-9bc4-45b4-955f-7f64c5efa555",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550456723287,
+        "parent_id": "25cc53a3-2e76-4a87-84d0-bea9ae7318e5",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class LocationLiveData extends LiveData\u003cLocation\u003e {\n    private LocationManager locationManager;\n    \n    private LocationListener listener = new LocationListener() {\n        @Override\n        public void onLocationChanged(Location location) {\n            setValue(location);\n        }\n\n        @Override\n        public void onStatusChanged(String provider, int status, Bundle extras) {\n            // Do something\n        }\n\n        @Override\n        public void onProviderEnabled(String provider) {\n            // Do something\n        }\n\n        @Override\n        public void onProviderDisabled(String provider) {\n            // Do something\n        }\n    };\n\n    public LocationLiveData(Context context) {\n        locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);\n    }\n\n    @Override\n    protected void onActive() {\n        // We have observers, start working\n        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);\n    }\n\n    @Override\n    protected void onInactive() {\n        // We have no observers, stop working\n        locationManager.removeUpdates(listener);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class LocationLiveData extends LiveData\u003cLocation\u003e {\n    private LocationManager locationManager;\n    \n    private LocationListener listener = new LocationListener() {\n        @Override\n        public void onLocationChanged(Location location) {\n            setValue(location);\n        }\n\n        @Override\n        public void onStatusChanged(String provider, int status, Bundle extras) {\n            // Do something\n        }\n\n        @Override\n        public void onProviderEnabled(String provider) {\n            // Do something\n        }\n\n        @Override\n        public void onProviderDisabled(String provider) {\n            // Do something\n        }\n    };\n\n    public LocationLiveData(Context context) {\n        locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);\n    }\n\n    @Override\n    protected void onActive() {\n        // We have observers, start working\n        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, listener);\n    }\n\n    @Override\n    protected void onInactive() {\n        // We have no observers, stop working\n        locationManager.removeUpdates(listener);\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "050 Custom LiveData"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

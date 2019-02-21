@@ -1,0 +1,370 @@
+{
+  "ID": "92a09833-2016-4002-836a-75d7ca0a3e3f",
+  "Root": {
+    "alive": true,
+    "content": [
+      "09b14f84-feb2-47bf-8b33-8f425f71854f",
+      "d38000c7-dac5-4f74-ade6-a49489f8a812",
+      "fc54212d-bc9c-43c5-a905-e2e2889497ec",
+      "6304a8c3-6931-4423-882e-09547db90863",
+      "acf330be-d160-4097-8e4d-8087604619db",
+      "38a53015-ff49-4d6f-87ec-0258b6eaa481",
+      "a8d3ee78-a169-48ec-8524-1e6807851185",
+      "808ca6c9-b763-4295-8712-996a075651ec",
+      "b45fe0cf-3644-4e0b-94a2-bdcca4ea7e7b",
+      "9439afb8-15a6-4bd7-b83c-760d350b45a5"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550452984007,
+    "id": "92a09833-2016-4002-836a-75d7ca0a3e3f",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550452984007,
+    "parent_id": "705eba44-ab0e-462d-9b8d-1773c364e997",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "040 Allowing more than 3 menus"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452984002,
+        "id": "09b14f84-feb2-47bf-8b33-8f425f71854f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452984002,
+        "parent_id": "92a09833-2016-4002-836a-75d7ca0a3e3f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This example is strictly a workaround since, currently there is no way to disable a behaviour known as ShiftMode."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This example is strictly a workaround since, currently there is no way to disable a behaviour known as ShiftMode."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452984004,
+        "id": "d38000c7-dac5-4f74-ade6-a49489f8a812",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452984004,
+        "parent_id": "92a09833-2016-4002-836a-75d7ca0a3e3f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Create a function as such."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Create a function as such."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452984004,
+        "id": "fc54212d-bc9c-43c5-a905-e2e2889497ec",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452984004,
+        "parent_id": "92a09833-2016-4002-836a-75d7ca0a3e3f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public static void disableMenuShiftMode(BottomNavigationView view) {\n    BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);\n    try {\n        Field shiftingMode = menuView.getClass().getDeclaredField(\"mShiftingMode\");\n        shiftingMode.setAccessible(true);\n        shiftingMode.setBoolean(menuView, false);\n        shiftingMode.setAccessible(false);\n        for (int i = 0; i \u003c menuView.getChildCount(); i++) {\n            BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);\n            //noinspection RestrictedApi\n            item.setShiftingMode(false);\n            // set once again checked value, so view will be updated\n            //noinspection RestrictedApi\n            item.setChecked(item.getItemData().isChecked());\n        }\n    } catch (NoSuchFieldException e) {\n        Log.e(\"BNVHelper\", \"Unable to get shift mode field\", e);\n    } catch (IllegalAccessException e) {\n        Log.e(\"BNVHelper\", \"Unable to change value of shift mode\", e);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public static void disableMenuShiftMode(BottomNavigationView view) {\n    BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);\n    try {\n        Field shiftingMode = menuView.getClass().getDeclaredField(\"mShiftingMode\");\n        shiftingMode.setAccessible(true);\n        shiftingMode.setBoolean(menuView, false);\n        shiftingMode.setAccessible(false);\n        for (int i = 0; i \u003c menuView.getChildCount(); i++) {\n            BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);\n            //noinspection RestrictedApi\n            item.setShiftingMode(false);\n            // set once again checked value, so view will be updated\n            //noinspection RestrictedApi\n            item.setChecked(item.getItemData().isChecked());\n        }\n    } catch (NoSuchFieldException e) {\n        Log.e(\"BNVHelper\", \"Unable to get shift mode field\", e);\n    } catch (IllegalAccessException e) {\n        Log.e(\"BNVHelper\", \"Unable to change value of shift mode\", e);\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452984005,
+        "id": "6304a8c3-6931-4423-882e-09547db90863",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452984005,
+        "parent_id": "92a09833-2016-4002-836a-75d7ca0a3e3f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This disables the Shifting behaviour of the menu when item count exceeds 3 nos."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This disables the Shifting behaviour of the menu when item count exceeds 3 nos."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452984005,
+        "id": "acf330be-d160-4097-8e4d-8087604619db",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452984005,
+        "parent_id": "92a09833-2016-4002-836a-75d7ca0a3e3f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "USAGE",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "USAGE",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452984005,
+        "id": "38a53015-ff49-4d6f-87ec-0258b6eaa481",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452984005,
+        "parent_id": "92a09833-2016-4002-836a-75d7ca0a3e3f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "BottomNavigationView navView = (BottomNavigationView) findViewById(R.id.bottom_navigation_bar);\ndisableMenuShiftMode(navView);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "BottomNavigationView navView = (BottomNavigationView) findViewById(R.id.bottom_navigation_bar);\ndisableMenuShiftMode(navView);",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452984005,
+        "id": "a8d3ee78-a169-48ec-8524-1e6807851185",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452984005,
+        "parent_id": "92a09833-2016-4002-836a-75d7ca0a3e3f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Proguard Issue",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " : Add following line proguard configuration file as well else, this wouldn’t work."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Proguard Issue",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " : Add following line proguard configuration file as well else, this wouldn’t work."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452984005,
+        "id": "808ca6c9-b763-4295-8712-996a075651ec",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452984005,
+        "parent_id": "92a09833-2016-4002-836a-75d7ca0a3e3f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "-keepclassmembers class android.support.design.internal.BottomNavigationMenuView { \nboolean mShiftingMode; \n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "-keepclassmembers class android.support.design.internal.BottomNavigationMenuView { \nboolean mShiftingMode; \n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452984007,
+        "id": "b45fe0cf-3644-4e0b-94a2-bdcca4ea7e7b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452984007,
+        "parent_id": "92a09833-2016-4002-836a-75d7ca0a3e3f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Alternatively, you can create a Class and access this method from there. "
+            ],
+            [
+              "See Original Reply Here",
+              [
+                [
+                  "a",
+                  "http://stackoverflow.com/a/40189977/1149398"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Alternatively, you can create a Class and access this method from there. "
+          },
+          {
+            "Text": "See Original Reply Here",
+            "Link": "http://stackoverflow.com/a/40189977/1149398"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550452984007,
+        "id": "9439afb8-15a6-4bd7-b83c-760d350b45a5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550452984007,
+        "parent_id": "92a09833-2016-4002-836a-75d7ca0a3e3f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "NOTE",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " : This is a Reflection based "
+            ],
+            [
+              "HOTFIX",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              ", please update this once Google’s support library is updated with a direct function call."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "NOTE",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " : This is a Reflection based "
+          },
+          {
+            "Text": "HOTFIX",
+            "AttrFlags": 1
+          },
+          {
+            "Text": ", please update this once Google’s support library is updated with a direct function call."
+          }
+        ]
+      }
+    ],
+    "title": "040 Allowing more than 3 menus"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

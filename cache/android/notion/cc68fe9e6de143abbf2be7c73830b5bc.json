@@ -1,0 +1,97 @@
+{
+  "ID": "cc68fe9e-6de1-43ab-bf2b-e7c73830b5bc",
+  "Root": {
+    "alive": true,
+    "content": [
+      "e0cd1f4b-daa1-4093-baf2-ec15f21ebbb3",
+      "834e5eb5-af28-4f76-9c43-b72014413113"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550441897793,
+    "id": "cc68fe9e-6de1-43ab-bf2b-e7c73830b5bc",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550441897793,
+    "parent_id": "94542bbc-752e-48c7-ac75-9b3e818d84eb",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Integration of code "
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550441897790,
+        "id": "e0cd1f4b-daa1-4093-baf2-ec15f21ebbb3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550441897790,
+        "parent_id": "cc68fe9e-6de1-43ab-bf2b-e7c73830b5bc",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Integration to open database using password."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Integration to open database using password."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550441897793,
+        "id": "834e5eb5-af28-4f76-9c43-b72014413113",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550441897793,
+        "parent_id": "cc68fe9e-6de1-43ab-bf2b-e7c73830b5bc",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "-(void)checkAndOpenDB{\n    sqlite3 *db;\n    NSString *strPassword = @\"password\";\n\n        if (sqlite3_open_v2([[databaseURL path] UTF8String], \u0026db, SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE, NULL) == SQLITE_OK) {\n            const char* key = [strPassword UTF8String];\n            sqlite3_key(db, key, (int)strlen(key));\n            if (sqlite3_exec(db1, (const char*) \"SELECT count(*) FROM sqlite_master;\", NULL, NULL, NULL) == SQLITE_OK) {\n                NSLog(@\"Password is correct, or a new database has been initialized\");\n            } else {\n                NSLog(@\"Incorrect password!\");\n            }\n            sqlite3_close(db);\n        }  \n}\n\n- (NSURL *)databaseURL\n{\n    NSArray *URLs = [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];\n    NSURL *directoryURL = [URLs firstObject];\n    NSURL *databaseURL = [directoryURL URLByAppendingPathComponent:@\"database.sqlite\"];\n    return  databaseURL;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "-(void)checkAndOpenDB{\n    sqlite3 *db;\n    NSString *strPassword = @\"password\";\n\n        if (sqlite3_open_v2([[databaseURL path] UTF8String], \u0026db, SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE, NULL) == SQLITE_OK) {\n            const char* key = [strPassword UTF8String];\n            sqlite3_key(db, key, (int)strlen(key));\n            if (sqlite3_exec(db1, (const char*) \"SELECT count(*) FROM sqlite_master;\", NULL, NULL, NULL) == SQLITE_OK) {\n                NSLog(@\"Password is correct, or a new database has been initialized\");\n            } else {\n                NSLog(@\"Incorrect password!\");\n            }\n            sqlite3_close(db);\n        }  \n}\n\n- (NSURL *)databaseURL\n{\n    NSArray *URLs = [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];\n    NSURL *directoryURL = [URLs firstObject];\n    NSURL *databaseURL = [directoryURL URLByAppendingPathComponent:@\"database.sqlite\"];\n    return  databaseURL;\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 Integration of code "
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

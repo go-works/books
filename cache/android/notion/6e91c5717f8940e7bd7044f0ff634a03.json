@@ -1,0 +1,367 @@
+{
+  "ID": "6e91c571-7f89-40e7-bd70-44f0ff634a03",
+  "Root": {
+    "alive": true,
+    "content": [
+      "b71c495c-1a0b-4bc0-b1da-008722dca427",
+      "7472c7e7-9500-4b6d-a7fa-0df6cc073074",
+      "9b3682bc-ffb4-4e90-b945-55a792195b6a",
+      "630b225a-e09f-47d7-817c-aaaebba44b29",
+      "2496a830-a78d-4126-bb58-e1dc7fc9c062",
+      "8eb8fa63-3992-412e-8f36-83ff1241b179",
+      "1c7da37a-e728-4f9e-9768-fe11c9911572",
+      "1ce06e9a-e635-4a70-9a66-4123fa246be0",
+      "9e5b7674-f52b-4827-a1b4-60ac9605462c",
+      "b9b995d3-e1d8-48de-a029-e1ea696371fb",
+      "ad3d5693-e998-420d-a041-819dc532bf29"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550444974196,
+    "id": "6e91c571-7f89-40e7-bd70-44f0ff634a03",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550444974196,
+    "parent_id": "6190cb6e-dc43-458e-9fc6-34c0e0c69fa6",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "110 Store image into SQLite"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444974192,
+        "id": "b71c495c-1a0b-4bc0-b1da-008722dca427",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444974192,
+        "parent_id": "6e91c571-7f89-40e7-bd70-44f0ff634a03",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Setting Up the database",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Setting Up the database",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444974195,
+        "id": "7472c7e7-9500-4b6d-a7fa-0df6cc073074",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444974195,
+        "parent_id": "6e91c571-7f89-40e7-bd70-44f0ff634a03",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class DatabaseHelper extends SQLiteOpenHelper {\n    // Database Version\n    private static final int DATABASE_VERSION = 1;\n \n    // Database Name\n    private static final String DATABASE_NAME = \"database_name\";\n \n    // Table Names\n    private static final String DB_TABLE = \"table_image\";\n    \n    // column names\n    private static final String KEY_NAME = \"image_name\";\n    private static final String KEY_IMAGE = \"image_data\";\n    \n    // Table create statement\n    private static final String CREATE_TABLE_IMAGE = \"CREATE TABLE \" + DB_TABLE + \"(\"+ \n                       KEY_NAME + \" TEXT,\" + \n                       KEY_IMAGE + \" BLOB);\";\n\n    public DatabaseHelper(Context context) {\n        super(context, DATABASE_NAME, null, DATABASE_VERSION);\n    }\n \n    @Override\n    public void onCreate(SQLiteDatabase db) {\n \n        // creating table\n        db.execSQL(CREATE_TABLE_IMAGE);\n    }\n \n    @Override\n    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {\n        // on upgrade drop older tables\n        db.execSQL(\"DROP TABLE IF EXISTS \" + DB_TABLE);\n\n        // create new table\n        onCreate(db);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class DatabaseHelper extends SQLiteOpenHelper {\n    // Database Version\n    private static final int DATABASE_VERSION = 1;\n \n    // Database Name\n    private static final String DATABASE_NAME = \"database_name\";\n \n    // Table Names\n    private static final String DB_TABLE = \"table_image\";\n    \n    // column names\n    private static final String KEY_NAME = \"image_name\";\n    private static final String KEY_IMAGE = \"image_data\";\n    \n    // Table create statement\n    private static final String CREATE_TABLE_IMAGE = \"CREATE TABLE \" + DB_TABLE + \"(\"+ \n                       KEY_NAME + \" TEXT,\" + \n                       KEY_IMAGE + \" BLOB);\";\n\n    public DatabaseHelper(Context context) {\n        super(context, DATABASE_NAME, null, DATABASE_VERSION);\n    }\n \n    @Override\n    public void onCreate(SQLiteDatabase db) {\n \n        // creating table\n        db.execSQL(CREATE_TABLE_IMAGE);\n    }\n \n    @Override\n    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {\n        // on upgrade drop older tables\n        db.execSQL(\"DROP TABLE IF EXISTS \" + DB_TABLE);\n\n        // create new table\n        onCreate(db);\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444974195,
+        "id": "9b3682bc-ffb4-4e90-b945-55a792195b6a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444974195,
+        "parent_id": "6e91c571-7f89-40e7-bd70-44f0ff634a03",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Insert in the Database:",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Insert in the Database:",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444974195,
+        "id": "630b225a-e09f-47d7-817c-aaaebba44b29",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444974195,
+        "parent_id": "6e91c571-7f89-40e7-bd70-44f0ff634a03",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public void addEntry( String name, byte[] image) throws SQLiteException{\n    SQLiteDatabase database = this.getWritableDatabase();\n    ContentValues cv = new  ContentValues();\n    cv.put(KEY_NAME,     name);\n    cv.put(KEY_IMAGE,     image);\n    database.insert( DB_TABLE, null, cv );\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public void addEntry( String name, byte[] image) throws SQLiteException{\n    SQLiteDatabase database = this.getWritableDatabase();\n    ContentValues cv = new  ContentValues();\n    cv.put(KEY_NAME,     name);\n    cv.put(KEY_IMAGE,     image);\n    database.insert( DB_TABLE, null, cv );\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444974195,
+        "id": "2496a830-a78d-4126-bb58-e1dc7fc9c062",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444974195,
+        "parent_id": "6e91c571-7f89-40e7-bd70-44f0ff634a03",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Retrieving data",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              ":"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Retrieving data",
+            "AttrFlags": 1
+          },
+          {
+            "Text": ":"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444974195,
+        "id": "8eb8fa63-3992-412e-8f36-83ff1241b179",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444974195,
+        "parent_id": "6e91c571-7f89-40e7-bd70-44f0ff634a03",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "byte[] image = cursor.getBlob(1);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "byte[] image = cursor.getBlob(1);",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444974196,
+        "id": "1c7da37a-e728-4f9e-9768-fe11c9911572",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444974196,
+        "parent_id": "6e91c571-7f89-40e7-bd70-44f0ff634a03",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Note:",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Note:",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444974196,
+        "id": "1ce06e9a-e635-4a70-9a66-4123fa246be0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444974196,
+        "parent_id": "6e91c571-7f89-40e7-bd70-44f0ff634a03",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Before inserting into database, you need to convert your Bitmap image into byte array first then apply it using database query."
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Before inserting into database, you need to convert your Bitmap image into byte array first then apply it using database query."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444974196,
+        "id": "9e5b7674-f52b-4827-a1b4-60ac9605462c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444974196,
+        "parent_id": "6e91c571-7f89-40e7-bd70-44f0ff634a03",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "When retrieving from database, you certainly have a byte array of image, what you need to do is to convert byte array back to original image. So, you have to make use of BitmapFactory to decode."
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "When retrieving from database, you certainly have a byte array of image, what you need to do is to convert byte array back to original image. So, you have to make use of BitmapFactory to decode."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444974196,
+        "id": "b9b995d3-e1d8-48de-a029-e1ea696371fb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444974196,
+        "parent_id": "6e91c571-7f89-40e7-bd70-44f0ff634a03",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Below is an Utility class which I hope could help you:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Below is an Utility class which I hope could help you:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444974196,
+        "id": "ad3d5693-e998-420d-a041-819dc532bf29",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444974196,
+        "parent_id": "6e91c571-7f89-40e7-bd70-44f0ff634a03",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class DbBitmapUtility {\n \n    // convert from bitmap to byte array\n    public static byte[] getBytes(Bitmap bitmap) {\n        ByteArrayOutputStream stream = new ByteArrayOutputStream();\n        bitmap.compress(CompressFormat.PNG, 0, stream);\n        return stream.toByteArray();\n    }\n \n    // convert from byte array to bitmap\n    public static Bitmap getImage(byte[] image) {\n        return BitmapFactory.decodeByteArray(image, 0, image.length);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class DbBitmapUtility {\n \n    // convert from bitmap to byte array\n    public static byte[] getBytes(Bitmap bitmap) {\n        ByteArrayOutputStream stream = new ByteArrayOutputStream();\n        bitmap.compress(CompressFormat.PNG, 0, stream);\n        return stream.toByteArray();\n    }\n \n    // convert from byte array to bitmap\n    public static Bitmap getImage(byte[] image) {\n        return BitmapFactory.decodeByteArray(image, 0, image.length);\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "110 Store image into SQLite"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,135 @@
+{
+  "ID": "823a2f0a-f2ac-4514-9190-626a829b7286",
+  "Root": {
+    "alive": true,
+    "content": [
+      "ac9197e8-17c8-46d2-8778-4f18294b6ebe",
+      "e1edb1c8-e9e1-4860-9de9-3b7d788a16f4",
+      "a0367694-70ce-4a6c-bdf4-6d5d34bb76df"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550443714984,
+    "id": "823a2f0a-f2ac-4514-9190-626a829b7286",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550443714984,
+    "parent_id": "4b7449f0-077a-4e41-841b-d5c551629808",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "070 Open Google Play Store Listing for your app"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550443714981,
+        "id": "ac9197e8-17c8-46d2-8778-4f18294b6ebe",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550443714981,
+        "parent_id": "823a2f0a-f2ac-4514-9190-626a829b7286",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The following code snippet shows how to open the Google Play Store Listing of your app in a safe way. Usually you want to use it when asking the user to leave a review for your app."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The following code snippet shows how to open the Google Play Store Listing of your app in a safe way. Usually you want to use it when asking the user to leave a review for your app."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550443714983,
+        "id": "e1edb1c8-e9e1-4860-9de9-3b7d788a16f4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550443714983,
+        "parent_id": "823a2f0a-f2ac-4514-9190-626a829b7286",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "private void openPlayStore() {\n    String packageName = getPackageName();\n    Intent playStoreIntent = new Intent(Intent.ACTION_VIEW, \n            Uri.parse(\"market://details?id=\" + packageName));\n    setFlags(playStoreIntent);\n    try {\n        startActivity(playStoreIntent);\n    } catch (Exception e) {\n        Intent webIntent = new Intent(Intent.ACTION_VIEW,\n                Uri.parse(\"https://play.google.com/store/apps/details?id=\" + packageName));\n        setFlags(webIntent);\n        startActivity(webIntent);\n    }\n}\n\n@SuppressWarnings(\"deprecation\")\nprivate void setFlags(Intent intent) {\n    intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);\n    if (Build.VERSION.SDK_INT \u003e= Build.VERSION_CODES.LOLLIPOP)\n        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);\n    else\n        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "private void openPlayStore() {\n    String packageName = getPackageName();\n    Intent playStoreIntent = new Intent(Intent.ACTION_VIEW, \n            Uri.parse(\"market://details?id=\" + packageName));\n    setFlags(playStoreIntent);\n    try {\n        startActivity(playStoreIntent);\n    } catch (Exception e) {\n        Intent webIntent = new Intent(Intent.ACTION_VIEW,\n                Uri.parse(\"https://play.google.com/store/apps/details?id=\" + packageName));\n        setFlags(webIntent);\n        startActivity(webIntent);\n    }\n}\n\n@SuppressWarnings(\"deprecation\")\nprivate void setFlags(Intent intent) {\n    intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);\n    if (Build.VERSION.SDK_INT \u003e= Build.VERSION_CODES.LOLLIPOP)\n        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT);\n    else\n        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550443714984,
+        "id": "a0367694-70ce-4a6c-bdf4-6d5d34bb76df",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550443714984,
+        "parent_id": "823a2f0a-f2ac-4514-9190-626a829b7286",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Note",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              ": The code opens the Google Play Store if the app is installed. Otherwise it will just open the web browser."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Note",
+            "AttrFlags": 1
+          },
+          {
+            "Text": ": The code opens the Google Play Store if the app is installed. Otherwise it will just open the web browser."
+          }
+        ]
+      }
+    ],
+    "title": "070 Open Google Play Store Listing for your app"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

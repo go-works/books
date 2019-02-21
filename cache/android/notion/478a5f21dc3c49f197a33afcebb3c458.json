@@ -1,0 +1,163 @@
+{
+  "ID": "478a5f21-dc3c-49f1-97a3-3afcebb3c458",
+  "Root": {
+    "alive": true,
+    "content": [
+      "a3c136f8-aa28-490a-8339-f5a141a5f83a",
+      "570b8b24-fc6f-4d05-abcd-e946be377425",
+      "28960772-0cb2-48d4-9d45-a912f246ccad"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550444962921,
+    "id": "478a5f21-dc3c-49f1-97a3-3afcebb3c458",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550444962921,
+    "parent_id": "6190cb6e-dc43-458e-9fc6-34c0e0c69fa6",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 onUpgrade method"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444962919,
+        "id": "a3c136f8-aa28-490a-8339-f5a141a5f83a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444962919,
+        "parent_id": "478a5f21-dc3c-49f1-97a3-3afcebb3c458",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "SQLiteOpenHelper",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "https://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html"
+                ]
+              ]
+            ],
+            [
+              " is a helper class to manage database creation and version management."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "SQLiteOpenHelper",
+            "AttrFlags": 2,
+            "Link": "https://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html"
+          },
+          {
+            "Text": " is a helper class to manage database creation and version management."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444962921,
+        "id": "570b8b24-fc6f-4d05-abcd-e946be377425",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444962921,
+        "parent_id": "478a5f21-dc3c-49f1-97a3-3afcebb3c458",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In this class, the "
+            ],
+            [
+              "onUpgrade()",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "https://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#onUpgrade(android.database.sqlite.SQLiteDatabase,%20int,%20int)"
+                ]
+              ]
+            ],
+            [
+              " method is responsible for upgrading the database when you make changes to the schema. It is called when the database file already exists, but its version is lower than the one specified in the current version of the app. For each database version, the specific changes you made have to be applied."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In this class, the "
+          },
+          {
+            "Text": "onUpgrade()",
+            "AttrFlags": 2,
+            "Link": "https://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#onUpgrade(android.database.sqlite.SQLiteDatabase,%20int,%20int)"
+          },
+          {
+            "Text": " method is responsible for upgrading the database when you make changes to the schema. It is called when the database file already exists, but its version is lower than the one specified in the current version of the app. For each database version, the specific changes you made have to be applied."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550444962921,
+        "id": "28960772-0cb2-48d4-9d45-a912f246ccad",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550444962921,
+        "parent_id": "478a5f21-dc3c-49f1-97a3-3afcebb3c458",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "@Override\npublic void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {\n    // Loop through each version when an upgrade occurs.\n    for (int version = oldVersion + 1; version \u003c= newVersion; version++) {\n        switch (version) {\n\n            case 2:\n                // Apply changes made in version 2\n                db.execSQL(\n                    \"ALTER TABLE \" +\n                    TABLE_PRODUCTS +\n                    \" ADD COLUMN \" +\n                    COLUMN_DESCRIPTION +\n                    \" TEXT;\"\n                );\n                break;\n\n            case 3:\n                // Apply changes made in version 3\n                db.execSQL(CREATE_TABLE_TRANSACTION);\n                break;\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "@Override\npublic void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {\n    // Loop through each version when an upgrade occurs.\n    for (int version = oldVersion + 1; version \u003c= newVersion; version++) {\n        switch (version) {\n\n            case 2:\n                // Apply changes made in version 2\n                db.execSQL(\n                    \"ALTER TABLE \" +\n                    TABLE_PRODUCTS +\n                    \" ADD COLUMN \" +\n                    COLUMN_DESCRIPTION +\n                    \" TEXT;\"\n                );\n                break;\n\n            case 3:\n                // Apply changes made in version 3\n                db.execSQL(CREATE_TABLE_TRANSACTION);\n                break;\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 onUpgrade method"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}
