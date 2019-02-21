@@ -1,0 +1,151 @@
+{
+  "ID": "d33a0662-74eb-484e-ad16-ddae062c03e7",
+  "Root": {
+    "alive": true,
+    "content": [
+      "31e7900c-5d64-4f4e-a094-e25fcda195c6",
+      "649b82a4-202c-4757-b013-df8787f1ab12",
+      "e0e7a208-6bac-4e33-858f-58b99d070d44",
+      "4a53e460-d450-42d2-b409-e486115f6df7"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550458696555,
+    "id": "d33a0662-74eb-484e-ad16-ddae062c03e7",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550458696555,
+    "parent_id": "da5bf25e-3934-4638-b372-8eb6c7e44a7b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Transaction In a TRYCATCH"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550458696552,
+        "id": "31e7900c-5d64-4f4e-a094-e25fcda195c6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550458696552,
+        "parent_id": "d33a0662-74eb-484e-ad16-ddae062c03e7",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This will rollback both inserts due to an invalid datetime:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This will rollback both inserts due to an invalid datetime:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550458696555,
+        "id": "649b82a4-202c-4757-b013-df8787f1ab12",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550458696555,
+        "parent_id": "d33a0662-74eb-484e-ad16-ddae062c03e7",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "BEGIN TRANSACTION\nBEGIN TRY\n    INSERT INTO dbo.Sale(Price, SaleDate, Quantity)\n    VALUES (5.2, GETDATE(), 1)\n    INSERT INTO dbo.Sale(Price, SaleDate, Quantity)\n    VALUES (5.2, 'not a date', 1)\n    COMMIT TRANSACTION\nEND TRY\nBEGIN CATCH\n    THROW\n    ROLLBACK TRANSACTION\nEND CATCH"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "BEGIN TRANSACTION\nBEGIN TRY\n    INSERT INTO dbo.Sale(Price, SaleDate, Quantity)\n    VALUES (5.2, GETDATE(), 1)\n    INSERT INTO dbo.Sale(Price, SaleDate, Quantity)\n    VALUES (5.2, 'not a date', 1)\n    COMMIT TRANSACTION\nEND TRY\nBEGIN CATCH\n    THROW\n    ROLLBACK TRANSACTION\nEND CATCH",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550458696555,
+        "id": "e0e7a208-6bac-4e33-858f-58b99d070d44",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550458696555,
+        "parent_id": "d33a0662-74eb-484e-ad16-ddae062c03e7",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This will commit both inserts:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This will commit both inserts:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550458696555,
+        "id": "4a53e460-d450-42d2-b409-e486115f6df7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550458696555,
+        "parent_id": "d33a0662-74eb-484e-ad16-ddae062c03e7",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "BEGIN TRANSACTION\nBEGIN TRY\n    INSERT INTO dbo.Sale(Price, SaleDate, Quantity)\n    VALUES (5.2, GETDATE(), 1)\n    INSERT INTO dbo.Sale(Price, SaleDate, Quantity)\n    VALUES (5.2, GETDATE(), 1)\n    COMMIT TRANSACTION\nEND TRY\nBEGIN CATCH\n    THROW\n    ROLLBACK TRANSACTION\nEND CATCH"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "BEGIN TRANSACTION\nBEGIN TRY\n    INSERT INTO dbo.Sale(Price, SaleDate, Quantity)\n    VALUES (5.2, GETDATE(), 1)\n    INSERT INTO dbo.Sale(Price, SaleDate, Quantity)\n    VALUES (5.2, GETDATE(), 1)\n    COMMIT TRANSACTION\nEND TRY\nBEGIN CATCH\n    THROW\n    ROLLBACK TRANSACTION\nEND CATCH",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 Transaction In a TRYCATCH"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

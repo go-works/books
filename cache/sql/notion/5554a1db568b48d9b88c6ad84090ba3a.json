@@ -1,0 +1,133 @@
+{
+  "ID": "5554a1db-568b-48d9-b88c-6ad84090ba3a",
+  "Root": {
+    "alive": true,
+    "content": [
+      "961f5e63-e642-4a6b-b833-a9b7b160cab3",
+      "0c93b615-9d45-425d-bb2d-f0617e40a4b0"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550458190024,
+    "id": "5554a1db-568b-48d9-b88c-6ad84090ba3a",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550458190024,
+    "parent_id": "f6b7476f-5cad-4ad0-902a-62538b392ecb",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 MERGE to make Target match Source"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550458190021,
+        "id": "961f5e63-e642-4a6b-b833-a9b7b160cab3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550458190021,
+        "parent_id": "5554a1db-568b-48d9-b88c-6ad84090ba3a",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "MERGE INTO targetTable t\n    USING sourceTable s\n        ON t.PKID = s.PKID\n    WHEN MATCHED AND NOT EXISTS (\n            SELECT s.ColumnA, s.ColumnB, s.ColumnC\n            INTERSECT\n            SELECT t.ColumnA, t.ColumnB, s.ColumnC\n            )\n        THEN UPDATE SET\n            t.ColumnA = s.ColumnA\n            ,t.ColumnB = s.ColumnB\n            ,t.ColumnC = s.ColumnC\n    WHEN NOT MATCHED BY TARGET\n        THEN INSERT (PKID, ColumnA, ColumnB, ColumnC)\n        VALUES (s.PKID, s.ColumnA, s.ColumnB, s.ColumnC)\n    WHEN NOT MATCHED BY SOURCE\n        THEN DELETE\n    ;"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "MERGE INTO targetTable t\n    USING sourceTable s\n        ON t.PKID = s.PKID\n    WHEN MATCHED AND NOT EXISTS (\n            SELECT s.ColumnA, s.ColumnB, s.ColumnC\n            INTERSECT\n            SELECT t.ColumnA, t.ColumnB, s.ColumnC\n            )\n        THEN UPDATE SET\n            t.ColumnA = s.ColumnA\n            ,t.ColumnB = s.ColumnB\n            ,t.ColumnC = s.ColumnC\n    WHEN NOT MATCHED BY TARGET\n        THEN INSERT (PKID, ColumnA, ColumnB, ColumnC)\n        VALUES (s.PKID, s.ColumnA, s.ColumnB, s.ColumnC)\n    WHEN NOT MATCHED BY SOURCE\n        THEN DELETE\n    ;",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550458190024,
+        "id": "0c93b615-9d45-425d-bb2d-f0617e40a4b0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550458190024,
+        "parent_id": "5554a1db-568b-48d9-b88c-6ad84090ba3a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Note: The "
+            ],
+            [
+              "AND NOT EXISTS",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " portion prevents updating records that haven’t changed. Using the "
+            ],
+            [
+              "INTERSECT",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " construct allows nullable columns to be compared without special handling."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Note: The "
+          },
+          {
+            "Text": "AND NOT EXISTS",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " portion prevents updating records that haven’t changed. Using the "
+          },
+          {
+            "Text": "INTERSECT",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " construct allows nullable columns to be compared without special handling."
+          }
+        ]
+      }
+    ],
+    "title": "010 MERGE to make Target match Source"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

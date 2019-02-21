@@ -1,0 +1,131 @@
+{
+  "ID": "569e427c-1141-4685-81b1-8ba2efa8420c",
+  "Root": {
+    "alive": true,
+    "content": [
+      "b7845e3e-5530-4644-a139-a83fdd0f4fcf",
+      "5da041fb-651f-4ec1-a616-d7caed12d77c",
+      "15d79d47-5152-4688-83d1-0610ef0802ee"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550458707980,
+    "id": "569e427c-1141-4685-81b1-8ba2efa8420c",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550458707980,
+    "parent_id": "4e9d5cac-4486-4652-a532-71cab0b0ec0e",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Query from XML Data Type"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550458707978,
+        "id": "b7845e3e-5530-4644-a139-a83fdd0f4fcf",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550458707978,
+        "parent_id": "569e427c-1141-4685-81b1-8ba2efa8420c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "DECLARE @xmlIN XML = '\u003cTableData\u003e\n\u003caaa Main=\"First\"\u003e\n  \u003crow name=\"a\" value=\"1\" /\u003e\n  \u003crow name=\"b\" value=\"2\" /\u003e\n  \u003crow name=\"c\" value=\"3\" /\u003e\n\u003c/aaa\u003e\n\u003caaa Main=\"Second\"\u003e\n  \u003crow name=\"a\" value=\"3\" /\u003e\n  \u003crow name=\"b\" value=\"4\" /\u003e\n  \u003crow name=\"c\" value=\"5\" /\u003e\n\u003c/aaa\u003e\n\u003caaa Main=\"Third\"\u003e\n  \u003crow name=\"a\" value=\"10\" /\u003e\n  \u003crow name=\"b\" value=\"20\" /\u003e\n  \u003crow name=\"c\" value=\"30\" /\u003e\n\u003c/aaa\u003e\n\u003c/TableData\u003e'\n\nSELECT t.col.value('../@Main', 'varchar(10)') [Header],\nt.col.value('@name', 'VARCHAR(25)') [name],  \nt.col.value('@value',  'VARCHAR(25)') [Value]\nFROM    @xmlIn.nodes('//TableData/aaa/row') AS t (col)"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "DECLARE @xmlIN XML = '\u003cTableData\u003e\n\u003caaa Main=\"First\"\u003e\n  \u003crow name=\"a\" value=\"1\" /\u003e\n  \u003crow name=\"b\" value=\"2\" /\u003e\n  \u003crow name=\"c\" value=\"3\" /\u003e\n\u003c/aaa\u003e\n\u003caaa Main=\"Second\"\u003e\n  \u003crow name=\"a\" value=\"3\" /\u003e\n  \u003crow name=\"b\" value=\"4\" /\u003e\n  \u003crow name=\"c\" value=\"5\" /\u003e\n\u003c/aaa\u003e\n\u003caaa Main=\"Third\"\u003e\n  \u003crow name=\"a\" value=\"10\" /\u003e\n  \u003crow name=\"b\" value=\"20\" /\u003e\n  \u003crow name=\"c\" value=\"30\" /\u003e\n\u003c/aaa\u003e\n\u003c/TableData\u003e'\n\nSELECT t.col.value('../@Main', 'varchar(10)') [Header],\nt.col.value('@name', 'VARCHAR(25)') [name],  \nt.col.value('@value',  'VARCHAR(25)') [Value]\nFROM    @xmlIn.nodes('//TableData/aaa/row') AS t (col)",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550458707980,
+        "id": "5da041fb-651f-4ec1-a616-d7caed12d77c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550458707980,
+        "parent_id": "569e427c-1141-4685-81b1-8ba2efa8420c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Results",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Results",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550458707980,
+        "id": "15d79d47-5152-4688-83d1-0610ef0802ee",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550458707980,
+        "parent_id": "569e427c-1141-4685-81b1-8ba2efa8420c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "Header    name    Value\nFirst      a        1\nFirst      b        2\nFirst      c        3\nSecond     a        3\nSecond     b        4\nSecond     c        5\nThird      a        10\nThird      b        20\nThird      c        30"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "Header    name    Value\nFirst      a        1\nFirst      b        2\nFirst      c        3\nSecond     a        3\nSecond     b        4\nSecond     c        5\nThird      a        10\nThird      b        20\nThird      c        30",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 Query from XML Data Type"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

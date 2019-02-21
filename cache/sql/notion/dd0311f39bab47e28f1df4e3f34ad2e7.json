@@ -1,0 +1,71 @@
+{
+  "ID": "dd0311f3-9bab-47e2-8f1d-f4e3f34ad2e7",
+  "Root": {
+    "alive": true,
+    "content": [
+      "136f2c1a-9982-413f-a941-a2cbdadc2ee2"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550458284209,
+    "id": "dd0311f3-9bab-47e2-8f1d-f4e3f34ad2e7",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550458284209,
+    "parent_id": "5e9393cb-2254-46bf-99c5-b362ec875ad9",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 Delete All But Last Record 1 to Many Table"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550458284206,
+        "id": "136f2c1a-9982-413f-a941-a2cbdadc2ee2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550458284206,
+        "parent_id": "dd0311f3-9bab-47e2-8f1d-f4e3f34ad2e7",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "WITH cte AS (\n  SELECT ProjectID,\n         ROW_NUMBER() OVER (PARTITION BY ProjectID ORDER BY InsertDate DESC) AS rn\n  FROM ProjectNotes\n)\nDELETE FROM cte WHERE rn \u003e 1;"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "WITH cte AS (\n  SELECT ProjectID,\n         ROW_NUMBER() OVER (PARTITION BY ProjectID ORDER BY InsertDate DESC) AS rn\n  FROM ProjectNotes\n)\nDELETE FROM cte WHERE rn \u003e 1;",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "030 Delete All But Last Record 1 to Many Table"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

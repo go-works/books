@@ -1,0 +1,170 @@
+{
+  "ID": "575d084a-4e4a-4983-bc72-38ea14524f21",
+  "Root": {
+    "alive": true,
+    "content": [
+      "f5a31f26-6db8-4a04-905d-d9c8ff9159d6",
+      "a529d4c9-d68d-407e-827d-bfe99d18818d",
+      "4ce48a86-8130-4d8b-8f53-d2c5c47c43bb",
+      "2a48559c-cd08-4307-b28d-063cd18e96ec"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550458261026,
+    "id": "575d084a-4e4a-4983-bc72-38ea14524f21",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550458261026,
+    "parent_id": "39f7d0a0-ca6b-456f-877d-7b0da4ab364a",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Create and call a stored procedure"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550458261024,
+        "id": "f5a31f26-6db8-4a04-905d-d9c8ff9159d6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550458261024,
+        "parent_id": "575d084a-4e4a-4983-bc72-38ea14524f21",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Stored procedures can be created through a database management GUI ("
+            ],
+            [
+              "SQL Server example",
+              [
+                [
+                  "a",
+                  "https://msdn.microsoft.com/en-us/library/ms345415.aspx"
+                ]
+              ]
+            ],
+            [
+              "), or through a SQL statement as follows:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Stored procedures can be created through a database management GUI ("
+          },
+          {
+            "Text": "SQL Server example",
+            "Link": "https://msdn.microsoft.com/en-us/library/ms345415.aspx"
+          },
+          {
+            "Text": "), or through a SQL statement as follows:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550458261025,
+        "id": "a529d4c9-d68d-407e-827d-bfe99d18818d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550458261025,
+        "parent_id": "575d084a-4e4a-4983-bc72-38ea14524f21",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "-- Define a name and parameters\nCREATE PROCEDURE Northwind.getEmployee\n    @LastName nvarchar(50),   \n    @FirstName nvarchar(50)   \nAS   \n\n-- Define the query to be run\nSELECT FirstName, LastName, Department  \nFROM Northwind.vEmployeeDepartment\nWHERE FirstName = @FirstName AND LastName = @LastName  \nAND EndDate IS NULL;"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "-- Define a name and parameters\nCREATE PROCEDURE Northwind.getEmployee\n    @LastName nvarchar(50),   \n    @FirstName nvarchar(50)   \nAS   \n\n-- Define the query to be run\nSELECT FirstName, LastName, Department  \nFROM Northwind.vEmployeeDepartment\nWHERE FirstName = @FirstName AND LastName = @LastName  \nAND EndDate IS NULL;",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550458261026,
+        "id": "4ce48a86-8130-4d8b-8f53-d2c5c47c43bb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550458261026,
+        "parent_id": "575d084a-4e4a-4983-bc72-38ea14524f21",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Calling the procedure:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Calling the procedure:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550458261026,
+        "id": "2a48559c-cd08-4307-b28d-063cd18e96ec",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550458261026,
+        "parent_id": "575d084a-4e4a-4983-bc72-38ea14524f21",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "EXECUTE Northwind.getEmployee N'Ackerman', N'Pilar';\n\n-- Or  \nEXEC Northwind.getEmployee @LastName = N'Ackerman', @FirstName = N'Pilar';  \nGO  \n\n-- Or  \nEXECUTE Northwind.getEmployee @FirstName = N'Pilar', @LastName = N'Ackerman';  \nGO"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "EXECUTE Northwind.getEmployee N'Ackerman', N'Pilar';\n\n-- Or  \nEXEC Northwind.getEmployee @LastName = N'Ackerman', @FirstName = N'Pilar';  \nGO  \n\n-- Or  \nEXECUTE Northwind.getEmployee @FirstName = N'Pilar', @LastName = N'Ackerman';  \nGO",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 Create and call a stored procedure"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

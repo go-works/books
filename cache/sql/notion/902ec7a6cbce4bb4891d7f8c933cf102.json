@@ -1,0 +1,401 @@
+{
+  "ID": "902ec7a6-cbce-4bb4-891d-7f8c933cf102",
+  "Root": {
+    "alive": true,
+    "content": [
+      "4bc2924e-e615-48c8-b643-f6a4fbde76be",
+      "afe557bb-1d8d-4d2b-b8d6-deb8b8daf9ad",
+      "5e999f52-eecc-4eee-a0fc-d42a0e95553b",
+      "ec6f8309-39c8-40c5-8027-0506d6422888",
+      "9ac0659b-be1d-42d6-969f-88ab1def6938",
+      "56170e8a-3562-4c1c-ab18-8a8327d1e99a",
+      "0fedac91-51bb-42c9-98c0-c9a0d80c1645",
+      "58f6dc98-c725-4210-8b5b-79d7e208f7e2",
+      "13f15652-acf9-4ff0-9246-99323cc0fa3d",
+      "4203dc5b-2779-49b6-99eb-29b2146464b7",
+      "913b701f-51c5-4380-80b4-425f14ddfef1",
+      "ad5cd99d-c566-4b3e-b311-5d153e354a26",
+      "0efaed89-7739-4f3a-a925-65e5e9293ef1"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550457869099,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "902ec7a6-cbce-4bb4-891d-7f8c933cf102",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550727780000,
+    "parent_id": "208cbc7b-c00e-45fb-a39d-962b71299d49",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Oracle CONNECT BY functionality with recursive CTEs"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 10,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457869093,
+        "id": "4bc2924e-e615-48c8-b643-f6a4fbde76be",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550457869093,
+        "parent_id": "902ec7a6-cbce-4bb4-891d-7f8c933cf102",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Oracle’s CONNECT BY functionality provides many useful and nontrivial features that are not built-in when using SQL standard recursive CTEs. This example replicates these features (with a few additions for sake of completeness), using SQL Server syntax. It is most useful for Oracle developers finding many features missing in their hierarchical queries on other databases, but it also serves to showcase what can be done with a hierarchical query in general."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Oracle’s CONNECT BY functionality provides many useful and nontrivial features that are not built-in when using SQL standard recursive CTEs. This example replicates these features (with a few additions for sake of completeness), using SQL Server syntax. It is most useful for Oracle developers finding many features missing in their hierarchical queries on other databases, but it also serves to showcase what can be done with a hierarchical query in general."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457869096,
+        "id": "afe557bb-1d8d-4d2b-b8d6-deb8b8daf9ad",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550727780000,
+        "parent_id": "902ec7a6-cbce-4bb4-891d-7f8c933cf102",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "SQL"
+            ]
+          ],
+          "title": [
+            [
+              "WITH tbl AS (\n     SELECT id, name, parent_id\n       FROM mytable)\n   , tbl_hierarchy AS (\n     /* Anchor */\n     SELECT 1 AS \"LEVEL\"\n          --, 1 AS CONNECT_BY_ISROOT\n          --, 0 AS CONNECT_BY_ISBRANCH\n          , CASE WHEN t.id IN (SELECT parent_id FROM tbl) THEN 0 ELSE 1 END AS CONNECT_BY_ISLEAF\n          , 0 AS CONNECT_BY_ISCYCLE\n          , '/' + CAST(t.id   AS VARCHAR(MAX)) + '/' AS SYS_CONNECT_BY_PATH_id\n          , '/' + CAST(t.name AS VARCHAR(MAX)) + '/' AS SYS_CONNECT_BY_PATH_name\n          , t.id AS root_id\n          , t.*\n       FROM tbl t\n      WHERE t.parent_id IS NULL                            -- START WITH parent_id IS NULL\n     UNION ALL\n     /* Recursive */\n     SELECT th.\"LEVEL\" + 1 AS \"LEVEL\"\n          --, 0 AS CONNECT_BY_ISROOT\n          --, CASE WHEN t.id IN (SELECT parent_id FROM tbl) THEN 1 ELSE 0 END AS CONNECT_BY_ISBRANCH\n          , CASE WHEN t.id IN (SELECT parent_id FROM tbl) THEN 0 ELSE 1 END AS CONNECT_BY_ISLEAF\n          , CASE WHEN th.SYS_CONNECT_BY_PATH_id LIKE '%/' + CAST(t.id AS VARCHAR(MAX)) + '/%' THEN 1 ELSE 0 END AS CONNECT_BY_ISCYCLE\n          , th.SYS_CONNECT_BY_PATH_id   + CAST(t.id   AS VARCHAR(MAX)) + '/' AS SYS_CONNECT_BY_PATH_id\n          , th.SYS_CONNECT_BY_PATH_name + CAST(t.name AS VARCHAR(MAX)) + '/' AS SYS_CONNECT_BY_PATH_name\n          , th.root_id\n          , t.*\n       FROM tbl t\n            JOIN tbl_hierarchy th ON (th.id = t.parent_id) -- CONNECT BY PRIOR id = parent_id\n      WHERE th.CONNECT_BY_ISCYCLE = 0)                     -- NOCYCLE\nSELECT th.*\n   --, REPLICATE(' ', (th.\"LEVEL\" - 1) * 3) + th.name AS tbl_hierarchy\nFROM tbl_hierarchy th\n     JOIN tbl CONNECT_BY_ROOT ON (CONNECT_BY_ROOT.id = th.root_id)\nORDER BY th.SYS_CONNECT_BY_PATH_name;                       -- ORDER SIBLINGS BY name"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "WITH tbl AS (\n     SELECT id, name, parent_id\n       FROM mytable)\n   , tbl_hierarchy AS (\n     /* Anchor */\n     SELECT 1 AS \"LEVEL\"\n          --, 1 AS CONNECT_BY_ISROOT\n          --, 0 AS CONNECT_BY_ISBRANCH\n          , CASE WHEN t.id IN (SELECT parent_id FROM tbl) THEN 0 ELSE 1 END AS CONNECT_BY_ISLEAF\n          , 0 AS CONNECT_BY_ISCYCLE\n          , '/' + CAST(t.id   AS VARCHAR(MAX)) + '/' AS SYS_CONNECT_BY_PATH_id\n          , '/' + CAST(t.name AS VARCHAR(MAX)) + '/' AS SYS_CONNECT_BY_PATH_name\n          , t.id AS root_id\n          , t.*\n       FROM tbl t\n      WHERE t.parent_id IS NULL                            -- START WITH parent_id IS NULL\n     UNION ALL\n     /* Recursive */\n     SELECT th.\"LEVEL\" + 1 AS \"LEVEL\"\n          --, 0 AS CONNECT_BY_ISROOT\n          --, CASE WHEN t.id IN (SELECT parent_id FROM tbl) THEN 1 ELSE 0 END AS CONNECT_BY_ISBRANCH\n          , CASE WHEN t.id IN (SELECT parent_id FROM tbl) THEN 0 ELSE 1 END AS CONNECT_BY_ISLEAF\n          , CASE WHEN th.SYS_CONNECT_BY_PATH_id LIKE '%/' + CAST(t.id AS VARCHAR(MAX)) + '/%' THEN 1 ELSE 0 END AS CONNECT_BY_ISCYCLE\n          , th.SYS_CONNECT_BY_PATH_id   + CAST(t.id   AS VARCHAR(MAX)) + '/' AS SYS_CONNECT_BY_PATH_id\n          , th.SYS_CONNECT_BY_PATH_name + CAST(t.name AS VARCHAR(MAX)) + '/' AS SYS_CONNECT_BY_PATH_name\n          , th.root_id\n          , t.*\n       FROM tbl t\n            JOIN tbl_hierarchy th ON (th.id = t.parent_id) -- CONNECT BY PRIOR id = parent_id\n      WHERE th.CONNECT_BY_ISCYCLE = 0)                     -- NOCYCLE\nSELECT th.*\n   --, REPLICATE(' ', (th.\"LEVEL\" - 1) * 3) + th.name AS tbl_hierarchy\nFROM tbl_hierarchy th\n     JOIN tbl CONNECT_BY_ROOT ON (CONNECT_BY_ROOT.id = th.root_id)\nORDER BY th.SYS_CONNECT_BY_PATH_name;                       -- ORDER SIBLINGS BY name",
+        "code_language": "SQL"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457869097,
+        "id": "5e999f52-eecc-4eee-a0fc-d42a0e95553b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550457869097,
+        "parent_id": "902ec7a6-cbce-4bb4-891d-7f8c933cf102",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "CONNECT BY features demonstrated above, with explanations:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "CONNECT BY features demonstrated above, with explanations:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457869097,
+        "id": "ec6f8309-39c8-40c5-8027-0506d6422888",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550457869097,
+        "parent_id": "902ec7a6-cbce-4bb4-891d-7f8c933cf102",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Clauses"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Clauses"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457869097,
+        "id": "9ac0659b-be1d-42d6-969f-88ab1def6938",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550457869097,
+        "parent_id": "902ec7a6-cbce-4bb4-891d-7f8c933cf102",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "- CONNECT BY: Specifies the relationship that defines the hierarchy.\n- START WITH: Specifies the root nodes.\n- ORDER SIBLINGS BY: Orders results properly."
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "- CONNECT BY: Specifies the relationship that defines the hierarchy.\n- START WITH: Specifies the root nodes.\n- ORDER SIBLINGS BY: Orders results properly.",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457869097,
+        "id": "56170e8a-3562-4c1c-ab18-8a8327d1e99a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550457869097,
+        "parent_id": "902ec7a6-cbce-4bb4-891d-7f8c933cf102",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Parameters"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Parameters"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457869098,
+        "id": "0fedac91-51bb-42c9-98c0-c9a0d80c1645",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550457869098,
+        "parent_id": "902ec7a6-cbce-4bb4-891d-7f8c933cf102",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "NOCYCLE: Stops processing a branch when a loop is detected. Valid hierarchies are Directed Acyclic Graphs, and circular references violate this construct."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "NOCYCLE: Stops processing a branch when a loop is detected. Valid hierarchies are Directed Acyclic Graphs, and circular references violate this construct."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457869098,
+        "id": "58f6dc98-c725-4210-8b5b-79d7e208f7e2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550457869098,
+        "parent_id": "902ec7a6-cbce-4bb4-891d-7f8c933cf102",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Operators"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Operators"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457869098,
+        "id": "13f15652-acf9-4ff0-9246-99323cc0fa3d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550457869098,
+        "parent_id": "902ec7a6-cbce-4bb4-891d-7f8c933cf102",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "- PRIOR: Obtains data from the node's parent.\n- CONNECT_BY_ROOT: Obtains data from the node's root."
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "- PRIOR: Obtains data from the node's parent.\n- CONNECT_BY_ROOT: Obtains data from the node's root.",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457869098,
+        "id": "4203dc5b-2779-49b6-99eb-29b2146464b7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550457869098,
+        "parent_id": "902ec7a6-cbce-4bb4-891d-7f8c933cf102",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Pseudocolumns"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Pseudocolumns"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457869098,
+        "id": "913b701f-51c5-4380-80b4-425f14ddfef1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550457869098,
+        "parent_id": "902ec7a6-cbce-4bb4-891d-7f8c933cf102",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "- LEVEL: Indicates the node's distance from its root.\n- CONNECT_BY_ISLEAF: Indicates a node without children.\n- CONNECT_BY_ISCYCLE: Indicates a node with a circular reference."
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "- LEVEL: Indicates the node's distance from its root.\n- CONNECT_BY_ISLEAF: Indicates a node without children.\n- CONNECT_BY_ISCYCLE: Indicates a node with a circular reference.",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457869098,
+        "id": "ad5cd99d-c566-4b3e-b311-5d153e354a26",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550457869098,
+        "parent_id": "902ec7a6-cbce-4bb4-891d-7f8c933cf102",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Functions"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Functions"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457869099,
+        "id": "0efaed89-7739-4f3a-a925-65e5e9293ef1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550457869099,
+        "parent_id": "902ec7a6-cbce-4bb4-891d-7f8c933cf102",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "SYS_CONNECT_BY_PATH: Returns a flattened/concatenated representation of the path to the node from its root."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "SYS_CONNECT_BY_PATH: Returns a flattened/concatenated representation of the path to the node from its root."
+          }
+        ]
+      }
+    ],
+    "title": "Oracle CONNECT BY functionality with recursive CTEs",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

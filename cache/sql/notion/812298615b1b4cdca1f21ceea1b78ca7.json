@@ -1,0 +1,148 @@
+{
+  "ID": "81229861-5b1b-4cdc-a1f2-1ceea1b78ca7",
+  "Root": {
+    "alive": true,
+    "content": [
+      "3e2fec6d-bc80-4e15-b08d-5ccf22a2073f",
+      "86055e84-04cc-423b-a070-6e53a6b21bf3",
+      "817ae725-60bd-4855-b240-6d914c521b56",
+      "7d15a9d1-5cd8-4443-a841-7e96aa9701c7"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550457870981,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "81229861-5b1b-4cdc-a1f2-1ceea1b78ca7",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550727720000,
+    "parent_id": "208cbc7b-c00e-45fb-a39d-962b71299d49",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "0Example of a complex SQL with Common Table Expression"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457870978,
+        "id": "3e2fec6d-bc80-4e15-b08d-5ccf22a2073f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550457870978,
+        "parent_id": "81229861-5b1b-4cdc-a1f2-1ceea1b78ca7",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Suppose we want to query the “cheapest products” from the “top categories”."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Suppose we want to query the “cheapest products” from the “top categories”."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457870980,
+        "id": "86055e84-04cc-423b-a070-6e53a6b21bf3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550457870980,
+        "parent_id": "81229861-5b1b-4cdc-a1f2-1ceea1b78ca7",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Here is an example of query using Common Table Expressions"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Here is an example of query using Common Table Expressions"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457870981,
+        "id": "817ae725-60bd-4855-b240-6d914c521b56",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550727720000,
+        "parent_id": "81229861-5b1b-4cdc-a1f2-1ceea1b78ca7",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "SQL"
+            ]
+          ],
+          "title": [
+            [
+              "-- all_sales: just a simple SELECT with all the needed JOINS\nWITH all_sales AS (\n  SELECT\n  product.price as product_price,\n  category.id as category_id,\n  category.description as category_description\n  FROM sale\n  LEFT JOIN product on sale.product_id = product.id\n  LEFT JOIN category on product.category_id = category.id\n)\n-- Group by category\n, sales_by_category AS (\n  SELECT category_id, category_description,\n  sum(product_price) as total_sales\n  FROM all_sales\n  GROUP BY category_id, category_description\n)\n-- Filtering total_sales \u003e 20\n, top_categories AS (\n  SELECT * from sales_by_category WHERE total_sales \u003e 20\n)\n-- all_products: just a simple SELECT with all the needed JOINS\n, all_products AS (\n  SELECT\n  product.id as product_id,\n  product.description as product_description,\n  product.price as product_price,\n  category.id as category_id,\n  category.description as category_description\n  FROM product\n  LEFT JOIN category on product.category_id = category.id\n)\n-- Order by product price\n, cheapest_products AS (\n  SELECT * from all_products\n  ORDER by product_price ASC\n)\n-- Simple inner join \n, cheapest_products_from_top_categories AS (\n  SELECT product_description, product_price\n  FROM cheapest_products\n  INNER JOIN top_categories ON cheapest_products.category_id = top_categories.category_id\n)\n--The main SELECT\nSELECT * from cheapest_products_from_top_categories"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "-- all_sales: just a simple SELECT with all the needed JOINS\nWITH all_sales AS (\n  SELECT\n  product.price as product_price,\n  category.id as category_id,\n  category.description as category_description\n  FROM sale\n  LEFT JOIN product on sale.product_id = product.id\n  LEFT JOIN category on product.category_id = category.id\n)\n-- Group by category\n, sales_by_category AS (\n  SELECT category_id, category_description,\n  sum(product_price) as total_sales\n  FROM all_sales\n  GROUP BY category_id, category_description\n)\n-- Filtering total_sales \u003e 20\n, top_categories AS (\n  SELECT * from sales_by_category WHERE total_sales \u003e 20\n)\n-- all_products: just a simple SELECT with all the needed JOINS\n, all_products AS (\n  SELECT\n  product.id as product_id,\n  product.description as product_description,\n  product.price as product_price,\n  category.id as category_id,\n  category.description as category_description\n  FROM product\n  LEFT JOIN category on product.category_id = category.id\n)\n-- Order by product price\n, cheapest_products AS (\n  SELECT * from all_products\n  ORDER by product_price ASC\n)\n-- Simple inner join \n, cheapest_products_from_top_categories AS (\n  SELECT product_description, product_price\n  FROM cheapest_products\n  INNER JOIN top_categories ON cheapest_products.category_id = top_categories.category_id\n)\n--The main SELECT\nSELECT * from cheapest_products_from_top_categories",
+        "code_language": "SQL"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550727720000,
+        "id": "7d15a9d1-5cd8-4443-a841-7e96aa9701c7",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550727720000,
+        "parent_id": "81229861-5b1b-4cdc-a1f2-1ceea1b78ca7",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
+      }
+    ],
+    "title": "0Example of a complex SQL with Common Table Expression",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

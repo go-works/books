@@ -1,0 +1,97 @@
+{
+  "ID": "f2fb6088-1d93-49ae-ac06-c497eb3c9acf",
+  "Root": {
+    "alive": true,
+    "content": [
+      "9dfff3cf-0822-4dba-9c9b-3755925f679a",
+      "1fabdc03-2bf9-46ca-a90e-e95c7f062961"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550458162217,
+    "id": "f2fb6088-1d93-49ae-ac06-c497eb3c9acf",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550458162217,
+    "parent_id": "56d55a90-21b2-4426-a4c0-2120910cfb8d",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 CREATE TRIGGER"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550458162214,
+        "id": "9dfff3cf-0822-4dba-9c9b-3755925f679a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550458162214,
+        "parent_id": "f2fb6088-1d93-49ae-ac06-c497eb3c9acf",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This example creates a trigger that inserts a record to a second table (MyAudit) after a record is inserted into the table the trigger is defined on (MyTable). Here the “inserted” table is a special table used by Microsoft SQL Server to store affected rows during INSERT and UPDATE statements; there is also a special “deleted” table that performs the same function for DELETE statements."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This example creates a trigger that inserts a record to a second table (MyAudit) after a record is inserted into the table the trigger is defined on (MyTable). Here the “inserted” table is a special table used by Microsoft SQL Server to store affected rows during INSERT and UPDATE statements; there is also a special “deleted” table that performs the same function for DELETE statements."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550458162217,
+        "id": "1fabdc03-2bf9-46ca-a90e-e95c7f062961",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550458162217,
+        "parent_id": "f2fb6088-1d93-49ae-ac06-c497eb3c9acf",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "CREATE TRIGGER MyTrigger\n    ON MyTable\n    AFTER INSERT\n\nAS\n\nBEGIN\n    -- insert audit record to MyAudit table\n    INSERT INTO MyAudit(MyTableId, User)\n    (SELECT MyTableId, CURRENT_USER FROM inserted)\nEND"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "CREATE TRIGGER MyTrigger\n    ON MyTable\n    AFTER INSERT\n\nAS\n\nBEGIN\n    -- insert audit record to MyAudit table\n    INSERT INTO MyAudit(MyTableId, User)\n    (SELECT MyTableId, CURRENT_USER FROM inserted)\nEND",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 CREATE TRIGGER"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

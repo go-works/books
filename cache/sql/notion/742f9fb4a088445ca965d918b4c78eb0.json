@@ -1,0 +1,193 @@
+{
+  "ID": "742f9fb4-a088-445c-a965-d918b4c78eb0",
+  "Root": {
+    "alive": true,
+    "content": [
+      "762e5e0f-c2cb-49a9-8eab-5f726881abe2",
+      "864eaf32-492f-41f9-b280-e85a3547056e",
+      "f1b279aa-6d22-4cc6-be3c-dc684a92b847",
+      "9ba7bb87-27aa-4cf7-8148-a67561c481b4",
+      "63f69161-09ef-463a-bb7b-46c2e4e3e98f"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550457859018,
+    "id": "742f9fb4-a088-445c-a965-d918b4c78eb0",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550657640000,
+    "parent_id": "111e9c71-85a7-4cb1-92e6-81b82c8dad2c",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Getting the N most recent rows over multiple grouping"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 6,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457859017,
+        "id": "762e5e0f-c2cb-49a9-8eab-5f726881abe2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550457859017,
+        "parent_id": "742f9fb4-a088-445c-a965-d918b4c78eb0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Given this data"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Given this data"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457859018,
+        "id": "864eaf32-492f-41f9-b280-e85a3547056e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550457859018,
+        "parent_id": "742f9fb4-a088-445c-a965-d918b4c78eb0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "User_ID | Completion_Date |\n—— | —— |\n1 | 2016-07-20 |\n1 | 2016-07-21 |\n2 | 2016-07-20 |\n2 | 2016-07-21 |\n2 | 2016-07-22 |"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "User_ID | Completion_Date |\n—— | —— |\n1 | 2016-07-20 |\n1 | 2016-07-21 |\n2 | 2016-07-20 |\n2 | 2016-07-21 |\n2 | 2016-07-22 |"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457859018,
+        "id": "f1b279aa-6d22-4cc6-be3c-dc684a92b847",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550457859018,
+        "parent_id": "742f9fb4-a088-445c-a965-d918b4c78eb0",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              ";with CTE as\n(SELECT *, \n        ROW_NUMBER() OVER (PARTITION BY User_ID \n                           ORDER BY Completion_Date DESC) Row_Num\nFROM    Data)\nSELECT * FORM CTE WHERE Row_Num \u003c= n"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": ";with CTE as\n(SELECT *, \n        ROW_NUMBER() OVER (PARTITION BY User_ID \n                           ORDER BY Completion_Date DESC) Row_Num\nFROM    Data)\nSELECT * FORM CTE WHERE Row_Num \u003c= n",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457859018,
+        "id": "9ba7bb87-27aa-4cf7-8148-a67561c481b4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550457859018,
+        "parent_id": "742f9fb4-a088-445c-a965-d918b4c78eb0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Using n=1, you’ll get the one most recent row per "
+            ],
+            [
+              "user_id",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ":"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Using n=1, you’ll get the one most recent row per "
+          },
+          {
+            "Text": "user_id",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ":"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457859018,
+        "id": "63f69161-09ef-463a-bb7b-46c2e4e3e98f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550457859018,
+        "parent_id": "742f9fb4-a088-445c-a965-d918b4c78eb0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "User_ID | Completion_Date |Row_Num |\n—— | —— |—— |\n1 | 2016-07-21 |1\n2 | 2016-07-22 |1"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "User_ID | Completion_Date |Row_Num |\n—— | —— |—— |\n1 | 2016-07-21 |1\n2 | 2016-07-22 |1"
+          }
+        ]
+      }
+    ],
+    "title": "Getting the N most recent rows over multiple grouping"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

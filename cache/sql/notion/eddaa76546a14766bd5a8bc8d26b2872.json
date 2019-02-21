@@ -1,0 +1,189 @@
+{
+  "ID": "eddaa765-46a1-4766-bd5a-8bc8d26b2872",
+  "Root": {
+    "alive": true,
+    "content": [
+      "76fc8b20-1d2f-4f99-974c-926fc0ad4d9f",
+      "e7f24e36-cbe0-4d5e-9e1f-67c3f6b444fb",
+      "1cddb139-cb79-4f53-acd6-d5aee6f38463",
+      "efdbeae7-59b8-4cca-925f-cb6111e1f1fe",
+      "38cb5130-fbaf-485d-9d0a-ae0ec71391d2"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550457870009,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "eddaa765-46a1-4766-bd5a-8bc8d26b2872",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550727720000,
+    "parent_id": "208cbc7b-c00e-45fb-a39d-962b71299d49",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Refactoring a query to use Common Table Expressions"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457870006,
+        "id": "76fc8b20-1d2f-4f99-974c-926fc0ad4d9f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550457870006,
+        "parent_id": "eddaa765-46a1-4766-bd5a-8bc8d26b2872",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Suppose we want to get all product categories with total sales greater than 20."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Suppose we want to get all product categories with total sales greater than 20."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457870009,
+        "id": "e7f24e36-cbe0-4d5e-9e1f-67c3f6b444fb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550457870009,
+        "parent_id": "eddaa765-46a1-4766-bd5a-8bc8d26b2872",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Here is a query without Common Table Expressions:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Here is a query without Common Table Expressions:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457870009,
+        "id": "1cddb139-cb79-4f53-acd6-d5aee6f38463",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550727720000,
+        "parent_id": "eddaa765-46a1-4766-bd5a-8bc8d26b2872",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "SQL"
+            ]
+          ],
+          "title": [
+            [
+              "SELECT category.description, sum(product.price) as total_sales\nFROM sale\nLEFT JOIN product on sale.product_id = product.id\nLEFT JOIN category on product.category_id = category.id\nGROUP BY category.id, category.description\nHAVING sum(product.price) \u003e 20"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "SELECT category.description, sum(product.price) as total_sales\nFROM sale\nLEFT JOIN product on sale.product_id = product.id\nLEFT JOIN category on product.category_id = category.id\nGROUP BY category.id, category.description\nHAVING sum(product.price) \u003e 20",
+        "code_language": "SQL"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457870009,
+        "id": "efdbeae7-59b8-4cca-925f-cb6111e1f1fe",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550457870009,
+        "parent_id": "eddaa765-46a1-4766-bd5a-8bc8d26b2872",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "And an equivalent query using Common Table Expressions:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "And an equivalent query using Common Table Expressions:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457870009,
+        "id": "38cb5130-fbaf-485d-9d0a-ae0ec71391d2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550727720000,
+        "parent_id": "eddaa765-46a1-4766-bd5a-8bc8d26b2872",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "SQL"
+            ]
+          ],
+          "title": [
+            [
+              "WITH all_sales AS (\n  SELECT product.price, category.id as category_id, category.description as category_description\n  FROM sale\n  LEFT JOIN product on sale.product_id = product.id\n  LEFT JOIN category on product.category_id = category.id\n)\n, sales_by_category AS (\n  SELECT category_description, sum(price) as total_sales\n  FROM all_sales\n  GROUP BY category_id, category_description\n)\nSELECT * from sales_by_category WHERE total_sales \u003e 20"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "WITH all_sales AS (\n  SELECT product.price, category.id as category_id, category.description as category_description\n  FROM sale\n  LEFT JOIN product on sale.product_id = product.id\n  LEFT JOIN category on product.category_id = category.id\n)\n, sales_by_category AS (\n  SELECT category_description, sum(price) as total_sales\n  FROM all_sales\n  GROUP BY category_id, category_description\n)\nSELECT * from sales_by_category WHERE total_sales \u003e 20",
+        "code_language": "SQL"
+      }
+    ],
+    "title": "Refactoring a query to use Common Table Expressions",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

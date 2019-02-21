@@ -1,0 +1,164 @@
+{
+  "ID": "7a0440c7-d4b9-4c70-b00d-406e17bf9e98",
+  "Root": {
+    "alive": true,
+    "content": [
+      "3c341bca-4735-4751-ad30-972cb2aa2973",
+      "9f578c8d-a3e7-4f64-b6df-a3e322de02ff",
+      "c347b2db-6a17-4f73-8689-5b842408660d",
+      "436d6608-50ea-4f0e-be76-7246de158223"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550457867980,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "7a0440c7-d4b9-4c70-b00d-406e17bf9e98",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550727780000,
+    "parent_id": "208cbc7b-c00e-45fb-a39d-962b71299d49",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Recursively generate dates extended to include team rostering as example"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457867979,
+        "id": "3c341bca-4735-4751-ad30-972cb2aa2973",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550727780000,
+        "parent_id": "7a0440c7-d4b9-4c70-b00d-406e17bf9e98",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "SQL"
+            ]
+          ],
+          "title": [
+            [
+              "DECLARE @DateFrom DATETIME = '2016-06-01 06:00'\nDECLARE @DateTo DATETIME = '2016-07-01 06:00'\nDECLARE @IntervalDays INT = 7\n\n-- Transition Sequence = Rest \u0026 Relax into Day Shift into Night Shift\n-- RR (Rest \u0026 Relax) = 1\n-- DS (Day Shift) = 2\n-- NS (Night Shift) = 3\n\n;WITH roster AS\n(\n   SELECT @DateFrom AS RosterStart, 1 AS TeamA, 2 AS TeamB, 3 AS TeamC\n   UNION ALL\n   SELECT DATEADD(d, @IntervalDays, RosterStart),\n          CASE TeamA WHEN 1 THEN 2 WHEN 2 THEN 3 WHEN 3 THEN 1 END AS TeamA,\n          CASE TeamB WHEN 1 THEN 2 WHEN 2 THEN 3 WHEN 3 THEN 1 END AS TeamB,\n          CASE TeamC WHEN 1 THEN 2 WHEN 2 THEN 3 WHEN 3 THEN 1 END AS TeamC\n   FROM roster WHERE RosterStart \u003c DATEADD(d, -@IntervalDays, @DateTo)\n)\n\nSELECT RosterStart,\n       ISNULL(LEAD(RosterStart) OVER (ORDER BY RosterStart), RosterStart + @IntervalDays) AS RosterEnd,\n       CASE TeamA WHEN 1 THEN 'RR' WHEN 2 THEN 'DS' WHEN 3 THEN 'NS' END AS TeamA,\n       CASE TeamB WHEN 1 THEN 'RR' WHEN 2 THEN 'DS' WHEN 3 THEN 'NS' END AS TeamB,\n       CASE TeamC WHEN 1 THEN 'RR' WHEN 2 THEN 'DS' WHEN 3 THEN 'NS' END AS TeamC\nFROM roster"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "DECLARE @DateFrom DATETIME = '2016-06-01 06:00'\nDECLARE @DateTo DATETIME = '2016-07-01 06:00'\nDECLARE @IntervalDays INT = 7\n\n-- Transition Sequence = Rest \u0026 Relax into Day Shift into Night Shift\n-- RR (Rest \u0026 Relax) = 1\n-- DS (Day Shift) = 2\n-- NS (Night Shift) = 3\n\n;WITH roster AS\n(\n   SELECT @DateFrom AS RosterStart, 1 AS TeamA, 2 AS TeamB, 3 AS TeamC\n   UNION ALL\n   SELECT DATEADD(d, @IntervalDays, RosterStart),\n          CASE TeamA WHEN 1 THEN 2 WHEN 2 THEN 3 WHEN 3 THEN 1 END AS TeamA,\n          CASE TeamB WHEN 1 THEN 2 WHEN 2 THEN 3 WHEN 3 THEN 1 END AS TeamB,\n          CASE TeamC WHEN 1 THEN 2 WHEN 2 THEN 3 WHEN 3 THEN 1 END AS TeamC\n   FROM roster WHERE RosterStart \u003c DATEADD(d, -@IntervalDays, @DateTo)\n)\n\nSELECT RosterStart,\n       ISNULL(LEAD(RosterStart) OVER (ORDER BY RosterStart), RosterStart + @IntervalDays) AS RosterEnd,\n       CASE TeamA WHEN 1 THEN 'RR' WHEN 2 THEN 'DS' WHEN 3 THEN 'NS' END AS TeamA,\n       CASE TeamB WHEN 1 THEN 'RR' WHEN 2 THEN 'DS' WHEN 3 THEN 'NS' END AS TeamB,\n       CASE TeamC WHEN 1 THEN 'RR' WHEN 2 THEN 'DS' WHEN 3 THEN 'NS' END AS TeamC\nFROM roster",
+        "code_language": "SQL"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457867980,
+        "id": "9f578c8d-a3e7-4f64-b6df-a3e322de02ff",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550457867980,
+        "parent_id": "7a0440c7-d4b9-4c70-b00d-406e17bf9e98",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Result",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Result",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457867980,
+        "id": "c347b2db-6a17-4f73-8689-5b842408660d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550457867980,
+        "parent_id": "7a0440c7-d4b9-4c70-b00d-406e17bf9e98",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "I.e. For Week 1 TeamA is on R\u0026R, TeamB is on Day Shift and TeamC is on Night Shift."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "I.e. For Week 1 TeamA is on R\u0026R, TeamB is on Day Shift and TeamC is on Night Shift."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457867980,
+        "id": "436d6608-50ea-4f0e-be76-7246de158223",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550457867980,
+        "parent_id": "7a0440c7-d4b9-4c70-b00d-406e17bf9e98",
+        "parent_table": "block",
+        "properties": {
+          "source": [
+            [
+              "http://i.stack.imgur.com/rm2xk.jpg"
+            ]
+          ]
+        },
+        "type": "image",
+        "version": 1,
+        "source": "http://i.stack.imgur.com/rm2xk.jpg",
+        "image_url": "https://www.notion.so/image/https:%2F%2Fwww.notion.sohttp:%2F%2Fi.stack.imgur.com%2Frm2xk.jpg"
+      }
+    ],
+    "title": "Recursively generate dates extended to include team rostering as example",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

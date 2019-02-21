@@ -1,0 +1,181 @@
+{
+  "ID": "204c6669-f3b8-44d7-b1a4-2b03859af312",
+  "Root": {
+    "alive": true,
+    "content": [
+      "6866df7a-4a40-4568-92da-b34f5075d571",
+      "88abc604-8edc-4f0d-9ab8-cb4be8360889"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550457865041,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "204c6669-f3b8-44d7-b1a4-2b03859af312",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550727660000,
+    "parent_id": "208cbc7b-c00e-45fb-a39d-962b71299d49",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "recursively enumerating a subtree"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 8,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457865038,
+        "id": "6866df7a-4a40-4568-92da-b34f5075d571",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550727660000,
+        "parent_id": "204c6669-f3b8-44d7-b1a4-2b03859af312",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "SQL"
+            ]
+          ],
+          "title": [
+            [
+              "WITH RECURSIVE ManagedByJames(Level, ID, FName, LName) AS (\n    -- start with this row\n    SELECT 1, ID, FName, LName\n    FROM Employees\n    WHERE ID = 1\n\n    UNION ALL\n\n    -- get employees that have any of the previously selected rows as manager\n    SELECT ManagedByJames.Level + 1,\n           Employees.ID,\n           Employees.FName,\n           Employees.LName\n    FROM Employees\n    JOIN ManagedByJames\n        ON Employees.ManagerID = ManagedByJames.ID\n\n    ORDER BY 1 DESC   -- depth-first search\n)\nSELECT * FROM ManagedByJames;"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 3,
+        "code": "WITH RECURSIVE ManagedByJames(Level, ID, FName, LName) AS (\n    -- start with this row\n    SELECT 1, ID, FName, LName\n    FROM Employees\n    WHERE ID = 1\n\n    UNION ALL\n\n    -- get employees that have any of the previously selected rows as manager\n    SELECT ManagedByJames.Level + 1,\n           Employees.ID,\n           Employees.FName,\n           Employees.LName\n    FROM Employees\n    JOIN ManagedByJames\n        ON Employees.ManagerID = ManagedByJames.ID\n\n    ORDER BY 1 DESC   -- depth-first search\n)\nSELECT * FROM ManagedByJames;",
+        "code_language": "SQL"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550457865041,
+        "id": "88abc604-8edc-4f0d-9ab8-cb4be8360889",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550457865041,
+        "parent_id": "204c6669-f3b8-44d7-b1a4-2b03859af312",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "| Level | ID | FName | LName | |—––|––|———|———| | "
+            ],
+            [
+              "1",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              "| 1 | James | Smith | | "
+            ],
+            [
+              "2",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              "| 2 | John | Johnson | | "
+            ],
+            [
+              "3",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              "| 4 |Johnathon| Smith | | "
+            ],
+            [
+              "2",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              "| 3 | Michael | Williams|"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "| Level | ID | FName | LName | |—––|––|———|———| | "
+          },
+          {
+            "Text": "1",
+            "AttrFlags": 1
+          },
+          {
+            "Text": "| 1 | James | Smith | | "
+          },
+          {
+            "Text": "2",
+            "AttrFlags": 1
+          },
+          {
+            "Text": "| 2 | John | Johnson | | "
+          },
+          {
+            "Text": "3",
+            "AttrFlags": 1
+          },
+          {
+            "Text": "| 4 |Johnathon| Smith | | "
+          },
+          {
+            "Text": "2",
+            "AttrFlags": 1
+          },
+          {
+            "Text": "| 3 | Michael | Williams|"
+          }
+        ]
+      }
+    ],
+    "title": "recursively enumerating a subtree",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}
