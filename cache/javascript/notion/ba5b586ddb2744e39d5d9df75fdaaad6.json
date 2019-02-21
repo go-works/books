@@ -1,0 +1,235 @@
+{
+  "ID": "ba5b586d-db27-44e3-9d5d-9df75fdaaad6",
+  "Root": {
+    "alive": true,
+    "content": [
+      "0780b34d-2d7f-4719-bf4b-6a3ab523eddf",
+      "e3f2423b-f3c5-49f2-9e3b-6427eca91b20",
+      "7e925f86-dba0-44ff-bd29-fc314057cdf1",
+      "2ef6e1f2-f4c3-4d64-bc2f-dd37bc73038a"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550716840133,
+    "id": "ba5b586d-db27-44e3-9d5d-9df75fdaaad6",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550716840133,
+    "parent_id": "cbb9c137-3d95-4448-8b01-c2da14811905",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Observer pattern"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550716840131,
+        "id": "0780b34d-2d7f-4719-bf4b-6a3ab523eddf",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550716840131,
+        "parent_id": "ba5b586d-db27-44e3-9d5d-9df75fdaaad6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The "
+            ],
+            [
+              "Observer",
+              [
+                [
+                  "a",
+                  "https://en.wikipedia.org/wiki/Observer_pattern"
+                ]
+              ]
+            ],
+            [
+              " pattern is used for event handling and delegation. A "
+            ],
+            [
+              "subject",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " maintains a collection of "
+            ],
+            [
+              "observers.",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " The subject then notifies these observers whenever an event occurs. If you’ve ever used "
+            ],
+            [
+              "addEventListener",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener"
+                ]
+              ]
+            ],
+            [
+              " then you’ve utilized the Observer pattern."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The "
+          },
+          {
+            "Text": "Observer",
+            "Link": "https://en.wikipedia.org/wiki/Observer_pattern"
+          },
+          {
+            "Text": " pattern is used for event handling and delegation. A "
+          },
+          {
+            "Text": "subject",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " maintains a collection of "
+          },
+          {
+            "Text": "observers.",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " The subject then notifies these observers whenever an event occurs. If you’ve ever used "
+          },
+          {
+            "Text": "addEventListener",
+            "AttrFlags": 2,
+            "Link": "https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener"
+          },
+          {
+            "Text": " then you’ve utilized the Observer pattern."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550716840132,
+        "id": "e3f2423b-f3c5-49f2-9e3b-6427eca91b20",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550716840132,
+        "parent_id": "ba5b586d-db27-44e3-9d5d-9df75fdaaad6",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "function Subject() {\n    this.observers = []; // Observers listening to the subject\n    \n    this.registerObserver = function(observer) {\n        // Add an observer if it isn't already being tracked\n        if (this.observers.indexOf(observer) === -1) {\n            this.observers.push(observer);\n        }\n    };\n\n    this.unregisterObserver = function(observer) {\n        // Removes a previously registered observer\n        var index = this.observers.indexOf(observer);\n        if (index \u003e -1) {\n            this.observers.splice(index, 1);\n        }\n    };\n\n    this.notifyObservers = function(message) {\n        // Send a message to all observers\n        this.observers.forEach(function(observer) {\n            observer.notify(message);\n        });\n    };\n}\n\nfunction Observer() {\n    this.notify = function(message) {\n        // Every observer must implement this function\n    };\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "function Subject() {\n    this.observers = []; // Observers listening to the subject\n    \n    this.registerObserver = function(observer) {\n        // Add an observer if it isn't already being tracked\n        if (this.observers.indexOf(observer) === -1) {\n            this.observers.push(observer);\n        }\n    };\n\n    this.unregisterObserver = function(observer) {\n        // Removes a previously registered observer\n        var index = this.observers.indexOf(observer);\n        if (index \u003e -1) {\n            this.observers.splice(index, 1);\n        }\n    };\n\n    this.notifyObservers = function(message) {\n        // Send a message to all observers\n        this.observers.forEach(function(observer) {\n            observer.notify(message);\n        });\n    };\n}\n\nfunction Observer() {\n    this.notify = function(message) {\n        // Every observer must implement this function\n    };\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550716840133,
+        "id": "7e925f86-dba0-44ff-bd29-fc314057cdf1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550716840133,
+        "parent_id": "ba5b586d-db27-44e3-9d5d-9df75fdaaad6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Example usage:",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Example usage:",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550716840133,
+        "id": "2ef6e1f2-f4c3-4d64-bc2f-dd37bc73038a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550716840133,
+        "parent_id": "ba5b586d-db27-44e3-9d5d-9df75fdaaad6",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "function Employee(name) {\n    this.name = name;\n\n    // Implement `notify` so the subject can pass us messages\n    this.notify = function(meetingTime) {\n        console.log(this.name + ': There is a meeting at ' + meetingTime);\n    };\n}\n\nvar bob = new Employee('Bob');\nvar jane = new Employee('Jane');\nvar meetingAlerts = new Subject();\nmeetingAlerts.registerObserver(bob);\nmeetingAlerts.registerObserver(jane);\nmeetingAlerts.notifyObservers('4pm');\n\n// Output:\n// Bob: There is a meeting at 4pm\n// Jane: There is a meeting at 4pm"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "function Employee(name) {\n    this.name = name;\n\n    // Implement `notify` so the subject can pass us messages\n    this.notify = function(meetingTime) {\n        console.log(this.name + ': There is a meeting at ' + meetingTime);\n    };\n}\n\nvar bob = new Employee('Bob');\nvar jane = new Employee('Jane');\nvar meetingAlerts = new Subject();\nmeetingAlerts.registerObserver(bob);\nmeetingAlerts.registerObserver(jane);\nmeetingAlerts.notifyObservers('4pm');\n\n// Output:\n// Bob: There is a meeting at 4pm\n// Jane: There is a meeting at 4pm",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 Observer pattern"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

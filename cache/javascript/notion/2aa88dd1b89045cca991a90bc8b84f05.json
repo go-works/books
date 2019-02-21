@@ -1,0 +1,224 @@
+{
+  "ID": "2aa88dd1-b890-45cc-a991-a90bc8b84f05",
+  "Root": {
+    "alive": true,
+    "content": [
+      "141e5237-7794-4200-b38f-a12c2554a35a",
+      "1500b0cd-8635-463e-a5d2-73219f4b70fa",
+      "dadc04ea-b343-4701-a8c2-b4d54816fea7",
+      "91cbf3ff-01b6-4888-ae42-d35e86f2cecd",
+      "e7677aeb-1093-4ac6-835e-fd9ed15dc2a1"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550715005391,
+    "id": "2aa88dd1-b890-45cc-a991-a90bc8b84f05",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550715005391,
+    "parent_id": "a72911dd-354d-4c5c-b786-a7eb42d855b4",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "120 Object.seal"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715005391,
+        "id": "141e5237-7794-4200-b38f-a12c2554a35a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715005391,
+        "parent_id": "2aa88dd1-b890-45cc-a991-a90bc8b84f05",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Object.seal",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " prevents the addition or removal of properties from an object. Once an object has been sealed its property descriptors can’t be converted to another type. Unlike "
+            ],
+            [
+              "Object.freeze",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "http://stackoverflow.com/documentation/javascript/188/objects/2356/object-freeze"
+                ]
+              ]
+            ],
+            [
+              " it does allow properties to be edited."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Object.seal",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " prevents the addition or removal of properties from an object. Once an object has been sealed its property descriptors can’t be converted to another type. Unlike "
+          },
+          {
+            "Text": "Object.freeze",
+            "AttrFlags": 2,
+            "Link": "http://stackoverflow.com/documentation/javascript/188/objects/2356/object-freeze"
+          },
+          {
+            "Text": " it does allow properties to be edited."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715005391,
+        "id": "1500b0cd-8635-463e-a5d2-73219f4b70fa",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715005391,
+        "parent_id": "2aa88dd1-b890-45cc-a991-a90bc8b84f05",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Attempts to do this operations on a sealed object will fail silently"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Attempts to do this operations on a sealed object will fail silently"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715005391,
+        "id": "dadc04ea-b343-4701-a8c2-b4d54816fea7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715005391,
+        "parent_id": "2aa88dd1-b890-45cc-a991-a90bc8b84f05",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var obj = { foo: 'foo', bar: function () { return 'bar'; } };\n\nObject.seal(obj)\n\nobj.newFoo = 'newFoo';\nobj.bar = function () { return 'foo' };\n\nobj.newFoo; // undefined\nobj.bar(); // 'foo'\n\n// Can't make foo an accessor property\nObject.defineProperty(obj, 'foo', { \n    get: function () { return 'newFoo'; }\n}); // TypeError\n\n// But you can make it read only\nObject.defineProperty(obj, 'foo', { \n    writable: false\n}); // TypeError\n\nobj.foo = 'newFoo';\nobj.foo; // 'foo';"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var obj = { foo: 'foo', bar: function () { return 'bar'; } };\n\nObject.seal(obj)\n\nobj.newFoo = 'newFoo';\nobj.bar = function () { return 'foo' };\n\nobj.newFoo; // undefined\nobj.bar(); // 'foo'\n\n// Can't make foo an accessor property\nObject.defineProperty(obj, 'foo', { \n    get: function () { return 'newFoo'; }\n}); // TypeError\n\n// But you can make it read only\nObject.defineProperty(obj, 'foo', { \n    writable: false\n}); // TypeError\n\nobj.foo = 'newFoo';\nobj.foo; // 'foo';",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715005391,
+        "id": "91cbf3ff-01b6-4888-ae42-d35e86f2cecd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715005391,
+        "parent_id": "2aa88dd1-b890-45cc-a991-a90bc8b84f05",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In strict mode these operations will throw a "
+            ],
+            [
+              "TypeError",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In strict mode these operations will throw a "
+          },
+          {
+            "Text": "TypeError",
+            "AttrFlags": 2
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715005391,
+        "id": "e7677aeb-1093-4ac6-835e-fd9ed15dc2a1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715005391,
+        "parent_id": "2aa88dd1-b890-45cc-a991-a90bc8b84f05",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "(function () {\n    'use strict';\n\n    var obj = { foo: 'foo' };\n\n    Object.seal(obj);\n\n    obj.newFoo = 'newFoo'; // TypeError\n}());"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "(function () {\n    'use strict';\n\n    var obj = { foo: 'foo' };\n\n    Object.seal(obj);\n\n    obj.newFoo = 'newFoo'; // TypeError\n}());",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "120 Object.seal"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

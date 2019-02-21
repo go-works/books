@@ -1,0 +1,159 @@
+{
+  "ID": "359b3b93-4bfa-4cf9-a3d9-d6969c6ff52b",
+  "Root": {
+    "alive": true,
+    "content": [
+      "45bcf900-9c26-4542-9e96-33241c1ee9bc",
+      "4fa664fa-c946-4046-ac87-0eb19e2b2f52",
+      "01bec84f-d884-4df2-ba77-d6ab764504b0"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550715128523,
+    "id": "359b3b93-4bfa-4cf9-a3d9-d6969c6ff52b",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550715128523,
+    "parent_id": "499ecbda-9a83-4992-8013-1e2d2247246e",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "120 forEach with promises"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715128523,
+        "id": "45bcf900-9c26-4542-9e96-33241c1ee9bc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715128523,
+        "parent_id": "359b3b93-4bfa-4cf9-a3d9-d6969c6ff52b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "It is possible to effectively apply a function ("
+            ],
+            [
+              "cb",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ") which returns a promise to each element of an array, with each element waiting to be processed until the previous element is processed."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "It is possible to effectively apply a function ("
+          },
+          {
+            "Text": "cb",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ") which returns a promise to each element of an array, with each element waiting to be processed until the previous element is processed."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715128523,
+        "id": "4fa664fa-c946-4046-ac87-0eb19e2b2f52",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715128523,
+        "parent_id": "359b3b93-4bfa-4cf9-a3d9-d6969c6ff52b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "function promiseForEach(arr, cb) {\n  var i = 0;\n\n  var nextPromise = function () {\n    if (i \u003e= arr.length) {\n      // Processing finished.\n      return;\n    }\n\n    // Process next function. Wrap in `Promise.resolve` in case\n    // the function does not return a promise\n    var newPromise = Promise.resolve(cb(arr[i], i));\n    i++;\n    // Chain to finish processing.\n    return newPromise.then(nextPromise);\n  };\n\n  // Kick off the chain.\n  return Promise.resolve().then(nextPromise);\n};"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "function promiseForEach(arr, cb) {\n  var i = 0;\n\n  var nextPromise = function () {\n    if (i \u003e= arr.length) {\n      // Processing finished.\n      return;\n    }\n\n    // Process next function. Wrap in `Promise.resolve` in case\n    // the function does not return a promise\n    var newPromise = Promise.resolve(cb(arr[i], i));\n    i++;\n    // Chain to finish processing.\n    return newPromise.then(nextPromise);\n  };\n\n  // Kick off the chain.\n  return Promise.resolve().then(nextPromise);\n};",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715128523,
+        "id": "01bec84f-d884-4df2-ba77-d6ab764504b0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715128523,
+        "parent_id": "359b3b93-4bfa-4cf9-a3d9-d6969c6ff52b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This can be helpful if you need to efficiently process thousands of items, one at a time. Using a regular "
+            ],
+            [
+              "for",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " loop to create the promises will create them all at once and take up a significant amount of RAM."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This can be helpful if you need to efficiently process thousands of items, one at a time. Using a regular "
+          },
+          {
+            "Text": "for",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " loop to create the promises will create them all at once and take up a significant amount of RAM."
+          }
+        ]
+      }
+    ],
+    "title": "120 forEach with promises"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

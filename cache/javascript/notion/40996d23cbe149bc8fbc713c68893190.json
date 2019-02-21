@@ -1,0 +1,339 @@
+{
+  "ID": "40996d23-cbe1-49bc-8fbc-713c68893190",
+  "Root": {
+    "alive": true,
+    "content": [
+      "76de9a8f-78fb-4edb-96ed-f0f4a3cbe342",
+      "5e8d0501-c155-46c0-9f0b-3be966f34f16",
+      "1c58702b-4716-4c5b-a50a-10f1c01d4c55",
+      "d0e0db1e-e224-4359-80e6-d37e5ab66ad4",
+      "7cd3b069-b33c-45a2-bb63-6ab1f5a0da6d",
+      "3367e108-c1a2-472c-99e2-710c5f8025a8",
+      "6353b54f-82ca-40b1-921f-6f2946b47cd3",
+      "9044c561-84ba-49b1-b4cf-591ee9095107",
+      "f2815661-a3a7-44c2-b167-65c65026a0ff"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550715428615,
+    "id": "40996d23-cbe1-49bc-8fbc-713c68893190",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550715428615,
+    "parent_id": "d2331001-56b1-44a6-aa42-d1c266b59d1b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "060 Iterating through an arrayBuffer"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715428614,
+        "id": "76de9a8f-78fb-4edb-96ed-f0f4a3cbe342",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715428614,
+        "parent_id": "40996d23-cbe1-49bc-8fbc-713c68893190",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "For a convenient way to iterate through an arrayBuffer, you can create a simple iterator that implements the "
+            ],
+            [
+              "DataView",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " methods under the hood:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "For a convenient way to iterate through an arrayBuffer, you can create a simple iterator that implements the "
+          },
+          {
+            "Text": "DataView",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " methods under the hood:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715428614,
+        "id": "5e8d0501-c155-46c0-9f0b-3be966f34f16",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715428614,
+        "parent_id": "40996d23-cbe1-49bc-8fbc-713c68893190",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var ArrayBufferCursor = function() {\n  var ArrayBufferCursor = function(arrayBuffer) {\n    this.dataview = new DataView(arrayBuffer, 0);\n    this.size = arrayBuffer.byteLength;\n    this.index = 0;\n  }\n\n  ArrayBufferCursor.prototype.next = function(type) {\n    switch(type) {\n      case 'Uint8':\n        var result = this.dataview.getUint8(this.index);\n        this.index += 1;\n        return result;\n      case 'Int16':\n        var result = this.dataview.getInt16(this.index, true);\n        this.index += 2;\n        return result;\n      case 'Uint16':\n        var result = this.dataview.getUint16(this.index, true);\n        this.index += 2;\n        return result;\n      case 'Int32':\n        var result = this.dataview.getInt32(this.index, true);\n        this.index += 4;\n        return result;\n      case 'Uint32':\n        var result = this.dataview.getUint32(this.index, true);\n        this.index += 4;\n        return result;\n      case 'Float':\n      case 'Float32':\n        var result = this.dataview.getFloat32(this.index, true);\n        this.index += 4;\n        return result;\n      case 'Double':\n      case 'Float64':\n        var result = this.dataview.getFloat64(this.index, true);\n        this.index += 8;\n        return result;\n      default:\n        throw new Error(\"Unknown datatype\");\n    }\n  };\n\n  ArrayBufferCursor.prototype.hasNext = function() {\n    return this.index \u003c this.size;\n  }\n\n  return ArrayBufferCursor;\n});"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var ArrayBufferCursor = function() {\n  var ArrayBufferCursor = function(arrayBuffer) {\n    this.dataview = new DataView(arrayBuffer, 0);\n    this.size = arrayBuffer.byteLength;\n    this.index = 0;\n  }\n\n  ArrayBufferCursor.prototype.next = function(type) {\n    switch(type) {\n      case 'Uint8':\n        var result = this.dataview.getUint8(this.index);\n        this.index += 1;\n        return result;\n      case 'Int16':\n        var result = this.dataview.getInt16(this.index, true);\n        this.index += 2;\n        return result;\n      case 'Uint16':\n        var result = this.dataview.getUint16(this.index, true);\n        this.index += 2;\n        return result;\n      case 'Int32':\n        var result = this.dataview.getInt32(this.index, true);\n        this.index += 4;\n        return result;\n      case 'Uint32':\n        var result = this.dataview.getUint32(this.index, true);\n        this.index += 4;\n        return result;\n      case 'Float':\n      case 'Float32':\n        var result = this.dataview.getFloat32(this.index, true);\n        this.index += 4;\n        return result;\n      case 'Double':\n      case 'Float64':\n        var result = this.dataview.getFloat64(this.index, true);\n        this.index += 8;\n        return result;\n      default:\n        throw new Error(\"Unknown datatype\");\n    }\n  };\n\n  ArrayBufferCursor.prototype.hasNext = function() {\n    return this.index \u003c this.size;\n  }\n\n  return ArrayBufferCursor;\n});",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715428614,
+        "id": "1c58702b-4716-4c5b-a50a-10f1c01d4c55",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715428614,
+        "parent_id": "40996d23-cbe1-49bc-8fbc-713c68893190",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "You can then create an iterator like this:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "You can then create an iterator like this:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715428615,
+        "id": "d0e0db1e-e224-4359-80e6-d37e5ab66ad4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715428615,
+        "parent_id": "40996d23-cbe1-49bc-8fbc-713c68893190",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var cursor = new ArrayBufferCursor(arrayBuffer);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var cursor = new ArrayBufferCursor(arrayBuffer);",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715428615,
+        "id": "7cd3b069-b33c-45a2-bb63-6ab1f5a0da6d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715428615,
+        "parent_id": "40996d23-cbe1-49bc-8fbc-713c68893190",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "You can use the "
+            ],
+            [
+              "hasNext",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to check if there’s still items"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "You can use the "
+          },
+          {
+            "Text": "hasNext",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to check if there’s still items"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715428615,
+        "id": "3367e108-c1a2-472c-99e2-710c5f8025a8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715428615,
+        "parent_id": "40996d23-cbe1-49bc-8fbc-713c68893190",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "for(;cursor.hasNext();) {\n    // There's still items to process\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "for(;cursor.hasNext();) {\n    // There's still items to process\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715428615,
+        "id": "6353b54f-82ca-40b1-921f-6f2946b47cd3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715428615,
+        "parent_id": "40996d23-cbe1-49bc-8fbc-713c68893190",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "You can use the "
+            ],
+            [
+              "next",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method to take the next value:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "You can use the "
+          },
+          {
+            "Text": "next",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method to take the next value:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715428615,
+        "id": "9044c561-84ba-49b1-b4cf-591ee9095107",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715428615,
+        "parent_id": "40996d23-cbe1-49bc-8fbc-713c68893190",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var nextValue = cursor.next('Float');"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var nextValue = cursor.next('Float');",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715428615,
+        "id": "f2815661-a3a7-44c2-b167-65c65026a0ff",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715428615,
+        "parent_id": "40996d23-cbe1-49bc-8fbc-713c68893190",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "With such an iterator, writing your own parser to process binary data becomes pretty easy."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "With such an iterator, writing your own parser to process binary data becomes pretty easy."
+          }
+        ]
+      }
+    ],
+    "title": "060 Iterating through an arrayBuffer"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

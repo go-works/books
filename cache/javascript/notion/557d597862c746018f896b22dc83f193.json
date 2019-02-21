@@ -1,0 +1,389 @@
+{
+  "ID": "557d5978-62c7-4601-8f89-6b22dc83f193",
+  "Root": {
+    "alive": true,
+    "content": [
+      "0eb0d530-39cd-47eb-b043-c196b569d765",
+      "08996898-4b16-43b6-9af5-8ebf356b71b6",
+      "b310d8c8-e88c-4cf4-adaa-027fc36ab4af",
+      "1f301ba1-893c-42af-9792-33dd769b4209",
+      "5c4eb7bd-71a8-4c38-b275-a13c5aace506",
+      "0cf18806-8833-4db9-a1d1-ed81f36a5c69"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550714976115,
+    "id": "557d5978-62c7-4601-8f89-6b22dc83f193",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550714976115,
+    "parent_id": "258d5f6e-0cc0-4d61-b286-ea3a708b3390",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "130 Call and apply"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550714976111,
+        "id": "0eb0d530-39cd-47eb-b043-c196b569d765",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550714976111,
+        "parent_id": "557d5978-62c7-4601-8f89-6b22dc83f193",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Functions have two built-in methods that allow the programmer to supply arguments and the "
+            ],
+            [
+              "this",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " variable differently: "
+            ],
+            [
+              "call",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "apply",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Functions have two built-in methods that allow the programmer to supply arguments and the "
+          },
+          {
+            "Text": "this",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " variable differently: "
+          },
+          {
+            "Text": "call",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "apply",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550714976114,
+        "id": "08996898-4b16-43b6-9af5-8ebf356b71b6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550714976114,
+        "parent_id": "557d5978-62c7-4601-8f89-6b22dc83f193",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This is useful, because functions that operate on one object (the object that they are a property of) can be repurposed to operate on another, compatible object. Additionally, arguments can be given in one shot as arrays, similar to the spread ("
+            ],
+            [
+              "...",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ") operator in ES6."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This is useful, because functions that operate on one object (the object that they are a property of) can be repurposed to operate on another, compatible object. Additionally, arguments can be given in one shot as arrays, similar to the spread ("
+          },
+          {
+            "Text": "...",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ") operator in ES6."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550714976114,
+        "id": "b310d8c8-e88c-4cf4-adaa-027fc36ab4af",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550714976114,
+        "parent_id": "557d5978-62c7-4601-8f89-6b22dc83f193",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "let obj = {\n    a: 1,\n    b: 2,\n    set: function (a, b) {\n        this.a = a;\n        this.b = b;\n    }\n};\n\nobj.set(3, 7); // normal syntax\nobj.set.call(obj, 3, 7); // equivalent to the above\nobj.set.apply(obj, [3, 7]); // equivalent to the above; note that an array is used\n\nconsole.log(obj); // prints { a: 3, b: 5 }\n\nlet myObj = {};\nmyObj.set(5, 4); // fails; myObj has no `set` property\nobj.set.call(myObj, 5, 4); // success; `this` in set() is re-routed to myObj instead of obj\nobj.set.apply(myObj, [5, 4]); // same as above; note the array\n\nconsole.log(myObj); // prints { a: 3, b: 5 }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "let obj = {\n    a: 1,\n    b: 2,\n    set: function (a, b) {\n        this.a = a;\n        this.b = b;\n    }\n};\n\nobj.set(3, 7); // normal syntax\nobj.set.call(obj, 3, 7); // equivalent to the above\nobj.set.apply(obj, [3, 7]); // equivalent to the above; note that an array is used\n\nconsole.log(obj); // prints { a: 3, b: 5 }\n\nlet myObj = {};\nmyObj.set(5, 4); // fails; myObj has no `set` property\nobj.set.call(myObj, 5, 4); // success; `this` in set() is re-routed to myObj instead of obj\nobj.set.apply(myObj, [5, 4]); // same as above; note the array\n\nconsole.log(myObj); // prints { a: 3, b: 5 }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550714976115,
+        "id": "1f301ba1-893c-42af-9792-33dd769b4209",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550714976115,
+        "parent_id": "557d5978-62c7-4601-8f89-6b22dc83f193",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "ECMAScript 5 introduced another method called "
+            ],
+            [
+              "bind()",
+              [
+                [
+                  "b"
+                ],
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " in addition to "
+            ],
+            [
+              "call()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "apply()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to explicitly set "
+            ],
+            [
+              "this",
+              [
+                [
+                  "b"
+                ],
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " value of the function to specific object."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "ECMAScript 5 introduced another method called "
+          },
+          {
+            "Text": "bind()",
+            "AttrFlags": 3
+          },
+          {
+            "Text": " in addition to "
+          },
+          {
+            "Text": "call()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "apply()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to explicitly set "
+          },
+          {
+            "Text": "this",
+            "AttrFlags": 3
+          },
+          {
+            "Text": " value of the function to specific object."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550714976115,
+        "id": "5c4eb7bd-71a8-4c38-b275-a13c5aace506",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550714976115,
+        "parent_id": "557d5978-62c7-4601-8f89-6b22dc83f193",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "It behaves quite differently than the other two. The first argument to "
+            ],
+            [
+              "bind()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is the "
+            ],
+            [
+              "this",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " value for the new function. All other arguments represent named parameters that should be permanently set in the new function."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "It behaves quite differently than the other two. The first argument to "
+          },
+          {
+            "Text": "bind()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is the "
+          },
+          {
+            "Text": "this",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " value for the new function. All other arguments represent named parameters that should be permanently set in the new function."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550714976115,
+        "id": "0cf18806-8833-4db9-a1d1-ed81f36a5c69",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550714976115,
+        "parent_id": "557d5978-62c7-4601-8f89-6b22dc83f193",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "function showName(label) {\n    console.log(label + \":\" + this.name);\n}\nvar student1 = {\n     name: \"Ravi\"\n};\nvar student2 = {\n     name: \"Vinod\"\n};\n\n// create a function just for student1\nvar showNameStudent1 = showName.bind(student1);\nshowNameStudent1(\"student1\"); // outputs \"student1:Ravi\"\n\n// create a function just for student2\nvar showNameStudent2 = showName.bind(student2, \"student2\");\nshowNameStudent2(); // outputs \"student2:Vinod\"\n\n// attaching a method to an object doesn't change `this` value of that method.\nstudent2.sayName = showNameStudent1;\nstudent2.sayName(\"student2\"); // outputs \"student2:Ravi\""
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "function showName(label) {\n    console.log(label + \":\" + this.name);\n}\nvar student1 = {\n     name: \"Ravi\"\n};\nvar student2 = {\n     name: \"Vinod\"\n};\n\n// create a function just for student1\nvar showNameStudent1 = showName.bind(student1);\nshowNameStudent1(\"student1\"); // outputs \"student1:Ravi\"\n\n// create a function just for student2\nvar showNameStudent2 = showName.bind(student2, \"student2\");\nshowNameStudent2(); // outputs \"student2:Vinod\"\n\n// attaching a method to an object doesn't change `this` value of that method.\nstudent2.sayName = showNameStudent1;\nstudent2.sayName(\"student2\"); // outputs \"student2:Ravi\"",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "130 Call and apply"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

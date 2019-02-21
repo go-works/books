@@ -1,0 +1,115 @@
+{
+  "ID": "2143169d-eca8-48f2-873c-09444abd8cd4",
+  "Root": {
+    "alive": true,
+    "content": [
+      "6fd67421-b2cc-4334-802d-4e6d2d8a844b",
+      "ae42f9b1-9fb5-4b09-8c46-06d84ca3bfcb"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550715956158,
+    "id": "2143169d-eca8-48f2-873c-09444abd8cd4",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550715956158,
+    "parent_id": "a782918f-6189-4019-b879-799c6f86dec2",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Handling window.onerror to report all errors back to the server-side"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715956155,
+        "id": "6fd67421-b2cc-4334-802d-4e6d2d8a844b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715956155,
+        "parent_id": "2143169d-eca8-48f2-873c-09444abd8cd4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The following example listens to "
+            ],
+            [
+              "window.onerror",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " event and uses an image beacon technique to send the information through the GET parameters of an URL."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The following example listens to "
+          },
+          {
+            "Text": "window.onerror",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " event and uses an image beacon technique to send the information through the GET parameters of an URL."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715956157,
+        "id": "ae42f9b1-9fb5-4b09-8c46-06d84ca3bfcb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715956157,
+        "parent_id": "2143169d-eca8-48f2-873c-09444abd8cd4",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var hasLoggedOnce = false;\n\n// Some browsers (at least Firefox) don't report line and column numbers\n// when event is handled through window.addEventListener('error', fn). That's why\n// a more reliable approach is to set an event listener via direct assignment.\nwindow.onerror = function (eventOrMessage, url, lineNumber, colNumber, error) {\n    if (hasLoggedOnce || !eventOrMessage) {\n        // It does not make sense to report an error if:\n        // 1. another one has already been reported -- the page has an invalid state and may produce way too many errors.\n        // 2. the provided information does not make sense (!eventOrMessage -- the browser didn't supply information for some reason.)\n        return;\n    }\n    hasLoggedOnce = true;\n    if (typeof eventOrMessage !== 'string') {\n        error = eventOrMessage.error;\n        url = eventOrMessage.filename || eventOrMessage.fileName;\n        lineNumber = eventOrMessage.lineno || eventOrMessage.lineNumber;\n        colNumber = eventOrMessage.colno || eventOrMessage.columnNumber;\n        eventOrMessage = eventOrMessage.message || eventOrMessage.name || error.message || error.name;\n    }\n    if (error \u0026\u0026 error.stack) {\n        eventOrMessage = [eventOrMessage, '; Stack: ', error.stack, '.'].join('');\n    }\n    var jsFile = (/[^/]+\\.js/i.exec(url || '') || [])[0] || 'inlineScriptOrDynamicEvalCode',\n        stack = [eventOrMessage, ' Occurred in ', jsFile, ':', lineNumber || '?', ':', colNumber || '?'].join('');\n\n    // shortening the message a bit so that it is more likely to fit into browser's URL length limit (which is 2,083 in some browsers)\n    stack = stack.replace(/https?\\:\\/\\/[^/]+/gi, '');\n    // calling the server-side handler which should probably register the error in a database or a log file\n    new Image().src = '/exampleErrorReporting?stack=' + encodeURIComponent(stack);\n    \n    // window.DEBUG_ENVIRONMENT a configurable property that may be set to true somewhere else for debugging and testing purposes.\n    if (window.DEBUG_ENVIRONMENT) {\n        alert('Client-side script failed: ' + stack);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var hasLoggedOnce = false;\n\n// Some browsers (at least Firefox) don't report line and column numbers\n// when event is handled through window.addEventListener('error', fn). That's why\n// a more reliable approach is to set an event listener via direct assignment.\nwindow.onerror = function (eventOrMessage, url, lineNumber, colNumber, error) {\n    if (hasLoggedOnce || !eventOrMessage) {\n        // It does not make sense to report an error if:\n        // 1. another one has already been reported -- the page has an invalid state and may produce way too many errors.\n        // 2. the provided information does not make sense (!eventOrMessage -- the browser didn't supply information for some reason.)\n        return;\n    }\n    hasLoggedOnce = true;\n    if (typeof eventOrMessage !== 'string') {\n        error = eventOrMessage.error;\n        url = eventOrMessage.filename || eventOrMessage.fileName;\n        lineNumber = eventOrMessage.lineno || eventOrMessage.lineNumber;\n        colNumber = eventOrMessage.colno || eventOrMessage.columnNumber;\n        eventOrMessage = eventOrMessage.message || eventOrMessage.name || error.message || error.name;\n    }\n    if (error \u0026\u0026 error.stack) {\n        eventOrMessage = [eventOrMessage, '; Stack: ', error.stack, '.'].join('');\n    }\n    var jsFile = (/[^/]+\\.js/i.exec(url || '') || [])[0] || 'inlineScriptOrDynamicEvalCode',\n        stack = [eventOrMessage, ' Occurred in ', jsFile, ':', lineNumber || '?', ':', colNumber || '?'].join('');\n\n    // shortening the message a bit so that it is more likely to fit into browser's URL length limit (which is 2,083 in some browsers)\n    stack = stack.replace(/https?\\:\\/\\/[^/]+/gi, '');\n    // calling the server-side handler which should probably register the error in a database or a log file\n    new Image().src = '/exampleErrorReporting?stack=' + encodeURIComponent(stack);\n    \n    // window.DEBUG_ENVIRONMENT a configurable property that may be set to true somewhere else for debugging and testing purposes.\n    if (window.DEBUG_ENVIRONMENT) {\n        alert('Client-side script failed: ' + stack);\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 Handling window.onerror to report all errors back to the server-side"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

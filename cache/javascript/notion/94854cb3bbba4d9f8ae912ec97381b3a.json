@@ -1,0 +1,133 @@
+{
+  "ID": "94854cb3-bbba-4d9f-8ae9-12ec97381b3a",
+  "Root": {
+    "alive": true,
+    "content": [
+      "712fbf85-0792-4db7-bd6d-617f7067ba79",
+      "4864e279-e3d8-4fec-905e-dbe5d80b3c92"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550716515747,
+    "id": "94854cb3-bbba-4d9f-8ae9-12ec97381b3a",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550716515747,
+    "parent_id": "a2b7c19d-b17b-454b-93ca-b970a8b6978d",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Very simple proxy using the set trap"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550716515744,
+        "id": "712fbf85-0792-4db7-bd6d-617f7067ba79",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550716515744,
+        "parent_id": "94854cb3-bbba-4d9f-8ae9-12ec97381b3a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This proxy simply appends the string "
+            ],
+            [
+              "\" went through proxy\"",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to every string property set on the target "
+            ],
+            [
+              "object",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This proxy simply appends the string "
+          },
+          {
+            "Text": "\" went through proxy\"",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to every string property set on the target "
+          },
+          {
+            "Text": "object",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550716515746,
+        "id": "4864e279-e3d8-4fec-905e-dbe5d80b3c92",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550716515746,
+        "parent_id": "94854cb3-bbba-4d9f-8ae9-12ec97381b3a",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "let object  = {};\n\nlet handler = {\n    set(target, prop, value){ // Note that ES6 object syntax is used\n        if('string' === typeof value){\n            target[prop] = value + \" went through proxy\";\n        }\n    }\n};\n\nlet proxied = new Proxy(object, handler);\n\nproxied.example = \"ExampleValue\";\n\nconsole.log(object); \n// logs: { example: \"ExampleValue went trough proxy\" }\n// you could also access the object via proxied.target"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "let object  = {};\n\nlet handler = {\n    set(target, prop, value){ // Note that ES6 object syntax is used\n        if('string' === typeof value){\n            target[prop] = value + \" went through proxy\";\n        }\n    }\n};\n\nlet proxied = new Proxy(object, handler);\n\nproxied.example = \"ExampleValue\";\n\nconsole.log(object); \n// logs: { example: \"ExampleValue went trough proxy\" }\n// you could also access the object via proxied.target",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 Very simple proxy using the set trap"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

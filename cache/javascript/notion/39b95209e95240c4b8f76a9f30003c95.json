@@ -1,0 +1,166 @@
+{
+  "ID": "39b95209-e952-40c4-b8f7-6a9f30003c95",
+  "Root": {
+    "alive": true,
+    "content": [
+      "5dca6de6-5366-446b-a6c4-3fbf1f375c13",
+      "b39c8e90-7fe7-4570-a2af-e276bc6900f8",
+      "cf932e42-aad9-4a4d-a658-7f3352b70c44"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550715121326,
+    "id": "39b95209-e952-40c4-b8f7-6a9f30003c95",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550715121326,
+    "parent_id": "499ecbda-9a83-4992-8013-1e2d2247246e",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "050 Waiting for the first of multiple concurrent promises"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715121325,
+        "id": "5dca6de6-5366-446b-a6c4-3fbf1f375c13",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715121325,
+        "parent_id": "39b95209-e952-40c4-b8f7-6a9f30003c95",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The "
+            ],
+            [
+              "Promise.race()",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/race"
+                ]
+              ]
+            ],
+            [
+              " static method accepts an iterable of Promises and returns a new Promise which resolves or rejects as soon as the "
+            ],
+            [
+              "first",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " of the promises in the iterable has resolved or rejected."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The "
+          },
+          {
+            "Text": "Promise.race()",
+            "AttrFlags": 2,
+            "Link": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/race"
+          },
+          {
+            "Text": " static method accepts an iterable of Promises and returns a new Promise which resolves or rejects as soon as the "
+          },
+          {
+            "Text": "first",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " of the promises in the iterable has resolved or rejected."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715121326,
+        "id": "b39c8e90-7fe7-4570-a2af-e276bc6900f8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715121326,
+        "parent_id": "39b95209-e952-40c4-b8f7-6a9f30003c95",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// wait \"milliseconds\" milliseconds, then resolve with \"value\"\nfunction resolve(value, milliseconds) {\n    return new Promise(resolve =\u003e setTimeout(() =\u003e resolve(value), milliseconds));\n}\n\n// wait \"milliseconds\" milliseconds, then reject with \"reason\"\nfunction reject(reason, milliseconds) {\n    return new Promise((_, reject) =\u003e setTimeout(() =\u003e reject(reason), milliseconds));\n}\n\nPromise.race([\n    resolve(1, 5000),\n    resolve(2, 3000),\n    resolve(3, 1000)\n])\n.then(value =\u003e console.log(value)); // outputs \"3\" after 1 second."
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// wait \"milliseconds\" milliseconds, then resolve with \"value\"\nfunction resolve(value, milliseconds) {\n    return new Promise(resolve =\u003e setTimeout(() =\u003e resolve(value), milliseconds));\n}\n\n// wait \"milliseconds\" milliseconds, then reject with \"reason\"\nfunction reject(reason, milliseconds) {\n    return new Promise((_, reject) =\u003e setTimeout(() =\u003e reject(reason), milliseconds));\n}\n\nPromise.race([\n    resolve(1, 5000),\n    resolve(2, 3000),\n    resolve(3, 1000)\n])\n.then(value =\u003e console.log(value)); // outputs \"3\" after 1 second.",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715121326,
+        "id": "cf932e42-aad9-4a4d-a658-7f3352b70c44",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715121326,
+        "parent_id": "39b95209-e952-40c4-b8f7-6a9f30003c95",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "Promise.race([\n    reject(new Error('bad things!'), 1000),\n    resolve(2, 2000)\n])\n.then(value =\u003e console.log(value)) // does not output anything\n.catch(error =\u003e console.log(error.message)); // outputs \"bad things!\" after 1 second"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "Promise.race([\n    reject(new Error('bad things!'), 1000),\n    resolve(2, 2000)\n])\n.then(value =\u003e console.log(value)) // does not output anything\n.catch(error =\u003e console.log(error.message)); // outputs \"bad things!\" after 1 second",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "050 Waiting for the first of multiple concurrent promises"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

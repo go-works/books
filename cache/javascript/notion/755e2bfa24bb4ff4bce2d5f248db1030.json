@@ -1,0 +1,167 @@
+{
+  "ID": "755e2bfa-24bb-4ff4-bce2-d5f248db1030",
+  "Root": {
+    "alive": true,
+    "content": [
+      "323c0316-4b27-40b1-8884-8a1cf51fef2e",
+      "752761c8-3c0c-4177-b6c9-6a78bda57c0b",
+      "fae116e6-b20b-471c-88ad-0cfa6a90bcf6",
+      "3b2f1025-9f89-476e-9c47-04ff702eeb43"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550716474381,
+    "id": "755e2bfa-24bb-4ff4-bce2-d5f248db1030",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550716474381,
+    "parent_id": "b361aa68-6764-41b9-96fd-b8cfd83c4c4d",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Opening a database"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550716474377,
+        "id": "323c0316-4b27-40b1-8884-8a1cf51fef2e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550716474377,
+        "parent_id": "755e2bfa-24bb-4ff4-bce2-d5f248db1030",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Opening a database is an asynchronous operation. We need to send a request to open our database and then listen for events so we know when it’s ready."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Opening a database is an asynchronous operation. We need to send a request to open our database and then listen for events so we know when it’s ready."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550716474380,
+        "id": "752761c8-3c0c-4177-b6c9-6a78bda57c0b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550716474380,
+        "parent_id": "755e2bfa-24bb-4ff4-bce2-d5f248db1030",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "We’ll open a DemoDB database. If it doesn’t exist yet, it will get created when we send the request."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "We’ll open a DemoDB database. If it doesn’t exist yet, it will get created when we send the request."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550716474381,
+        "id": "fae116e6-b20b-471c-88ad-0cfa6a90bcf6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550716474381,
+        "parent_id": "755e2bfa-24bb-4ff4-bce2-d5f248db1030",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The "
+            ],
+            [
+              "2",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " below says that we’re asking for version 2 of our database. Only one version exists at any time, but we can use the version number to upgrade old data, as you’ll see."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The "
+          },
+          {
+            "Text": "2",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " below says that we’re asking for version 2 of our database. Only one version exists at any time, but we can use the version number to upgrade old data, as you’ll see."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550716474381,
+        "id": "3b2f1025-9f89-476e-9c47-04ff702eeb43",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550716474381,
+        "parent_id": "755e2bfa-24bb-4ff4-bce2-d5f248db1030",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var db = null, // We'll use this once we have our database\n    request = window.indexedDB.open(\"DemoDB\", 2);\n\n// Listen for success. This will be called after onupgradeneeded runs, if it does at all\nrequest.onsuccess = function() {\n    db = request.result; // We have a database!\n\n    doThingsWithDB(db);\n};\n\n// If our database didn't exist before, or it was an older version than what we requested,\n// the `onupgradeneeded` event will be fired.\n// \n// We can use this to setup a new database and upgrade an old one with new data stores\nrequest.onupgradeneeded = function(event) {\n    db = request.result;\n\n    // If the oldVersion is less than 1, then the database didn't exist. Let's set it up\n    if (event.oldVersion \u003c 1) {\n        // We'll create a new \"things\" store with `autoIncrement`ing keys\n        var store = db.createObjectStore(\"things\", { autoIncrement: true });\n    }\n\n    // In version 2 of our database, we added a new index by the name of each thing\n    if (event.oldVersion \u003c 2) {\n        // Let's load the things store and create an index\n        var store = request.transaction.objectStore(\"things\");\n\n        store.createIndex(\"by_name\", \"name\");\n    }\n};\n\n// Handle any errors\nrequest.onerror = function() {\n    console.error(\"Something went wrong when we tried to request the database!\");\n};"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var db = null, // We'll use this once we have our database\n    request = window.indexedDB.open(\"DemoDB\", 2);\n\n// Listen for success. This will be called after onupgradeneeded runs, if it does at all\nrequest.onsuccess = function() {\n    db = request.result; // We have a database!\n\n    doThingsWithDB(db);\n};\n\n// If our database didn't exist before, or it was an older version than what we requested,\n// the `onupgradeneeded` event will be fired.\n// \n// We can use this to setup a new database and upgrade an old one with new data stores\nrequest.onupgradeneeded = function(event) {\n    db = request.result;\n\n    // If the oldVersion is less than 1, then the database didn't exist. Let's set it up\n    if (event.oldVersion \u003c 1) {\n        // We'll create a new \"things\" store with `autoIncrement`ing keys\n        var store = db.createObjectStore(\"things\", { autoIncrement: true });\n    }\n\n    // In version 2 of our database, we added a new index by the name of each thing\n    if (event.oldVersion \u003c 2) {\n        // Let's load the things store and create an index\n        var store = request.transaction.objectStore(\"things\");\n\n        store.createIndex(\"by_name\", \"name\");\n    }\n};\n\n// Handle any errors\nrequest.onerror = function() {\n    console.error(\"Something went wrong when we tried to request the database!\");\n};",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 Opening a database"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

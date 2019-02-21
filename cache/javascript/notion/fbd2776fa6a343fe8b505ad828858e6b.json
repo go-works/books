@@ -1,0 +1,249 @@
+{
+  "ID": "fbd2776f-a6a3-43fe-8b50-5ad828858e6b",
+  "Root": {
+    "alive": true,
+    "content": [
+      "6f41448c-fd02-4bdb-beb6-d167948b7a7b",
+      "8ba7d7b9-a605-425f-af76-1344237155dd",
+      "129ce72e-9c2a-48e5-8f80-0c90790702f5"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550716930384,
+    "id": "fbd2776f-a6a3-43fe-8b50-5ad828858e6b",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550716930384,
+    "parent_id": "2cf63c7b-04f3-49cc-855a-384a5b1cc16c",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "020 Defining an SetterGetter in a Newly Created Object"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550716930381,
+        "id": "6f41448c-fd02-4bdb-beb6-d167948b7a7b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550716930381,
+        "parent_id": "fbd2776f-a6a3-43fe-8b50-5ad828858e6b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "JavaScript allows us to define getters and setters in the object literal syntax. Here’s an example:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "JavaScript allows us to define getters and setters in the object literal syntax. Here’s an example:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550716930383,
+        "id": "8ba7d7b9-a605-425f-af76-1344237155dd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550716930383,
+        "parent_id": "fbd2776f-a6a3-43fe-8b50-5ad828858e6b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var date = {\n    year: '2017',\n    month: '02',\n    day: '27',\n    get date() {\n        // Get the date in YYYY-MM-DD format\n        return `${this.year}-${this.month}-${this.day}`\n    },\n    set date(dateString) {\n        // Set the date from a YYYY-MM-DD formatted string\n        var dateRegExp = /(\\d{4})-(\\d{2})-(\\d{2})/;\n        \n        // Check that the string is correctly formatted\n        if (dateRegExp.test(dateString)) {\n            var parsedDate = dateRegExp.exec(dateString);\n            this.year = parsedDate[1];\n            this.month = parsedDate[2];\n            this.day = parsedDate[3];\n        }\n        else {\n            throw new Error('Date string must be in YYYY-MM-DD format');\n        }\n    }\n};"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var date = {\n    year: '2017',\n    month: '02',\n    day: '27',\n    get date() {\n        // Get the date in YYYY-MM-DD format\n        return `${this.year}-${this.month}-${this.day}`\n    },\n    set date(dateString) {\n        // Set the date from a YYYY-MM-DD formatted string\n        var dateRegExp = /(\\d{4})-(\\d{2})-(\\d{2})/;\n        \n        // Check that the string is correctly formatted\n        if (dateRegExp.test(dateString)) {\n            var parsedDate = dateRegExp.exec(dateString);\n            this.year = parsedDate[1];\n            this.month = parsedDate[2];\n            this.day = parsedDate[3];\n        }\n        else {\n            throw new Error('Date string must be in YYYY-MM-DD format');\n        }\n    }\n};",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550716930384,
+        "id": "129ce72e-9c2a-48e5-8f80-0c90790702f5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550716930384,
+        "parent_id": "fbd2776f-a6a3-43fe-8b50-5ad828858e6b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Accessing the "
+            ],
+            [
+              "date.date",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " property would return the value "
+            ],
+            [
+              "2017-02-27",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". Setting "
+            ],
+            [
+              "date.date = '2018-01-02",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " would call the setter function, which would then parse the string and set "
+            ],
+            [
+              "date.year = '2018'",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", "
+            ],
+            [
+              "date.month = '01'",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", and "
+            ],
+            [
+              "date.day = '02'",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". Trying to pass an incorrectly formatted string (such as "
+            ],
+            [
+              "\"hello\"",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ") would throw an error."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Accessing the "
+          },
+          {
+            "Text": "date.date",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " property would return the value "
+          },
+          {
+            "Text": "2017-02-27",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". Setting "
+          },
+          {
+            "Text": "date.date = '2018-01-02",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " would call the setter function, which would then parse the string and set "
+          },
+          {
+            "Text": "date.year = '2018'",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", "
+          },
+          {
+            "Text": "date.month = '01'",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", and "
+          },
+          {
+            "Text": "date.day = '02'",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". Trying to pass an incorrectly formatted string (such as "
+          },
+          {
+            "Text": "\"hello\"",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ") would throw an error."
+          }
+        ]
+      }
+    ],
+    "title": "020 Defining an SetterGetter in a Newly Created Object"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,198 @@
+{
+  "ID": "9c396d89-70b3-4247-bf64-b4dc3c6c5ef0",
+  "Root": {
+    "alive": true,
+    "content": [
+      "0d3a6c86-0266-4cf5-b475-e531c803c0ed",
+      "15cf2698-c372-4d34-bedb-5cac6e4fc765",
+      "24a22ca6-8cc3-4a68-9d09-5884bd80b89d"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550715127073,
+    "id": "9c396d89-70b3-4247-bf64-b4dc3c6c5ef0",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550715127073,
+    "parent_id": "499ecbda-9a83-4992-8013-1e2d2247246e",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "110 Using ES2017 asyncawait"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715127071,
+        "id": "0d3a6c86-0266-4cf5-b475-e531c803c0ed",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715127071,
+        "parent_id": "9c396d89-70b3-4247-bf64-b4dc3c6c5ef0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The same example above, "
+            ],
+            [
+              "Image loading",
+              [
+                [
+                  "a",
+                  "http://stackoverflow.com/documentation/javascript/231/promises/848/image-loading"
+                ]
+              ]
+            ],
+            [
+              ", can be written using "
+            ],
+            [
+              "async functions",
+              [
+                [
+                  "a",
+                  "http://stackoverflow.com/documentation/javascript/925/async-functions-async-await"
+                ]
+              ]
+            ],
+            [
+              ". This also allows using the common "
+            ],
+            [
+              "try/catch",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method for exception handling."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The same example above, "
+          },
+          {
+            "Text": "Image loading",
+            "Link": "http://stackoverflow.com/documentation/javascript/231/promises/848/image-loading"
+          },
+          {
+            "Text": ", can be written using "
+          },
+          {
+            "Text": "async functions",
+            "Link": "http://stackoverflow.com/documentation/javascript/925/async-functions-async-await"
+          },
+          {
+            "Text": ". This also allows using the common "
+          },
+          {
+            "Text": "try/catch",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method for exception handling."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715127073,
+        "id": "15cf2698-c372-4d34-bedb-5cac6e4fc765",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715127073,
+        "parent_id": "9c396d89-70b3-4247-bf64-b4dc3c6c5ef0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Note: "
+            ],
+            [
+              "as of April 2017, the current releases of all browsers but Internet Explorer supports async functions",
+              [
+                [
+                  "a",
+                  "http://caniuse.com/#feat=async-functions"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Note: "
+          },
+          {
+            "Text": "as of April 2017, the current releases of all browsers but Internet Explorer supports async functions",
+            "Link": "http://caniuse.com/#feat=async-functions"
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715127073,
+        "id": "24a22ca6-8cc3-4a68-9d09-5884bd80b89d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715127073,
+        "parent_id": "9c396d89-70b3-4247-bf64-b4dc3c6c5ef0",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "function loadImage(url) {\n    return new Promise((resolve, reject) =\u003e {\n        const img = new Image();\n        img.addEventListener('load', () =\u003e resolve(img));\n        img.addEventListener('error', () =\u003e {\n            reject(new Error(`Failed to load ${url}`));\n        });\n        img.src = url;\n    });\n}\n\n(async () =\u003e {\n\n    // load /image.png and append to #image-holder, otherwise throw error\n    try {\n        let img = await loadImage('http://example.com/image.png');\n        document.getElementById('image-holder').appendChild(img);\n    }\n    catch (error) {\n        console.error(error);\n    }\n\n})();"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "function loadImage(url) {\n    return new Promise((resolve, reject) =\u003e {\n        const img = new Image();\n        img.addEventListener('load', () =\u003e resolve(img));\n        img.addEventListener('error', () =\u003e {\n            reject(new Error(`Failed to load ${url}`));\n        });\n        img.src = url;\n    });\n}\n\n(async () =\u003e {\n\n    // load /image.png and append to #image-holder, otherwise throw error\n    try {\n        let img = await loadImage('http://example.com/image.png');\n        document.getElementById('image-holder').appendChild(img);\n    }\n    catch (error) {\n        console.error(error);\n    }\n\n})();",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "110 Using ES2017 asyncawait"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

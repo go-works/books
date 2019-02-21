@@ -1,0 +1,71 @@
+{
+  "ID": "f8079cb4-65d4-47f7-9be5-e1cc52608a31",
+  "Root": {
+    "alive": true,
+    "content": [
+      "6d4a323e-5a96-4209-9b40-aef3f2a49d32"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550715459549,
+    "id": "f8079cb4-65d4-47f7-9be5-e1cc52608a31",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550715459549,
+    "parent_id": "ac9dee5d-94c1-40df-9d32-9eb6b7cdff31",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "060 Using Fetch to Display Questions from the Stack Overflow API"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715459547,
+        "id": "6d4a323e-5a96-4209-9b40-aef3f2a49d32",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715459547,
+        "parent_id": "f8079cb4-65d4-47f7-9be5-e1cc52608a31",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "const url =\n      'http://api.stackexchange.com/2.2/questions?site=stackoverflow\u0026tagged=javascript';\n\nconst questionList = document.createElement('ul');\ndocument.body.appendChild(questionList);\n\nconst responseData = fetch(url).then(response =\u003e response.json());\nresponseData.then(({items, has_more, quota_max, quota_remaining}) =\u003e {\n  for (const {title, score, owner, link, answer_count} of items) {\n    const listItem = document.createElement('li');\n    questionList.appendChild(listItem);\n    const a = document.createElement('a');\n    listItem.appendChild(a);\n    a.href = link;\n    a.textContent = `[${score}] ${title} (by ${owner.display_name || 'somebody'})`\n  }\n});"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "const url =\n      'http://api.stackexchange.com/2.2/questions?site=stackoverflow\u0026tagged=javascript';\n\nconst questionList = document.createElement('ul');\ndocument.body.appendChild(questionList);\n\nconst responseData = fetch(url).then(response =\u003e response.json());\nresponseData.then(({items, has_more, quota_max, quota_remaining}) =\u003e {\n  for (const {title, score, owner, link, answer_count} of items) {\n    const listItem = document.createElement('li');\n    questionList.appendChild(listItem);\n    const a = document.createElement('a');\n    listItem.appendChild(a);\n    a.href = link;\n    a.textContent = `[${score}] ${title} (by ${owner.display_name || 'somebody'})`\n  }\n});",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "060 Using Fetch to Display Questions from the Stack Overflow API"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

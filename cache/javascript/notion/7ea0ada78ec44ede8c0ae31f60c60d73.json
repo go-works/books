@@ -1,0 +1,410 @@
+{
+  "ID": "7ea0ada7-8ec4-4ede-8c0a-e31f60c60d73",
+  "Root": {
+    "alive": true,
+    "content": [
+      "be0e7aa5-801e-4e5d-82b5-8458f3409b6b",
+      "cfa30404-1358-4642-a51d-e3998e67a952",
+      "2f48700b-4c49-41ff-98e1-9829f7eb4a97",
+      "e7b874db-00f7-4b63-9b79-6930f8cff75b",
+      "e6e74c11-27ed-41c3-84c2-73b05baf9f09",
+      "48c31591-acd2-474f-95ab-7a908b73ab00",
+      "d35b58c6-ef06-4e67-8c52-14a00c26303a"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550715062505,
+    "id": "7ea0ada7-8ec4-4ede-8c0a-e31f60c60d73",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550715062505,
+    "parent_id": "f78c32e2-a34f-4413-9045-987dc7f4ca99",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "050 Private Members"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715062503,
+        "id": "be0e7aa5-801e-4e5d-82b5-8458f3409b6b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715062503,
+        "parent_id": "7ea0ada7-8ec4-4ede-8c0a-e31f60c60d73",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "JavaScript does not technically support private members as a language feature. Privacy - "
+            ],
+            [
+              "described by Douglas Crockford",
+              [
+                [
+                  "a",
+                  "http://javascript.crockford.com/private.html"
+                ]
+              ]
+            ],
+            [
+              " - gets emulated instead via closures (preserved function scope) that will be generated each with every instantiation call of a constructor function."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "JavaScript does not technically support private members as a language feature. Privacy - "
+          },
+          {
+            "Text": "described by Douglas Crockford",
+            "Link": "http://javascript.crockford.com/private.html"
+          },
+          {
+            "Text": " - gets emulated instead via closures (preserved function scope) that will be generated each with every instantiation call of a constructor function."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715062504,
+        "id": "cfa30404-1358-4642-a51d-e3998e67a952",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715062504,
+        "parent_id": "7ea0ada7-8ec4-4ede-8c0a-e31f60c60d73",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The "
+            ],
+            [
+              "Queue",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " example demonstrates how, with constructor functions, local state can be preserved and made accessible too via privileged methods."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The "
+          },
+          {
+            "Text": "Queue",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " example demonstrates how, with constructor functions, local state can be preserved and made accessible too via privileged methods."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715062504,
+        "id": "2f48700b-4c49-41ff-98e1-9829f7eb4a97",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715062504,
+        "parent_id": "7ea0ada7-8ec4-4ede-8c0a-e31f60c60d73",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class Queue {\n\n  constructor () {                    // - does generate a closure with each instantiation.\n\n    const list = [];                  // - local state (\"private member\").\n\n    this.enqueue = function (type) {  // - privileged public method\n                                      //   accessing the local state\n      list.push(type);                //   \"writing\" alike.\n      return type;\n    };\n    this.dequeue = function () {      // - privileged public method\n                                      //   accessing the local state\n      return list.shift();            //   \"reading / writing\" alike.\n    };\n  }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class Queue {\n\n  constructor () {                    // - does generate a closure with each instantiation.\n\n    const list = [];                  // - local state (\"private member\").\n\n    this.enqueue = function (type) {  // - privileged public method\n                                      //   accessing the local state\n      list.push(type);                //   \"writing\" alike.\n      return type;\n    };\n    this.dequeue = function () {      // - privileged public method\n                                      //   accessing the local state\n      return list.shift();            //   \"reading / writing\" alike.\n    };\n  }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715062504,
+        "id": "e7b874db-00f7-4b63-9b79-6930f8cff75b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715062504,
+        "parent_id": "7ea0ada7-8ec4-4ede-8c0a-e31f60c60d73",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var q = new Queue;            //\n                              //\nq.enqueue(9);                 // ... first in ...\nq.enqueue(8);                 //\nq.enqueue(7);                 //\n                              //\nconsole.log(q.dequeue());     // 9 ... first out.\nconsole.log(q.dequeue());     // 8\nconsole.log(q.dequeue());     // 7\nconsole.log(q);               // {}\nconsole.log(Object.keys(q));  // [\"enqueue\",\"dequeue\"]"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var q = new Queue;            //\n                              //\nq.enqueue(9);                 // ... first in ...\nq.enqueue(8);                 //\nq.enqueue(7);                 //\n                              //\nconsole.log(q.dequeue());     // 9 ... first out.\nconsole.log(q.dequeue());     // 8\nconsole.log(q.dequeue());     // 7\nconsole.log(q);               // {}\nconsole.log(Object.keys(q));  // [\"enqueue\",\"dequeue\"]",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715062504,
+        "id": "e6e74c11-27ed-41c3-84c2-73b05baf9f09",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715062504,
+        "parent_id": "7ea0ada7-8ec4-4ede-8c0a-e31f60c60d73",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "With every instantiation of a "
+            ],
+            [
+              "Queue",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " type the constructor generates a closure."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "With every instantiation of a "
+          },
+          {
+            "Text": "Queue",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " type the constructor generates a closure."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715062505,
+        "id": "48c31591-acd2-474f-95ab-7a908b73ab00",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715062505,
+        "parent_id": "7ea0ada7-8ec4-4ede-8c0a-e31f60c60d73",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Thus both of a "
+            ],
+            [
+              "Queue",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " type’s own methods "
+            ],
+            [
+              "enqueue",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "dequeue",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " (see "
+            ],
+            [
+              "Object.keys(q)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ") still do have access to "
+            ],
+            [
+              "list",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " that continues to "
+            ],
+            [
+              "live",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " in its enclosing scope that, at construction time, has been preserved."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Thus both of a "
+          },
+          {
+            "Text": "Queue",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " type’s own methods "
+          },
+          {
+            "Text": "enqueue",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "dequeue",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " (see "
+          },
+          {
+            "Text": "Object.keys(q)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ") still do have access to "
+          },
+          {
+            "Text": "list",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " that continues to "
+          },
+          {
+            "Text": "live",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " in its enclosing scope that, at construction time, has been preserved."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550715062505,
+        "id": "d35b58c6-ef06-4e67-8c52-14a00c26303a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550715062505,
+        "parent_id": "7ea0ada7-8ec4-4ede-8c0a-e31f60c60d73",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Making use of this pattern - emulating private members via privileged public methods - one should keep in mind that, with every instance, additional memory will be consumed for every "
+            ],
+            [
+              "own property",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " method (for it is code that can’t be shared/reused). The same is true for the amount/size of state that is going to be stored within such a closure."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Making use of this pattern - emulating private members via privileged public methods - one should keep in mind that, with every instance, additional memory will be consumed for every "
+          },
+          {
+            "Text": "own property",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " method (for it is code that can’t be shared/reused). The same is true for the amount/size of state that is going to be stored within such a closure."
+          }
+        ]
+      }
+    ],
+    "title": "050 Private Members"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

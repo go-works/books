@@ -71,11 +71,20 @@ var (
 		// https://www.notion.so/kjkpublic/Essential-Kotlin-2bdd47318f3a4e8681dda289a8b3472b
 		NotionStartPageID: "2bdd47318f3a4e8681dda289a8b3472b",
 	}
+	bookJavaScript = &Book{
+		NoPublish: true,
+		Title: "JavaScript",
+		TitleLong: "Essential JavaScript",
+		Dir: "javascript",
+		CoverImageName: "JavaScript.png",
+		// https://www.notion.so/kjkpublic/Essential-Javascript-0b121710a160402fa9fd4646b87bed99
+		NotionStartPageID: "0b121710a160402fa9fd4646b87bed99",
+	}
 )
 
 var (
 	books = []*Book{
-		bookGo, bookCsharp, bookPython, bookKotlin,
+		bookGo, bookCsharp, bookPython, bookKotlin, bookJavaScript,
 	}
 )
 

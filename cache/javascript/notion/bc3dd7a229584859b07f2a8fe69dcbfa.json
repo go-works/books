@@ -1,0 +1,115 @@
+{
+  "ID": "bc3dd7a2-2958-4859-b07f-2a8fe69dcbfa",
+  "Root": {
+    "alive": true,
+    "content": [
+      "98802106-e1a4-42f0-bb54-c1f53059367a",
+      "852c713f-9162-4add-8ccb-cf979de42481"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550716909249,
+    "id": "bc3dd7a2-2958-4859-b07f-2a8fe69dcbfa",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550716909249,
+    "parent_id": "3aa378d2-056f-4bea-a619-820fdc520dd8",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Erroneous code can you spot why this usage of key will lead to bugs"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550716909246,
+        "id": "98802106-e1a4-42f0-bb54-c1f53059367a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550716909246,
+        "parent_id": "bc3dd7a2-2958-4859-b07f-2a8fe69dcbfa",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var pipeline = {};\n// (...) adding things in pipeline\n\nfor(var key in pipeline) {\n  fs.stat(pipeline[key].path, function(err, stats) {\n    if (err) {\n      // clear that one\n      delete pipeline[key];\n      return;\n    }\n    // (...)\n    pipeline[key].count++;\n  });\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var pipeline = {};\n// (...) adding things in pipeline\n\nfor(var key in pipeline) {\n  fs.stat(pipeline[key].path, function(err, stats) {\n    if (err) {\n      // clear that one\n      delete pipeline[key];\n      return;\n    }\n    // (...)\n    pipeline[key].count++;\n  });\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550716909249,
+        "id": "852c713f-9162-4add-8ccb-cf979de42481",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550716909249,
+        "parent_id": "bc3dd7a2-2958-4859-b07f-2a8fe69dcbfa",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The problem is that there is only one instance of "
+            ],
+            [
+              "var key",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              ". All callbacks will share the same key instance. At the time the callback will fire, the key will most likely have been incremented and not pointing to the element we are receiving the stats for."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The problem is that there is only one instance of "
+          },
+          {
+            "Text": "var key",
+            "AttrFlags": 1
+          },
+          {
+            "Text": ". All callbacks will share the same key instance. At the time the callback will fire, the key will most likely have been incremented and not pointing to the element we are receiving the stats for."
+          }
+        ]
+      }
+    ],
+    "title": "010 Erroneous code can you spot why this usage of key will lead to bugs"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}
