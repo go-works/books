@@ -1,0 +1,551 @@
+{
+  "ID": "f9114b0c-6fb0-4d4a-86a4-d3b5b7e2905b",
+  "Root": {
+    "alive": true,
+    "content": [
+      "66cf7b67-3c1e-4bd5-a8a0-6d82bbfd93ab",
+      "2ad00db2-27d5-479c-ba7c-f7b27be555c6",
+      "22f80f3d-1a2e-400e-b1ff-3df17623bf3e",
+      "d9e11ea6-e2f8-4492-b258-b6c5e9a33301",
+      "44e85f7c-3909-46d0-8dc6-6759b4bdcbdb",
+      "8e9757b2-af95-4a15-b51b-d8c11ad68f9a",
+      "93ab20aa-243a-4945-ba02-e81655d23fa8",
+      "e0c2fb8d-f682-44ef-97c1-7f86a2ec3049",
+      "816323a4-6826-447e-95f4-ee227fdbbd00"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550518384517,
+    "id": "f9114b0c-6fb0-4d4a-86a4-d3b5b7e2905b",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550518384517,
+    "parent_id": "cd39ba46-bf9a-48ed-82fa-26244685c82f",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "100 Pitfall - Overloading instead of overriding"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518384515,
+        "id": "66cf7b67-3c1e-4bd5-a8a0-6d82bbfd93ab",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518384515,
+        "parent_id": "f9114b0c-6fb0-4d4a-86a4-d3b5b7e2905b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Consider the following example:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Consider the following example:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518384515,
+        "id": "2ad00db2-27d5-479c-ba7c-f7b27be555c6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518384515,
+        "parent_id": "f9114b0c-6fb0-4d4a-86a4-d3b5b7e2905b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public final class Person {\n    private final String firstName;\n    private final String lastName;\n   \n    public Person(String firstName, String lastName) {\n        this.firstName = (firstName == null) ? \"\" : firstName;\n        this.lastName = (lastName == null) ? \"\" : lastName;\n    }\n\n    public boolean equals(String other) {\n        if (!(other instanceof Person)) {\n            return false;\n        }\n        Person p = (Person) other;\n        return firstName.equals(p.firstName) \u0026\u0026\n                lastName.equals(p.lastName);\n    }\n\n    public int hashcode() {\n        return firstName.hashCode() + 31 * lastName.hashCode();\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public final class Person {\n    private final String firstName;\n    private final String lastName;\n   \n    public Person(String firstName, String lastName) {\n        this.firstName = (firstName == null) ? \"\" : firstName;\n        this.lastName = (lastName == null) ? \"\" : lastName;\n    }\n\n    public boolean equals(String other) {\n        if (!(other instanceof Person)) {\n            return false;\n        }\n        Person p = (Person) other;\n        return firstName.equals(p.firstName) \u0026\u0026\n                lastName.equals(p.lastName);\n    }\n\n    public int hashcode() {\n        return firstName.hashCode() + 31 * lastName.hashCode();\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518384516,
+        "id": "22f80f3d-1a2e-400e-b1ff-3df17623bf3e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518384516,
+        "parent_id": "f9114b0c-6fb0-4d4a-86a4-d3b5b7e2905b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This code is not going to behave as expected. The problem is that the "
+            ],
+            [
+              "equals",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "hashcode",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " methods for "
+            ],
+            [
+              "Person",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " do not override the standard methods defined by "
+            ],
+            [
+              "Object",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This code is not going to behave as expected. The problem is that the "
+          },
+          {
+            "Text": "equals",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "hashcode",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " methods for "
+          },
+          {
+            "Text": "Person",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " do not override the standard methods defined by "
+          },
+          {
+            "Text": "Object",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518384516,
+        "id": "d9e11ea6-e2f8-4492-b258-b6c5e9a33301",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518384516,
+        "parent_id": "f9114b0c-6fb0-4d4a-86a4-d3b5b7e2905b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The "
+            ],
+            [
+              "equals",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method has the wrong signature. It should be declared as "
+            ],
+            [
+              "equals(Object)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " not "
+            ],
+            [
+              "equals(String)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The "
+          },
+          {
+            "Text": "equals",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method has the wrong signature. It should be declared as "
+          },
+          {
+            "Text": "equals(Object)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " not "
+          },
+          {
+            "Text": "equals(String)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518384517,
+        "id": "44e85f7c-3909-46d0-8dc6-6759b4bdcbdb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518384517,
+        "parent_id": "f9114b0c-6fb0-4d4a-86a4-d3b5b7e2905b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The "
+            ],
+            [
+              "hashcode",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method has the wrong name. It should be "
+            ],
+            [
+              "hashCode()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " (note the capital "
+            ],
+            [
+              "C",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              ")."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The "
+          },
+          {
+            "Text": "hashcode",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method has the wrong name. It should be "
+          },
+          {
+            "Text": "hashCode()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " (note the capital "
+          },
+          {
+            "Text": "C",
+            "AttrFlags": 1
+          },
+          {
+            "Text": ")."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518384517,
+        "id": "8e9757b2-af95-4a15-b51b-d8c11ad68f9a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518384517,
+        "parent_id": "f9114b0c-6fb0-4d4a-86a4-d3b5b7e2905b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "These mistakes mean that we have declared accidental overloads, and these won’t be used if "
+            ],
+            [
+              "Person",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is used in a polymorphic context."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "These mistakes mean that we have declared accidental overloads, and these won’t be used if "
+          },
+          {
+            "Text": "Person",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is used in a polymorphic context."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518384517,
+        "id": "93ab20aa-243a-4945-ba02-e81655d23fa8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518384517,
+        "parent_id": "f9114b0c-6fb0-4d4a-86a4-d3b5b7e2905b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "However, there is a simple way to deal with this (from Java 5 onwards). Use the "
+            ],
+            [
+              "@Override",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " annotation whenever you "
+            ],
+            [
+              "intend",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " your method to be an override:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "However, there is a simple way to deal with this (from Java 5 onwards). Use the "
+          },
+          {
+            "Text": "@Override",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " annotation whenever you "
+          },
+          {
+            "Text": "intend",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " your method to be an override:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518384517,
+        "id": "e0c2fb8d-f682-44ef-97c1-7f86a2ec3049",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518384517,
+        "parent_id": "f9114b0c-6fb0-4d4a-86a4-d3b5b7e2905b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public final class Person {\n    ...\n\n    @Override\n    public boolean equals(String other) {\n        ....\n    }\n\n    @Override\n    public hashcode() {\n        ....\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public final class Person {\n    ...\n\n    @Override\n    public boolean equals(String other) {\n        ....\n    }\n\n    @Override\n    public hashcode() {\n        ....\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518384517,
+        "id": "816323a4-6826-447e-95f4-ee227fdbbd00",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518384517,
+        "parent_id": "f9114b0c-6fb0-4d4a-86a4-d3b5b7e2905b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "When we add an "
+            ],
+            [
+              "@Override",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " annotation to a method declaration, the compiler will check that the method "
+            ],
+            [
+              "does",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " override (or implement) a method declared in a superclass or interface. So in the example above, the compiler will give us two compilation errors, which should be enough to alert us to the mistake."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "When we add an "
+          },
+          {
+            "Text": "@Override",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " annotation to a method declaration, the compiler will check that the method "
+          },
+          {
+            "Text": "does",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " override (or implement) a method declared in a superclass or interface. So in the example above, the compiler will give us two compilation errors, which should be enough to alert us to the mistake."
+          }
+        ]
+      }
+    ],
+    "title": "100 Pitfall - Overloading instead of overriding"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

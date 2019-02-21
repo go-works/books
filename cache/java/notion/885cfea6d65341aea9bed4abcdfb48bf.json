@@ -1,0 +1,283 @@
+{
+  "ID": "885cfea6-d653-41ae-a9be-d4abcdfb48bf",
+  "Root": {
+    "alive": true,
+    "content": [
+      "704939e9-4af7-451d-be2f-dc7c4f6d7446",
+      "56b14603-99ed-45ce-8ac5-e1551a0454dd",
+      "ad0ed914-af22-4066-8838-72b0ffbc84d9",
+      "3e50df81-e1b8-4c74-984f-a17a54533a07",
+      "b40a6f61-5944-424a-b33e-2a5be1a8a5b2",
+      "ee0f8a90-9201-40c5-9c27-b2c534c86abc",
+      "1ad05af3-cb41-452d-aa75-c709f1f6134e",
+      "b42eebd3-9922-4758-beaf-bf5dcef298e1",
+      "1a714f2e-52ab-45e3-afe9-e0019d88467a"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550460781023,
+    "id": "885cfea6-d653-41ae-a9be-d4abcdfb48bf",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550460781023,
+    "parent_id": "d6f562ae-bc87-42cb-a1e7-ffb04e5a8c78",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "020 Client-Server invoking methods in one JVM from another"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460781019,
+        "id": "704939e9-4af7-451d-be2f-dc7c4f6d7446",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460781019,
+        "parent_id": "885cfea6-d653-41ae-a9be-d4abcdfb48bf",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The shared remote interface:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The shared remote interface:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460781022,
+        "id": "56b14603-99ed-45ce-8ac5-e1551a0454dd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460781022,
+        "parent_id": "885cfea6-d653-41ae-a9be-d4abcdfb48bf",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "package remote;\n\nimport java.rmi.Remote;\nimport java.rmi.RemoteException;\n\npublic interface RemoteServer extends Remote {\n\n    int stringToInt(String string) throws RemoteException;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "package remote;\n\nimport java.rmi.Remote;\nimport java.rmi.RemoteException;\n\npublic interface RemoteServer extends Remote {\n\n    int stringToInt(String string) throws RemoteException;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460781022,
+        "id": "ad0ed914-af22-4066-8838-72b0ffbc84d9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460781022,
+        "parent_id": "885cfea6-d653-41ae-a9be-d4abcdfb48bf",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The server implementing the shared remote interface:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The server implementing the shared remote interface:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460781022,
+        "id": "3e50df81-e1b8-4c74-984f-a17a54533a07",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460781022,
+        "parent_id": "885cfea6-d653-41ae-a9be-d4abcdfb48bf",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "package server;\n\nimport java.rmi.RemoteException;\nimport java.rmi.registry.LocateRegistry;\nimport java.rmi.registry.Registry;\nimport java.rmi.server.UnicastRemoteObject;\n\nimport remote.RemoteServer;\n\npublic class Server implements RemoteServer {\n\n    @Override\n    public int stringToInt(String string) throws RemoteException {\n\n        System.out.println(\"Server received: \\\"\" + string + \"\\\"\");\n        return Integer.parseInt(string);\n    }\n\n    public static void main(String[] args) {\n\n        try {\n            Registry reg = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);\n            Server server = new Server();\n            UnicastRemoteObject.exportObject(server, Registry.REGISTRY_PORT);\n            reg.rebind(\"ServerName\", server);\n        } catch (RemoteException e) {\n            e.printStackTrace();\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "package server;\n\nimport java.rmi.RemoteException;\nimport java.rmi.registry.LocateRegistry;\nimport java.rmi.registry.Registry;\nimport java.rmi.server.UnicastRemoteObject;\n\nimport remote.RemoteServer;\n\npublic class Server implements RemoteServer {\n\n    @Override\n    public int stringToInt(String string) throws RemoteException {\n\n        System.out.println(\"Server received: \\\"\" + string + \"\\\"\");\n        return Integer.parseInt(string);\n    }\n\n    public static void main(String[] args) {\n\n        try {\n            Registry reg = LocateRegistry.createRegistry(Registry.REGISTRY_PORT);\n            Server server = new Server();\n            UnicastRemoteObject.exportObject(server, Registry.REGISTRY_PORT);\n            reg.rebind(\"ServerName\", server);\n        } catch (RemoteException e) {\n            e.printStackTrace();\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460781022,
+        "id": "b40a6f61-5944-424a-b33e-2a5be1a8a5b2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460781022,
+        "parent_id": "885cfea6-d653-41ae-a9be-d4abcdfb48bf",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The client invoking a method on the server (remotely):"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The client invoking a method on the server (remotely):"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460781022,
+        "id": "ee0f8a90-9201-40c5-9c27-b2c534c86abc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460781022,
+        "parent_id": "885cfea6-d653-41ae-a9be-d4abcdfb48bf",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "package client;\n\nimport java.rmi.NotBoundException;\nimport java.rmi.RemoteException;\nimport java.rmi.registry.LocateRegistry;\nimport java.rmi.registry.Registry;\n\nimport remote.RemoteServer;\n\npublic class Client {\n\n    static RemoteServer server;\n\n    public static void main(String[] args) {\n\n        try {\n            Registry reg = LocateRegistry.getRegistry();\n            server = (RemoteServer) reg.lookup(\"ServerName\");\n        } catch (RemoteException | NotBoundException e) {\n            e.printStackTrace();\n        }\n\n        Client client = new Client();\n        client.callServer();\n    }\n\n    void callServer() {\n    \n        try {\n            int i = server.stringToInt(\"120\");\n            System.out.println(\"Client received: \" + i);\n        } catch (RemoteException e) {\n            e.printStackTrace();\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "package client;\n\nimport java.rmi.NotBoundException;\nimport java.rmi.RemoteException;\nimport java.rmi.registry.LocateRegistry;\nimport java.rmi.registry.Registry;\n\nimport remote.RemoteServer;\n\npublic class Client {\n\n    static RemoteServer server;\n\n    public static void main(String[] args) {\n\n        try {\n            Registry reg = LocateRegistry.getRegistry();\n            server = (RemoteServer) reg.lookup(\"ServerName\");\n        } catch (RemoteException | NotBoundException e) {\n            e.printStackTrace();\n        }\n\n        Client client = new Client();\n        client.callServer();\n    }\n\n    void callServer() {\n    \n        try {\n            int i = server.stringToInt(\"120\");\n            System.out.println(\"Client received: \" + i);\n        } catch (RemoteException e) {\n            e.printStackTrace();\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460781022,
+        "id": "1ad05af3-cb41-452d-aa75-c709f1f6134e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460781022,
+        "parent_id": "885cfea6-d653-41ae-a9be-d4abcdfb48bf",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Output:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Output:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460781022,
+        "id": "b42eebd3-9922-4758-beaf-bf5dcef298e1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460781022,
+        "parent_id": "885cfea6-d653-41ae-a9be-d4abcdfb48bf",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Server received: “120”"
+            ]
+          ]
+        },
+        "type": "quote",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Server received: “120”"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460781023,
+        "id": "1a714f2e-52ab-45e3-afe9-e0019d88467a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460781023,
+        "parent_id": "885cfea6-d653-41ae-a9be-d4abcdfb48bf",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Client received: 120"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Client received: 120"
+          }
+        ]
+      }
+    ],
+    "title": "020 Client-Server invoking methods in one JVM from another"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

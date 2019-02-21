@@ -1,0 +1,195 @@
+{
+  "ID": "4804670e-1557-489a-b8bd-e8f8c5b19baf",
+  "Root": {
+    "alive": true,
+    "content": [
+      "a037e458-88fc-47a5-931e-b700c701563a",
+      "4b029d81-1baf-4771-8ec1-c1ff9ff86528",
+      "009eaad1-6a37-40d4-93e7-e3e20ef7f49f"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550461194101,
+    "id": "4804670e-1557-489a-b8bd-e8f8c5b19baf",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550461194101,
+    "parent_id": "411a7a1f-cef6-409f-ae9d-97669efd41d2",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "020 Adding an agent at runtime"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550461194098,
+        "id": "a037e458-88fc-47a5-931e-b700c701563a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550461194098,
+        "parent_id": "4804670e-1557-489a-b8bd-e8f8c5b19baf",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Agents can be added to a JVM at runtime. To load an agent you will need to use the Attach API’s "
+            ],
+            [
+              "VirtualMachine.attatch(String id)",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              ". You can then load a compiled agent jar with the following method:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Agents can be added to a JVM at runtime. To load an agent you will need to use the Attach API’s "
+          },
+          {
+            "Text": "VirtualMachine.attatch(String id)",
+            "AttrFlags": 4
+          },
+          {
+            "Text": ". You can then load a compiled agent jar with the following method:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550461194100,
+        "id": "4b029d81-1baf-4771-8ec1-c1ff9ff86528",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550461194100,
+        "parent_id": "4804670e-1557-489a-b8bd-e8f8c5b19baf",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public static void loadAgent(String agentPath) {\n    String vmName = ManagementFactory.getRuntimeMXBean().getName();\n    int index = vmName.indexOf('@');\n    String pid = vmName.substring(0, index);\n    try {\n        File agentFile = new File(agentPath);\n        VirtualMachine vm = VirtualMachine.attach(pid);\n        vm.loadAgent(agentFile.getAbsolutePath(), \"\");\n        VirtualMachine.attach(vm.id());\n    } catch (Exception e) {\n        throw new RuntimeException(e);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public static void loadAgent(String agentPath) {\n    String vmName = ManagementFactory.getRuntimeMXBean().getName();\n    int index = vmName.indexOf('@');\n    String pid = vmName.substring(0, index);\n    try {\n        File agentFile = new File(agentPath);\n        VirtualMachine vm = VirtualMachine.attach(pid);\n        vm.loadAgent(agentFile.getAbsolutePath(), \"\");\n        VirtualMachine.attach(vm.id());\n    } catch (Exception e) {\n        throw new RuntimeException(e);\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550461194100,
+        "id": "009eaad1-6a37-40d4-93e7-e3e20ef7f49f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550461194100,
+        "parent_id": "4804670e-1557-489a-b8bd-e8f8c5b19baf",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This will not call "
+            ],
+            [
+              "premain((String agentArgs, Instrumentation inst)",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " in the loaded agent, but instead will call "
+            ],
+            [
+              "agentmain(String agentArgs, Instrumentation inst)",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              ". This requires "
+            ],
+            [
+              "Agent-Class",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " to be set in the agent Manifest.mf."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This will not call "
+          },
+          {
+            "Text": "premain((String agentArgs, Instrumentation inst)",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " in the loaded agent, but instead will call "
+          },
+          {
+            "Text": "agentmain(String agentArgs, Instrumentation inst)",
+            "AttrFlags": 4
+          },
+          {
+            "Text": ". This requires "
+          },
+          {
+            "Text": "Agent-Class",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " to be set in the agent Manifest.mf."
+          }
+        ]
+      }
+    ],
+    "title": "020 Adding an agent at runtime"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

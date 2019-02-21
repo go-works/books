@@ -1,0 +1,285 @@
+{
+  "ID": "09470a7b-fa82-45cf-a160-9d8e39d8ff09",
+  "Root": {
+    "alive": true,
+    "content": [
+      "e325a388-cb55-4d88-92ee-df0c2b008ef2",
+      "f7fbecf8-dc7d-42dd-891b-5895c218a3a7",
+      "cbfa99ef-8f86-4bda-8b25-6ba2fd3ddc16",
+      "0cef3cf4-7e5e-4c6a-a3ae-621a69acb2d7",
+      "20bdabe6-cebe-427c-81b7-b8c504a58e21",
+      "e0e202d1-d669-4c7c-b892-aa5fe4165d2f",
+      "fc09fec9-1757-4735-81e1-b58104d6293d"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550518711562,
+    "id": "09470a7b-fa82-45cf-a160-9d8e39d8ff09",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550518711562,
+    "parent_id": "7d132e6d-be71-4378-97d7-6e67b266d858",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Sandboxing classes loaded by a ClassLoader"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518711559,
+        "id": "e325a388-cb55-4d88-92ee-df0c2b008ef2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518711559,
+        "parent_id": "09470a7b-fa82-45cf-a160-9d8e39d8ff09",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The ClassLoader needs to provide a "
+            ],
+            [
+              "ProtectionDomain",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " identifying the source of the code:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The ClassLoader needs to provide a "
+          },
+          {
+            "Text": "ProtectionDomain",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " identifying the source of the code:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518711561,
+        "id": "f7fbecf8-dc7d-42dd-891b-5895c218a3a7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518711561,
+        "parent_id": "09470a7b-fa82-45cf-a160-9d8e39d8ff09",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class PluginClassLoader extends ClassLoader {\n    private final ClassProvider provider;\n\n    private final ProtectionDomain pd;\n\n\n    public PluginClassLoader(ClassProvider provider) {\n        this.provider = provider;\n        Permissions permissions = new Permissions();\n        \n        this.pd = new ProtectionDomain(provider.getCodeSource(), permissions, this, null);\n    }\n\n\n    @Override\n    protected Class\u003c?\u003e findClass(String name) throws ClassNotFoundException {\n        byte[] classDef = provider.getClass(name);\n        Class\u003c?\u003e clazz = defineClass(name, classDef, 0, classDef.length, pd);\n        return clazz;\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class PluginClassLoader extends ClassLoader {\n    private final ClassProvider provider;\n\n    private final ProtectionDomain pd;\n\n\n    public PluginClassLoader(ClassProvider provider) {\n        this.provider = provider;\n        Permissions permissions = new Permissions();\n        \n        this.pd = new ProtectionDomain(provider.getCodeSource(), permissions, this, null);\n    }\n\n\n    @Override\n    protected Class\u003c?\u003e findClass(String name) throws ClassNotFoundException {\n        byte[] classDef = provider.getClass(name);\n        Class\u003c?\u003e clazz = defineClass(name, classDef, 0, classDef.length, pd);\n        return clazz;\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518711562,
+        "id": "cbfa99ef-8f86-4bda-8b25-6ba2fd3ddc16",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518711562,
+        "parent_id": "09470a7b-fa82-45cf-a160-9d8e39d8ff09",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "By overriding "
+            ],
+            [
+              "findClass",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " rather than "
+            ],
+            [
+              "loadClass",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " the delegational model is preserved, and the PluginClassLoader will first query the system and parent classloader for class definitions."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "By overriding "
+          },
+          {
+            "Text": "findClass",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " rather than "
+          },
+          {
+            "Text": "loadClass",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " the delegational model is preserved, and the PluginClassLoader will first query the system and parent classloader for class definitions."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518711562,
+        "id": "0cef3cf4-7e5e-4c6a-a3ae-621a69acb2d7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518711562,
+        "parent_id": "09470a7b-fa82-45cf-a160-9d8e39d8ff09",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Create a Policy:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Create a Policy:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518711562,
+        "id": "20bdabe6-cebe-427c-81b7-b8c504a58e21",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518711562,
+        "parent_id": "09470a7b-fa82-45cf-a160-9d8e39d8ff09",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class PluginSecurityPolicy extends Policy {\n    private final Permissions appPermissions = new Permissions();\n    private final Permissions pluginPermissions = new Permissions();\n\n    public PluginSecurityPolicy() {\n        // amend this as appropriate\n        appPermissions.add(new AllPermission());\n        // add any permissions plugins should have to pluginPermissions\n    }\n\n    @Override\n    public Provider getProvider() {\n        return super.getProvider();\n    }\n\n    @Override\n    public String getType() {\n        return super.getType();\n    }\n\n    @Override\n    public Parameters getParameters() {\n        return super.getParameters();\n    }\n\n    @Override\n    public PermissionCollection getPermissions(CodeSource codesource) {\n        return new Permissions();\n    }\n\n    @Override\n    public PermissionCollection getPermissions(ProtectionDomain domain) {\n        return isPlugin(domain)?pluginPermissions:appPermissions;\n    }\n\n    private boolean isPlugin(ProtectionDomain pd){\n        return pd.getClassLoader() instanceof PluginClassLoader;\n    }\n\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class PluginSecurityPolicy extends Policy {\n    private final Permissions appPermissions = new Permissions();\n    private final Permissions pluginPermissions = new Permissions();\n\n    public PluginSecurityPolicy() {\n        // amend this as appropriate\n        appPermissions.add(new AllPermission());\n        // add any permissions plugins should have to pluginPermissions\n    }\n\n    @Override\n    public Provider getProvider() {\n        return super.getProvider();\n    }\n\n    @Override\n    public String getType() {\n        return super.getType();\n    }\n\n    @Override\n    public Parameters getParameters() {\n        return super.getParameters();\n    }\n\n    @Override\n    public PermissionCollection getPermissions(CodeSource codesource) {\n        return new Permissions();\n    }\n\n    @Override\n    public PermissionCollection getPermissions(ProtectionDomain domain) {\n        return isPlugin(domain)?pluginPermissions:appPermissions;\n    }\n\n    private boolean isPlugin(ProtectionDomain pd){\n        return pd.getClassLoader() instanceof PluginClassLoader;\n    }\n\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518711562,
+        "id": "e0e202d1-d669-4c7c-b892-aa5fe4165d2f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518711562,
+        "parent_id": "09470a7b-fa82-45cf-a160-9d8e39d8ff09",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Finally, set the policy and a SecurityManager (default implementation is fine):"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Finally, set the policy and a SecurityManager (default implementation is fine):"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518711562,
+        "id": "fc09fec9-1757-4735-81e1-b58104d6293d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518711562,
+        "parent_id": "09470a7b-fa82-45cf-a160-9d8e39d8ff09",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "Policy.setPolicy(new PluginSecurityPolicy());\nSystem.setSecurityManager(new SecurityManager());"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "Policy.setPolicy(new PluginSecurityPolicy());\nSystem.setSecurityManager(new SecurityManager());",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 Sandboxing classes loaded by a ClassLoader"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

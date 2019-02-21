@@ -1,0 +1,71 @@
+{
+  "ID": "e9a62de7-6601-4bea-8867-f48d721b6e10",
+  "Root": {
+    "alive": true,
+    "content": [
+      "9f400627-287e-4ca8-9436-a233f64a8248"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550518435680,
+    "id": "e9a62de7-6601-4bea-8867-f48d721b6e10",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550518435680,
+    "parent_id": "59aca1d4-aa98-4e2a-a6ab-4b16e97533ad",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "070 How to scale a BufferedImage"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518435677,
+        "id": "9f400627-287e-4ca8-9436-a233f64a8248",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518435677,
+        "parent_id": "e9a62de7-6601-4bea-8867-f48d721b6e10",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "/**\n* Resizes an image using a Graphics2D object backed by a BufferedImage.\n* @param srcImg - source image to scale\n* @param w - desired width\n* @param h - desired height\n* @return - the new resized image\n*/\nprivate BufferedImage getScaledImage(Image srcImg, int w, int h){\n\n   //Create a new image with good size that contains or might contain arbitrary alpha values between and including 0.0 and 1.0.\n   BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TRANSLUCENT);\n\n   //Create a device-independant object to draw the resized image\n   Graphics2D g2 = resizedImg.createGraphics();\n\n   //This could be changed, Cf. http://stackoverflow.com/documentation/java/5482/creating-images-programmatically/19498/specifying-image-rendering-quality\n   g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);\n\n   //Finally draw the source image in the Graphics2D with the desired size.\n   g2.drawImage(srcImg, 0, 0, w, h, null);\n\n   //Disposes of this graphics context and releases any system resources that it is using\n   g2.dispose();\n\n   //Return the image used to create the Graphics2D \n   return resizedImg;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "/**\n* Resizes an image using a Graphics2D object backed by a BufferedImage.\n* @param srcImg - source image to scale\n* @param w - desired width\n* @param h - desired height\n* @return - the new resized image\n*/\nprivate BufferedImage getScaledImage(Image srcImg, int w, int h){\n\n   //Create a new image with good size that contains or might contain arbitrary alpha values between and including 0.0 and 1.0.\n   BufferedImage resizedImg = new BufferedImage(w, h, BufferedImage.TRANSLUCENT);\n\n   //Create a device-independant object to draw the resized image\n   Graphics2D g2 = resizedImg.createGraphics();\n\n   //This could be changed, Cf. http://stackoverflow.com/documentation/java/5482/creating-images-programmatically/19498/specifying-image-rendering-quality\n   g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);\n\n   //Finally draw the source image in the Graphics2D with the desired size.\n   g2.drawImage(srcImg, 0, 0, w, h, null);\n\n   //Disposes of this graphics context and releases any system resources that it is using\n   g2.dispose();\n\n   //Return the image used to create the Graphics2D \n   return resizedImg;\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "070 How to scale a BufferedImage"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

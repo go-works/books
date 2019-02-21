@@ -1,0 +1,247 @@
+{
+  "ID": "3ce101b1-d277-4b93-b7d9-2d4381ec751f",
+  "Root": {
+    "alive": true,
+    "content": [
+      "c79260c7-dd6c-4a7a-bf57-2a5421c62de7",
+      "51c20a03-32e5-4aa5-82fc-6a1231cba5d6",
+      "1e6bab6e-a561-4ab0-9307-d32cd95b0fdb",
+      "cdf72b7f-993a-438d-9aa9-085eb86dcf3b",
+      "065a64e1-bb8e-492c-926f-adb7dcbe10b3"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550519847905,
+    "id": "3ce101b1-d277-4b93-b7d9-2d4381ec751f",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550519847905,
+    "parent_id": "3b3e677c-6605-4602-8982-1a8d100dad9f",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 Showing reflection and other hidden frames"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519847903,
+        "id": "c79260c7-dd6c-4a7a-bf57-2a5421c62de7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519847903,
+        "parent_id": "3ce101b1-d277-4b93-b7d9-2d4381ec751f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "A couple of other options allow stack traces to include implementation and/or reflection frames. This may be useful for debugging purposes. For instance, we can add the "
+            ],
+            [
+              "SHOW_REFLECT_FRAMES",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "http://download.java.net/java/jdk9/docs/api/java/lang/StackWalker.Option.html#SHOW_REFLECT_FRAMES"
+                ]
+              ]
+            ],
+            [
+              " option to the "
+            ],
+            [
+              "StackWalker",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "http://download.java.net/java/jdk9/docs/api/java/lang/StackWalker.html"
+                ]
+              ]
+            ],
+            [
+              " instance upon creation, so that the frames for the reflective methods are printed as well:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "A couple of other options allow stack traces to include implementation and/or reflection frames. This may be useful for debugging purposes. For instance, we can add the "
+          },
+          {
+            "Text": "SHOW_REFLECT_FRAMES",
+            "AttrFlags": 2,
+            "Link": "http://download.java.net/java/jdk9/docs/api/java/lang/StackWalker.Option.html#SHOW_REFLECT_FRAMES"
+          },
+          {
+            "Text": " option to the "
+          },
+          {
+            "Text": "StackWalker",
+            "AttrFlags": 2,
+            "Link": "http://download.java.net/java/jdk9/docs/api/java/lang/StackWalker.html"
+          },
+          {
+            "Text": " instance upon creation, so that the frames for the reflective methods are printed as well:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519847904,
+        "id": "51c20a03-32e5-4aa5-82fc-6a1231cba5d6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519847904,
+        "parent_id": "3ce101b1-d277-4b93-b7d9-2d4381ec751f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "package test;\n\nimport java.lang.StackWalker.Option;\nimport java.lang.StackWalker.StackFrame;\nimport java.lang.reflect.InvocationTargetException;\nimport java.lang.reflect.Method;\nimport java.util.List;\nimport java.util.stream.Collectors;\n\npublic class StackWalkerExample {\n\n    public static void main(String[] args) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {\n        Method fooMethod = FooHelper.class.getDeclaredMethod(\"foo\", (Class\u003c?\u003e[])null);\n        fooMethod.invoke(null, (Object[]) null);\n    }\n}\n\nclass FooHelper {\n    protected static void foo() {\n        BarHelper.bar();\n    }\n}\n\nclass BarHelper {\n    protected static void bar() {\n        // show reflection methods\n        List\u003cStackFrame\u003e stack = StackWalker.getInstance(Option.SHOW_REFLECT_FRAMES)\n                .walk((s) -\u003e s.collect(Collectors.toList()));\n        for(StackFrame frame : stack) {\n            System.out.println(frame.getClassName() + \" \" + frame.getLineNumber() + \" \" + frame.getMethodName());\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "package test;\n\nimport java.lang.StackWalker.Option;\nimport java.lang.StackWalker.StackFrame;\nimport java.lang.reflect.InvocationTargetException;\nimport java.lang.reflect.Method;\nimport java.util.List;\nimport java.util.stream.Collectors;\n\npublic class StackWalkerExample {\n\n    public static void main(String[] args) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {\n        Method fooMethod = FooHelper.class.getDeclaredMethod(\"foo\", (Class\u003c?\u003e[])null);\n        fooMethod.invoke(null, (Object[]) null);\n    }\n}\n\nclass FooHelper {\n    protected static void foo() {\n        BarHelper.bar();\n    }\n}\n\nclass BarHelper {\n    protected static void bar() {\n        // show reflection methods\n        List\u003cStackFrame\u003e stack = StackWalker.getInstance(Option.SHOW_REFLECT_FRAMES)\n                .walk((s) -\u003e s.collect(Collectors.toList()));\n        for(StackFrame frame : stack) {\n            System.out.println(frame.getClassName() + \" \" + frame.getLineNumber() + \" \" + frame.getMethodName());\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519847905,
+        "id": "1e6bab6e-a561-4ab0-9307-d32cd95b0fdb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519847905,
+        "parent_id": "3ce101b1-d277-4b93-b7d9-2d4381ec751f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Output:",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Output:",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519847905,
+        "id": "cdf72b7f-993a-438d-9aa9-085eb86dcf3b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519847905,
+        "parent_id": "3ce101b1-d277-4b93-b7d9-2d4381ec751f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "test.BarHelper 27 bar\ntest.FooHelper 20 foo\njdk.internal.reflect.NativeMethodAccessorImpl -2 invoke0\njdk.internal.reflect.NativeMethodAccessorImpl 62 invoke\njdk.internal.reflect.DelegatingMethodAccessorImpl 43 invoke\njava.lang.reflect.Method 563 invoke\ntest.StackWalkerExample 14 main"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "test.BarHelper 27 bar\ntest.FooHelper 20 foo\njdk.internal.reflect.NativeMethodAccessorImpl -2 invoke0\njdk.internal.reflect.NativeMethodAccessorImpl 62 invoke\njdk.internal.reflect.DelegatingMethodAccessorImpl 43 invoke\njava.lang.reflect.Method 563 invoke\ntest.StackWalkerExample 14 main",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519847905,
+        "id": "065a64e1-bb8e-492c-926f-adb7dcbe10b3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519847905,
+        "parent_id": "3ce101b1-d277-4b93-b7d9-2d4381ec751f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Note that line numbers for some reflection methods may not be available so "
+            ],
+            [
+              "StackFrame.getLineNumber()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " may return negative values."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Note that line numbers for some reflection methods may not be available so "
+          },
+          {
+            "Text": "StackFrame.getLineNumber()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " may return negative values."
+          }
+        ]
+      }
+    ],
+    "title": "030 Showing reflection and other hidden frames"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

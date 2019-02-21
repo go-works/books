@@ -1,0 +1,443 @@
+{
+  "ID": "fe38b634-6b08-4990-b5ba-bb4e1617f4a0",
+  "Root": {
+    "alive": true,
+    "content": [
+      "fdb04ed3-566f-43dd-814f-479ccf7432c6",
+      "d89602bf-ef3d-4223-b12d-c6df005c4342",
+      "ce5b3639-546d-424e-9766-110bb2349439",
+      "ae6427d9-bb13-4a06-8765-00dcff0614a2",
+      "c2f39ed6-f3ed-4d59-9119-c24bff184441",
+      "01bd8b1a-b045-4b42-9dd1-45d223f5cfc7",
+      "1b6d9e07-64dc-41b3-b363-efc8bcf54a48",
+      "5e186d37-6831-46ee-9c83-2f6c6339193c"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550517992990,
+    "id": "fe38b634-6b08-4990-b5ba-bb4e1617f4a0",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550517992990,
+    "parent_id": "65b3b4cb-dbb9-4dfb-9c83-9429dfa4e76a",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 Pitfall forgetting to free resources"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517992988,
+        "id": "fdb04ed3-566f-43dd-814f-479ccf7432c6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517992988,
+        "parent_id": "fe38b634-6b08-4990-b5ba-bb4e1617f4a0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Every time a program opens a resource, such as a file or network connection, it is important to free the resource once you are done using it. Similar caution should be taken if any exception were to be thrown during operations on such resources. One could argue that the "
+            ],
+            [
+              "FileInputStream",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "https://docs.oracle.com/javase/8/docs/api/java/io/FileInputStream.html"
+                ]
+              ]
+            ],
+            [
+              " has a "
+            ],
+            [
+              "finalizer",
+              [
+                [
+                  "a",
+                  "https://en.wikipedia.org/wiki/Finalizer"
+                ]
+              ]
+            ],
+            [
+              " that invokes the "
+            ],
+            [
+              "close()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method on a garbage collection event; however, since we can’t be sure when a garbage collection cycle will start, the input stream can consume computer resources for an indefinite period of time. The resource must be closed in a "
+            ],
+            [
+              "finally",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " section of a try-catch block:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Every time a program opens a resource, such as a file or network connection, it is important to free the resource once you are done using it. Similar caution should be taken if any exception were to be thrown during operations on such resources. One could argue that the "
+          },
+          {
+            "Text": "FileInputStream",
+            "AttrFlags": 2,
+            "Link": "https://docs.oracle.com/javase/8/docs/api/java/io/FileInputStream.html"
+          },
+          {
+            "Text": " has a "
+          },
+          {
+            "Text": "finalizer",
+            "Link": "https://en.wikipedia.org/wiki/Finalizer"
+          },
+          {
+            "Text": " that invokes the "
+          },
+          {
+            "Text": "close()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method on a garbage collection event; however, since we can’t be sure when a garbage collection cycle will start, the input stream can consume computer resources for an indefinite period of time. The resource must be closed in a "
+          },
+          {
+            "Text": "finally",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " section of a try-catch block:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517992989,
+        "id": "d89602bf-ef3d-4223-b12d-c6df005c4342",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517992989,
+        "parent_id": "fe38b634-6b08-4990-b5ba-bb4e1617f4a0",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "private static void printFileJava6() throws IOException {\n    FileInputStream input;\n    try {\n        input = new FileInputStream(\"file.txt\");\n        int data = input.read();\n        while (data != -1){\n            System.out.print((char) data);\n            data = input.read();\n        }\n    } finally {\n        if (input != null) {\n            input.close();\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "private static void printFileJava6() throws IOException {\n    FileInputStream input;\n    try {\n        input = new FileInputStream(\"file.txt\");\n        int data = input.read();\n        while (data != -1){\n            System.out.print((char) data);\n            data = input.read();\n        }\n    } finally {\n        if (input != null) {\n            input.close();\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517992989,
+        "id": "ce5b3639-546d-424e-9766-110bb2349439",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517992989,
+        "parent_id": "fe38b634-6b08-4990-b5ba-bb4e1617f4a0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Since Java 7 there is a really useful and neat statement introduced in Java 7 particularly for this case, called try-with-resources:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Since Java 7 there is a really useful and neat statement introduced in Java 7 particularly for this case, called try-with-resources:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517992989,
+        "id": "ae6427d9-bb13-4a06-8765-00dcff0614a2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517992989,
+        "parent_id": "fe38b634-6b08-4990-b5ba-bb4e1617f4a0",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "private static void printFileJava7() throws IOException {\n    try (FileInputStream input = new FileInputStream(\"file.txt\")) {\n        int data = input.read();\n        while (data != -1){\n            System.out.print((char) data);\n            data = input.read();\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "private static void printFileJava7() throws IOException {\n    try (FileInputStream input = new FileInputStream(\"file.txt\")) {\n        int data = input.read();\n        while (data != -1){\n            System.out.print((char) data);\n            data = input.read();\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517992990,
+        "id": "c2f39ed6-f3ed-4d59-9119-c24bff184441",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517992990,
+        "parent_id": "fe38b634-6b08-4990-b5ba-bb4e1617f4a0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The "
+            ],
+            [
+              "try-with-resources",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " statement can be used with any object that implements the "
+            ],
+            [
+              "Closeable",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " or "
+            ],
+            [
+              "AutoCloseable",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " interface. It ensures that each resource is closed by the end of the statement. The difference between the two interfaces is, that the "
+            ],
+            [
+              "close()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method of "
+            ],
+            [
+              "Closeable",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " throws an "
+            ],
+            [
+              "IOException",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " which has to be handled in some way."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The "
+          },
+          {
+            "Text": "try-with-resources",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " statement can be used with any object that implements the "
+          },
+          {
+            "Text": "Closeable",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " or "
+          },
+          {
+            "Text": "AutoCloseable",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " interface. It ensures that each resource is closed by the end of the statement. The difference between the two interfaces is, that the "
+          },
+          {
+            "Text": "close()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method of "
+          },
+          {
+            "Text": "Closeable",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " throws an "
+          },
+          {
+            "Text": "IOException",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " which has to be handled in some way."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517992990,
+        "id": "01bd8b1a-b045-4b42-9dd1-45d223f5cfc7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517992990,
+        "parent_id": "fe38b634-6b08-4990-b5ba-bb4e1617f4a0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In cases where the resource has already been opened but should be safely closed after use, one can assign it to a local variable inside the try-with-resources"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In cases where the resource has already been opened but should be safely closed after use, one can assign it to a local variable inside the try-with-resources"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517992990,
+        "id": "1b6d9e07-64dc-41b3-b363-efc8bcf54a48",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517992990,
+        "parent_id": "fe38b634-6b08-4990-b5ba-bb4e1617f4a0",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "private static void printFileJava7(InputStream extResource) throws IOException {\n    try (InputStream input = extResource) {\n        ... //access resource\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "private static void printFileJava7(InputStream extResource) throws IOException {\n    try (InputStream input = extResource) {\n        ... //access resource\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517992990,
+        "id": "5e186d37-6831-46ee-9c83-2f6c6339193c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517992990,
+        "parent_id": "fe38b634-6b08-4990-b5ba-bb4e1617f4a0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The local resource variable created in the try-with-resources constructor is effectively final."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The local resource variable created in the try-with-resources constructor is effectively final."
+          }
+        ]
+      }
+    ],
+    "title": "030 Pitfall forgetting to free resources"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

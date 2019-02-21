@@ -1,0 +1,305 @@
+{
+  "ID": "c20e0d8f-d679-4f44-a61b-37c3658ac4b3",
+  "Root": {
+    "alive": true,
+    "content": [
+      "966b7582-4b34-4e71-b5f5-66cd385eef36",
+      "d2844fc3-0a33-45f5-bf3c-9a2beebb8475",
+      "8ad54888-1ab8-496d-8279-8408dc44ac5f",
+      "44e01856-3247-48f4-9d61-5f04fba70d39",
+      "f52cd8f9-e3f0-444b-b1da-d2dc0f8ce59f",
+      "f78308df-1ef6-4572-b740-d716183b6d7d",
+      "71bbfb03-7f10-41b1-b074-e4d175df2d98",
+      "82af94e0-878a-486f-8f22-c2e84304bfa1"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550460438358,
+    "id": "c20e0d8f-d679-4f44-a61b-37c3658ac4b3",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550460438358,
+    "parent_id": "9b718882-2700-4d99-b7fa-082a618f32ef",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "130 Get status of all threads started by your program excluding system threads"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460438356,
+        "id": "966b7582-4b34-4e71-b5f5-66cd385eef36",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460438356,
+        "parent_id": "c20e0d8f-d679-4f44-a61b-37c3658ac4b3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Code snippet:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Code snippet:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460438357,
+        "id": "d2844fc3-0a33-45f5-bf3c-9a2beebb8475",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460438357,
+        "parent_id": "c20e0d8f-d679-4f44-a61b-37c3658ac4b3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import java.util.Set;\n\npublic class ThreadStatus {\n    public static void main(String args[]) throws Exception {\n        for (int i = 0; i \u003c 5; i++){\n            Thread t = new Thread(new MyThread());\n            t.setName(\"MyThread:\" + i);\n            t.start();\n        }\n        int threadCount = 0;\n        Set\u003cThread\u003e threadSet = Thread.getAllStackTraces().keySet();\n        for (Thread t : threadSet) {\n            if (t.getThreadGroup() == Thread.currentThread().getThreadGroup()) {\n                System.out.println(\"Thread :\" + t + \":\" + \"state:\" + t.getState());\n                ++threadCount;\n            }\n        }\n        System.out.println(\"Thread count started by Main thread:\" + threadCount);\n    }\n}\n\nclass MyThread implements Runnable {\n    public void run() {\n        try {\n            Thread.sleep(2000);\n        } catch(Exception err) {\n            err.printStackTrace();\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import java.util.Set;\n\npublic class ThreadStatus {\n    public static void main(String args[]) throws Exception {\n        for (int i = 0; i \u003c 5; i++){\n            Thread t = new Thread(new MyThread());\n            t.setName(\"MyThread:\" + i);\n            t.start();\n        }\n        int threadCount = 0;\n        Set\u003cThread\u003e threadSet = Thread.getAllStackTraces().keySet();\n        for (Thread t : threadSet) {\n            if (t.getThreadGroup() == Thread.currentThread().getThreadGroup()) {\n                System.out.println(\"Thread :\" + t + \":\" + \"state:\" + t.getState());\n                ++threadCount;\n            }\n        }\n        System.out.println(\"Thread count started by Main thread:\" + threadCount);\n    }\n}\n\nclass MyThread implements Runnable {\n    public void run() {\n        try {\n            Thread.sleep(2000);\n        } catch(Exception err) {\n            err.printStackTrace();\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460438357,
+        "id": "8ad54888-1ab8-496d-8279-8408dc44ac5f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460438357,
+        "parent_id": "c20e0d8f-d679-4f44-a61b-37c3658ac4b3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Output:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Output:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460438357,
+        "id": "44e01856-3247-48f4-9d61-5f04fba70d39",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460438357,
+        "parent_id": "c20e0d8f-d679-4f44-a61b-37c3658ac4b3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "Thread :Thread[MyThread:1,5,main]:state:TIMED_WAITING\nThread :Thread[MyThread:3,5,main]:state:TIMED_WAITING\nThread :Thread[main,5,main]:state:RUNNABLE\nThread :Thread[MyThread:4,5,main]:state:TIMED_WAITING\nThread :Thread[MyThread:0,5,main]:state:TIMED_WAITING\nThread :Thread[MyThread:2,5,main]:state:TIMED_WAITING\nThread count started by Main thread:6"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "Thread :Thread[MyThread:1,5,main]:state:TIMED_WAITING\nThread :Thread[MyThread:3,5,main]:state:TIMED_WAITING\nThread :Thread[main,5,main]:state:RUNNABLE\nThread :Thread[MyThread:4,5,main]:state:TIMED_WAITING\nThread :Thread[MyThread:0,5,main]:state:TIMED_WAITING\nThread :Thread[MyThread:2,5,main]:state:TIMED_WAITING\nThread count started by Main thread:6",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460438357,
+        "id": "f52cd8f9-e3f0-444b-b1da-d2dc0f8ce59f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460438357,
+        "parent_id": "c20e0d8f-d679-4f44-a61b-37c3658ac4b3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Explanation:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Explanation:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460438357,
+        "id": "f78308df-1ef6-4572-b740-d716183b6d7d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460438357,
+        "parent_id": "c20e0d8f-d679-4f44-a61b-37c3658ac4b3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Thread.getAllStackTraces().keySet()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " returns all "
+            ],
+            [
+              "Thread",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "s including application threads and system threads. If you are interested only in status of Threads, started by your application, iterate the "
+            ],
+            [
+              "Thread",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " set by checking Thread Group of a particular thread against your main program thread."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Thread.getAllStackTraces().keySet()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " returns all "
+          },
+          {
+            "Text": "Thread",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "s including application threads and system threads. If you are interested only in status of Threads, started by your application, iterate the "
+          },
+          {
+            "Text": "Thread",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " set by checking Thread Group of a particular thread against your main program thread."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460438357,
+        "id": "71bbfb03-7f10-41b1-b074-e4d175df2d98",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460438357,
+        "parent_id": "c20e0d8f-d679-4f44-a61b-37c3658ac4b3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In absence of above ThreadGroup condition, the program returns status of below System Threads:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In absence of above ThreadGroup condition, the program returns status of below System Threads:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460438357,
+        "id": "82af94e0-878a-486f-8f22-c2e84304bfa1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460438357,
+        "parent_id": "c20e0d8f-d679-4f44-a61b-37c3658ac4b3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "Reference Handler\nSignal Dispatcher\nAttach Listener\nFinalizer"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "Reference Handler\nSignal Dispatcher\nAttach Listener\nFinalizer",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "130 Get status of all threads started by your program excluding system threads"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

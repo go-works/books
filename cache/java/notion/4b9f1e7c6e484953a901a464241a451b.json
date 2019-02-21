@@ -1,0 +1,313 @@
+{
+  "ID": "4b9f1e7c-6e48-4953-a901-a464241a451b",
+  "Root": {
+    "alive": true,
+    "content": [
+      "698e91d2-6206-4fb6-8581-bcae8d9495dc",
+      "6ed6dc73-a993-49e9-b0d2-016b0b7fb4de",
+      "09f9b39f-fa69-43f6-8338-96e88f34ef2d",
+      "7414aa28-9beb-4f56-9d33-a5e5310a2278",
+      "dc3da093-c724-40db-8e45-76760cddc375",
+      "556180ca-fdf9-467f-afa4-d511f5a47341"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550460724115,
+    "id": "4b9f1e7c-6e48-4953-a901-a464241a451b",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550460724115,
+    "parent_id": "7f371e05-b7ff-48ea-9972-81e7db63652e",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "060 Repeating Annotations"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460724112,
+        "id": "698e91d2-6206-4fb6-8581-bcae8d9495dc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460724112,
+        "parent_id": "4b9f1e7c-6e48-4953-a901-a464241a451b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Until Java 8, two instances of the same annotation could not be applied to a single element. The standard workaround was to use a container annotation holding an array of some other annotation:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Until Java 8, two instances of the same annotation could not be applied to a single element. The standard workaround was to use a container annotation holding an array of some other annotation:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460724114,
+        "id": "6ed6dc73-a993-49e9-b0d2-016b0b7fb4de",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460724114,
+        "parent_id": "4b9f1e7c-6e48-4953-a901-a464241a451b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Author.java\n@Retention(RetentionPolicy.RUNTIME)\npublic @interface Author {\n    String value();\n}\n\n// Authors.java\n@Retention(RetentionPolicy.RUNTIME)\npublic @interface Authors {\n    Author[] value();\n}\n\n// Test.java\n@Authors({\n    @Author(\"Mary\"),\n    @Author(\"Sam\")\n})\npublic class Test {\n    public static void main(String[] args) {\n        Author[] authors = Test.class.getAnnotation(Authors.class).value();\n        for (Author author : authors) {\n            System.out.println(author.value());\n            // Output:\n            // Mary\n            // Sam\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Author.java\n@Retention(RetentionPolicy.RUNTIME)\npublic @interface Author {\n    String value();\n}\n\n// Authors.java\n@Retention(RetentionPolicy.RUNTIME)\npublic @interface Authors {\n    Author[] value();\n}\n\n// Test.java\n@Authors({\n    @Author(\"Mary\"),\n    @Author(\"Sam\")\n})\npublic class Test {\n    public static void main(String[] args) {\n        Author[] authors = Test.class.getAnnotation(Authors.class).value();\n        for (Author author : authors) {\n            System.out.println(author.value());\n            // Output:\n            // Mary\n            // Sam\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460724115,
+        "id": "09f9b39f-fa69-43f6-8338-96e88f34ef2d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460724115,
+        "parent_id": "4b9f1e7c-6e48-4953-a901-a464241a451b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Java 8 provides a cleaner, more transparent way of using container annotations, using the "
+            ],
+            [
+              "@Repeatable",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " annotation. First we add this to the "
+            ],
+            [
+              "Author",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " class:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Java 8 provides a cleaner, more transparent way of using container annotations, using the "
+          },
+          {
+            "Text": "@Repeatable",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " annotation. First we add this to the "
+          },
+          {
+            "Text": "Author",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " class:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460724115,
+        "id": "7414aa28-9beb-4f56-9d33-a5e5310a2278",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460724115,
+        "parent_id": "4b9f1e7c-6e48-4953-a901-a464241a451b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "@Repeatable(Authors.class)"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "@Repeatable(Authors.class)",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460724115,
+        "id": "dc3da093-c724-40db-8e45-76760cddc375",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460724115,
+        "parent_id": "4b9f1e7c-6e48-4953-a901-a464241a451b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This tells Java to treat multiple "
+            ],
+            [
+              "@Author",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " annotations as though they were surrounded by the "
+            ],
+            [
+              "@Authors",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " container. We can also use "
+            ],
+            [
+              "Class.getAnnotationsByType()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to access the "
+            ],
+            [
+              "@Author",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " array by its own class, instead of through its container:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This tells Java to treat multiple "
+          },
+          {
+            "Text": "@Author",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " annotations as though they were surrounded by the "
+          },
+          {
+            "Text": "@Authors",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " container. We can also use "
+          },
+          {
+            "Text": "Class.getAnnotationsByType()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to access the "
+          },
+          {
+            "Text": "@Author",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " array by its own class, instead of through its container:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460724115,
+        "id": "556180ca-fdf9-467f-afa4-d511f5a47341",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460724115,
+        "parent_id": "4b9f1e7c-6e48-4953-a901-a464241a451b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "@Author(\"Mary\")\n@Author(\"Sam\")\npublic class Test {\n    public static void main(String[] args) {\n        Author[] authors = Test.class.getAnnotationsByType(Author.class);\n        for (Author author : authors) {\n            System.out.println(author.value());\n            // Output:\n            // Mary\n            // Sam\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "@Author(\"Mary\")\n@Author(\"Sam\")\npublic class Test {\n    public static void main(String[] args) {\n        Author[] authors = Test.class.getAnnotationsByType(Author.class);\n        for (Author author : authors) {\n            System.out.println(author.value());\n            // Output:\n            // Mary\n            // Sam\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "060 Repeating Annotations"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

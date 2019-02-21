@@ -1,0 +1,453 @@
+{
+  "ID": "4de5c721-cb8a-4ec1-ac85-4ab0f68d084b",
+  "Root": {
+    "alive": true,
+    "content": [
+      "1a2fbec9-9542-4bf3-a4c8-253d862f7bd0",
+      "816ed6ee-7c32-4090-bd5c-510b898c35db",
+      "bc9255a7-70d0-4237-b49a-efc3e84d4d0e",
+      "b45ec450-dddf-4785-b5d4-72cdb8c3005c",
+      "95512fbe-dd10-4bd0-bb4f-d11c46ce80ac",
+      "d58242c2-472a-4533-ba83-b73fab8e0d54"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550518417443,
+    "id": "4de5c721-cb8a-4ec1-ac85-4ab0f68d084b",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550518417443,
+    "parent_id": "28d11fe4-92df-4393-8cbb-b9dadc487955",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 Pitfall - Using new to create primitive wrapper instances is inefficient"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518417440,
+        "id": "1a2fbec9-9542-4bf3-a4c8-253d862f7bd0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518417440,
+        "parent_id": "4de5c721-cb8a-4ec1-ac85-4ab0f68d084b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The Java language allows you to use "
+            ],
+            [
+              "new",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to create instances "
+            ],
+            [
+              "Integer",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", "
+            ],
+            [
+              "Boolean",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and so on, but it is generally a bad idea. It is better to either use autoboxing (Java 5 and later) or the "
+            ],
+            [
+              "valueOf",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The Java language allows you to use "
+          },
+          {
+            "Text": "new",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to create instances "
+          },
+          {
+            "Text": "Integer",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", "
+          },
+          {
+            "Text": "Boolean",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and so on, but it is generally a bad idea. It is better to either use autoboxing (Java 5 and later) or the "
+          },
+          {
+            "Text": "valueOf",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518417440,
+        "id": "816ed6ee-7c32-4090-bd5c-510b898c35db",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518417440,
+        "parent_id": "4de5c721-cb8a-4ec1-ac85-4ab0f68d084b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "Integer i1 = new Integer(1);      // BAD\nInteger i2 = 2;                   // BEST (autoboxing)\nInteger i3 = Integer.valueOf(3);  // OK"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "Integer i1 = new Integer(1);      // BAD\nInteger i2 = 2;                   // BEST (autoboxing)\nInteger i3 = Integer.valueOf(3);  // OK",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518417441,
+        "id": "bc9255a7-70d0-4237-b49a-efc3e84d4d0e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518417441,
+        "parent_id": "4de5c721-cb8a-4ec1-ac85-4ab0f68d084b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The reason that using "
+            ],
+            [
+              "new Integer(int)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " explicitly is a bad idea is that it creates a new object (unless optimized out by JIT compiler). By contrast, when autoboxing or an explicit "
+            ],
+            [
+              "valueOf",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " call are used, the Java runtime will try to reuse an "
+            ],
+            [
+              "Integer",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " object from a cache of pre-existing objects. Each time the runtime has a cache “hit”, it avoids creating an object. This also saves heap memory and reduces GC overheads caused by object churn."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The reason that using "
+          },
+          {
+            "Text": "new Integer(int)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " explicitly is a bad idea is that it creates a new object (unless optimized out by JIT compiler). By contrast, when autoboxing or an explicit "
+          },
+          {
+            "Text": "valueOf",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " call are used, the Java runtime will try to reuse an "
+          },
+          {
+            "Text": "Integer",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " object from a cache of pre-existing objects. Each time the runtime has a cache “hit”, it avoids creating an object. This also saves heap memory and reduces GC overheads caused by object churn."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518417441,
+        "id": "b45ec450-dddf-4785-b5d4-72cdb8c3005c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518417441,
+        "parent_id": "4de5c721-cb8a-4ec1-ac85-4ab0f68d084b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Notes:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Notes:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518417443,
+        "id": "95512fbe-dd10-4bd0-bb4f-d11c46ce80ac",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518417443,
+        "parent_id": "4de5c721-cb8a-4ec1-ac85-4ab0f68d084b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In recent Java implementations, autoboxing is implemented by calling "
+            ],
+            [
+              "valueOf",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", and there are caches for "
+            ],
+            [
+              "Boolean",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", "
+            ],
+            [
+              "Byte",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", "
+            ],
+            [
+              "Short",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", "
+            ],
+            [
+              "Integer",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", "
+            ],
+            [
+              "Long",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "Character",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In recent Java implementations, autoboxing is implemented by calling "
+          },
+          {
+            "Text": "valueOf",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", and there are caches for "
+          },
+          {
+            "Text": "Boolean",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", "
+          },
+          {
+            "Text": "Byte",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", "
+          },
+          {
+            "Text": "Short",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", "
+          },
+          {
+            "Text": "Integer",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", "
+          },
+          {
+            "Text": "Long",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "Character",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518417443,
+        "id": "d58242c2-472a-4533-ba83-b73fab8e0d54",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518417443,
+        "parent_id": "4de5c721-cb8a-4ec1-ac85-4ab0f68d084b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The caching behavior for the integral types is mandated by the Java Language Specification."
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The caching behavior for the integral types is mandated by the Java Language Specification."
+          }
+        ]
+      }
+    ],
+    "title": "030 Pitfall - Using new to create primitive wrapper instances is inefficient"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

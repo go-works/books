@@ -1,0 +1,157 @@
+{
+  "ID": "9292a0a1-03be-41bf-8075-4a26583b8ba6",
+  "Root": {
+    "alive": true,
+    "content": [
+      "ada1ba3c-2b3a-45bb-aec3-35c2b8d12d32",
+      "d4d7e89c-6b28-4922-b0a1-c810d140f124",
+      "2cd7de09-a98b-40c2-acd5-3209d352d627",
+      "613f802c-451d-4b2c-9622-b81048ad6a50"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550519845592,
+    "id": "9292a0a1-03be-41bf-8075-4a26583b8ba6",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550519845592,
+    "parent_id": "3b3e677c-6605-4602-8982-1a8d100dad9f",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Print all stack frames of the current thread"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519845589,
+        "id": "ada1ba3c-2b3a-45bb-aec3-35c2b8d12d32",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519845589,
+        "parent_id": "9292a0a1-03be-41bf-8075-4a26583b8ba6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The following prints all stack frames of the current thread:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The following prints all stack frames of the current thread:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519845591,
+        "id": "d4d7e89c-6b28-4922-b0a1-c810d140f124",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519845591,
+        "parent_id": "9292a0a1-03be-41bf-8075-4a26583b8ba6",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "1  package test;\n2  \n3  import java.lang.StackWalker.StackFrame;\n4  import java.lang.reflect.InvocationTargetException;\n5  import java.lang.reflect.Method;\n6  import java.util.List;\n7  import java.util.stream.Collectors;\n8  \n9  public class StackWalkerExample {\n10 \n11    public static void main(String[] args) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {\n12        Method fooMethod = FooHelper.class.getDeclaredMethod(\"foo\", (Class\u003c?\u003e[])null);\n13        fooMethod.invoke(null, (Object[]) null);\n14    }\n15 }\n16\n17 class FooHelper {\n18    protected static void foo() {\n19        BarHelper.bar();\n20    }\n21 }\n22 \n23 class BarHelper {\n24    protected static void bar() {\n25        List\u003cStackFrame\u003e stack = StackWalker.getInstance()\n26                .walk((s) -\u003e s.collect(Collectors.toList()));\n27        for(StackFrame frame : stack) {\n28            System.out.println(frame.getClassName() + \" \" + frame.getLineNumber() + \" \" + frame.getMethodName());\n29        }\n30    }\n31 }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "1  package test;\n2  \n3  import java.lang.StackWalker.StackFrame;\n4  import java.lang.reflect.InvocationTargetException;\n5  import java.lang.reflect.Method;\n6  import java.util.List;\n7  import java.util.stream.Collectors;\n8  \n9  public class StackWalkerExample {\n10 \n11    public static void main(String[] args) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {\n12        Method fooMethod = FooHelper.class.getDeclaredMethod(\"foo\", (Class\u003c?\u003e[])null);\n13        fooMethod.invoke(null, (Object[]) null);\n14    }\n15 }\n16\n17 class FooHelper {\n18    protected static void foo() {\n19        BarHelper.bar();\n20    }\n21 }\n22 \n23 class BarHelper {\n24    protected static void bar() {\n25        List\u003cStackFrame\u003e stack = StackWalker.getInstance()\n26                .walk((s) -\u003e s.collect(Collectors.toList()));\n27        for(StackFrame frame : stack) {\n28            System.out.println(frame.getClassName() + \" \" + frame.getLineNumber() + \" \" + frame.getMethodName());\n29        }\n30    }\n31 }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519845591,
+        "id": "2cd7de09-a98b-40c2-acd5-3209d352d627",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519845591,
+        "parent_id": "9292a0a1-03be-41bf-8075-4a26583b8ba6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Output:",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Output:",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519845591,
+        "id": "613f802c-451d-4b2c-9622-b81048ad6a50",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519845591,
+        "parent_id": "9292a0a1-03be-41bf-8075-4a26583b8ba6",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "test.BarHelper 26 bar\ntest.FooHelper 19 foo\ntest.StackWalkerExample 13 main"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "test.BarHelper 26 bar\ntest.FooHelper 19 foo\ntest.StackWalkerExample 13 main",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 Print all stack frames of the current thread"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

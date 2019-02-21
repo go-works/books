@@ -1,0 +1,97 @@
+{
+  "ID": "a1700240-9c0d-4fcb-b531-eab7c0f549bd",
+  "Root": {
+    "alive": true,
+    "content": [
+      "34edfe82-3092-4d04-8d81-7d39b0814826",
+      "91891ebb-1160-456d-90cb-4b9084b1244e"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550460732062,
+    "id": "a1700240-9c0d-4fcb-b531-eab7c0f549bd",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550460732062,
+    "parent_id": "d12c85fb-12be-4d36-9a14-84025fa56b60",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 Basic audio output"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460732059,
+        "id": "34edfe82-3092-4d04-8d81-7d39b0814826",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460732059,
+        "parent_id": "a1700240-9c0d-4fcb-b531-eab7c0f549bd",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The Hello Audio! of Java that plays a sound file from local or internet storage looks as follows. It works for uncompressed .wav files and should not be used for playing mp3 or compressed files."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The Hello Audio! of Java that plays a sound file from local or internet storage looks as follows. It works for uncompressed .wav files and should not be used for playing mp3 or compressed files."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460732062,
+        "id": "91891ebb-1160-456d-90cb-4b9084b1244e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460732062,
+        "parent_id": "a1700240-9c0d-4fcb-b531-eab7c0f549bd",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import java.io.*;\nimport java.net.URL;\nimport javax.sound.sampled.*;\n\npublic class SoundClipTest {\n\n   // Constructor\n   public SoundClipTest() {          \n      try {\n         // Open an audio input stream.           \n          File soundFile = new File(\"/usr/share/sounds/alsa/Front_Center.wav\"); //you could also get the sound file with an URL\n          AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile); \n          AudioFormat format = audioIn.getFormat();             \n         // Get a sound clip resource.\n         DataLine.Info info = new DataLine.Info(Clip.class, format);\n         Clip clip = (Clip)AudioSystem.getLine(info);\n         // Open audio clip and load samples from the audio input stream.\n         clip.open(audioIn);\n         clip.start();\n      } catch (UnsupportedAudioFileException e) {\n         e.printStackTrace();\n      } catch (IOException e) {\n         e.printStackTrace();\n      } catch (LineUnavailableException e) {\n         e.printStackTrace();\n      }\n   }\n\n   public static void main(String[] args) {\n      new SoundClipTest();\n   }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import java.io.*;\nimport java.net.URL;\nimport javax.sound.sampled.*;\n\npublic class SoundClipTest {\n\n   // Constructor\n   public SoundClipTest() {          \n      try {\n         // Open an audio input stream.           \n          File soundFile = new File(\"/usr/share/sounds/alsa/Front_Center.wav\"); //you could also get the sound file with an URL\n          AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile); \n          AudioFormat format = audioIn.getFormat();             \n         // Get a sound clip resource.\n         DataLine.Info info = new DataLine.Info(Clip.class, format);\n         Clip clip = (Clip)AudioSystem.getLine(info);\n         // Open audio clip and load samples from the audio input stream.\n         clip.open(audioIn);\n         clip.start();\n      } catch (UnsupportedAudioFileException e) {\n         e.printStackTrace();\n      } catch (IOException e) {\n         e.printStackTrace();\n      } catch (LineUnavailableException e) {\n         e.printStackTrace();\n      }\n   }\n\n   public static void main(String[] args) {\n      new SoundClipTest();\n   }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "030 Basic audio output"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

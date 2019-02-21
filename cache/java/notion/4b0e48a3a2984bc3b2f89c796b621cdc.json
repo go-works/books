@@ -1,0 +1,396 @@
+{
+  "ID": "4b0e48a3-a298-4bc3-b2f8-9c796b621cdc",
+  "Root": {
+    "alive": true,
+    "content": [
+      "3b258b27-9083-48f7-b5a3-53883ebae57b",
+      "a4261413-9f35-4be6-be14-5f6cda108687",
+      "e1293611-198e-4718-a705-b6ba960fe2fd",
+      "f0e1929b-475e-4f88-badb-b5678939efa8",
+      "cfa3c079-4595-4b3d-b00f-87f103afbbb6",
+      "702859b7-5240-469c-95e6-23a8b4a1ba2d",
+      "3be0f151-7cfe-41ce-a9cc-31a1b94536d6"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550460571009,
+    "id": "4b0e48a3-a298-4bc3-b2f8-9c796b621cdc",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550460571009,
+    "parent_id": "8576ab83-1126-4d17-b0cf-2a0ba47249c1",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "120 Compare and Contains for Enum values"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460571003,
+        "id": "3b258b27-9083-48f7-b5a3-53883ebae57b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460571003,
+        "parent_id": "4b0e48a3-a298-4bc3-b2f8-9c796b621cdc",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Enums contains only constants and can be compared directly with "
+            ],
+            [
+              "==",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". So, only reference check is needed, no need to use "
+            ],
+            [
+              ".equals",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method. Moreover, if "
+            ],
+            [
+              ".equals",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " used incorrectly, may raise the "
+            ],
+            [
+              "NullPointerException",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " while that’s not the case with "
+            ],
+            [
+              "==",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " check."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Enums contains only constants and can be compared directly with "
+          },
+          {
+            "Text": "==",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". So, only reference check is needed, no need to use "
+          },
+          {
+            "Text": ".equals",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method. Moreover, if "
+          },
+          {
+            "Text": ".equals",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " used incorrectly, may raise the "
+          },
+          {
+            "Text": "NullPointerException",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " while that’s not the case with "
+          },
+          {
+            "Text": "==",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " check."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460571006,
+        "id": "a4261413-9f35-4be6-be14-5f6cda108687",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460571006,
+        "parent_id": "4b0e48a3-a298-4bc3-b2f8-9c796b621cdc",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "enum Day {\n    GOOD, AVERAGE, WORST;\n}\n\npublic class Test {\n\n    public static void main(String[] args) {\n        Day day = null;\n\n        if (day.equals(Day.GOOD)) {//NullPointerException!\n            System.out.println(\"Good Day!\");\n        }\n\n        if (day == Day.GOOD) {//Always use == to compare enum\n            System.out.println(\"Good Day!\");\n        }\n\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "enum Day {\n    GOOD, AVERAGE, WORST;\n}\n\npublic class Test {\n\n    public static void main(String[] args) {\n        Day day = null;\n\n        if (day.equals(Day.GOOD)) {//NullPointerException!\n            System.out.println(\"Good Day!\");\n        }\n\n        if (day == Day.GOOD) {//Always use == to compare enum\n            System.out.println(\"Good Day!\");\n        }\n\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460571007,
+        "id": "e1293611-198e-4718-a705-b6ba960fe2fd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460571007,
+        "parent_id": "4b0e48a3-a298-4bc3-b2f8-9c796b621cdc",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To group, complement, range the enum values we have "
+            ],
+            [
+              "EnumSet",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "https://docs.oracle.com/javase/8/docs/api/java/util/EnumSet.html"
+                ]
+              ]
+            ],
+            [
+              " class which contains different methods."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To group, complement, range the enum values we have "
+          },
+          {
+            "Text": "EnumSet",
+            "AttrFlags": 2,
+            "Link": "https://docs.oracle.com/javase/8/docs/api/java/util/EnumSet.html"
+          },
+          {
+            "Text": " class which contains different methods."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460571008,
+        "id": "f0e1929b-475e-4f88-badb-b5678939efa8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460571008,
+        "parent_id": "4b0e48a3-a298-4bc3-b2f8-9c796b621cdc",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "EnumSet#range",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " : To get subset of enum by range defined by two endpoints"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "EnumSet#range",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " : To get subset of enum by range defined by two endpoints"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460571008,
+        "id": "cfa3c079-4595-4b3d-b00f-87f103afbbb6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460571008,
+        "parent_id": "4b0e48a3-a298-4bc3-b2f8-9c796b621cdc",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "EnumSet#of",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " : Set of specific enums without any range. Multiple overloaded "
+            ],
+            [
+              "of",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " methods are there."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "EnumSet#of",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " : Set of specific enums without any range. Multiple overloaded "
+          },
+          {
+            "Text": "of",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " methods are there."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460571008,
+        "id": "702859b7-5240-469c-95e6-23a8b4a1ba2d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460571008,
+        "parent_id": "4b0e48a3-a298-4bc3-b2f8-9c796b621cdc",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "EnumSet#complementOf",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " : Set of enum which is complement of enum values provided in method parameter"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "EnumSet#complementOf",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " : Set of enum which is complement of enum values provided in method parameter"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460571008,
+        "id": "3be0f151-7cfe-41ce-a9cc-31a1b94536d6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460571008,
+        "parent_id": "4b0e48a3-a298-4bc3-b2f8-9c796b621cdc",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "enum Page {\n   A1, A2, A3, A4, A5, A6, A7, A8, A9, A10\n}\n\npublic class Test {\n\n  public static void main(String[] args) {\n      EnumSet\u003cPage\u003e range = EnumSet.range(Page.A1, Page.A5);\n\n      if (range.contains(Page.A4)) {\n          System.out.println(\"Range contains A4\");\n      }\n\n      EnumSet\u003cPage\u003e of = EnumSet.of(Page.A1, Page.A5, Page.A3);\n\n      if (of.contains(Page.A1)) {\n          System.out.println(\"Of contains A1\");\n      }\n  }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "enum Page {\n   A1, A2, A3, A4, A5, A6, A7, A8, A9, A10\n}\n\npublic class Test {\n\n  public static void main(String[] args) {\n      EnumSet\u003cPage\u003e range = EnumSet.range(Page.A1, Page.A5);\n\n      if (range.contains(Page.A4)) {\n          System.out.println(\"Range contains A4\");\n      }\n\n      EnumSet\u003cPage\u003e of = EnumSet.of(Page.A1, Page.A5, Page.A3);\n\n      if (of.contains(Page.A1)) {\n          System.out.println(\"Of contains A1\");\n      }\n  }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "120 Compare and Contains for Enum values"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

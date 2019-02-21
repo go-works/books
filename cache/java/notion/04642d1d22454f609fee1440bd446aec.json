@@ -1,0 +1,97 @@
+{
+  "ID": "04642d1d-2245-4f60-9fee-1440bd446aec",
+  "Root": {
+    "alive": true,
+    "content": [
+      "cc858665-d981-4e4c-a18e-de5036cc1bdb",
+      "5fd4d72d-a92d-417b-a182-dc03ce6c9c0c"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550463255091,
+    "id": "04642d1d-2245-4f60-9fee-1440bd446aec",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550463255091,
+    "parent_id": "4d46b70c-bbcb-46ae-82ed-5387aeebf3e3",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "040 How to rename classes in a jar file"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550463255091,
+        "id": "cc858665-d981-4e4c-a18e-de5036cc1bdb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550463255091,
+        "parent_id": "04642d1d-2245-4f60-9fee-1440bd446aec",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public static void main(String[] args) throws Exception {\n    File jarFile = new File(\"Input.jar\");\n    Map\u003cString, ClassNode\u003e nodes = JarUtils.loadClasses(jarFile);\n    \n    Map\u003cString, byte[]\u003e out = JarUtils.loadNonClassEntries(jarFile);\n    Map\u003cString, String\u003e mappings = new HashMap\u003cString, String\u003e();\n    mappings.put(\"me/example/ExampleClass\", \"me/example/ExampleRenamed\");\n    out.putAll(process(nodes, mappings));\n    JarUtils.saveAsJar(out, \"Input-new.jar\");\n}\n\nstatic Map\u003cString, byte[]\u003e process(Map\u003cString, ClassNode\u003e nodes, Map\u003cString, String\u003e mappings) {\n    Map\u003cString, byte[]\u003e out = new HashMap\u003cString, byte[]\u003e();\n    Remapper mapper = new SimpleRemapper(mappings);\n    for (ClassNode cn : nodes.values()) {\n        ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_FRAMES);\n        ClassVisitor remapper = new ClassRemapper(cw, mapper);\n        cn.accept(remapper);\n        out.put(mappings.containsKey(cn.name) ? mappings.get(cn.name) : cn.name, cw.toByteArray());\n    }\n    return out;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public static void main(String[] args) throws Exception {\n    File jarFile = new File(\"Input.jar\");\n    Map\u003cString, ClassNode\u003e nodes = JarUtils.loadClasses(jarFile);\n    \n    Map\u003cString, byte[]\u003e out = JarUtils.loadNonClassEntries(jarFile);\n    Map\u003cString, String\u003e mappings = new HashMap\u003cString, String\u003e();\n    mappings.put(\"me/example/ExampleClass\", \"me/example/ExampleRenamed\");\n    out.putAll(process(nodes, mappings));\n    JarUtils.saveAsJar(out, \"Input-new.jar\");\n}\n\nstatic Map\u003cString, byte[]\u003e process(Map\u003cString, ClassNode\u003e nodes, Map\u003cString, String\u003e mappings) {\n    Map\u003cString, byte[]\u003e out = new HashMap\u003cString, byte[]\u003e();\n    Remapper mapper = new SimpleRemapper(mappings);\n    for (ClassNode cn : nodes.values()) {\n        ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_FRAMES);\n        ClassVisitor remapper = new ClassRemapper(cw, mapper);\n        cn.accept(remapper);\n        out.put(mappings.containsKey(cn.name) ? mappings.get(cn.name) : cn.name, cw.toByteArray());\n    }\n    return out;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550463255091,
+        "id": "5fd4d72d-a92d-417b-a182-dc03ce6c9c0c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550463255091,
+        "parent_id": "04642d1d-2245-4f60-9fee-1440bd446aec",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "SimpleRemapper is an existing class in the ASM library. However it only allows for class names to be changed. If you wish to rename fields and methods you should create your own implemenation of the Remapper class."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "SimpleRemapper is an existing class in the ASM library. However it only allows for class names to be changed. If you wish to rename fields and methods you should create your own implemenation of the Remapper class."
+          }
+        ]
+      }
+    ],
+    "title": "040 How to rename classes in a jar file"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,97 @@
+{
+  "ID": "1044a549-97cb-4e05-b7e9-0d239fcda44f",
+  "Root": {
+    "alive": true,
+    "content": [
+      "d789e5ff-d76b-4d01-8c2f-16b91840c42b",
+      "972afc0e-e169-4b91-b96e-1be5cf00770d"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550460437283,
+    "id": "1044a549-97cb-4e05-b7e9-0d239fcda44f",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550460437283,
+    "parent_id": "73fc2f16-29dd-4ebe-9aa4-230f87bd750a",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "020 Implementing Basic Command-Line Behavior"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460437283,
+        "id": "d789e5ff-d76b-4d01-8c2f-16b91840c42b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460437283,
+        "parent_id": "1044a549-97cb-4e05-b7e9-0d239fcda44f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "For basic prototypes or basic command-line behavior, the following loop comes in handy."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "For basic prototypes or basic command-line behavior, the following loop comes in handy."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460437283,
+        "id": "972afc0e-e169-4b91-b96e-1be5cf00770d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460437283,
+        "parent_id": "1044a549-97cb-4e05-b7e9-0d239fcda44f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class ExampleCli {\n\n    private static final String CLI_LINE   = \"example-cli\u003e\"; //console like string\n\n    private static final String CMD_QUIT   = \"quit\";    //string for exiting the program\n    private static final String CMD_HELLO  = \"hello\";    //string for printing \"Hello World!\" on the screen\n    private static final String CMD_ANSWER = \"answer\";    //string for printing 42 on the screen\n\n    public static void main(String[] args) {\n        ExampleCli claimCli = new ExampleCli();    // creates an object of this class\n\n        try {\n            claimCli.start();    //calls the start function to do the work like console\n        }\n        catch (IOException e) {\n            e.printStackTrace();    //prints the exception log if it is failed to do get the user input or something like that\n        }\n    }\n\n    private void start() throws IOException {\n        String cmd = \"\";\n        \n        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));\n        while (!cmd.equals(CMD_QUIT)) {    // terminates console if user input is \"quit\"\n            System.out.print(CLI_LINE);    //prints the console-like string \n\n            cmd = reader.readLine();    //takes input from user. user input should be started with \"hello\",  \"answer\" or \"quit\"\n            String[] cmdArr = cmd.split(\" \");\n\n            if (cmdArr[0].equals(CMD_HELLO)) {    //executes when user input starts with \"hello\"\n                hello(cmdArr);\n            }\n            else if (cmdArr[0].equals(CMD_ANSWER)) {    //executes when user input starts with \"answer\"\n                answer(cmdArr);\n            }\n        }\n    }\n    \n    // prints \"Hello World!\" on the screen if user input starts with \"hello\"\n    private void hello(String[] cmdArr) {\n        System.out.println(\"Hello World!\");\n    }\n    \n    // prints \"42\" on the screen if user input starts with \"answer\"\n    private void answer(String[] cmdArr) {\n        System.out.println(\"42\");\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class ExampleCli {\n\n    private static final String CLI_LINE   = \"example-cli\u003e\"; //console like string\n\n    private static final String CMD_QUIT   = \"quit\";    //string for exiting the program\n    private static final String CMD_HELLO  = \"hello\";    //string for printing \"Hello World!\" on the screen\n    private static final String CMD_ANSWER = \"answer\";    //string for printing 42 on the screen\n\n    public static void main(String[] args) {\n        ExampleCli claimCli = new ExampleCli();    // creates an object of this class\n\n        try {\n            claimCli.start();    //calls the start function to do the work like console\n        }\n        catch (IOException e) {\n            e.printStackTrace();    //prints the exception log if it is failed to do get the user input or something like that\n        }\n    }\n\n    private void start() throws IOException {\n        String cmd = \"\";\n        \n        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));\n        while (!cmd.equals(CMD_QUIT)) {    // terminates console if user input is \"quit\"\n            System.out.print(CLI_LINE);    //prints the console-like string \n\n            cmd = reader.readLine();    //takes input from user. user input should be started with \"hello\",  \"answer\" or \"quit\"\n            String[] cmdArr = cmd.split(\" \");\n\n            if (cmdArr[0].equals(CMD_HELLO)) {    //executes when user input starts with \"hello\"\n                hello(cmdArr);\n            }\n            else if (cmdArr[0].equals(CMD_ANSWER)) {    //executes when user input starts with \"answer\"\n                answer(cmdArr);\n            }\n        }\n    }\n    \n    // prints \"Hello World!\" on the screen if user input starts with \"hello\"\n    private void hello(String[] cmdArr) {\n        System.out.println(\"Hello World!\");\n    }\n    \n    // prints \"42\" on the screen if user input starts with \"answer\"\n    private void answer(String[] cmdArr) {\n        System.out.println(\"42\");\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "020 Implementing Basic Command-Line Behavior"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

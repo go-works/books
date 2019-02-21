@@ -1,0 +1,488 @@
+{
+  "ID": "fb9202f4-1b62-472c-8711-6f7e38feed24",
+  "Root": {
+    "alive": true,
+    "content": [
+      "ecc53866-1345-4f53-b916-ceb09dbe94f0",
+      "fdbf4e70-9a2a-4e2a-983b-e99d26a4e901",
+      "fc1ffe84-65cb-436d-97b8-b268d4a9ae74",
+      "7a7d0d20-5d36-45da-b682-eb2fbf9fb701",
+      "20a16420-045a-4afc-9726-114e1e560378",
+      "6888976c-53e7-41a2-a95e-b11aa894c892",
+      "350629ce-2ae4-4dd1-8d9c-b3a91ad016e5",
+      "77e4f375-fc51-46d2-8c29-3348feed2447",
+      "bea5987e-31ae-4ef0-b550-597b512b42d2",
+      "ed6a13e7-be65-4ac4-9767-d8a67aa93773",
+      "3c49506b-f444-424c-8991-15da4ff7621b",
+      "41b089ea-ebd0-40f7-bf03-f3fb7bc2d96f",
+      "ee23ed3c-f160-48fb-8e5e-49b5b7396449",
+      "64dc4c91-b4d4-40c0-ae9a-977b2e86c7c0"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550460771184,
+    "id": "fb9202f4-1b62-472c-8711-6f7e38feed24",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550460771184,
+    "parent_id": "e4ecbdd2-4cc1-4fe5-bfa8-fd658d08f5c9",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Calling C methods from Java"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460771182,
+        "id": "ecc53866-1345-4f53-b916-ceb09dbe94f0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460771182,
+        "parent_id": "fb9202f4-1b62-472c-8711-6f7e38feed24",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Static and member methods in Java can be marked as "
+            ],
+            [
+              "native",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " to indicate that their implementation is to be found in a shared library file. Upon execution of a native method, the JVM looks for a corresponding function in loaded libraries (see "
+            ],
+            [
+              "Loading native libraries",
+              [
+                [
+                  "a",
+                  "http://stackoverflow.com/documentation/java/168/java-native-interface/13248/loading-native-libraries"
+                ]
+              ]
+            ],
+            [
+              "), using a simple name mangling scheme, performs argument conversion and stack setup, then hands over control to native code."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Static and member methods in Java can be marked as "
+          },
+          {
+            "Text": "native",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " to indicate that their implementation is to be found in a shared library file. Upon execution of a native method, the JVM looks for a corresponding function in loaded libraries (see "
+          },
+          {
+            "Text": "Loading native libraries",
+            "Link": "http://stackoverflow.com/documentation/java/168/java-native-interface/13248/loading-native-libraries"
+          },
+          {
+            "Text": "), using a simple name mangling scheme, performs argument conversion and stack setup, then hands over control to native code."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460771183,
+        "id": "fdbf4e70-9a2a-4e2a-983b-e99d26a4e901",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460771183,
+        "parent_id": "fb9202f4-1b62-472c-8711-6f7e38feed24",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Java code"
+            ]
+          ]
+        },
+        "type": "sub_header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Java code"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460771183,
+        "id": "fc1ffe84-65cb-436d-97b8-b268d4a9ae74",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460771183,
+        "parent_id": "fb9202f4-1b62-472c-8711-6f7e38feed24",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "/*** com/example/jni/JNIJava.java **/\n\npackage com.example.jni;\n\npublic class JNIJava {\n    static {\n        System.loadLibrary(\"libJNI_CPP\");\n    }\n\n    // Obviously, native methods may not have a body defined in Java\n    public native void printString(String name);\n    public static native double average(int[] nums);\n\n    public static void main(final String[] args) {\n        JNIJava jniJava = new JNIJava();\n        jniJava.printString(\"Invoked C++ 'printString' from Java\");\n\n        double d = average(new int[]{1, 2, 3, 4, 7});\n        System.out.println(\"Got result from C++ 'average': \" + d);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "/*** com/example/jni/JNIJava.java **/\n\npackage com.example.jni;\n\npublic class JNIJava {\n    static {\n        System.loadLibrary(\"libJNI_CPP\");\n    }\n\n    // Obviously, native methods may not have a body defined in Java\n    public native void printString(String name);\n    public static native double average(int[] nums);\n\n    public static void main(final String[] args) {\n        JNIJava jniJava = new JNIJava();\n        jniJava.printString(\"Invoked C++ 'printString' from Java\");\n\n        double d = average(new int[]{1, 2, 3, 4, 7});\n        System.out.println(\"Got result from C++ 'average': \" + d);\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460771183,
+        "id": "7a7d0d20-5d36-45da-b682-eb2fbf9fb701",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460771183,
+        "parent_id": "fb9202f4-1b62-472c-8711-6f7e38feed24",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "C++ code"
+            ]
+          ]
+        },
+        "type": "sub_header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "C++ code"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460771183,
+        "id": "20a16420-045a-4afc-9726-114e1e560378",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460771183,
+        "parent_id": "fb9202f4-1b62-472c-8711-6f7e38feed24",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Header files containing native function declarations should be generated using the "
+            ],
+            [
+              "javah",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " tool on target classes. Running the following command at the build directory :"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Header files containing native function declarations should be generated using the "
+          },
+          {
+            "Text": "javah",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " tool on target classes. Running the following command at the build directory :"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460771183,
+        "id": "6888976c-53e7-41a2-a95e-b11aa894c892",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460771183,
+        "parent_id": "fb9202f4-1b62-472c-8711-6f7e38feed24",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "javah -o com_example_jni_JNIJava.hpp com.example.jni.JNIJava"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "javah -o com_example_jni_JNIJava.hpp com.example.jni.JNIJava",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460771183,
+        "id": "350629ce-2ae4-4dd1-8d9c-b3a91ad016e5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460771183,
+        "parent_id": "fb9202f4-1b62-472c-8711-6f7e38feed24",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "… produces the following header file ("
+            ],
+            [
+              "comments stripped for brevity",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              ") :"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "… produces the following header file ("
+          },
+          {
+            "Text": "comments stripped for brevity",
+            "AttrFlags": 4
+          },
+          {
+            "Text": ") :"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460771184,
+        "id": "77e4f375-fc51-46d2-8c29-3348feed2447",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460771184,
+        "parent_id": "fb9202f4-1b62-472c-8711-6f7e38feed24",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// com_example_jni_JNIJava.hpp\n\n/* DO NOT EDIT THIS FILE - it is machine generated */\n#include \u003cjni.h\u003e // The JNI API declarations\n\n#ifndef _Included_com_example_jni_JNIJava\n#define _Included_com_example_jni_JNIJava\n#ifdef __cplusplus\nextern \"C\" { // This is absolutely required if using a C++ compiler\n#endif\n\nJNIEXPORT void JNICALL Java_com_example_jni_JNIJava_printString\n  (JNIEnv *, jobject, jstring);\n\nJNIEXPORT jdouble JNICALL Java_com_example_jni_JNIJava_average\n  (JNIEnv *, jclass, jintArray);\n\n#ifdef __cplusplus\n}\n#endif\n#endif"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// com_example_jni_JNIJava.hpp\n\n/* DO NOT EDIT THIS FILE - it is machine generated */\n#include \u003cjni.h\u003e // The JNI API declarations\n\n#ifndef _Included_com_example_jni_JNIJava\n#define _Included_com_example_jni_JNIJava\n#ifdef __cplusplus\nextern \"C\" { // This is absolutely required if using a C++ compiler\n#endif\n\nJNIEXPORT void JNICALL Java_com_example_jni_JNIJava_printString\n  (JNIEnv *, jobject, jstring);\n\nJNIEXPORT jdouble JNICALL Java_com_example_jni_JNIJava_average\n  (JNIEnv *, jclass, jintArray);\n\n#ifdef __cplusplus\n}\n#endif\n#endif",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460771184,
+        "id": "bea5987e-31ae-4ef0-b550-597b512b42d2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460771184,
+        "parent_id": "fb9202f4-1b62-472c-8711-6f7e38feed24",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Here is an example implementation :"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Here is an example implementation :"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460771184,
+        "id": "ed6a13e7-be65-4ac4-9767-d8a67aa93773",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460771184,
+        "parent_id": "fb9202f4-1b62-472c-8711-6f7e38feed24",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// com_example_jni_JNIJava.cpp\n\n#include \u003ciostream\u003e\n#include \"com_example_jni_JNIJava.hpp\"\n\nusing namespace std;\n\nJNIEXPORT void JNICALL Java_com_example_jni_JNIJava_printString(JNIEnv *env, jobject jthis, jstring string) {\n    const char *stringInC = env-\u003eGetStringUTFChars(string, NULL);\n    if (NULL == stringInC)\n        return;\n    cout \u003c\u003c stringInC \u003c\u003c endl;\n    env-\u003eReleaseStringUTFChars(string, stringInC);\n}\n\nJNIEXPORT jdouble JNICALL Java_com_example_jni_JNIJava_average(JNIEnv *env, jclass jthis, jintArray intArray) {\n    jint *intArrayInC = env-\u003eGetIntArrayElements(intArray, NULL);\n    if (NULL == intArrayInC)\n        return -1;\n    jsize length = env-\u003eGetArrayLength(intArray);\n    int sum = 0;\n    for (int i = 0; i \u003c length; i++) {\n        sum += intArrayInC[i];\n    }\n    env-\u003eReleaseIntArrayElements(intArray, intArrayInC, 0);\n    return (double) sum / length;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// com_example_jni_JNIJava.cpp\n\n#include \u003ciostream\u003e\n#include \"com_example_jni_JNIJava.hpp\"\n\nusing namespace std;\n\nJNIEXPORT void JNICALL Java_com_example_jni_JNIJava_printString(JNIEnv *env, jobject jthis, jstring string) {\n    const char *stringInC = env-\u003eGetStringUTFChars(string, NULL);\n    if (NULL == stringInC)\n        return;\n    cout \u003c\u003c stringInC \u003c\u003c endl;\n    env-\u003eReleaseStringUTFChars(string, stringInC);\n}\n\nJNIEXPORT jdouble JNICALL Java_com_example_jni_JNIJava_average(JNIEnv *env, jclass jthis, jintArray intArray) {\n    jint *intArrayInC = env-\u003eGetIntArrayElements(intArray, NULL);\n    if (NULL == intArrayInC)\n        return -1;\n    jsize length = env-\u003eGetArrayLength(intArray);\n    int sum = 0;\n    for (int i = 0; i \u003c length; i++) {\n        sum += intArrayInC[i];\n    }\n    env-\u003eReleaseIntArrayElements(intArray, intArrayInC, 0);\n    return (double) sum / length;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460771184,
+        "id": "3c49506b-f444-424c-8991-15da4ff7621b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460771184,
+        "parent_id": "fb9202f4-1b62-472c-8711-6f7e38feed24",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Output"
+            ]
+          ]
+        },
+        "type": "sub_header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Output"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460771184,
+        "id": "41b089ea-ebd0-40f7-bf03-f3fb7bc2d96f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460771184,
+        "parent_id": "fb9202f4-1b62-472c-8711-6f7e38feed24",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Running the example class above yields the following output :"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Running the example class above yields the following output :"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460771184,
+        "id": "ee23ed3c-f160-48fb-8e5e-49b5b7396449",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460771184,
+        "parent_id": "fb9202f4-1b62-472c-8711-6f7e38feed24",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Invoked C++ ‘printString’ from Java"
+            ]
+          ]
+        },
+        "type": "quote",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Invoked C++ ‘printString’ from Java"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460771184,
+        "id": "64dc4c91-b4d4-40c0-ae9a-977b2e86c7c0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460771184,
+        "parent_id": "fb9202f4-1b62-472c-8711-6f7e38feed24",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Got result from C++ ‘average’: 3.4"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Got result from C++ ‘average’: 3.4"
+          }
+        ]
+      }
+    ],
+    "title": "010 Calling C methods from Java"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

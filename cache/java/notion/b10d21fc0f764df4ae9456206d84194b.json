@@ -1,0 +1,879 @@
+{
+  "ID": "b10d21fc-0f76-4df4-ae94-56206d84194b",
+  "Root": {
+    "alive": true,
+    "content": [
+      "d764f798-fd72-4ac6-93f9-98b086a2653d",
+      "4524186b-532e-44b8-88d8-7e3ecdce6c14",
+      "32249fb4-b69a-4868-be86-7f687b3d9714",
+      "1e369ce1-9294-42af-81d7-640ecaec70d9",
+      "1adb9802-4dd1-4f67-a19a-6538c12ab86b",
+      "2f922a75-c155-43ed-ab1b-971825db0b99",
+      "512ede8a-1e2f-425d-ad29-d750fba14a90",
+      "4bff25a5-2646-4c5a-b2d6-d58594e8d2ff",
+      "33023d59-ab75-4d32-8c42-59c7bc6d6d07",
+      "abfbd311-b628-4a70-8a59-cc7343e1ee2f",
+      "46c073ca-c845-4af0-8776-7a7f427b0df0",
+      "f03bab39-730d-44b3-8168-a7b7dd4e9c21",
+      "29a6cfe5-1d05-4620-9836-c246ef9a3153",
+      "51410d7e-af11-4367-a849-48b18a072984",
+      "6f567c09-9063-4ca5-bafb-98020dbbfc6f",
+      "f5d57bce-5828-4506-b57f-44d36440aeb8",
+      "7c5119f2-a2ff-4585-bb23-05ebc00a830c",
+      "385712aa-849a-46f0-b32a-64d66f4edace",
+      "8cfe5b89-a775-4588-a5ac-f4e1f0b301e9",
+      "9c07e53d-e6d2-4107-96fd-05362e9fd0d3",
+      "501fe49f-5b10-4552-b267-6e81ae58c32c",
+      "385aa86a-8a09-4111-9d46-4608f4d7742d"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550460252588,
+    "id": "b10d21fc-0f76-4df4-ae94-56206d84194b",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550460252588,
+    "parent_id": "e58fed62-9361-43a9-9d33-915bbbe28d40",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "040 Basic Object Construction and Use"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460252585,
+        "id": "d764f798-fd72-4ac6-93f9-98b086a2653d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460252585,
+        "parent_id": "b10d21fc-0f76-4df4-ae94-56206d84194b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Objects come in their own class, so a simple example would be a car (detailed explanations below):"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Objects come in their own class, so a simple example would be a car (detailed explanations below):"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460252585,
+        "id": "4524186b-532e-44b8-88d8-7e3ecdce6c14",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460252585,
+        "parent_id": "b10d21fc-0f76-4df4-ae94-56206d84194b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class Car {\n    \n    //Variables describing the characteristics of an individual car, varies per  object\n   private int milesPerGallon;\n   private String name;\n   private String color;\n   public int numGallonsInTank; \n    \n    public Car(){\n        milesPerGallon = 0;\n        name = \"\";\n        color = \"\";\n        numGallonsInTank = 0;\n    }\n    \n    //this is where an individual object is created\n    public Car(int mpg, int, gallonsInTank, String carName, String carColor){\n        milesPerGallon = mpg;\n        name = carName;\n        color = carColor;\n        numGallonsInTank = gallonsInTank;\n    }\n\n    //methods to make the object more usable\n\n    //Cars need to drive\n    public void drive(int distanceInMiles){\n        //get miles left in car\n        int miles = numGallonsInTank * milesPerGallon;\n        \n        //check that car has enough gas to drive distanceInMiles\n        if (miles \u003c= distanceInMiles){\n            numGallonsInTank = numGallonsInTank - (distanceInMiles / milesPerGallon)\n            System.out.println(\"Drove \" + numGallonsInTank + \" miles!\");\n        } else {\n            System.out.println(\"Could not drive!\");\n        }\n    }\n\n    public void paintCar(String newColor){\n        color = newColor;\n    }\n        //set new Miles Per Gallon\n    public void setMPG(int newMPG){\n        milesPerGallon = newMPG;\n    }\n\n       //set new number of Gallon In Tank\n    public void setGallonsInTank(int numGallons){\n        numGallonsInTank = numGallons;\n    }\n    \n    public void nameCar(String newName){\n        name = newName;\n    }\n\n    //Get the Car color\n    public String getColor(){\n        return color;\n    }\n\n    //Get the Car name\n    public String getName(){\n        return name;\n    }\n\n    //Get the number of Gallons\n    public String getGallons(){\n        return numGallonsInTank;\n    }\n    \n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class Car {\n    \n    //Variables describing the characteristics of an individual car, varies per  object\n   private int milesPerGallon;\n   private String name;\n   private String color;\n   public int numGallonsInTank; \n    \n    public Car(){\n        milesPerGallon = 0;\n        name = \"\";\n        color = \"\";\n        numGallonsInTank = 0;\n    }\n    \n    //this is where an individual object is created\n    public Car(int mpg, int, gallonsInTank, String carName, String carColor){\n        milesPerGallon = mpg;\n        name = carName;\n        color = carColor;\n        numGallonsInTank = gallonsInTank;\n    }\n\n    //methods to make the object more usable\n\n    //Cars need to drive\n    public void drive(int distanceInMiles){\n        //get miles left in car\n        int miles = numGallonsInTank * milesPerGallon;\n        \n        //check that car has enough gas to drive distanceInMiles\n        if (miles \u003c= distanceInMiles){\n            numGallonsInTank = numGallonsInTank - (distanceInMiles / milesPerGallon)\n            System.out.println(\"Drove \" + numGallonsInTank + \" miles!\");\n        } else {\n            System.out.println(\"Could not drive!\");\n        }\n    }\n\n    public void paintCar(String newColor){\n        color = newColor;\n    }\n        //set new Miles Per Gallon\n    public void setMPG(int newMPG){\n        milesPerGallon = newMPG;\n    }\n\n       //set new number of Gallon In Tank\n    public void setGallonsInTank(int numGallons){\n        numGallonsInTank = numGallons;\n    }\n    \n    public void nameCar(String newName){\n        name = newName;\n    }\n\n    //Get the Car color\n    public String getColor(){\n        return color;\n    }\n\n    //Get the Car name\n    public String getName(){\n        return name;\n    }\n\n    //Get the number of Gallons\n    public String getGallons(){\n        return numGallonsInTank;\n    }\n    \n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460252585,
+        "id": "32249fb4-b69a-4868-be86-7f687b3d9714",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460252585,
+        "parent_id": "b10d21fc-0f76-4df4-ae94-56206d84194b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Objects are "
+            ],
+            [
+              "instances of",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " their class. So, the way you would "
+            ],
+            [
+              "create an object",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " would be by calling the Car class in "
+            ],
+            [
+              "one of two ways",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " in your main class (main method in Java or onCreate in Android)."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Objects are "
+          },
+          {
+            "Text": "instances of",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " their class. So, the way you would "
+          },
+          {
+            "Text": "create an object",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " would be by calling the Car class in "
+          },
+          {
+            "Text": "one of two ways",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " in your main class (main method in Java or onCreate in Android)."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460252586,
+        "id": "1e369ce1-9294-42af-81d7-640ecaec70d9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460252586,
+        "parent_id": "b10d21fc-0f76-4df4-ae94-56206d84194b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Option 1",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Option 1",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460252586,
+        "id": "1adb9802-4dd1-4f67-a19a-6538c12ab86b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460252586,
+        "parent_id": "b10d21fc-0f76-4df4-ae94-56206d84194b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "`Car newCar = new Car(30, 10, \"Ferrari\", \"Red\");"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "`Car newCar = new Car(30, 10, \"Ferrari\", \"Red\");",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460252586,
+        "id": "2f922a75-c155-43ed-ab1b-971825db0b99",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460252586,
+        "parent_id": "b10d21fc-0f76-4df4-ae94-56206d84194b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Option 1 is where you essentially tell the program everything about the Car upon creation of the object. Changing any property of the car would require calling one of the methods such as the "
+            ],
+            [
+              "repaintCar",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method. Example:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Option 1 is where you essentially tell the program everything about the Car upon creation of the object. Changing any property of the car would require calling one of the methods such as the "
+          },
+          {
+            "Text": "repaintCar",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method. Example:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460252586,
+        "id": "512ede8a-1e2f-425d-ad29-d750fba14a90",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460252586,
+        "parent_id": "b10d21fc-0f76-4df4-ae94-56206d84194b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "newCar.repaintCar(\"Blue\");"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "newCar.repaintCar(\"Blue\");",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460252586,
+        "id": "4bff25a5-2646-4c5a-b2d6-d58594e8d2ff",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460252586,
+        "parent_id": "b10d21fc-0f76-4df4-ae94-56206d84194b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Note:",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " Make sure you pass the correct data type to the method. In the example above, you may also pass a variable to the "
+            ],
+            [
+              "repaintCar",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method "
+            ],
+            [
+              "as long as the data type is correct`",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Note:",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " Make sure you pass the correct data type to the method. In the example above, you may also pass a variable to the "
+          },
+          {
+            "Text": "repaintCar",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method "
+          },
+          {
+            "Text": "as long as the data type is correct`",
+            "AttrFlags": 1
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460252586,
+        "id": "33023d59-ab75-4d32-8c42-59c7bc6d6d07",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460252586,
+        "parent_id": "b10d21fc-0f76-4df4-ae94-56206d84194b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "That was an example of changing properties of an object, receiving properties of an object would require using a method from the Car class that has a return value (meaning a method that is not "
+            ],
+            [
+              "void",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "). Example:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "That was an example of changing properties of an object, receiving properties of an object would require using a method from the Car class that has a return value (meaning a method that is not "
+          },
+          {
+            "Text": "void",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "). Example:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460252586,
+        "id": "abfbd311-b628-4a70-8a59-cc7343e1ee2f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460252586,
+        "parent_id": "b10d21fc-0f76-4df4-ae94-56206d84194b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "String myCarName = newCar.getName();  //returns string \"Ferrari\""
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "String myCarName = newCar.getName();  //returns string \"Ferrari\"",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460252586,
+        "id": "46c073ca-c845-4af0-8776-7a7f427b0df0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460252586,
+        "parent_id": "b10d21fc-0f76-4df4-ae94-56206d84194b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Option 1 is the "
+            ],
+            [
+              "best",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " option when you have "
+            ],
+            [
+              "all the object’s data",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " at the time of creation."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Option 1 is the "
+          },
+          {
+            "Text": "best",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " option when you have "
+          },
+          {
+            "Text": "all the object’s data",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " at the time of creation."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460252587,
+        "id": "f03bab39-730d-44b3-8168-a7b7dd4e9c21",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460252587,
+        "parent_id": "b10d21fc-0f76-4df4-ae94-56206d84194b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Option 2",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Option 2",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460252587,
+        "id": "29a6cfe5-1d05-4620-9836-c246ef9a3153",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460252587,
+        "parent_id": "b10d21fc-0f76-4df4-ae94-56206d84194b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "`Car newCar = new Car();"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "`Car newCar = new Car();",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460252587,
+        "id": "51410d7e-af11-4367-a849-48b18a072984",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460252587,
+        "parent_id": "b10d21fc-0f76-4df4-ae94-56206d84194b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Option 2 gets the same effect but required more work to create an object correctly. I want to recall this Constructor in the Car class:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Option 2 gets the same effect but required more work to create an object correctly. I want to recall this Constructor in the Car class:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460252587,
+        "id": "6f567c09-9063-4ca5-bafb-98020dbbfc6f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460252587,
+        "parent_id": "b10d21fc-0f76-4df4-ae94-56206d84194b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public void Car(){\n        milesPerGallon = 0;\n        name = \"\";\n        color = \"\";\n        numGallonsInTank = 0;\n    }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public void Car(){\n        milesPerGallon = 0;\n        name = \"\";\n        color = \"\";\n        numGallonsInTank = 0;\n    }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460252587,
+        "id": "f5d57bce-5828-4506-b57f-44d36440aeb8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460252587,
+        "parent_id": "b10d21fc-0f76-4df4-ae94-56206d84194b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Notice that you do not have to actually pass any parameters into the object to create it. This is very useful for when you do not have all the aspects of the object but you need to use the parts that you do have. This sets generic data into each of the instance variables of the object so that, if you call for a piece of data that does not exist, no errors are thrown."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Notice that you do not have to actually pass any parameters into the object to create it. This is very useful for when you do not have all the aspects of the object but you need to use the parts that you do have. This sets generic data into each of the instance variables of the object so that, if you call for a piece of data that does not exist, no errors are thrown."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460252587,
+        "id": "7c5119f2-a2ff-4585-bb23-05ebc00a830c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460252587,
+        "parent_id": "b10d21fc-0f76-4df4-ae94-56206d84194b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Note:",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " Do not forget that you have to set the parts of the object later that you did not initialize it with. For example,"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Note:",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " Do not forget that you have to set the parts of the object later that you did not initialize it with. For example,"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460252587,
+        "id": "385712aa-849a-46f0-b32a-64d66f4edace",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460252587,
+        "parent_id": "b10d21fc-0f76-4df4-ae94-56206d84194b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "Car myCar = new Car();\nString color = Car.getColor(); //returns empty string"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "Car myCar = new Car();\nString color = Car.getColor(); //returns empty string",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460252587,
+        "id": "8cfe5b89-a775-4588-a5ac-f4e1f0b301e9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460252587,
+        "parent_id": "b10d21fc-0f76-4df4-ae94-56206d84194b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This is a common mistake amongst objects that are not initialized with all their data. Errors were avoided because there is a Constructor that allows an empty Car object to be created with "
+            ],
+            [
+              "stand-in variables",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " ("
+            ],
+            [
+              "public Car(){}",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "), but no part of the myCar was actually customized. "
+            ],
+            [
+              "Correct example of creating Car Object:",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This is a common mistake amongst objects that are not initialized with all their data. Errors were avoided because there is a Constructor that allows an empty Car object to be created with "
+          },
+          {
+            "Text": "stand-in variables",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " ("
+          },
+          {
+            "Text": "public Car(){}",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "), but no part of the myCar was actually customized. "
+          },
+          {
+            "Text": "Correct example of creating Car Object:",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460252587,
+        "id": "9c07e53d-e6d2-4107-96fd-05362e9fd0d3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460252587,
+        "parent_id": "b10d21fc-0f76-4df4-ae94-56206d84194b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "Car myCar = new Car();\nmyCar.nameCar(\"Ferrari\");\nmyCar.paintCar(\"Purple\");\nmyCar.setGallonsInTank(10);\nmyCar.setMPG(30);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "Car myCar = new Car();\nmyCar.nameCar(\"Ferrari\");\nmyCar.paintCar(\"Purple\");\nmyCar.setGallonsInTank(10);\nmyCar.setMPG(30);",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460252587,
+        "id": "501fe49f-5b10-4552-b267-6e81ae58c32c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460252587,
+        "parent_id": "b10d21fc-0f76-4df4-ae94-56206d84194b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "And, as a reminder, get an object’s properties by calling a method in your main class. Example:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "And, as a reminder, get an object’s properties by calling a method in your main class. Example:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460252588,
+        "id": "385aa86a-8a09-4111-9d46-4608f4d7742d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460252588,
+        "parent_id": "b10d21fc-0f76-4df4-ae94-56206d84194b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "String myCarName = myCar.getName(); //returns string \"Ferrari\""
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "String myCarName = myCar.getName(); //returns string \"Ferrari\"",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "040 Basic Object Construction and Use"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

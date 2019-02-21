@@ -1,0 +1,189 @@
+{
+  "ID": "73b095b5-bcb4-43ae-b5f1-61bc588b75a7",
+  "Root": {
+    "alive": true,
+    "content": [
+      "743067f1-7139-4648-ab0a-83b0f70bd06c",
+      "b8cfad25-df40-48db-9a03-ba8375b5937d"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550460520052,
+    "id": "73b095b5-bcb4-43ae-b5f1-61bc588b75a7",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550460520052,
+    "parent_id": "73baf53a-7a2f-4a55-b55d-1d231e864e0d",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 Manual fieldproperty XML mapping configuration"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460520051,
+        "id": "743067f1-7139-4648-ab0a-83b0f70bd06c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460520051,
+        "parent_id": "73b095b5-bcb4-43ae-b5f1-61bc588b75a7",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Annotations "
+            ],
+            [
+              "@XmlElement",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "https://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/XmlElement.html"
+                ]
+              ]
+            ],
+            [
+              ", "
+            ],
+            [
+              "@XmlAttribute",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "https://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/XmlAttribute.html"
+                ]
+              ]
+            ],
+            [
+              " or "
+            ],
+            [
+              "@XmlTransient",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "https://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/XmlTransient.html"
+                ]
+              ]
+            ],
+            [
+              " and other in package "
+            ],
+            [
+              "javax.xml.bind.annotation",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "https://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/package-summary.html"
+                ]
+              ]
+            ],
+            [
+              " allow the programmer to specify which and how marked fields or properties should be serialized."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Annotations "
+          },
+          {
+            "Text": "@XmlElement",
+            "AttrFlags": 2,
+            "Link": "https://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/XmlElement.html"
+          },
+          {
+            "Text": ", "
+          },
+          {
+            "Text": "@XmlAttribute",
+            "AttrFlags": 2,
+            "Link": "https://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/XmlAttribute.html"
+          },
+          {
+            "Text": " or "
+          },
+          {
+            "Text": "@XmlTransient",
+            "AttrFlags": 2,
+            "Link": "https://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/XmlTransient.html"
+          },
+          {
+            "Text": " and other in package "
+          },
+          {
+            "Text": "javax.xml.bind.annotation",
+            "AttrFlags": 2,
+            "Link": "https://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/package-summary.html"
+          },
+          {
+            "Text": " allow the programmer to specify which and how marked fields or properties should be serialized."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460520052,
+        "id": "b8cfad25-df40-48db-9a03-ba8375b5937d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460520052,
+        "parent_id": "73b095b5-bcb4-43ae-b5f1-61bc588b75a7",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "@XmlAccessorType(XmlAccessType.NONE) // we want no automatic field/property marshalling\npublic class ManualXmlElementsExample {\n    \n    @XmlElement\n    private String field=\"field value\";\n\n    @XmlAttribute\n    private String attribute=\"attr value\";\n    \n    @XmlAttribute(name=\"differentAttribute\")\n    private String oneAttribute=\"other attr value\";\n    \n    @XmlElement(name=\"different name\")\n    private String oneName=\"different name value\";\n    \n    @XmlTransient\n    private String transientField = \"will not get serialized ever\";\n    \n    \n    @XmlElement\n    public String getModifiedTransientValue() {\n        return transientField.replace(\" ever\", \", unless in a getter\");\n    }\n    \n    public void setModifiedTransientValue(String val) {} // empty on purpose\n\n\n    public static void main(String[] args) {\n        try {\n            JAXB.marshal(new ManualXmlElementsExample(), System.out);\n        } catch (Exception e) {\n            System.err.println(\"Exception occurred while writing in XML!\");\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "@XmlAccessorType(XmlAccessType.NONE) // we want no automatic field/property marshalling\npublic class ManualXmlElementsExample {\n    \n    @XmlElement\n    private String field=\"field value\";\n\n    @XmlAttribute\n    private String attribute=\"attr value\";\n    \n    @XmlAttribute(name=\"differentAttribute\")\n    private String oneAttribute=\"other attr value\";\n    \n    @XmlElement(name=\"different name\")\n    private String oneName=\"different name value\";\n    \n    @XmlTransient\n    private String transientField = \"will not get serialized ever\";\n    \n    \n    @XmlElement\n    public String getModifiedTransientValue() {\n        return transientField.replace(\" ever\", \", unless in a getter\");\n    }\n    \n    public void setModifiedTransientValue(String val) {} // empty on purpose\n\n\n    public static void main(String[] args) {\n        try {\n            JAXB.marshal(new ManualXmlElementsExample(), System.out);\n        } catch (Exception e) {\n            System.err.println(\"Exception occurred while writing in XML!\");\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "030 Manual fieldproperty XML mapping configuration"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

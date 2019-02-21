@@ -1,0 +1,486 @@
+{
+  "ID": "87b4defd-b6c5-4da3-9e04-ec77f4a0bd63",
+  "Root": {
+    "alive": true,
+    "content": [
+      "531793fa-edda-4d13-8c6b-491f96273465",
+      "89e5da41-5ac5-431e-a92f-1dd60536ec45",
+      "048eecac-418c-4f30-8311-a5a7e38cbfbf",
+      "27defb41-ca3d-4c8a-a2d5-16e011e86c0a",
+      "ecdad035-3882-42dc-a5a9-c86aa68ed44e",
+      "a96c1785-176a-488e-a511-0b0ad0e37f41",
+      "4ddba948-3c5b-4df2-9eb5-4c6965de06ea",
+      "e6ff6aa9-3fb1-4c5f-86cf-b3e153ddf47e",
+      "e151b423-32c6-4915-8fc9-d679153b23ca",
+      "cbefe20d-c448-442f-8d6b-dc499b468efd",
+      "1ae38db6-b09a-4ac7-a9dd-4a9c8552c5a4",
+      "3519f8e4-2561-4e8b-95f5-13c97c4b3296"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550460440093,
+    "id": "87b4defd-b6c5-4da3-9e04-ec77f4a0bd63",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550460440093,
+    "parent_id": "9b718882-2700-4d99-b7fa-082a618f32ef",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "150 Multiple producerconsumer example with shared global queue"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460440090,
+        "id": "531793fa-edda-4d13-8c6b-491f96273465",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460440090,
+        "parent_id": "87b4defd-b6c5-4da3-9e04-ec77f4a0bd63",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Below code showcases multiple Producer/Consumer program. Both Producer and Consumer threads share same global queue."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Below code showcases multiple Producer/Consumer program. Both Producer and Consumer threads share same global queue."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460440090,
+        "id": "89e5da41-5ac5-431e-a92f-1dd60536ec45",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460440090,
+        "parent_id": "87b4defd-b6c5-4da3-9e04-ec77f4a0bd63",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import java.util.concurrent.*;\nimport java.util.Random;\n\npublic class ProducerConsumerWithES {\n    public static void main(String args[]) {\n        BlockingQueue\u003cInteger\u003e sharedQueue = new LinkedBlockingQueue\u003cInteger\u003e();\n         \n        ExecutorService pes = Executors.newFixedThreadPool(2);\n        ExecutorService ces = Executors.newFixedThreadPool(2);\n          \n        pes.submit(new Producer(sharedQueue, 1));\n        pes.submit(new Producer(sharedQueue, 2));\n        ces.submit(new Consumer(sharedQueue, 1));\n        ces.submit(new Consumer(sharedQueue, 2));\n         \n        pes.shutdown();\n        ces.shutdown();\n    }\n}\n\n/* Different producers produces a stream of integers continuously to a shared queue, \nwhich is shared between all Producers and consumers */\n\nclass Producer implements Runnable {\n    private final BlockingQueue\u003cInteger\u003e sharedQueue;\n    private int threadNo;\n    private Random random = new Random();\n    public Producer(BlockingQueue\u003cInteger\u003e sharedQueue,int threadNo) {\n        this.threadNo = threadNo;\n        this.sharedQueue = sharedQueue;\n    }\n    @Override\n    public void run() {\n        // Producer produces a continuous stream of numbers for every 200 milli seconds\n        while (true) {\n            try {\n                int number = random.nextInt(1000);\n                System.out.println(\"Produced:\" + number + \":by thread:\"+ threadNo);\n                sharedQueue.put(number);\n                Thread.sleep(200);\n            } catch (Exception err) {\n                err.printStackTrace();\n            }\n        }\n    }\n}\n/* Different consumers consume data from shared queue, which is shared by both producer and consumer threads */\nclass Consumer implements Runnable {\n    private final BlockingQueue\u003cInteger\u003e sharedQueue;\n    private int threadNo;\n    public Consumer (BlockingQueue\u003cInteger\u003e sharedQueue,int threadNo) {\n        this.sharedQueue = sharedQueue;\n        this.threadNo = threadNo;\n    }\n    @Override\n    public void run() {\n        // Consumer consumes numbers generated from Producer threads continuously\n        while(true){\n            try {\n                int num = sharedQueue.take();\n                System.out.println(\"Consumed: \"+ num + \":by thread:\"+threadNo);\n            } catch (Exception err) {\n               err.printStackTrace();\n            }\n        }\n    }   \n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import java.util.concurrent.*;\nimport java.util.Random;\n\npublic class ProducerConsumerWithES {\n    public static void main(String args[]) {\n        BlockingQueue\u003cInteger\u003e sharedQueue = new LinkedBlockingQueue\u003cInteger\u003e();\n         \n        ExecutorService pes = Executors.newFixedThreadPool(2);\n        ExecutorService ces = Executors.newFixedThreadPool(2);\n          \n        pes.submit(new Producer(sharedQueue, 1));\n        pes.submit(new Producer(sharedQueue, 2));\n        ces.submit(new Consumer(sharedQueue, 1));\n        ces.submit(new Consumer(sharedQueue, 2));\n         \n        pes.shutdown();\n        ces.shutdown();\n    }\n}\n\n/* Different producers produces a stream of integers continuously to a shared queue, \nwhich is shared between all Producers and consumers */\n\nclass Producer implements Runnable {\n    private final BlockingQueue\u003cInteger\u003e sharedQueue;\n    private int threadNo;\n    private Random random = new Random();\n    public Producer(BlockingQueue\u003cInteger\u003e sharedQueue,int threadNo) {\n        this.threadNo = threadNo;\n        this.sharedQueue = sharedQueue;\n    }\n    @Override\n    public void run() {\n        // Producer produces a continuous stream of numbers for every 200 milli seconds\n        while (true) {\n            try {\n                int number = random.nextInt(1000);\n                System.out.println(\"Produced:\" + number + \":by thread:\"+ threadNo);\n                sharedQueue.put(number);\n                Thread.sleep(200);\n            } catch (Exception err) {\n                err.printStackTrace();\n            }\n        }\n    }\n}\n/* Different consumers consume data from shared queue, which is shared by both producer and consumer threads */\nclass Consumer implements Runnable {\n    private final BlockingQueue\u003cInteger\u003e sharedQueue;\n    private int threadNo;\n    public Consumer (BlockingQueue\u003cInteger\u003e sharedQueue,int threadNo) {\n        this.sharedQueue = sharedQueue;\n        this.threadNo = threadNo;\n    }\n    @Override\n    public void run() {\n        // Consumer consumes numbers generated from Producer threads continuously\n        while(true){\n            try {\n                int num = sharedQueue.take();\n                System.out.println(\"Consumed: \"+ num + \":by thread:\"+threadNo);\n            } catch (Exception err) {\n               err.printStackTrace();\n            }\n        }\n    }   \n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460440090,
+        "id": "048eecac-418c-4f30-8311-a5a7e38cbfbf",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460440090,
+        "parent_id": "87b4defd-b6c5-4da3-9e04-ec77f4a0bd63",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "output:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "output:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460440090,
+        "id": "27defb41-ca3d-4c8a-a2d5-16e011e86c0a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460440090,
+        "parent_id": "87b4defd-b6c5-4da3-9e04-ec77f4a0bd63",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "Produced:69:by thread:2\nProduced:553:by thread:1\nConsumed: 69:by thread:1\nConsumed: 553:by thread:2\nProduced:41:by thread:2\nProduced:796:by thread:1\nConsumed: 41:by thread:1\nConsumed: 796:by thread:2\nProduced:728:by thread:2\nConsumed: 728:by thread:1"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "Produced:69:by thread:2\nProduced:553:by thread:1\nConsumed: 69:by thread:1\nConsumed: 553:by thread:2\nProduced:41:by thread:2\nProduced:796:by thread:1\nConsumed: 41:by thread:1\nConsumed: 796:by thread:2\nProduced:728:by thread:2\nConsumed: 728:by thread:1",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460440090,
+        "id": "ecdad035-3882-42dc-a5a9-c86aa68ed44e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460440090,
+        "parent_id": "87b4defd-b6c5-4da3-9e04-ec77f4a0bd63",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "and so on ……………."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "and so on ……………."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460440091,
+        "id": "a96c1785-176a-488e-a511-0b0ad0e37f41",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460440091,
+        "parent_id": "87b4defd-b6c5-4da3-9e04-ec77f4a0bd63",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Explanation:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Explanation:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460440091,
+        "id": "4ddba948-3c5b-4df2-9eb5-4c6965de06ea",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460440091,
+        "parent_id": "87b4defd-b6c5-4da3-9e04-ec77f4a0bd63",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "sharedQueue",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", which is a "
+            ],
+            [
+              "LinkedBlockingQueue",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is shared among all Producer and Consumer threads."
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "sharedQueue",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", which is a "
+          },
+          {
+            "Text": "LinkedBlockingQueue",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is shared among all Producer and Consumer threads."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460440091,
+        "id": "e6ff6aa9-3fb1-4c5f-86cf-b3e153ddf47e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460440091,
+        "parent_id": "87b4defd-b6c5-4da3-9e04-ec77f4a0bd63",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Producer threads produces one integer for every 200 milli seconds continuously and append it to "
+            ],
+            [
+              "sharedQueue",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Producer threads produces one integer for every 200 milli seconds continuously and append it to "
+          },
+          {
+            "Text": "sharedQueue",
+            "AttrFlags": 2
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460440092,
+        "id": "e151b423-32c6-4915-8fc9-d679153b23ca",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460440092,
+        "parent_id": "87b4defd-b6c5-4da3-9e04-ec77f4a0bd63",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Consumer",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " thread consumes integer from "
+            ],
+            [
+              "sharedQueue",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " continuously."
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Consumer",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " thread consumes integer from "
+          },
+          {
+            "Text": "sharedQueue",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " continuously."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460440092,
+        "id": "cbefe20d-c448-442f-8d6b-dc499b468efd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460440092,
+        "parent_id": "87b4defd-b6c5-4da3-9e04-ec77f4a0bd63",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This program is implemented with-out explicit "
+            ],
+            [
+              "synchronized",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " or "
+            ],
+            [
+              "Lock",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " constructs. "
+            ],
+            [
+              "BlockingQueue",
+              [
+                [
+                  "a",
+                  "https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/BlockingQueue.html"
+                ]
+              ]
+            ],
+            [
+              " is the key to achieve it."
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This program is implemented with-out explicit "
+          },
+          {
+            "Text": "synchronized",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " or "
+          },
+          {
+            "Text": "Lock",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " constructs. "
+          },
+          {
+            "Text": "BlockingQueue",
+            "Link": "https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/BlockingQueue.html"
+          },
+          {
+            "Text": " is the key to achieve it."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460440092,
+        "id": "1ae38db6-b09a-4ac7-a9dd-4a9c8552c5a4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460440092,
+        "parent_id": "87b4defd-b6c5-4da3-9e04-ec77f4a0bd63",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "BlockingQueue implementations are designed to be used primarily for producer-consumer queues."
+            ]
+          ]
+        },
+        "type": "quote",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "BlockingQueue implementations are designed to be used primarily for producer-consumer queues."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460440092,
+        "id": "3519f8e4-2561-4e8b-95f5-13c97c4b3296",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460440092,
+        "parent_id": "87b4defd-b6c5-4da3-9e04-ec77f4a0bd63",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "BlockingQueue implementations are thread-safe. All queuing methods achieve their effects atomically using internal locks or other forms of concurrency control."
+            ]
+          ]
+        },
+        "type": "quote",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "BlockingQueue implementations are thread-safe. All queuing methods achieve their effects atomically using internal locks or other forms of concurrency control."
+          }
+        ]
+      }
+    ],
+    "title": "150 Multiple producerconsumer example with shared global queue"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

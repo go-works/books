@@ -1,0 +1,187 @@
+{
+  "ID": "fddee4a8-7633-4080-91a5-b2a80499f65c",
+  "Root": {
+    "alive": true,
+    "content": [
+      "79eca753-36c1-47aa-b6d6-118355c86834",
+      "a53239c2-c10e-41c0-80e3-b7ac12768170",
+      "77e874c8-f8d0-4282-91ac-e7ea9455316e",
+      "70528442-be3e-4de0-b45c-776a74d4f3a4"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550460113343,
+    "id": "fddee4a8-7633-4080-91a5-b2a80499f65c",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550460113343,
+    "parent_id": "3e5f6441-fbb7-4864-8927-1c1c812bd8c7",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "150 Using Streams and Method References to Write Self-Documenting Processes"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460113340,
+        "id": "79eca753-36c1-47aa-b6d6-118355c86834",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460113340,
+        "parent_id": "fddee4a8-7633-4080-91a5-b2a80499f65c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Method references make excellent self-documenting code, and using method references with "
+            ],
+            [
+              "Stream",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "s makes complicated processes simple to read and understand. Consider the following code:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Method references make excellent self-documenting code, and using method references with "
+          },
+          {
+            "Text": "Stream",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "s makes complicated processes simple to read and understand. Consider the following code:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460113342,
+        "id": "a53239c2-c10e-41c0-80e3-b7ac12768170",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460113342,
+        "parent_id": "fddee4a8-7633-4080-91a5-b2a80499f65c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public interface Ordered {\n    default int getOrder(){\n        return 0;\n    }\n}\n\npublic interface Valued\u003cV extends Ordered\u003e {\n    boolean hasPropertyTwo();\n    V getValue();\n}\n\npublic interface Thing\u003cV extends Ordered\u003e {\n    boolean hasPropertyOne();\n    Valued\u003cV\u003e getValuedProperty();\n}\n\npublic \u003cV extends Ordered\u003e List\u003cV\u003e myMethod(List\u003cThing\u003cV\u003e\u003e things) {\n    List\u003cV\u003e results = new ArrayList\u003cV\u003e();\n    for (Thing\u003cV\u003e thing : things) {\n        if (thing.hasPropertyOne()) {\n            Valued\u003cV\u003e valued = thing.getValuedProperty();\n            if (valued != null \u0026\u0026 valued.hasPropertyTwo()){\n                V value = valued.getValue();\n                if (value != null){\n                    results.add(value);\n                }\n            }\n        }\n    }\n    results.sort((a, b)-\u003e{\n        return Integer.compare(a.getOrder(), b.getOrder());\n    });\n    return results;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public interface Ordered {\n    default int getOrder(){\n        return 0;\n    }\n}\n\npublic interface Valued\u003cV extends Ordered\u003e {\n    boolean hasPropertyTwo();\n    V getValue();\n}\n\npublic interface Thing\u003cV extends Ordered\u003e {\n    boolean hasPropertyOne();\n    Valued\u003cV\u003e getValuedProperty();\n}\n\npublic \u003cV extends Ordered\u003e List\u003cV\u003e myMethod(List\u003cThing\u003cV\u003e\u003e things) {\n    List\u003cV\u003e results = new ArrayList\u003cV\u003e();\n    for (Thing\u003cV\u003e thing : things) {\n        if (thing.hasPropertyOne()) {\n            Valued\u003cV\u003e valued = thing.getValuedProperty();\n            if (valued != null \u0026\u0026 valued.hasPropertyTwo()){\n                V value = valued.getValue();\n                if (value != null){\n                    results.add(value);\n                }\n            }\n        }\n    }\n    results.sort((a, b)-\u003e{\n        return Integer.compare(a.getOrder(), b.getOrder());\n    });\n    return results;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460113343,
+        "id": "77e874c8-f8d0-4282-91ac-e7ea9455316e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460113343,
+        "parent_id": "fddee4a8-7633-4080-91a5-b2a80499f65c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This last method rewritten using "
+            ],
+            [
+              "Stream",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "s and method references is much more legible and each step of the process is quickly and easily understood - it’s not just shorter, it also shows at a glance which interfaces and classes are responsible for the code in each step:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This last method rewritten using "
+          },
+          {
+            "Text": "Stream",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "s and method references is much more legible and each step of the process is quickly and easily understood - it’s not just shorter, it also shows at a glance which interfaces and classes are responsible for the code in each step:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460113343,
+        "id": "70528442-be3e-4de0-b45c-776a74d4f3a4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460113343,
+        "parent_id": "fddee4a8-7633-4080-91a5-b2a80499f65c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public \u003cV extends Ordered\u003e List\u003cV\u003e myMethod(List\u003cThing\u003cV\u003e\u003e things) {\n    return things.stream()\n        .filter(Thing::hasPropertyOne)\n        .map(Thing::getValuedProperty)\n        .filter(Objects::nonNull)\n        .filter(Valued::hasPropertyTwo)\n        .map(Valued::getValue)\n        .filter(Objects::nonNull)\n        .sorted(Comparator.comparing(Ordered::getOrder))\n        .collect(Collectors.toList());\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public \u003cV extends Ordered\u003e List\u003cV\u003e myMethod(List\u003cThing\u003cV\u003e\u003e things) {\n    return things.stream()\n        .filter(Thing::hasPropertyOne)\n        .map(Thing::getValuedProperty)\n        .filter(Objects::nonNull)\n        .filter(Valued::hasPropertyTwo)\n        .map(Valued::getValue)\n        .filter(Objects::nonNull)\n        .sorted(Comparator.comparing(Ordered::getOrder))\n        .collect(Collectors.toList());\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "150 Using Streams and Method References to Write Self-Documenting Processes"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

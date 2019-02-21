@@ -1,0 +1,99 @@
+{
+  "ID": "0d203aa2-ac46-4d11-ac3a-cdd0604c6820",
+  "Root": {
+    "alive": true,
+    "content": [
+      "9250c5f7-73c7-4361-93f8-de0b0f95c291",
+      "a1bc4b7f-0d3a-4e5c-93f0-66914404b90a"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550463204040,
+    "id": "0d203aa2-ac46-4d11-ac3a-cdd0604c6820",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550463204040,
+    "parent_id": "be3469ab-c5bc-45ec-b3e0-6bc9897f0a82",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Iterate over objects reachable from object Heap 1.0"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550463204038,
+        "id": "9250c5f7-73c7-4361-93f8-de0b0f95c291",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550463204038,
+        "parent_id": "0d203aa2-ac46-4d11-ac3a-cdd0604c6820",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003cvector\u003e\n#include \u003cstring\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \u003cvector\u003e\n#include \u003cstring\u003e",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550463204040,
+        "id": "a1bc4b7f-0d3a-4e5c-93f0-66914404b90a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550463204040,
+        "parent_id": "0d203aa2-ac46-4d11-ac3a-cdd0604c6820",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \"agent_util.hpp\" \n//this file can be found in Java SE Development Kit 8u101 Demos and Samples\n//see http://download.oracle.com/otn-pub/java/jdk/8u101-b13-demos/jdk-8u101-windows-x64-demos.zip\n//jdk1.8.0_101.zip!\\demo\\jvmti\\versionCheck\\src\\agent_util.h\n\n/*\n*   Struct used for jvmti-\u003eSetTag(object, \u003cpointer to tag\u003e);\n*   http://docs.oracle.com/javase/7/docs/platform/jvmti/jvmti.html#SetTag\n*    \n*/\ntypedef struct Tag\n{\n    jlong referrer_tag;\n    jlong size;\n    char* classSignature;\n    jint hashCode;\n} Tag;\n\n/*\n* Utility function: jlong -\u003e Tag*\n*/\nstatic Tag* pointerToTag(jlong tag_ptr)\n{\n    if (tag_ptr == 0)\n    {\n        return new Tag();\n    }\n    return (Tag*)(ptrdiff_t)(void*)tag_ptr;\n}\n\n/* \n* Utility function: Tag* -\u003e jlong \n*/\nstatic jlong tagToPointer(Tag* tag)\n{\n    return (jlong)(ptrdiff_t)(void*)tag;\n}\n\n/*\n*  Heap 1.0 Callback\n*  http://docs.oracle.com/javase/7/docs/platform/jvmti/jvmti.html#jvmtiObjectReferenceCallback\n*/\nstatic jvmtiIterationControl JNICALL heabObjectReferencesCallback(\n    jvmtiObjectReferenceKind reference_kind,\n    jlong class_tag,\n    jlong size,\n    jlong* tag_ptr,\n    jlong referrer_tag,\n    jint referrer_index,\n    void* user_data)\n{\n    //iterate only over reference field\n    if (reference_kind != JVMTI_HEAP_REFERENCE_FIELD)\n    {\n        return JVMTI_ITERATION_IGNORE;\n    }\n    auto tag_ptr_list = (std::vector\u003cjlong\u003e*)(ptrdiff_t)(void*)user_data;\n    //create and assign tag\n    auto t = pointerToTag(*tag_ptr);\n    t-\u003ereferrer_tag = referrer_tag;\n    t-\u003esize = size;\n    *tag_ptr = tagToPointer(t);\n    //collect tag\n    (*tag_ptr_list).push_back(*tag_ptr);\n\n    return JVMTI_ITERATION_CONTINUE;\n}\n\n/*\n*  Main function for demonstration of Iterate Over Objects Reachable From Object\n*  http://docs.oracle.com/javase/7/docs/platform/jvmti/jvmti.html#IterateOverObjectsReachableFromObject\n*\n*/\nvoid iterateOverObjectHeapReferences(jvmtiEnv* jvmti, JNIEnv* env, jobject object)\n{\n    std::vector\u003cjlong\u003e tag_ptr_list;\n\n    auto t = new Tag();\n    jvmti-\u003eSetTag(object, tagToPointer(t));\n    tag_ptr_list.push_back(tagToPointer(t));\n\n    stdout_message(\"tag list size before call callback:  %d\\n\", tag_ptr_list.size());\n    /*\n    *    Call Callback for every reachable object reference\n    *    see http://docs.oracle.com/javase/7/docs/platform/jvmti/jvmti.html#IterateOverObjectsReachableFromObject\n    */\n    jvmti-\u003eIterateOverObjectsReachableFromObject(object, \u0026heabObjectReferencesCallback, (void*)\u0026tag_ptr_list);\n    stdout_message(\"tag list size after call callback:  %d\\n\", tag_ptr_list.size());\n\n    if (tag_ptr_list.size() \u003e 0)\n    {\n        jint found_count = 0;\n        jlong* tags = \u0026tag_ptr_list[0];\n        jobject* found_objects;\n        jlong* found_tags;\n\n        /*\n        *    collect all tagged object (via *tag_ptr = pointer to tag ) \n        *    see http://docs.oracle.com/javase/7/docs/platform/jvmti/jvmti.html#GetObjectsWithTags\n        */\n        jvmti-\u003eGetObjectsWithTags(tag_ptr_list.size(), tags, \u0026found_count, \u0026found_objects, \u0026found_tags);\n        stdout_message(\"found %d objects\\n\", found_count);\n\n        for (auto i = 0; i \u003c found_count; ++i)\n        {\n            jobject found_object = found_objects[i];\n\n            char* classSignature;\n            jclass found_object_class = env-\u003eGetObjectClass(found_object);    \n            /*\n            *    Get string representation of found_object_class\n            *    see http://docs.oracle.com/javase/7/docs/platform/jvmti/jvmti.html#GetClassSignature\n            */\n            jvmti-\u003eGetClassSignature(found_object_class, \u0026classSignature, nullptr);\n        \n            jint hashCode;\n            /*\n            *    Getting hash code for found_object\n            *    see http://docs.oracle.com/javase/7/docs/platform/jvmti/jvmti.html#GetObjectHashCode\n            */\n            jvmti-\u003eGetObjectHashCode(found_object, \u0026hashCode);\n        \n            //save all it in Tag\n            Tag* t = pointerToTag(found_tags[i]);\n            t-\u003eclassSignature = classSignature;\n            t-\u003ehashCode = hashCode;\n        }\n\n        //print all saved information\n        for (auto i = 0; i \u003c found_count; ++i)\n        {\n            auto t = pointerToTag(found_tags[i]);\n            auto rt = pointerToTag(t-\u003ereferrer_tag);\n        \n            if (t-\u003ereferrer_tag != 0)\n            {\n                stdout_message(\"referrer object %s#%d --\u003e object %s#%d (size: %2d)\\n\",\n                    rt-\u003eclassSignature, rt-\u003ehashCode, t-\u003eclassSignature, t-\u003ehashCode, t-\u003esize);\n            }\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \"agent_util.hpp\" \n//this file can be found in Java SE Development Kit 8u101 Demos and Samples\n//see http://download.oracle.com/otn-pub/java/jdk/8u101-b13-demos/jdk-8u101-windows-x64-demos.zip\n//jdk1.8.0_101.zip!\\demo\\jvmti\\versionCheck\\src\\agent_util.h\n\n/*\n*   Struct used for jvmti-\u003eSetTag(object, \u003cpointer to tag\u003e);\n*   http://docs.oracle.com/javase/7/docs/platform/jvmti/jvmti.html#SetTag\n*    \n*/\ntypedef struct Tag\n{\n    jlong referrer_tag;\n    jlong size;\n    char* classSignature;\n    jint hashCode;\n} Tag;\n\n/*\n* Utility function: jlong -\u003e Tag*\n*/\nstatic Tag* pointerToTag(jlong tag_ptr)\n{\n    if (tag_ptr == 0)\n    {\n        return new Tag();\n    }\n    return (Tag*)(ptrdiff_t)(void*)tag_ptr;\n}\n\n/* \n* Utility function: Tag* -\u003e jlong \n*/\nstatic jlong tagToPointer(Tag* tag)\n{\n    return (jlong)(ptrdiff_t)(void*)tag;\n}\n\n/*\n*  Heap 1.0 Callback\n*  http://docs.oracle.com/javase/7/docs/platform/jvmti/jvmti.html#jvmtiObjectReferenceCallback\n*/\nstatic jvmtiIterationControl JNICALL heabObjectReferencesCallback(\n    jvmtiObjectReferenceKind reference_kind,\n    jlong class_tag,\n    jlong size,\n    jlong* tag_ptr,\n    jlong referrer_tag,\n    jint referrer_index,\n    void* user_data)\n{\n    //iterate only over reference field\n    if (reference_kind != JVMTI_HEAP_REFERENCE_FIELD)\n    {\n        return JVMTI_ITERATION_IGNORE;\n    }\n    auto tag_ptr_list = (std::vector\u003cjlong\u003e*)(ptrdiff_t)(void*)user_data;\n    //create and assign tag\n    auto t = pointerToTag(*tag_ptr);\n    t-\u003ereferrer_tag = referrer_tag;\n    t-\u003esize = size;\n    *tag_ptr = tagToPointer(t);\n    //collect tag\n    (*tag_ptr_list).push_back(*tag_ptr);\n\n    return JVMTI_ITERATION_CONTINUE;\n}\n\n/*\n*  Main function for demonstration of Iterate Over Objects Reachable From Object\n*  http://docs.oracle.com/javase/7/docs/platform/jvmti/jvmti.html#IterateOverObjectsReachableFromObject\n*\n*/\nvoid iterateOverObjectHeapReferences(jvmtiEnv* jvmti, JNIEnv* env, jobject object)\n{\n    std::vector\u003cjlong\u003e tag_ptr_list;\n\n    auto t = new Tag();\n    jvmti-\u003eSetTag(object, tagToPointer(t));\n    tag_ptr_list.push_back(tagToPointer(t));\n\n    stdout_message(\"tag list size before call callback:  %d\\n\", tag_ptr_list.size());\n    /*\n    *    Call Callback for every reachable object reference\n    *    see http://docs.oracle.com/javase/7/docs/platform/jvmti/jvmti.html#IterateOverObjectsReachableFromObject\n    */\n    jvmti-\u003eIterateOverObjectsReachableFromObject(object, \u0026heabObjectReferencesCallback, (void*)\u0026tag_ptr_list);\n    stdout_message(\"tag list size after call callback:  %d\\n\", tag_ptr_list.size());\n\n    if (tag_ptr_list.size() \u003e 0)\n    {\n        jint found_count = 0;\n        jlong* tags = \u0026tag_ptr_list[0];\n        jobject* found_objects;\n        jlong* found_tags;\n\n        /*\n        *    collect all tagged object (via *tag_ptr = pointer to tag ) \n        *    see http://docs.oracle.com/javase/7/docs/platform/jvmti/jvmti.html#GetObjectsWithTags\n        */\n        jvmti-\u003eGetObjectsWithTags(tag_ptr_list.size(), tags, \u0026found_count, \u0026found_objects, \u0026found_tags);\n        stdout_message(\"found %d objects\\n\", found_count);\n\n        for (auto i = 0; i \u003c found_count; ++i)\n        {\n            jobject found_object = found_objects[i];\n\n            char* classSignature;\n            jclass found_object_class = env-\u003eGetObjectClass(found_object);    \n            /*\n            *    Get string representation of found_object_class\n            *    see http://docs.oracle.com/javase/7/docs/platform/jvmti/jvmti.html#GetClassSignature\n            */\n            jvmti-\u003eGetClassSignature(found_object_class, \u0026classSignature, nullptr);\n        \n            jint hashCode;\n            /*\n            *    Getting hash code for found_object\n            *    see http://docs.oracle.com/javase/7/docs/platform/jvmti/jvmti.html#GetObjectHashCode\n            */\n            jvmti-\u003eGetObjectHashCode(found_object, \u0026hashCode);\n        \n            //save all it in Tag\n            Tag* t = pointerToTag(found_tags[i]);\n            t-\u003eclassSignature = classSignature;\n            t-\u003ehashCode = hashCode;\n        }\n\n        //print all saved information\n        for (auto i = 0; i \u003c found_count; ++i)\n        {\n            auto t = pointerToTag(found_tags[i]);\n            auto rt = pointerToTag(t-\u003ereferrer_tag);\n        \n            if (t-\u003ereferrer_tag != 0)\n            {\n                stdout_message(\"referrer object %s#%d --\u003e object %s#%d (size: %2d)\\n\",\n                    rt-\u003eclassSignature, rt-\u003ehashCode, t-\u003eclassSignature, t-\u003ehashCode, t-\u003esize);\n            }\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 Iterate over objects reachable from object Heap 1.0"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

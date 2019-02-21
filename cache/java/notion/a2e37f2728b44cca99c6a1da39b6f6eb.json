@@ -1,0 +1,97 @@
+{
+  "ID": "a2e37f27-28b4-4cca-99c6-a1da39b6f6eb",
+  "Root": {
+    "alive": true,
+    "content": [
+      "70d8ed37-680d-469a-8325-205e7b5edab0",
+      "43c08cb7-4ff5-4d95-9a05-9f1ba1255ce8"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550518073520,
+    "id": "a2e37f27-28b4-4cca-99c6-a1da39b6f6eb",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550518073520,
+    "parent_id": "9fb48b00-5e40-4acd-b683-7ffce58b76df",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "050 Usage of various classes of Date Time API"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518073520,
+        "id": "70d8ed37-680d-469a-8325-205e7b5edab0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518073520,
+        "parent_id": "a2e37f27-28b4-4cca-99c6-a1da39b6f6eb",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Following example also have explanation required for understanding example within it."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Following example also have explanation required for understanding example within it."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518073520,
+        "id": "43c08cb7-4ff5-4d95-9a05-9f1ba1255ce8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518073520,
+        "parent_id": "a2e37f27-28b4-4cca-99c6-a1da39b6f6eb",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import java.time.Clock;\nimport java.time.Duration;\nimport java.time.Instant;\nimport java.time.LocalDate;\nimport java.time.LocalDateTime;\nimport java.time.LocalTime;\nimport java.time.ZoneId;\nimport java.time.ZonedDateTime;\nimport java.util.TimeZone;\npublic class SomeMethodsExamples {\n\n/**\n * Has the methods of the class {@link LocalDateTime}\n */\npublic static void checkLocalDateTime() {\n    LocalDateTime localDateTime = LocalDateTime.now();\n    System.out.println(\"Local Date time using static now() method ::: \u003e\u003e\u003e \"\n            + localDateTime);\n\n    LocalDateTime ldt1 = LocalDateTime.now(ZoneId.of(ZoneId.SHORT_IDS\n            .get(\"AET\")));\n    System.out\n            .println(\"LOCAL TIME USING now(ZoneId zoneId) method ::: \u003e\u003e\u003e\u003e\"\n                    + ldt1);\n\n    LocalDateTime ldt2 = LocalDateTime.now(Clock.system(ZoneId\n            .of(ZoneId.SHORT_IDS.get(\"PST\"))));\n    System.out\n            .println(\"Local TIME USING now(Clock.system(ZoneId.of())) ::: \u003e\u003e\u003e\u003e \"\n                    + ldt2);\n\n    System.out\n            .println(\"Following is a static map in ZoneId class which has mapping of short timezone names to their Actual timezone names\");\n    System.out.println(ZoneId.SHORT_IDS);\n\n}\n\n/**\n * This has the methods of the class {@link LocalDate}\n */\npublic static void checkLocalDate() {\n    LocalDate localDate = LocalDate.now();\n    System.out.println(\"Gives date without Time using now() method. \u003e\u003e \"\n            + localDate);\n    LocalDate localDate2 = LocalDate.now(ZoneId.of(ZoneId.SHORT_IDS\n            .get(\"ECT\")));\n    System.out\n            .println(\"now() is overridden to take ZoneID as parametere using this we can get the same date under different timezones. \u003e\u003e \"\n                    + localDate2);\n}\n\n/**\n * This has the methods of abstract class {@link Clock}. Clock can be used\n * for time which has time with {@link TimeZone}.\n */\npublic static void checkClock() {\n    Clock clock = Clock.systemUTC();\n    // Represents time according to ISO 8601\n    System.out.println(\"Time using Clock class : \" + clock.instant());\n}\n\n/**\n * This has the {@link Instant} class methods.\n */\npublic static void checkInstant() {\n    Instant instant = Instant.now();\n\n    System.out.println(\"Instant using now() method :: \" + instant);\n\n    Instant ins1 = Instant.now(Clock.systemUTC());\n\n    System.out.println(\"Instants using now(Clock clock) :: \" + ins1);\n\n}\n\n/**\n * This class checks the methods of the {@link Duration} class.\n */\npublic static void checkDuration() {\n    // toString() converts the duration to PTnHnMnS format according to ISO\n    // 8601 standard. If a field is zero its ignored.\n\n    // P is the duration designator (historically called \"period\") placed at\n    // the start of the duration representation.\n    // Y is the year designator that follows the value for the number of\n    // years.\n    // M is the month designator that follows the value for the number of\n    // months.\n    // W is the week designator that follows the value for the number of\n    // weeks.\n    // D is the day designator that follows the value for the number of\n    // days.\n    // T is the time designator that precedes the time components of the\n    // representation.\n    // H is the hour designator that follows the value for the number of\n    // hours.\n    // M is the minute designator that follows the value for the number of\n    // minutes.\n    // S is the second designator that follows the value for the number of\n    // seconds.\n\n    System.out.println(Duration.ofDays(2));\n}\n\n/**\n * Shows Local time without date. It doesn't store or represenet a date and\n * time. Instead its a representation of Time like clock on the wall.\n */\npublic static void checkLocalTime() {\n    LocalTime localTime = LocalTime.now();\n    System.out.println(\"LocalTime :: \" + localTime);\n}\n\n/**\n * A date time with Time zone details in ISO-8601 standards.\n */\npublic static void checkZonedDateTime() {\n    ZonedDateTime zonedDateTime = ZonedDateTime.now(ZoneId\n            .of(ZoneId.SHORT_IDS.get(\"CST\")));\n    System.out.println(zonedDateTime);\n\n}\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import java.time.Clock;\nimport java.time.Duration;\nimport java.time.Instant;\nimport java.time.LocalDate;\nimport java.time.LocalDateTime;\nimport java.time.LocalTime;\nimport java.time.ZoneId;\nimport java.time.ZonedDateTime;\nimport java.util.TimeZone;\npublic class SomeMethodsExamples {\n\n/**\n * Has the methods of the class {@link LocalDateTime}\n */\npublic static void checkLocalDateTime() {\n    LocalDateTime localDateTime = LocalDateTime.now();\n    System.out.println(\"Local Date time using static now() method ::: \u003e\u003e\u003e \"\n            + localDateTime);\n\n    LocalDateTime ldt1 = LocalDateTime.now(ZoneId.of(ZoneId.SHORT_IDS\n            .get(\"AET\")));\n    System.out\n            .println(\"LOCAL TIME USING now(ZoneId zoneId) method ::: \u003e\u003e\u003e\u003e\"\n                    + ldt1);\n\n    LocalDateTime ldt2 = LocalDateTime.now(Clock.system(ZoneId\n            .of(ZoneId.SHORT_IDS.get(\"PST\"))));\n    System.out\n            .println(\"Local TIME USING now(Clock.system(ZoneId.of())) ::: \u003e\u003e\u003e\u003e \"\n                    + ldt2);\n\n    System.out\n            .println(\"Following is a static map in ZoneId class which has mapping of short timezone names to their Actual timezone names\");\n    System.out.println(ZoneId.SHORT_IDS);\n\n}\n\n/**\n * This has the methods of the class {@link LocalDate}\n */\npublic static void checkLocalDate() {\n    LocalDate localDate = LocalDate.now();\n    System.out.println(\"Gives date without Time using now() method. \u003e\u003e \"\n            + localDate);\n    LocalDate localDate2 = LocalDate.now(ZoneId.of(ZoneId.SHORT_IDS\n            .get(\"ECT\")));\n    System.out\n            .println(\"now() is overridden to take ZoneID as parametere using this we can get the same date under different timezones. \u003e\u003e \"\n                    + localDate2);\n}\n\n/**\n * This has the methods of abstract class {@link Clock}. Clock can be used\n * for time which has time with {@link TimeZone}.\n */\npublic static void checkClock() {\n    Clock clock = Clock.systemUTC();\n    // Represents time according to ISO 8601\n    System.out.println(\"Time using Clock class : \" + clock.instant());\n}\n\n/**\n * This has the {@link Instant} class methods.\n */\npublic static void checkInstant() {\n    Instant instant = Instant.now();\n\n    System.out.println(\"Instant using now() method :: \" + instant);\n\n    Instant ins1 = Instant.now(Clock.systemUTC());\n\n    System.out.println(\"Instants using now(Clock clock) :: \" + ins1);\n\n}\n\n/**\n * This class checks the methods of the {@link Duration} class.\n */\npublic static void checkDuration() {\n    // toString() converts the duration to PTnHnMnS format according to ISO\n    // 8601 standard. If a field is zero its ignored.\n\n    // P is the duration designator (historically called \"period\") placed at\n    // the start of the duration representation.\n    // Y is the year designator that follows the value for the number of\n    // years.\n    // M is the month designator that follows the value for the number of\n    // months.\n    // W is the week designator that follows the value for the number of\n    // weeks.\n    // D is the day designator that follows the value for the number of\n    // days.\n    // T is the time designator that precedes the time components of the\n    // representation.\n    // H is the hour designator that follows the value for the number of\n    // hours.\n    // M is the minute designator that follows the value for the number of\n    // minutes.\n    // S is the second designator that follows the value for the number of\n    // seconds.\n\n    System.out.println(Duration.ofDays(2));\n}\n\n/**\n * Shows Local time without date. It doesn't store or represenet a date and\n * time. Instead its a representation of Time like clock on the wall.\n */\npublic static void checkLocalTime() {\n    LocalTime localTime = LocalTime.now();\n    System.out.println(\"LocalTime :: \" + localTime);\n}\n\n/**\n * A date time with Time zone details in ISO-8601 standards.\n */\npublic static void checkZonedDateTime() {\n    ZonedDateTime zonedDateTime = ZonedDateTime.now(ZoneId\n            .of(ZoneId.SHORT_IDS.get(\"CST\")));\n    System.out.println(zonedDateTime);\n\n}\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "050 Usage of various classes of Date Time API"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

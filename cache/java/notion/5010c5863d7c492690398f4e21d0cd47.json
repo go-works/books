@@ -1,0 +1,213 @@
+{
+  "ID": "5010c586-3d7c-4926-9039-8f4e21d0cd47",
+  "Root": {
+    "alive": true,
+    "content": [
+      "4014d6df-1303-4fe4-858b-e842716a47e9",
+      "d84762e2-25ca-4107-89da-39972f094462",
+      "b0601549-823c-4a71-9ba6-543f2e73d92b"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550460448072,
+    "id": "5010c586-3d7c-4926-9039-8f4e21d0cd47",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550460448072,
+    "parent_id": "e5fa4b7a-50ed-4941-8513-fccd67c67989",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "050 Extending singleton singleton inheritance"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460448068,
+        "id": "4014d6df-1303-4fe4-858b-e842716a47e9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460448068,
+        "parent_id": "5010c586-3d7c-4926-9039-8f4e21d0cd47",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In this example, base class "
+            ],
+            [
+              "Singleton",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " provides "
+            ],
+            [
+              "getMessage()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method that returns "
+            ],
+            [
+              "\"Hello world!\"",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " message."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In this example, base class "
+          },
+          {
+            "Text": "Singleton",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " provides "
+          },
+          {
+            "Text": "getMessage()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method that returns "
+          },
+          {
+            "Text": "\"Hello world!\"",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " message."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460448071,
+        "id": "d84762e2-25ca-4107-89da-39972f094462",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460448071,
+        "parent_id": "5010c586-3d7c-4926-9039-8f4e21d0cd47",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "It’s subclasses "
+            ],
+            [
+              "UppercaseSingleton",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "LowercaseSingleton",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " override getMessage() method to provide appropriate representation of the message."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "It’s subclasses "
+          },
+          {
+            "Text": "UppercaseSingleton",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "LowercaseSingleton",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " override getMessage() method to provide appropriate representation of the message."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460448072,
+        "id": "b0601549-823c-4a71-9ba6-543f2e73d92b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460448072,
+        "parent_id": "5010c586-3d7c-4926-9039-8f4e21d0cd47",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "//Yeah, we'll need reflection to pull this off.\nimport java.lang.reflect.*;\n\n/*\nEnumeration that represents possible classes of singleton instance.\nIf unknown, we'll go with base class - Singleton.\n*/\nenum SingletonKind {\n    UNKNOWN,\n    LOWERCASE,\n    UPPERCASE\n}\n\n//Base class\nclass Singleton{\n\n    /*\n    Extended classes has to be private inner classes, to prevent extending them in \n    uncontrolled manner.\n     */\n    private class UppercaseSingleton extends Singleton {\n\n        private UppercaseSingleton(){\n            super();\n        }\n\n        @Override\n        public String getMessage() {\n            return super.getMessage().toUpperCase();\n        }\n    }\n\n    //Another extended class.\n    private class LowercaseSingleton extends Singleton\n    {\n        private LowercaseSingleton(){\n            super();\n        }\n\n        @Override\n        public String getMessage() {\n            return super.getMessage().toLowerCase();\n        }\n    }\n\n    //Applying Singleton pattern\n    private static SingletonKind kind = SingletonKind.UNKNOWN;\n\n    private static Singleton instance;\n\n    /*\n    By using this method prior to getInstance() method, you effectively change the\n    type of singleton instance to be created.\n     */\n    public static void setKind(SingletonKind kind) {\n        Singleton.kind = kind;\n    }\n\n    /*\n    If needed, getInstance() creates instance appropriate class, based on value of\n    singletonKind field.\n     */\n    public static Singleton getInstance() \n        throws  NoSuchMethodException, \n                IllegalAccessException, \n                InvocationTargetException, \n                InstantiationException {\n\n        if(instance==null){\n            synchronized (Singleton.class){\n                if(instance==null){\n                    Singleton singleton = new Singleton();\n                    switch (kind){\n                        case UNKNOWN:\n\n                            instance = singleton;\n                            break;\n\n                        case LOWERCASE:\n\n                            /*\n                             I can't use simple\n\n                             instance = new LowercaseSingleton();\n\n                             because java compiler won't allow me to use\n                             constructor of inner class in static context,\n                             so I use reflection API instead.\n\n                             To be able to access inner class by reflection API,\n                             I have to create instance of outer class first.\n                             Therefore, in this implementation, Singleton cannot be\n                             abstract class.\n                             */\n\n                            //Get the constructor of inner class.\n                            Constructor\u003cLowercaseSingleton\u003e lcConstructor =\n                                    LowercaseSingleton.class.getDeclaredConstructor(Singleton.class);\n\n                            //The constructor is private, so I have to make it accessible.\n                            lcConstructor.setAccessible(true);\n\n                            // Use the constructor to create instance.\n                            instance = lcConstructor.newInstance(singleton);\n\n                            break;\n\n                        case UPPERCASE:\n\n                            //Same goes here, just with different type\n                            Constructor\u003cUppercaseSingleton\u003e ucConstructor =\n                                    UppercaseSingleton.class.getDeclaredConstructor(Singleton.class);\n                            ucConstructor.setAccessible(true);\n                            instance = ucConstructor.newInstance(singleton);\n                    }\n                }\n            }\n        }\n        return instance;\n    }\n\n    //Singletons state that is to be used by subclasses\n    protected String message;\n\n    //Private constructor prevents external instantiation.\n    private Singleton()\n    {\n        message = \"Hello world!\";\n    }\n\n    //Singleton's API. Implementation can be overwritten by subclasses.\n    public String getMessage() {\n        return message;\n    }\n}\n\n//Just a small test program\npublic class ExtendingSingletonExample {\n\n    public static void main(String args[]){\n\n        //just uncomment one of following lines to change singleton class\n\n        //Singleton.setKind(SingletonKind.UPPERCASE);\n        //Singleton.setKind(SingletonKind.LOWERCASE);\n\n        Singleton singleton = null;\n        try {\n            singleton = Singleton.getInstance();\n        } catch (NoSuchMethodException e) {\n            e.printStackTrace();\n        } catch (IllegalAccessException e) {\n            e.printStackTrace();\n        } catch (InvocationTargetException e) {\n            e.printStackTrace();\n        } catch (InstantiationException e) {\n            e.printStackTrace();\n        }\n        System.out.println(singleton.getMessage());\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "//Yeah, we'll need reflection to pull this off.\nimport java.lang.reflect.*;\n\n/*\nEnumeration that represents possible classes of singleton instance.\nIf unknown, we'll go with base class - Singleton.\n*/\nenum SingletonKind {\n    UNKNOWN,\n    LOWERCASE,\n    UPPERCASE\n}\n\n//Base class\nclass Singleton{\n\n    /*\n    Extended classes has to be private inner classes, to prevent extending them in \n    uncontrolled manner.\n     */\n    private class UppercaseSingleton extends Singleton {\n\n        private UppercaseSingleton(){\n            super();\n        }\n\n        @Override\n        public String getMessage() {\n            return super.getMessage().toUpperCase();\n        }\n    }\n\n    //Another extended class.\n    private class LowercaseSingleton extends Singleton\n    {\n        private LowercaseSingleton(){\n            super();\n        }\n\n        @Override\n        public String getMessage() {\n            return super.getMessage().toLowerCase();\n        }\n    }\n\n    //Applying Singleton pattern\n    private static SingletonKind kind = SingletonKind.UNKNOWN;\n\n    private static Singleton instance;\n\n    /*\n    By using this method prior to getInstance() method, you effectively change the\n    type of singleton instance to be created.\n     */\n    public static void setKind(SingletonKind kind) {\n        Singleton.kind = kind;\n    }\n\n    /*\n    If needed, getInstance() creates instance appropriate class, based on value of\n    singletonKind field.\n     */\n    public static Singleton getInstance() \n        throws  NoSuchMethodException, \n                IllegalAccessException, \n                InvocationTargetException, \n                InstantiationException {\n\n        if(instance==null){\n            synchronized (Singleton.class){\n                if(instance==null){\n                    Singleton singleton = new Singleton();\n                    switch (kind){\n                        case UNKNOWN:\n\n                            instance = singleton;\n                            break;\n\n                        case LOWERCASE:\n\n                            /*\n                             I can't use simple\n\n                             instance = new LowercaseSingleton();\n\n                             because java compiler won't allow me to use\n                             constructor of inner class in static context,\n                             so I use reflection API instead.\n\n                             To be able to access inner class by reflection API,\n                             I have to create instance of outer class first.\n                             Therefore, in this implementation, Singleton cannot be\n                             abstract class.\n                             */\n\n                            //Get the constructor of inner class.\n                            Constructor\u003cLowercaseSingleton\u003e lcConstructor =\n                                    LowercaseSingleton.class.getDeclaredConstructor(Singleton.class);\n\n                            //The constructor is private, so I have to make it accessible.\n                            lcConstructor.setAccessible(true);\n\n                            // Use the constructor to create instance.\n                            instance = lcConstructor.newInstance(singleton);\n\n                            break;\n\n                        case UPPERCASE:\n\n                            //Same goes here, just with different type\n                            Constructor\u003cUppercaseSingleton\u003e ucConstructor =\n                                    UppercaseSingleton.class.getDeclaredConstructor(Singleton.class);\n                            ucConstructor.setAccessible(true);\n                            instance = ucConstructor.newInstance(singleton);\n                    }\n                }\n            }\n        }\n        return instance;\n    }\n\n    //Singletons state that is to be used by subclasses\n    protected String message;\n\n    //Private constructor prevents external instantiation.\n    private Singleton()\n    {\n        message = \"Hello world!\";\n    }\n\n    //Singleton's API. Implementation can be overwritten by subclasses.\n    public String getMessage() {\n        return message;\n    }\n}\n\n//Just a small test program\npublic class ExtendingSingletonExample {\n\n    public static void main(String args[]){\n\n        //just uncomment one of following lines to change singleton class\n\n        //Singleton.setKind(SingletonKind.UPPERCASE);\n        //Singleton.setKind(SingletonKind.LOWERCASE);\n\n        Singleton singleton = null;\n        try {\n            singleton = Singleton.getInstance();\n        } catch (NoSuchMethodException e) {\n            e.printStackTrace();\n        } catch (IllegalAccessException e) {\n            e.printStackTrace();\n        } catch (InvocationTargetException e) {\n            e.printStackTrace();\n        } catch (InstantiationException e) {\n            e.printStackTrace();\n        }\n        System.out.println(singleton.getMessage());\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "050 Extending singleton singleton inheritance"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

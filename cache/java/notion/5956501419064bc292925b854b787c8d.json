@@ -1,0 +1,1207 @@
+{
+  "ID": "59565014-1906-4bc2-9292-5b854b787c8d",
+  "Root": {
+    "alive": true,
+    "content": [
+      "67ef6613-5f6d-4589-9d48-19c920716d82",
+      "26696b53-95b1-4266-9aee-704f2c42e282",
+      "174ee6e9-376d-4e7a-a6c2-80fc1e98b4b9",
+      "a0636f79-9351-48a5-94bf-53e529e31e21",
+      "72c037cf-893c-427b-9d8b-afdf423d4782",
+      "05786096-5122-4265-956e-16739c73a730",
+      "aa1e3615-ef4c-4bcb-ab30-4310ca754ab4",
+      "480f8489-1132-4b78-96c5-1b132c257937",
+      "f70eb2f7-b9ca-49b6-b54d-49dc98b52694",
+      "820d764d-381a-4f32-9f65-4d94d1b2ffc1",
+      "67e39246-8884-4fb9-a7ed-048277746a97",
+      "cf59dc7d-0b62-4d8c-a9fe-aecac6a560cc",
+      "0a6572dd-5df7-4ae6-8c41-6a6d489d8ea7",
+      "d2b0fb63-7cc2-4e6f-ae70-1f1d233198c8",
+      "1542c296-338b-40a7-a3ec-131551291b01",
+      "5e5539cd-1ad5-482e-9f5f-21ba79fbe0c2",
+      "ec8cd713-53b1-4166-aa32-91bf29e11cef",
+      "23a3db85-eaf4-4011-a6a6-aef314924fdc",
+      "d5b6e21b-1d62-4297-838a-45c47f7779d9",
+      "db034c71-9add-4717-bfef-449cb84243c3",
+      "98449c7f-e352-42a8-89f8-0ecd5c623831",
+      "1bea1ce7-2207-4f1b-9a63-6475480eaab3",
+      "7711e878-399d-4c1e-b7ae-2980147e5701",
+      "5ceb77d8-69f8-42f2-81c2-8b65011f8476",
+      "f796c036-c0f6-41e2-b429-4b4275a4c1b8",
+      "dc645109-f5bc-4aad-8a7f-747a32f75b67",
+      "87ab0f28-b022-4776-baf0-6e973060a926"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550518421590,
+    "id": "59565014-1906-4bc2-9292-5b854b787c8d",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550518421590,
+    "parent_id": "28d11fe4-92df-4393-8cbb-b9dadc487955",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "060 Pitfall - Small reads writes on unbuffered streams are inefficient"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518421581,
+        "id": "67ef6613-5f6d-4589-9d48-19c920716d82",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518421581,
+        "parent_id": "59565014-1906-4bc2-9292-5b854b787c8d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Consider the following code to copy one file to another:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Consider the following code to copy one file to another:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518421583,
+        "id": "26696b53-95b1-4266-9aee-704f2c42e282",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518421583,
+        "parent_id": "59565014-1906-4bc2-9292-5b854b787c8d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import java.io.*;\n\npublic class FileCopy {\n\n    public static void main(String[] args) throws Exception {\n        try (InputStream is = new FileInputStream(args[0]);\n             OutputStream os = new FileOutputStream(args[1])) {\n           int octet;\n           while ((octet = is.read()) != -1) {\n               os.write(octet);\n           }\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import java.io.*;\n\npublic class FileCopy {\n\n    public static void main(String[] args) throws Exception {\n        try (InputStream is = new FileInputStream(args[0]);\n             OutputStream os = new FileOutputStream(args[1])) {\n           int octet;\n           while ((octet = is.read()) != -1) {\n               os.write(octet);\n           }\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518421583,
+        "id": "174ee6e9-376d-4e7a-a6c2-80fc1e98b4b9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518421583,
+        "parent_id": "59565014-1906-4bc2-9292-5b854b787c8d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "(We have deliberated omitted normal argument checking, error reporting and so on because they are not relevant to "
+            ],
+            [
+              "point",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " of this example.)"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "(We have deliberated omitted normal argument checking, error reporting and so on because they are not relevant to "
+          },
+          {
+            "Text": "point",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " of this example.)"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518421584,
+        "id": "a0636f79-9351-48a5-94bf-53e529e31e21",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518421584,
+        "parent_id": "59565014-1906-4bc2-9292-5b854b787c8d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If you compile the above code and use it to copy a huge file, you will notice that it is very slow. In fact, it will be at least a couple of orders of magnitude slower than the standard OS file copy utilities."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If you compile the above code and use it to copy a huge file, you will notice that it is very slow. In fact, it will be at least a couple of orders of magnitude slower than the standard OS file copy utilities."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518421584,
+        "id": "72c037cf-893c-427b-9d8b-afdf423d4782",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518421584,
+        "parent_id": "59565014-1906-4bc2-9292-5b854b787c8d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "("
+            ],
+            [
+              "Add actual performance measurements here!",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              ")"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "("
+          },
+          {
+            "Text": "Add actual performance measurements here!",
+            "AttrFlags": 4
+          },
+          {
+            "Text": ")"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518421584,
+        "id": "05786096-5122-4265-956e-16739c73a730",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518421584,
+        "parent_id": "59565014-1906-4bc2-9292-5b854b787c8d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The primary reason that the example above is slow (in the large file case) is that it is performing one-byte reads and one-byte writes on unbuffered byte streams. The simple way to improve performance is to wrap the streams with buffered streams. For example:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The primary reason that the example above is slow (in the large file case) is that it is performing one-byte reads and one-byte writes on unbuffered byte streams. The simple way to improve performance is to wrap the streams with buffered streams. For example:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518421584,
+        "id": "aa1e3615-ef4c-4bcb-ab30-4310ca754ab4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518421584,
+        "parent_id": "59565014-1906-4bc2-9292-5b854b787c8d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import java.io.*;\n\npublic class FileCopy {\n\n    public static void main(String[] args) throws Exception {\n        try (InputStream is = new BufferedInputStream(\n                     new FileInputStream(args[0]));\n             OutputStream os = new BufferedOutputStream(\n                     new FileOutputStream(args[1]))) {\n           int octet;\n           while ((octet = is.read()) != -1) {\n               os.write(octet);\n           }\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import java.io.*;\n\npublic class FileCopy {\n\n    public static void main(String[] args) throws Exception {\n        try (InputStream is = new BufferedInputStream(\n                     new FileInputStream(args[0]));\n             OutputStream os = new BufferedOutputStream(\n                     new FileOutputStream(args[1]))) {\n           int octet;\n           while ((octet = is.read()) != -1) {\n               os.write(octet);\n           }\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518421585,
+        "id": "480f8489-1132-4b78-96c5-1b132c257937",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518421585,
+        "parent_id": "59565014-1906-4bc2-9292-5b854b787c8d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "These small changes will improve data copy rate by "
+            ],
+            [
+              "at least",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " a couple of orders of magnitude, depending on various platform-related factors. The buffered stream wrappers cause the data to be read and written in larger chunks. The instances both have buffers implemented as byte arrays."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "These small changes will improve data copy rate by "
+          },
+          {
+            "Text": "at least",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " a couple of orders of magnitude, depending on various platform-related factors. The buffered stream wrappers cause the data to be read and written in larger chunks. The instances both have buffers implemented as byte arrays."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518421586,
+        "id": "f70eb2f7-b9ca-49b6-b54d-49dc98b52694",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518421586,
+        "parent_id": "59565014-1906-4bc2-9292-5b854b787c8d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "With "
+            ],
+            [
+              "is",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", data is read from the file into the buffer a few kilobytes at a time. When "
+            ],
+            [
+              "read()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is called, the implementation will typically return a byte from the buffer. It will only read from the underlying input stream if the buffer has been emptied."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "With "
+          },
+          {
+            "Text": "is",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", data is read from the file into the buffer a few kilobytes at a time. When "
+          },
+          {
+            "Text": "read()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is called, the implementation will typically return a byte from the buffer. It will only read from the underlying input stream if the buffer has been emptied."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518421586,
+        "id": "820d764d-381a-4f32-9f65-4d94d1b2ffc1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518421586,
+        "parent_id": "59565014-1906-4bc2-9292-5b854b787c8d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The behavior for "
+            ],
+            [
+              "os",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is analogous. Calls to "
+            ],
+            [
+              "os.write(int)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " write single bytes into the buffer. Data is only written to the output stream when the buffer is full, or when "
+            ],
+            [
+              "os",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is flushed or closed."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The behavior for "
+          },
+          {
+            "Text": "os",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is analogous. Calls to "
+          },
+          {
+            "Text": "os.write(int)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " write single bytes into the buffer. Data is only written to the output stream when the buffer is full, or when "
+          },
+          {
+            "Text": "os",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is flushed or closed."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518421586,
+        "id": "67e39246-8884-4fb9-a7ed-048277746a97",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518421586,
+        "parent_id": "59565014-1906-4bc2-9292-5b854b787c8d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "What about character-based streams?"
+            ]
+          ]
+        },
+        "type": "sub_header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "What about character-based streams?"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518421586,
+        "id": "cf59dc7d-0b62-4d8c-a9fe-aecac6a560cc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518421586,
+        "parent_id": "59565014-1906-4bc2-9292-5b854b787c8d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "As you should be aware, Java I/O provides different APIs for reading and writing binary and text data."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "As you should be aware, Java I/O provides different APIs for reading and writing binary and text data."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518421587,
+        "id": "0a6572dd-5df7-4ae6-8c41-6a6d489d8ea7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518421587,
+        "parent_id": "59565014-1906-4bc2-9292-5b854b787c8d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "InputStream",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "OutputStream",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " are the base APIs for stream-based binary I/O"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "InputStream",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "OutputStream",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " are the base APIs for stream-based binary I/O"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518421587,
+        "id": "d2b0fb63-7cc2-4e6f-ae70-1f1d233198c8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518421587,
+        "parent_id": "59565014-1906-4bc2-9292-5b854b787c8d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Reader",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "Writer",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " are the base APIs for stream-based text I/O."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Reader",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "Writer",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " are the base APIs for stream-based text I/O."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518421587,
+        "id": "1542c296-338b-40a7-a3ec-131551291b01",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518421587,
+        "parent_id": "59565014-1906-4bc2-9292-5b854b787c8d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "For text I/O, "
+            ],
+            [
+              "BufferedReader",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "BufferedWriter",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " are the equivalents for "
+            ],
+            [
+              "BufferedInputStream",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "BufferedOutputStream",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "For text I/O, "
+          },
+          {
+            "Text": "BufferedReader",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "BufferedWriter",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " are the equivalents for "
+          },
+          {
+            "Text": "BufferedInputStream",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "BufferedOutputStream",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518421588,
+        "id": "5e5539cd-1ad5-482e-9f5f-21ba79fbe0c2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518421588,
+        "parent_id": "59565014-1906-4bc2-9292-5b854b787c8d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Why do buffered streams make this much difference?"
+            ]
+          ]
+        },
+        "type": "sub_header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Why do buffered streams make this much difference?"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518421588,
+        "id": "ec8cd713-53b1-4166-aa32-91bf29e11cef",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518421588,
+        "parent_id": "59565014-1906-4bc2-9292-5b854b787c8d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The real reason that buffered streams help performance is to do with the way that an application talks to the operating system:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The real reason that buffered streams help performance is to do with the way that an application talks to the operating system:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518421588,
+        "id": "23a3db85-eaf4-4011-a6a6-aef314924fdc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518421588,
+        "parent_id": "59565014-1906-4bc2-9292-5b854b787c8d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Java method in a Java application, or native procedure calls in the JVM’s native runtime libraries are fast. They typically take a couple of machine instructions and have minimal performance impact."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Java method in a Java application, or native procedure calls in the JVM’s native runtime libraries are fast. They typically take a couple of machine instructions and have minimal performance impact."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518421588,
+        "id": "d5b6e21b-1d62-4297-838a-45c47f7779d9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518421588,
+        "parent_id": "59565014-1906-4bc2-9292-5b854b787c8d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "By contrast, JVM runtime calls to the operating system are not fast. They involve something known as a “syscall”. The typical pattern for a syscall is as follows:"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "By contrast, JVM runtime calls to the operating system are not fast. They involve something known as a “syscall”. The typical pattern for a syscall is as follows:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518421588,
+        "id": "db034c71-9add-4717-bfef-449cb84243c3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518421588,
+        "parent_id": "59565014-1906-4bc2-9292-5b854b787c8d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "1. Put the syscall arguments into registers.\n2. Execute a SYSENTER trap instruction.\n3. The trap handler switched to privileged state and changes the virtual memory mappings.  Then it dispatches to the code to handle the specific syscall.\n4. The syscall handler checks the arguments, taking care that it isn't being told to access memory that the user process should not see.\n5. The syscall specific work is performed.  In the case of a `read` syscall, this may involve:\n   1. checking that there is data to be read at the file descriptor's current position\n   2. calling the file system handler to fetch the required data from disk (or wherever it is stored) into the buffer cache,\n   3. copying data from the buffer cache to the JVM-supplied address\n   4. adjusting thstream pointerse file descriptor position\n6. Return from the syscall.  This entails changing VM mappings again and switching out of privileged state."
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "1. Put the syscall arguments into registers.\n2. Execute a SYSENTER trap instruction.\n3. The trap handler switched to privileged state and changes the virtual memory mappings.  Then it dispatches to the code to handle the specific syscall.\n4. The syscall handler checks the arguments, taking care that it isn't being told to access memory that the user process should not see.\n5. The syscall specific work is performed.  In the case of a `read` syscall, this may involve:\n   1. checking that there is data to be read at the file descriptor's current position\n   2. calling the file system handler to fetch the required data from disk (or wherever it is stored) into the buffer cache,\n   3. copying data from the buffer cache to the JVM-supplied address\n   4. adjusting thstream pointerse file descriptor position\n6. Return from the syscall.  This entails changing VM mappings again and switching out of privileged state.",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518421589,
+        "id": "98449c7f-e352-42a8-89f8-0ecd5c623831",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518421589,
+        "parent_id": "59565014-1906-4bc2-9292-5b854b787c8d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "As you can imagine, performing a single syscall can thousands of machine instructions. Conservatively, "
+            ],
+            [
+              "at least",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " two orders of magnitude longer than a regular method call. (Probably three or more.)"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "As you can imagine, performing a single syscall can thousands of machine instructions. Conservatively, "
+          },
+          {
+            "Text": "at least",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " two orders of magnitude longer than a regular method call. (Probably three or more.)"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518421589,
+        "id": "1bea1ce7-2207-4f1b-9a63-6475480eaab3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518421589,
+        "parent_id": "59565014-1906-4bc2-9292-5b854b787c8d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Given this, the reason that buffered streams make a big difference is that they drastically reduce the number of syscalls. Instead of doing a syscall for each "
+            ],
+            [
+              "read()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " call, the buffered input stream reads a large amount of data into a buffer as required. Most "
+            ],
+            [
+              "read()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " calls on the buffered stream do some simple bounds checking and return a "
+            ],
+            [
+              "byte",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " that was read previously. Similar reasoning applies in the output stream case, and also the character stream cases."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Given this, the reason that buffered streams make a big difference is that they drastically reduce the number of syscalls. Instead of doing a syscall for each "
+          },
+          {
+            "Text": "read()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " call, the buffered input stream reads a large amount of data into a buffer as required. Most "
+          },
+          {
+            "Text": "read()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " calls on the buffered stream do some simple bounds checking and return a "
+          },
+          {
+            "Text": "byte",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " that was read previously. Similar reasoning applies in the output stream case, and also the character stream cases."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518421589,
+        "id": "7711e878-399d-4c1e-b7ae-2980147e5701",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518421589,
+        "parent_id": "59565014-1906-4bc2-9292-5b854b787c8d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "(Some people think that buffered I/O performance comes from the mismatch between the read request size and the size of a disk block, disk rotational latency and things like that. In fact, a modern OS uses a number of strategies to ensure that the application "
+            ],
+            [
+              "typically",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " doesn’t need to wait for the disk. This is not the real explanation.)"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "(Some people think that buffered I/O performance comes from the mismatch between the read request size and the size of a disk block, disk rotational latency and things like that. In fact, a modern OS uses a number of strategies to ensure that the application "
+          },
+          {
+            "Text": "typically",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " doesn’t need to wait for the disk. This is not the real explanation.)"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518421589,
+        "id": "5ceb77d8-69f8-42f2-81c2-8b65011f8476",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518421589,
+        "parent_id": "59565014-1906-4bc2-9292-5b854b787c8d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Are buffered streams always a win?"
+            ]
+          ]
+        },
+        "type": "sub_header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Are buffered streams always a win?"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518421589,
+        "id": "f796c036-c0f6-41e2-b429-4b4275a4c1b8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518421589,
+        "parent_id": "59565014-1906-4bc2-9292-5b854b787c8d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Not always. Buffered streams are definitely a win if your application is going to do lots of “small” reads or writes. However, if your application only needs to perform large reads or writes to / from a large "
+            ],
+            [
+              "byte[]",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " or "
+            ],
+            [
+              "char[]",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", then buffered streams will give you no real benefits. Indeed there might even be a (tiny) performance penalty."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Not always. Buffered streams are definitely a win if your application is going to do lots of “small” reads or writes. However, if your application only needs to perform large reads or writes to / from a large "
+          },
+          {
+            "Text": "byte[]",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " or "
+          },
+          {
+            "Text": "char[]",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", then buffered streams will give you no real benefits. Indeed there might even be a (tiny) performance penalty."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518421590,
+        "id": "dc645109-f5bc-4aad-8a7f-747a32f75b67",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518421590,
+        "parent_id": "59565014-1906-4bc2-9292-5b854b787c8d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Is this the fastest way to copy a file in Java?"
+            ]
+          ]
+        },
+        "type": "sub_header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Is this the fastest way to copy a file in Java?"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518421590,
+        "id": "87ab0f28-b022-4776-baf0-6e973060a926",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518421590,
+        "parent_id": "59565014-1906-4bc2-9292-5b854b787c8d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "No it isn’t. When you use Java’s stream-based APIs to copy a file, you incur the cost of at least one extra memory-to-memory copy of the data. It is possible to avoid this if your use the NIO "
+            ],
+            [
+              "ByteBuffer",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "Channel",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " APIs. ("
+            ],
+            [
+              "Add a link to a separate example here.",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              ")"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "No it isn’t. When you use Java’s stream-based APIs to copy a file, you incur the cost of at least one extra memory-to-memory copy of the data. It is possible to avoid this if your use the NIO "
+          },
+          {
+            "Text": "ByteBuffer",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "Channel",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " APIs. ("
+          },
+          {
+            "Text": "Add a link to a separate example here.",
+            "AttrFlags": 4
+          },
+          {
+            "Text": ")"
+          }
+        ]
+      }
+    ],
+    "title": "060 Pitfall - Small reads writes on unbuffered streams are inefficient"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

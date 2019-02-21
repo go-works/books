@@ -1,0 +1,675 @@
+{
+  "ID": "a21889cf-b8aa-4d79-aec8-51b2a5253cf4",
+  "Root": {
+    "alive": true,
+    "content": [
+      "c43f63ce-4f31-494b-91bb-17e4d507384d",
+      "b086da71-8c07-4e7e-9338-e8994dd33a40",
+      "a7e63ee5-cfb3-4192-aeab-6c6daa90d6e4",
+      "5fdefe7d-5eca-414d-9b8d-96aef4ff037e",
+      "fab07049-31a6-4fa9-8f8c-307c4a6bb868",
+      "13adda82-df70-4347-8162-dc83bd054878",
+      "8ab1a1e3-cb65-418b-8d0f-65f81d8f7cc0",
+      "12385421-aa25-444b-94dd-4845ffeed6e2",
+      "bc42bef6-a3d9-4ef8-a516-91eceaecc377",
+      "b6dc856f-2efb-4129-a0ab-73e4f0099e50"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550460176157,
+    "id": "a21889cf-b8aa-4d79-aec8-51b2a5253cf4",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550460176157,
+    "parent_id": "89249b2d-411e-48a0-929e-d4742921cff2",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "070 Stream vs WriterReader API"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460176154,
+        "id": "c43f63ce-4f31-494b-91bb-17e4d507384d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460176154,
+        "parent_id": "a21889cf-b8aa-4d79-aec8-51b2a5253cf4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Streams provide the most direct access to the binary content, so any "
+            ],
+            [
+              "InputStream",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "https://docs.oracle.com/javase/7/docs/api/java/io/InputStream.html"
+                ]
+              ]
+            ],
+            [
+              " / "
+            ],
+            [
+              "OutputStream",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "https://docs.oracle.com/javase/7/docs/api/java/io/OutputStream.html"
+                ]
+              ]
+            ],
+            [
+              " implementations always operate on "
+            ],
+            [
+              "int",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "s and "
+            ],
+            [
+              "byte",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "s."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Streams provide the most direct access to the binary content, so any "
+          },
+          {
+            "Text": "InputStream",
+            "AttrFlags": 2,
+            "Link": "https://docs.oracle.com/javase/7/docs/api/java/io/InputStream.html"
+          },
+          {
+            "Text": " / "
+          },
+          {
+            "Text": "OutputStream",
+            "AttrFlags": 2,
+            "Link": "https://docs.oracle.com/javase/7/docs/api/java/io/OutputStream.html"
+          },
+          {
+            "Text": " implementations always operate on "
+          },
+          {
+            "Text": "int",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "s and "
+          },
+          {
+            "Text": "byte",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "s."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460176154,
+        "id": "b086da71-8c07-4e7e-9338-e8994dd33a40",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460176154,
+        "parent_id": "a21889cf-b8aa-4d79-aec8-51b2a5253cf4",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Read a single byte from the stream\nint b = inputStream.read();\nif (b \u003e= 0) { // A negative value represents the end of the stream, normal values are in the range 0 - 255\n    // Write the byte to another stream\n    outputStream.write(b);\n}\n\n// Read a chunk\nbyte[] data = new byte[1024];\nint nBytesRead = inputStream.read(data);\nif (nBytesRead \u003e= 0) { // A negative value represents end of stream\n    // Write the chunk to another stream\n    outputStream.write(data, 0, nBytesRead);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Read a single byte from the stream\nint b = inputStream.read();\nif (b \u003e= 0) { // A negative value represents the end of the stream, normal values are in the range 0 - 255\n    // Write the byte to another stream\n    outputStream.write(b);\n}\n\n// Read a chunk\nbyte[] data = new byte[1024];\nint nBytesRead = inputStream.read(data);\nif (nBytesRead \u003e= 0) { // A negative value represents end of stream\n    // Write the chunk to another stream\n    outputStream.write(data, 0, nBytesRead);\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460176155,
+        "id": "a7e63ee5-cfb3-4192-aeab-6c6daa90d6e4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460176155,
+        "parent_id": "a21889cf-b8aa-4d79-aec8-51b2a5253cf4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "There are some exceptions, probably most notably the "
+            ],
+            [
+              "PrintStream",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "https://docs.oracle.com/javase/7/docs/api/java/io/PrintStream.html"
+                ]
+              ]
+            ],
+            [
+              " which adds the “ability to print representations of various data values conveniently”. This allows to use "
+            ],
+            [
+              "System.out",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "https://docs.oracle.com/javase/7/docs/api/java/lang/System.html#out"
+                ]
+              ]
+            ],
+            [
+              " both as a binary "
+            ],
+            [
+              "InputStream",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and as a textual output using methods such as "
+            ],
+            [
+              "System.out.println()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "There are some exceptions, probably most notably the "
+          },
+          {
+            "Text": "PrintStream",
+            "AttrFlags": 2,
+            "Link": "https://docs.oracle.com/javase/7/docs/api/java/io/PrintStream.html"
+          },
+          {
+            "Text": " which adds the “ability to print representations of various data values conveniently”. This allows to use "
+          },
+          {
+            "Text": "System.out",
+            "AttrFlags": 2,
+            "Link": "https://docs.oracle.com/javase/7/docs/api/java/lang/System.html#out"
+          },
+          {
+            "Text": " both as a binary "
+          },
+          {
+            "Text": "InputStream",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and as a textual output using methods such as "
+          },
+          {
+            "Text": "System.out.println()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460176156,
+        "id": "5fdefe7d-5eca-414d-9b8d-96aef4ff037e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460176156,
+        "parent_id": "a21889cf-b8aa-4d79-aec8-51b2a5253cf4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Also, some stream implementations work as an interface to higher-level contents such as Java objects (see Serialization) or native types, e.g. "
+            ],
+            [
+              "DataOutputStream",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "https://docs.oracle.com/javase/7/docs/api/java/io/DataOutputStream.html"
+                ]
+              ]
+            ],
+            [
+              " / "
+            ],
+            [
+              "DataInputStream",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "https://docs.oracle.com/javase/7/docs/api/java/io/DataInputStream.html"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Also, some stream implementations work as an interface to higher-level contents such as Java objects (see Serialization) or native types, e.g. "
+          },
+          {
+            "Text": "DataOutputStream",
+            "AttrFlags": 2,
+            "Link": "https://docs.oracle.com/javase/7/docs/api/java/io/DataOutputStream.html"
+          },
+          {
+            "Text": " / "
+          },
+          {
+            "Text": "DataInputStream",
+            "AttrFlags": 2,
+            "Link": "https://docs.oracle.com/javase/7/docs/api/java/io/DataInputStream.html"
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460176156,
+        "id": "fab07049-31a6-4fa9-8f8c-307c4a6bb868",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460176156,
+        "parent_id": "a21889cf-b8aa-4d79-aec8-51b2a5253cf4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "With the "
+            ],
+            [
+              "Writer",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "https://docs.oracle.com/javase/7/docs/api/java/io/Writer.html"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "Reader",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "https://docs.oracle.com/javase/7/docs/api/java/io/Reader.html"
+                ]
+              ]
+            ],
+            [
+              " classes, Java also provides an API for explicit character streams. Although most applications will base these implementations on streams, the character stream API does not expose any methods for binary content."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "With the "
+          },
+          {
+            "Text": "Writer",
+            "AttrFlags": 2,
+            "Link": "https://docs.oracle.com/javase/7/docs/api/java/io/Writer.html"
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "Reader",
+            "AttrFlags": 2,
+            "Link": "https://docs.oracle.com/javase/7/docs/api/java/io/Reader.html"
+          },
+          {
+            "Text": " classes, Java also provides an API for explicit character streams. Although most applications will base these implementations on streams, the character stream API does not expose any methods for binary content."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460176156,
+        "id": "13adda82-df70-4347-8162-dc83bd054878",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460176156,
+        "parent_id": "a21889cf-b8aa-4d79-aec8-51b2a5253cf4",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// This example uses the platform's default charset, see below\n// for a better implementation.\n\nWriter writer = new OutputStreamWriter(System.out);\nwriter.write(\"Hello world!\");\n\nReader reader = new InputStreamReader(System.in);\nchar singleCharacter = reader.read();"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// This example uses the platform's default charset, see below\n// for a better implementation.\n\nWriter writer = new OutputStreamWriter(System.out);\nwriter.write(\"Hello world!\");\n\nReader reader = new InputStreamReader(System.in);\nchar singleCharacter = reader.read();",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460176157,
+        "id": "8ab1a1e3-cb65-418b-8d0f-65f81d8f7cc0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460176157,
+        "parent_id": "a21889cf-b8aa-4d79-aec8-51b2a5253cf4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Whenever it is necessary to encode characters into binary data (e.g. when using the "
+            ],
+            [
+              "InputStreamWriter",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " / "
+            ],
+            [
+              "OutputStreamWriter",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " classes), you should specify a charset if you do not want to depend on the platform’s default charset. When in doubt, use a Unicode-compatible encoding, e.g. UTF-8 which is supported on all Java platforms. Therefore, you should probably stay away from classes like "
+            ],
+            [
+              "FileWriter",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "FileReader",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " as those always use the default platform charset. A better way to access files using character streams is this:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Whenever it is necessary to encode characters into binary data (e.g. when using the "
+          },
+          {
+            "Text": "InputStreamWriter",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " / "
+          },
+          {
+            "Text": "OutputStreamWriter",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " classes), you should specify a charset if you do not want to depend on the platform’s default charset. When in doubt, use a Unicode-compatible encoding, e.g. UTF-8 which is supported on all Java platforms. Therefore, you should probably stay away from classes like "
+          },
+          {
+            "Text": "FileWriter",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "FileReader",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " as those always use the default platform charset. A better way to access files using character streams is this:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460176157,
+        "id": "12385421-aa25-444b-94dd-4845ffeed6e2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460176157,
+        "parent_id": "a21889cf-b8aa-4d79-aec8-51b2a5253cf4",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "Charset myCharset = StandardCharsets.UTF_8;\n\nWriter writer = new OutputStreamWriter( new FileOutputStream(\"test.txt\"), myCharset );\nwriter.write('Ä');\nwriter.flush();\nwriter.close();\n\nReader reader = new InputStreamReader( new FileInputStream(\"test.txt\"), myCharset );\nchar someUnicodeCharacter = reader.read();\nreader.close();"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "Charset myCharset = StandardCharsets.UTF_8;\n\nWriter writer = new OutputStreamWriter( new FileOutputStream(\"test.txt\"), myCharset );\nwriter.write('Ä');\nwriter.flush();\nwriter.close();\n\nReader reader = new InputStreamReader( new FileInputStream(\"test.txt\"), myCharset );\nchar someUnicodeCharacter = reader.read();\nreader.close();",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460176157,
+        "id": "bc42bef6-a3d9-4ef8-a516-91eceaecc377",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460176157,
+        "parent_id": "a21889cf-b8aa-4d79-aec8-51b2a5253cf4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "One of the most commonly used "
+            ],
+            [
+              "Reader",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "s is "
+            ],
+            [
+              "BufferedReader",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " which provides a method to read whole lines of text from another reader and is presumably the simplest way to read a character stream line by line:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "One of the most commonly used "
+          },
+          {
+            "Text": "Reader",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "s is "
+          },
+          {
+            "Text": "BufferedReader",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " which provides a method to read whole lines of text from another reader and is presumably the simplest way to read a character stream line by line:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460176157,
+        "id": "b6dc856f-2efb-4129-a0ab-73e4f0099e50",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460176157,
+        "parent_id": "a21889cf-b8aa-4d79-aec8-51b2a5253cf4",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Read from baseReader, one line at a time\nBufferedReader reader = new BufferedReader( baseReader );\nString line;\nwhile((line = reader.readLine()) != null) {\n  // Remember: System.out is a stream, not a writer!\n  System.out.println(line);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Read from baseReader, one line at a time\nBufferedReader reader = new BufferedReader( baseReader );\nString line;\nwhile((line = reader.readLine()) != null) {\n  // Remember: System.out is a stream, not a writer!\n  System.out.println(line);\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "070 Stream vs WriterReader API"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

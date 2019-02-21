@@ -1,0 +1,465 @@
+{
+  "ID": "955698ce-92a7-45d0-9470-999603cf5fd0",
+  "Root": {
+    "alive": true,
+    "content": [
+      "8c6339aa-8b11-460b-9a50-19351d9a8774",
+      "da3f7bd9-b25f-40d7-a097-ca586e82ab1b",
+      "657c1cb5-1adf-405f-97b5-9863ab755f2b",
+      "a7b8653f-a612-4c3e-bc24-98c5d44dc298",
+      "932c72fd-a3d6-4705-b9c6-0c7b9507d6aa",
+      "fe752a07-a4b4-48dc-a662-1a0fcc21a845",
+      "d26c0c63-135b-4d02-84d9-6891df3f14a2"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550518704459,
+    "id": "955698ce-92a7-45d0-9470-999603cf5fd0",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550518704459,
+    "parent_id": "012a60f0-6603-428f-90f0-56d12cde3fa4",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "040 Pitfall - Not checking if an IO stream isnt even initialized when closing it"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518704457,
+        "id": "8c6339aa-8b11-460b-9a50-19351d9a8774",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518704457,
+        "parent_id": "955698ce-92a7-45d0-9470-999603cf5fd0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To prevent memory leaks, one should not forget to close an input stream or an output stream whose job is done. This is usually done with a "
+            ],
+            [
+              "try",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "-"
+            ],
+            [
+              "catch",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "-"
+            ],
+            [
+              "finally",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " statement without the "
+            ],
+            [
+              "catch",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " part:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To prevent memory leaks, one should not forget to close an input stream or an output stream whose job is done. This is usually done with a "
+          },
+          {
+            "Text": "try",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "-"
+          },
+          {
+            "Text": "catch",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "-"
+          },
+          {
+            "Text": "finally",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " statement without the "
+          },
+          {
+            "Text": "catch",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " part:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518704457,
+        "id": "da3f7bd9-b25f-40d7-a097-ca586e82ab1b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518704457,
+        "parent_id": "955698ce-92a7-45d0-9470-999603cf5fd0",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "void writeNullBytesToAFile(int count, String filename) throws IOException {\n    FileOutputStream out = null;\n    try {\n        out = new FileOutputStream(filename);\n        for(; count \u003e 0; count--)\n            out.write(0);\n    } finally {\n        out.close();\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "void writeNullBytesToAFile(int count, String filename) throws IOException {\n    FileOutputStream out = null;\n    try {\n        out = new FileOutputStream(filename);\n        for(; count \u003e 0; count--)\n            out.write(0);\n    } finally {\n        out.close();\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518704458,
+        "id": "657c1cb5-1adf-405f-97b5-9863ab755f2b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518704458,
+        "parent_id": "955698ce-92a7-45d0-9470-999603cf5fd0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "While the above code might look innocent, it has a flaw that can make debugging impossible. If the line where "
+            ],
+            [
+              "out",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is initialized ("
+            ],
+            [
+              "out = new FileOutputStream(filename)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ") throws an exception, then "
+            ],
+            [
+              "out",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " will be "
+            ],
+            [
+              "null",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " when "
+            ],
+            [
+              "out.close()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is executed, resulting in a nasty "
+            ],
+            [
+              "NullPointerException",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "!"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "While the above code might look innocent, it has a flaw that can make debugging impossible. If the line where "
+          },
+          {
+            "Text": "out",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is initialized ("
+          },
+          {
+            "Text": "out = new FileOutputStream(filename)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ") throws an exception, then "
+          },
+          {
+            "Text": "out",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " will be "
+          },
+          {
+            "Text": "null",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " when "
+          },
+          {
+            "Text": "out.close()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is executed, resulting in a nasty "
+          },
+          {
+            "Text": "NullPointerException",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "!"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518704458,
+        "id": "a7b8653f-a612-4c3e-bc24-98c5d44dc298",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518704458,
+        "parent_id": "955698ce-92a7-45d0-9470-999603cf5fd0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To prevent this, simply make sure the stream isn’t "
+            ],
+            [
+              "null",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " before trying to close it."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To prevent this, simply make sure the stream isn’t "
+          },
+          {
+            "Text": "null",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " before trying to close it."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518704459,
+        "id": "932c72fd-a3d6-4705-b9c6-0c7b9507d6aa",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518704459,
+        "parent_id": "955698ce-92a7-45d0-9470-999603cf5fd0",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "void writeNullBytesToAFile(int count, String filename) throws IOException {\n    FileOutputStream out = null;\n    try {\n        out = new FileOutputStream(filename);\n        for(; count \u003e 0; count--)\n            out.write(0);\n    } finally {\n        if (out != null)\n            out.close();\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "void writeNullBytesToAFile(int count, String filename) throws IOException {\n    FileOutputStream out = null;\n    try {\n        out = new FileOutputStream(filename);\n        for(; count \u003e 0; count--)\n            out.write(0);\n    } finally {\n        if (out != null)\n            out.close();\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518704459,
+        "id": "fe752a07-a4b4-48dc-a662-1a0fcc21a845",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518704459,
+        "parent_id": "955698ce-92a7-45d0-9470-999603cf5fd0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "An even better approach is to "
+            ],
+            [
+              "try",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "-with-resources, since it’ll automatically close the stream with a probability of 0 to throw an NPE without the need of a "
+            ],
+            [
+              "finally",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " block."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "An even better approach is to "
+          },
+          {
+            "Text": "try",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "-with-resources, since it’ll automatically close the stream with a probability of 0 to throw an NPE without the need of a "
+          },
+          {
+            "Text": "finally",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " block."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550518704459,
+        "id": "d26c0c63-135b-4d02-84d9-6891df3f14a2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550518704459,
+        "parent_id": "955698ce-92a7-45d0-9470-999603cf5fd0",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "void writeNullBytesToAFile(int count, String filename) throws IOException {\n    try (FileOutputStream out = new FileOutputStream(filename)) {\n        for(; count \u003e 0; count--)\n            out.write(0);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "void writeNullBytesToAFile(int count, String filename) throws IOException {\n    try (FileOutputStream out = new FileOutputStream(filename)) {\n        for(; count \u003e 0; count--)\n            out.write(0);\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "040 Pitfall - Not checking if an IO stream isnt even initialized when closing it"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

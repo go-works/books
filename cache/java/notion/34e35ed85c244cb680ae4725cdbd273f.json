@@ -1,0 +1,71 @@
+{
+  "ID": "34e35ed8-5c24-4cb6-80ae-4725cdbd273f",
+  "Root": {
+    "alive": true,
+    "content": [
+      "d375f7e7-6946-4420-a07c-4c5054b08033"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550460762078,
+    "id": "34e35ed8-5c24-4cb6-80ae-4725cdbd273f",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550460762078,
+    "parent_id": "0e3fe4e1-0860-4111-a2a9-ca47548a8a88",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "020 Intercept script output"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460762075,
+        "id": "d375f7e7-6946-4420-a07c-4c5054b08033",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460762075,
+        "parent_id": "34e35ed8-5c24-4cb6-80ae-4725cdbd273f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Obtain an instance of JavaScript engine\nScriptEngineManager manager = new ScriptEngineManager();\nScriptEngine engine = manager.getEngineByName(\"nashorn\");\n\n// Setup a custom writer\nStringWriter stringWriter = new StringWriter();\n// Modify the engine context so that the custom writer is now the default\n// output writer of the engine\nengine.getContext().setWriter(stringWriter);\n\n// Execute some script\ntry {\n    engine.eval(\"print('Redirected text!');\");\n} catch (ScriptException ex) {\n    ex.printStackTrace();\n}\n\n// Outcome:\n// Nothing printed on standard output, but\n// stringWriter.toString() contains 'Redirected text!'"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Obtain an instance of JavaScript engine\nScriptEngineManager manager = new ScriptEngineManager();\nScriptEngine engine = manager.getEngineByName(\"nashorn\");\n\n// Setup a custom writer\nStringWriter stringWriter = new StringWriter();\n// Modify the engine context so that the custom writer is now the default\n// output writer of the engine\nengine.getContext().setWriter(stringWriter);\n\n// Execute some script\ntry {\n    engine.eval(\"print('Redirected text!');\");\n} catch (ScriptException ex) {\n    ex.printStackTrace();\n}\n\n// Outcome:\n// Nothing printed on standard output, but\n// stringWriter.toString() contains 'Redirected text!'",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "020 Intercept script output"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

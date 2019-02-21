@@ -1,0 +1,445 @@
+{
+  "ID": "4c927903-04b3-410a-af9c-37d8594025dd",
+  "Root": {
+    "alive": true,
+    "content": [
+      "e26da1e1-308a-4910-891c-e751c1b96633",
+      "bf3f0ae1-9328-436b-8c8d-55cc33c8058c",
+      "13b7239f-2da9-46f9-b937-d9d9726c0273",
+      "1f506917-13f1-42aa-9786-c24deaacec14",
+      "00859cb2-79d8-4818-a07f-9659aba2ecac",
+      "8f83cddb-a309-4b63-b644-efb96be851c9",
+      "3af81349-cb0f-4fdb-b2c3-428ed6591b7e",
+      "7b5d30fc-7f19-4fda-98a3-68f5d3a3901d",
+      "fcca97ec-a9e5-4ad9-8236-b9f42371a47f",
+      "8fbb593c-9da6-4c64-b28b-6f7cda7acddb",
+      "92f80a91-70ba-4e30-9c30-c648d9206daa",
+      "88b423e1-1489-430e-8e31-ae6371382e36",
+      "87b655df-58bb-4cea-bead-81df32f40761",
+      "885f9bbb-86e7-46b1-837f-daa5e021f084",
+      "b8174ee1-8df2-4f75-ad21-d294975e4ace"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550519874339,
+    "id": "4c927903-04b3-410a-af9c-37d8594025dd",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550519874339,
+    "parent_id": "ab99f25d-1260-45c1-9184-1deff3279065",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 A simple TCP echo back server"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519874335,
+        "id": "e26da1e1-308a-4910-891c-e751c1b96633",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519874335,
+        "parent_id": "4c927903-04b3-410a-af9c-37d8594025dd",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Our TCP echo back server will be a separate thread. It’s simple as its a start. It will just echo back whatever you send it but in capitalised form."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Our TCP echo back server will be a separate thread. It’s simple as its a start. It will just echo back whatever you send it but in capitalised form."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519874338,
+        "id": "bf3f0ae1-9328-436b-8c8d-55cc33c8058c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519874338,
+        "parent_id": "4c927903-04b3-410a-af9c-37d8594025dd",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class CAPECHOServer extends Thread{\n\n    // This class implements server sockets. A server socket waits for requests to come \n    // in over the network only when it is allowed through the local firewall\n    ServerSocket serverSocket;\n    \n    public CAPECHOServer(int port, int timeout){\n        try {\n            // Create a new Server on specified port.\n            serverSocket = new ServerSocket(port);\n            // SoTimeout is basiacally the socket timeout.\n            // timeout is the time until socket timeout in milliseconds\n            serverSocket.setSoTimeout(timeout);\n        } catch (IOException ex) {\n            Logger.getLogger(CAPECHOServer.class.getName()).log(Level.SEVERE, null, ex);\n        }\n    }\n    \n    @Override\n    public void run(){ \n        try {\n            // We want the server to continuously accept connections\n            while(!Thread.interrupted()){\n                \n            }\n            // Close the server once done.\n            serverSocket.close();\n        } catch (IOException ex) {\n            Logger.getLogger(CAPECHOServer.class.getName()).log(Level.SEVERE, null, ex);\n        }\n    }\n    \n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class CAPECHOServer extends Thread{\n\n    // This class implements server sockets. A server socket waits for requests to come \n    // in over the network only when it is allowed through the local firewall\n    ServerSocket serverSocket;\n    \n    public CAPECHOServer(int port, int timeout){\n        try {\n            // Create a new Server on specified port.\n            serverSocket = new ServerSocket(port);\n            // SoTimeout is basiacally the socket timeout.\n            // timeout is the time until socket timeout in milliseconds\n            serverSocket.setSoTimeout(timeout);\n        } catch (IOException ex) {\n            Logger.getLogger(CAPECHOServer.class.getName()).log(Level.SEVERE, null, ex);\n        }\n    }\n    \n    @Override\n    public void run(){ \n        try {\n            // We want the server to continuously accept connections\n            while(!Thread.interrupted()){\n                \n            }\n            // Close the server once done.\n            serverSocket.close();\n        } catch (IOException ex) {\n            Logger.getLogger(CAPECHOServer.class.getName()).log(Level.SEVERE, null, ex);\n        }\n    }\n    \n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519874338,
+        "id": "13b7239f-2da9-46f9-b937-d9d9726c0273",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519874338,
+        "parent_id": "4c927903-04b3-410a-af9c-37d8594025dd",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Now to accept connections. Let’s update the run method."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Now to accept connections. Let’s update the run method."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519874338,
+        "id": "1f506917-13f1-42aa-9786-c24deaacec14",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519874338,
+        "parent_id": "4c927903-04b3-410a-af9c-37d8594025dd",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "@Override\npublic void run(){ \n    while(!Thread.interrupted()){\n        try {\n            // Log with the port number and machine ip\n            Logger.getLogger((this.getClass().getName())).log(Level.INFO, \"Listening for Clients at {0} on {1}\", new Object[]{serverSocket.getLocalPort(), InetAddress.getLocalHost().getHostAddress()});\n            Socket client = serverSocket.accept();  // Accept client conncetion\n            // Now get DataInputStream and DataOutputStreams\n            DataInputStream istream = new DataInputStream(client.getInputStream()); // From client's input stream\n            DataOutputStream ostream = new DataOutputStream(client.getOutputStream());\n            // Important Note\n            /*\n                The server's input is the client's output\n                The client's input is the server's output\n            */\n            // Send a welcome message\n            ostream.writeUTF(\"Welcome!\");\n            \n            // Close the connection\n            istream.close();\n            ostream.close();\n            client.close();\n        } catch (IOException ex) {\n            Logger.getLogger(CAPECHOServer.class.getName()).log(Level.SEVERE, null, ex);\n        }\n    }\n    \n    // Close the server once done\n    \n    try {\n        serverSocket.close();\n    } catch (IOException ex) {\n        Logger.getLogger(CAPECHOServer.class.getName()).log(Level.SEVERE, null, ex);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "@Override\npublic void run(){ \n    while(!Thread.interrupted()){\n        try {\n            // Log with the port number and machine ip\n            Logger.getLogger((this.getClass().getName())).log(Level.INFO, \"Listening for Clients at {0} on {1}\", new Object[]{serverSocket.getLocalPort(), InetAddress.getLocalHost().getHostAddress()});\n            Socket client = serverSocket.accept();  // Accept client conncetion\n            // Now get DataInputStream and DataOutputStreams\n            DataInputStream istream = new DataInputStream(client.getInputStream()); // From client's input stream\n            DataOutputStream ostream = new DataOutputStream(client.getOutputStream());\n            // Important Note\n            /*\n                The server's input is the client's output\n                The client's input is the server's output\n            */\n            // Send a welcome message\n            ostream.writeUTF(\"Welcome!\");\n            \n            // Close the connection\n            istream.close();\n            ostream.close();\n            client.close();\n        } catch (IOException ex) {\n            Logger.getLogger(CAPECHOServer.class.getName()).log(Level.SEVERE, null, ex);\n        }\n    }\n    \n    // Close the server once done\n    \n    try {\n        serverSocket.close();\n    } catch (IOException ex) {\n        Logger.getLogger(CAPECHOServer.class.getName()).log(Level.SEVERE, null, ex);\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519874338,
+        "id": "00859cb2-79d8-4818-a07f-9659aba2ecac",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519874338,
+        "parent_id": "4c927903-04b3-410a-af9c-37d8594025dd",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Now if you can open telnet and try connecting You’ll see a Welcome message."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Now if you can open telnet and try connecting You’ll see a Welcome message."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519874338,
+        "id": "8f83cddb-a309-4b63-b644-efb96be851c9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519874338,
+        "parent_id": "4c927903-04b3-410a-af9c-37d8594025dd",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "You must connect with the port you specified and IP Adress."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "You must connect with the port you specified and IP Adress."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519874338,
+        "id": "3af81349-cb0f-4fdb-b2c3-428ed6591b7e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519874338,
+        "parent_id": "4c927903-04b3-410a-af9c-37d8594025dd",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "You should see a result similar to this:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "You should see a result similar to this:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519874338,
+        "id": "7b5d30fc-7f19-4fda-98a3-68f5d3a3901d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519874338,
+        "parent_id": "4c927903-04b3-410a-af9c-37d8594025dd",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "Welcome!\n\nConnection to host lost."
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "Welcome!\n\nConnection to host lost.",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519874338,
+        "id": "fcca97ec-a9e5-4ad9-8236-b9f42371a47f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519874338,
+        "parent_id": "4c927903-04b3-410a-af9c-37d8594025dd",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Well, the connection was lost because we terminated it. Sometimes we would have to program our own TCP client. In this case, we need a client to request input from the user and send it across the network, receive the capitalised input."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Well, the connection was lost because we terminated it. Sometimes we would have to program our own TCP client. In this case, we need a client to request input from the user and send it across the network, receive the capitalised input."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519874339,
+        "id": "8fbb593c-9da6-4c64-b28b-6f7cda7acddb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519874339,
+        "parent_id": "4c927903-04b3-410a-af9c-37d8594025dd",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If the server sends data first, then the client must read the data first."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If the server sends data first, then the client must read the data first."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519874339,
+        "id": "92f80a91-70ba-4e30-9c30-c648d9206daa",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519874339,
+        "parent_id": "4c927903-04b3-410a-af9c-37d8594025dd",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class CAPECHOClient extends Thread{\n\nSocket server;\nScanner key; // Scanner for input\n\n    public CAPECHOClient(String ip, int port){\n        try {\n            server = new Socket(ip, port);\n            key = new Scanner(System.in);\n        } catch (IOException ex) {\n            Logger.getLogger(CAPECHOClient.class.getName()).log(Level.SEVERE, null, ex);\n        }\n    }\n    \n    @Override\n    public void run(){\n        DataInputStream istream = null;\n        DataOutputStream ostream = null;\n        try {\n            istream = new DataInputStream(server.getInputStream()); // Familiar lines\n            ostream = new DataOutputStream(server.getOutputStream());\n            System.out.println(istream.readUTF());  // Print what the server sends\n            System.out.print(\"\u003e\");\n            String tosend = key.nextLine();\n            ostream.writeUTF(tosend);   // Send whatever the user typed to the server\n            System.out.println(istream.readUTF());  // Finally read what the server sends before exiting.\n        } catch (IOException ex) {\n            Logger.getLogger(CAPECHOClient.class.getName()).log(Level.SEVERE, null, ex);\n        } finally {\n            try {\n                istream.close();\n                ostream.close();\n                server.close();\n            } catch (IOException ex) {\n                Logger.getLogger(CAPECHOClient.class.getName()).log(Level.SEVERE, null, ex);\n            }\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class CAPECHOClient extends Thread{\n\nSocket server;\nScanner key; // Scanner for input\n\n    public CAPECHOClient(String ip, int port){\n        try {\n            server = new Socket(ip, port);\n            key = new Scanner(System.in);\n        } catch (IOException ex) {\n            Logger.getLogger(CAPECHOClient.class.getName()).log(Level.SEVERE, null, ex);\n        }\n    }\n    \n    @Override\n    public void run(){\n        DataInputStream istream = null;\n        DataOutputStream ostream = null;\n        try {\n            istream = new DataInputStream(server.getInputStream()); // Familiar lines\n            ostream = new DataOutputStream(server.getOutputStream());\n            System.out.println(istream.readUTF());  // Print what the server sends\n            System.out.print(\"\u003e\");\n            String tosend = key.nextLine();\n            ostream.writeUTF(tosend);   // Send whatever the user typed to the server\n            System.out.println(istream.readUTF());  // Finally read what the server sends before exiting.\n        } catch (IOException ex) {\n            Logger.getLogger(CAPECHOClient.class.getName()).log(Level.SEVERE, null, ex);\n        } finally {\n            try {\n                istream.close();\n                ostream.close();\n                server.close();\n            } catch (IOException ex) {\n                Logger.getLogger(CAPECHOClient.class.getName()).log(Level.SEVERE, null, ex);\n            }\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519874339,
+        "id": "88b423e1-1489-430e-8e31-ae6371382e36",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519874339,
+        "parent_id": "4c927903-04b3-410a-af9c-37d8594025dd",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Now update the server"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Now update the server"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519874339,
+        "id": "87b655df-58bb-4cea-bead-81df32f40761",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519874339,
+        "parent_id": "4c927903-04b3-410a-af9c-37d8594025dd",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "ostream.writeUTF(\"Welcome!\");\n            \nString inString = istream.readUTF();    // Read what the user sent\nString outString = inString.toUpperCase();  // Change it to caps\nostream.writeUTF(outString);\n            \n// Close the connection\nistream.close();"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "ostream.writeUTF(\"Welcome!\");\n            \nString inString = istream.readUTF();    // Read what the user sent\nString outString = inString.toUpperCase();  // Change it to caps\nostream.writeUTF(outString);\n            \n// Close the connection\nistream.close();",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519874339,
+        "id": "885f9bbb-86e7-46b1-837f-daa5e021f084",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519874339,
+        "parent_id": "4c927903-04b3-410a-af9c-37d8594025dd",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "And now run the server and client, You should have an output similar to this"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "And now run the server and client, You should have an output similar to this"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519874339,
+        "id": "b8174ee1-8df2-4f75-ad21-d294975e4ace",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519874339,
+        "parent_id": "4c927903-04b3-410a-af9c-37d8594025dd",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "Welcome!\n\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "Welcome!\n\u003e",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 A simple TCP echo back server"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

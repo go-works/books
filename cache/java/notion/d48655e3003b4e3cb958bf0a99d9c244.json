@@ -1,0 +1,359 @@
+{
+  "ID": "d48655e3-003b-4e3c-b958-bf0a99d9c244",
+  "Root": {
+    "alive": true,
+    "content": [
+      "61824c2d-2ed6-4471-9a2f-18070d497e69",
+      "18ccdcef-617c-42fa-a239-a3fa095b5f84",
+      "ed32ebb5-54e2-4448-8b62-bbaf0cbc4759",
+      "e12cc6c3-1f71-4371-8e1a-7677f7659a69",
+      "623b1aa7-1ab3-4e46-8da9-d37b5efb122e",
+      "0698aed9-f3ad-4665-a6e2-f772e29d5d71",
+      "2eec07a5-5e6b-4e6b-bbd3-0e929c0c5125",
+      "b2374fd6-9f67-4866-8f90-b5a5228e8d2f",
+      "5e58b554-967c-466c-a183-bc9af9ec4e9a"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550460855144,
+    "id": "d48655e3-003b-4e3c-b958-bf0a99d9c244",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550460855144,
+    "parent_id": "efc357da-0d0e-4f18-820d-fb1e40a75c9e",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 Misuse of Reflection API to change private and final variables"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460855140,
+        "id": "61824c2d-2ed6-4471-9a2f-18070d497e69",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460855140,
+        "parent_id": "d48655e3-003b-4e3c-b958-bf0a99d9c244",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Reflection is useful when it is properly used for right purpose. By using reflection, you can access private variables and re-initialize final variables."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Reflection is useful when it is properly used for right purpose. By using reflection, you can access private variables and re-initialize final variables."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460855143,
+        "id": "18ccdcef-617c-42fa-a239-a3fa095b5f84",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460855143,
+        "parent_id": "d48655e3-003b-4e3c-b958-bf0a99d9c244",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Below is the code snippet, which is "
+            ],
+            [
+              "not",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " recommended."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Below is the code snippet, which is "
+          },
+          {
+            "Text": "not",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " recommended."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460855143,
+        "id": "ed32ebb5-54e2-4448-8b62-bbaf0cbc4759",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460855143,
+        "parent_id": "d48655e3-003b-4e3c-b958-bf0a99d9c244",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import java.lang.reflect.*;\n\npublic class ReflectionDemo{\n    public static void main(String args[]){\n        try{\n            Field[] fields = A.class.getDeclaredFields();\n            A a = new A();\n            for ( Field field:fields ) {\n                if(field.getName().equalsIgnoreCase(\"name\")){\n                    field.setAccessible(true);\n                    field.set(a, \"StackOverFlow\");\n                    System.out.println(\"A.name=\"+field.get(a));\n                }\n                if(field.getName().equalsIgnoreCase(\"age\")){\n                    field.set(a, 20);\n                    System.out.println(\"A.age=\"+field.get(a));\n                }\n                if(field.getName().equalsIgnoreCase(\"rep\")){\n                    field.setAccessible(true);\n                    field.set(a,\"New Reputation\");\n                    System.out.println(\"A.rep=\"+field.get(a));\n                }\n                if(field.getName().equalsIgnoreCase(\"count\")){\n                    field.set(a,25);\n                    System.out.println(\"A.count=\"+field.get(a));\n                }\n            }                \n        }catch(Exception err){\n            err.printStackTrace();\n        }\n    }\n}\n\nclass A {\n    private String name;\n    public int age;\n    public final String rep;\n    public static int count=0;\n    \n    public A(){\n        name = \"Unset\";\n        age = 0;\n        rep = \"Reputation\";\n        count++;\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import java.lang.reflect.*;\n\npublic class ReflectionDemo{\n    public static void main(String args[]){\n        try{\n            Field[] fields = A.class.getDeclaredFields();\n            A a = new A();\n            for ( Field field:fields ) {\n                if(field.getName().equalsIgnoreCase(\"name\")){\n                    field.setAccessible(true);\n                    field.set(a, \"StackOverFlow\");\n                    System.out.println(\"A.name=\"+field.get(a));\n                }\n                if(field.getName().equalsIgnoreCase(\"age\")){\n                    field.set(a, 20);\n                    System.out.println(\"A.age=\"+field.get(a));\n                }\n                if(field.getName().equalsIgnoreCase(\"rep\")){\n                    field.setAccessible(true);\n                    field.set(a,\"New Reputation\");\n                    System.out.println(\"A.rep=\"+field.get(a));\n                }\n                if(field.getName().equalsIgnoreCase(\"count\")){\n                    field.set(a,25);\n                    System.out.println(\"A.count=\"+field.get(a));\n                }\n            }                \n        }catch(Exception err){\n            err.printStackTrace();\n        }\n    }\n}\n\nclass A {\n    private String name;\n    public int age;\n    public final String rep;\n    public static int count=0;\n    \n    public A(){\n        name = \"Unset\";\n        age = 0;\n        rep = \"Reputation\";\n        count++;\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460855143,
+        "id": "e12cc6c3-1f71-4371-8e1a-7677f7659a69",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460855143,
+        "parent_id": "d48655e3-003b-4e3c-b958-bf0a99d9c244",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Output:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Output:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460855143,
+        "id": "623b1aa7-1ab3-4e46-8da9-d37b5efb122e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460855143,
+        "parent_id": "d48655e3-003b-4e3c-b958-bf0a99d9c244",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "A.name=StackOverFlow\nA.age=20\nA.rep=New Reputation\nA.count=25"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "A.name=StackOverFlow\nA.age=20\nA.rep=New Reputation\nA.count=25",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460855143,
+        "id": "0698aed9-f3ad-4665-a6e2-f772e29d5d71",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460855143,
+        "parent_id": "d48655e3-003b-4e3c-b958-bf0a99d9c244",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Explanation:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Explanation:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460855144,
+        "id": "2eec07a5-5e6b-4e6b-bbd3-0e929c0c5125",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460855144,
+        "parent_id": "d48655e3-003b-4e3c-b958-bf0a99d9c244",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In normal scenario, "
+            ],
+            [
+              "private",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " variables can’t be accessed outside of declared class ( without getter and setter methods). "
+            ],
+            [
+              "final",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " variables can’t be re-assigned after initialization."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In normal scenario, "
+          },
+          {
+            "Text": "private",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " variables can’t be accessed outside of declared class ( without getter and setter methods). "
+          },
+          {
+            "Text": "final",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " variables can’t be re-assigned after initialization."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460855144,
+        "id": "b2374fd6-9f67-4866-8f90-b5a5228e8d2f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460855144,
+        "parent_id": "d48655e3-003b-4e3c-b958-bf0a99d9c244",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Reflection",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " breaks both barriers can be abused to change both private and final variables as explained above."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Reflection",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " breaks both barriers can be abused to change both private and final variables as explained above."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460855144,
+        "id": "5e58b554-967c-466c-a183-bc9af9ec4e9a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460855144,
+        "parent_id": "d48655e3-003b-4e3c-b958-bf0a99d9c244",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "field.setAccessible(true)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is the key to achieve desired functionality."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "field.setAccessible(true)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is the key to achieve desired functionality."
+          }
+        ]
+      }
+    ],
+    "title": "030 Misuse of Reflection API to change private and final variables"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

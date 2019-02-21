@@ -1,0 +1,190 @@
+{
+  "ID": "273cd227-c4e6-4802-8409-41d7574ecf14",
+  "Root": {
+    "alive": true,
+    "content": [
+      "c4183b91-231b-4468-9456-9d107195f71f",
+      "623b3a9e-2a9a-4d83-ad60-ec82869dfc2b"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550460439075,
+    "id": "273cd227-c4e6-4802-8409-41d7574ecf14",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550460439075,
+    "parent_id": "9b718882-2700-4d99-b7fa-082a618f32ef",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "140 Producer-Consumer"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460439074,
+        "id": "c4183b91-231b-4468-9456-9d107195f71f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460439074,
+        "parent_id": "273cd227-c4e6-4802-8409-41d7574ecf14",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "A simple example of producer-consumer problem solution. Notice that JDK classes ("
+            ],
+            [
+              "AtomicBoolean",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "BlockingQueue",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ") are used for synchronization, which reduces the chance of creating an invalid solution. Consult Javadoc for various types of "
+            ],
+            [
+              "BlockingQueue",
+              [
+                [
+                  "a",
+                  "https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/BlockingQueue.html"
+                ]
+              ]
+            ],
+            [
+              "; choosing different implementation may drastically change the behavior of this example (like "
+            ],
+            [
+              "DelayQueue",
+              [
+                [
+                  "a",
+                  "https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/DelayQueue.html"
+                ]
+              ]
+            ],
+            [
+              " or "
+            ],
+            [
+              "Priority Queue",
+              [
+                [
+                  "a",
+                  "https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/PriorityBlockingQueue.html"
+                ]
+              ]
+            ],
+            [
+              ")."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "A simple example of producer-consumer problem solution. Notice that JDK classes ("
+          },
+          {
+            "Text": "AtomicBoolean",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "BlockingQueue",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ") are used for synchronization, which reduces the chance of creating an invalid solution. Consult Javadoc for various types of "
+          },
+          {
+            "Text": "BlockingQueue",
+            "Link": "https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/BlockingQueue.html"
+          },
+          {
+            "Text": "; choosing different implementation may drastically change the behavior of this example (like "
+          },
+          {
+            "Text": "DelayQueue",
+            "Link": "https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/DelayQueue.html"
+          },
+          {
+            "Text": " or "
+          },
+          {
+            "Text": "Priority Queue",
+            "Link": "https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/PriorityBlockingQueue.html"
+          },
+          {
+            "Text": ")."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460439075,
+        "id": "623b3a9e-2a9a-4d83-ad60-ec82869dfc2b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460439075,
+        "parent_id": "273cd227-c4e6-4802-8409-41d7574ecf14",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class Producer implements Runnable {\n\n    private final BlockingQueue\u003cProducedData\u003e queue;\n\n    public Producer(BlockingQueue\u003cProducedData\u003e queue) {\n        this.queue = queue;\n    }\n\n    public void run() {\n        int producedCount = 0;\n        try {\n            while (true) {\n                producedCount++;\n                //put throws an InterruptedException when the thread is interrupted\n                queue.put(new ProducedData());\n            }\n        } catch (InterruptedException e) {\n            // the thread has been interrupted: cleanup and exit\n            producedCount--;\n            //re-interrupt the thread in case the interrupt flag is needeed higher up\n            Thread.currentThread().interrupt();\n        }\n        System.out.println(\"Produced \" + producedCount + \" objects\");\n    }\n}\n\npublic class Consumer implements Runnable {\n\n    private final BlockingQueue\u003cProducedData\u003e queue;\n\n    public Consumer(BlockingQueue\u003cProducedData\u003e queue) {\n        this.queue = queue;\n    }\n\n    public void run() {\n        int consumedCount = 0;\n        try {\n            while (true) {\n                //put throws an InterruptedException when the thread is interrupted\n                ProducedData data = queue.poll(10, TimeUnit.MILLISECONDS);\n                // process data\n                consumedCount++;\n            }\n        } catch (InterruptedException e) {\n            // the thread has been interrupted: cleanup and exit\n            consumedCount--;\n            //re-interrupt the thread in case the interrupt flag is needeed higher up\n            Thread.currentThread().interrupt();\n        }\n        System.out.println(\"Consumed \" + consumedCount + \" objects\");\n    }\n}\n\n\npublic class ProducerConsumerExample {\n    static class ProducedData {    \n        // empty data object\n    }\n\n    public static void main(String[] args) throws InterruptedException {\n        BlockingQueue\u003cProducedData\u003e queue = new ArrayBlockingQueue\u003cProducedData\u003e(1000);\n        // choice of queue determines the actual behavior: see various BlockingQueue implementations\n\n        Thread producer = new Thread(new Producer(queue));\n        Thread consumer = new Thread(new Consumer(queue));\n\n        producer.start();\n        consumer.start();\n\n        Thread.sleep(1000);\n        producer.interrupt();\n        Thread.sleep(10);\n        consumer.interrupt();\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class Producer implements Runnable {\n\n    private final BlockingQueue\u003cProducedData\u003e queue;\n\n    public Producer(BlockingQueue\u003cProducedData\u003e queue) {\n        this.queue = queue;\n    }\n\n    public void run() {\n        int producedCount = 0;\n        try {\n            while (true) {\n                producedCount++;\n                //put throws an InterruptedException when the thread is interrupted\n                queue.put(new ProducedData());\n            }\n        } catch (InterruptedException e) {\n            // the thread has been interrupted: cleanup and exit\n            producedCount--;\n            //re-interrupt the thread in case the interrupt flag is needeed higher up\n            Thread.currentThread().interrupt();\n        }\n        System.out.println(\"Produced \" + producedCount + \" objects\");\n    }\n}\n\npublic class Consumer implements Runnable {\n\n    private final BlockingQueue\u003cProducedData\u003e queue;\n\n    public Consumer(BlockingQueue\u003cProducedData\u003e queue) {\n        this.queue = queue;\n    }\n\n    public void run() {\n        int consumedCount = 0;\n        try {\n            while (true) {\n                //put throws an InterruptedException when the thread is interrupted\n                ProducedData data = queue.poll(10, TimeUnit.MILLISECONDS);\n                // process data\n                consumedCount++;\n            }\n        } catch (InterruptedException e) {\n            // the thread has been interrupted: cleanup and exit\n            consumedCount--;\n            //re-interrupt the thread in case the interrupt flag is needeed higher up\n            Thread.currentThread().interrupt();\n        }\n        System.out.println(\"Consumed \" + consumedCount + \" objects\");\n    }\n}\n\n\npublic class ProducerConsumerExample {\n    static class ProducedData {    \n        // empty data object\n    }\n\n    public static void main(String[] args) throws InterruptedException {\n        BlockingQueue\u003cProducedData\u003e queue = new ArrayBlockingQueue\u003cProducedData\u003e(1000);\n        // choice of queue determines the actual behavior: see various BlockingQueue implementations\n\n        Thread producer = new Thread(new Producer(queue));\n        Thread consumer = new Thread(new Consumer(queue));\n\n        producer.start();\n        consumer.start();\n\n        Thread.sleep(1000);\n        producer.interrupt();\n        Thread.sleep(10);\n        consumer.interrupt();\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "140 Producer-Consumer"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,371 @@
+{
+  "ID": "6dc50ee0-aa4a-4923-9c04-be9da7f2e214",
+  "Root": {
+    "alive": true,
+    "content": [
+      "7576061b-ab4e-4c01-befd-dcedf20d8005",
+      "fbcccb7d-d899-4f08-b9d9-15db48e663cf",
+      "832d615f-f67f-499c-95a8-a7eb7ae1cfb1",
+      "08289a96-9604-481f-a225-fad8b97f8312",
+      "7706aed7-8c0b-40ae-af47-17209a73aaa8",
+      "d51ffdd0-d2d9-4286-a435-5614a104cc64",
+      "6f24adf3-412d-42e8-8abb-b0d77c85c3f8",
+      "1de8fe8c-b336-40f9-a5e6-3426184ae613",
+      "a1629b85-1088-433f-ac4a-8da3f8f3e524",
+      "05de2951-655f-461a-bb08-5807b3a4d829",
+      "155470a5-87cc-4b12-9bd3-16522cce4c69",
+      "c4931b60-155f-4d53-8d20-69ff8c0e7134"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550519884543,
+    "id": "6dc50ee0-aa4a-4923-9c04-be9da7f2e214",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550519884543,
+    "parent_id": "d3a02775-800c-4e2c-b649-ee7cf3c68105",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Evaluating A javascript file in -scripting mode of nashorn"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519884539,
+        "id": "7576061b-ab4e-4c01-befd-dcedf20d8005",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519884539,
+        "parent_id": "6dc50ee0-aa4a-4923-9c04-be9da7f2e214",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class JSEngine {\n    \n    /*\n    * Note Nashorn is only available for Java-8 onwards\n    * You can use rhino from ScriptEngineManager.getEngineByName(\"js\");\n    */\n    \n    ScriptEngine engine;\n    ScriptContext context;\n    public Bindings scope;\n    \n    // Initialize the Engine from its factory in scripting mode\n    public JSEngine(){\n        engine = new NashornScriptEngineFactory().getScriptEngine(\"-scripting\");\n        // Script context is an interface so we need an implementation of it\n        context = new SimpleScriptContext();\n        // Create bindings to expose variables into\n        scope = engine.createBindings();\n    }\n    \n    // Clear the bindings to remove the previous variables\n    public void newBatch(){\n        scope.clear();\n    }\n    \n    public void execute(String file){\n        try {\n            // Get a buffered reader for input\n            BufferedReader br = new BufferedReader(new FileReader(file));\n            // Evaluate code, with input as bufferdReader\n            engine.eval(br);\n        } catch (FileNotFoundException ex) {\n            Logger.getLogger(JSEngine.class.getName()).log(Level.SEVERE, null, ex);\n        } catch (ScriptException ex) {\n            // Script Exception is basically when there is an error in script\n            Logger.getLogger(JSEngine.class.getName()).log(Level.SEVERE, null, ex);\n        }\n    }\n    \n    public void eval(String code){\n        try {\n            // Engine.eval basically treats any string as a line of code and evaluates it, executes it\n            engine.eval(code);\n        } catch (ScriptException ex) {\n            // Script Exception is basically when there is an error in script\n            Logger.getLogger(JSEngine.class.getName()).log(Level.SEVERE, null, ex);\n        }\n    }\n    \n    // Apply the bindings to the context and set the engine's default context\n    public void startBatch(int SCP){\n        context.setBindings(scope, SCP);\n        engine.setContext(context);\n    }\n    \n    // We use the invocable interface to access methods from the script\n    // Invocable is an optional interface, please check if your engine implements it\n    public Invocable invocable(){\n        return (Invocable)engine;\n    }\n    \n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class JSEngine {\n    \n    /*\n    * Note Nashorn is only available for Java-8 onwards\n    * You can use rhino from ScriptEngineManager.getEngineByName(\"js\");\n    */\n    \n    ScriptEngine engine;\n    ScriptContext context;\n    public Bindings scope;\n    \n    // Initialize the Engine from its factory in scripting mode\n    public JSEngine(){\n        engine = new NashornScriptEngineFactory().getScriptEngine(\"-scripting\");\n        // Script context is an interface so we need an implementation of it\n        context = new SimpleScriptContext();\n        // Create bindings to expose variables into\n        scope = engine.createBindings();\n    }\n    \n    // Clear the bindings to remove the previous variables\n    public void newBatch(){\n        scope.clear();\n    }\n    \n    public void execute(String file){\n        try {\n            // Get a buffered reader for input\n            BufferedReader br = new BufferedReader(new FileReader(file));\n            // Evaluate code, with input as bufferdReader\n            engine.eval(br);\n        } catch (FileNotFoundException ex) {\n            Logger.getLogger(JSEngine.class.getName()).log(Level.SEVERE, null, ex);\n        } catch (ScriptException ex) {\n            // Script Exception is basically when there is an error in script\n            Logger.getLogger(JSEngine.class.getName()).log(Level.SEVERE, null, ex);\n        }\n    }\n    \n    public void eval(String code){\n        try {\n            // Engine.eval basically treats any string as a line of code and evaluates it, executes it\n            engine.eval(code);\n        } catch (ScriptException ex) {\n            // Script Exception is basically when there is an error in script\n            Logger.getLogger(JSEngine.class.getName()).log(Level.SEVERE, null, ex);\n        }\n    }\n    \n    // Apply the bindings to the context and set the engine's default context\n    public void startBatch(int SCP){\n        context.setBindings(scope, SCP);\n        engine.setContext(context);\n    }\n    \n    // We use the invocable interface to access methods from the script\n    // Invocable is an optional interface, please check if your engine implements it\n    public Invocable invocable(){\n        return (Invocable)engine;\n    }\n    \n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519884541,
+        "id": "fbcccb7d-d899-4f08-b9d9-15db48e663cf",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519884541,
+        "parent_id": "6dc50ee0-aa4a-4923-9c04-be9da7f2e214",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Now the main method"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Now the main method"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519884542,
+        "id": "832d615f-f67f-499c-95a8-a7eb7ae1cfb1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519884542,
+        "parent_id": "6dc50ee0-aa4a-4923-9c04-be9da7f2e214",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public static void main(String[] args) {\n    JSEngine jse = new JSEngine();\n    // Create a new batch probably unecessary\n    jse.newBatch();\n    // Expose variable x into script with value of hello world\n    jse.scope.put(\"x\", \"hello world\");\n    // Apply the bindings and start the batch\n    jse.startBatch(ScriptContext.ENGINE_SCOPE);\n    // Evaluate the code\n    jse.eval(\"print(x);\");\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public static void main(String[] args) {\n    JSEngine jse = new JSEngine();\n    // Create a new batch probably unecessary\n    jse.newBatch();\n    // Expose variable x into script with value of hello world\n    jse.scope.put(\"x\", \"hello world\");\n    // Apply the bindings and start the batch\n    jse.startBatch(ScriptContext.ENGINE_SCOPE);\n    // Evaluate the code\n    jse.eval(\"print(x);\");\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519884542,
+        "id": "08289a96-9604-481f-a225-fad8b97f8312",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519884542,
+        "parent_id": "6dc50ee0-aa4a-4923-9c04-be9da7f2e214",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Your output should be similar to this"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Your output should be similar to this"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519884542,
+        "id": "7706aed7-8c0b-40ae-af47-17209a73aaa8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519884542,
+        "parent_id": "6dc50ee0-aa4a-4923-9c04-be9da7f2e214",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "hello world",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "hello world",
+            "AttrFlags": 2
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519884542,
+        "id": "d51ffdd0-d2d9-4286-a435-5614a104cc64",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519884542,
+        "parent_id": "6dc50ee0-aa4a-4923-9c04-be9da7f2e214",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "As you can see the exposed variable x has been printed. Now testing with a file."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "As you can see the exposed variable x has been printed. Now testing with a file."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519884542,
+        "id": "6f24adf3-412d-42e8-8abb-b0d77c85c3f8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519884542,
+        "parent_id": "6dc50ee0-aa4a-4923-9c04-be9da7f2e214",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Here we have test.js"
+            ]
+          ]
+        },
+        "type": "quote",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Here we have test.js"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519884543,
+        "id": "1de8fe8c-b336-40f9-a5e6-3426184ae613",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519884543,
+        "parent_id": "6dc50ee0-aa4a-4923-9c04-be9da7f2e214",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "print(x);\nfunction test(){\n    print(\"hello test.js:test\");\n}\ntest();"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "print(x);\nfunction test(){\n    print(\"hello test.js:test\");\n}\ntest();",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519884543,
+        "id": "a1629b85-1088-433f-ac4a-8da3f8f3e524",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519884543,
+        "parent_id": "6dc50ee0-aa4a-4923-9c04-be9da7f2e214",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "And the updated main method"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "And the updated main method"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519884543,
+        "id": "05de2951-655f-461a-bb08-5807b3a4d829",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519884543,
+        "parent_id": "6dc50ee0-aa4a-4923-9c04-be9da7f2e214",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public static void main(String[] args) {\n    JSEngine jse = new JSEngine();\n    // Create a new batch probably unecessary\n    jse.newBatch();\n    // Expose variable x into script with value of hello world\n    jse.scope.put(\"x\", \"hello world\");\n    // Apply the bindings and start the batch\n    jse.startBatch(ScriptContext.ENGINE_SCOPE);\n    // Evaluate the code\n    jse.execute(\"./test.js\");\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public static void main(String[] args) {\n    JSEngine jse = new JSEngine();\n    // Create a new batch probably unecessary\n    jse.newBatch();\n    // Expose variable x into script with value of hello world\n    jse.scope.put(\"x\", \"hello world\");\n    // Apply the bindings and start the batch\n    jse.startBatch(ScriptContext.ENGINE_SCOPE);\n    // Evaluate the code\n    jse.execute(\"./test.js\");\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519884543,
+        "id": "155470a5-87cc-4b12-9bd3-16522cce4c69",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519884543,
+        "parent_id": "6dc50ee0-aa4a-4923-9c04-be9da7f2e214",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Assuming that test.js is in the same directory as your application You should have output similar to this"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Assuming that test.js is in the same directory as your application You should have output similar to this"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519884543,
+        "id": "c4931b60-155f-4d53-8d20-69ff8c0e7134",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519884543,
+        "parent_id": "6dc50ee0-aa4a-4923-9c04-be9da7f2e214",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "hello world\nhello test.js:test"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "hello world\nhello test.js:test",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 Evaluating A javascript file in -scripting mode of nashorn"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

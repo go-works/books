@@ -1,0 +1,394 @@
+{
+  "ID": "316c80f3-fc99-411d-b4fc-6d27707401d8",
+  "Root": {
+    "alive": true,
+    "content": [
+      "6879ec03-2451-4a60-b724-5ad0bfcede8f",
+      "25b04b64-98ac-4fea-b466-d6708c027f89",
+      "0d37c75b-0257-456a-a754-60fb4425694a",
+      "eecb27dc-2805-4fae-8399-db13b17f0b5c",
+      "c19c65e0-94ac-49c8-84d9-69123a58120b",
+      "7cc470cd-9760-4378-acb4-48239192e1a9",
+      "954aa079-e7cd-4d56-8ee6-d5c6f591ec07",
+      "3f287960-cb0f-4ce5-bcf2-4ed51886c481",
+      "5b1b1bb9-95f6-4512-9ac3-5c425af056cf"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550460856267,
+    "id": "316c80f3-fc99-411d-b4fc-6d27707401d8",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550460856267,
+    "parent_id": "efc357da-0d0e-4f18-820d-fb1e40a75c9e",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "040 Getting and Setting fields"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460856260,
+        "id": "6879ec03-2451-4a60-b724-5ad0bfcede8f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460856260,
+        "parent_id": "316c80f3-fc99-411d-b4fc-6d27707401d8",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Using the Reflection API, it is possible to change or get the value of a field at runtime. For example, you could use it in an API to retrieve different fields based on a factor, like the OS. You can also remove modifiers like "
+            ],
+            [
+              "final",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to allow modifing fields that are final."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Using the Reflection API, it is possible to change or get the value of a field at runtime. For example, you could use it in an API to retrieve different fields based on a factor, like the OS. You can also remove modifiers like "
+          },
+          {
+            "Text": "final",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to allow modifing fields that are final."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460856265,
+        "id": "25b04b64-98ac-4fea-b466-d6708c027f89",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460856265,
+        "parent_id": "316c80f3-fc99-411d-b4fc-6d27707401d8",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To do so, you will need to use the method "
+            ],
+            [
+              "Class#getField()",
+              [
+                [
+                  "a",
+                  "https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html#getField-java.lang.String-"
+                ]
+              ]
+            ],
+            [
+              " in a way such as the one shown below:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To do so, you will need to use the method "
+          },
+          {
+            "Text": "Class#getField()",
+            "Link": "https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html#getField-java.lang.String-"
+          },
+          {
+            "Text": " in a way such as the one shown below:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460856265,
+        "id": "0d37c75b-0257-456a-a754-60fb4425694a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460856265,
+        "parent_id": "316c80f3-fc99-411d-b4fc-6d27707401d8",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Get the field in class SomeClass \"NAME\".\nField nameField = SomeClass.class.getDeclaredField(\"NAME\");\n\n// Get the field in class Field \"modifiers\". Note that it does not \n// need to be static\nField modifiersField = Field.class.getDeclaredField(\"modifiers\");\n\n// Allow access from anyone even if it's declared private\nmodifiersField.setAccessible(true);\n\n// Get the modifiers on the \"NAME\" field as an int.\nint existingModifiersOnNameField = nameField.getModifiers();\n\n// Bitwise AND NOT Modifier.FINAL (16) on the existing modifiers\n// Readup here https://en.wikipedia.org/wiki/Bitwise_operations_in_C\n// if you're unsure what bitwise operations are.\nint newModifiersOnNameField = existingModifiersOnNameField \u0026 ~Modifier.FINAL;\n\n// Set the value of the modifiers field under an object for non-static fields\nmodifiersField.setInt(nameField, newModifiersOnNameField);\n\n// Set it to be accessible. This overrides normal Java \n// private/protected/package/etc access control checks.\nnameField.setAccessible(true);\n\n // Set the value of \"NAME\" here. Note the null argument. \n // Pass null when modifying static fields, as there is no instance object\nnameField.set(null, \"Hacked by reflection...\");\n\n// Here I can directly access it. If needed, use reflection to get it. (Below)\nSystem.out.println(SomeClass.NAME);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Get the field in class SomeClass \"NAME\".\nField nameField = SomeClass.class.getDeclaredField(\"NAME\");\n\n// Get the field in class Field \"modifiers\". Note that it does not \n// need to be static\nField modifiersField = Field.class.getDeclaredField(\"modifiers\");\n\n// Allow access from anyone even if it's declared private\nmodifiersField.setAccessible(true);\n\n// Get the modifiers on the \"NAME\" field as an int.\nint existingModifiersOnNameField = nameField.getModifiers();\n\n// Bitwise AND NOT Modifier.FINAL (16) on the existing modifiers\n// Readup here https://en.wikipedia.org/wiki/Bitwise_operations_in_C\n// if you're unsure what bitwise operations are.\nint newModifiersOnNameField = existingModifiersOnNameField \u0026 ~Modifier.FINAL;\n\n// Set the value of the modifiers field under an object for non-static fields\nmodifiersField.setInt(nameField, newModifiersOnNameField);\n\n// Set it to be accessible. This overrides normal Java \n// private/protected/package/etc access control checks.\nnameField.setAccessible(true);\n\n // Set the value of \"NAME\" here. Note the null argument. \n // Pass null when modifying static fields, as there is no instance object\nnameField.set(null, \"Hacked by reflection...\");\n\n// Here I can directly access it. If needed, use reflection to get it. (Below)\nSystem.out.println(SomeClass.NAME);",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460856265,
+        "id": "eecb27dc-2805-4fae-8399-db13b17f0b5c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460856265,
+        "parent_id": "316c80f3-fc99-411d-b4fc-6d27707401d8",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Getting fields is much easier. We can use "
+            ],
+            [
+              "Field#get()",
+              [
+                [
+                  "a",
+                  "https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Field.html#get-java.lang.Object-"
+                ]
+              ]
+            ],
+            [
+              " and its variants to get its value:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Getting fields is much easier. We can use "
+          },
+          {
+            "Text": "Field#get()",
+            "Link": "https://docs.oracle.com/javase/8/docs/api/java/lang/reflect/Field.html#get-java.lang.Object-"
+          },
+          {
+            "Text": " and its variants to get its value:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460856266,
+        "id": "c19c65e0-94ac-49c8-84d9-69123a58120b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460856266,
+        "parent_id": "316c80f3-fc99-411d-b4fc-6d27707401d8",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Get the field in class SomeClass \"NAME\".\nField nameField = SomeClass.class.getDeclaredField(\"NAME\");\n\n// Set accessible for private fields\nnameField.setAccessible(true);\n\n// Pass null as there is no instance, remember?\nString name = (String) nameField.get(null);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Get the field in class SomeClass \"NAME\".\nField nameField = SomeClass.class.getDeclaredField(\"NAME\");\n\n// Set accessible for private fields\nnameField.setAccessible(true);\n\n// Pass null as there is no instance, remember?\nString name = (String) nameField.get(null);",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460856266,
+        "id": "7cc470cd-9760-4378-acb4-48239192e1a9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460856266,
+        "parent_id": "316c80f3-fc99-411d-b4fc-6d27707401d8",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Do note this:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Do note this:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460856266,
+        "id": "954aa079-e7cd-4d56-8ee6-d5c6f591ec07",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460856266,
+        "parent_id": "316c80f3-fc99-411d-b4fc-6d27707401d8",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "When using "
+            ],
+            [
+              "Class#getDeclaredField",
+              [
+                [
+                  "a",
+                  "https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html#getDeclaredField-java.lang.String-"
+                ]
+              ]
+            ],
+            [
+              ", use it to get a field in the class itself:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "When using "
+          },
+          {
+            "Text": "Class#getDeclaredField",
+            "Link": "https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html#getDeclaredField-java.lang.String-"
+          },
+          {
+            "Text": ", use it to get a field in the class itself:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460856266,
+        "id": "3f287960-cb0f-4ce5-bcf2-4ed51886c481",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460856266,
+        "parent_id": "316c80f3-fc99-411d-b4fc-6d27707401d8",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class HackMe extends Hacked {\n    public String iAmDeclared;\n}\n\nclass Hacked {\n    public String someState;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class HackMe extends Hacked {\n    public String iAmDeclared;\n}\n\nclass Hacked {\n    public String someState;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460856267,
+        "id": "5b1b1bb9-95f6-4512-9ac3-5c425af056cf",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460856267,
+        "parent_id": "316c80f3-fc99-411d-b4fc-6d27707401d8",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Here, "
+            ],
+            [
+              "HackMe#iAmDeclared",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is declared field. However, "
+            ],
+            [
+              "HackMe#someState",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is not a declared field as it is inherited from its superclass, Hacked."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Here, "
+          },
+          {
+            "Text": "HackMe#iAmDeclared",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is declared field. However, "
+          },
+          {
+            "Text": "HackMe#someState",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is not a declared field as it is inherited from its superclass, Hacked."
+          }
+        ]
+      }
+    ],
+    "title": "040 Getting and Setting fields"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

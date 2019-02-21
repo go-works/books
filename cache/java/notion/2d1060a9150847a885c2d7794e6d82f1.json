@@ -1,0 +1,637 @@
+{
+  "ID": "2d1060a9-1508-47a8-85c2-d7794e6d82f1",
+  "Root": {
+    "alive": true,
+    "content": [
+      "1fe93841-e61f-481f-83d9-c1299e53d252",
+      "0249bab3-1d59-484f-a59b-1e259d8a4077",
+      "03f35664-b587-44f1-b5bd-0821544f402b",
+      "6dc2169c-e489-4898-b9e4-0e58cbedfd98",
+      "b5c0aa08-af9f-4494-b40b-351ea3bb669a",
+      "12dc7b9b-897a-480a-bdc6-e01416300f54",
+      "2a464993-773e-4341-97dc-27a74c5154d5",
+      "63805e94-4086-4ab5-bc81-0569a6408366",
+      "872d9071-c499-4e8b-9cec-650f70e8ff55",
+      "c20a162c-e0c6-4dfc-8fdb-e65f22f0c389",
+      "40fafc9f-762a-40ae-b825-5ff88dfe0750",
+      "4b40bdd6-10e4-46cb-8b69-91494344faad",
+      "9038d960-2555-4a5d-a01a-8fe9494a416d",
+      "fbbea4fe-285d-4b88-b279-55e20cb449b5",
+      "c19b1b54-acd0-4413-97cd-a183dbab3ec8"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550460119344,
+    "id": "2d1060a9-1508-47a8-85c2-d7794e6d82f1",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550460119344,
+    "parent_id": "3e5f6441-fbb7-4864-8927-1c1c812bd8c7",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "210 Create a Map based on a Stream"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460119340,
+        "id": "1fe93841-e61f-481f-83d9-c1299e53d252",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460119340,
+        "parent_id": "2d1060a9-1508-47a8-85c2-d7794e6d82f1",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Simple case without duplicate keys",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Simple case without duplicate keys",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460119341,
+        "id": "0249bab3-1d59-484f-a59b-1e259d8a4077",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460119341,
+        "parent_id": "2d1060a9-1508-47a8-85c2-d7794e6d82f1",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "Stream\u003cString\u003e characters = Stream.of(\"A\", \"B\", \"C\");\n\nMap\u003cInteger, String\u003e map = characters\n            .collect(Collectors.toMap(element -\u003e element.hashCode(), element -\u003e element));\n// map = {65=A, 66=B, 67=C}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "Stream\u003cString\u003e characters = Stream.of(\"A\", \"B\", \"C\");\n\nMap\u003cInteger, String\u003e map = characters\n            .collect(Collectors.toMap(element -\u003e element.hashCode(), element -\u003e element));\n// map = {65=A, 66=B, 67=C}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460119341,
+        "id": "03f35664-b587-44f1-b5bd-0821544f402b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460119341,
+        "parent_id": "2d1060a9-1508-47a8-85c2-d7794e6d82f1",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To make things more declarative, we can use static method in "
+            ],
+            [
+              "Function",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " interface - "
+            ],
+            [
+              "Function.identity()",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "https://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html#identity--"
+                ]
+              ]
+            ],
+            [
+              ". We can replace this lambda "
+            ],
+            [
+              "element -\u003e element",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " with "
+            ],
+            [
+              "Function.identity()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To make things more declarative, we can use static method in "
+          },
+          {
+            "Text": "Function",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " interface - "
+          },
+          {
+            "Text": "Function.identity()",
+            "AttrFlags": 2,
+            "Link": "https://docs.oracle.com/javase/8/docs/api/java/util/function/Function.html#identity--"
+          },
+          {
+            "Text": ". We can replace this lambda "
+          },
+          {
+            "Text": "element -\u003e element",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " with "
+          },
+          {
+            "Text": "Function.identity()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460119342,
+        "id": "6dc2169c-e489-4898-b9e4-0e58cbedfd98",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460119342,
+        "parent_id": "2d1060a9-1508-47a8-85c2-d7794e6d82f1",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Case where there might be duplicate keys",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Case where there might be duplicate keys",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460119342,
+        "id": "b5c0aa08-af9f-4494-b40b-351ea3bb669a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460119342,
+        "parent_id": "2d1060a9-1508-47a8-85c2-d7794e6d82f1",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The "
+            ],
+            [
+              "javadoc",
+              [
+                [
+                  "a",
+                  "https://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html#toMap-java.util.function.Function-java.util.function.Function-java.util.function.BinaryOperator-"
+                ]
+              ]
+            ],
+            [
+              " for "
+            ],
+            [
+              "Collectors.toMap",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " states:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The "
+          },
+          {
+            "Text": "javadoc",
+            "Link": "https://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html#toMap-java.util.function.Function-java.util.function.Function-java.util.function.BinaryOperator-"
+          },
+          {
+            "Text": " for "
+          },
+          {
+            "Text": "Collectors.toMap",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " states:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460119342,
+        "id": "12dc7b9b-897a-480a-bdc6-e01416300f54",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460119342,
+        "parent_id": "2d1060a9-1508-47a8-85c2-d7794e6d82f1",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If the mapped keys contains duplicates (according to Object.equals(Object)), an IllegalStateException is thrown when the collection operation is performed. If the mapped keys may have duplicates, use toMap(Function, Function, BinaryOperator) instead."
+            ]
+          ]
+        },
+        "type": "quote",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If the mapped keys contains duplicates (according to Object.equals(Object)), an IllegalStateException is thrown when the collection operation is performed. If the mapped keys may have duplicates, use toMap(Function, Function, BinaryOperator) instead."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460119343,
+        "id": "2a464993-773e-4341-97dc-27a74c5154d5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460119343,
+        "parent_id": "2d1060a9-1508-47a8-85c2-d7794e6d82f1",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "Stream\u003cString\u003e characters = Stream.of(\"A\", \"B\", \"B\", \"C\");\n\nMap\u003cInteger, String\u003e map = characters\n            .collect(Collectors.toMap(\n                element -\u003e element.hashCode(),\n                element -\u003e element,\n                (existingVal, newVal) -\u003e (existingVal + newVal)));\n\n// map = {65=A, 66=BB, 67=C}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "Stream\u003cString\u003e characters = Stream.of(\"A\", \"B\", \"B\", \"C\");\n\nMap\u003cInteger, String\u003e map = characters\n            .collect(Collectors.toMap(\n                element -\u003e element.hashCode(),\n                element -\u003e element,\n                (existingVal, newVal) -\u003e (existingVal + newVal)));\n\n// map = {65=A, 66=BB, 67=C}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460119343,
+        "id": "63805e94-4086-4ab5-bc81-0569a6408366",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460119343,
+        "parent_id": "2d1060a9-1508-47a8-85c2-d7794e6d82f1",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The "
+            ],
+            [
+              "BinaryOperator",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " passed to "
+            ],
+            [
+              "Collectors.toMap(...)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " generates the value to be stored in the case of a collision. It can:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The "
+          },
+          {
+            "Text": "BinaryOperator",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " passed to "
+          },
+          {
+            "Text": "Collectors.toMap(...)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " generates the value to be stored in the case of a collision. It can:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460119343,
+        "id": "872d9071-c499-4e8b-9cec-650f70e8ff55",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460119343,
+        "parent_id": "2d1060a9-1508-47a8-85c2-d7794e6d82f1",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "return the old value, so that the first value in the stream takes precedence,"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "return the old value, so that the first value in the stream takes precedence,"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460119343,
+        "id": "c20a162c-e0c6-4dfc-8fdb-e65f22f0c389",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460119343,
+        "parent_id": "2d1060a9-1508-47a8-85c2-d7794e6d82f1",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "return the new value, so that the last value in the stream takes precedence, or"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "return the new value, so that the last value in the stream takes precedence, or"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460119343,
+        "id": "40fafc9f-762a-40ae-b825-5ff88dfe0750",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460119343,
+        "parent_id": "2d1060a9-1508-47a8-85c2-d7794e6d82f1",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "combine the old and new values"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "combine the old and new values"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460119343,
+        "id": "4b40bdd6-10e4-46cb-8b69-91494344faad",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460119343,
+        "parent_id": "2d1060a9-1508-47a8-85c2-d7794e6d82f1",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Grouping by value",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Grouping by value",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460119344,
+        "id": "9038d960-2555-4a5d-a01a-8fe9494a416d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460119344,
+        "parent_id": "2d1060a9-1508-47a8-85c2-d7794e6d82f1",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "You can use "
+            ],
+            [
+              "Collectors.groupingBy",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "https://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html#groupingBy-java.util.function.Function-java.util.stream.Collector-"
+                ]
+              ]
+            ],
+            [
+              " when you need to perform the equivalent of a database cascaded “group by” operation. To illustrate, the following creates a map in which people’s names are mapped to surnames:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "You can use "
+          },
+          {
+            "Text": "Collectors.groupingBy",
+            "AttrFlags": 2,
+            "Link": "https://docs.oracle.com/javase/8/docs/api/java/util/stream/Collectors.html#groupingBy-java.util.function.Function-java.util.stream.Collector-"
+          },
+          {
+            "Text": " when you need to perform the equivalent of a database cascaded “group by” operation. To illustrate, the following creates a map in which people’s names are mapped to surnames:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460119344,
+        "id": "fbbea4fe-285d-4b88-b279-55e20cb449b5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460119344,
+        "parent_id": "2d1060a9-1508-47a8-85c2-d7794e6d82f1",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "List\u003cPerson\u003e people = Arrays.asList(\n    new Person(\"Sam\", \"Rossi\"),\n    new Person(\"Sam\", \"Verdi\"),\n    new Person(\"John\", \"Bianchi\"),\n    new Person(\"John\", \"Rossi\"),\n    new Person(\"John\", \"Verdi\")\n);\n\nMap\u003cString, List\u003cString\u003e\u003e map = people.stream()\n        .collect(\n                // function mapping input elements to keys\n                Collectors.groupingBy(Person::getName, \n                // function mapping input elements to values,\n                // how to store values\n                Collectors.mapping(Person::getSurname, Collectors.toList()))\n        );\n\n// map = {John=[Bianchi, Rossi, Verdi], Sam=[Rossi, Verdi]}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "List\u003cPerson\u003e people = Arrays.asList(\n    new Person(\"Sam\", \"Rossi\"),\n    new Person(\"Sam\", \"Verdi\"),\n    new Person(\"John\", \"Bianchi\"),\n    new Person(\"John\", \"Rossi\"),\n    new Person(\"John\", \"Verdi\")\n);\n\nMap\u003cString, List\u003cString\u003e\u003e map = people.stream()\n        .collect(\n                // function mapping input elements to keys\n                Collectors.groupingBy(Person::getName, \n                // function mapping input elements to values,\n                // how to store values\n                Collectors.mapping(Person::getSurname, Collectors.toList()))\n        );\n\n// map = {John=[Bianchi, Rossi, Verdi], Sam=[Rossi, Verdi]}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460119344,
+        "id": "c19b1b54-acd0-4413-97cd-a183dbab3ec8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460119344,
+        "parent_id": "2d1060a9-1508-47a8-85c2-d7794e6d82f1",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Live on Ideone",
+              [
+                [
+                  "a",
+                  "https://ideone.com/2Ar9IA"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Live on Ideone",
+            "Link": "https://ideone.com/2Ar9IA"
+          }
+        ]
+      }
+    ],
+    "title": "210 Create a Map based on a Stream"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

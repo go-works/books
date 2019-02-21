@@ -1,0 +1,71 @@
+{
+  "ID": "fb52ccdd-b7b6-4316-b080-3aa3d69df6b0",
+  "Root": {
+    "alive": true,
+    "content": [
+      "4de2dbc8-99e6-4d35-a02f-259a8ceb0622"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550460768174,
+    "id": "fb52ccdd-b7b6-4316-b080-3aa3d69df6b0",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550460768174,
+    "parent_id": "0e3fe4e1-0860-4111-a2a9-ca47548a8a88",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "080 Implementing an interface from script"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460768171,
+        "id": "4de2dbc8-99e6-4d35-a02f-259a8ceb0622",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460768171,
+        "parent_id": "fb52ccdd-b7b6-4316-b080-3aa3d69df6b0",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import java.io.FileReader;\nimport java.io.IOException;\n\nimport javax.script.ScriptEngine;\nimport javax.script.ScriptEngineManager;\nimport javax.script.ScriptException;\n\npublic class InterfaceImplementationExample {\n    public static interface Pet {\n        public void eat();\n    }\n\n    public static void main(String[] args) throws IOException {\n        // Obtain an instance of JavaScript engine\n        ScriptEngineManager manager = new ScriptEngineManager();\n        ScriptEngine engine = manager.getEngineByName(\"nashorn\");\n\n        try {\n            //evaluate a script\n            /* pet.js */\n            /*\n                var Pet = Java.type(\"InterfaceImplementationExample.Pet\");\n                \n                new Pet() {\n                    eat: function() { print(\"eat\"); }\n                }            \n            */\n            \n            Pet pet = (Pet) engine.eval(new FileReader(\"pet.js\"));\n            \n            pet.eat();\n        } catch (ScriptException ex) {\n            ex.printStackTrace();\n        }\n\n        // Outcome:\n        // 'eat' printed on standard output\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import java.io.FileReader;\nimport java.io.IOException;\n\nimport javax.script.ScriptEngine;\nimport javax.script.ScriptEngineManager;\nimport javax.script.ScriptException;\n\npublic class InterfaceImplementationExample {\n    public static interface Pet {\n        public void eat();\n    }\n\n    public static void main(String[] args) throws IOException {\n        // Obtain an instance of JavaScript engine\n        ScriptEngineManager manager = new ScriptEngineManager();\n        ScriptEngine engine = manager.getEngineByName(\"nashorn\");\n\n        try {\n            //evaluate a script\n            /* pet.js */\n            /*\n                var Pet = Java.type(\"InterfaceImplementationExample.Pet\");\n                \n                new Pet() {\n                    eat: function() { print(\"eat\"); }\n                }            \n            */\n            \n            Pet pet = (Pet) engine.eval(new FileReader(\"pet.js\"));\n            \n            pet.eat();\n        } catch (ScriptException ex) {\n            ex.printStackTrace();\n        }\n\n        // Outcome:\n        // 'eat' printed on standard output\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "080 Implementing an interface from script"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

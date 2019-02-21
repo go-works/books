@@ -80,11 +80,38 @@ var (
 		// https://www.notion.so/kjkpublic/Essential-Javascript-0b121710a160402fa9fd4646b87bed99
 		NotionStartPageID: "0b121710a160402fa9fd4646b87bed99",
 	}
+	bookDart = &Book{
+		NoPublish: true,
+		Title: "Dart",
+		TitleLong: "Essential Dart",
+		Dir: "dart",
+		CoverImageName: "Cpp.png", // TODO: need a cover
+		// 	https://www.notion.so/kjkpublic/Essential-Dart-0e2d248bf94b4aebaefbcf51ae435df0
+		NotionStartPageID: "0e2d248bf94b4aebaefbcf51ae435df0",
+	}
+	bookJava = &Book{
+		NoPublish: true,
+		Title: "Java",
+		TitleLong: "Essential Java",
+		Dir: "java",
+		CoverImageName: "Java.png",
+		// https://www.notion.so/kjkpublic/Essential-Java-d37cda98a07046f6b2cc375731ea3bdb
+		NotionStartPageID: "d37cda98a07046f6b2cc375731ea3bdb",
+	}
+	bookAndroid = &Book{
+		NoPublish: true,
+		Title: "Android",
+		TitleLong: "Essential Android",
+		CoverImageName: "Android.png",
+		// https://www.notion.so/kjkpublic/Essential-Android-f90b0a6b648343e28dc5ed6e8f5c0780
+		NotionStartPageID: "f90b0a6b648343e28dc5ed6e8f5c0780",
+	}
 )
 
 var (
 	books = []*Book{
 		bookGo, bookCsharp, bookPython, bookKotlin, bookJavaScript,
+		bookDart, bookJava, bookAndroid,
 	}
 )
 

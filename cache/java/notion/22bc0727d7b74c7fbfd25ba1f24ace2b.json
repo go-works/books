@@ -1,0 +1,713 @@
+{
+  "ID": "22bc0727-d7b7-4c7f-bfd2-5ba1f24ace2b",
+  "Root": {
+    "alive": true,
+    "content": [
+      "4f0cd6f7-9d05-4cbe-9893-af0e0a202472",
+      "281b793d-9283-4e25-8e36-8f7a09bef7c1",
+      "97b38ea9-7a01-4f22-a95c-3b5f030f3cc0",
+      "b61275ba-ebb2-488a-b4a6-6ac0a97af449",
+      "7a0ffe64-fa4e-414d-a6be-ec21bf8e71a3",
+      "104a1d68-6934-4775-8294-31c6c654136d",
+      "9c6df585-b349-4431-a535-e6c2915e8425",
+      "4a8a6a2e-d862-49d2-89d3-b0980e7767eb",
+      "0c9950ea-511f-4ffc-a22a-c255f6316ac0",
+      "9395e53d-2780-42ce-b55d-34395c7ab0c0",
+      "f8b1b025-4892-48d1-a65c-5260b1363786",
+      "4c49d222-dfb8-446f-89f6-17a2aa553dd4",
+      "e3478cfd-7253-4bcf-b3a0-1ad5c1b9f133",
+      "db93cc73-5765-4787-af34-579b0ec7896f",
+      "c0d4851f-4095-4cf1-8e9f-ff37e5b2ff18",
+      "b92c5bfe-4a72-4f3b-bda2-ba42ad2c162b",
+      "2ea81c97-3c1b-4207-a1a1-8b7ad6eecc09",
+      "fde4ae1c-b7bb-4654-b4e0-873c68c1972a",
+      "ee34d118-4771-47f9-bffd-58c719d3f792"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550519776187,
+    "id": "22bc0727-d7b7-4c7f-bfd2-5ba1f24ace2b",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550519776187,
+    "parent_id": "5bf950bb-491a-4fb0-8388-9ebc5ccbbe38",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Simple example with Platform MBean Server"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519776178,
+        "id": "4f0cd6f7-9d05-4cbe-9893-af0e0a202472",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519776178,
+        "parent_id": "22bc0727-d7b7-4c7f-bfd2-5ba1f24ace2b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Let’s say we have some server that registers new users and greets them with some message. And we want to monitor this server and change some of it’s parameters."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Let’s say we have some server that registers new users and greets them with some message. And we want to monitor this server and change some of it’s parameters."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519776181,
+        "id": "281b793d-9283-4e25-8e36-8f7a09bef7c1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519776181,
+        "parent_id": "22bc0727-d7b7-4c7f-bfd2-5ba1f24ace2b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "First, we need an interface with our monitoring and control methods"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "First, we need an interface with our monitoring and control methods"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519776181,
+        "id": "97b38ea9-7a01-4f22-a95c-3b5f030f3cc0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519776181,
+        "parent_id": "22bc0727-d7b7-4c7f-bfd2-5ba1f24ace2b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public interface UserCounterMBean {\n    long getSleepTime();\n\n    void setSleepTime(long sleepTime);\n\n    int getUserCount();\n\n    void setUserCount(int userCount);\n\n    String getGreetingString();\n\n    void setGreetingString(String greetingString);\n\n    void stop();\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public interface UserCounterMBean {\n    long getSleepTime();\n\n    void setSleepTime(long sleepTime);\n\n    int getUserCount();\n\n    void setUserCount(int userCount);\n\n    String getGreetingString();\n\n    void setGreetingString(String greetingString);\n\n    void stop();\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519776181,
+        "id": "b61275ba-ebb2-488a-b4a6-6ac0a97af449",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519776181,
+        "parent_id": "22bc0727-d7b7-4c7f-bfd2-5ba1f24ace2b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "And some simple implementation that will let us see how it’s working and how we affect it"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "And some simple implementation that will let us see how it’s working and how we affect it"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519776181,
+        "id": "7a0ffe64-fa4e-414d-a6be-ec21bf8e71a3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519776181,
+        "parent_id": "22bc0727-d7b7-4c7f-bfd2-5ba1f24ace2b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class UserCounter implements UserCounterMBean, Runnable {\n    private AtomicLong sleepTime = new AtomicLong(10000);\n    private AtomicInteger userCount = new AtomicInteger(0);\n    private AtomicReference\u003cString\u003e greetingString = new AtomicReference\u003c\u003e(\"welcome\");\n    private AtomicBoolean interrupted = new AtomicBoolean(false);\n\n    @Override\n    public long getSleepTime() {\n        return sleepTime.get();\n    }\n\n    @Override\n    public void setSleepTime(long sleepTime) {\n        this.sleepTime.set(sleepTime);\n    }\n\n    @Override\n    public int getUserCount() {\n        return userCount.get();\n    }\n\n    @Override\n    public void setUserCount(int userCount) {\n        this.userCount.set(userCount);\n    }\n\n    @Override\n    public String getGreetingString() {\n        return greetingString.get();\n    }\n\n    @Override\n    public void setGreetingString(String greetingString) {\n        this.greetingString.set(greetingString);\n    }\n\n    @Override\n    public void stop() {\n        this.interrupted.set(true);\n    }\n\n    @Override\n    public void run() {\n        while (!interrupted.get()) {\n            try {\n                System.out.printf(\"User %d, %s%n\", userCount.incrementAndGet(), greetingString.get());\n                Thread.sleep(sleepTime.get());\n            } catch (InterruptedException ignored) {\n            }\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class UserCounter implements UserCounterMBean, Runnable {\n    private AtomicLong sleepTime = new AtomicLong(10000);\n    private AtomicInteger userCount = new AtomicInteger(0);\n    private AtomicReference\u003cString\u003e greetingString = new AtomicReference\u003c\u003e(\"welcome\");\n    private AtomicBoolean interrupted = new AtomicBoolean(false);\n\n    @Override\n    public long getSleepTime() {\n        return sleepTime.get();\n    }\n\n    @Override\n    public void setSleepTime(long sleepTime) {\n        this.sleepTime.set(sleepTime);\n    }\n\n    @Override\n    public int getUserCount() {\n        return userCount.get();\n    }\n\n    @Override\n    public void setUserCount(int userCount) {\n        this.userCount.set(userCount);\n    }\n\n    @Override\n    public String getGreetingString() {\n        return greetingString.get();\n    }\n\n    @Override\n    public void setGreetingString(String greetingString) {\n        this.greetingString.set(greetingString);\n    }\n\n    @Override\n    public void stop() {\n        this.interrupted.set(true);\n    }\n\n    @Override\n    public void run() {\n        while (!interrupted.get()) {\n            try {\n                System.out.printf(\"User %d, %s%n\", userCount.incrementAndGet(), greetingString.get());\n                Thread.sleep(sleepTime.get());\n            } catch (InterruptedException ignored) {\n            }\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519776182,
+        "id": "104a1d68-6934-4775-8294-31c6c654136d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519776182,
+        "parent_id": "22bc0727-d7b7-4c7f-bfd2-5ba1f24ace2b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "For simple example with local or remote management, we need to register our MBean:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "For simple example with local or remote management, we need to register our MBean:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519776182,
+        "id": "9c6df585-b349-4431-a535-e6c2915e8425",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519776182,
+        "parent_id": "22bc0727-d7b7-4c7f-bfd2-5ba1f24ace2b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import javax.management.InstanceAlreadyExistsException;\nimport javax.management.MBeanRegistrationException;\nimport javax.management.MBeanServer;\nimport javax.management.MalformedObjectNameException;\nimport javax.management.NotCompliantMBeanException;\nimport javax.management.ObjectName;\nimport java.lang.management.ManagementFactory;\n\npublic class Main {\n    public static void main(String[] args) throws MalformedObjectNameException, NotCompliantMBeanException, InstanceAlreadyExistsException, MBeanRegistrationException, InterruptedException {\n        final UserCounter userCounter = new UserCounter();\n        final MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();\n        final ObjectName objectName = new ObjectName(\"ServerManager:type=UserCounter\");\n        mBeanServer.registerMBean(userCounter, objectName);\n\n        final Thread thread = new Thread(userCounter);\n        thread.start();\n        thread.join();\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import javax.management.InstanceAlreadyExistsException;\nimport javax.management.MBeanRegistrationException;\nimport javax.management.MBeanServer;\nimport javax.management.MalformedObjectNameException;\nimport javax.management.NotCompliantMBeanException;\nimport javax.management.ObjectName;\nimport java.lang.management.ManagementFactory;\n\npublic class Main {\n    public static void main(String[] args) throws MalformedObjectNameException, NotCompliantMBeanException, InstanceAlreadyExistsException, MBeanRegistrationException, InterruptedException {\n        final UserCounter userCounter = new UserCounter();\n        final MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();\n        final ObjectName objectName = new ObjectName(\"ServerManager:type=UserCounter\");\n        mBeanServer.registerMBean(userCounter, objectName);\n\n        final Thread thread = new Thread(userCounter);\n        thread.start();\n        thread.join();\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519776182,
+        "id": "4a8a6a2e-d862-49d2-89d3-b0980e7767eb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519776182,
+        "parent_id": "22bc0727-d7b7-4c7f-bfd2-5ba1f24ace2b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "After that we can run our application and connect to it via jConsole, which can be found in your "
+            ],
+            [
+              "$JAVA_HOME/bin",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " directory. First, we need to find our local java process with our application"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "After that we can run our application and connect to it via jConsole, which can be found in your "
+          },
+          {
+            "Text": "$JAVA_HOME/bin",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " directory. First, we need to find our local java process with our application"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519776182,
+        "id": "0c9950ea-511f-4ffc-a22a-c255f6316ac0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519776182,
+        "parent_id": "22bc0727-d7b7-4c7f-bfd2-5ba1f24ace2b",
+        "parent_table": "block",
+        "properties": {
+          "source": [
+            [
+              "/tmp/6c8a5a05-857f-4ea8-aec1-86307aa1ef0f/e7508b3dcf9bba792052cf36e0b77c4efaba3191.png"
+            ]
+          ]
+        },
+        "type": "image",
+        "version": 1,
+        "source": "/tmp/6c8a5a05-857f-4ea8-aec1-86307aa1ef0f/e7508b3dcf9bba792052cf36e0b77c4efaba3191.png",
+        "image_url": "https://www.notion.so/image/https:%2F%2Fwww.notion.so%2Ftmp%2F6c8a5a05-857f-4ea8-aec1-86307aa1ef0f%2Fe7508b3dcf9bba792052cf36e0b77c4efaba3191.png"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519776182,
+        "id": "9395e53d-2780-42ce-b55d-34395c7ab0c0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519776182,
+        "parent_id": "22bc0727-d7b7-4c7f-bfd2-5ba1f24ace2b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "then switch to MBeans tab and find that MBean that we used in our Main class as an "
+            ],
+            [
+              "ObjectName",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " (in the example above it’s "
+            ],
+            [
+              "ServerManager",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "). In "
+            ],
+            [
+              "Attributes",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " section we can see out attributes. If you specified get method only, attribute will be readable but not writeable. If you specified both get and set methods, attribute would be readable and writeable."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "then switch to MBeans tab and find that MBean that we used in our Main class as an "
+          },
+          {
+            "Text": "ObjectName",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " (in the example above it’s "
+          },
+          {
+            "Text": "ServerManager",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "). In "
+          },
+          {
+            "Text": "Attributes",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " section we can see out attributes. If you specified get method only, attribute will be readable but not writeable. If you specified both get and set methods, attribute would be readable and writeable."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519776183,
+        "id": "f8b1b025-4892-48d1-a65c-5260b1363786",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519776183,
+        "parent_id": "22bc0727-d7b7-4c7f-bfd2-5ba1f24ace2b",
+        "parent_table": "block",
+        "properties": {
+          "source": [
+            [
+              "/tmp/6c8a5a05-857f-4ea8-aec1-86307aa1ef0f/5b0b131fe087e1ba425dbb0333e6996863b8466a.png"
+            ]
+          ]
+        },
+        "type": "image",
+        "version": 1,
+        "source": "/tmp/6c8a5a05-857f-4ea8-aec1-86307aa1ef0f/5b0b131fe087e1ba425dbb0333e6996863b8466a.png",
+        "image_url": "https://www.notion.so/image/https:%2F%2Fwww.notion.so%2Ftmp%2F6c8a5a05-857f-4ea8-aec1-86307aa1ef0f%2F5b0b131fe087e1ba425dbb0333e6996863b8466a.png"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519776183,
+        "id": "4c49d222-dfb8-446f-89f6-17a2aa553dd4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519776183,
+        "parent_id": "22bc0727-d7b7-4c7f-bfd2-5ba1f24ace2b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Specified methods can be invoked in "
+            ],
+            [
+              "Operations",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " section."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Specified methods can be invoked in "
+          },
+          {
+            "Text": "Operations",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " section."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519776183,
+        "id": "e3478cfd-7253-4bcf-b3a0-1ad5c1b9f133",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519776183,
+        "parent_id": "22bc0727-d7b7-4c7f-bfd2-5ba1f24ace2b",
+        "parent_table": "block",
+        "properties": {
+          "source": [
+            [
+              "/tmp/6c8a5a05-857f-4ea8-aec1-86307aa1ef0f/0cbed4c25121f6bd07175abacfcab1394cbf9e97.png"
+            ]
+          ]
+        },
+        "type": "image",
+        "version": 1,
+        "source": "/tmp/6c8a5a05-857f-4ea8-aec1-86307aa1ef0f/0cbed4c25121f6bd07175abacfcab1394cbf9e97.png",
+        "image_url": "https://www.notion.so/image/https:%2F%2Fwww.notion.so%2Ftmp%2F6c8a5a05-857f-4ea8-aec1-86307aa1ef0f%2F0cbed4c25121f6bd07175abacfcab1394cbf9e97.png"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519776183,
+        "id": "db93cc73-5765-4787-af34-579b0ec7896f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519776183,
+        "parent_id": "22bc0727-d7b7-4c7f-bfd2-5ba1f24ace2b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If you want to be able to use remote management, you will need additional JVM parameters, like:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If you want to be able to use remote management, you will need additional JVM parameters, like:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519776183,
+        "id": "c0d4851f-4095-4cf1-8e9f-ff37e5b2ff18",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519776183,
+        "parent_id": "22bc0727-d7b7-4c7f-bfd2-5ba1f24ace2b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "-Dcom.sun.management.jmxremote=true //true by default\n-Dcom.sun.management.jmxremote.port=36006 \n-Dcom.sun.management.jmxremote.authenticate=false \n-Dcom.sun.management.jmxremote.ssl=false"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "-Dcom.sun.management.jmxremote=true //true by default\n-Dcom.sun.management.jmxremote.port=36006 \n-Dcom.sun.management.jmxremote.authenticate=false \n-Dcom.sun.management.jmxremote.ssl=false",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519776185,
+        "id": "b92c5bfe-4a72-4f3b-bda2-ba42ad2c162b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519776185,
+        "parent_id": "22bc0727-d7b7-4c7f-bfd2-5ba1f24ace2b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "These parameters can be found in "
+            ],
+            [
+              "Chapter 2 of JMX guides",
+              [
+                [
+                  "a",
+                  "https://docs.oracle.com/javase/8/docs/technotes/guides/management/agent.html"
+                ]
+              ]
+            ],
+            [
+              ". After that you will be able to connect to your application via jConsole remotely with "
+            ],
+            [
+              "jconsole host:port",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " or with specifying "
+            ],
+            [
+              "host:port",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " or "
+            ],
+            [
+              "service:jmx:rmi:///jndi/rmi://hostName:portNum/jmxrmi",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " in jConsole GUI."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "These parameters can be found in "
+          },
+          {
+            "Text": "Chapter 2 of JMX guides",
+            "Link": "https://docs.oracle.com/javase/8/docs/technotes/guides/management/agent.html"
+          },
+          {
+            "Text": ". After that you will be able to connect to your application via jConsole remotely with "
+          },
+          {
+            "Text": "jconsole host:port",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " or with specifying "
+          },
+          {
+            "Text": "host:port",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " or "
+          },
+          {
+            "Text": "service:jmx:rmi:///jndi/rmi://hostName:portNum/jmxrmi",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " in jConsole GUI."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519776185,
+        "id": "2ea81c97-3c1b-4207-a1a1-8b7ad6eecc09",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519776185,
+        "parent_id": "22bc0727-d7b7-4c7f-bfd2-5ba1f24ace2b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Useful links:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Useful links:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519776186,
+        "id": "fde4ae1c-b7bb-4654-b4e0-873c68c1972a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519776186,
+        "parent_id": "22bc0727-d7b7-4c7f-bfd2-5ba1f24ace2b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "JMX guides",
+              [
+                [
+                  "a",
+                  "https://docs.oracle.com/javase/8/docs/technotes/guides/management/overview.html"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "JMX guides",
+            "Link": "https://docs.oracle.com/javase/8/docs/technotes/guides/management/overview.html"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550519776187,
+        "id": "ee34d118-4771-47f9-bffd-58c719d3f792",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550519776187,
+        "parent_id": "22bc0727-d7b7-4c7f-bfd2-5ba1f24ace2b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "JMX Best practices",
+              [
+                [
+                  "a",
+                  "http://www.oracle.com/us/technologies/java/best-practices-jsp-136021.html"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "JMX Best practices",
+            "Link": "http://www.oracle.com/us/technologies/java/best-practices-jsp-136021.html"
+          }
+        ]
+      }
+    ],
+    "title": "010 Simple example with Platform MBean Server"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

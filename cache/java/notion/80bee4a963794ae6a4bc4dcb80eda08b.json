@@ -1,0 +1,205 @@
+{
+  "ID": "80bee4a9-6379-4ae6-a4bc-4dcb80eda08b",
+  "Root": {
+    "alive": true,
+    "content": [
+      "0d15d26e-9bd1-4b3e-a6e9-9cca94537825",
+      "422e5878-1feb-4bc8-abc5-5aa06a0d19de",
+      "8e6605e5-6e64-403c-bd50-8888f7f8e94e",
+      "37426574-cb95-428a-b558-5d3b08783cd1",
+      "8396cf4d-e846-419d-a1ae-8e3a002be82c",
+      "b45c7785-c381-40ff-8e0e-e406e6bb4441"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550461449201,
+    "id": "80bee4a9-6379-4ae6-a4bc-4dcb80eda08b",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550461449201,
+    "parent_id": "ced04cf4-809b-4eb8-af63-c3041b9bfcb3",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 Multiple threads with one shared object"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550461449198,
+        "id": "0d15d26e-9bd1-4b3e-a6e9-9cca94537825",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550461449198,
+        "parent_id": "80bee4a9-6379-4ae6-a4bc-4dcb80eda08b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In this example we have only one object but it is shared between/executed on different threads. Ordinary usage of fields to save state would not be possible because the other thread would see that too (or probably not see)."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In this example we have only one object but it is shared between/executed on different threads. Ordinary usage of fields to save state would not be possible because the other thread would see that too (or probably not see)."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550461449201,
+        "id": "422e5878-1feb-4bc8-abc5-5aa06a0d19de",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550461449201,
+        "parent_id": "80bee4a9-6379-4ae6-a4bc-4dcb80eda08b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class Test {\n    public static void main(String[] args) {\n        Foo foo = new Foo();\n        new Thread(foo, \"Thread 1\").start();\n        new Thread(foo, \"Thread 2\").start();\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class Test {\n    public static void main(String[] args) {\n        Foo foo = new Foo();\n        new Thread(foo, \"Thread 1\").start();\n        new Thread(foo, \"Thread 2\").start();\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550461449201,
+        "id": "8e6605e5-6e64-403c-bd50-8888f7f8e94e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550461449201,
+        "parent_id": "80bee4a9-6379-4ae6-a4bc-4dcb80eda08b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In Foo we count starting from zero. Instead of saving the state to a field we store our current number in the ThreadLocal object which is statically accessible. Note that the synchronization in this example is not related to the usage of ThreadLocal but rather ensures a better console output."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In Foo we count starting from zero. Instead of saving the state to a field we store our current number in the ThreadLocal object which is statically accessible. Note that the synchronization in this example is not related to the usage of ThreadLocal but rather ensures a better console output."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550461449201,
+        "id": "37426574-cb95-428a-b558-5d3b08783cd1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550461449201,
+        "parent_id": "80bee4a9-6379-4ae6-a4bc-4dcb80eda08b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class Foo implements Runnable {\n    private static final int ITERATIONS = 10;\n    private static final ThreadLocal\u003cInteger\u003e threadLocal = new ThreadLocal\u003cInteger\u003e() {\n        @Override\n        protected Integer initialValue() {\n            return 0;\n        }\n    };\n\n    @Override\n    public void run() {\n        for (int i = 0; i \u003c ITERATIONS; i++) {\n            synchronized (threadLocal) {\n                //Although accessing a static field, we get our own (previously saved) value.\n                int value = threadLocal.get();\n                System.out.println(Thread.currentThread().getName() + \": \" + value);\n                \n                //Update our own variable\n                threadLocal.set(value + 1);\n\n                try {\n                    threadLocal.notifyAll();\n                    if (i \u003c ITERATIONS - 1) {\n                        threadLocal.wait();\n                    }\n                } catch (InterruptedException ex) {\n                }\n            }\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class Foo implements Runnable {\n    private static final int ITERATIONS = 10;\n    private static final ThreadLocal\u003cInteger\u003e threadLocal = new ThreadLocal\u003cInteger\u003e() {\n        @Override\n        protected Integer initialValue() {\n            return 0;\n        }\n    };\n\n    @Override\n    public void run() {\n        for (int i = 0; i \u003c ITERATIONS; i++) {\n            synchronized (threadLocal) {\n                //Although accessing a static field, we get our own (previously saved) value.\n                int value = threadLocal.get();\n                System.out.println(Thread.currentThread().getName() + \": \" + value);\n                \n                //Update our own variable\n                threadLocal.set(value + 1);\n\n                try {\n                    threadLocal.notifyAll();\n                    if (i \u003c ITERATIONS - 1) {\n                        threadLocal.wait();\n                    }\n                } catch (InterruptedException ex) {\n                }\n            }\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550461449201,
+        "id": "8396cf4d-e846-419d-a1ae-8e3a002be82c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550461449201,
+        "parent_id": "80bee4a9-6379-4ae6-a4bc-4dcb80eda08b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "From the output we can see that each thread counts for itself and does not use the value of the other one:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "From the output we can see that each thread counts for itself and does not use the value of the other one:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550461449201,
+        "id": "b45c7785-c381-40ff-8e0e-e406e6bb4441",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550461449201,
+        "parent_id": "80bee4a9-6379-4ae6-a4bc-4dcb80eda08b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "Thread 1: 0\nThread 2: 0\nThread 1: 1\nThread 2: 1\nThread 1: 2\nThread 2: 2\nThread 1: 3\nThread 2: 3\nThread 1: 4\nThread 2: 4\nThread 1: 5\nThread 2: 5\nThread 1: 6\nThread 2: 6\nThread 1: 7\nThread 2: 7\nThread 1: 8\nThread 2: 8\nThread 1: 9\nThread 2: 9"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "Thread 1: 0\nThread 2: 0\nThread 1: 1\nThread 2: 1\nThread 1: 2\nThread 2: 2\nThread 1: 3\nThread 2: 3\nThread 1: 4\nThread 2: 4\nThread 1: 5\nThread 2: 5\nThread 1: 6\nThread 2: 6\nThread 1: 7\nThread 2: 7\nThread 1: 8\nThread 2: 8\nThread 1: 9\nThread 2: 9",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "030 Multiple threads with one shared object"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

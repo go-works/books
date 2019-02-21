@@ -1,0 +1,872 @@
+{
+  "ID": "7cb7c1e4-65c7-4ed7-a45f-2b275827ee9b",
+  "Root": {
+    "alive": true,
+    "content": [
+      "de8e17ed-e8c9-4f34-bc72-cb5627eaa59a",
+      "9a367b27-3cd1-427a-8623-fd174e74787e",
+      "e6bf8e0a-b498-4b1a-9cd1-73ca0a746e3f",
+      "a38c3c25-033e-46c7-aafe-6f9ad58ca9fd",
+      "f4b50d8c-d39b-441f-8c6d-fa68c0e9fa09",
+      "69ee7fd2-f368-48e5-bc72-b8abf0d442d1",
+      "e3ed9e1d-67cc-40fd-89ad-0cd2bc3d7adf",
+      "2eb5a876-6887-4d23-968c-3388101635b8",
+      "a81b396a-50c4-46b3-a1b2-c502803f97d6",
+      "72dd6944-e8d8-4985-8aaa-f3139569bcea",
+      "a3f50897-01ee-46b9-a2ef-ae2506923825",
+      "7dc76731-6100-450b-87a8-e8a128fc939c",
+      "85436848-8b06-4ee6-8fec-49e4905ae36a",
+      "010ed7e3-44ff-43b0-9057-fb17df8d44b0",
+      "3c1e973a-c0fc-4ad9-90a9-757c07b31193",
+      "cd41025b-497b-46e6-a6aa-155240e5cb0f",
+      "a19afa70-24e2-449d-bc91-7a3db8cd5a64",
+      "a276472f-1e56-4e11-bfc5-ca1e346c3092",
+      "84ef6429-9cdd-4039-a1ac-bb9414ad599e",
+      "77e2a900-5308-43e9-9cfc-cd7ff3e5e8d9"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550517996477,
+    "id": "7cb7c1e4-65c7-4ed7-a45f-2b275827ee9b",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550517996477,
+    "parent_id": "65b3b4cb-dbb9-4dfb-9c83-9429dfa4e76a",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "070 Pitfall - Catching Throwable Exception Error or RuntimeException"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517996468,
+        "id": "de8e17ed-e8c9-4f34-bc72-cb5627eaa59a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517996468,
+        "parent_id": "7cb7c1e4-65c7-4ed7-a45f-2b275827ee9b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "A common thought pattern for inexperienced Java programmers is that exceptions are “a problem” or “a burden” and the best way to deal with this is catch them all1 as soon as possible. This leads to code like this:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "A common thought pattern for inexperienced Java programmers is that exceptions are “a problem” or “a burden” and the best way to deal with this is catch them all1 as soon as possible. This leads to code like this:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517996471,
+        "id": "9a367b27-3cd1-427a-8623-fd174e74787e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517996471,
+        "parent_id": "7cb7c1e4-65c7-4ed7-a45f-2b275827ee9b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "....\ntry {\n    InputStream is = new FileInputStream(fileName);\n    // process the input\n} catch (Exception ex) {\n    System.out.println(\"Could not open file \" + fileName);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "....\ntry {\n    InputStream is = new FileInputStream(fileName);\n    // process the input\n} catch (Exception ex) {\n    System.out.println(\"Could not open file \" + fileName);\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517996471,
+        "id": "e6bf8e0a-b498-4b1a-9cd1-73ca0a746e3f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517996471,
+        "parent_id": "7cb7c1e4-65c7-4ed7-a45f-2b275827ee9b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The above code has a significant flaw. The "
+            ],
+            [
+              "catch",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is actually going to catch more exceptions than the programmer is expecting. Suppose that the value of the "
+            ],
+            [
+              "fileName",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is "
+            ],
+            [
+              "null",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", due to a bug elsewhere in the application. This will cause the "
+            ],
+            [
+              "FileInputStream",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " constructor to throw a "
+            ],
+            [
+              "NullPointerException",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". The handler will catch this, and report to the user:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The above code has a significant flaw. The "
+          },
+          {
+            "Text": "catch",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is actually going to catch more exceptions than the programmer is expecting. Suppose that the value of the "
+          },
+          {
+            "Text": "fileName",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is "
+          },
+          {
+            "Text": "null",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", due to a bug elsewhere in the application. This will cause the "
+          },
+          {
+            "Text": "FileInputStream",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " constructor to throw a "
+          },
+          {
+            "Text": "NullPointerException",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". The handler will catch this, and report to the user:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517996472,
+        "id": "a38c3c25-033e-46c7-aafe-6f9ad58ca9fd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517996472,
+        "parent_id": "7cb7c1e4-65c7-4ed7-a45f-2b275827ee9b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "Could not open file null"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "Could not open file null",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517996472,
+        "id": "f4b50d8c-d39b-441f-8c6d-fa68c0e9fa09",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517996472,
+        "parent_id": "7cb7c1e4-65c7-4ed7-a45f-2b275827ee9b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "which is unhelpful and confusing. Worse still, suppose that the it was the “process the input” code that threw the unexpected exception (checked or unchecked!). Now the user will get the misleading message for a problem that didn’t occur while opening the file, and may not be related to I/O at all."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "which is unhelpful and confusing. Worse still, suppose that the it was the “process the input” code that threw the unexpected exception (checked or unchecked!). Now the user will get the misleading message for a problem that didn’t occur while opening the file, and may not be related to I/O at all."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517996472,
+        "id": "69ee7fd2-f368-48e5-bc72-b8abf0d442d1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517996472,
+        "parent_id": "7cb7c1e4-65c7-4ed7-a45f-2b275827ee9b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The root of the problem is that the programmer has coded a handler for "
+            ],
+            [
+              "Exception",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". This is almost always a mistake:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The root of the problem is that the programmer has coded a handler for "
+          },
+          {
+            "Text": "Exception",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". This is almost always a mistake:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517996473,
+        "id": "e3ed9e1d-67cc-40fd-89ad-0cd2bc3d7adf",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517996473,
+        "parent_id": "7cb7c1e4-65c7-4ed7-a45f-2b275827ee9b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Catching "
+            ],
+            [
+              "Exception",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " will catch all checked exceptions, and most unchecked exceptions as well."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Catching "
+          },
+          {
+            "Text": "Exception",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " will catch all checked exceptions, and most unchecked exceptions as well."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517996473,
+        "id": "2eb5a876-6887-4d23-968c-3388101635b8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517996473,
+        "parent_id": "7cb7c1e4-65c7-4ed7-a45f-2b275827ee9b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Catching "
+            ],
+            [
+              "RuntimeException",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " will catch most unchecked exceptions."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Catching "
+          },
+          {
+            "Text": "RuntimeException",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " will catch most unchecked exceptions."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517996473,
+        "id": "a81b396a-50c4-46b3-a1b2-c502803f97d6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517996473,
+        "parent_id": "7cb7c1e4-65c7-4ed7-a45f-2b275827ee9b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Catching "
+            ],
+            [
+              "Error",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " will catch unchecked exceptions that signal JVM internal errors. These errors are generally not recoverable, and should not be caught."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Catching "
+          },
+          {
+            "Text": "Error",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " will catch unchecked exceptions that signal JVM internal errors. These errors are generally not recoverable, and should not be caught."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517996474,
+        "id": "72dd6944-e8d8-4985-8aaa-f3139569bcea",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517996474,
+        "parent_id": "7cb7c1e4-65c7-4ed7-a45f-2b275827ee9b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Catching "
+            ],
+            [
+              "Throwable",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " will catch all possible exceptions."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Catching "
+          },
+          {
+            "Text": "Throwable",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " will catch all possible exceptions."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517996474,
+        "id": "a3f50897-01ee-46b9-a2ef-ae2506923825",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517996474,
+        "parent_id": "7cb7c1e4-65c7-4ed7-a45f-2b275827ee9b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The problem with catching too broad a set of exceptions is that the handler typically cannot handle all of them appropriately. In the case of the "
+            ],
+            [
+              "Exception",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and so on, it is difficult for the programmer to predict what "
+            ],
+            [
+              "could",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " be caught; i.e. what to expect."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The problem with catching too broad a set of exceptions is that the handler typically cannot handle all of them appropriately. In the case of the "
+          },
+          {
+            "Text": "Exception",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and so on, it is difficult for the programmer to predict what "
+          },
+          {
+            "Text": "could",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " be caught; i.e. what to expect."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517996474,
+        "id": "7dc76731-6100-450b-87a8-e8a128fc939c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517996474,
+        "parent_id": "7cb7c1e4-65c7-4ed7-a45f-2b275827ee9b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In general, the correct solution is to deal with the exceptions that "
+            ],
+            [
+              "are",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " thrown. For example, you can catch them and handle them in situ:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In general, the correct solution is to deal with the exceptions that "
+          },
+          {
+            "Text": "are",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " thrown. For example, you can catch them and handle them in situ:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517996474,
+        "id": "85436848-8b06-4ee6-8fec-49e4905ae36a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517996474,
+        "parent_id": "7cb7c1e4-65c7-4ed7-a45f-2b275827ee9b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "try {\n    InputStream is = new FileInputStream(fileName);\n    // process the input\n} catch (FileNotFoundException ex) {\n    System.out.println(\"Could not open file \" + fileName);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "try {\n    InputStream is = new FileInputStream(fileName);\n    // process the input\n} catch (FileNotFoundException ex) {\n    System.out.println(\"Could not open file \" + fileName);\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517996474,
+        "id": "010ed7e3-44ff-43b0-9057-fb17df8d44b0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517996474,
+        "parent_id": "7cb7c1e4-65c7-4ed7-a45f-2b275827ee9b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "or you can declare them as "
+            ],
+            [
+              "thrown",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " by the enclosing method."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "or you can declare them as "
+          },
+          {
+            "Text": "thrown",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " by the enclosing method."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517996475,
+        "id": "3c1e973a-c0fc-4ad9-90a9-757c07b31193",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517996475,
+        "parent_id": "7cb7c1e4-65c7-4ed7-a45f-2b275827ee9b",
+        "parent_table": "block",
+        "type": "divider",
+        "version": 1
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517996475,
+        "id": "cd41025b-497b-46e6-a6aa-155240e5cb0f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517996475,
+        "parent_id": "7cb7c1e4-65c7-4ed7-a45f-2b275827ee9b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "There are very few situations where catching "
+            ],
+            [
+              "Exception",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is appropriate. The only one that arises commonly is something like this:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "There are very few situations where catching "
+          },
+          {
+            "Text": "Exception",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is appropriate. The only one that arises commonly is something like this:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517996475,
+        "id": "a19afa70-24e2-449d-bc91-7a3db8cd5a64",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517996475,
+        "parent_id": "7cb7c1e4-65c7-4ed7-a45f-2b275827ee9b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public static void main(String[] args) {\n    try {\n        // do stuff\n    } catch (Exception ex) {\n        System.err.println(\"Unfortunately an error has occurred. \" +\n                           \"Please report this to X Y Z\");\n        // Write stacktrace to a log file.\n        System.exit(1);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public static void main(String[] args) {\n    try {\n        // do stuff\n    } catch (Exception ex) {\n        System.err.println(\"Unfortunately an error has occurred. \" +\n                           \"Please report this to X Y Z\");\n        // Write stacktrace to a log file.\n        System.exit(1);\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517996475,
+        "id": "a276472f-1e56-4e11-bfc5-ca1e346c3092",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517996475,
+        "parent_id": "7cb7c1e4-65c7-4ed7-a45f-2b275827ee9b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Here we genuinely want to deal with all exceptions, so catching "
+            ],
+            [
+              "Exception",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " (or even "
+            ],
+            [
+              "Throwable",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ") is correct."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Here we genuinely want to deal with all exceptions, so catching "
+          },
+          {
+            "Text": "Exception",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " (or even "
+          },
+          {
+            "Text": "Throwable",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ") is correct."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517996475,
+        "id": "84ef6429-9cdd-4039-a1ac-bb9414ad599e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517996475,
+        "parent_id": "7cb7c1e4-65c7-4ed7-a45f-2b275827ee9b",
+        "parent_table": "block",
+        "type": "divider",
+        "version": 1
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550517996477,
+        "id": "77e2a900-5308-43e9-9cfc-cd7ff3e5e8d9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550517996477,
+        "parent_id": "7cb7c1e4-65c7-4ed7-a45f-2b275827ee9b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "1 - Also known as "
+            ],
+            [
+              "Pokemon Exception Handling",
+              [
+                [
+                  "a",
+                  "http://c2.com/cgi/wiki?PokemonExceptionHandling"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "1 - Also known as "
+          },
+          {
+            "Text": "Pokemon Exception Handling",
+            "Link": "http://c2.com/cgi/wiki?PokemonExceptionHandling"
+          },
+          {
+            "Text": "."
+          }
+        ]
+      }
+    ],
+    "title": "070 Pitfall - Catching Throwable Exception Error or RuntimeException"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

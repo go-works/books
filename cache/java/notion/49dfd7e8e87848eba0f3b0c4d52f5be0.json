@@ -1,0 +1,125 @@
+{
+  "ID": "49dfd7e8-e878-48eb-a0f3-b0c4d52f5be0",
+  "Root": {
+    "alive": true,
+    "content": [
+      "1d6b1429-080c-404b-8a78-3aa9222b80de",
+      "7dd0058e-11ed-4edc-bfc7-8130172d8aed",
+      "8dc006a0-92a4-4cbc-8980-99f0a16e55e4"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550463215186,
+    "id": "49dfd7e8-e878-48eb-a0f3-b0c4d52f5be0",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550463215186,
+    "parent_id": "9450e3e1-ee88-4dd5-982c-03d03bddc553",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 A Simple Stack Using a Nested Class"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550463215184,
+        "id": "1d6b1429-080c-404b-8a78-3aa9222b80de",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550463215184,
+        "parent_id": "49dfd7e8-e878-48eb-a0f3-b0c4d52f5be0",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class IntStack {\n\n    private IntStackNode head;\n\n    // IntStackNode is the inner class of the class IntStack\n    // Each instance of this inner class functions as one link in the\n    // Overall stack that it helps to represent\n    private static class IntStackNode {\n\n        private int val;\n        private IntStackNode next;\n\n        private IntStackNode(int v, IntStackNode n) {\n            val = v;\n            next = n;\n        }\n    }\n\n    public IntStack push(int v) {\n        head = new IntStackNode(v, head);\n        return this;\n    }\n\n    public int pop() {\n        int x = head.val;\n        head = head.next;\n        return x;\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class IntStack {\n\n    private IntStackNode head;\n\n    // IntStackNode is the inner class of the class IntStack\n    // Each instance of this inner class functions as one link in the\n    // Overall stack that it helps to represent\n    private static class IntStackNode {\n\n        private int val;\n        private IntStackNode next;\n\n        private IntStackNode(int v, IntStackNode n) {\n            val = v;\n            next = n;\n        }\n    }\n\n    public IntStack push(int v) {\n        head = new IntStackNode(v, head);\n        return this;\n    }\n\n    public int pop() {\n        int x = head.val;\n        head = head.next;\n        return x;\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550463215186,
+        "id": "7dd0058e-11ed-4edc-bfc7-8130172d8aed",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550463215186,
+        "parent_id": "49dfd7e8-e878-48eb-a0f3-b0c4d52f5be0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "And the use thereof, which (notably) does not at all acknowledge the existence of the nested class."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "And the use thereof, which (notably) does not at all acknowledge the existence of the nested class."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550463215186,
+        "id": "8dc006a0-92a4-4cbc-8980-99f0a16e55e4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550463215186,
+        "parent_id": "49dfd7e8-e878-48eb-a0f3-b0c4d52f5be0",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class Main {\n    public static void main(String[] args) {\n \n        IntStack s = new IntStack();\n        s.push(4).push(3).push(2).push(1).push(0);\n\n        //prints: 0, 1, 2, 3, 4, \n        for(int i = 0; i \u003c 5; i++) {\n            System.out.print(s.pop() + \", \");\n        }            \n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class Main {\n    public static void main(String[] args) {\n \n        IntStack s = new IntStack();\n        s.push(4).push(3).push(2).push(1).push(0);\n\n        //prints: 0, 1, 2, 3, 4, \n        for(int i = 0; i \u003c 5; i++) {\n            System.out.print(s.pop() + \", \");\n        }            \n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 A Simple Stack Using a Nested Class"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

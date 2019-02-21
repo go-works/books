@@ -1,0 +1,151 @@
+{
+  "ID": "4ec00e05-419d-464a-b559-0864e961e41e",
+  "Root": {
+    "alive": true,
+    "content": [
+      "5a52892b-123e-4892-bace-99c1266fb779",
+      "ff2e7cfc-8ab6-451d-9714-98187e5178d2"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1550460822213,
+    "id": "4ec00e05-419d-464a-b559-0864e961e41e",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1550460822213,
+    "parent_id": "1299aa95-a781-4149-a1bc-85d263b01c89",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 General Pattern that does most commonly asked about tasks"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460822212,
+        "id": "5a52892b-123e-4892-bace-99c1266fb779",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460822212,
+        "parent_id": "4ec00e05-419d-464a-b559-0864e961e41e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The following is how to properly use the "
+            ],
+            [
+              "java.util.Scanner",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " class to interactively read user input from "
+            ],
+            [
+              "System.in",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " correctly( sometimes referred to as "
+            ],
+            [
+              "stdin",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", especially in C, C++ and other languages as well as in Unix and Linux). It idiomatically demonstrates the most common things that are requested to be done."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The following is how to properly use the "
+          },
+          {
+            "Text": "java.util.Scanner",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " class to interactively read user input from "
+          },
+          {
+            "Text": "System.in",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " correctly( sometimes referred to as "
+          },
+          {
+            "Text": "stdin",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", especially in C, C++ and other languages as well as in Unix and Linux). It idiomatically demonstrates the most common things that are requested to be done."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550460822213,
+        "id": "ff2e7cfc-8ab6-451d-9714-98187e5178d2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550460822213,
+        "parent_id": "4ec00e05-419d-464a-b559-0864e961e41e",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "package com.stackoverflow.scanner;\n\nimport javax.annotation.Nonnull;\nimport java.math.BigInteger;\nimport java.net.MalformedURLException;\nimport java.net.URL;\nimport java.util.*;\nimport java.util.regex.Pattern;\n\nimport static java.lang.String.format;\n\npublic class ScannerExample\n{\n    private static final Set\u003cString\u003e EXIT_COMMANDS;\n    private static final Set\u003cString\u003e HELP_COMMANDS;\n    private static final Pattern DATE_PATTERN;\n    private static final String HELP_MESSAGE;\n\n    static\n    {\n        final SortedSet\u003cString\u003e ecmds = new TreeSet\u003cString\u003e(String.CASE_INSENSITIVE_ORDER);\n        ecmds.addAll(Arrays.asList(\"exit\", \"done\", \"quit\", \"end\", \"fino\"));\n        EXIT_COMMANDS = Collections.unmodifiableSortedSet(ecmds);\n        final SortedSet\u003cString\u003e hcmds = new TreeSet\u003cString\u003e(String.CASE_INSENSITIVE_ORDER);\n        hcmds.addAll(Arrays.asList(\"help\", \"helpi\", \"?\"));\n        HELP_COMMANDS = Collections.unmodifiableSet(hcmds);\n        DATE_PATTERN = Pattern.compile(\"\\\\d{4}([-\\\\/])\\\\d{2}\\\\1\\\\d{2}\"); // http://regex101.com/r/xB8dR3/1\n        HELP_MESSAGE = format(\"Please enter some data or enter one of the following commands to exit %s\", EXIT_COMMANDS);\n    }\n\n    /**\n     * Using exceptions to control execution flow is always bad.\n     * That is why this is encapsulated in a method, this is done this\n     * way specifically so as not to introduce any external libraries\n     * so that this is a completely self contained example.\n     * @param s possible url\n     * @return true if s represents a valid url, false otherwise\n     */\n    private static boolean isValidURL(@Nonnull final String s)\n    {\n        try { new URL(s); return true; }\n        catch (final MalformedURLException e) { return false; }\n    }\n\n    private static void output(@Nonnull final String format, @Nonnull final Object... args)\n    {\n        System.out.println(format(format, args));\n    }\n\n    public static void main(final String[] args)\n    {\n        final Scanner sis = new Scanner(System.in);\n        output(HELP_MESSAGE);\n        while (sis.hasNext())\n        {\n            if (sis.hasNextInt())\n            {\n                final int next = sis.nextInt();\n                output(\"You entered an Integer = %d\", next);\n            }\n            else if (sis.hasNextLong())\n            {\n                final long next = sis.nextLong();\n                output(\"You entered a Long = %d\", next);\n            }\n            else if (sis.hasNextDouble())\n            {\n                final double next = sis.nextDouble();\n                output(\"You entered a Double = %f\", next);\n            }\n            else if (sis.hasNext(\"\\\\d+\"))\n            {\n                final BigInteger next = sis.nextBigInteger();\n                output(\"You entered a BigInteger = %s\", next);\n            }\n            else if (sis.hasNextBoolean())\n            {\n                final boolean next = sis.nextBoolean();\n                output(\"You entered a Boolean representation = %s\", next);\n            }\n            else if (sis.hasNext(DATE_PATTERN))\n            {\n                final String next = sis.next(DATE_PATTERN);\n                output(\"You entered a Date representation = %s\", next);\n            }\n            else // unclassified\n            {\n                final String next = sis.next();\n                if (isValidURL(next))\n                {\n                    output(\"You entered a valid URL = %s\", next);\n                }\n                else\n                {\n                    if (EXIT_COMMANDS.contains(next))\n                    {\n                        output(\"Exit command %s issued, exiting!\", next);\n                        break;\n                    }\n                    else if (HELP_COMMANDS.contains(next)) { output(HELP_MESSAGE); }\n                    else { output(\"You entered an unclassified String = %s\", next); }\n                }\n            }\n        }\n        /*\n           This will close the underlying Readable, in this case System.in, and free those resources.\n           You will not be to read from System.in anymore after this you call .close().\n           If you wanted to use System.in for something else, then don't close the Scanner.\n        */\n        sis.close();\n        System.exit(0);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "package com.stackoverflow.scanner;\n\nimport javax.annotation.Nonnull;\nimport java.math.BigInteger;\nimport java.net.MalformedURLException;\nimport java.net.URL;\nimport java.util.*;\nimport java.util.regex.Pattern;\n\nimport static java.lang.String.format;\n\npublic class ScannerExample\n{\n    private static final Set\u003cString\u003e EXIT_COMMANDS;\n    private static final Set\u003cString\u003e HELP_COMMANDS;\n    private static final Pattern DATE_PATTERN;\n    private static final String HELP_MESSAGE;\n\n    static\n    {\n        final SortedSet\u003cString\u003e ecmds = new TreeSet\u003cString\u003e(String.CASE_INSENSITIVE_ORDER);\n        ecmds.addAll(Arrays.asList(\"exit\", \"done\", \"quit\", \"end\", \"fino\"));\n        EXIT_COMMANDS = Collections.unmodifiableSortedSet(ecmds);\n        final SortedSet\u003cString\u003e hcmds = new TreeSet\u003cString\u003e(String.CASE_INSENSITIVE_ORDER);\n        hcmds.addAll(Arrays.asList(\"help\", \"helpi\", \"?\"));\n        HELP_COMMANDS = Collections.unmodifiableSet(hcmds);\n        DATE_PATTERN = Pattern.compile(\"\\\\d{4}([-\\\\/])\\\\d{2}\\\\1\\\\d{2}\"); // http://regex101.com/r/xB8dR3/1\n        HELP_MESSAGE = format(\"Please enter some data or enter one of the following commands to exit %s\", EXIT_COMMANDS);\n    }\n\n    /**\n     * Using exceptions to control execution flow is always bad.\n     * That is why this is encapsulated in a method, this is done this\n     * way specifically so as not to introduce any external libraries\n     * so that this is a completely self contained example.\n     * @param s possible url\n     * @return true if s represents a valid url, false otherwise\n     */\n    private static boolean isValidURL(@Nonnull final String s)\n    {\n        try { new URL(s); return true; }\n        catch (final MalformedURLException e) { return false; }\n    }\n\n    private static void output(@Nonnull final String format, @Nonnull final Object... args)\n    {\n        System.out.println(format(format, args));\n    }\n\n    public static void main(final String[] args)\n    {\n        final Scanner sis = new Scanner(System.in);\n        output(HELP_MESSAGE);\n        while (sis.hasNext())\n        {\n            if (sis.hasNextInt())\n            {\n                final int next = sis.nextInt();\n                output(\"You entered an Integer = %d\", next);\n            }\n            else if (sis.hasNextLong())\n            {\n                final long next = sis.nextLong();\n                output(\"You entered a Long = %d\", next);\n            }\n            else if (sis.hasNextDouble())\n            {\n                final double next = sis.nextDouble();\n                output(\"You entered a Double = %f\", next);\n            }\n            else if (sis.hasNext(\"\\\\d+\"))\n            {\n                final BigInteger next = sis.nextBigInteger();\n                output(\"You entered a BigInteger = %s\", next);\n            }\n            else if (sis.hasNextBoolean())\n            {\n                final boolean next = sis.nextBoolean();\n                output(\"You entered a Boolean representation = %s\", next);\n            }\n            else if (sis.hasNext(DATE_PATTERN))\n            {\n                final String next = sis.next(DATE_PATTERN);\n                output(\"You entered a Date representation = %s\", next);\n            }\n            else // unclassified\n            {\n                final String next = sis.next();\n                if (isValidURL(next))\n                {\n                    output(\"You entered a valid URL = %s\", next);\n                }\n                else\n                {\n                    if (EXIT_COMMANDS.contains(next))\n                    {\n                        output(\"Exit command %s issued, exiting!\", next);\n                        break;\n                    }\n                    else if (HELP_COMMANDS.contains(next)) { output(HELP_MESSAGE); }\n                    else { output(\"You entered an unclassified String = %s\", next); }\n                }\n            }\n        }\n        /*\n           This will close the underlying Readable, in this case System.in, and free those resources.\n           You will not be to read from System.in anymore after this you call .close().\n           If you wanted to use System.in for something else, then don't close the Scanner.\n        */\n        sis.close();\n        System.exit(0);\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 General Pattern that does most commonly asked about tasks"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}
