@@ -57,7 +57,7 @@ func genNetlifyRedirectsForBook(b *Book) []string {
 	return res
 }
 
-func genNetlifyRedirects() {
+func genNetlifyRedirects(books []*Book) {
 	var a []string
 	for _, b := range books {
 		ab := genNetlifyRedirectsForBook(b)

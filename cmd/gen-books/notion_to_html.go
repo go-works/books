@@ -85,6 +85,10 @@ func (g *HTMLGenerator) maybeReplaceNotionLink(uri string) string {
 		return uri
 	}
 	page := g.book.idToPage[id]
+	if page == nil {
+		fmt.Printf("Didn't find page with id '%s' extracted from url '%s'\n", id, uri)
+		return uri
+	}
 	return page.URL()
 }
 
