@@ -16,7 +16,7 @@
     "id": "a48274b1-3717-4603-9761-e0b37bd18c6f",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550710020000,
+    "last_edited_time": 1550799540000,
     "parent_id": "efdc4616-d5e4-4dce-b49c-941c07a9ac4b",
     "parent_table": "block",
     "properties": {
@@ -27,7 +27,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 9,
     "content_resolved": [
       {
         "alive": true,
@@ -115,13 +115,13 @@
         "id": "be86577c-d313-49c0-a92c-2d1a0afe17fd",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522408476,
+        "last_edited_time": 1550799540000,
         "parent_id": "a48274b1-3717-4603-9761-e0b37bd18c6f",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -131,9 +131,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "struct VirtualDestructor {\n    virtual ~VirtualDestructor() = default;\n};\n\nstruct VirtualDerived : VirtualDestructor {};\n\nstruct ProtectedDestructor {\n  protected:\n    ~ProtectedDestructor() = default;\n};\n\nstruct ProtectedDerived : ProtectedDestructor {\n    ~ProtectedDerived() = default;\n};\n\n// ...\n\nVirtualDestructor* vd = new VirtualDerived;\ndelete vd; // Looks up VirtualDestructor::~VirtualDestructor() in vtable, sees it's\n           // VirtualDerived::~VirtualDerived(), calls that.\n\nProtectedDestructor* pd = new ProtectedDerived;\ndelete pd; // Error: ProtectedDestructor::~ProtectedDestructor() is protected.\ndelete static_cast\u003cProtectedDerived*\u003e(pd); // Good.",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,

@@ -13,4 +13,7 @@ exitIfFailed
 exitIfFailed
 
 Remove-Item -Force -ErrorAction SilentlyContinue ./gen.exe
-netlifyctl deploy --draft
+netlify deploy --open
+
+#./netlifyctl -A $NETLIFY_TOKEN deploy || true
+#    cat netlifyctl-debug.log || true

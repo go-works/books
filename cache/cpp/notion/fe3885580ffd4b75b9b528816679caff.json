@@ -10,25 +10,30 @@
       "3118ec30-bb30-4bbb-994c-eb9e988041bb",
       "5cfad3ef-f066-40d3-bffc-7805b27f774c",
       "143695d8-9208-4fdd-b863-2be17e0610f3",
-      "ff15093e-3e0a-4494-97ae-c10eec930174"
+      "ff15093e-3e0a-4494-97ae-c10eec930174",
+      "23e57007-8bb1-4a91-9e7e-a9d052deffbb"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550523388473,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
     "id": "fe388558-0ffd-4b75-b9b5-28816679caff",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550523388473,
+    "last_edited_time": 1550797140000,
     "parent_id": "546689ba-7cc0-49cb-ae94-05172f20d6dc",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "010 Friend function"
+          "Friend function"
         ]
       ]
     },
     "type": "page",
-    "version": 1,
+    "version": 25,
     "content_resolved": [
       {
         "alive": true,
@@ -62,13 +67,13 @@
         "id": "ca7c4a69-3e2a-414e-991e-29167280858f",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550523388472,
+        "last_edited_time": 1550797140000,
         "parent_id": "fe388558-0ffd-4b75-b9b5-28816679caff",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -78,9 +83,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "// Forward declaration of functions.\nvoid friend_function();\nvoid non_friend_function();\n\nclass PrivateHolder {\npublic:\n    PrivateHolder(int val) : private_value(val) {}\nprivate:\n    int private_value;\n    // Declare one of the function as a friend.\n    friend void friend_function();\n};\n\nvoid non_friend_function() {\n    PrivateHolder ph(10);\n    // Compilation error: private_value is private.\n    std::cout \u003c\u003c ph.private_value \u003c\u003c std::endl;\n}\n\nvoid friend_function() {\n    // OK: friends may access private values.\n    PrivateHolder ph(10);\n    std::cout \u003c\u003c ph.private_value \u003c\u003c std::endl;\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -157,13 +162,13 @@
         "id": "3118ec30-bb30-4bbb-994c-eb9e988041bb",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550523388473,
+        "last_edited_time": 1550797140000,
         "parent_id": "fe388558-0ffd-4b75-b9b5-28816679caff",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -173,9 +178,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "class PrivateHolderDerived : public PrivateHolder {\npublic:\n    PrivateHolderDerived(int val) : PrivateHolder(val) {}\nprivate:\n    int derived_private_value = 0;\n};",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -209,13 +214,13 @@
         "id": "143695d8-9208-4fdd-b863-2be17e0610f3",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550523388473,
+        "last_edited_time": 1550797140000,
         "parent_id": "fe388558-0ffd-4b75-b9b5-28816679caff",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -225,9 +230,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "void friend_function() {\n    PrivateHolderDerived pd(20);\n    // OK.\n    std::cout \u003c\u003c pd.private_value \u003c\u003c std::endl;\n    // Compilation error: derived_private_value is private.\n    std::cout \u003c\u003c pd.derived_private_value \u003c\u003c std::endl;\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -289,9 +294,29 @@
             "Text": ", while friend function can do it."
           }
         ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550797140000,
+        "id": "23e57007-8bb1-4a91-9e7e-a9d052deffbb",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550797140000,
+        "parent_id": "fe388558-0ffd-4b75-b9b5-28816679caff",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
       }
     ],
-    "title": "010 Friend function"
+    "title": "Friend function",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
   },
   "Users": [
     {

@@ -33,7 +33,7 @@
     "id": "d6fc05c6-8628-48ce-812c-002998499dff",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550656080000,
+    "last_edited_time": 1550801400000,
     "parent_id": "40e8450d-4736-4ad0-be7d-a2d9307ddf4f",
     "parent_table": "block",
     "properties": {
@@ -44,7 +44,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 9,
     "content_resolved": [
       {
         "alive": true,
@@ -229,13 +229,13 @@
         "id": "262f160c-0100-4493-81e8-d92dae663398",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522018634,
+        "last_edited_time": 1550801400000,
         "parent_id": "d6fc05c6-8628-48ce-812c-002998499dff",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -245,9 +245,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "struct A\n{\npublic:\n    int p1;\nprotected:\n    int p2;\nprivate:\n    int p3;\n};\n\n//Make B inherit publicly (default) from A\nstruct B : A\n{\n};",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -641,13 +641,13 @@
         "id": "374f6bd3-e737-4aa7-a535-69b3d941d970",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522018637,
+        "last_edited_time": 1550801400000,
         "parent_id": "d6fc05c6-8628-48ce-812c-002998499dff",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -657,9 +657,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "struct B : public A // or just `struct B : A`\n{\n    void foo()\n    {\n        p1 = 0; //well formed, p1 is public in B\n        p2 = 0; //well formed, p2 is protected in B\n        p3 = 0; //ill formed, p3 is private in A\n    }\n};\n\nB b;\nb.p1 = 1; //well formed, p1 is public\nb.p2 = 1; //ill formed, p2 is protected\nb.p3 = 1; //ill formed, p3 is inaccessible",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -705,13 +705,13 @@
         "id": "2fb25e4a-56f6-4d20-a9b6-ffb3d26aa4f0",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522018638,
+        "last_edited_time": 1550801400000,
         "parent_id": "d6fc05c6-8628-48ce-812c-002998499dff",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -721,9 +721,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "struct B : private A\n{\n    void foo()\n    {\n        p1 = 0; //well formed, p1 is private in B\n        p2 = 0; //well formed, p2 is private in B\n        p3 = 0; //ill formed, p3 is private in A\n    }\n};\n\nB b;\nb.p1 = 1; //ill formed, p1 is private\nb.p2 = 1; //ill formed, p2 is private\nb.p3 = 1; //ill formed, p3 is inaccessible",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -769,13 +769,13 @@
         "id": "8b33b5c3-3f40-4432-8c0e-ae64b1aa8fca",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522018638,
+        "last_edited_time": 1550801400000,
         "parent_id": "d6fc05c6-8628-48ce-812c-002998499dff",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -785,9 +785,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "struct B : protected A\n{\n    void foo()\n    {\n        p1 = 0; //well formed, p1 is protected in B\n        p2 = 0; //well formed, p2 is protected in B\n        p3 = 0; //ill formed, p3 is private in A\n    }\n};\n\nB b;\nb.p1 = 1; //ill formed, p1 is protected\nb.p2 = 1; //ill formed, p2 is protected\nb.p3 = 1; //ill formed, p3 is inaccessible",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,

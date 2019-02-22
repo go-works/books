@@ -29,7 +29,7 @@
     "id": "e8fe82bf-eff7-4f69-9dc8-10b6cd5ce57a",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550656020000,
+    "last_edited_time": 1550801040000,
     "parent_id": "402ef4da-a4e3-4503-ab08-9a4aa56821b5",
     "parent_table": "block",
     "properties": {
@@ -40,7 +40,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 9,
     "content_resolved": [
       {
         "alive": true,
@@ -93,13 +93,13 @@
         "id": "508b2bb7-4bc0-4031-ac51-1a444557420a",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522027663,
+        "last_edited_time": 1550801040000,
         "parent_id": "e8fe82bf-eff7-4f69-9dc8-10b6cd5ce57a",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -109,9 +109,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "std::unique_ptr\u003cSDL_Surface\u003e a; // won't work, UNSAFE!",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -216,13 +216,13 @@
         "id": "0c068ca7-14fc-4ba0-8920-8c6e55ae8c14",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522027664,
+        "last_edited_time": 1550801040000,
         "parent_id": "e8fe82bf-eff7-4f69-9dc8-10b6cd5ce57a",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -232,9 +232,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "std::unique_ptr\u003cSDL_Surface, void(*)(SDL_Surface*)\u003e a(pointer, SDL_FreeSurface);",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -286,13 +286,13 @@
         "id": "86e85893-c3b0-4336-9f58-ecd2ca85b052",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522027664,
+        "last_edited_time": 1550801040000,
         "parent_id": "e8fe82bf-eff7-4f69-9dc8-10b6cd5ce57a",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -302,9 +302,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "struct SurfaceDeleter {\n    void operator()(SDL_Surface* surf) {\n        SDL_FreeSurface(surf);\n    }\n};\n\nstd::unique_ptr\u003cSDL_Surface, SurfaceDeleter\u003e a(pointer, SurfaceDeleter{}); // safe\nstd::unique_ptr\u003cSDL_Surface, SurfaceDeleter\u003e b(pointer); // equivalent to the above\n                                                         // as the deleter is value-initialized",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -615,13 +615,13 @@
         "id": "9e87ff50-e841-4090-9656-f4183505f18f",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522027667,
+        "last_edited_time": 1550801040000,
         "parent_id": "e8fe82bf-eff7-4f69-9dc8-10b6cd5ce57a",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -631,9 +631,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "// deleter required at construction time and is part of the type\nstd::unique_ptr\u003cSDL_Surface, void(*)(SDL_Surface*)\u003e a(pointer, SDL_FreeSurface);\n\n// deleter is only required at construction time, not part of the type\nstd::shared_ptr\u003cSDL_Surface\u003e b(pointer, SDL_FreeSurface);",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -685,13 +685,13 @@
         "id": "0664f62c-66f1-4bbc-bab5-0fd1300618d0",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522027667,
+        "last_edited_time": 1550801040000,
         "parent_id": "e8fe82bf-eff7-4f69-9dc8-10b6cd5ce57a",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -701,9 +701,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "template \u003cauto DeleteFn\u003e\nstruct FunctionDeleter {\n    template \u003cclass T\u003e\n    void operator()(T* ptr) {\n        DeleteFn(ptr);\n    }\n};\n\ntemplate \u003cclass T, auto DeleteFn\u003e\nusing unique_ptr_deleter = std::unique_ptr\u003cT, FunctionDeleter\u003cDeleteFn\u003e\u003e;",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -737,13 +737,13 @@
         "id": "62d01b8d-d867-4a58-8917-b5539d25950a",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522027667,
+        "last_edited_time": 1550801040000,
         "parent_id": "e8fe82bf-eff7-4f69-9dc8-10b6cd5ce57a",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -753,9 +753,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "unique_ptr_deleter\u003cSDL_Surface, SDL_FreeSurface\u003e c(pointer);",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,

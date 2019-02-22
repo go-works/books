@@ -6,7 +6,7 @@
       "dcf6c5c3-5371-4900-95e0-cae17ac09648",
       "1366de6a-47d2-49cd-b059-b8d9a9d0ae27",
       "33876b39-07db-4ed0-899c-739124239c54",
-      "647ab06c-f28e-4656-8ce7-29b785144a9b",
+      "d9c72daf-92cf-4b4d-b752-9a77037044bd",
       "c3080f93-5ce8-4de2-a1e3-a8ca3482ec6a",
       "7cf22de6-5965-48bd-adab-07160fa4acd0",
       "59793020-9995-4931-a204-269dd071f55d",
@@ -21,21 +21,25 @@
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550524295896,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
     "id": "2aafbbd3-8acd-4cb3-9c2e-9b68d7a4cbe7",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550524295896,
+    "last_edited_time": 1550800740000,
     "parent_id": "c0487639-ff5b-4e90-a0b3-9fe411676c2c",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "030 this Pointer"
+          "03this Pointer"
         ]
       ]
     },
     "type": "page",
-    "version": 1,
+    "version": 13,
     "content_resolved": [
       {
         "alive": true,
@@ -105,13 +109,13 @@
         "id": "1366de6a-47d2-49cd-b059-b8d9a9d0ae27",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550524295891,
+        "last_edited_time": 1550800740000,
         "parent_id": "2aafbbd3-8acd-4cb3-9c2e-9b68d7a4cbe7",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -121,9 +125,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "struct ThisPointer {\n    int i;\n\n    ThisPointer(int ii);\n\n    virtual void func();\n\n    int  get_i() const;\n    void set_i(int ii);\n};\nThisPointer::ThisPointer(int ii) : i(ii) {}\n// Compiler rewrites as:\nThisPointer::ThisPointer(int ii) : this-\u003ei(ii) {}\n// Constructor is responsible for turning allocated memory into 'this'.\n// As the constructor is responsible for creating the object, 'this' will not be \"fully\"\n// valid until the instance is fully constructed.\n\n/* virtual */ void ThisPointer::func() {\n    if (some_external_condition) {\n        set_i(182);\n    } else {\n        i = 218;\n    }\n}\n// Compiler rewrites as:\n/* virtual */ void ThisPointer::func(ThisPointer* this) {\n    if (some_external_condition) {\n        this-\u003eset_i(182);\n    } else {\n        this-\u003ei = 218;\n    }\n}\n\nint  ThisPointer::get_i() const { return i; }\n// Compiler rewrites as:\nint  ThisPointer::get_i(const ThisPointer* this) { return this-\u003ei; }\n\nvoid ThisPointer::set_i(int ii) { i = ii; }\n// Compiler rewrites as:\nvoid ThisPointer::set_i(ThisPointer* this, int ii) { this-\u003ei = ii; }",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -132,7 +136,7 @@
         "id": "33876b39-07db-4ed0-899c-739124239c54",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550524295891,
+        "last_edited_time": 1550800740000,
         "parent_id": "2aafbbd3-8acd-4cb3-9c2e-9b68d7a4cbe7",
         "parent_table": "block",
         "properties": {
@@ -149,7 +153,7 @@
               ]
             ],
             [
-              " can safely be used to (implicitly or explicitly) access any field that has already been initialised, or any field in a parent class; conversely, (implicitly or explicitly) accessing any fields that haven’t yet been initialised, or any fields in a derived class, is unsafe (due to the derived class not yet being constructed, and thus its fields neither being initialised nor existing). It is also unsafe to call virtual member functions through "
+              " can safely be used to (implicitly or explicitly) access any field that has already been initialized, or any field in a parent class; conversely, (implicitly or explicitly) accessing any fields that haven’t yet been initialized, or any fields in a derived class, is unsafe (due to the derived class not yet being constructed, and thus its fields neither being initialized nor existing). It is also unsafe to call virtual member functions through "
             ],
             [
               "this",
@@ -165,7 +169,7 @@
           ]
         },
         "type": "text",
-        "version": 1,
+        "version": 8,
         "inline_content": [
           {
             "Text": "In a constructor, "
@@ -175,7 +179,7 @@
             "AttrFlags": 2
           },
           {
-            "Text": " can safely be used to (implicitly or explicitly) access any field that has already been initialised, or any field in a parent class; conversely, (implicitly or explicitly) accessing any fields that haven’t yet been initialised, or any fields in a derived class, is unsafe (due to the derived class not yet being constructed, and thus its fields neither being initialised nor existing). It is also unsafe to call virtual member functions through "
+            "Text": " can safely be used to (implicitly or explicitly) access any field that has already been initialized, or any field in a parent class; conversely, (implicitly or explicitly) accessing any fields that haven’t yet been initialized, or any fields in a derived class, is unsafe (due to the derived class not yet being constructed, and thus its fields neither being initialized nor existing). It is also unsafe to call virtual member functions through "
           },
           {
             "Text": "this",
@@ -189,15 +193,14 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550524295891,
-        "id": "647ab06c-f28e-4656-8ce7-29b785144a9b",
-        "ignore_block_count": true,
+        "created_time": 1550800740000,
+        "id": "d9c72daf-92cf-4b4d-b752-9a77037044bd",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550524295891,
+        "last_edited_time": 1550800740000,
         "parent_id": "2aafbbd3-8acd-4cb3-9c2e-9b68d7a4cbe7",
         "parent_table": "block",
-        "type": "divider",
-        "version": 1
+        "type": "text",
+        "version": 4
       },
       {
         "alive": true,
@@ -357,13 +360,13 @@
         "id": "7cf22de6-5965-48bd-adab-07160fa4acd0",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550524295892,
+        "last_edited_time": 1550800740000,
         "parent_id": "2aafbbd3-8acd-4cb3-9c2e-9b68d7a4cbe7",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -373,9 +376,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "class CtorThisBase {\n    short s;\n\n  public:\n    CtorThisBase() : s(516) {}\n};\n\nclass CtorThis : public CtorThisBase {\n    int i, j, k;\n\n  public:\n    // Good constructor.\n    CtorThis() : i(s + 42), j(this-\u003ei), k(j) {}\n\n    // Bad constructor.\n    CtorThis(int ii) : i(ii), j(this-\u003ek), k(b ? 51 : -51) {\n        virt_func();\n    }\n\n    virtual void virt_func() { i += 2; }\n};\n\nclass CtorThisDerived : public CtorThis {\n    bool b;\n\n  public:\n    CtorThisDerived()       : b(true) {}\n    CtorThisDerived(int ii) : CtorThis(ii), b(false) {}\n\n    void virt_func() override { k += (2 * i); }\n};\n\n// ...\n\nCtorThisDerived ctd_good;\nCtorThisDerived ctd_bad(3);",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -1113,7 +1116,15 @@
         ]
       }
     ],
-    "title": "030 this Pointer"
+    "title": "03this Pointer",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
   },
   "Users": [
     {

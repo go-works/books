@@ -8,9 +8,10 @@
       "0441d047-ad7d-486c-826c-5be83988ce95",
       "f6e8d553-03df-4996-a4cb-dfd92e78c672",
       "2a3f02a8-1a86-4e5a-9ee9-244a6aee549b",
-      "0dbdc013-eb6c-4e34-b7e6-bf8f347387bf",
+      "b04e8a0f-fc17-41ce-bea3-bbdb2850edc3",
       "d61ed5d3-642a-44d5-bf61-4348a83750cd",
-      "2843a0db-175d-4f25-828f-f595582320b7"
+      "2843a0db-175d-4f25-828f-f595582320b7",
+      "df6988f2-3d0f-4e57-a651-de0bf77b179b"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550521958600,
@@ -21,18 +22,18 @@
     "id": "cca58910-7b7a-499e-9e72-75427a994f97",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550656680000,
+    "last_edited_time": 1550796720000,
     "parent_id": "cbd900b3-1684-4f0d-977a-5a5b2a20aff3",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "Iterating with std integer sequence"
+          "Iterating with std::integer_sequence"
         ]
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 19,
     "content_resolved": [
       {
         "alive": true,
@@ -66,13 +67,13 @@
         "id": "3a6c3bf0-8b6d-416c-920d-7af886aeec54",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521958599,
+        "last_edited_time": 1550796600000,
         "parent_id": "cca58910-7b7a-499e-9e72-75427a994f97",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -82,9 +83,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "template \u003cclass T, T... Ints\u003e\nclass integer_sequence;\n\ntemplate \u003cstd::size_t... Ints\u003e\nusing index_sequence = std::integer_sequence\u003cstd::size_t, Ints...\u003e;",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -118,13 +119,13 @@
         "id": "f6e8d553-03df-4996-a4cb-dfd92e78c672",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521958600,
+        "last_edited_time": 1550796600000,
         "parent_id": "cca58910-7b7a-499e-9e72-75427a994f97",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -134,9 +135,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "template \u003cclass T, T N\u003e\nusing make_integer_sequence = std::integer_sequence\u003cT, /* a sequence 0, 1, 2, ..., N-1 */ \u003e;\n\ntemplate\u003cstd::size_t N\u003e\nusing make_index_sequence = make_integer_sequence\u003cstd::size_t, N\u003e;",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -166,15 +167,14 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550521958600,
-        "id": "0dbdc013-eb6c-4e34-b7e6-bf8f347387bf",
-        "ignore_block_count": true,
+        "created_time": 1550796600000,
+        "id": "b04e8a0f-fc17-41ce-bea3-bbdb2850edc3",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521958600,
+        "last_edited_time": 1550796600000,
         "parent_id": "cca58910-7b7a-499e-9e72-75427a994f97",
         "parent_table": "block",
-        "type": "divider",
-        "version": 1
+        "type": "text",
+        "version": 4
       },
       {
         "alive": true,
@@ -244,13 +244,13 @@
         "id": "2843a0db-175d-4f25-828f-f595582320b7",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521958600,
+        "last_edited_time": 1550796660000,
         "parent_id": "cca58910-7b7a-499e-9e72-75427a994f97",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -260,12 +260,24 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "namespace detail {\n    template \u003cclass F, class Tuple, std::size_t... Is\u003e\n    decltype(auto) apply_impl(F\u0026\u0026 f, Tuple\u0026\u0026 tpl, std::index_sequence\u003cIs...\u003e ) {\n        return std::forward\u003cF\u003e(f)(std::get\u003cIs\u003e(std::forward\u003cTuple\u003e(tpl))...);\n    }\n}\n\ntemplate \u003cclass F, class Tuple\u003e\ndecltype(auto) apply(F\u0026\u0026 f, Tuple\u0026\u0026 tpl) {\n    return detail::apply_impl(std::forward\u003cF\u003e(f),\n        std::forward\u003cTuple\u003e(tpl),\n        std::make_index_sequence\u003cstd::tuple_size\u003cstd::decay_t\u003cTuple\u003e\u003e::value\u003e{});\n}\n\n\n// this will print 3\nint f(int, char, double);\n\nauto some_args = std::make_tuple(42, 'x', 3.14);\nint r = apply(f, some_args); // calls f(42, 'x', 3.14)",
-        "code_language": "Plain Text"
+        "code_language": "C++"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550796660000,
+        "id": "df6988f2-3d0f-4e57-a651-de0bf77b179b",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550796660000,
+        "parent_id": "cca58910-7b7a-499e-9e72-75427a994f97",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
       }
     ],
-    "title": "Iterating with std integer sequence",
+    "title": "Iterating with std::integer_sequence",
     "format_page": {
       "page_cover": "",
       "page_cover_position": 0,

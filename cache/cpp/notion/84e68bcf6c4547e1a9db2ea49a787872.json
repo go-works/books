@@ -17,18 +17,18 @@
     "id": "84e68bcf-6c45-47e1-a9db-2ea49a787872",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550656020000,
+    "last_edited_time": 1550801100000,
     "parent_id": "402ef4da-a4e3-4503-ab08-9a4aa56821b5",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "Casting std shared ptr pointers"
+          "Casting std::shared_ptr pointers"
         ]
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 14,
     "content_resolved": [
       {
         "alive": true,
@@ -224,13 +224,13 @@
         "id": "975b4ebb-17eb-495e-b2d9-3670e0da6bed",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522029528,
+        "last_edited_time": 1550801100000,
         "parent_id": "84e68bcf-6c45-47e1-a9db-2ea49a787872",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -240,9 +240,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "struct Base { virtual ~Base() noexcept {}; };\nstruct Derived: Base {};\nauto derivedPtr(std::make_shared\u003cDerived\u003e());\nauto basePtr(std::static_pointer_cast\u003cBase\u003e(derivedPtr));\nauto constBasePtr(std::const_pointer_cast\u003cBase const\u003e(basePtr));\nauto constDerivedPtr(std::dynamic_pointer_cast\u003cDerived const\u003e(constBasePtr));",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -332,13 +332,13 @@
         "id": "59b5137a-5a4a-41e1-99bd-1ceb2dedb866",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522029530,
+        "last_edited_time": 1550801100000,
         "parent_id": "84e68bcf-6c45-47e1-a9db-2ea49a787872",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -348,12 +348,12 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "template \u003ctypename To, typename From\u003e\ninline std::shared_ptr\u003cTo\u003e reinterpret_pointer_cast(\n    std::shared_ptr\u003cFrom\u003e const \u0026 ptr) noexcept\n{ return std::shared_ptr\u003cTo\u003e(ptr, reinterpret_cast\u003cTo *\u003e(ptr.get())); }",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       }
     ],
-    "title": "Casting std shared ptr pointers",
+    "title": "Casting std::shared_ptr pointers",
     "format_page": {
       "page_cover": "",
       "page_cover_position": 0,

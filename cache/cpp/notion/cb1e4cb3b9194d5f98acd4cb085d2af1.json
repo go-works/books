@@ -21,18 +21,18 @@
     "id": "cb1e4cb3-b919-4d5f-98ac-d4cb085d2af1",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550655960000,
+    "last_edited_time": 1550801160000,
     "parent_id": "402ef4da-a4e3-4503-ab08-9a4aa56821b5",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "Getting a shared ptr referring to this"
+          "Getting a shared_ptr referring to this"
         ]
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 15,
     "content_resolved": [
       {
         "alive": true,
@@ -211,13 +211,13 @@
         "id": "17ff6104-aa9f-4f9b-96ba-2160948edde9",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522031724,
+        "last_edited_time": 1550801160000,
         "parent_id": "cb1e4cb3-b919-4d5f-98ac-d4cb085d2af1",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "Note",
+              "Note:",
               [
                 [
                   "b"
@@ -225,7 +225,7 @@
               ]
             ],
             [
-              " that the object must be created as a "
+              " the object must be created as a "
             ],
             [
               "shared_ptr",
@@ -241,14 +241,14 @@
           ]
         },
         "type": "text",
-        "version": 1,
+        "version": 8,
         "inline_content": [
           {
-            "Text": "Note",
+            "Text": "Note:",
             "AttrFlags": 1
           },
           {
-            "Text": " that the object must be created as a "
+            "Text": " the object must be created as a "
           },
           {
             "Text": "shared_ptr",
@@ -266,13 +266,13 @@
         "id": "6a0661f1-7de1-44bc-bb68-2d2641f0ce41",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522031724,
+        "last_edited_time": 1550801160000,
         "parent_id": "cb1e4cb3-b919-4d5f-98ac-d4cb085d2af1",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -282,9 +282,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "#include \u003cmemory\u003e\nclass A: public enable_shared_from_this\u003cA\u003e {\n};\nA* ap1 =new A();\nshared_ptr\u003cA\u003e ap2(ap1); // First prepare a shared pointer to the object and hold it!\n// Then get a shared pointer to the object from the object itself\nshared_ptr\u003cA\u003e ap3 = ap1-\u003eshared_from_this(); \nint c3 =ap3.use_count(); // =2: pointing to the same object",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -293,13 +293,13 @@
         "id": "de81a4af-cec4-470f-a1ba-00ec7907d225",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522031724,
+        "last_edited_time": 1550801160000,
         "parent_id": "cb1e4cb3-b919-4d5f-98ac-d4cb085d2af1",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "Note",
+              "Note:",
               [
                 [
                   "b"
@@ -307,7 +307,7 @@
               ]
             ],
             [
-              "(2) you cannot call "
+              " you cannot call "
             ],
             [
               "enable_shared_from_this",
@@ -323,14 +323,14 @@
           ]
         },
         "type": "text",
-        "version": 1,
+        "version": 6,
         "inline_content": [
           {
-            "Text": "Note",
+            "Text": "Note:",
             "AttrFlags": 1
           },
           {
-            "Text": "(2) you cannot call "
+            "Text": " you cannot call "
           },
           {
             "Text": "enable_shared_from_this",
@@ -348,13 +348,13 @@
         "id": "41ba9424-1fff-4c2e-a0f4-65254935da77",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522031725,
+        "last_edited_time": 1550801160000,
         "parent_id": "cb1e4cb3-b919-4d5f-98ac-d4cb085d2af1",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -364,9 +364,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "#include \u003cmemory\u003e // enable_shared_from_this\n\nclass Widget : public std::enable_shared_from_this\u003c Widget \u003e\n{\npublic:\n    void DoSomething()\n    {\n        std::shared_ptr\u003c Widget \u003e self = shared_from_this();\n        someEvent -\u003e Register( self );\n    }\nprivate:\n    ...\n};\n\nint main()\n{\n    ...\n    auto w = std::make_shared\u003c Widget \u003e();\n    w -\u003e DoSomething();\n    ...\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -527,7 +527,7 @@
         ]
       }
     ],
-    "title": "Getting a shared ptr referring to this",
+    "title": "Getting a shared_ptr referring to this",
     "format_page": {
       "page_cover": "",
       "page_cover_position": 0,

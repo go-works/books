@@ -4,13 +4,11 @@
     "alive": true,
     "content": [
       "f03fde8c-c533-4c68-b240-5374a4c639c3",
-      "b54dafbf-aae1-453c-94d4-af0b1fcb0798",
       "d32a51ea-7b47-44c9-9716-b218a341e50e",
       "1c185d20-8a91-47e5-8323-6b6a97bc7f22",
       "073be94f-4afc-47f2-a28b-9dee1d888d4d",
       "334774cf-13f4-4724-848b-8a2578127305",
       "2cbc257e-3c7b-4f62-80eb-1ad618c7a44e",
-      "0e3cf93f-c5bb-4415-b8a2-c8f24420dd6b",
       "707a2d07-cb96-49b6-9c71-738f55762316",
       "c6f82eac-5862-4307-ad97-363363660f91"
     ],
@@ -23,18 +21,18 @@
     "id": "2bc888e0-c538-4a3e-8a26-c16026530590",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550656020000,
+    "last_edited_time": 1550801040000,
     "parent_id": "402ef4da-a4e3-4503-ab08-9a4aa56821b5",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "Sharing with temporary ownership std weak ptr"
+          "Sharing with temporary ownership std::weak_ptr"
         ]
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 17,
     "content_resolved": [
       {
         "alive": true,
@@ -111,19 +109,6 @@
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
         "created_time": 1550522026613,
-        "id": "b54dafbf-aae1-453c-94d4-af0b1fcb0798",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522026613,
-        "parent_id": "2bc888e0-c538-4a3e-8a26-c16026530590",
-        "parent_table": "block",
-        "type": "divider",
-        "version": 1
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550522026613,
         "id": "d32a51ea-7b47-44c9-9716-b218a341e50e",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -170,13 +155,13 @@
         "id": "1c185d20-8a91-47e5-8323-6b6a97bc7f22",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522026613,
+        "last_edited_time": 1550800980000,
         "parent_id": "2bc888e0-c538-4a3e-8a26-c16026530590",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -186,9 +171,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "#include \u003cmemory\u003e\n#include \u003cvector\u003e\n\nstruct TreeNode {\n    std::weak_ptr\u003cTreeNode\u003e parent;\n    std::vector\u003c std::shared_ptr\u003cTreeNode\u003e \u003e children;\n};\n\nint main() {\n    // Create a TreeNode to serve as the root/parent.\n    std::shared_ptr\u003cTreeNode\u003e root(new TreeNode);\n\n    // Give the parent 100 child nodes.\n    for (size_t i = 0; i \u003c 100; ++i) {\n        std::shared_ptr\u003cTreeNode\u003e child(new TreeNode);\n        root-\u003echildren.push_back(child);\n        child-\u003eparent = root;\n    }\n\n    // Reset the root shared pointer, destroying the root object, and\n    // subsequently its child nodes.\n    root.reset();\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -391,13 +376,13 @@
         "id": "2cbc257e-3c7b-4f62-80eb-1ad618c7a44e",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522026615,
+        "last_edited_time": 1550800980000,
         "parent_id": "2bc888e0-c538-4a3e-8a26-c16026530590",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -407,22 +392,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "#include \u003cmemory\u003e\nint main()\n{\n    {\n         std::weak_ptr\u003cint\u003e wk;\n         {\n             // std::make_shared is optimized by allocating only once \n             // while std::shared_ptr\u003cint\u003e(new int(42)) allocates twice.\n             // Drawback of std::make_shared is that control block is tied to our integer\n             std::shared_ptr\u003cint\u003e sh = std::make_shared\u003cint\u003e(42);\n             wk = sh;\n             // sh memory should be released at this point...\n         }\n         // ... but wk is still alive and needs access to control block\n     }\n     // now memory is released (sh and wk)\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550522026615,
-        "id": "0e3cf93f-c5bb-4415-b8a2-c8f24420dd6b",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522026615,
-        "parent_id": "2bc888e0-c538-4a3e-8a26-c16026530590",
-        "parent_table": "block",
-        "type": "divider",
-        "version": 1
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -528,13 +500,13 @@
         "id": "c6f82eac-5862-4307-ad97-363363660f91",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522026615,
+        "last_edited_time": 1550801040000,
         "parent_id": "2bc888e0-c538-4a3e-8a26-c16026530590",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -544,12 +516,12 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "#include \u003ccassert\u003e\n#include \u003cmemory\u003e\nint main()\n{\n    {\n         std::weak_ptr\u003cint\u003e wk;\n         std::shared_ptr\u003cint\u003e sp;\n         {\n             std::shared_ptr\u003cint\u003e sh = std::make_shared\u003cint\u003e(42);\n             wk = sh;\n             // calling lock will create a shared_ptr to the object referenced by wk\n             sp = wk.lock();\n             // sh will be destroyed after this point, but sp is still alive\n         }\n         // sp still keeps the data alive.\n         // At this point we could even call lock() again \n         // to retrieve another shared_ptr to the same data from wk\n         assert(*sp == 42);\n         assert(!wk.expired());\n         // resetting sp will delete the data,\n         // as it is currently the last shared_ptr with ownership\n         sp.reset();\n         // attempting to lock wk now will return an empty shared_ptr,\n         // as the data has already been deleted\n         sp = wk.lock();\n         assert(!sp);\n         assert(wk.expired());\n     }\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       }
     ],
-    "title": "Sharing with temporary ownership std weak ptr",
+    "title": "Sharing with temporary ownership std::weak_ptr",
     "format_page": {
       "page_cover": "",
       "page_cover_position": 0,

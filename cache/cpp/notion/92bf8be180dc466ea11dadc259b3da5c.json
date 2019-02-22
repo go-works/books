@@ -18,18 +18,18 @@
     "id": "92bf8be1-80dc-466e-a11d-adc259b3da5c",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550656020000,
+    "last_edited_time": 1550801100000,
     "parent_id": "402ef4da-a4e3-4503-ab08-9a4aa56821b5",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "Writing a smart pointer value ptr"
+          "Writing a smart pointer value_ptr"
         ]
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 11,
     "content_resolved": [
       {
         "alive": true,
@@ -81,13 +81,13 @@
         "id": "2579d5c8-752e-4575-bb49-ea910b511107",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522030501,
+        "last_edited_time": 1550801100000,
         "parent_id": "92bf8be1-80dc-466e-a11d-adc259b3da5c",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -97,9 +97,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "// Like std::default_delete:\ntemplate\u003cclass T\u003e\nstruct default_copier {\n  // a copier must handle a null T const* in and return null:\n  T* operator()(T const* tin)const {\n    if (!tin) return nullptr;\n    return new T(*tin);\n  }\n  void operator()(void* dest, T const* tin)const {\n    if (!tin) return;\n    return new(dest) T(*tin);\n  }\n};\n// tag class to handle empty case:\nstruct empty_ptr_t {};\nconstexpr empty_ptr_t empty_ptr{};\n// the value pointer type itself:\ntemplate\u003cclass T, class Copier=default_copier\u003cT\u003e, class Deleter=std::default_delete\u003cT\u003e,\n  class Base=std::unique_ptr\u003cT, Deleter\u003e\n\u003e\nstruct value_ptr:Base, private Copier {\n  using copier_type=Copier;\n  // also typedefs from unique_ptr\n\n  using Base::Base;\n\n  value_ptr( T const\u0026 t ):\n    Base( std::make_unique\u003cT\u003e(t) ),\n    Copier()\n  {}\n  value_ptr( T \u0026\u0026 t ):\n    Base( std::make_unique\u003cT\u003e(std::move(t)) ),\n    Copier()\n  {}\n  // almost-never-empty:\n      value_ptr():\n    Base( std::make_unique\u003cT\u003e() ),\n    Copier()\n  {}\n  value_ptr( empty_ptr_t ) {}\n\n  value_ptr( Base b, Copier c={} ):\n    Base(std::move(b)),\n    Copier(std::move(c))\n  {}\n\n  Copier const\u0026 get_copier() const {\n    return *this;\n  }\n\n  value_ptr clone() const {\n    return {\n      Base(\n        get_copier()(this-\u003eget()),\n        this-\u003eget_deleter()\n      ),\n      get_copier()\n    };\n  }\n  value_ptr(value_ptr\u0026\u0026)=default;\n  value_ptr\u0026 operator=(value_ptr\u0026\u0026)=default;\n\n  value_ptr(value_ptr const\u0026 o):value_ptr(o.clone()) {}\n  value_ptr\u0026 operator=(value_ptr const\u0026o) {\n    if (o \u0026\u0026 *this) {\n      // if we are both non-null, assign contents:\n      **this = *o;\n    } else {\n      // otherwise, assign a clone (which could itself be null):\n      *this = o.clone();\n    }\n    return *this;\n  }\n  value_ptr\u0026 operator=( T const\u0026 t ) {\n    if (*this) {\n      **this = t;\n    } else {\n      *this = value_ptr(t);\n    }\n    return *this;\n  }\n  value_ptr\u0026 operator=( T \u0026\u0026 t ) {\n    if (*this) {\n      **this = std::move(t);\n    } else {\n      *this = value_ptr(std::move(t));\n    }\n    return *this;\n  }\n  T\u0026 get() { return **this; }\n  T const\u0026 get() const { return **this; }\n  T* get_pointer() {\n    if (!*this) return nullptr;\n    return std::addressof(get());\n  }\n  T const* get_pointer() const {\n    if (!*this) return nullptr;\n    return std::addressof(get());\n  }\n  // operator-\u003e from unique_ptr\n};\ntemplate\u003cclass T, class...Args\u003e\nvalue_ptr\u003cT\u003e make_value_ptr( Args\u0026\u0026... args ) {\n  return {std::make_unique\u003cT\u003e(std::forward\u003cArgs\u003e(args)...)};\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -321,7 +321,7 @@
         ]
       }
     ],
-    "title": "Writing a smart pointer value ptr",
+    "title": "Writing a smart pointer value_ptr",
     "format_page": {
       "page_cover": "",
       "page_cover_position": 0,

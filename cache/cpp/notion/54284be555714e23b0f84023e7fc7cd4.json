@@ -19,7 +19,7 @@
     "id": "54284be5-5571-4e23-b0f8-4023e7fc7cd4",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550656560000,
+    "last_edited_time": 1550799420000,
     "parent_id": "26e69b2d-1c6d-47ea-af87-47fa9cfbdf56",
     "parent_table": "block",
     "properties": {
@@ -30,7 +30,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 9,
     "content_resolved": [
       {
         "alive": true,
@@ -64,13 +64,13 @@
         "id": "c9662425-064c-41ad-bce3-0dfb62b94ffc",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521980438,
+        "last_edited_time": 1550799420000,
         "parent_id": "54284be5-5571-4e23-b0f8-4023e7fc7cd4",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -80,9 +80,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "template \u003cclass F\u003e\nvoid foo(int a, int b, F consumer) {\n    consumer(a + b, a - b, a * b, a / b);\n}\n\n// use is simple... ignoring some results is possible as well\nfoo(5, 12, [](int sum, int , int , int ){\n    std::cout \u003c\u003c \"sum is \" \u003c\u003c sum \u003c\u003c '\\n';\n});",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -160,13 +160,13 @@
         "id": "be892fa4-a22a-41f4-ac0e-9e0a6e9d192b",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521980440,
+        "last_edited_time": 1550799420000,
         "parent_id": "54284be5-5571-4e23-b0f8-4023e7fc7cd4",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -176,9 +176,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "template\u003cclass Tuple\u003e\nstruct continuation {\n  Tuple t;\n  template\u003cclass F\u003e\n  decltype(auto) operator-\u003e*(F\u0026\u0026 f)\u0026\u0026{\n    return std::apply( std::forward\u003cF\u003e(f), std::move(t) );\n  }\n};\nstd::tuple\u003cint,int,int,int\u003e foo(int a, int b);\n\ncontinuation(foo(5,12))-\u003e*[](int sum, auto\u0026\u0026...) {\n  std::cout \u003c\u003c \"sum is \" \u003c\u003c sum \u003c\u003c '\\n';\n};",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,

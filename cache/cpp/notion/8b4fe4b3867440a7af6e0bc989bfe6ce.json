@@ -11,7 +11,6 @@
       "1de82092-c2e3-474b-b224-2503717f9c99",
       "2b4de7fb-0f97-4a39-b880-e2261b0ba240",
       "5b6c76e6-4df7-4525-a645-c2abd6d10dc4",
-      "a41318a5-4703-4bb6-9520-055ecf7a4601",
       "10428517-ed97-4302-8dde-714fe3d0166d",
       "419882a4-24fc-4f67-afd9-68d52bc16395",
       "c3ea3b01-90f8-443f-ac21-237fb4a111d3",
@@ -38,18 +37,18 @@
     "id": "8b4fe4b3-8674-40a7-af6e-0bc989bfe6ce",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550656140000,
+    "last_edited_time": 1550801520000,
     "parent_id": "40e8450d-4736-4ad0-be7d-a2d9307ddf4f",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "Member Types and Aliases"
+          "Member types and aliases"
         ]
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 14,
     "content_resolved": [
       {
         "alive": true,
@@ -119,13 +118,13 @@
         "id": "68c42e24-35f1-4ad1-8ca5-217913273a5a",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522021542,
+        "last_edited_time": 1550801520000,
         "parent_id": "8b4fe4b3-8674-40a7-af6e-0bc989bfe6ce",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -135,9 +134,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "struct IHaveATypedef {\n    typedef int MyTypedef;\n};\n\nstruct IHaveATemplateTypedef {\n    template\u003ctypename T\u003e\n    using MyTemplateTypedef = std::vector\u003cT\u003e;\n};",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -189,7 +188,7 @@
         "id": "ae1b92b0-f5f8-47df-a01e-e437f409f2fa",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522021542,
+        "last_edited_time": 1550801520000,
         "parent_id": "8b4fe4b3-8674-40a7-af6e-0bc989bfe6ce",
         "parent_table": "block",
         "properties": {
@@ -205,7 +204,7 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "IHaveATypedef::MyTypedef i = 5; // i is an int.\n\nIHaveATemplateTypedef::MyTemplateTypedef\u003cint\u003e v; // v is a std::vector\u003cint\u003e.",
         "code_language": "Plain Text"
       },
@@ -241,13 +240,13 @@
         "id": "1de82092-c2e3-474b-b224-2503717f9c99",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522021542,
+        "last_edited_time": 1550801520000,
         "parent_id": "8b4fe4b3-8674-40a7-af6e-0bc989bfe6ce",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -257,9 +256,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "template\u003ctypename T\u003e\nstruct Helper {\n    T get() const { return static_cast\u003cT\u003e(42); }\n};\n\nstruct IHaveTypedefs {\n//    typedef MyTypedef NonLinearTypedef; // Error if uncommented.\n    typedef int MyTypedef;\n    typedef Helper\u003cMyTypedef\u003e MyTypedefHelper;\n};\n\nIHaveTypedefs::MyTypedef        i; // x_i is an int.\nIHaveTypedefs::MyTypedefHelper hi; // x_hi is a Helper\u003cint\u003e.\n\ntypedef IHaveTypedefs::MyTypedef TypedefBeFree;\nTypedefBeFree ii;                  // ii is an int.",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -293,13 +292,13 @@
         "id": "5b6c76e6-4df7-4525-a645-c2abd6d10dc4",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522021543,
+        "last_edited_time": 1550801520000,
         "parent_id": "8b4fe4b3-8674-40a7-af6e-0bc989bfe6ce",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -309,22 +308,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "class TypedefAccessLevels {\n    typedef int PrvInt;\n\n  protected:\n    typedef int ProInt;\n\n  public:\n    typedef int PubInt;\n};\n\nTypedefAccessLevels::PrvInt prv_i; // Error: TypedefAccessLevels::PrvInt is private.\nTypedefAccessLevels::ProInt pro_i; // Error: TypedefAccessLevels::ProInt is protected.\nTypedefAccessLevels::PubInt pub_i; // Good.\n\nclass Derived : public TypedefAccessLevels {\n    PrvInt prv_i; // Error: TypedefAccessLevels::PrvInt is private.\n    ProInt pro_i; // Good.\n    PubInt pub_i; // Good.\n};",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550522021543,
-        "id": "a41318a5-4703-4bb6-9520-055ecf7a4601",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522021543,
-        "parent_id": "8b4fe4b3-8674-40a7-af6e-0bc989bfe6ce",
-        "parent_table": "block",
-        "type": "divider",
-        "version": 1
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -358,13 +344,13 @@
         "id": "419882a4-24fc-4f67-afd9-68d52bc16395",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522021543,
+        "last_edited_time": 1550801520000,
         "parent_id": "8b4fe4b3-8674-40a7-af6e-0bc989bfe6ce",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -374,9 +360,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "class Something {\n    friend class SomeComplexType;\n\n    short s;\n    // ...\n\n  public:\n    typedef SomeComplexType MyHelper;\n\n    MyHelper get_helper() const { return MyHelper(8, s, 19.5, \"shoe\", false); }\n\n    // ...\n};\n\n// ...\n\nSomething s;\nSomething::MyHelper hlp = s.get_helper();",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -525,13 +511,13 @@
         "id": "90af3a95-743c-458f-b6e5-40a2baf59128",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522021550,
+        "last_edited_time": 1550801520000,
         "parent_id": "8b4fe4b3-8674-40a7-af6e-0bc989bfe6ce",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -541,9 +527,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 4,
         "code": "class SomethingElse {\n    AnotherComplexType\u003cbool, int, SomeThirdClass\u003e helper;\n\n  public:\n    typedef decltype(helper) MyHelper;\n\n  private:\n    InternalVariable\u003cMyHelper\u003e ivh;\n\n    // ...\n\n  public:\n    MyHelper\u0026 get_helper() const { return helper; }\n\n    // ...\n};",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -694,13 +680,13 @@
         "id": "677a0969-7ac5-454f-862d-35c305ac3b3e",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522021551,
+        "last_edited_time": 1550801520000,
         "parent_id": "8b4fe4b3-8674-40a7-af6e-0bc989bfe6ce",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -710,9 +696,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "template\u003ctypename T\u003e\nclass SomeClass {\n    // ...\n\n  public:\n    typedef T MyParam;\n    MyParam getParam() { return static_cast\u003cT\u003e(42); }\n};\n\ntemplate\u003ctypename T\u003e\ntypename T::MyParam some_func(T\u0026 t) {\n    return t.getParam();\n}\n\nSomeClass\u003cint\u003e si;\nint i = some_func(si);",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -746,13 +732,13 @@
         "id": "a17b0127-80c7-4fd8-938d-b5d34a0bb410",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522021551,
+        "last_edited_time": 1550801520000,
         "parent_id": "8b4fe4b3-8674-40a7-af6e-0bc989bfe6ce",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -762,9 +748,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "template\u003ctypename T\u003e\nclass SomeContainer {\n    // ...\n\n  public:\n    // Let's provide the same helper types as most standard containers.\n    typedef T                                     value_type;\n    typedef std::allocator\u003cvalue_type\u003e            allocator_type;\n    typedef value_type\u0026                           reference;\n    typedef const value_type\u0026                     const_reference;\n    typedef value_type*                           pointer;\n    typedef const value_type*                     const_pointer;\n    typedef MyIterator\u003cvalue_type\u003e                iterator;\n    typedef MyConstIterator\u003cvalue_type\u003e           const_iterator;\n    typedef std::reverse_iterator\u003citerator\u003e       reverse_iterator;\n    typedef std::reverse_iterator\u003cconst_iterator\u003e const_reverse_iterator;\n    typedef size_t                                size_type;\n    typedef ptrdiff_t                             difference_type;\n};",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -834,13 +820,13 @@
         "id": "deb6367d-dbf1-4860-be95-e9afd7e16625",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522021551,
+        "last_edited_time": 1550801520000,
         "parent_id": "8b4fe4b3-8674-40a7-af6e-0bc989bfe6ce",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -850,9 +836,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "template\u003ctypename T\u003e\nstruct TemplateTypedef {\n    typedef T type;\n}\n\nTemplateTypedef\u003cint\u003e::type i; // i is an int.",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -886,13 +872,13 @@
         "id": "296ec595-552d-4600-b88a-aedc49322e52",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522021551,
+        "last_edited_time": 1550801520000,
         "parent_id": "8b4fe4b3-8674-40a7-af6e-0bc989bfe6ce",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -902,12 +888,12 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "template\u003ctypename T, size_t SZ, size_t D\u003e\nclass Array { /* ... */ };\n\ntemplate\u003ctypename T, size_t SZ\u003e\nstruct OneDArray {\n    typedef Array\u003cT, SZ, 1\u003e type;\n};\n\ntemplate\u003ctypename T, size_t SZ\u003e\nstruct TwoDArray {\n    typedef Array\u003cT, SZ, 2\u003e type;\n};\n\ntemplate\u003ctypename T\u003e\nstruct MonoDisplayLine {\n    typedef Array\u003cT, 80, 1\u003e type;\n};\n\nOneDArray\u003cint, 3\u003e::type     arr1i; // arr1i is an Array\u003cint, 3, 1\u003e.\nTwoDArray\u003cshort, 5\u003e::type   arr2s; // arr2s is an Array\u003cshort, 5, 2\u003e.\nMonoDisplayLine\u003cchar\u003e::type arr3c; // arr3c is an Array\u003cchar, 80, 1\u003e.",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       }
     ],
-    "title": "Member Types and Aliases",
+    "title": "Member types and aliases",
     "format_page": {
       "page_cover": "",
       "page_cover_position": 0,

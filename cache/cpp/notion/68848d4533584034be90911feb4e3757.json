@@ -10,21 +10,25 @@
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550523390496,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
     "id": "68848d45-3358-4034-be90-911feb4e3757",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550523390496,
+    "last_edited_time": 1550797140000,
     "parent_id": "546689ba-7cc0-49cb-ae94-05172f20d6dc",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "030 Friend class"
+          "Friend class"
         ]
       ]
     },
     "type": "page",
-    "version": 1,
+    "version": 8,
     "content_resolved": [
       {
         "alive": true,
@@ -58,13 +62,13 @@
         "id": "18a5e042-bc83-4c47-a6ce-c006364ce9a9",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550523390496,
+        "last_edited_time": 1550797140000,
         "parent_id": "68848d45-3358-4034-be90-911feb4e3757",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -74,9 +78,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "class Accesser {\npublic:\n    void private_accesser1();\n    void private_accesser2();\n};\n\nclass PrivateHolder {\npublic:\n    PrivateHolder(int val) : private_value(val) {}\n    friend class Accesser;\nprivate:\n    int private_value;\n};\n\nvoid Accesser::private_accesser1() {\n    PrivateHolder ph(10);\n    // OK.\n    std::cout \u003c\u003c ph.private_value \u003c\u003c std::endl;\n}\n\nvoid Accesser::private_accesser2() {\n    PrivateHolder ph(10);\n    // OK.\n    std::cout \u003c\u003c ph.private_value + 1 \u003c\u003c std::endl;\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -110,13 +114,13 @@
         "id": "33c79cc2-d187-4568-aec9-d47866599049",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550523390496,
+        "last_edited_time": 1550797140000,
         "parent_id": "68848d45-3358-4034-be90-911feb4e3757",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -126,12 +130,20 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "class Accesser {\npublic:\n    void private_accesser1();\n    void private_accesser2();\nprivate:\n    int private_value = 0;\n};\n\nclass PrivateHolder {\npublic:\n    PrivateHolder(int val) : private_value(val) {}\n    // Accesser is a friend of PrivateHolder\n    friend class Accesser;\n    void reverse_accesse() {\n        // but PrivateHolder cannot access Accesser's members.\n        Accesser a;\n        std::cout \u003c\u003c a.private_value;\n    }\nprivate:\n    int private_value;\n};",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       }
     ],
-    "title": "030 Friend class"
+    "title": "Friend class",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
   },
   "Users": [
     {

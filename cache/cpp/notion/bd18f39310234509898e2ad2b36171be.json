@@ -11,7 +11,8 @@
       "df0786a1-62f2-4810-b94e-e84ac399baf3",
       "b9db3cbb-5c3b-464f-9efa-1453d35fd544",
       "fc9fa5ae-1aca-43ec-b3b9-9bddf1c6521b",
-      "826deccd-f286-4d4a-900b-8ee8c0d41024"
+      "826deccd-f286-4d4a-900b-8ee8c0d41024",
+      "1b808b59-889e-4539-a76f-28443caf06af"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550521962502,
@@ -22,18 +23,18 @@
     "id": "bd18f393-1023-4509-898e-2ad2b36171be",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550656740000,
+    "last_edited_time": 1550796840000,
     "parent_id": "cbd900b3-1684-4f0d-977a-5a5b2a20aff3",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "Calculating power with C++ 11 and higher"
+          "Calculating power with C++ 11"
         ]
       ]
     },
     "type": "page",
-    "version": 11,
+    "version": 27,
     "content_resolved": [
       {
         "alive": true,
@@ -67,13 +68,13 @@
         "id": "4b44b607-870f-414c-ae25-14ffa035fb27",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521962500,
+        "last_edited_time": 1550796780000,
         "parent_id": "bd18f393-1023-4509-898e-2ad2b36171be",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -83,9 +84,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "template \u003ctypename T\u003e\nconstexpr T calculatePower(T value, unsigned power) {\n    return power == 0 ? 1 : value * calculatePower(value, power-1);\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -230,13 +231,13 @@
         "id": "b9db3cbb-5c3b-464f-9efa-1453d35fd544",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521962501,
+        "last_edited_time": 1550796780000,
         "parent_id": "bd18f393-1023-4509-898e-2ad2b36171be",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -246,9 +247,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "void useExample() {\n    constexpr int compileTimeCalculated = calculatePower(3, 3); // computes at compile time,\n                               // as both arguments are known at compilation time\n                               // and used for a constant expression.\n    int value;\n    std::cin \u003e\u003e value;\n    int runtimeCalculated = calculatePower(value, 3);  // runtime calculated,\n                                    // because value is known only at runtime.\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -282,13 +283,13 @@
         "id": "826deccd-f286-4d4a-900b-8ee8c0d41024",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521962501,
+        "last_edited_time": 1550796780000,
         "parent_id": "bd18f393-1023-4509-898e-2ad2b36171be",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -298,12 +299,24 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "#include \u003ciostream\u003e\n#include \u003cutility\u003e\n\ntemplate \u003cclass T, T V, T N, class I = std::make_integer_sequence\u003cT, N\u003e\u003e\nstruct power;\n\ntemplate \u003cclass T, T V, T N, T... Is\u003e\nstruct power\u003cT, V, N, std::integer_sequence\u003cT, Is...\u003e\u003e {\n   static constexpr T value = (static_cast\u003cT\u003e(1) * ... * (V * static_cast\u003cbool\u003e(Is + 1)));\n};\n\nint main() {\n   std::cout \u003c\u003c power\u003cint, 4, 2\u003e::value \u003c\u003c std::endl;\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550796840000,
+        "id": "1b808b59-889e-4539-a76f-28443caf06af",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550796840000,
+        "parent_id": "bd18f393-1023-4509-898e-2ad2b36171be",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
       }
     ],
-    "title": "Calculating power with C++ 11 and higher",
+    "title": "Calculating power with C++ 11",
     "format_page": {
       "page_cover": "",
       "page_cover_position": 0,

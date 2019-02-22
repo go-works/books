@@ -26,18 +26,18 @@
     "id": "29119bc8-4566-43ee-b828-f821874cecfd",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550656020000,
+    "last_edited_time": 1550801100000,
     "parent_id": "402ef4da-a4e3-4503-ab08-9a4aa56821b5",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "Unique ownership without move semantics auto ptr"
+          "Unique ownership without move semantics auto::ptr"
         ]
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 13,
     "content_resolved": [
       {
         "alive": true,
@@ -278,13 +278,13 @@
         "id": "7da3f16b-04e2-49d6-854b-0ab273185819",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522028551,
+        "last_edited_time": 1550801040000,
         "parent_id": "29119bc8-4566-43ee-b828-f821874cecfd",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -294,9 +294,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "{\n    std::auto_ptr\u003cint\u003e p(new int(42));\n    std::cout \u003c\u003c *p;\n} // p is deleted here, no memory leaked",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -330,13 +330,13 @@
         "id": "9aac94c2-eca1-4edf-92c0-fc290e5bf459",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522028552,
+        "last_edited_time": 1550801040000,
         "parent_id": "29119bc8-4566-43ee-b828-f821874cecfd",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -346,9 +346,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "std::auto_ptr\u003cX\u003e px = ...;\nstd::auto_ptr\u003cX\u003e py = px; \n  // px is now empty",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -382,13 +382,13 @@
         "id": "a433b33b-48c9-4872-9f16-fa4b590d951c",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522028552,
+        "last_edited_time": 1550801040000,
         "parent_id": "29119bc8-4566-43ee-b828-f821874cecfd",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -398,9 +398,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "void f(std::auto_ptr\u003cX\u003e ) {\n    // assumes ownership of X\n    // deletes it at end of scope\n};\n\nstd::auto_ptr\u003cX\u003e px = ...;\nf(px); // f acquires ownership of underlying X\n       // px is now empty\npx-\u003efoo(); // NPE!\n// px.~auto_ptr() does NOT delete",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -470,13 +470,13 @@
         "id": "c89b2b62-6ca1-4531-93b5-a55a671fbe7c",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522028552,
+        "last_edited_time": 1550801040000,
         "parent_id": "29119bc8-4566-43ee-b828-f821874cecfd",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -486,9 +486,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "template \u003ctypename T\u003e\nclass auto_ptr {\n    T* ptr;\npublic:\n    auto_ptr(auto_ptr\u0026 rhs)\n    : ptr(rhs.release())\n    { }\n\n    auto_ptr\u0026 operator=(auto_ptr\u0026 rhs) {\n        reset(rhs.release());\n        return *this;\n    }\n\n    T* release() {\n        T* tmp = ptr;\n        ptr = nullptr;\n        return tmp;\n    }\n\n    void reset(T* tmp = nullptr) {\n        if (ptr != tmp) {\n            delete ptr;\n            ptr = tmp;\n        }\n    }\n\n    /* other functions ... */\n};",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -540,13 +540,13 @@
         "id": "d4a88fd9-02f7-4a86-97e8-9bb88ac502bf",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522028552,
+        "last_edited_time": 1550801100000,
         "parent_id": "29119bc8-4566-43ee-b828-f821874cecfd",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -556,9 +556,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "T a = ...;\nT b(a);\nassert(b == a);",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -622,7 +622,7 @@
         ]
       }
     ],
-    "title": "Unique ownership without move semantics auto ptr",
+    "title": "Unique ownership without move semantics auto::ptr",
     "format_page": {
       "page_cover": "",
       "page_cover_position": 0,

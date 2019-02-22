@@ -19,18 +19,18 @@
     "id": "43daf6fc-9628-41e5-bd4e-4dbb5a753763",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550656680000,
+    "last_edited_time": 1550796660000,
     "parent_id": "cbd900b3-1684-4f0d-977a-5a5b2a20aff3",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "Tag Dispatching"
+          "Tag dispatching"
         ]
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 11,
     "content_resolved": [
       {
         "alive": true,
@@ -82,13 +82,13 @@
         "id": "dff3da51-b86a-40ef-ab12-743525b3a3e9",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521959513,
+        "last_edited_time": 1550796660000,
         "parent_id": "43daf6fc-9628-41e5-bd4e-4dbb5a753763",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -98,9 +98,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "namespace details {\n    template \u003cclass RAIter, class Distance\u003e\n    void advance(RAIter\u0026 it, Distance n, std::random_access_iterator_tag) {\n        it += n;\n    }\n\n    template \u003cclass BidirIter, class Distance\u003e\n    void advance(BidirIter\u0026 it, Distance n, std::bidirectional_iterator_tag) {\n        if (n \u003e 0) {\n            while (n--) ++it;\n        }\n        else {\n            while (n++) --it;\n        }\n    }\n\n    template \u003cclass InputIter, class Distance\u003e\n    void advance(InputIter\u0026 it, Distance n, std::input_iterator_tag) {\n        while (n--) {\n            ++it;\n        }\n    }    \n}\n\ntemplate \u003cclass Iter, class Distance\u003e\nvoid advance(Iter\u0026 it, Distance n) {\n    details::advance(it, n, \n            typename std::iterator_traits\u003cIter\u003e::iterator_category{} );\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -461,7 +461,7 @@
         ]
       }
     ],
-    "title": "Tag Dispatching",
+    "title": "Tag dispatching",
     "format_page": {
       "page_cover": "",
       "page_cover_position": 0,

@@ -5,8 +5,8 @@
     "content": [
       "35509f66-55a4-4052-924a-5d90a707f289",
       "f000df27-441f-4518-9bf1-af9730424280",
-      "ca6ea95a-4d32-405e-a027-41ef77b8b403",
-      "a8598e67-f85d-45ef-ba36-8d12a976231e"
+      "2091cdb8-5718-4873-a810-4dc3cb0621f1",
+      "69a7d6eb-52d9-4422-a781-d654d1429028"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550522019627,
@@ -17,7 +17,7 @@
     "id": "bf41a8bc-2aac-4d0e-8aa2-44b121d4a68c",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550656080000,
+    "last_edited_time": 1550801460000,
     "parent_id": "40e8450d-4736-4ad0-be7d-a2d9307ddf4f",
     "parent_table": "block",
     "properties": {
@@ -28,7 +28,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 16,
     "content_resolved": [
       {
         "alive": true,
@@ -99,13 +99,13 @@
         "id": "f000df27-441f-4518-9bf1-af9730424280",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522019626,
+        "last_edited_time": 1550801460000,
         "parent_id": "bf41a8bc-2aac-4d0e-8aa2-44b121d4a68c",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -115,59 +115,59 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 5,
         "code": "class Animal{\nprivate:\n    double weight;\n    double height;\npublic:\n    friend void printWeight(Animal animal);\n    friend class AnimalPrinter;\n    // A common use for a friend function is to overload the operator\u003c\u003c for streaming. \n    friend std::ostream\u0026 operator\u003c\u003c(std::ostream\u0026 os, Animal animal);\n};\n\nvoid printWeight(Animal animal)\n{\n    std::cout \u003c\u003c animal.weight \u003c\u003c \"\\n\";\n}\n\nclass AnimalPrinter\n{\npublic:\n    void print(const Animal\u0026 animal)\n    {\n        // Because of the `friend class AnimalPrinter;\" declaration, we are\n        // allowed to access private members here.\n        std::cout \u003c\u003c animal.weight \u003c\u003c \", \" \u003c\u003c animal.height \u003c\u003c std::endl;\n    }\n}\n\nstd::ostream\u0026 operator\u003c\u003c(std::ostream\u0026 os, Animal animal)\n{\n    os \u003c\u003c \"Animal height: \" \u003c\u003c animal.height \u003c\u003c \"\\n\";\n    return os;\n}\n\nint main() {\n    Animal animal = {10, 5};\n    printWeight(animal);\n\n    AnimalPrinter aPrinter;\n    aPrinter.print(animal);\n\n    std::cout \u003c\u003c animal;\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550522019627,
-        "id": "ca6ea95a-4d32-405e-a027-41ef77b8b403",
-        "ignore_block_count": true,
+        "created_time": 1550801460000,
+        "id": "2091cdb8-5718-4873-a810-4dc3cb0621f1",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522019627,
+        "last_edited_time": 1550801460000,
         "parent_id": "bf41a8bc-2aac-4d0e-8aa2-44b121d4a68c",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "—``` 10 10, 5 Animal height: 5"
+              "Output:"
             ]
           ]
         },
         "type": "text",
-        "version": 1,
+        "version": 22,
         "inline_content": [
           {
-            "Text": "—``` 10 10, 5 Animal height: 5"
+            "Text": "Output:"
           }
         ]
       },
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550522019627,
-        "id": "a8598e67-f85d-45ef-ba36-8d12a976231e",
-        "ignore_block_count": true,
+        "created_time": 1550801483869,
+        "id": "69a7d6eb-52d9-4422-a781-d654d1429028",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522019627,
+        "last_edited_time": 1550801460000,
         "parent_id": "bf41a8bc-2aac-4d0e-8aa2-44b121d4a68c",
         "parent_table": "block",
         "properties": {
+          "language": [
+            [
+              "TypeScript"
+            ]
+          ],
           "title": [
             [
-              "```"
+              "10\n10, 5\nAnimal height: 5"
             ]
           ]
         },
-        "type": "text",
-        "version": 1,
-        "inline_content": [
-          {
-            "Text": "```"
-          }
-        ]
+        "type": "code",
+        "version": 9,
+        "code": "10\n10, 5\nAnimal height: 5",
+        "code_language": "TypeScript"
       }
     ],
     "title": "Friendship",

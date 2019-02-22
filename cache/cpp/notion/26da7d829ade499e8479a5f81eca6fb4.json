@@ -7,7 +7,6 @@
       "6459694e-f245-414e-a7fe-1c67663f177b",
       "e46eecf4-f844-4099-81a2-a1d2dc6d20f2",
       "33b35415-3939-4989-a82e-e6c4045fba23",
-      "0c4f96e1-486e-49ce-a822-fe6e60b5c70a",
       "5632595d-2195-4cd5-80c6-6571a4b4204a",
       "8f4ee1eb-8e64-43ba-887e-9be67d562c7f",
       "3d789edf-2ea1-4b36-bd46-c158f67e8f3b",
@@ -29,7 +28,7 @@
     "id": "26da7d82-9ade-499e-8479-a5f81eca6fb4",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550656740000,
+    "last_edited_time": 1550796780000,
     "parent_id": "cbd900b3-1684-4f0d-977a-5a5b2a20aff3",
     "parent_table": "block",
     "properties": {
@@ -40,7 +39,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 14,
     "content_resolved": [
       {
         "alive": true,
@@ -49,7 +48,7 @@
         "id": "47b84e0a-8431-4b8a-8873-b2744311b818",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521963607,
+        "last_edited_time": 1550796780000,
         "parent_id": "26da7d82-9ade-499e-8479-a5f81eca6fb4",
         "parent_table": "block",
         "properties": {
@@ -62,7 +61,7 @@
               [
                 [
                   "a",
-                  "http://stackoverflow.com/documentation/c%2B%2B/1169/sfinae-substitution-failure-is-not-an-error#t=201607250635342308267"
+                  "https://www.notion.so/kjkpublic/SFINAE-0b17f7b911d14229931e966fb51d1ba9"
                 ]
               ]
             ],
@@ -98,14 +97,14 @@
           ]
         },
         "type": "text",
-        "version": 1,
+        "version": 4,
         "inline_content": [
           {
             "Text": "When implementing "
           },
           {
             "Text": "SFINAE",
-            "Link": "http://stackoverflow.com/documentation/c%2B%2B/1169/sfinae-substitution-failure-is-not-an-error#t=201607250635342308267"
+            "Link": "https://www.notion.so/kjkpublic/SFINAE-0b17f7b911d14229931e966fb51d1ba9"
           },
           {
             "Text": " using "
@@ -310,52 +309,25 @@
         "id": "33b35415-3939-4989-a82e-e6c4045fba23",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521963609,
+        "last_edited_time": 1550796720000,
         "parent_id": "26da7d82-9ade-499e-8479-a5f81eca6fb4",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
             [
-              "template \u003ctypename T\u003e\nstruct is_pointer_: std::false_type {};"
+              "template \u003ctypename T\u003e\nstruct is_pointer_: std::false_type {};\n\ntemplate \u003ctypename T\u003e\nstruct is_pointer_\u003cT*\u003e: std::true_type {};\n\ntemplate \u003ctypename T\u003e\nstruct is_pointer: is_pointer_\u003ctypename std::remove_cv\u003cT\u003e::type\u003e { }"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "template \u003ctypename T\u003e\nstruct is_pointer_: std::false_type {};",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550521963609,
-        "id": "0c4f96e1-486e-49ce-a822-fe6e60b5c70a",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521963609,
-        "parent_id": "26da7d82-9ade-499e-8479-a5f81eca6fb4",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "template \u003ctypename T\u003e\nstruct is_pointer_\u003cT*\u003e: std::true_type {};\n\ntemplate \u003ctypename T\u003e\nstruct is_pointer: is_pointer_\u003ctypename std::remove_cv\u003cT\u003e::type\u003e { }"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "template \u003ctypename T\u003e\nstruct is_pointer_\u003cT*\u003e: std::true_type {};\n\ntemplate \u003ctypename T\u003e\nstruct is_pointer: is_pointer_\u003ctypename std::remove_cv\u003cT\u003e::type\u003e { }",
-        "code_language": "Plain Text"
+        "version": 6,
+        "code": "template \u003ctypename T\u003e\nstruct is_pointer_: std::false_type {};\n\ntemplate \u003ctypename T\u003e\nstruct is_pointer_\u003cT*\u003e: std::true_type {};\n\ntemplate \u003ctypename T\u003e\nstruct is_pointer: is_pointer_\u003ctypename std::remove_cv\u003cT\u003e::type\u003e { }",
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -1086,13 +1058,13 @@
         "id": "d6e19c1d-b1f2-4607-9402-0cc8ba28deff",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521963612,
+        "last_edited_time": 1550796780000,
         "parent_id": "26da7d82-9ade-499e-8479-a5f81eca6fb4",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -1102,9 +1074,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "template \u003ctypename T\u003e\nconstexpr bool is_pointer_v = is_pointer\u003cT\u003e::value;",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -1156,13 +1128,13 @@
         "id": "25954aab-1e44-41d0-b54d-36423413c776",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521963613,
+        "last_edited_time": 1550796780000,
         "parent_id": "26da7d82-9ade-499e-8479-a5f81eca6fb4",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -1172,9 +1144,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "template\u003c class T \u003e constexpr bool is_pointer_v = is_pointer\u003cT\u003e::value;\ntemplate\u003c class T \u003e constexpr bool is_reference_v = is_reference\u003cT\u003e::value;",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       }
     ],
     "title": "Manual distinction of types when given any type T",
