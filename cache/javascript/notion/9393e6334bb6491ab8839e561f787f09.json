@@ -37,21 +37,25 @@
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550715065174,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
     "id": "9393e633-4bb6-491a-b883-9e561f787f09",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550715065174,
+    "last_edited_time": 1550869020000,
     "parent_id": "f78c32e2-a34f-4413-9045-987dc7f4ca99",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "080 Managing Private Data with Classes"
+          "Managing Private Data with Classes"
         ]
       ]
     },
     "type": "page",
-    "version": 1,
+    "version": 9,
     "content_resolved": [
       {
         "alive": true,
@@ -284,13 +288,13 @@
         "id": "f9447249-d26c-4f33-86b6-0754f18a823b",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715065169,
+        "last_edited_time": 1550868960000,
         "parent_id": "9393e633-4bb6-491a-b883-9e561f787f09",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -300,9 +304,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "const topSecret = Symbol('topSecret'); // our private key; will only be accessible on the scope of the module file\nexport class SecretAgent{\n    constructor(secret){\n        this[topSecret] = secret; // we have access to the symbol key (closure)\n        this.coverStory = 'just a simple gardner';\n        this.doMission = () =\u003e {\n            figureWhatToDo(topSecret[topSecret]); // we have access to topSecret\n        };\n    }\n}",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -354,13 +358,13 @@
         "id": "e407328d-7048-45ab-8221-2afb30115b85",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715065169,
+        "last_edited_time": 1550868960000,
         "parent_id": "9393e633-4bb6-491a-b883-9e561f787f09",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -370,9 +374,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "import {SecretAgent} from 'SecretAgent.js'\nconst agent = new SecretAgent('steal all the ice cream');\n// ok lets try to get the secret out of him!\nObject.keys(agent); // ['coverStory'] only cover story is public, our secret is kept.\nagent[Symbol('topSecret')]; // undefined, as we said, symbols are always unique, so only the original symbol will help us to get the data.",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -424,13 +428,13 @@
         "id": "75f77972-3998-4db6-bcef-2664bde7db50",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715065170,
+        "last_edited_time": 1550868960000,
         "parent_id": "9393e633-4bb6-491a-b883-9e561f787f09",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -440,9 +444,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "const secretKeys = Object.getOwnPropertySymbols(agent);\nagent[secretKeys[0]] // 'steal all the ice cream' , we got the secret.",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -774,13 +778,13 @@
         "id": "52d74901-1e51-4a7d-9257-037ea60d6771",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715065172,
+        "last_edited_time": 1550868960000,
         "parent_id": "9393e633-4bb6-491a-b883-9e561f787f09",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -790,9 +794,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "const topSecret = new WeakMap(); // will hold all private data of all instances.\nexport class SecretAgent{\n    constructor(secret){\n        topSecret.set(this,secret); // we use this, as the key, to set it on our instance private data\n        this.coverStory = 'just a simple gardner';\n        this.doMission = () =\u003e {\n            figureWhatToDo(topSecret.get(this)); // we have access to topSecret\n        };\n    }\n}",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -930,13 +934,13 @@
         "id": "01d877ab-34a1-40c7-874b-d1aba8794c95",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715065173,
+        "last_edited_time": 1550869020000,
         "parent_id": "9393e633-4bb6-491a-b883-9e561f787f09",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -946,9 +950,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "export class SecretAgent{\n     constructor(secret){\n         const topSecret = secret;\n         this.coverStory = 'just a simple gardner';\n         this.doMission = () =\u003e {\n             figureWhatToDo(topSecret); // we have access to topSecret\n         };\n     }\n }",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -1075,13 +1079,13 @@
         "id": "36781649-0f06-41ec-99cd-804afb2b70e3",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715065174,
+        "last_edited_time": 1550869020000,
         "parent_id": "9393e633-4bb6-491a-b883-9e561f787f09",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -1091,12 +1095,20 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "export class SecretAgent{\n    constructor(secret){\n        this._topSecret = secret; // it private by convention\n        this.coverStory = 'just a simple gardner';\n        this.doMission = () =\u003e {\n            figureWhatToDo(this_topSecret); \n        };\n    }\n}",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       }
     ],
-    "title": "080 Managing Private Data with Classes"
+    "title": "Managing Private Data with Classes",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
   },
   "Users": [
     {

@@ -14,21 +14,25 @@
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550715006455,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
     "id": "144c2ae2-1397-4074-9b4b-6c43d9362e05",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550715006455,
+    "last_edited_time": 1550868780000,
     "parent_id": "13ecece4-0a71-4895-80d6-e7557796def0",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "040 Using GET with parameters"
+          "Using GET with parameters"
         ]
       ]
     },
     "type": "page",
-    "version": 1,
+    "version": 8,
     "content_resolved": [
       {
         "alive": true,
@@ -116,13 +120,13 @@
         "id": "cbe264f2-8bec-4e22-b5a8-14ade84274c2",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715006454,
+        "last_edited_time": 1550868780000,
         "parent_id": "144c2ae2-1397-4074-9b4b-6c43d9362e05",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -132,9 +136,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "function ajax(file, params, callback) {\n\n  var url = file + '?';\n\n  // loop through object and assemble the url\n  var notFirst = false;\n  for (var key in params) {\n    if (params.hasOwnProperty(key)) {\n      url += (notFirst ? '\u0026' : '') + key + \"=\" + params[key];\n    }\n    notFirst = true;\n  }\n\n  // create a AJAX call with url as parameter\n  var xmlhttp = new XMLHttpRequest();\n  xmlhttp.onreadystatechange = function() {\n    if (xmlhttp.readyState == 4 \u0026\u0026 xmlhttp.status == 200) {\n      callback(xmlhttp.responseText);\n    }\n  };\n  xmlhttp.open('GET', url, true);\n  xmlhttp.send();\n}",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -168,13 +172,13 @@
         "id": "0db994a3-6f17-49c7-a5f6-d1e5fcee7162",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715006454,
+        "last_edited_time": 1550868780000,
         "parent_id": "144c2ae2-1397-4074-9b4b-6c43d9362e05",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -184,9 +188,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "ajax('cars.php', {type:\"Volvo\", model:\"300\", color:\"purple\"}, function(response) {\n  // add here the code to be executed when data comes back to this page      \n  // for example console.log(response) will show the AJAX response in console\n});",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -238,25 +242,25 @@
         "id": "aeee89f6-8490-415d-8cc9-b1dd10fd6e54",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715006455,
+        "last_edited_time": 1550868780000,
         "parent_id": "144c2ae2-1397-4074-9b4b-6c43d9362e05",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
             [
-              "if(isset($_REQUEST['type'], $_REQUEST['model'], $_REQUEST['color'])) {\n  // they are set, we can use them !\n  $response = 'The color of your car is ' . $_REQUEST['color'] . '. ';\n  $response .= 'It is a ' . $_REQUEST['type'] . ' model ' . $_REQUEST['model'] . '!';\n  echo $response;\n}"
+              "if (isset($_REQUEST['type'], $_REQUEST['model'], $_REQUEST['color'])) {\n  // they are set, we can use them !\n  $response = 'The color of your car is ' . $_REQUEST['color'] . '. ';\n  $response .= 'It is a ' . $_REQUEST['type'] . ' model ' . $_REQUEST['model'] . '!';\n  echo $response;\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "if(isset($_REQUEST['type'], $_REQUEST['model'], $_REQUEST['color'])) {\n  // they are set, we can use them !\n  $response = 'The color of your car is ' . $_REQUEST['color'] . '. ';\n  $response .= 'It is a ' . $_REQUEST['type'] . ' model ' . $_REQUEST['model'] . '!';\n  echo $response;\n}",
-        "code_language": "Plain Text"
+        "version": 4,
+        "code": "if (isset($_REQUEST['type'], $_REQUEST['model'], $_REQUEST['color'])) {\n  // they are set, we can use them !\n  $response = 'The color of your car is ' . $_REQUEST['color'] . '. ';\n  $response .= 'It is a ' . $_REQUEST['type'] . ' model ' . $_REQUEST['model'] . '!';\n  echo $response;\n}",
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -327,7 +331,15 @@
         ]
       }
     ],
-    "title": "040 Using GET with parameters"
+    "title": "Using GET with parameters",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
   },
   "Users": [
     {
