@@ -28,21 +28,25 @@
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550715120524,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
     "id": "21039bc0-3914-4be2-ab2b-2832effd3873",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550715120524,
+    "last_edited_time": 1551338460000,
     "parent_id": "499ecbda-9a83-4992-8013-1e2d2247246e",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "040 Reduce an array to chained promises"
+          "Reduce an array to chained promises"
         ]
       ]
     },
     "type": "page",
-    "version": 1,
+    "version": 9,
     "content_resolved": [
       {
         "alive": true,
@@ -230,13 +234,13 @@
         "id": "2342af5f-1c23-4732-9d6b-f73c23e7fcfd",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715120503,
+        "last_edited_time": 1551338400000,
         "parent_id": "21039bc0-3914-4be2-ab2b-2832effd3873",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -246,9 +250,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "[1, 3, 5, 7, 9].reduce((seq, n) =\u003e {\n    return seq.then(() =\u003e {\n        console.log(n);\n        return new Promise(res =\u003e setTimeout(res, 1000));\n    });\n}, Promise.resolve()).then(\n    () =\u003e console.log('done'),\n    (e) =\u003e console.log(e)\n);\n// will log 1, 3, 5, 7, 9, 'done' in 1s intervals",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -649,13 +653,13 @@
         "id": "5b784baa-ec5b-425b-a0a8-f586fa3c35f3",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715120508,
+        "last_edited_time": 1551338460000,
         "parent_id": "21039bc0-3914-4be2-ab2b-2832effd3873",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -665,9 +669,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "var working_resource = 5; // one of the values from the source array\n[1, 3, 5, 7, 9].reduce((seq, n) =\u003e {\n    return seq.catch(() =\u003e {\n        console.log(n);\n        if(n === working_resource) { // 5 is working\n            return new Promise((resolve, reject) =\u003e setTimeout(() =\u003e resolve(n), 1000));\n        } else { // all other values are not working\n            return new Promise((resolve, reject) =\u003e setTimeout(reject, 1000));\n        }\n    });\n}, Promise.reject()).then(\n    (n) =\u003e console.log('success at: ' + n),\n    () =\u003e console.log('total failure')\n);\n// will log 1, 3, 5, 'success at 5' at 1s intervals",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -1024,7 +1028,15 @@
         ]
       }
     ],
-    "title": "040 Reduce an array to chained promises"
+    "title": "Reduce an array to chained promises",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
   },
   "Users": [
     {

@@ -10,28 +10,31 @@
       "d3f5077b-2bbf-4615-8dd9-cc5a32deb5ae",
       "5dc1c1fc-5b2c-49ef-a058-92d29cb5beb8",
       "a326362c-04ef-42f0-b56f-f1a60fe2caa5",
-      "6d3aa449-a518-4717-8c7f-7494db320878",
       "20f4a18d-724c-47c0-b2bf-d259873fe418",
       "9b126532-9b63-4777-800d-c9a7e3d106af",
       "17dbd229-255a-4413-a64e-a88cece271f6"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550715423233,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
     "id": "f6136d99-d07f-45a5-9d32-b154b7db3c2c",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550715423233,
+    "last_edited_time": 1551341700000,
     "parent_id": "d2331001-56b1-44a6-aa42-d1c266b59d1b",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "010 Getting binary representation of an image file"
+          "Getting binary representation of an image file"
         ]
       ]
     },
     "type": "page",
-    "version": 1,
+    "version": 10,
     "content_resolved": [
       {
         "alive": true,
@@ -128,13 +131,13 @@
         "id": "a78846a7-14c5-4224-a802-e65d1fd83ec7",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715423231,
+        "last_edited_time": 1551341640000,
         "parent_id": "f6136d99-d07f-45a5-9d32-b154b7db3c2c",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -144,9 +147,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "// preliminary code to handle getting local file and finally printing to console\n// the results of our function ArrayBufferToBinary().\nvar file = // get handle to local file.\nvar reader = new FileReader();\nreader.onload = function(event) {\n    var data = event.target.result;\n    console.log(ArrayBufferToBinary(data));\n};\nreader.readAsArrayBuffer(file); //gets an ArrayBuffer of the file",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -198,13 +201,13 @@
         "id": "d3f5077b-2bbf-4615-8dd9-cc5a32deb5ae",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715423232,
+        "last_edited_time": 1551341700000,
         "parent_id": "f6136d99-d07f-45a5-9d32-b154b7db3c2c",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -214,9 +217,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "function ArrayBufferToBinary(buffer) {\n   // Convert an array buffer to a string bit-representation: 0 1 1 0 0 0...\n   var dataView = new DataView(buffer);\n   var response = \"\", offset = (8/8); \n   for(var i = 0; i \u003c dataView.byteLength; i += offset) {\n       response += dataView.getInt8(i).toString(2); \n   }\n   return response;\n}",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -355,19 +358,6 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550715423232,
-        "id": "6d3aa449-a518-4717-8c7f-7494db320878",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715423232,
-        "parent_id": "f6136d99-d07f-45a5-9d32-b154b7db3c2c",
-        "parent_table": "block",
-        "type": "divider",
-        "version": 1
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
         "created_time": 1550715423233,
         "id": "20f4a18d-724c-47c0-b2bf-d259873fe418",
         "ignore_block_count": true,
@@ -476,13 +466,13 @@
         "id": "17dbd229-255a-4413-a64e-a88cece271f6",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715423233,
+        "last_edited_time": 1551341700000,
         "parent_id": "f6136d99-d07f-45a5-9d32-b154b7db3c2c",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -492,12 +482,20 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "function ArrayBufferToBinary(buffer) {\n    var uint8 = new Uint8Array(buffer);\n    return uint8.reduce((binary, uint8) =\u003e binary + uint8.toString(2), \"\");\n}",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       }
     ],
-    "title": "010 Getting binary representation of an image file"
+    "title": "Getting binary representation of an image file",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
   },
   "Users": [
     {

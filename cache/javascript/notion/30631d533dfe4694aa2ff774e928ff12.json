@@ -12,21 +12,25 @@
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550715119080,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
     "id": "30631d53-3dfe-4694-aa2f-f774e928ff12",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550715119080,
+    "last_edited_time": 1551338400000,
     "parent_id": "499ecbda-9a83-4992-8013-1e2d2247246e",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "030 Waiting for multiple concurrent promises"
+          "Waiting for multiple concurrent promises"
         ]
       ]
     },
     "type": "page",
-    "version": 1,
+    "version": 8,
     "content_resolved": [
       {
         "alive": true,
@@ -137,13 +141,13 @@
         "id": "cfebd4ba-7860-4591-b573-f3e8e5cc163b",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715119079,
+        "last_edited_time": 1551338400000,
         "parent_id": "30631d53-3dfe-4694-aa2f-f774e928ff12",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -153,9 +157,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "// wait \"millis\" ms, then resolve with \"value\"\nfunction resolve(value, milliseconds) {\n    return new Promise(resolve =\u003e setTimeout(() =\u003e resolve(value), milliseconds));\n}\n\n// wait \"millis\" ms, then reject with \"reason\"\nfunction reject(reason, milliseconds) {\n    return new Promise((_, reject) =\u003e setTimeout(() =\u003e reject(reason), milliseconds));\n}\n\nPromise.all([\n    resolve(1, 5000),\n    resolve(2, 6000),\n    resolve(3, 7000)    \n]).then(values =\u003e console.log(values)); // outputs \"[1, 2, 3]\" after 7 seconds.\n\nPromise.all([\n    resolve(1, 5000),\n    reject('Error!', 6000),\n    resolve(2, 7000)\n]).then(values =\u003e console.log(values)) // does not output anything\n.catch(reason =\u003e console.log(reason)); // outputs \"Error!\" after 6 seconds.",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -208,13 +212,13 @@
         "id": "e8d6343a-35e8-4d70-876d-b7e4d1724f27",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715119080,
+        "last_edited_time": 1551338400000,
         "parent_id": "30631d53-3dfe-4694-aa2f-f774e928ff12",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -224,9 +228,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "Promise.all([\n    resolve(1, 5000),\n    resolve(2, 6000),\n    { hello: 3 }\n])\n.then(values =\u003e console.log(values)); // outputs \"[1, 2, { hello: 3 }]\" after 6 seconds",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -260,13 +264,13 @@
         "id": "e7b0bc3f-5fa6-4bc5-8b37-82df7183e076",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715119080,
+        "last_edited_time": 1551338400000,
         "parent_id": "30631d53-3dfe-4694-aa2f-f774e928ff12",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -276,12 +280,20 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "Promise.all([\n    resolve(1, 5000),\n    resolve(2, 6000),\n    resolve(3, 7000)\n])\n.then(([result1, result2, result3]) =\u003e {\n    console.log(result1);\n    console.log(result2);\n    console.log(result3);\n});",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       }
     ],
-    "title": "030 Waiting for multiple concurrent promises"
+    "title": "Waiting for multiple concurrent promises",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
   },
   "Users": [
     {

@@ -8,21 +8,25 @@
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550715437191,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
     "id": "b2140f81-192c-471e-afe2-e66d59f6942d",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550715437191,
+    "last_edited_time": 1551341880000,
     "parent_id": "de40b1f9-45f7-4e12-9c65-7299a8408890",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "040 Templating HTML With Template Strings"
+          "Templating HTML With Template Strings"
         ]
       ]
     },
     "type": "page",
-    "version": 1,
+    "version": 8,
     "content_resolved": [
       {
         "alive": true,
@@ -92,13 +96,13 @@
         "id": "fb926a83-c1ed-4aea-8cee-59dd54edf2ff",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715437191,
+        "last_edited_time": 1551341880000,
         "parent_id": "b2140f81-192c-471e-afe2-e66d59f6942d",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -108,12 +112,20 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "class HTMLString extends String {\n  static escape(text) {\n    if (text instanceof HTMLString) {\n      return text;\n    }\n    return new HTMLString(\n        String(text)\n            .replace(/\u0026/g, '\u0026amp;')\n            .replace(/\u003c/g, '\u0026lt;')\n            .replace(/\u003e/g, '\u0026gt;')\n            .replace(/\"/g, '\u0026quot;')\n            .replace(/\\\\/g, '\u0026#39;'));\n  }\n}\n\nfunction HTML(strings, ...substitutions) { \n  const escapedFlattenedSubstitutions =\n      substitutions.map(s =\u003e [].concat(s).map(HTMLString.escape).join(''));\n  const pieces = [];\n  for (const i of strings.keys()) {\n    pieces.push(strings[i], escapedFlattenedSubstitutions [i] || '');\n  }\n  return new HTMLString(pieces.join(''));\n}\n\nconst title = \"Hello World\";\nconst iconSrc = \"/images/logo.png\";\nconst names = [\"John\", \"Jane\", \"Joe\", \"Jill\"];\n\ndocument.body.innerHTML = HTML`\n  \u003ch1\u003e\u003cimg src=\"${iconSrc}\" /\u003e ${title}\u003c/h1\u003e\n\n  \u003cul\u003e ${names.map(name =\u003e HTML`\n    \u003cli\u003e${name}\u003c/li\u003e\n  `)} \u003c/ul\u003e\n`;",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       }
     ],
-    "title": "040 Templating HTML With Template Strings"
+    "title": "Templating HTML With Template Strings",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
   },
   "Users": [
     {

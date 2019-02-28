@@ -12,28 +12,31 @@
       "38455430-b932-4181-9d53-2df2c2f5ca9a",
       "716ceac4-6bef-4323-8cca-bb22aeba0928",
       "4ff0fc7b-53cf-499f-b3f9-8c44d6b3e366",
-      "b00de7ad-6f4c-4ab7-9219-12ee93f17878",
       "56c6a9a1-a78b-4aec-ab09-37e3a48e64b7",
       "ca28700e-c7ab-439e-89ff-fba40931817d",
       "3ed999c1-c0e5-4afb-8ab2-424a5b4fc40d"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550715138069,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
     "id": "088495dd-46c5-4b39-8de1-c0a5d4ff0c14",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550715138069,
+    "last_edited_time": 1551339240000,
     "parent_id": "f196cebe-aa59-4659-9d28-ef72c6b81093",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "010 Create a new Date object"
+          "Create a new Date object"
         ]
       ]
     },
     "type": "page",
-    "version": 1,
+    "version": 9,
     "content_resolved": [
       {
         "alive": true,
@@ -570,19 +573,6 @@
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
         "created_time": 1550715138069,
-        "id": "b00de7ad-6f4c-4ab7-9219-12ee93f17878",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715138069,
-        "parent_id": "088495dd-46c5-4b39-8de1-c0a5d4ff0c14",
-        "parent_table": "block",
-        "type": "divider",
-        "version": 1
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550715138069,
         "id": "56c6a9a1-a78b-4aec-ab09-37e3a48e64b7",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -654,13 +644,13 @@
         "id": "3ed999c1-c0e5-4afb-8ab2-424a5b4fc40d",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715138069,
+        "last_edited_time": 1551339240000,
         "parent_id": "088495dd-46c5-4b39-8de1-c0a5d4ff0c14",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -670,12 +660,20 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "// Creates a Date object with the current date and time from the \n// user's browser\nvar now = new Date();\nnow.toString() === 'Mon Apr 11 2016 16:10:41 GMT-0500 (Central Daylight Time)' \n// true\n// well, at the time of this writing, anyway\n\n// Creates a Date object at the Unix Epoch (i.e., '1970-01-01T00:00:00.000Z')\nvar epoch = new Date(0);\nepoch.toISOString() === '1970-01-01T00:00:00.000Z' // true\n\n// Creates a Date object with the date and time 2,012 milliseconds \n// after the Unix Epoch (i.e., '1970-01-01T00:00:02.012Z').\nvar ms = new Date(2012); \ndate2012.toISOString() === '1970-01-01T00:00:02.012Z' // true\n\n// Creates a Date object with the first day of February of the year 2012 \n// in the local timezone.\nvar one = new Date(2012, 1);\none.toString() === 'Wed Feb 01 2012 00:00:00 GMT-0600 (Central Standard Time)' \n// true\n\n// Creates a Date object with the first day of the year 2012 in the local \n// timezone.\n// (Months are zero-based) \nvar zero = new Date(2012, 0);\nzero.toString() === 'Sun Jan 01 2012 00:00:00 GMT-0600 (Central Standard Time)' \n// true\n\n// Creates a Date object with the first day of the year 2012, in UTC.\nvar utc = new Date(Date.UTC(2012, 0));\nutc.toString() === 'Sat Dec 31 2011 18:00:00 GMT-0600 (Central Standard Time)'\n// true\nutc.toISOString() === '2012-01-01T00:00:00.000Z'\n// true\n\n// Parses a string into a Date object (ISO 8601 format added in ECMAScript 5.1)\n// Implementations should assumed UTC because of ISO 8601 format and Z designation\nvar iso = new Date('2012-01-01T00:00:00.000Z');\niso.toISOString() === '2012-01-01T00:00:00.000Z' // true\n\n// Parses a string into a Date object (RFC in JavaScript 1.0)\nvar local = new Date('Sun, 01 Jan 2012 00:00:00 -0600');\nlocal.toString() === 'Sun Jan 01 2012 00:00:00 GMT-0600 (Central Standard Time)'\n// true\n\n// Parses a string in no particular format, most of the time. Note that parsing\n// logic in these cases is very implementation-dependent, and therefore can vary\n// across browsers and versions.\nvar anything = new Date('11/12/2012'); \nanything.toString() === 'Mon Nov 12 2012 00:00:00 GMT-0600 (Central Standard Time)'\n// true, in Chrome 49 64-bit on Windows 10 in the en-US locale. Other versions in \n// other locales may get a different result.\n\n// Rolls values outside of a specified range to the next value.\nvar rollover = new Date(2012, 12, 32, 25, 62, 62, 1023);\nrollover.toString() === 'Sat Feb 02 2013 02:03:03 GMT-0600 (Central Standard Time)'\n// true; note that the month rolled over to Feb; first the month rolled over to \n// Jan based on the month 12 (11 being December), then again because of the day 32\n// (January having 31 days).\n\n// Special dates for years in the range 0-99\nvar special1 = new Date(12, 0);\nspecial1.toString() === 'Mon Jan 01 1912 00:00:00 GMT-0600 (Central Standard Time)`\n// true\n\n// If you actually wanted to set the year to the year 12 CE, you'd need to use the\n// setFullYear() method:\nspecial1.setFullYear(12);\nspecial1.toString() === 'Sun Jan 01   12 00:00:00 GMT-0600 (Central Standard Time)`\n// true",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       }
     ],
-    "title": "010 Create a new Date object"
+    "title": "Create a new Date object",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
   },
   "Users": [
     {

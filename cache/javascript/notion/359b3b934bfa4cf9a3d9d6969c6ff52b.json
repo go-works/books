@@ -9,21 +9,25 @@
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550715128523,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
     "id": "359b3b93-4bfa-4cf9-a3d9-d6969c6ff52b",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550715128523,
+    "last_edited_time": 1551338640000,
     "parent_id": "499ecbda-9a83-4992-8013-1e2d2247246e",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "120 forEach with promises"
+          "forEach() with promises"
         ]
       ]
     },
     "type": "page",
-    "version": 1,
+    "version": 10,
     "content_resolved": [
       {
         "alive": true,
@@ -75,13 +79,13 @@
         "id": "4fa664fa-c946-4046-ac87-0eb19e2b2f52",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715128523,
+        "last_edited_time": 1551338640000,
         "parent_id": "359b3b93-4bfa-4cf9-a3d9-d6969c6ff52b",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -91,9 +95,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "function promiseForEach(arr, cb) {\n  var i = 0;\n\n  var nextPromise = function () {\n    if (i \u003e= arr.length) {\n      // Processing finished.\n      return;\n    }\n\n    // Process next function. Wrap in `Promise.resolve` in case\n    // the function does not return a promise\n    var newPromise = Promise.resolve(cb(arr[i], i));\n    i++;\n    // Chain to finish processing.\n    return newPromise.then(nextPromise);\n  };\n\n  // Kick off the chain.\n  return Promise.resolve().then(nextPromise);\n};",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -139,7 +143,15 @@
         ]
       }
     ],
-    "title": "120 forEach with promises"
+    "title": "forEach() with promises",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
   },
   "Users": [
     {
