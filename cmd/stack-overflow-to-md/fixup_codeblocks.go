@@ -66,6 +66,10 @@ func addBuffered(a []string, buffered []string) []string {
 	return a
 }
 
+func isCodeBlockDelimiter(s string) bool {
+	return strings.HasPrefix(s, "```")
+}
+
 /*
 converts code blocks from indented form to fenced form.
 */
@@ -74,8 +78,13 @@ func fixupCodeBlocks(d []byte) []byte {
 	lines := strings.Split(string(d), "\n")
 	var newLines []string
 	var buffered []string
+	inCodeBlock := false
 	for _, line := range lines {
-		if isMaybeCodeBlock(line, buffered) {
+		if isCodeBlockDelimiter(line) {
+			inCodeBlock = !inCodeBlock
+		}
+
+		if isMaybeCodeBlock(line, buffered) && !inCodeBlock {
 			buffered = append(buffered, line)
 			continue
 		}

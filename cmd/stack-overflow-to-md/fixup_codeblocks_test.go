@@ -12,7 +12,7 @@ var (
 
 
     using System;
-    
+
     namespace FirstCsharp
     {
         blast
@@ -96,13 +96,25 @@ var age = GetAge(dateOfBirth);
 bah
 
 `
+
+	s6 = `
+~~~
+    code block
+    blah
+
+    code
+    code
+
+    more code
+~~~
+`
 )
 
 func TestFixupCodeBlock(t *testing.T) {
 	f := func(s, exp string) {
+		s = strings.Replace(s, "~~~", "```", -1)
 		gotBytes := fixupCodeBlocks([]byte(s))
-		got := string(gotBytes)
-		got = strings.Replace(got, "```", "~~~", -1)
+		got := strings.Replace(string(gotBytes), "```", "~~~", -1)
 		assert.Equal(t, exp, got)
 	}
 	f(s1, exp1)
@@ -110,4 +122,5 @@ func TestFixupCodeBlock(t *testing.T) {
 	f(s3, exp3)
 	f(s4, exp4)
 	f(s5, exp5)
+	f(s6, s6)
 }
