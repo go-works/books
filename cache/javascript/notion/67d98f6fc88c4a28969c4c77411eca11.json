@@ -18,21 +18,25 @@
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550715918077,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
     "id": "67d98f6f-c88c-4a28-969c-4c77411eca11",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550715918077,
+    "last_edited_time": 1551595740000,
     "parent_id": "2023fa0a-be42-4a7c-84ca-22f2a013d046",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "030 Module and Revealing Module Patterns"
+          "Module and Revealing Module Patterns"
         ]
       ]
     },
     "type": "page",
-    "version": 1,
+    "version": 9,
     "content_resolved": [
       {
         "alive": true,
@@ -173,13 +177,13 @@
         "id": "d6ca4344-74a9-4dba-a403-7be328050f79",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715918076,
+        "last_edited_time": 1551595680000,
         "parent_id": "67d98f6f-c88c-4a28-969c-4c77411eca11",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -189,9 +193,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "var Module = (function(/* pass initialization data if necessary */) {\n  // Private data is stored within the closure\n  var privateData = 1;\n\n  // Because the function is immediately invoked,\n  // the return value becomes the public API\n  var api = {\n    getPrivateData: function() {\n      return privateData;\n    },\n    \n    getDoublePrivateData: function() {\n      return api.getPrivateData() * 2;\n    }\n  };\n  return api;\n})(/* pass initialization data if necessary */);",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -250,13 +254,13 @@
         "id": "ed7057a9-67bc-4c64-91ec-0b5f6bf494e3",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715918076,
+        "last_edited_time": 1551595680000,
         "parent_id": "67d98f6f-c88c-4a28-969c-4c77411eca11",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -266,9 +270,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "var Module = (function(/* pass initialization data if necessary */) {\n  // Private data is stored just like before\n  var privateData = 1;\n\n  // All functions must be declared outside of the returned object\n  var getPrivateData = function() {\n    return privateData;\n  };\n\n  var getDoublePrivateData = function() {\n    // Refer directly to enclosed members rather than through the returned object\n    return getPrivateData() * 2;\n  };\n\n  // Return an object literal with no function definitions\n  return {\n    getPrivateData: getPrivateData,\n    getDoublePrivateData: getDoublePrivateData\n  };\n})(/* pass initialization data if necessary */);",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -327,13 +331,13 @@
         "id": "5a299e16-d76e-4cf6-9398-3db41c685e83",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715918076,
+        "last_edited_time": 1551595680000,
         "parent_id": "67d98f6f-c88c-4a28-969c-4c77411eca11",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -343,9 +347,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "//Namespace setting\nvar NavigationNs = NavigationNs || {};\n\n// This is used as a class constructor \nNavigationNs.active = function(current, length) {        \n    this.current = current;\n    this.length = length;\n}\n\n// The prototype is used to separate the construct and the methods    \nNavigationNs.active.prototype = function() {\n    // It is a example of a public method because is revealed in the return statement\n    var setCurrent = function() {\n        //Here the variables current and length are used as private class properties  \n        for (var i = 0; i \u003c this.length; i++) {                \n                $(this.current).addClass('active');                 \n        }\n    }\n    return { setCurrent: setCurrent };\n}();\n\n// Example of parameterless constructor  \nNavigationNs.pagination = function() {}\n\nNavigationNs.pagination.prototype = function() {\n// It is a example of a private method because is not revealed in the return statement\n    var reload = function(data) {\n        // do something\n    },\n    // It the only public method, because it the only function referenced in the return statement\n     getPage = function(link) {\n        var a = $(link);\n\n        var options = {url: a.attr('href'), type: 'get'}\n        $.ajax(options).done(function(data) {            \n           // after the the ajax call is done, it calls private method\n           reload(data);\n        });\n\n        return false;\n    }\n    return {getPage : getPage}\n}();",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -379,13 +383,13 @@
         "id": "a2368d9a-d24a-416e-b8b3-ba4830346e93",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715918077,
+        "last_edited_time": 1551595740000,
         "parent_id": "67d98f6f-c88c-4a28-969c-4c77411eca11",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -395,12 +399,20 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "var menuActive = new NavigationNs.active('ul.sidebar-menu li', 5);\nmenuActive.setCurrent();",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       }
     ],
-    "title": "030 Module and Revealing Module Patterns"
+    "title": "Module and Revealing Module Patterns",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
   },
   "Users": [
     {

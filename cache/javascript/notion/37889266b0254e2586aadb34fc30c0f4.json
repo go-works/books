@@ -6,25 +6,30 @@
       "fbee6dd4-0dc9-485b-b8f5-2f81a7b7a0a8",
       "017a8fd5-172d-408f-b23f-893b8b5b07b0",
       "ad5f401d-b8ff-4d3c-86c5-e680003fbc0d",
-      "4b99355b-4a5a-4bff-b82b-2e6f4a190e60"
+      "4b99355b-4a5a-4bff-b82b-2e6f4a190e60",
+      "01b1534a-e684-4441-8671-aff055da4e67"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550715921160,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
     "id": "37889266-b025-4e25-86aa-db34fc30c0f4",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550715921160,
+    "last_edited_time": 1551595620000,
     "parent_id": "2023fa0a-be42-4a7c-84ca-22f2a013d046",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "060 Observer pattern"
+          "Observer pattern"
         ]
       ]
     },
     "type": "page",
-    "version": 1,
+    "version": 9,
     "content_resolved": [
       {
         "alive": true,
@@ -136,13 +141,13 @@
         "id": "017a8fd5-172d-408f-b23f-893b8b5b07b0",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715921159,
+        "last_edited_time": 1551595620000,
         "parent_id": "37889266-b025-4e25-86aa-db34fc30c0f4",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -152,9 +157,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "function Subject() {\n    this.observers = []; // Observers listening to the subject\n    \n    this.registerObserver = function(observer) {\n        // Add an observer if it isn't already being tracked\n        if (this.observers.indexOf(observer) === -1) {\n            this.observers.push(observer);\n        }\n    };\n\n    this.unregisterObserver = function(observer) {\n        // Removes a previously registered observer\n        var index = this.observers.indexOf(observer);\n        if (index \u003e -1) {\n            this.observers.splice(index, 1);\n        }\n    };\n\n    this.notifyObservers = function(message) {\n        // Send a message to all observers\n        this.observers.forEach(function(observer) {\n            observer.notify(message);\n        });\n    };\n}\n\nfunction Observer() {\n    this.notify = function(message) {\n        // Every observer must implement this function\n    };\n}",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -194,13 +199,13 @@
         "id": "4b99355b-4a5a-4bff-b82b-2e6f4a190e60",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715921160,
+        "last_edited_time": 1551595620000,
         "parent_id": "37889266-b025-4e25-86aa-db34fc30c0f4",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -210,12 +215,32 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "function Employee(name) {\n    this.name = name;\n\n    // Implement `notify` so the subject can pass us messages\n    this.notify = function(meetingTime) {\n        console.log(this.name + ': There is a meeting at ' + meetingTime);\n    };\n}\n\nvar bob = new Employee('Bob');\nvar jane = new Employee('Jane');\nvar meetingAlerts = new Subject();\nmeetingAlerts.registerObserver(bob);\nmeetingAlerts.registerObserver(jane);\nmeetingAlerts.notifyObservers('4pm');\n\n// Output:\n// Bob: There is a meeting at 4pm\n// Jane: There is a meeting at 4pm",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551595620000,
+        "id": "01b1534a-e684-4441-8671-aff055da4e67",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551595620000,
+        "parent_id": "37889266-b025-4e25-86aa-db34fc30c0f4",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
       }
     ],
-    "title": "060 Observer pattern"
+    "title": "Observer pattern",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
   },
   "Users": [
     {

@@ -8,21 +8,25 @@
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550715590091,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
     "id": "1224238c-fad3-499b-8bec-44308da59bcf",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550715590091,
+    "last_edited_time": 1551593820000,
     "parent_id": "3776e702-7f6c-45eb-83d8-15379c3eb16b",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "010 Creating digests e.g. SHA-256"
+          "Creating digests e.g. SHA-256"
         ]
       ]
     },
     "type": "page",
-    "version": 1,
+    "version": 8,
     "content_resolved": [
       {
         "alive": true,
@@ -31,13 +35,13 @@
         "id": "414318f0-d84a-44c8-bf0a-4434e85dd3f7",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715590087,
+        "last_edited_time": 1551593820000,
         "parent_id": "1224238c-fad3-499b-8bec-44308da59bcf",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -47,9 +51,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "// Convert string to ArrayBuffer. This step is only necessary if you wish to hash a string, not if you aready got an ArrayBuffer such as an Uint8Array.\nvar input = new TextEncoder('utf-8').encode('Hello world!');\n\n// Calculate the SHA-256 digest\ncrypto.subtle.digest('SHA-256', input)\n// Wait for completion\n.then(function(digest) {\n  // digest is an ArrayBuffer. There are multiple ways to proceed.\n\n  // If you want to display the digest as a hexadecimal string, this will work:\n  var view = new DataView(digest);\n  var hexstr = '';\n  for(var i = 0; i \u003c view.byteLength; i++) {\n    var b = view.getUint8(i);\n    hexstr += '0123456789abcdef'[(b \u0026 0xf0) \u003e\u003e 4];\n    hexstr += '0123456789abcdef'[(b \u0026 0x0f)];\n  }\n  console.log(hexstr);\n\n  // Otherwise, you can simply create an Uint8Array from the buffer:\n  var digestAsArray = new Uint8Array(digest);\n  console.log(digestAsArray);\n})\n// Catch errors\n.catch(function(err) {\n  console.error(err);\n});",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -149,7 +153,15 @@
         ]
       }
     ],
-    "title": "010 Creating digests e.g. SHA-256"
+    "title": "Creating digests e.g. SHA-256",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
   },
   "Users": [
     {

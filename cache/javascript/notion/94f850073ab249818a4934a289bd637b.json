@@ -11,21 +11,25 @@
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550715617112,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
     "id": "94f85007-3ab2-4981-8a49-34a289bd637b",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550715617112,
+    "last_edited_time": 1551593760000,
     "parent_id": "0a8fef9d-a46b-4135-9e0b-09adc1486be0",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "060 Simultaneous async parallel operations"
+          "Simultaneous async parallel operations"
         ]
       ]
     },
     "type": "page",
-    "version": 1,
+    "version": 8,
     "content_resolved": [
       {
         "alive": true,
@@ -131,13 +135,13 @@
         "id": "b6bbe0c8-1a26-4f7c-8c0e-8b7abedaa2e8",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715617111,
+        "last_edited_time": 1551593760000,
         "parent_id": "94f85007-3ab2-4981-8a49-34a289bd637b",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -147,9 +151,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "// Not in parallel\n\nasync function getFriendPosts(user) {\n    friendIds = await db.get(\"friends\", {user}, {id: 1});\n    friendPosts = [];\n    for (let id in friendIds) {\n        friendPosts = friendPosts.concat( await db.get(\"posts\", {user: id}) );\n    }\n    // etc.\n}",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -183,13 +187,13 @@
         "id": "3022aa1f-b33f-4ddb-b4ca-ae534db3ef04",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715617111,
+        "last_edited_time": 1551593760000,
         "parent_id": "94f85007-3ab2-4981-8a49-34a289bd637b",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -199,9 +203,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "// In parallel\n\nasync function getFriendPosts(user) {\n    friendIds = await.db.get(\"friends\", {user}, {id: 1});\n    friendPosts = await Promise.all( friendIds.map(id =\u003e \n      db.get(\"posts\", {user: id})\n    );\n    // etc.\n}",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -283,7 +287,15 @@
         ]
       }
     ],
-    "title": "060 Simultaneous async parallel operations"
+    "title": "Simultaneous async parallel operations",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
   },
   "Users": [
     {

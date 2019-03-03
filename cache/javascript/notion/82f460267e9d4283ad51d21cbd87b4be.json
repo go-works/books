@@ -15,21 +15,25 @@
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550715899172,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
     "id": "82f46026-7e9d-4283-ad51-d21cbd87b4be",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550715899172,
+    "last_edited_time": 1551595020000,
     "parent_id": "337f40a2-6b9b-4941-a028-cebbb21ea965",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "050 Initializing object properties with null"
+          "Initializing object properties with null"
         ]
       ]
     },
     "type": "page",
-    "version": 1,
+    "version": 8,
     "content_resolved": [
       {
         "alive": true,
@@ -200,13 +204,13 @@
         "id": "3499cd73-86c8-460a-88a6-c0a6a3f1e505",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715899172,
+        "last_edited_time": 1551595020000,
         "parent_id": "82f46026-7e9d-4283-ad51-d21cbd87b4be",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -216,9 +220,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "function f1() {\n    var P = function () {\n        this.value = 1\n    };\n    var big_array = new Array(10000000).fill(1).map((x, index)=\u003e {\n        p = new P();\n        if (index \u003e 5000000) {\n            p.x = \"some_string\";\n        }\n\n        return p;\n    });\n    big_array.reduce((sum, p)=\u003e sum + p.value, 0);\n}\n\nfunction f2() {\n    var P = function () {\n        this.value = 1;\n        this.x = null;\n    };\n    var big_array = new Array(10000000).fill(1).map((x, index)=\u003e {\n        p = new P();\n        if (index \u003e 5000000) {\n            p.x = \"some_string\";\n        }\n\n        return p;\n    });\n    big_array.reduce((sum, p)=\u003e sum + p.value, 0);\n}\n\n\n(function perform(){\n    var start = performance.now();\n    f1();\n    var duration = performance.now() - start;\n\n    console.log('duration of f1  ' + duration);\n\n\n    start = performance.now();\n    f2();\n    duration = performance.now() - start;\n\n    console.log('duration of f2 ' + duration);\n})()",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -298,7 +302,15 @@
         ]
       }
     ],
-    "title": "050 Initializing object properties with null"
+    "title": "Initializing object properties with null",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
   },
   "Users": [
     {

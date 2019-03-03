@@ -9,44 +9,43 @@
       "353f8b55-c01c-47f5-99a5-c5faaff80f3b",
       "12471dc4-0fe3-4579-b31b-8739f8642c1f",
       "6653984c-12cd-4673-8f95-648c3a3164db",
-      "87c5ce73-f9f5-47d5-bcf4-abd3ce7d8514",
       "34349c30-44fa-4f61-92ae-5900d464ef71",
       "090c25c2-6913-445c-8532-8b918f007601",
       "be4a4df9-a122-4aab-86f0-14144d875370",
       "ae731dd0-835d-4b23-8632-184d7540760b",
-      "83dc9b35-9488-4649-b22a-dfb65dd64208",
       "a4aadb79-2dac-4391-9b9d-fb42b8ed3735",
       "14075b77-63c9-4823-b496-465d3cd4fb51",
       "78a7834c-0e0d-4c55-aeec-7fd796d52c73",
-      "d4fc6507-e4d5-48ce-ae6d-b8347c145f1b",
       "dfa07c18-8393-46b3-9319-00741570aa03",
       "14969d1b-560c-4321-9d79-51bb62d49946",
-      "2d3672ca-faca-436e-abac-39981bdce2aa",
       "69ce5f57-4bbc-482a-b44c-ff10d0370761",
       "04615389-3b76-457c-be97-0a522076d770",
       "9bb8cdc8-82a8-43c0-a55e-89dc58d3b056",
       "37a6e964-71a7-4ad2-8e0f-e31fff124616",
-      "592c1a6d-30f2-4402-833e-76a641400f05",
       "b6153caf-2d29-4661-8d50-d0dbde00306d",
       "5699f6d2-ed20-4ec4-b16e-ce64b43b0cfa"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550715944368,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
     "id": "0fb874fc-c2bf-477c-8c45-7746679ea0bd",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550715944368,
+    "last_edited_time": 1551597420000,
     "parent_id": "faa679a2-0d55-4827-8d6d-e94176ca15d5",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "010 Chainable object design and chaining"
+          "Chainable object design and chaining"
         ]
       ]
     },
     "type": "page",
-    "version": 1,
+    "version": 14,
     "content_resolved": [
       {
         "alive": true,
@@ -148,13 +147,13 @@
         "id": "353f8b55-c01c-47f5-99a5-c5faaff80f3b",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715944366,
+        "last_edited_time": 1551597420000,
         "parent_id": "0fb874fc-c2bf-477c-8c45-7746679ea0bd",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -164,9 +163,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "function Vec(x = 0, y = 0){\n    this.x = x;\n    this.y = y;\n    // the new keyword implicitly implies the return type \n    // as this and thus is chainable by default.\n}\nVec.prototype = {\n    add : function(vec){\n        this.x += vec.x;\n        this.y += vec.y;\n        return this; // return reference to self to allow chaining of function calls\n    },\n    scale : function(val){\n        this.x *= val;\n        this.y *= val;\n        return this; //  return reference to self to allow chaining of function calls\n    },\n    log :function(val){\n        console.log(this.x + ' : ' + this.y);\n        return this;\n    },\n    clone : function(){\n        return new Vec(this.x,this.y);\n    }\n}",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -200,13 +199,13 @@
         "id": "6653984c-12cd-4673-8f95-648c3a3164db",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715944367,
+        "last_edited_time": 1551597420000,
         "parent_id": "0fb874fc-c2bf-477c-8c45-7746679ea0bd",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -216,22 +215,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "var vec = new Vec();\nvec.add({x:10,y:10})\n    .add({x:10,y:10})\n    .log()             // console output \"20 : 20\"\n    .add({x:10,y:10})\n    .scale(1/30)\n    .log()             // console output \"1 : 1\"\n    .clone()           // returns a new instance of the object\n    .scale(2)          // from which you can continue chaining\n    .log()",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550715944367,
-        "id": "87c5ce73-f9f5-47d5-bcf4-abd3ce7d8514",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715944367,
-        "parent_id": "0fb874fc-c2bf-477c-8c45-7746679ea0bd",
-        "parent_table": "block",
-        "type": "divider",
-        "version": 1
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -351,13 +337,13 @@
         "id": "ae731dd0-835d-4b23-8632-184d7540760b",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715944367,
+        "last_edited_time": 1551597420000,
         "parent_id": "0fb874fc-c2bf-477c-8c45-7746679ea0bd",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -367,22 +353,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "// line object represents a line\nline.rotate(1)\n   .vec();  // ambiguous you don't need to be looking up docs while writing.\n\nline.rotate(1)\n   .asVec()    // unambiguous implies the return type is the line as a vec (vector)\n   .add({x:10,y:10)\n// toVec is just as good as long as the programmer can use the naming \n// to infer the return type",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550715944367,
-        "id": "83dc9b35-9488-4649-b22a-dfb65dd64208",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715944367,
-        "parent_id": "0fb874fc-c2bf-477c-8c45-7746679ea0bd",
-        "parent_table": "block",
-        "type": "divider",
-        "version": 1
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -441,52 +414,25 @@
         "id": "78a7834c-0e0d-4c55-aeec-7fd796d52c73",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715944367,
+        "last_edited_time": 1551597420000,
         "parent_id": "0fb874fc-c2bf-477c-8c45-7746679ea0bd",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
             [
-              "vec.scale(2).add({x:2,y:2}).log();  // for short chains\n\n vec.scale(2)     // or alternate syntax\n     .add({x:2,y:2})\n     .log();  // semicolon makes it clear the chain ends here"
+              "vec.scale(2).add({x:2,y:2}).log();  // for short chains\n\n vec.scale(2)     // or alternate syntax\n     .add({x:2,y:2})\n     .log();  // semicolon makes it clear the chain ends here\n\n// and sometimes though not necessary\nvec.scale(2)     \n    .add({x:2,y:2})\n    .clone()    // clone adds a new reference to the chain\n         .log(); // indenting to signify the new reference\n\n// for chains in chains\nvec.scale(2)     \n    .add({x:2,y:2})\n    .add(vec1.add({x:2,y:2})  // a chain as an argument \n         .add({x:2,y:2})      // is indented\n         .scale(2))\n    .log();\n\n// or sometimes \nvec.scale(2)     \n    .add({x:2,y:2})\n    .add(vec1.add({x:2,y:2})  // a chain as an argument \n         .add({x:2,y:2})      // is indented\n         .scale(2)\n    ).log();   // the argument list is closed on the new line"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "vec.scale(2).add({x:2,y:2}).log();  // for short chains\n\n vec.scale(2)     // or alternate syntax\n     .add({x:2,y:2})\n     .log();  // semicolon makes it clear the chain ends here",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550715944367,
-        "id": "d4fc6507-e4d5-48ce-ae6d-b8347c145f1b",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715944367,
-        "parent_id": "0fb874fc-c2bf-477c-8c45-7746679ea0bd",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "// and sometimes though not necessary\nvec.scale(2)     \n    .add({x:2,y:2})\n    .clone()    // clone adds a new reference to the chain\n         .log(); // indenting to signify the new reference\n\n// for chains in chains\nvec.scale(2)     \n    .add({x:2,y:2})\n    .add(vec1.add({x:2,y:2})  // a chain as an argument \n         .add({x:2,y:2})      // is indented\n         .scale(2))\n    .log();\n\n// or sometimes \nvec.scale(2)     \n    .add({x:2,y:2})\n    .add(vec1.add({x:2,y:2})  // a chain as an argument \n         .add({x:2,y:2})      // is indented\n         .scale(2)\n    ).log();   // the argument list is closed on the new line"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "// and sometimes though not necessary\nvec.scale(2)     \n    .add({x:2,y:2})\n    .clone()    // clone adds a new reference to the chain\n         .log(); // indenting to signify the new reference\n\n// for chains in chains\nvec.scale(2)     \n    .add({x:2,y:2})\n    .add(vec1.add({x:2,y:2})  // a chain as an argument \n         .add({x:2,y:2})      // is indented\n         .scale(2))\n    .log();\n\n// or sometimes \nvec.scale(2)     \n    .add({x:2,y:2})\n    .add(vec1.add({x:2,y:2})  // a chain as an argument \n         .add({x:2,y:2})      // is indented\n         .scale(2)\n    ).log();   // the argument list is closed on the new line",
-        "code_language": "Plain Text"
+        "version": 6,
+        "code": "vec.scale(2).add({x:2,y:2}).log();  // for short chains\n\n vec.scale(2)     // or alternate syntax\n     .add({x:2,y:2})\n     .log();  // semicolon makes it clear the chain ends here\n\n// and sometimes though not necessary\nvec.scale(2)     \n    .add({x:2,y:2})\n    .clone()    // clone adds a new reference to the chain\n         .log(); // indenting to signify the new reference\n\n// for chains in chains\nvec.scale(2)     \n    .add({x:2,y:2})\n    .add(vec1.add({x:2,y:2})  // a chain as an argument \n         .add({x:2,y:2})      // is indented\n         .scale(2))\n    .log();\n\n// or sometimes \nvec.scale(2)     \n    .add({x:2,y:2})\n    .add(vec1.add({x:2,y:2})  // a chain as an argument \n         .add({x:2,y:2})      // is indented\n         .scale(2)\n    ).log();   // the argument list is closed on the new line",
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -520,13 +466,13 @@
         "id": "14969d1b-560c-4321-9d79-51bb62d49946",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715944368,
+        "last_edited_time": 1551597420000,
         "parent_id": "0fb874fc-c2bf-477c-8c45-7746679ea0bd",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -536,22 +482,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "vec          // new line before the first function call\n   .scale()  // can make it unclear what the intention is\n   .log();\n\nvec.          // the dot on the end of the line\n   scale(2).  // is very difficult to see in a mass of code\n   scale(1/2); // and will likely frustrate as can easily be missed\n               // when trying to locate bugs",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550715944368,
-        "id": "2d3672ca-faca-436e-abac-39981bdce2aa",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715944368,
-        "parent_id": "0fb874fc-c2bf-477c-8c45-7746679ea0bd",
-        "parent_table": "block",
-        "type": "divider",
-        "version": 1
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -610,13 +543,13 @@
         "id": "9bb8cdc8-82a8-43c0-a55e-89dc58d3b056",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715944368,
+        "last_edited_time": 1551597420000,
         "parent_id": "0fb874fc-c2bf-477c-8c45-7746679ea0bd",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -626,9 +559,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 4,
         "code": "var vec2 = vec.scale(2)\n               .add(x:1,y:10)\n               .clone();   // the last returned result is assigned\n                               // vec2 is a clone of vec after the scale and add",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -695,19 +628,6 @@
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
         "created_time": 1550715944368,
-        "id": "592c1a6d-30f2-4402-833e-76a641400f05",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715944368,
-        "parent_id": "0fb874fc-c2bf-477c-8c45-7746679ea0bd",
-        "parent_table": "block",
-        "type": "divider",
-        "version": 1
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550715944368,
         "id": "b6153caf-2d29-4661-8d50-d0dbde00306d",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -755,7 +675,15 @@
         ]
       }
     ],
-    "title": "010 Chainable object design and chaining"
+    "title": "Chainable object design and chaining",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
   },
   "Users": [
     {

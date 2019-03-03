@@ -12,21 +12,25 @@
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550715593364,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
     "id": "24cbcf7e-f0c7-49d4-9794-ee3702aa4fdf",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550715593364,
+    "last_edited_time": 1551593880000,
     "parent_id": "3776e702-7f6c-45eb-83d8-15379c3eb16b",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "040 Converting PEM key pair to CryptoKey"
+          "Converting PEM key pair to CryptoKey"
         ]
       ]
     },
     "type": "page",
-    "version": 1,
+    "version": 8,
     "content_resolved": [
       {
         "alive": true,
@@ -137,13 +141,13 @@
         "id": "87e38814-1a96-4868-9704-acc7855394d7",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715593364,
+        "last_edited_time": 1551593880000,
         "parent_id": "24cbcf7e-f0c7-49d4-9794-ee3702aa4fdf",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -153,9 +157,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "function removeLines(str) {\n    return str.replace(\"\\n\", \"\");\n}\n\nfunction base64ToArrayBuffer(b64) {\n    var byteString = window.atob(b64);\n    var byteArray = new Uint8Array(byteString.length);\n    for(var i=0; i \u003c byteString.length; i++) {\n        byteArray[i] = byteString.charCodeAt(i);\n    }\n\n    return byteArray;\n}\n\nfunction pemToArrayBuffer(pem) {\n    var b64Lines = removeLines(pem);\n    var b64Prefix = b64Lines.replace('-----BEGIN PRIVATE KEY-----', '');\n    var b64Final = b64Prefix.replace('-----END PRIVATE KEY-----', '');\n\n    return base64ToArrayBuffer(b64Final);\n}\n\nwindow.crypto.subtle.importKey(\n    \"pkcs8\",\n    pemToArrayBuffer(yourprivatekey),\n    {\n        name: \"RSA-OAEP\",\n        hash: {name: \"SHA-256\"} // or SHA-512\n    },\n    true,\n    [\"decrypt\"]\n).then(function(importedPrivateKey) {\n    console.log(importedPrivateKey);\n}).catch(function(err) {\n    console.log(err);\n});",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -183,7 +187,15 @@
         ]
       }
     ],
-    "title": "040 Converting PEM key pair to CryptoKey"
+    "title": "Converting PEM key pair to CryptoKey",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
   },
   "Users": [
     {

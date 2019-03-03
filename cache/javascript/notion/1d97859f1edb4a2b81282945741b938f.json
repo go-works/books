@@ -10,7 +10,7 @@
       "360f95e2-6965-4ea0-943f-550d2d6a70d9",
       "b960e59b-7d4a-46c1-8d9b-be93a119d096",
       "c01916ba-0742-4387-a286-59a836428c1a",
-      "4cd28393-4e86-4024-bfca-b4fb765fc51c",
+      "ca7df3cb-015e-432f-9dbc-ce4f45178529",
       "3aefef2c-91f9-4522-bcef-7339adbe479e",
       "fcadc728-4a9d-4f10-9e9b-9702e4743293",
       "094a7a62-d652-4b02-9b34-1ec80ee5e7fa",
@@ -22,21 +22,25 @@
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550715898744,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
     "id": "1d97859f-1edb-4a2b-8128-2945741b938f",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550715898744,
+    "last_edited_time": 1551595020000,
     "parent_id": "337f40a2-6b9b-4941-a028-cebbb21ea965",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "040 Use a memoizer for heavy-computing functions"
+          "Cache (memoize) heavy-computing functions"
         ]
       ]
     },
     "type": "page",
-    "version": 1,
+    "version": 47,
     "content_resolved": [
       {
         "alive": true,
@@ -131,13 +135,13 @@
         "id": "98f73cf6-396c-4d37-bcfb-e3ba90797181",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715898739,
+        "last_edited_time": 1551594960000,
         "parent_id": "1d97859f-1edb-4a2b-8128-2945741b938f",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -147,9 +151,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "function fact(num) {\n  return (num === 0)? 1 : num * fact(num - 1);\n}",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -208,13 +212,13 @@
         "id": "b960e59b-7d4a-46c1-8d9b-be93a119d096",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715898742,
+        "last_edited_time": 1551594960000,
         "parent_id": "1d97859f-1edb-4a2b-8128-2945741b938f",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -224,9 +228,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "var fact = (function() {\n  var cache = {}; // Initialise a memory cache object\n  \n  // Use and return this function to check if val is cached\n  function checkCache(val) {\n    if (val in cache) {\n      console.log('It was in the cache :D');\n      return cache[val]; // return cached\n    } else {\n      cache[val] = factorial(val); // we cache it\n      return cache[val]; // and then return it\n    }\n    \n    /* Other alternatives for checking are:\n    || cache.hasOwnProperty(val) or !!cache[val]\n    || but wouldn't work if the results of those\n    || executions were falsy values.\n    */\n  }\n\n  // We create and name the actual function to be used\n  function factorial(num) {\n    return (num === 0)? 1 : num * factorial(num - 1);\n  } // End of factorial function\n\n  /* We return the function that checks, not the one\n  || that computes because  it happens to be recursive,\n  || if it weren't you could avoid creating an extra\n  || function in this self-invoking closure function.\n  */\n  return checkCache; \n}());",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -256,24 +260,35 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550715898742,
-        "id": "4cd28393-4e86-4024-bfca-b4fb765fc51c",
-        "ignore_block_count": true,
+        "created_time": 1551595042768,
+        "format": {
+          "display_source": "http://i.stack.imgur.com/2fkTB.png"
+        },
+        "id": "ca7df3cb-015e-432f-9dbc-ce4f45178529",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715898742,
+        "last_edited_time": 1551595020000,
         "parent_id": "1d97859f-1edb-4a2b-8128-2945741b938f",
         "parent_table": "block",
         "properties": {
           "source": [
             [
-              "/tmp/8bb6971d-94f2-4c5c-8cab-3e45f1dd14de/85aafcc17557078527d9c5108aa155e91b892de5.png"
+              "http://i.stack.imgur.com/2fkTB.png"
             ]
           ]
         },
         "type": "image",
-        "version": 1,
-        "source": "/tmp/8bb6971d-94f2-4c5c-8cab-3e45f1dd14de/85aafcc17557078527d9c5108aa155e91b892de5.png",
-        "image_url": "https://www.notion.so/image/https:%2F%2Fwww.notion.so%2Ftmp%2F8bb6971d-94f2-4c5c-8cab-3e45f1dd14de%2F85aafcc17557078527d9c5108aa155e91b892de5.png"
+        "version": 6,
+        "source": "http://i.stack.imgur.com/2fkTB.png",
+        "image_url": "https://www.notion.so/image/https:%2F%2Fwww.notion.sohttp:%2F%2Fi.stack.imgur.com%2F2fkTB.png",
+        "format_image": {
+          "block_aspect_ratio": 0,
+          "block_full_width": false,
+          "block_page_width": false,
+          "block_preserve_scale": false,
+          "block_width": 0,
+          "display_source": "http://i.stack.imgur.com/2fkTB.png",
+          "image_url": "https://www.notion.so/image/https:%2F%2Fwww.notion.sohttp:%2F%2Fi.stack.imgur.com%2F2fkTB.png"
+        }
       },
       {
         "alive": true,
@@ -454,13 +469,13 @@
         "id": "b9b33a3b-7025-42d3-8327-40c1aec335b0",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715898743,
+        "last_edited_time": 1551595020000,
         "parent_id": "1d97859f-1edb-4a2b-8128-2945741b938f",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -470,9 +485,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "function memoize(func) {\n  let cache = {};\n\n  // You can opt for not naming the function\n  function memoized(...args) {\n    const argsKey = JSON.stringify(args);\n    \n    // The same alternatives apply for this example\n    if (argsKey in cache) {\n      console.log(argsKey + ' was/were in cache :D');\n      return cache[argsKey];\n    } else {\n      cache[argsKey] = func.apply(null, args); // Cache it\n      return cache[argsKey]; // And then return it\n    }\n  }\n\n  return memoized; // Return the memoized function\n}",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       },
       {
         "alive": true,
@@ -585,13 +600,13 @@
         "id": "40f1fefd-21d3-4ccb-8524-dc41b9887c6a",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715898743,
+        "last_edited_time": 1551595020000,
         "parent_id": "1d97859f-1edb-4a2b-8128-2945741b938f",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -601,12 +616,20 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "const newFunction = memoize(oldFunction);\n\n// Assuming new oldFunction just sums/concatenates:\nnewFunction('meaning of life', 42);\n// -\u003e \"meaning of life42\"\n\nnewFunction('meaning of life', 42); // again\n// =\u003e [\"meaning of life\",42] was/were in cache :D\n// -\u003e \"meaning of life42\"",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       }
     ],
-    "title": "040 Use a memoizer for heavy-computing functions"
+    "title": "Cache (memoize) heavy-computing functions",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
   },
   "Users": [
     {

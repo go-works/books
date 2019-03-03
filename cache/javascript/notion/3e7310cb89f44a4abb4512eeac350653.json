@@ -6,27 +6,29 @@
       "639115b9-2e8d-4c5f-9468-b9e716700751",
       "2054d0da-d4c5-49d6-85b0-078920a00bdf",
       "0a70d3bb-fb3b-4bee-baa2-739f3c3f5748",
-      "9d1f8de2-8021-4ce4-8846-756c88b1324d",
-      "f33207f4-ef45-437f-9925-8f13c8f55337",
-      "f578be23-91a2-4190-9b5d-12df3f707642"
+      "9d1f8de2-8021-4ce4-8846-756c88b1324d"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550715558190,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
     "id": "3e7310cb-89f4-4a4a-bb45-12eeac350653",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550715558190,
+    "last_edited_time": 1551589380000,
     "parent_id": "224e7cd2-5e64-43fd-925f-c35ce7c9e474",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "010 Requesting Permission to send notifications"
+          "Requesting permission to send notifications"
         ]
       ]
     },
     "type": "page",
-    "version": 1,
+    "version": 15,
     "content_resolved": [
       {
         "alive": true,
@@ -78,13 +80,13 @@
         "id": "2054d0da-d4c5-49d6-85b0-078920a00bdf",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715558190,
+        "last_edited_time": 1551589260000,
         "parent_id": "3e7310cb-89f4-4a4a-bb45-12eeac350653",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "Java"
             ]
           ],
           "title": [
@@ -94,9 +96,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "Notification.requestPermission(function() {\n    if (Notification.permission === 'granted') {\n        // user approved.\n        // use of new Notification(...) syntax will now be successful\n    } else if (Notification.permission === 'denied') {\n        // user denied.\n    } else { // Notification.permission === 'default'\n        // user didn’t make a decision.\n        // You can’t send notifications until they grant permission.\n    }\n});",
-        "code_language": "Plain Text"
+        "code_language": "Java"
       },
       {
         "alive": true,
@@ -148,80 +150,36 @@
         "id": "9d1f8de2-8021-4ce4-8846-756c88b1324d",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715558190,
+        "last_edited_time": 1551589320000,
         "parent_id": "3e7310cb-89f4-4a4a-bb45-12eeac350653",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "Java"
             ]
           ],
           "title": [
             [
-              "Notification.requestPermission().then(function(permission) {"
+              "Notification.requestPermission().then(function(permission) {\n\t\t// you got permission !\n    if (!('permission' in Notification)) {\n        Notification.permission = permission;\n    }\n    }, function(rejection) {\n\t    // handle rejection here.\n    }\n);"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "Notification.requestPermission().then(function(permission) {",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550715558190,
-        "id": "f33207f4-ef45-437f-9925-8f13c8f55337",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715558190,
-        "parent_id": "3e7310cb-89f4-4a4a-bb45-12eeac350653",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "if (!(‘permission’ in Notification)) { Notification.permission = permission; } // you got permission ! }, function(rejection) { // handle rejection here. }"
-            ]
-          ]
-        },
-        "type": "text",
-        "version": 1,
-        "inline_content": [
-          {
-            "Text": "if (!(‘permission’ in Notification)) { Notification.permission = permission; } // you got permission ! }, function(rejection) { // handle rejection here. }"
-          }
-        ]
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550715558190,
-        "id": "f578be23-91a2-4190-9b5d-12df3f707642",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715558190,
-        "parent_id": "3e7310cb-89f4-4a4a-bb45-12eeac350653",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              ");"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": ");",
-        "code_language": "Plain Text"
+        "version": 19,
+        "code": "Notification.requestPermission().then(function(permission) {\n\t\t// you got permission !\n    if (!('permission' in Notification)) {\n        Notification.permission = permission;\n    }\n    }, function(rejection) {\n\t    // handle rejection here.\n    }\n);",
+        "code_language": "Java"
       }
     ],
-    "title": "010 Requesting Permission to send notifications"
+    "title": "Requesting permission to send notifications",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
   },
   "Users": [
     {

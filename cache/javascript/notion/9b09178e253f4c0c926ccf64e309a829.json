@@ -10,21 +10,25 @@
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550715924340,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
     "id": "9b09178e-253f-4c0c-926c-cf64e309a829",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550715924340,
+    "last_edited_time": 1551595500000,
     "parent_id": "2023fa0a-be42-4a7c-84ca-22f2a013d046",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "090 Mediator Pattern"
+          "Mediator Pattern"
         ]
       ]
     },
     "type": "page",
-    "version": 1,
+    "version": 8,
     "content_resolved": [
       {
         "alive": true,
@@ -131,13 +135,13 @@
         "id": "0ccf2aa8-b247-4a65-a178-d26232defb9d",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550715924340,
+        "last_edited_time": 1551595500000,
         "parent_id": "9b09178e-253f-4c0c-926c-cf64e309a829",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "JavaScript"
             ]
           ],
           "title": [
@@ -147,12 +151,20 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "// each participant is just a module that wants to talk to other modules(other participants)\nvar Participant = function(name) {\n    this.name = name;\n    this.chatroom = null;\n};\n // each participant has method for talking, and also listening to other participants\nParticipant.prototype = {\n    send: function(message, to) {\n        this.chatroom.send(message, this, to);\n    },\n    receive: function(message, from) {\n        log.add(from.name + \" to \" + this.name + \": \" + message);\n    }\n};\n\n // chatroom is the Mediator: it is the hub where participants send messages to, and receive messages from\nvar Chatroom = function() {\n    var participants = {};\n \n    return {\n \n        register: function(participant) {\n            participants[participant.name] = participant;\n            participant.chatroom = this;\n        },\n \n        send: function(message, from) {\n            for (key in participants) {   \n                if (participants[key] !== from) {//you cant message yourself !\n                    participants[key].receive(message, from);\n                }\n            }\n        }\n\n    };\n};\n \n// log helper\n \nvar log = (function() {\n    var log = \"\";\n \n    return {\n        add: function(msg) { log += msg + \"\\n\"; },\n        show: function() { alert(log); log = \"\"; }\n    }\n})();\n \nfunction run() {\n    var yoko = new Participant(\"Yoko\");\n    var john = new Participant(\"John\");\n    var paul = new Participant(\"Paul\");\n    var ringo = new Participant(\"Ringo\");\n \n    var chatroom = new Chatroom();\n    chatroom.register(yoko);\n    chatroom.register(john);\n    chatroom.register(paul);\n    chatroom.register(ringo);\n \n    yoko.send(\"All you need is love.\");\n    yoko.send(\"I love you John.\");        \n    paul.send(\"Ha, I heard that!\");\n \n    log.show();\n}",
-        "code_language": "Plain Text"
+        "code_language": "JavaScript"
       }
     ],
-    "title": "090 Mediator Pattern"
+    "title": "Mediator Pattern",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
   },
   "Users": [
     {
