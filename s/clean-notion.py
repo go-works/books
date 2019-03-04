@@ -5,6 +5,7 @@
 
 import os
 import random
+import time
 from notion.client import NotionClient
 from notion.operations import build_operation
 
@@ -71,13 +72,24 @@ def fix_title(page):
         page.title = new_title
 
 
-def get_subpages(page):
+def get_subpages_may_throw(page):
     sub_pages = []
     for child in page.children:
         tp = child.__class__.__name__
         if tp == "PageBlock":
             sub_pages.append(child.id)
     return sub_pages
+
+
+def get_subpages(page):
+    try:
+        res = get_subpages_may_throw(page)
+        return res
+    except:
+        sleep_secs = 3
+        print("get_subpages_may_throw() failed, sleeping for %d seconds" % sleep_secs)
+        time.sleep(sleep_secs)
+        return []
 
 
 def clean_titles_and_format(start_id):
