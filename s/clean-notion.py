@@ -4,6 +4,7 @@
 # https://medium.com/@jamiealexandre/introducing-notion-py-an-unofficial-python-api-wrapper-for-notion-so-603700f92369
 
 import os
+import random
 from notion.client import NotionClient
 from notion.operations import build_operation
 
@@ -89,6 +90,8 @@ def clean_titles_and_format(start_id):
     to_visit = [normalize_id(start_id)]
     visited = {}
     while len(to_visit) > 0:
+        # randomize order just for fun
+        random.shuffle(to_visit)
         page_id = to_visit[0]
         to_visit = to_visit[1:]
         normalized_page_id = normalize_id(page_id)
@@ -110,7 +113,21 @@ def clean_titles_and_format(start_id):
 
 def main():
     sql_id = "d1c8bb39bad4494e80abe28414c3d80e"
-    clean_titles_and_format(sql_id)
+    python_id = "12e6f78e68a5497290c96e1365ae6259"  # finished partially, rerun?
+    javascript_id = "0b121710a160402fa9fd4646b87bed99"  # finished with 50 left
+
+    # TODO:
+    android_id = "f90b0a6b648343e28dc5ed6e8f5c0780"
+    java_id = "d37cda98a07046f6b2cc375731ea3bdb"
+    kotlin_id = "2bdd47318f3a4e8681dda289a8b3472b"  # only format
+    postgresql_id = "799304340f2c4081b6c4b7eb28df368e"  # only format
+    dart_id = "0e2d248bf94b4aebaefbcf51ae435df0"  # only format
+
+    cpp_id = "ad527dc6d4a7420b923494d0b9bfb560"  # only format
+    mysql_id = "4489ab73989f4ae9912486561e165deb"  # seems done
+    ios_id = "3626edc1bd044431afddc89648a7050f"  # mostly done
+
+    clean_titles_and_format(javascript_id)
 
 
 if __name__ == "__main__":
