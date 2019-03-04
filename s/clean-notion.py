@@ -5,6 +5,7 @@
 
 import os
 from notion.client import NotionClient
+from notion.operations import build_operation
 
 javascriptTop = "0b121710a160402fa9fd4646b87bed99"
 cppTop = "ad527dc6d4a7420b923494d0b9bfb560"
@@ -12,11 +13,13 @@ expectedIdLen = len("0b121710a160402fa9fd4646b87bed99")
 
 toFixTest = "https://www.notion.so/kjkpublic/000-How-to-make-iterator-usable-inside-async-callback-function-ee2c02d47ef44fbf883238558e314394"
 
+
 def normalize_id(s):
     s = s.replace("-", "")
     if len(s) != expectedIdLen:
         raise "unexpected id '" + s + "'"
     return s
+
 
 def is_number(s):
     isn = False
@@ -28,7 +31,8 @@ def is_number(s):
     # print("is number:", s, ", is:", isn)
     return isn
 
-def fix_title(s):
+
+def clean_title(s):
     parts = s.split(" ")
     if len(parts) == 1:
         return s
@@ -36,14 +40,52 @@ def fix_title(s):
         parts = parts[1:]
     return " ".join(parts)
 
-def main():
+
+def should_update_format(fmt):
+    fw = fmt["page_full_width"]
+    sp = fmt["page_small_text"]
+    should_update = not fw or not sp
+    return should_update
+
+
+def fix_format(page):
+    fmt = page.get(["format"])
+    #print("format: %s of class %s" % (fmt, fmt.__class__.__name__))
+    if not should_update_format(fmt):
+        return
+    args = {'page_full_width': True, 'page_small_text': True}
+    path = ["format"]
+    table = page._table
+    op = build_operation(id=page.id, path=path,
+                         args=args, table=table, command="update")
+    res = page._client.submit_transaction(op)
+    print("  updated page format")
+
+
+def fix_title(page):
+    new_title = clean_title(page.title)
+    if new_title != page.title:
+        print("  '%s' to '%s'" % (page.title, new_title))
+        page.title = new_title
+
+
+def get_subpages(page):
+    sub_pages = []
+    for child in page.children:
+        tp = child.__class__.__name__
+        if tp == "PageBlock":
+            sub_pages.append(child.id)
+    return sub_pages
+
+
+def clean_titles_and_format(start_id):
     api_token = os.environ.get("NOTION_TOKEN", "")
     if api_token == "":
         print("need NOTION_TOKEN env variable")
         exit(1)
     client = NotionClient(token_v2=api_token)
 
-    to_visit = [normalize_id(cppTop)]
+    to_visit = [normalize_id(start_id)]
     visited = {}
     while len(to_visit) > 0:
         page_id = to_visit[0]
@@ -54,25 +96,21 @@ def main():
             print("Skipping page %s because already visited" % page_id)
             continue
         page = client.get_block(page_id)
+        page.refresh()
         visited[normalized_page_id] = True
-        title = page.title
-        page_id = page.id
-        print("Got page with title '%s' and id '%s'" % (title, page_id))
-        #fw = page.get("full_width")
-        #print("page.full_width:", fw)
-        #print("page.small_text:", page.small_text)
-        new_title = fix_title(title)
-        if new_title != title:
-            print("Changing title from '%s' to '%s'" % (title, new_title))
-            page.title = new_title
-        n_sub_pages = 0
-        for child in page.children:
-            tp = child.__class__.__name__
-            if tp == "PageBlock":
-                n_sub_pages += 1
-                to_visit.append(child.id)
-        if n_sub_pages > 0:
-            print("Has %d sub-pages" % n_sub_pages)
+
+        print("Got page with title '%s' and id '%s'" % (page.title, page.id))
+        fix_title(page)
+        fix_format(page)
+
+        subpages = get_subpages(page)
+        to_visit.extend(subpages)
+
+
+def main():
+    sql_id = "d1c8bb39bad4494e80abe28414c3d80e"
+    clean_titles_and_format(sql_id)
+
 
 if __name__ == "__main__":
     main()
