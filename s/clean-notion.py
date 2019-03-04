@@ -116,8 +116,12 @@ def clean_titles_and_format(start_id):
         visited[normalized_page_id] = True
 
         print("Got page with title '%s' and id '%s'" % (page.title, page.id))
-        fix_title(page)
-        fix_format(page)
+        try:
+            fix_title(page)
+            fix_format(page)
+        except:
+            print("fix_title or fix_format threw an exception")
+            time.sleep(3)
 
         subpages = get_subpages(page)
         to_visit.extend(subpages)
@@ -129,7 +133,7 @@ def main():
     javascript_id = "0b121710a160402fa9fd4646b87bed99"  # finished with 50 left
 
     # TODO:
-    android_id = "f90b0a6b648343e28dc5ed6e8f5c0780"
+    android_id = "f90b0a6b648343e28dc5ed6e8f5c0780"  # need to re-run
     java_id = "d37cda98a07046f6b2cc375731ea3bdb"
     kotlin_id = "2bdd47318f3a4e8681dda289a8b3472b"  # only format
     postgresql_id = "799304340f2c4081b6c4b7eb28df368e"  # only format
@@ -139,7 +143,7 @@ def main():
     mysql_id = "4489ab73989f4ae9912486561e165deb"  # seems done
     ios_id = "3626edc1bd044431afddc89648a7050f"  # mostly done
 
-    clean_titles_and_format(android_id)
+    clean_titles_and_format(java_id)
 
 
 if __name__ == "__main__":
