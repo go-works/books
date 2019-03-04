@@ -42,10 +42,11 @@ def clean_title(s):
 
 
 def should_update_format(fmt):
-    fw = fmt["page_full_width"]
-    sp = fmt["page_small_text"]
-    should_update = not fw or not sp
-    return should_update
+    if fmt is None:
+        return True
+    fw = fmt.get("page_full_width", False)
+    sp = fmt.get("page_small_text", False)
+    return (not fw) or (not sp)
 
 
 def fix_format(page):
