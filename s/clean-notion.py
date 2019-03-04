@@ -127,7 +127,7 @@ def main():
     mysql_id = "4489ab73989f4ae9912486561e165deb"  # seems done
     ios_id = "3626edc1bd044431afddc89648a7050f"  # mostly done
 
-    clean_titles_and_format(javascript_id)
+    clean_titles_and_format(android_id)
 
 
 if __name__ == "__main__":
