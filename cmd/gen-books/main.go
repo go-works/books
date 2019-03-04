@@ -485,7 +485,7 @@ func main() {
 		for _, name := range flag.Args() {
 			book := findBook(name)
 			if book == nil {
-				fmt.Printf("Didn't find book named '%'s\n", name)
+				fmt.Printf("Didn't find book named '%s'\n", name)
 				continue
 			}
 			newBooks = append(newBooks, book)
