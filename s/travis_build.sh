@@ -10,6 +10,8 @@ if [ -z ${NETLIFY_TOKEN+x} ]
 then
     echo "Skipping upload because NETLIFY_TOKEN not set"
 else
-    ./netlifyctl -A $NETLIFY_TOKEN deploy || true
-    cat netlifyctl-debug.log || true
+    netlify deploy --prod --dir=www --site=7df32685-1421-41cf-937a-a92fde6725f4 --auth=${NETLIFY_TOKEN}
+
+    # ./netlifyctl -A $NETLIFY_TOKEN deploy || true
+    # cat netlifyctl-debug.log || true
 fi

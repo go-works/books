@@ -155,8 +155,21 @@ func loadNotionPage(b *Book, c *notionapi.Client, pageID string, getFromCache bo
 	page, err := downloadAndCachePage(b, c, pageID)
 	if err == nil {
 		fmt.Printf("Downloaded %d %s %s\n", n, page.ID, page.Root.Title)
+	} else {
+		return nil, err
 	}
-	return page, err
+
+	updated := updateFormatOrTitleIfNeeded(page)
+	if updated {
+		page, err = downloadAndCachePage(b, c, pageID)
+		if err == nil {
+			fmt.Printf("Downloaded %d %s %s\n", n, page.ID, page.Root.Title)
+		} else {
+			return nil, err
+		}
+	}
+
+	return page, nil
 }
 
 func updateFormatIfNeeded(page *notionapi.Page) bool {
@@ -221,12 +234,6 @@ func loadNotionPages(b *Book, c *notionapi.Client, indexPageID string, idToPage 
 		page, err := loadNotionPage(b, c, pageID, useCache, n)
 		panicIfErr(err)
 		n++
-
-		updated := updateFormatOrTitleIfNeeded(page)
-		if updated {
-			page, err = loadNotionPage(b, c, pageID, false, n-1)
-			panicIfErr(err)
-		}
 
 		idToPage[pageID] = page
 
