@@ -21,7 +21,7 @@ require (
 	github.com/google/go-github v17.0.0+incompatible // indirect
 	github.com/google/shlex v0.0.0-20150127133951-6f45313302b9
 	github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51 // indirect
-	github.com/kjk/notionapi v0.0.0-20190217014228-5c77f12483e9
+	github.com/kjk/notionapi v0.0.0-20190305063215-c623fa66806e
 	github.com/kjk/siser v0.0.0-20170927035209-f1af2d1a21bb
 	github.com/kjk/u v0.0.0-20170711051841-93181be023c9
 	github.com/mattn/go-colorable v0.1.0 // indirect
