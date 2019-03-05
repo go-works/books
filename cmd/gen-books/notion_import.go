@@ -159,6 +159,45 @@ func loadNotionPage(b *Book, c *notionapi.Client, pageID string, getFromCache bo
 	return page, err
 }
 
+func updateFormatIfNeeded(page *notionapi.Page) {
+	// can't write back without a token
+	if notionAuthToken == "" {
+		return
+	}
+	args := map[string]interface{}{}
+	format := page.Root.FormatPage
+	if format == nil || !format.PageSmallText {
+		args["page_small_text"] = true
+	}
+	if format == nil || !format.PageFullWidth {
+		args["page_full_width"] = true
+	}
+	if len(args) == 0 {
+		return
+	}
+	fmt.Printf("  updating format to %v\n", args)
+	err := page.SetFormat(args)
+	if err != nil {
+		fmt.Printf("updateFormatIfNeeded: page.SetFormat() failed with '%s'\n", err)
+	}
+}
+
+func updateTitleIfNeeded(page *notionapi.Page) {
+	// can't write back without a token
+	if notionAuthToken == "" {
+		return
+	}
+	newTitle := cleanTitle(page.Root.Title)
+	if newTitle == page.Root.Title {
+		return
+	}
+	fmt.Printf("  updating title to '%s'\n", newTitle)
+	err := page.SetTitle(newTitle)
+	if err != nil {
+		fmt.Printf("updateTitleIfNeeded: page.SetTitle() failed with '%s'\n", err)
+	}
+}
+
 func loadNotionPages(b *Book, c *notionapi.Client, indexPageID string, idToPage map[string]*notionapi.Page, useCache bool) {
 	toVisit := []string{indexPageID}
 
@@ -174,6 +213,9 @@ func loadNotionPages(b *Book, c *notionapi.Client, indexPageID string, idToPage 
 		page, err := loadNotionPage(b, c, pageID, useCache, n)
 		panicIfErr(err)
 		n++
+
+		updateFormatIfNeeded(page)
+		updateTitleIfNeeded(page)
 
 		idToPage[pageID] = page
 

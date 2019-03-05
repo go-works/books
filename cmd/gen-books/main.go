@@ -36,6 +36,8 @@ var (
 	googleAnalytics   template.HTML
 	doMinify          bool
 	minifier          *minify.M
+
+	notionAuthToken string
 )
 
 var (
@@ -194,6 +196,13 @@ func parseFlags() {
 	`
 		s := fmt.Sprintf(googleAnalyticsTmpl, flgAnalytics, flgAnalytics)
 		googleAnalytics = template.HTML(s)
+	}
+
+	notionAuthToken = os.Getenv("NOTION_TOKEN")
+	if notionAuthToken != "" {
+		fmt.Printf("NOTION_TOKEN provided, can write back\n")
+	} else {
+		fmt.Printf("NOTION_TOKEN not provided, read only\n")
 	}
 }
 
@@ -418,7 +427,9 @@ func redownloadBook(id string) {
 		os.Exit(1)
 	}
 	flgNoCache = true
-	client := &notionapi.Client{}
+	client := &notionapi.Client{
+		AuthToken: notionAuthToken,
+	}
 	initBook(book)
 	downloadBook(client, book)
 }
@@ -445,7 +456,9 @@ func main() {
 		return
 	}
 
-	client := &notionapi.Client{}
+	client := &notionapi.Client{
+		AuthToken: notionAuthToken,
+	}
 	if flgRedownloadOne != "" {
 		book := findBookFromCachedPageID(flgRedownloadOne)
 		if book == nil {
