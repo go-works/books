@@ -224,7 +224,7 @@ func loadNotionPages(b *Book, c *notionapi.Client, indexPageID string, idToPage 
 
 		updated := updateFormatOrTitleIfNeeded(page)
 		if updated {
-			page, err = loadNotionPage(b, c, pageID, false, n)
+			page, err = loadNotionPage(b, c, pageID, false, n-1)
 			panicIfErr(err)
 		}
 
