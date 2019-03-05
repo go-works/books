@@ -109,15 +109,16 @@ def clean_titles_and_format(start_id):
         page_id = to_visit[0]
         to_visit = to_visit[1:]
         normalized_page_id = normalize_id(page_id)
-        print("Pages left: %d, getting page %d: %s" % (len(to_visit)+1, n_pages, page_id))
         if page_id in visited:
-            print("Skipping page %s because already visited" % page_id)
+            print("Skipping '%s' because already visited" % page_id)
             continue
+        print("Pages left: %d, getting page %d: %s..." %
+              (len(to_visit)+1, n_pages, page_id), end='')
         page = client.get_block(page_id)
         page.refresh()
         visited[normalized_page_id] = True
 
-        print("Got page with title '%s' and id '%s'" % (page.title, page.id))
+        print(" got '%s'" % page.title)
         try:
             fix_title(page)
             fix_format(page)
