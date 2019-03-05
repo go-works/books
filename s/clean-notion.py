@@ -99,15 +99,17 @@ def clean_titles_and_format(start_id):
         exit(1)
     client = NotionClient(token_v2=api_token)
 
+    n_pages = 0
     to_visit = [normalize_id(start_id)]
     visited = {}
     while len(to_visit) > 0:
+        n_pages += 1
         # randomize order just for fun
         random.shuffle(to_visit)
         page_id = to_visit[0]
         to_visit = to_visit[1:]
         normalized_page_id = normalize_id(page_id)
-        print("Pages left: %d, getting page: %s" % (len(to_visit)+1, page_id))
+        print("Pages left: %d, getting page %d: %s" % (len(to_visit)+1, n_pages, page_id))
         if page_id in visited:
             print("Skipping page %s because already visited" % page_id)
             continue
