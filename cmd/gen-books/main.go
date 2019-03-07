@@ -218,6 +218,15 @@ var (
 		// https://www.notion.so/kjkpublic/Essential-HTML5-Canvas-227fa77d624c441d98011d7c998609a6
 		NotionStartPageID: "227fa77d624c441d98011d7c998609a6",
 	}
+	bookNETFramework = &Book{
+		NoPublish:      true,
+		Title:          "NET Framework",
+		TitleLong:      "Essential NET Framework",
+		Dir:            "netframework",
+		CoverImageName: "NETFramework.png",
+		// https://www.notion.so/kjkpublic/Essential-NET-framework-6289ba4610874393844dfbae890ed035
+		NotionStartPageID: "6289ba4610874393844dfbae890ed035",
+	}
 )
 
 var (
@@ -228,7 +237,7 @@ var (
 	}
 	booksUnpublished = []*Book{
 		bookSql, bookAlgorithm, bookBash, bookC, bookCSS, bookGit, bookHTML,
-		bookHTMLCanvas,
+		bookHTMLCanvas, bookNETFramework,
 	}
 	allBooks = append(booksMain, booksUnpublished...)
 )
