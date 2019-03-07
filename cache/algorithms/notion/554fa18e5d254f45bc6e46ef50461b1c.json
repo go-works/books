@@ -1,0 +1,213 @@
+{
+  "ID": "554fa18e-5d25-4f45-bc6e-46ef50461b1c",
+  "Root": {
+    "alive": true,
+    "content": [
+      "95ddfe72-31c6-43c0-9ab6-69789ecf3cce",
+      "73007bfb-266f-41e9-8464-99b9931dd535",
+      "a4082365-e3c4-42ac-b9c5-fb3ff6eef9c5",
+      "87a59d84-26d6-4d41-966e-836adf0678ff",
+      "d5120da1-8418-4dea-9d3d-bdb9fb30ddc1",
+      "83102fc5-f46a-49e1-8ae2-b0a0c5d98032"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551928095887,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "554fa18e-5d25-4f45-bc6e-46ef50461b1c",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551928095887,
+    "parent_id": "c8277fc4-6841-459e-81f4-c90a99fd83fa",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Rabin Karp"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551928095883,
+        "id": "95ddfe72-31c6-43c0-9ab6-69789ecf3cce",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551928095883,
+        "parent_id": "554fa18e-5d25-4f45-bc6e-46ef50461b1c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The Rabin–Karp algorithm or Karp–Rabin algorithm is a string searching algorithm that uses hashing to find any one of a set of pattern strings in a text.Its average and best case running time is O(n+m) in space O(p), but its worst-case time is O(nm) where n is the length of the text and m is the length of the pattern."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The Rabin–Karp algorithm or Karp–Rabin algorithm is a string searching algorithm that uses hashing to find any one of a set of pattern strings in a text.Its average and best case running time is O(n+m) in space O(p), but its worst-case time is O(nm) where n is the length of the text and m is the length of the pattern."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551928095886,
+        "id": "73007bfb-266f-41e9-8464-99b9931dd535",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551928095886,
+        "parent_id": "554fa18e-5d25-4f45-bc6e-46ef50461b1c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Algorithm implementation in java for string matching"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Algorithm implementation in java for string matching"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551928095886,
+        "id": "a4082365-e3c4-42ac-b9c5-fb3ff6eef9c5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551928095886,
+        "parent_id": "554fa18e-5d25-4f45-bc6e-46ef50461b1c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "void RabinfindPattern(String text,String pattern){\n    /*\n    q a prime number\n    p hash value for pattern\n    t hash value for text\n    d is the number of unique characters in input alphabet\n    */\n    int d=128;\n    int q=100;\n    int n=text.length();\n    int m=pattern.length();\n    int t=0,p=0;\n    int h=1;\n    int i,j;\n//hash value calculating function\n    for (i=0;i\u003cm-1;i++)\n            h = (h*d)%q;\n        for (i=0;i\u003cm;i++){\n        p = (d*p + pattern.charAt(i))%q;\n        t = (d*t + text.charAt(i))%q;\n        }\n//search for the pattern \n    for(i=0;i\u003cend-m;i++){\n        if(p==t){\n//if the hash value matches match them character by character\n            for(j=0;j\u003cm;j++)\n                if(text.charAt(j+i)!=pattern.charAt(j))\n                break;\n            if(j==m \u0026\u0026 i\u003e=start)\n                System.out.println(\"Pattern match found at index \"+i);            \n        }\n        if(i\u003cend-m){\n            t =(d*(t - text.charAt(i)*h) + text.charAt(i+m))%q;\n            if(t\u003c0)\n                t=t+q;\n        }    \n    }                                \n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "void RabinfindPattern(String text,String pattern){\n    /*\n    q a prime number\n    p hash value for pattern\n    t hash value for text\n    d is the number of unique characters in input alphabet\n    */\n    int d=128;\n    int q=100;\n    int n=text.length();\n    int m=pattern.length();\n    int t=0,p=0;\n    int h=1;\n    int i,j;\n//hash value calculating function\n    for (i=0;i\u003cm-1;i++)\n            h = (h*d)%q;\n        for (i=0;i\u003cm;i++){\n        p = (d*p + pattern.charAt(i))%q;\n        t = (d*t + text.charAt(i))%q;\n        }\n//search for the pattern \n    for(i=0;i\u003cend-m;i++){\n        if(p==t){\n//if the hash value matches match them character by character\n            for(j=0;j\u003cm;j++)\n                if(text.charAt(j+i)!=pattern.charAt(j))\n                break;\n            if(j==m \u0026\u0026 i\u003e=start)\n                System.out.println(\"Pattern match found at index \"+i);            \n        }\n        if(i\u003cend-m){\n            t =(d*(t - text.charAt(i)*h) + text.charAt(i+m))%q;\n            if(t\u003c0)\n                t=t+q;\n        }    \n    }                                \n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551928095886,
+        "id": "87a59d84-26d6-4d41-966e-836adf0678ff",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551928095886,
+        "parent_id": "554fa18e-5d25-4f45-bc6e-46ef50461b1c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "While calculating hash value we are dividing it by a prime number in order to avoid collision.After dividing by prime number the chances of collision will be less, but still ther is a chance that the hash value can be same for two strings,so when we get a match we have to check it character by character to make sure that we got a proper match."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "While calculating hash value we are dividing it by a prime number in order to avoid collision.After dividing by prime number the chances of collision will be less, but still ther is a chance that the hash value can be same for two strings,so when we get a match we have to check it character by character to make sure that we got a proper match."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551928095887,
+        "id": "d5120da1-8418-4dea-9d3d-bdb9fb30ddc1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551928095887,
+        "parent_id": "554fa18e-5d25-4f45-bc6e-46ef50461b1c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "t =(d*(t - text.charAt(i)*h) + text.charAt(i+m))%q;"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "t =(d*(t - text.charAt(i)*h) + text.charAt(i+m))%q;"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551928095887,
+        "id": "83102fc5-f46a-49e1-8ae2-b0a0c5d98032",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551928095887,
+        "parent_id": "554fa18e-5d25-4f45-bc6e-46ef50461b1c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This is to recalculate the hash value for pattern,first by removing the left most character and then adding the new character from the text."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This is to recalculate the hash value for pattern,first by removing the left most character and then adding the new character from the text."
+          }
+        ]
+      }
+    ],
+    "title": "Rabin Karp",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

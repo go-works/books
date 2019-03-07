@@ -1,0 +1,83 @@
+{
+  "ID": "f588af4a-cd69-43bb-bd6f-9ca68e741a6e",
+  "Root": {
+    "alive": true,
+    "content": [
+      "9553d5c2-a97b-4177-bd4b-7295ed9a0334"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551928444791,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "f588af4a-cd69-43bb-bd6f-9ca68e741a6e",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551928444791,
+    "parent_id": "a034d8c3-224b-46dc-bc26-d44b569e39e0",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Bottoms-up Java Implementation"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551928444788,
+        "id": "9553d5c2-a97b-4177-bd4b-7295ed9a0334",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551928444788,
+        "parent_id": "f588af4a-cd69-43bb-bd6f-9ca68e741a6e",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class MergeSortBU {\n    private static Integer[] array = { 4, 3, 1, 8, 9, 15, 20, 2, 5, 6, 30, 70, 60,80,0,9,67,54,51,52,24,54,7 };\n\n    public MergeSortBU() {\n    }\n\n    private static void merge(Comparable[] arrayToSort, Comparable[] aux, int lo,int mid, int hi) {\n\n        for (int index = 0; index \u003c arrayToSort.length; index++) {\n            aux[index] = arrayToSort[index];\n        }\n\n        int i = lo;\n        int j = mid + 1;\n        for (int k = lo; k \u003c= hi; k++) {\n            if (i \u003e mid)\n                arrayToSort[k] = aux[j++];\n            else if (j \u003e hi)\n                arrayToSort[k] = aux[i++];\n            else if (isLess(aux[i], aux[j])) {\n                arrayToSort[k] = aux[i++];\n            } else {\n                arrayToSort[k] = aux[j++];\n            }\n\n        }\n    }\n\n    public static void sort(Comparable[] arrayToSort, Comparable[] aux, int lo, int hi) {\n        int N = arrayToSort.length;\n        for (int sz = 1; sz \u003c N; sz = sz + sz) {\n            for (int low = 0; low \u003c N; low = low + sz + sz) {\n                System.out.println(\"Size:\"+ sz);\n                merge(arrayToSort, aux, low, low + sz -1 ,Math.min(low + sz + sz - 1, N - 1));\n                print(arrayToSort);\n            }\n        }\n\n    }\n\n    public static boolean isLess(Comparable a, Comparable b) {\n        return a.compareTo(b) \u003c= 0;\n    }\n\n    private static void print(Comparable[] array) {http://stackoverflow.com/documentation/algorithm/5732/merge-sort#\n        StringBuffer buffer = new StringBuffer();http://stackoverflow.com/documentation/algorithm/5732/merge-sort#\n        for (Comparable value : array) {\n            buffer.append(value);\n            buffer.append(' ');\n        }\n        System.out.println(buffer);\n    }\n\n    public static void main(String[] args) {\n        Comparable[] aux = new Comparable[array.length];\n        print(array);\n        MergeSortBU.sort(array, aux, 0, array.length - 1);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class MergeSortBU {\n    private static Integer[] array = { 4, 3, 1, 8, 9, 15, 20, 2, 5, 6, 30, 70, 60,80,0,9,67,54,51,52,24,54,7 };\n\n    public MergeSortBU() {\n    }\n\n    private static void merge(Comparable[] arrayToSort, Comparable[] aux, int lo,int mid, int hi) {\n\n        for (int index = 0; index \u003c arrayToSort.length; index++) {\n            aux[index] = arrayToSort[index];\n        }\n\n        int i = lo;\n        int j = mid + 1;\n        for (int k = lo; k \u003c= hi; k++) {\n            if (i \u003e mid)\n                arrayToSort[k] = aux[j++];\n            else if (j \u003e hi)\n                arrayToSort[k] = aux[i++];\n            else if (isLess(aux[i], aux[j])) {\n                arrayToSort[k] = aux[i++];\n            } else {\n                arrayToSort[k] = aux[j++];\n            }\n\n        }\n    }\n\n    public static void sort(Comparable[] arrayToSort, Comparable[] aux, int lo, int hi) {\n        int N = arrayToSort.length;\n        for (int sz = 1; sz \u003c N; sz = sz + sz) {\n            for (int low = 0; low \u003c N; low = low + sz + sz) {\n                System.out.println(\"Size:\"+ sz);\n                merge(arrayToSort, aux, low, low + sz -1 ,Math.min(low + sz + sz - 1, N - 1));\n                print(arrayToSort);\n            }\n        }\n\n    }\n\n    public static boolean isLess(Comparable a, Comparable b) {\n        return a.compareTo(b) \u003c= 0;\n    }\n\n    private static void print(Comparable[] array) {http://stackoverflow.com/documentation/algorithm/5732/merge-sort#\n        StringBuffer buffer = new StringBuffer();http://stackoverflow.com/documentation/algorithm/5732/merge-sort#\n        for (Comparable value : array) {\n            buffer.append(value);\n            buffer.append(' ');\n        }\n        System.out.println(buffer);\n    }\n\n    public static void main(String[] args) {\n        Comparable[] aux = new Comparable[array.length];\n        print(array);\n        MergeSortBU.sort(array, aux, 0, array.length - 1);\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Bottoms-up Java Implementation",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

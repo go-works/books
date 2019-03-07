@@ -1,0 +1,184 @@
+{
+  "ID": "2c3eaf35-b701-4192-93a1-c367211c6723",
+  "Root": {
+    "alive": true,
+    "content": [
+      "01ea435d-3116-42dd-b3db-7c7d4f06fcec",
+      "c06f3002-9185-41bc-b61d-b149e4cb8b79",
+      "18b4b197-455e-463c-9e76-e7374ea12282",
+      "17676924-eb1e-4963-b720-75759745e921",
+      "5b4a678c-99b6-483d-8065-0982c25d3758"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551928036671,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "2c3eaf35-b701-4192-93a1-c367211c6723",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551928036671,
+    "parent_id": "8ae5c9b5-b80d-4e27-930b-0dbbf5b2a075",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Detecting a cycle in a directed graph using Depth First Traversal"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551928036668,
+        "id": "01ea435d-3116-42dd-b3db-7c7d4f06fcec",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551928036668,
+        "parent_id": "2c3eaf35-b701-4192-93a1-c367211c6723",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "A cycle in a directed graph exists if there’s a back edge discovered during a DFS. A back edge is an edge from a node to itself or one of the ancestors in a DFS tree. For a disconnected graph, we get a DFS forest, so you have to iterate through all vertices in the graph to find disjoint DFS trees."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "A cycle in a directed graph exists if there’s a back edge discovered during a DFS. A back edge is an edge from a node to itself or one of the ancestors in a DFS tree. For a disconnected graph, we get a DFS forest, so you have to iterate through all vertices in the graph to find disjoint DFS trees."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551928036670,
+        "id": "c06f3002-9185-41bc-b61d-b149e4cb8b79",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551928036670,
+        "parent_id": "2c3eaf35-b701-4192-93a1-c367211c6723",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "C++ implementation:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "C++ implementation:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551928036670,
+        "id": "18b4b197-455e-463c-9e76-e7374ea12282",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551928036670,
+        "parent_id": "2c3eaf35-b701-4192-93a1-c367211c6723",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003ciostream\u003e\n #include \u003clist\u003e\n    \nusing namespace std; \n\n#define NUM_V   4\n\nbool helper(list\u003cint\u003e *graph, int u, bool* visited, bool* recStack)\n{\n    visited[u]=true;\n    recStack[u]=true;\n    list\u003cint\u003e::iterator i;\n    for(i = graph[u].begin();i!=graph[u].end();++i)\n    {  \n        if(recStack[*i]) //if vertice v is found in recursion stack of this DFS traversal\n            return true;\n        else if(*i==u) //if there's an edge from the vertex to itself\n            return true;\n        else if(!visited[*i])\n        {   if(helper(graph, *i, visited, recStack))\n               return true;\n        }\n    }\n    recStack[u]=false;\n    return false;\n}\n/*\n/The wrapper function calls helper function on each vertices which have not been visited. Helper function returns true if it detects a back edge in the subgraph(tree) or false.\n*/\nbool isCyclic(list\u003cint\u003e *graph, int V)\n{\n  bool visited[V];  //array to track vertices already visited\n  bool recStack[V]; //array to track vertices in recursion stack of the traversal.\n\n  for(int i = 0;i\u003cV;i++)\n   visited[i]=false, recStack[i]=false;  //initialize all vertices as not visited and not recursed\n\n  for(int u = 0; u \u003c V; u++) //Iteratively checks if every vertices have been visited\n  {   if(visited[u]==false)\n      {  if(helper(graph, u, visited, recStack)) //checks if the DFS tree from the vertex contains a cycle\n           return true;\n      }\n  }\n   return false;\n}\n/*\nDriver function\n*/\nint main()\n{\n    list\u003cint\u003e* graph = new list\u003cint\u003e[NUM_V];\n    graph[0].push_back(1);\n    graph[0].push_back(2);\n    graph[1].push_back(2);\n    graph[2].push_back(0);\n    graph[2].push_back(3);\n    graph[3].push_back(3);\n    bool res = isCyclic(graph, NUM_V);\n    cout\u003c\u003cres\u003c\u003cendl;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \u003ciostream\u003e\n #include \u003clist\u003e\n    \nusing namespace std; \n\n#define NUM_V   4\n\nbool helper(list\u003cint\u003e *graph, int u, bool* visited, bool* recStack)\n{\n    visited[u]=true;\n    recStack[u]=true;\n    list\u003cint\u003e::iterator i;\n    for(i = graph[u].begin();i!=graph[u].end();++i)\n    {  \n        if(recStack[*i]) //if vertice v is found in recursion stack of this DFS traversal\n            return true;\n        else if(*i==u) //if there's an edge from the vertex to itself\n            return true;\n        else if(!visited[*i])\n        {   if(helper(graph, *i, visited, recStack))\n               return true;\n        }\n    }\n    recStack[u]=false;\n    return false;\n}\n/*\n/The wrapper function calls helper function on each vertices which have not been visited. Helper function returns true if it detects a back edge in the subgraph(tree) or false.\n*/\nbool isCyclic(list\u003cint\u003e *graph, int V)\n{\n  bool visited[V];  //array to track vertices already visited\n  bool recStack[V]; //array to track vertices in recursion stack of the traversal.\n\n  for(int i = 0;i\u003cV;i++)\n   visited[i]=false, recStack[i]=false;  //initialize all vertices as not visited and not recursed\n\n  for(int u = 0; u \u003c V; u++) //Iteratively checks if every vertices have been visited\n  {   if(visited[u]==false)\n      {  if(helper(graph, u, visited, recStack)) //checks if the DFS tree from the vertex contains a cycle\n           return true;\n      }\n  }\n   return false;\n}\n/*\nDriver function\n*/\nint main()\n{\n    list\u003cint\u003e* graph = new list\u003cint\u003e[NUM_V];\n    graph[0].push_back(1);\n    graph[0].push_back(2);\n    graph[1].push_back(2);\n    graph[2].push_back(0);\n    graph[2].push_back(3);\n    graph[3].push_back(3);\n    bool res = isCyclic(graph, NUM_V);\n    cout\u003c\u003cres\u003c\u003cendl;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551928036670,
+        "id": "17676924-eb1e-4963-b720-75759745e921",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551928036670,
+        "parent_id": "2c3eaf35-b701-4192-93a1-c367211c6723",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Result: As shown below, there are three back edges in the graph. One between vertex 0 and 2; between vertice 0, 1, and 2; and vertex 3. Time complexity of search is O(V+E) where V is the number of vertices and E is the number of edges."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Result: As shown below, there are three back edges in the graph. One between vertex 0 and 2; between vertice 0, 1, and 2; and vertex 3. Time complexity of search is O(V+E) where V is the number of vertices and E is the number of edges."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551928036671,
+        "id": "5b4a678c-99b6-483d-8065-0982c25d3758",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551928036671,
+        "parent_id": "2c3eaf35-b701-4192-93a1-c367211c6723",
+        "parent_table": "block",
+        "properties": {
+          "source": [
+            [
+              "/tmp/896cd583-6fc3-4b49-803d-4c44885ff5e3/1cc12f68ed6442df0387b0a87d306ad13b209cd0.png"
+            ]
+          ]
+        },
+        "type": "image",
+        "version": 1,
+        "source": "/tmp/896cd583-6fc3-4b49-803d-4c44885ff5e3/1cc12f68ed6442df0387b0a87d306ad13b209cd0.png",
+        "image_url": "https://www.notion.so/image/https:%2F%2Fwww.notion.so%2Ftmp%2F896cd583-6fc3-4b49-803d-4c44885ff5e3%2F1cc12f68ed6442df0387b0a87d306ad13b209cd0.png"
+      }
+    ],
+    "title": "Detecting a cycle in a directed graph using Depth First Traversal",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

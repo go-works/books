@@ -1,0 +1,83 @@
+{
+  "ID": "7639a5e9-55c4-4063-97f6-b1dbd76cf3bc",
+  "Root": {
+    "alive": true,
+    "content": [
+      "f17fa645-6f68-47f0-a4ee-64a6e2d358e9"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551928439942,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "7639a5e9-55c4-4063-97f6-b1dbd76cf3bc",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551928439942,
+    "parent_id": "a034d8c3-224b-46dc-bc26-d44b569e39e0",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Merge Sort Implementation in Go"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551928439940,
+        "id": "f17fa645-6f68-47f0-a4ee-64a6e2d358e9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551928439940,
+        "parent_id": "7639a5e9-55c4-4063-97f6-b1dbd76cf3bc",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "package main\n\nimport \"fmt\"\n\nfunc mergeSort(a []int) []int {\n    if len(a) \u003c 2 {\n        return a\n    }\n    m := (len(a)) / 2\n\n    f := mergeSort(a[:m])\n    s := mergeSort(a[m:])\n\n    return merge(f, s)\n}\n\nfunc merge(f []int, s []int) []int {\n    var i, j int\n    size := len(f) + len(s)\n\n    a := make([]int, size, size)\n\n    for z := 0; z \u003c size; z++ {\n        lenF := len(f)\n        lenS := len(s)\n\n        if i \u003e lenF-1 \u0026\u0026 j \u003c= lenS-1 {\n            a[z] = s[j]\n            j++\n        } else if j \u003e lenS-1 \u0026\u0026 i \u003c= lenF-1 {\n            a[z] = f[i]\n            i++\n        } else if f[i] \u003c s[j] {\n            a[z] = f[i]\n            i++\n        } else {\n            a[z] = s[j]\n            j++\n        }\n    }\n\n    return a\n}\n\nfunc main() {\n    a := []int{75, 12, 34, 45, 0, 123, 32, 56, 32, 99, 123, 11, 86, 33}\n    fmt.Println(a)\n    fmt.Println(mergeSort(a))\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "package main\n\nimport \"fmt\"\n\nfunc mergeSort(a []int) []int {\n    if len(a) \u003c 2 {\n        return a\n    }\n    m := (len(a)) / 2\n\n    f := mergeSort(a[:m])\n    s := mergeSort(a[m:])\n\n    return merge(f, s)\n}\n\nfunc merge(f []int, s []int) []int {\n    var i, j int\n    size := len(f) + len(s)\n\n    a := make([]int, size, size)\n\n    for z := 0; z \u003c size; z++ {\n        lenF := len(f)\n        lenS := len(s)\n\n        if i \u003e lenF-1 \u0026\u0026 j \u003c= lenS-1 {\n            a[z] = s[j]\n            j++\n        } else if j \u003e lenS-1 \u0026\u0026 i \u003c= lenF-1 {\n            a[z] = f[i]\n            i++\n        } else if f[i] \u003c s[j] {\n            a[z] = f[i]\n            i++\n        } else {\n            a[z] = s[j]\n            j++\n        }\n    }\n\n    return a\n}\n\nfunc main() {\n    a := []int{75, 12, 34, 45, 0, 123, 32, 56, 32, 99, 123, 11, 86, 33}\n    fmt.Println(a)\n    fmt.Println(mergeSort(a))\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Merge Sort Implementation in Go",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

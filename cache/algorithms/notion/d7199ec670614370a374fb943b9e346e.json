@@ -1,0 +1,231 @@
+{
+  "ID": "d7199ec6-7061-4370-a374-fb943b9e346e",
+  "Root": {
+    "alive": true,
+    "content": [
+      "8c6cbd4e-ab8f-4967-b553-60e673770a0b",
+      "ae773616-2751-449f-99a5-a1ad588bee87",
+      "7afedb7b-2e6d-46c8-a671-81c381b58847",
+      "e1174c2a-4385-4607-aa36-4ff1d4d445fe",
+      "d506ed9d-2da9-45b0-8035-2dbcf9b2c34a",
+      "28b359c8-f25e-4dea-a119-db917a709a0a"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551928052335,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "d7199ec6-7061-4370-a374-fb943b9e346e",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551928052335,
+    "parent_id": "0483f45c-fa31-493e-bd1b-b9e924123210",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Edit Distance"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551928052325,
+        "id": "8c6cbd4e-ab8f-4967-b553-60e673770a0b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551928052325,
+        "parent_id": "d7199ec6-7061-4370-a374-fb943b9e346e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The problem statement is like if we are given two string str1 and str2 then how many minimum number of operations can be performed on the str1 that it gets converted to str2."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The problem statement is like if we are given two string str1 and str2 then how many minimum number of operations can be performed on the str1 that it gets converted to str2."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551928052333,
+        "id": "ae773616-2751-449f-99a5-a1ad588bee87",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551928052333,
+        "parent_id": "d7199ec6-7061-4370-a374-fb943b9e346e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Implementation in Java",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Implementation in Java",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551928052334,
+        "id": "7afedb7b-2e6d-46c8-a671-81c381b58847",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551928052334,
+        "parent_id": "d7199ec6-7061-4370-a374-fb943b9e346e",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class EditDistance {\n\npublic static void main(String[] args) {\n    // TODO Auto-generated method stub\n    String str1 = \"march\";\n    String str2 = \"cart\";\n    \n    EditDistance ed = new EditDistance();\n    System.out.println(ed.getMinConversions(str1, str2));\n}\n\npublic int getMinConversions(String str1, String str2){\n    int dp[][] = new int[str1.length()+1][str2.length()+1];\n    for(int i=0;i\u003c=str1.length();i++){\n        for(int j=0;j\u003c=str2.length();j++){\n            if(i==0)\n                dp[i][j] = j;\n            else if(j==0)\n                dp[i][j] = i;\n            else if(str1.charAt(i-1) == str2.charAt(j-1))\n                dp[i][j] = dp[i-1][j-1];\n            else{\n                dp[i][j] = 1 + Math.min(dp[i-1][j], Math.min(dp[i][j-1], dp[i-1][j-1]));\n            }\n        }\n    }\n    return dp[str1.length()][str2.length()];\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class EditDistance {\n\npublic static void main(String[] args) {\n    // TODO Auto-generated method stub\n    String str1 = \"march\";\n    String str2 = \"cart\";\n    \n    EditDistance ed = new EditDistance();\n    System.out.println(ed.getMinConversions(str1, str2));\n}\n\npublic int getMinConversions(String str1, String str2){\n    int dp[][] = new int[str1.length()+1][str2.length()+1];\n    for(int i=0;i\u003c=str1.length();i++){\n        for(int j=0;j\u003c=str2.length();j++){\n            if(i==0)\n                dp[i][j] = j;\n            else if(j==0)\n                dp[i][j] = i;\n            else if(str1.charAt(i-1) == str2.charAt(j-1))\n                dp[i][j] = dp[i-1][j-1];\n            else{\n                dp[i][j] = 1 + Math.min(dp[i-1][j], Math.min(dp[i][j-1], dp[i-1][j-1]));\n            }\n        }\n    }\n    return dp[str1.length()][str2.length()];\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551928052334,
+        "id": "e1174c2a-4385-4607-aa36-4ff1d4d445fe",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551928052334,
+        "parent_id": "d7199ec6-7061-4370-a374-fb943b9e346e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "}"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "}"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551928052335,
+        "id": "d506ed9d-2da9-45b0-8035-2dbcf9b2c34a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551928052335,
+        "parent_id": "d7199ec6-7061-4370-a374-fb943b9e346e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Output",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Output",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551928052335,
+        "id": "28b359c8-f25e-4dea-a119-db917a709a0a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551928052335,
+        "parent_id": "d7199ec6-7061-4370-a374-fb943b9e346e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "3",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "3",
+            "AttrFlags": 2
+          }
+        ]
+      }
+    ],
+    "title": "Edit Distance",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

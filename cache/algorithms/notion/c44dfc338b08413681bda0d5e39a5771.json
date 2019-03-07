@@ -1,0 +1,83 @@
+{
+  "ID": "c44dfc33-8b08-4136-81bd-a0d5e39a5771",
+  "Root": {
+    "alive": true,
+    "content": [
+      "ceaed93a-0c22-4ebd-9434-e811e273f0cd"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551929252755,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "c44dfc33-8b08-4136-81bd-a0d5e39a5771",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551929252755,
+    "parent_id": "5eb1332d-741d-47f8-ad4c-da01f28ef2ed",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Implementation of Shortest Common Supersequence Problem in C"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551929252753,
+        "id": "ceaed93a-0c22-4ebd-9434-e811e273f0cd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551929252753,
+        "parent_id": "c44dfc33-8b08-4136-81bd-a0d5e39a5771",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class ShortestCommonSupersequence\n{\n    private static int Max(int a, int b)\n    {\n        return a \u003e b ? a : b;\n    }\n    \n    private static int Lcs(string x, string y, int m, int n)\n    {\n        var l = new int[m + 1, n + 1];\n        for (var i = 0; i \u003c= m; i++)\n        {\n            for (var j = 0; j \u003c= n; j++)\n            {\n                if (i == 0 || j == 0) l[i, j] = 0;\n                else if (x[i - 1] == y[j - 1]) l[i, j] = l[i - 1, j - 1] + 1;\n                else l[i, j] = Max(l[i - 1, j], l[i, j - 1]);\n            }\n        }\n        return l[m, n];\n    }\n\n    private static int Scs(string x, string y)\n    {\n        int m = x.Length, n = y.Length;\n        int l = Lcs(x, y, m, n);\n        return m + n - l;\n    }\n\n    public static int Main(string x, string y)\n    {\n        return Scs(x, y);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class ShortestCommonSupersequence\n{\n    private static int Max(int a, int b)\n    {\n        return a \u003e b ? a : b;\n    }\n    \n    private static int Lcs(string x, string y, int m, int n)\n    {\n        var l = new int[m + 1, n + 1];\n        for (var i = 0; i \u003c= m; i++)\n        {\n            for (var j = 0; j \u003c= n; j++)\n            {\n                if (i == 0 || j == 0) l[i, j] = 0;\n                else if (x[i - 1] == y[j - 1]) l[i, j] = l[i - 1, j - 1] + 1;\n                else l[i, j] = Max(l[i - 1, j], l[i, j - 1]);\n            }\n        }\n        return l[m, n];\n    }\n\n    private static int Scs(string x, string y)\n    {\n        int m = x.Length, n = y.Length;\n        int l = Lcs(x, y, m, n);\n        return m + n - l;\n    }\n\n    public static int Main(string x, string y)\n    {\n        return Scs(x, y);\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Implementation of Shortest Common Supersequence Problem in C",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

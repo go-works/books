@@ -1,0 +1,83 @@
+{
+  "ID": "32c91071-26a4-4dba-a8c3-e6ae9c6203f2",
+  "Root": {
+    "alive": true,
+    "content": [
+      "488ea326-3987-41d6-8b8a-b9a36fd6bce7"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551928764962,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "32c91071-26a4-4dba-a8c3-e6ae9c6203f2",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551928764962,
+    "parent_id": "aed1f400-b221-4067-80e6-2fda841c33f0",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "C Implementation"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551928764960,
+        "id": "488ea326-3987-41d6-8b8a-b9a36fd6bce7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551928764960,
+        "parent_id": "32c91071-26a4-4dba-a8c3-e6ae9c6203f2",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class BucketSort\n{\n    public static void SortBucket(ref int[] input)\n    {\n        int minValue = input[0];\n        int maxValue = input[0];\n        int k = 0;\n\n        for (int i = input.Length - 1; i \u003e= 1; i--)\n        {\n            if (input[i] \u003e maxValue) maxValue = input[i];\n            if (input[i] \u003c minValue) minValue = input[i];\n        }\n\n        List\u003cint\u003e[] bucket = new List\u003cint\u003e[maxValue - minValue + 1];\n\n        for (int i = bucket.Length - 1; i \u003e= 0; i--)\n        {\n            bucket[i] = new List\u003cint\u003e();\n        }\n\n        foreach (int i in input)\n        {\n            bucket[i - minValue].Add(i);\n        }\n\n        foreach (List\u003cint\u003e b in bucket)\n        {\n            if (b.Count \u003e 0)\n            {\n                foreach (int t in b)\n                {\n                    input[k] = t;\n                    k++;\n                }\n            }\n        }\n    }\n\n    public static int[] Main(int[] input)\n    {\n        SortBucket(ref input);\n        return input;\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class BucketSort\n{\n    public static void SortBucket(ref int[] input)\n    {\n        int minValue = input[0];\n        int maxValue = input[0];\n        int k = 0;\n\n        for (int i = input.Length - 1; i \u003e= 1; i--)\n        {\n            if (input[i] \u003e maxValue) maxValue = input[i];\n            if (input[i] \u003c minValue) minValue = input[i];\n        }\n\n        List\u003cint\u003e[] bucket = new List\u003cint\u003e[maxValue - minValue + 1];\n\n        for (int i = bucket.Length - 1; i \u003e= 0; i--)\n        {\n            bucket[i] = new List\u003cint\u003e();\n        }\n\n        foreach (int i in input)\n        {\n            bucket[i - minValue].Add(i);\n        }\n\n        foreach (List\u003cint\u003e b in bucket)\n        {\n            if (b.Count \u003e 0)\n            {\n                foreach (int t in b)\n                {\n                    input[k] = t;\n                    k++;\n                }\n            }\n        }\n    }\n\n    public static int[] Main(int[] input)\n    {\n        SortBucket(ref input);\n        return input;\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "C Implementation",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}
