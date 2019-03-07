@@ -209,6 +209,15 @@ var (
 		// https://www.notion.so/kjkpublic/Essential-HTML-1c13e594ccd5472fb58d4c56379e7540
 		NotionStartPageID: "1c13e594ccd5472fb58d4c56379e7540",
 	}
+	bookHTMLCanvas = &Book{
+		NoPublish:      true,
+		Title:          "HTML Canvas",
+		TitleLong:      "Essential HTML Canvas",
+		Dir:            "htmlcanvas",
+		CoverImageName: "HTMLCanvas.png",
+		// https://www.notion.so/kjkpublic/Essential-HTML5-Canvas-227fa77d624c441d98011d7c998609a6
+		NotionStartPageID: "227fa77d624c441d98011d7c998609a6",
+	}
 )
 
 var (
@@ -219,6 +228,7 @@ var (
 	}
 	booksUnpublished = []*Book{
 		bookSql, bookAlgorithm, bookBash, bookC, bookCSS, bookGit, bookHTML,
+		bookHTMLCanvas,
 	}
 	allBooks = append(booksMain, booksUnpublished...)
 )
