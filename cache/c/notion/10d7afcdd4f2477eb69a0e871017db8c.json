@@ -1,0 +1,568 @@
+{
+  "ID": "10d7afcd-d4f2-477e-b69a-0e871017db8c",
+  "Root": {
+    "alive": true,
+    "content": [
+      "0589209d-10fe-4d4b-b53f-b7832fc82c0f",
+      "31f86a28-b8d0-475e-89b2-38796b20cc5f",
+      "89325dcd-87ea-4dc6-a7ca-c984fb82754d",
+      "6dfd7a7f-0210-4e57-9938-df75a7b4f1c8",
+      "f20d96c9-8e4e-4eaa-ac21-59547a7b0bb6",
+      "2388c39c-afea-437d-9dd1-2b592e6addfe",
+      "7e7e4ad3-15ec-4aa8-ad81-f8792b53cb62",
+      "a46d41f8-fc92-4913-8e10-c7aa39d6a972",
+      "06599c7d-9715-4edd-9f0d-6a086db14330",
+      "650df68e-389a-40ee-b981-7db61296ca85",
+      "d9668e25-1f67-417d-b57f-9e6482581b5e",
+      "64edb84f-1590-4392-aed3-c4f07baeee78"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551935824185,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "10d7afcd-d4f2-477e-b69a-0e871017db8c",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551935824185,
+    "parent_id": "9b4c9f4c-5f47-45ba-86a9-461b3aaa1198",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Get lines from a file using getline"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935824182,
+        "id": "0589209d-10fe-4d4b-b53f-b7832fc82c0f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935824182,
+        "parent_id": "10d7afcd-d4f2-477e-b69a-0e871017db8c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The POSIX C library defines the "
+            ],
+            [
+              "getline()",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "http://pubs.opengroup.org/onlinepubs/9699919799/functions/getline.html"
+                ]
+              ]
+            ],
+            [
+              " function. This function allocates a buffer to hold the line contents and returns the new line, the number of characters in the line, and the size of the buffer."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The POSIX C library defines the "
+          },
+          {
+            "Text": "getline()",
+            "AttrFlags": 2,
+            "Link": "http://pubs.opengroup.org/onlinepubs/9699919799/functions/getline.html"
+          },
+          {
+            "Text": " function. This function allocates a buffer to hold the line contents and returns the new line, the number of characters in the line, and the size of the buffer."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935824183,
+        "id": "31f86a28-b8d0-475e-89b2-38796b20cc5f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935824183,
+        "parent_id": "10d7afcd-d4f2-477e-b69a-0e871017db8c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Example program that gets each line from "
+            ],
+            [
+              "example.txt",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ":"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Example program that gets each line from "
+          },
+          {
+            "Text": "example.txt",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ":"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935824183,
+        "id": "89325dcd-87ea-4dc6-a7ca-c984fb82754d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935824183,
+        "parent_id": "10d7afcd-d4f2-477e-b69a-0e871017db8c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003cstdlib.h\u003e\n#include \u003cstdio.h\u003e  \n\n\n#define FILENAME \"example.txt\"\n\nint main(void)\n{\n  /* Open the file for reading */\n  char *line_buf = NULL;\n  size_t line_buf_size = 0;\n  int line_count = 0;\n  ssize_t line_size;\n  FILE *fp = fopen(FILENAME, \"r\");\n  if (!fp)\n  {\n    fprintf(stderr, \"Error opening file '%s'\\n\", FILENAME);\n    return EXIT_FAILURE;\n  }\n\n  /* Get the first line of the file. */\n  line_size = getline(\u0026line_buf, \u0026line_buf_size, fp);\n\n  /* Loop through until we are done with the file. */\n  while (line_size \u003e= 0)\n  {\n    /* Increment our line count */\n    line_count++;\n\n    /* Show the line details */\n    printf(\"line[%06d]: chars=%06zd, buf size=%06zu, contents: %s\", line_count,\n        line_size, line_buf_size, line_buf);\n\n    /* Get the next line */\n    line_size = getline(\u0026line_buf, \u0026line_buf_size, fp);\n  }\n\n  /* Free the allocated line buffer */\n  free(line_buf);\n  line_buf = NULL;\n\n  /* Close the file now that we are done with it */\n  fclose(fp);\n\n  return EXIT_SUCCESS;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \u003cstdlib.h\u003e\n#include \u003cstdio.h\u003e  \n\n\n#define FILENAME \"example.txt\"\n\nint main(void)\n{\n  /* Open the file for reading */\n  char *line_buf = NULL;\n  size_t line_buf_size = 0;\n  int line_count = 0;\n  ssize_t line_size;\n  FILE *fp = fopen(FILENAME, \"r\");\n  if (!fp)\n  {\n    fprintf(stderr, \"Error opening file '%s'\\n\", FILENAME);\n    return EXIT_FAILURE;\n  }\n\n  /* Get the first line of the file. */\n  line_size = getline(\u0026line_buf, \u0026line_buf_size, fp);\n\n  /* Loop through until we are done with the file. */\n  while (line_size \u003e= 0)\n  {\n    /* Increment our line count */\n    line_count++;\n\n    /* Show the line details */\n    printf(\"line[%06d]: chars=%06zd, buf size=%06zu, contents: %s\", line_count,\n        line_size, line_buf_size, line_buf);\n\n    /* Get the next line */\n    line_size = getline(\u0026line_buf, \u0026line_buf_size, fp);\n  }\n\n  /* Free the allocated line buffer */\n  free(line_buf);\n  line_buf = NULL;\n\n  /* Close the file now that we are done with it */\n  fclose(fp);\n\n  return EXIT_SUCCESS;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935824184,
+        "id": "6dfd7a7f-0210-4e57-9938-df75a7b4f1c8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935824184,
+        "parent_id": "10d7afcd-d4f2-477e-b69a-0e871017db8c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Input file "
+            ],
+            [
+              "example.txt",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "sub_sub_header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Input file "
+          },
+          {
+            "Text": "example.txt",
+            "AttrFlags": 2
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935824184,
+        "id": "f20d96c9-8e4e-4eaa-ac21-59547a7b0bb6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935824184,
+        "parent_id": "10d7afcd-d4f2-477e-b69a-0e871017db8c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "This is a file\n  which has\nmultiple lines\n    with various indentation,\nblank lines\n\n\n\na really long line to show that getline() will reallocate the line buffer if the length of a line is too long to fit in the buffer it has been given,\n  and punctuation at the end of the lines."
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "This is a file\n  which has\nmultiple lines\n    with various indentation,\nblank lines\n\n\n\na really long line to show that getline() will reallocate the line buffer if the length of a line is too long to fit in the buffer it has been given,\n  and punctuation at the end of the lines.",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935824184,
+        "id": "2388c39c-afea-437d-9dd1-2b592e6addfe",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935824184,
+        "parent_id": "10d7afcd-d4f2-477e-b69a-0e871017db8c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Output"
+            ]
+          ]
+        },
+        "type": "sub_sub_header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Output"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935824184,
+        "id": "7e7e4ad3-15ec-4aa8-ad81-f8792b53cb62",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935824184,
+        "parent_id": "10d7afcd-d4f2-477e-b69a-0e871017db8c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "line[000001]: chars=000015, buf size=000016, contents: This is a file\nline[000002]: chars=000012, buf size=000016, contents:   which has\nline[000003]: chars=000015, buf size=000016, contents: multiple lines\nline[000004]: chars=000030, buf size=000032, contents:     with various indentation,\nline[000005]: chars=000012, buf size=000032, contents: blank lines\nline[000006]: chars=000001, buf size=000032, contents: \nline[000007]: chars=000001, buf size=000032, contents: \nline[000008]: chars=000001, buf size=000032, contents: \nline[000009]: chars=000150, buf size=000160, contents: a really long line to show that getline() will reallocate the line buffer if the length of a line is too long to fit in the buffer it has been given,\nline[000010]: chars=000042, buf size=000160, contents:  and punctuation at the end of the lines.\nline[000011]: chars=000001, buf size=000160, contents:"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "line[000001]: chars=000015, buf size=000016, contents: This is a file\nline[000002]: chars=000012, buf size=000016, contents:   which has\nline[000003]: chars=000015, buf size=000016, contents: multiple lines\nline[000004]: chars=000030, buf size=000032, contents:     with various indentation,\nline[000005]: chars=000012, buf size=000032, contents: blank lines\nline[000006]: chars=000001, buf size=000032, contents: \nline[000007]: chars=000001, buf size=000032, contents: \nline[000008]: chars=000001, buf size=000032, contents: \nline[000009]: chars=000150, buf size=000160, contents: a really long line to show that getline() will reallocate the line buffer if the length of a line is too long to fit in the buffer it has been given,\nline[000010]: chars=000042, buf size=000160, contents:  and punctuation at the end of the lines.\nline[000011]: chars=000001, buf size=000160, contents:",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935824184,
+        "id": "a46d41f8-fc92-4913-8e10-c7aa39d6a972",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935824184,
+        "parent_id": "10d7afcd-d4f2-477e-b69a-0e871017db8c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In the example, "
+            ],
+            [
+              "getline()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is initially called with no buffer allocated. During this first call, "
+            ],
+            [
+              "getline()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " allocates a buffer, reads the first line and places the line’s contents in the new buffer. On subsequent calls, "
+            ],
+            [
+              "getline()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " updates the same buffer and only reallocates the buffer when it is no longer large enough to fit the whole line. The temporary buffer is then freed when we are done with the file."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In the example, "
+          },
+          {
+            "Text": "getline()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is initially called with no buffer allocated. During this first call, "
+          },
+          {
+            "Text": "getline()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " allocates a buffer, reads the first line and places the line’s contents in the new buffer. On subsequent calls, "
+          },
+          {
+            "Text": "getline()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " updates the same buffer and only reallocates the buffer when it is no longer large enough to fit the whole line. The temporary buffer is then freed when we are done with the file."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935824184,
+        "id": "06599c7d-9715-4edd-9f0d-6a086db14330",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935824184,
+        "parent_id": "10d7afcd-d4f2-477e-b69a-0e871017db8c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Another option is "
+            ],
+            [
+              "getdelim()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". This is the same as "
+            ],
+            [
+              "getline()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " except you specify the line ending character. This is only necessary if the last character of the line for your file type is not ‘\\n’. "
+            ],
+            [
+              "getline()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " works even with Windows text files because with the multibyte line ending ("
+            ],
+            [
+              "\"\\r\\n\")",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "‘\\n’` is still the last character on the line."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Another option is "
+          },
+          {
+            "Text": "getdelim()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". This is the same as "
+          },
+          {
+            "Text": "getline()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " except you specify the line ending character. This is only necessary if the last character of the line for your file type is not ‘\\n’. "
+          },
+          {
+            "Text": "getline()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " works even with Windows text files because with the multibyte line ending ("
+          },
+          {
+            "Text": "\"\\r\\n\")",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "‘\\n’` is still the last character on the line."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935824185,
+        "id": "650df68e-389a-40ee-b981-7db61296ca85",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935824185,
+        "parent_id": "10d7afcd-d4f2-477e-b69a-0e871017db8c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Example implementation of "
+            ],
+            [
+              "getline()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "sub_sub_header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Example implementation of "
+          },
+          {
+            "Text": "getline()",
+            "AttrFlags": 2
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935824185,
+        "id": "d9668e25-1f67-417d-b57f-9e6482581b5e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935824185,
+        "parent_id": "10d7afcd-d4f2-477e-b69a-0e871017db8c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003cstdlib.h\u003e\n#include \u003cstdio.h\u003e\n#include \u003cerrno.h\u003e\n#include \u003cstdint.h\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \u003cstdlib.h\u003e\n#include \u003cstdio.h\u003e\n#include \u003cerrno.h\u003e\n#include \u003cstdint.h\u003e",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935824185,
+        "id": "64edb84f-1590-4392-aed3-c4f07baeee78",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935824185,
+        "parent_id": "10d7afcd-d4f2-477e-b69a-0e871017db8c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#if !(defined _POSIX_C_SOURCE)\ntypedef long int ssize_t;\n#endif\n\n/* Only include our version of getline() if the POSIX version isn't available. */\n\n#if !(defined _POSIX_C_SOURCE) || _POSIX_C_SOURCE \u003c 200809L\n\n#if !(defined SSIZE_MAX)\n#define SSIZE_MAX (SIZE_MAX \u003e\u003e 1)\n#endif\n\nssize_t getline(char **pline_buf, size_t *pn, FILE *fin)\n{\n  const size_t INITALLOC = 16;\n  const size_t ALLOCSTEP = 16;\n  size_t num_read = 0;\n\n  /* First check that none of our input pointers are NULL. */\n  if ((NULL == pline_buf) || (NULL == pn) || (NULL == fin))\n  {\n    errno = EINVAL;\n    return -1;\n  }\n\n  /* If output buffer is NULL, then allocate a buffer. */\n  if (NULL == *pline_buf)\n  {\n    *pline_buf = malloc(INITALLOC);\n    if (NULL == *pline_buf)\n    {\n      /* Can't allocate memory. */\n      return -1;\n    }\n    else\n    {\n      /* Note how big the buffer is at this time. */\n      *pn = INITALLOC;\n    }\n  }\n\n  /* Step through the file, pulling characters until either a newline or EOF. */\n\n  {\n    int c;\n    while (EOF != (c = getc(fin)))\n    {\n      /* Note we read a character. */\n      num_read++;\n\n      /* Reallocate the buffer if we need more room */\n      if (num_read \u003e= *pn)\n      {\n        size_t n_realloc = *pn + ALLOCSTEP;\n        char * tmp = realloc(*pline_buf, n_realloc + 1); /* +1 for the trailing NUL. */\n        if (NULL != tmp)\n        {\n          /* Use the new buffer and note the new buffer size. */\n          *pline_buf = tmp;\n          *pn = n_realloc;\n        }\n        else\n        {\n          /* Exit with error and let the caller free the buffer. */\n          return -1;\n        }\n\n        /* Test for overflow. */\n        if (SSIZE_MAX \u003c *pn)\n        {\n          errno = ERANGE;\n          return -1;\n        }\n      }\n\n      /* Add the character to the buffer. */\n      (*pline_buf)[num_read - 1] = (char) c;\n\n      /* Break from the loop if we hit the ending character. */\n      if (c == '\\n')\n      {\n        break;\n      }\n    }\n\n    /* Note if we hit EOF. */\n    if (EOF == c)\n    {\n      errno = 0;\n      return -1;\n    }\n  }\n\n  /* Terminate the string by suffixing NUL. */\n  (*pline_buf)[num_read] = '\\0';\n\n  return (ssize_t) num_read;\n}\n\n#endif"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#if !(defined _POSIX_C_SOURCE)\ntypedef long int ssize_t;\n#endif\n\n/* Only include our version of getline() if the POSIX version isn't available. */\n\n#if !(defined _POSIX_C_SOURCE) || _POSIX_C_SOURCE \u003c 200809L\n\n#if !(defined SSIZE_MAX)\n#define SSIZE_MAX (SIZE_MAX \u003e\u003e 1)\n#endif\n\nssize_t getline(char **pline_buf, size_t *pn, FILE *fin)\n{\n  const size_t INITALLOC = 16;\n  const size_t ALLOCSTEP = 16;\n  size_t num_read = 0;\n\n  /* First check that none of our input pointers are NULL. */\n  if ((NULL == pline_buf) || (NULL == pn) || (NULL == fin))\n  {\n    errno = EINVAL;\n    return -1;\n  }\n\n  /* If output buffer is NULL, then allocate a buffer. */\n  if (NULL == *pline_buf)\n  {\n    *pline_buf = malloc(INITALLOC);\n    if (NULL == *pline_buf)\n    {\n      /* Can't allocate memory. */\n      return -1;\n    }\n    else\n    {\n      /* Note how big the buffer is at this time. */\n      *pn = INITALLOC;\n    }\n  }\n\n  /* Step through the file, pulling characters until either a newline or EOF. */\n\n  {\n    int c;\n    while (EOF != (c = getc(fin)))\n    {\n      /* Note we read a character. */\n      num_read++;\n\n      /* Reallocate the buffer if we need more room */\n      if (num_read \u003e= *pn)\n      {\n        size_t n_realloc = *pn + ALLOCSTEP;\n        char * tmp = realloc(*pline_buf, n_realloc + 1); /* +1 for the trailing NUL. */\n        if (NULL != tmp)\n        {\n          /* Use the new buffer and note the new buffer size. */\n          *pline_buf = tmp;\n          *pn = n_realloc;\n        }\n        else\n        {\n          /* Exit with error and let the caller free the buffer. */\n          return -1;\n        }\n\n        /* Test for overflow. */\n        if (SSIZE_MAX \u003c *pn)\n        {\n          errno = ERANGE;\n          return -1;\n        }\n      }\n\n      /* Add the character to the buffer. */\n      (*pline_buf)[num_read - 1] = (char) c;\n\n      /* Break from the loop if we hit the ending character. */\n      if (c == '\\n')\n      {\n        break;\n      }\n    }\n\n    /* Note if we hit EOF. */\n    if (EOF == c)\n    {\n      errno = 0;\n      return -1;\n    }\n  }\n\n  /* Terminate the string by suffixing NUL. */\n  (*pline_buf)[num_read] = '\\0';\n\n  return (ssize_t) num_read;\n}\n\n#endif",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Get lines from a file using getline",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

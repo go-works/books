@@ -1,0 +1,305 @@
+{
+  "ID": "83242dda-dca4-4df1-8a2a-68a9494796d3",
+  "Root": {
+    "alive": true,
+    "content": [
+      "ceb3ecfa-8993-410f-aad8-e901c0c650bb",
+      "fffc6443-2ded-4579-bb7d-a29ca37c0eb0",
+      "e777e34c-70d2-440b-b116-4a047c07f4d6",
+      "b730d114-189e-4c23-9f92-f5638546b095"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551936358255,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "83242dda-dca4-4df1-8a2a-68a9494796d3",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551936358255,
+    "parent_id": "ce0d7992-bb1e-4e62-ab26-2f99a9a2f78d",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Floating point literals are of type double by default"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936358251,
+        "id": "ceb3ecfa-8993-410f-aad8-e901c0c650bb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936358251,
+        "parent_id": "83242dda-dca4-4df1-8a2a-68a9494796d3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Care must be taken when initializing variables of type "
+            ],
+            [
+              "float",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to literal values or comparing them with literal values, because regular floating point literals like "
+            ],
+            [
+              "0.1",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " are of type "
+            ],
+            [
+              "double",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". This may lead to surprises:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Care must be taken when initializing variables of type "
+          },
+          {
+            "Text": "float",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to literal values or comparing them with literal values, because regular floating point literals like "
+          },
+          {
+            "Text": "0.1",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " are of type "
+          },
+          {
+            "Text": "double",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". This may lead to surprises:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936358254,
+        "id": "fffc6443-2ded-4579-bb7d-a29ca37c0eb0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936358254,
+        "parent_id": "83242dda-dca4-4df1-8a2a-68a9494796d3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003cstdio.h\u003e\nint main() {\n    float  n;\n    n = 0.1;\n    if (n \u003e 0.1) printf(\"Wierd\\n\");\n    return 0;\n}\n// Prints \"Wierd\" when n is float"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \u003cstdio.h\u003e\nint main() {\n    float  n;\n    n = 0.1;\n    if (n \u003e 0.1) printf(\"Wierd\\n\");\n    return 0;\n}\n// Prints \"Wierd\" when n is float",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936358255,
+        "id": "e777e34c-70d2-440b-b116-4a047c07f4d6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936358255,
+        "parent_id": "83242dda-dca4-4df1-8a2a-68a9494796d3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Here, "
+            ],
+            [
+              "n",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " gets initialized and rounded to single precision, resulting in value 0.10000000149011612. Then, "
+            ],
+            [
+              "n",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is converted back to double precision to be compared with "
+            ],
+            [
+              "0.1",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " literal (which equals to 0.10000000000000001), resulting in a mismatch."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Here, "
+          },
+          {
+            "Text": "n",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " gets initialized and rounded to single precision, resulting in value 0.10000000149011612. Then, "
+          },
+          {
+            "Text": "n",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is converted back to double precision to be compared with "
+          },
+          {
+            "Text": "0.1",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " literal (which equals to 0.10000000000000001), resulting in a mismatch."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936358255,
+        "id": "b730d114-189e-4c23-9f92-f5638546b095",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936358255,
+        "parent_id": "83242dda-dca4-4df1-8a2a-68a9494796d3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Besides rounding errors, mixing "
+            ],
+            [
+              "float",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " variables with "
+            ],
+            [
+              "double",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " literals will result in poor performance on platforms which don’t have hardware support for double precision."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Besides rounding errors, mixing "
+          },
+          {
+            "Text": "float",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " variables with "
+          },
+          {
+            "Text": "double",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " literals will result in poor performance on platforms which don’t have hardware support for double precision."
+          }
+        ]
+      }
+    ],
+    "title": "Floating point literals are of type double by default",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

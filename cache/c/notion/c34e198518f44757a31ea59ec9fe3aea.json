@@ -1,0 +1,187 @@
+{
+  "ID": "c34e1985-18f4-4757-a31e-a59ec9fe3aea",
+  "Root": {
+    "alive": true,
+    "content": [
+      "70f61249-1276-47ab-9e2a-39a266e807c9",
+      "3c98147e-9164-4f33-8d06-9905b250426a",
+      "e1557731-25ab-42af-a9c2-9c33b691b510",
+      "8a44c011-cfb1-46d4-a9fa-abab37021415",
+      "7ff1e47e-5b10-4ea7-bf4d-f61b156a45c9"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551936222138,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "c34e1985-18f4-4757-a31e-a59ec9fe3aea",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551936222138,
+    "parent_id": "fceea03f-c65b-4f89-8e06-817d0fcf3348",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Using unions to reinterpret values"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936222135,
+        "id": "70f61249-1276-47ab-9e2a-39a266e807c9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936222135,
+        "parent_id": "c34e1985-18f4-4757-a31e-a59ec9fe3aea",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Some C implementations permit code to write to one member of a union type then read from another in order to perform a sort of reinterpreting cast (parsing the new type as the bit representation of the old one)."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Some C implementations permit code to write to one member of a union type then read from another in order to perform a sort of reinterpreting cast (parsing the new type as the bit representation of the old one)."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936222138,
+        "id": "3c98147e-9164-4f33-8d06-9905b250426a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936222138,
+        "parent_id": "c34e1985-18f4-4757-a31e-a59ec9fe3aea",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "It is important to note however, this is not permitted by the C standard current or past and will result in undefined behavior, none the less is is a very common extension offered by compilers (so check your compiler docs if you plan to do this)."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "It is important to note however, this is not permitted by the C standard current or past and will result in undefined behavior, none the less is is a very common extension offered by compilers (so check your compiler docs if you plan to do this)."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936222138,
+        "id": "e1557731-25ab-42af-a9c2-9c33b691b510",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936222138,
+        "parent_id": "c34e1985-18f4-4757-a31e-a59ec9fe3aea",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "One real life example of this technique is the “Fast Inverse Square Root” algorithm which relies on implementation details of IEEE 754 floating point numbers to perform an inverse square root more quickly than using floating point operations, this algorithm can be performed either through pointer casting (which is very dangerous and breaks the strict aliasing rule) or through a union (which is still undefined behavior but works in many compilers):"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "One real life example of this technique is the “Fast Inverse Square Root” algorithm which relies on implementation details of IEEE 754 floating point numbers to perform an inverse square root more quickly than using floating point operations, this algorithm can be performed either through pointer casting (which is very dangerous and breaks the strict aliasing rule) or through a union (which is still undefined behavior but works in many compilers):"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936222138,
+        "id": "8a44c011-cfb1-46d4-a9fa-abab37021415",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936222138,
+        "parent_id": "c34e1985-18f4-4757-a31e-a59ec9fe3aea",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "union floatToInt\n{\n    int32_t intMember;\n    float floatMember; /* Float must be 32 bits IEEE 754 for this to work */\n};\n\nfloat inverseSquareRoot(float input)\n{\n    union floatToInt x;\n    int32_t i;\n    float f;\n    x.floatMember = input;     /* Assign to the float member */\n    i = x.intMember;           /* Read back from the integer member */\n    i = 0x5f3759df - (i \u003e\u003e 1);\n    x.intMember = i;           /* Assign to the integer member */\n    f = x.floatMember;         /* Read back from the float member */\n    f = f * (1.5f - input * 0.5f * f * f);\n    return f * (1.5f - input * 0.5f * f * f);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "union floatToInt\n{\n    int32_t intMember;\n    float floatMember; /* Float must be 32 bits IEEE 754 for this to work */\n};\n\nfloat inverseSquareRoot(float input)\n{\n    union floatToInt x;\n    int32_t i;\n    float f;\n    x.floatMember = input;     /* Assign to the float member */\n    i = x.intMember;           /* Read back from the integer member */\n    i = 0x5f3759df - (i \u003e\u003e 1);\n    x.intMember = i;           /* Assign to the integer member */\n    f = x.floatMember;         /* Read back from the float member */\n    f = f * (1.5f - input * 0.5f * f * f);\n    return f * (1.5f - input * 0.5f * f * f);\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936222138,
+        "id": "7ff1e47e-5b10-4ea7-bf4d-f61b156a45c9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936222138,
+        "parent_id": "c34e1985-18f4-4757-a31e-a59ec9fe3aea",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This technique was widely used in computer graphics and games in the past due to its greater speed compared to using floating point operations, and is very much a compromise, losing some accuracy and being very non portable in exchange for speed."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This technique was widely used in computer graphics and games in the past due to its greater speed compared to using floating point operations, and is very much a compromise, losing some accuracy and being very non portable in exchange for speed."
+          }
+        ]
+      }
+    ],
+    "title": "Using unions to reinterpret values",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

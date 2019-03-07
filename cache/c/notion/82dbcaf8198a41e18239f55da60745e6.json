@@ -1,0 +1,189 @@
+{
+  "ID": "82dbcaf8-198a-41e1-8239-f55da60745e6",
+  "Root": {
+    "alive": true,
+    "content": [
+      "250d859a-c6ef-4e14-a065-3681c4b33d75",
+      "26328bec-7ac9-4738-9a47-a7aaf5e04368",
+      "29f814d5-667f-41b6-9fec-381460f10dea"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551937148243,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "82dbcaf8-198a-41e1-8239-f55da60745e6",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551937148243,
+    "parent_id": "5c0a653d-4ce1-4234-bf16-7d29dc2f993e",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Representation of signed integers"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551937148242,
+        "id": "250d859a-c6ef-4e14-a065-3681c4b33d75",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551937148242,
+        "parent_id": "82dbcaf8-198a-41e1-8239-f55da60745e6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Each signed integer type may be represented in any one of three formats; it is implementation-defined which one is used. The implementation in use for any given signed integer type at least as wide as "
+            ],
+            [
+              "int",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " can be determined at runtime from the two lowest-order bits of the representation of value "
+            ],
+            [
+              "-1",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " in that type, like so:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Each signed integer type may be represented in any one of three formats; it is implementation-defined which one is used. The implementation in use for any given signed integer type at least as wide as "
+          },
+          {
+            "Text": "int",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " can be determined at runtime from the two lowest-order bits of the representation of value "
+          },
+          {
+            "Text": "-1",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " in that type, like so:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551937148242,
+        "id": "26328bec-7ac9-4738-9a47-a7aaf5e04368",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551937148242,
+        "parent_id": "82dbcaf8-198a-41e1-8239-f55da60745e6",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "enum { sign_magnitude = 1, ones_compl = 2, twos_compl = 3, };\n#define SIGN_REP(T) ((T)-1 \u0026 (T)3)\n\nswitch (SIGN_REP(long)) {\n   case sign_magnitude: { /* do something */ break; }\n   case ones_compl:     { /* do otherwise */ break; }\n   case twos_compl:     { /* do yet else  */ break; }\n   case 0:  { _Static_assert(SIGN_REP(long), \"bogus sign representation\"); }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "enum { sign_magnitude = 1, ones_compl = 2, twos_compl = 3, };\n#define SIGN_REP(T) ((T)-1 \u0026 (T)3)\n\nswitch (SIGN_REP(long)) {\n   case sign_magnitude: { /* do something */ break; }\n   case ones_compl:     { /* do otherwise */ break; }\n   case twos_compl:     { /* do yet else  */ break; }\n   case 0:  { _Static_assert(SIGN_REP(long), \"bogus sign representation\"); }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551937148242,
+        "id": "29f814d5-667f-41b6-9fec-381460f10dea",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551937148242,
+        "parent_id": "82dbcaf8-198a-41e1-8239-f55da60745e6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The same pattern applies to the representation of narrower types, but they cannot be tested by this technique because the operands of "
+            ],
+            [
+              "\u0026",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " are subject to “the usual arithmetic conversions” before the result is computed."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The same pattern applies to the representation of narrower types, but they cannot be tested by this technique because the operands of "
+          },
+          {
+            "Text": "\u0026",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " are subject to “the usual arithmetic conversions” before the result is computed."
+          }
+        ]
+      }
+    ],
+    "title": "Representation of signed integers",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

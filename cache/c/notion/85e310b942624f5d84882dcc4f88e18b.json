@@ -1,0 +1,323 @@
+{
+  "ID": "85e310b9-4262-4f5d-8488-2dcc4f88e18b",
+  "Root": {
+    "alive": true,
+    "content": [
+      "3877e6f7-e30e-41a2-a644-f71a74a8a2c1",
+      "81a3c40c-bf94-4d0f-a741-5649ddf359f2",
+      "2108061f-6cce-4f37-8d17-648fdecb5f0a",
+      "2c9329be-279c-4c64-830d-a7cb90411594"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551935755528,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "85e310b9-4262-4f5d-8488-2dcc4f88e18b",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551935755528,
+    "parent_id": "eff989d8-e4d4-4f97-952e-6c58e46dfb73",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Using fflush on an input stream"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935755522,
+        "id": "3877e6f7-e30e-41a2-a644-f71a74a8a2c1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935755522,
+        "parent_id": "85e310b9-4262-4f5d-8488-2dcc4f88e18b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The POSIX and C standards explicitly state that using "
+            ],
+            [
+              "fflush",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " on an input stream is undefined behavior. The "
+            ],
+            [
+              "fflush",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is defined only for output streams."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The POSIX and C standards explicitly state that using "
+          },
+          {
+            "Text": "fflush",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " on an input stream is undefined behavior. The "
+          },
+          {
+            "Text": "fflush",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is defined only for output streams."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935755525,
+        "id": "81a3c40c-bf94-4d0f-a741-5649ddf359f2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935755525,
+        "parent_id": "85e310b9-4262-4f5d-8488-2dcc4f88e18b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003cstdio.h\u003e\n\nint main()\n{\n    int i;\n    char input[4096];\n\n    scanf(\"%i\", \u0026i);\n    fflush(stdin); // \u003c-- undefined behavior\n    gets(input);\n\n    return 0;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \u003cstdio.h\u003e\n\nint main()\n{\n    int i;\n    char input[4096];\n\n    scanf(\"%i\", \u0026i);\n    fflush(stdin); // \u003c-- undefined behavior\n    gets(input);\n\n    return 0;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935755526,
+        "id": "2108061f-6cce-4f37-8d17-648fdecb5f0a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935755526,
+        "parent_id": "85e310b9-4262-4f5d-8488-2dcc4f88e18b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "There is no standard way to discard unread characters from an input stream. On the other hand, some implementations uses "
+            ],
+            [
+              "fflush",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to clear "
+            ],
+            [
+              "stdin",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " buffer. Microsoft defines the behavior of "
+            ],
+            [
+              "fflush",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " on an input stream: If the stream is open for input, "
+            ],
+            [
+              "fflush",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " clears the contents of the buffer. According to POSIX.1-2008, the behavior of "
+            ],
+            [
+              "fflush",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is undefined unless the input file is seekable."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "There is no standard way to discard unread characters from an input stream. On the other hand, some implementations uses "
+          },
+          {
+            "Text": "fflush",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to clear "
+          },
+          {
+            "Text": "stdin",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " buffer. Microsoft defines the behavior of "
+          },
+          {
+            "Text": "fflush",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " on an input stream: If the stream is open for input, "
+          },
+          {
+            "Text": "fflush",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " clears the contents of the buffer. According to POSIX.1-2008, the behavior of "
+          },
+          {
+            "Text": "fflush",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is undefined unless the input file is seekable."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935755528,
+        "id": "2c9329be-279c-4c64-830d-a7cb90411594",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935755528,
+        "parent_id": "85e310b9-4262-4f5d-8488-2dcc4f88e18b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "See "
+            ],
+            [
+              "Using ",
+              [
+                [
+                  "a",
+                  "http://stackoverflow.com/questions/2979209/using-fflushstdin"
+                ]
+              ]
+            ],
+            [
+              "fflush(stdin)",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "http://stackoverflow.com/questions/2979209/using-fflushstdin"
+                ]
+              ]
+            ],
+            [
+              " for many more details."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "See "
+          },
+          {
+            "Text": "Using ",
+            "Link": "http://stackoverflow.com/questions/2979209/using-fflushstdin"
+          },
+          {
+            "Text": "fflush(stdin)",
+            "AttrFlags": 2,
+            "Link": "http://stackoverflow.com/questions/2979209/using-fflushstdin"
+          },
+          {
+            "Text": " for many more details."
+          }
+        ]
+      }
+    ],
+    "title": "Using fflush on an input stream",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

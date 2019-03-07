@@ -1,0 +1,171 @@
+{
+  "ID": "c5f09848-ed8d-4cd0-bf0b-48147b2d5398",
+  "Root": {
+    "alive": true,
+    "content": [
+      "3a14e008-f9cf-4051-9355-45bd6f152f77",
+      "e682ce9b-d356-4e09-8b9b-a60573a10bcf",
+      "a8b95cd4-f7f6-405e-b3a7-02694efc6859"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551935803656,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "c5f09848-ed8d-4cd0-bf0b-48147b2d5398",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551935803656,
+    "parent_id": "f3c54523-5f2c-4d48-a50e-cd230eee34ae",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Using an explicit count argument to determine the length of the va list"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935803653,
+        "id": "3a14e008-f9cf-4051-9355-45bd6f152f77",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935803653,
+        "parent_id": "c5f09848-ed8d-4cd0-bf0b-48147b2d5398",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "With any variadic function, the function must know how to interpret the variable arguments list. With the "
+            ],
+            [
+              "printf()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " or "
+            ],
+            [
+              "scanf()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " functions, the format string tells the function what to expect."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "With any variadic function, the function must know how to interpret the variable arguments list. With the "
+          },
+          {
+            "Text": "printf()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " or "
+          },
+          {
+            "Text": "scanf()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " functions, the format string tells the function what to expect."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935803656,
+        "id": "e682ce9b-d356-4e09-8b9b-a60573a10bcf",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935803656,
+        "parent_id": "c5f09848-ed8d-4cd0-bf0b-48147b2d5398",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The simplest technique is to pass an explicit count of the other arguments (which are normally all the same type). This is demonstrated in the variadic function in the code below which calculates the sum of a series of integers, where there may be any number of integers but that count is specified as an argument prior to the variable argument list."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The simplest technique is to pass an explicit count of the other arguments (which are normally all the same type). This is demonstrated in the variadic function in the code below which calculates the sum of a series of integers, where there may be any number of integers but that count is specified as an argument prior to the variable argument list."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935803656,
+        "id": "a8b95cd4-f7f6-405e-b3a7-02694efc6859",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935803656,
+        "parent_id": "c5f09848-ed8d-4cd0-bf0b-48147b2d5398",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003cstdio.h\u003e\n#include \u003cstdarg.h\u003e\n\n/* first arg is the number of following int args to sum. */\nint sum(int n, ...) {\n    int sum = 0;\n    va_list it; /* hold information about the variadic argument list. */\n\n    va_start(it, n); /* start variadic argument processing */\n    while (n--)\n      sum += va_arg(it, int); /* get and sum the next variadic argument */\n    va_end(it); /* end variadic argument processing */\n\n    return sum;\n}\n\nint main(void)\n{\n    printf(\"%d\\n\", sum(5, 1, 2, 3, 4, 5)); /* prints 15 */\n    printf(\"%d\\n\", sum(10, 5, 9, 2, 5, 111, 6666, 42, 1, 43, -6218)); /* prints 666 */\n    return 0;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \u003cstdio.h\u003e\n#include \u003cstdarg.h\u003e\n\n/* first arg is the number of following int args to sum. */\nint sum(int n, ...) {\n    int sum = 0;\n    va_list it; /* hold information about the variadic argument list. */\n\n    va_start(it, n); /* start variadic argument processing */\n    while (n--)\n      sum += va_arg(it, int); /* get and sum the next variadic argument */\n    va_end(it); /* end variadic argument processing */\n\n    return sum;\n}\n\nint main(void)\n{\n    printf(\"%d\\n\", sum(5, 1, 2, 3, 4, 5)); /* prints 15 */\n    printf(\"%d\\n\", sum(10, 5, 9, 2, 5, 111, 6666, 42, 1, 43, -6218)); /* prints 666 */\n    return 0;\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Using an explicit count argument to determine the length of the va list",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

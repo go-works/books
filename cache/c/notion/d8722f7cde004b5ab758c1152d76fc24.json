@@ -1,0 +1,1019 @@
+{
+  "ID": "d8722f7c-de00-4b5a-b758-c1152d76fc24",
+  "Root": {
+    "alive": true,
+    "content": [
+      "d8c2838c-b650-436c-b605-6a03a7f0c726",
+      "d21fa769-a8be-4097-a3df-db981854ce71",
+      "e7c65b4d-c3d4-42ab-ae53-418f611b2a41",
+      "cd30091e-c11a-46f0-89ed-14d5f17ad0d4",
+      "cb874de1-d2c5-454f-b556-f96a40d76bf8",
+      "30536ba6-917f-41a7-82d5-7197950c778c",
+      "8df5104e-684f-42c9-831e-ef75d5009140",
+      "7764f3d4-3a83-4485-a3fc-b559b4ca04ef",
+      "57740c15-bf68-4374-915c-5658d0686b51",
+      "0919b4ef-1243-46b0-952e-2e40c5c59cdd",
+      "2aeb7afa-098c-4ffa-9b5c-03b0bf1093c8",
+      "3f905df5-f630-4e12-8206-11a46f3afa8f",
+      "9fa399de-31fe-48a0-b742-3fb11e72175f",
+      "2eddb5ee-1e67-42f2-ad6f-b13ed5f424c3",
+      "7f6f4972-7d41-4880-96ac-03f95aa63f45",
+      "e2568f32-7178-4b48-9739-e9e7a554a85a",
+      "5f8445ec-fe2e-402a-84cc-b399ce1143ed",
+      "5b4b4798-d0c6-4ee3-853e-f7f87dd70764",
+      "8bc9d277-38fa-4e05-b18c-1412a8238fda",
+      "6458ab47-ee11-4985-85e0-7af5c8137543"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551936205632,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "d8722f7c-de00-4b5a-b758-c1152d76fc24",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551936205632,
+    "parent_id": "1e14553b-8aea-44fb-a0fe-fbc893ff529a",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Freeing Memory"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936205625,
+        "id": "d8c2838c-b650-436c-b605-6a03a7f0c726",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936205625,
+        "parent_id": "d8722f7c-de00-4b5a-b758-c1152d76fc24",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "It is possible to release dynamically allocated memory by calling "
+            ],
+            [
+              "free()",
+              [
+                [
+                  "a",
+                  "http://linux.die.net/man/3/free"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "It is possible to release dynamically allocated memory by calling "
+          },
+          {
+            "Text": "free()",
+            "Link": "http://linux.die.net/man/3/free"
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936205625,
+        "id": "d21fa769-a8be-4097-a3df-db981854ce71",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936205625,
+        "parent_id": "d8722f7c-de00-4b5a-b758-c1152d76fc24",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "int *p = malloc(10 * sizeof *p); /* allocation of memory */\nif (p == NULL) \n{\n    perror(\"malloc failed\");\n    return -1;\n}\n\nfree(p); /* release of memory */\n/* note that after free(p), even using the *value* of the pointer p\n   has undefined behavior, until a new value is stored into it. */\n\n/* reusing/re-purposing the pointer itself */\nint i = 42;\np = \u0026i; /* This is valid, has defined behaviour */"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "int *p = malloc(10 * sizeof *p); /* allocation of memory */\nif (p == NULL) \n{\n    perror(\"malloc failed\");\n    return -1;\n}\n\nfree(p); /* release of memory */\n/* note that after free(p), even using the *value* of the pointer p\n   has undefined behavior, until a new value is stored into it. */\n\n/* reusing/re-purposing the pointer itself */\nint i = 42;\np = \u0026i; /* This is valid, has defined behaviour */",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936205627,
+        "id": "e7c65b4d-c3d4-42ab-ae53-418f611b2a41",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936205627,
+        "parent_id": "d8722f7c-de00-4b5a-b758-c1152d76fc24",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The memory pointed to by "
+            ],
+            [
+              "p",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is reclaimed (either by the libc implementation or by the underlying OS) after the call to "
+            ],
+            [
+              "free()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", so accessing that freed memory block via "
+            ],
+            [
+              "p",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " will lead to "
+            ],
+            [
+              "undefined behavior",
+              [
+                [
+                  "a",
+                  "http://stackoverflow.com/documentation/c/364/undefined-behavior#t=201607290847035891683"
+                ]
+              ]
+            ],
+            [
+              ". Pointers that reference memory elements that have been freed are commonly called "
+            ],
+            [
+              "dangling pointers",
+              [
+                [
+                  "a",
+                  "https://en.wikipedia.org/wiki/Dangling_pointer"
+                ]
+              ]
+            ],
+            [
+              ", and present a security risk. Furthermore, the C standard states that even "
+            ],
+            [
+              "accessing the value",
+              [
+                [
+                  "a",
+                  "http://stackoverflow.com/documentation/c/364/undefined-behavior/2775/read-value-of-pointer-that-was-freed#t=201608050732042665317"
+                ]
+              ]
+            ],
+            [
+              " of a dangling pointer has undefined behavior. Note that the pointer "
+            ],
+            [
+              "p",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " itself can be re-purposed as shown above."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The memory pointed to by "
+          },
+          {
+            "Text": "p",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is reclaimed (either by the libc implementation or by the underlying OS) after the call to "
+          },
+          {
+            "Text": "free()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", so accessing that freed memory block via "
+          },
+          {
+            "Text": "p",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " will lead to "
+          },
+          {
+            "Text": "undefined behavior",
+            "Link": "http://stackoverflow.com/documentation/c/364/undefined-behavior#t=201607290847035891683"
+          },
+          {
+            "Text": ". Pointers that reference memory elements that have been freed are commonly called "
+          },
+          {
+            "Text": "dangling pointers",
+            "Link": "https://en.wikipedia.org/wiki/Dangling_pointer"
+          },
+          {
+            "Text": ", and present a security risk. Furthermore, the C standard states that even "
+          },
+          {
+            "Text": "accessing the value",
+            "Link": "http://stackoverflow.com/documentation/c/364/undefined-behavior/2775/read-value-of-pointer-that-was-freed#t=201608050732042665317"
+          },
+          {
+            "Text": " of a dangling pointer has undefined behavior. Note that the pointer "
+          },
+          {
+            "Text": "p",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " itself can be re-purposed as shown above."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936205627,
+        "id": "cd30091e-c11a-46f0-89ed-14d5f17ad0d4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936205627,
+        "parent_id": "d8722f7c-de00-4b5a-b758-c1152d76fc24",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Please note that you can only call "
+            ],
+            [
+              "free()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " on pointers that have directly been returned from the "
+            ],
+            [
+              "malloc()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", "
+            ],
+            [
+              "calloc()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", "
+            ],
+            [
+              "realloc()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "aligned_alloc()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " functions, or where documentation tells you the memory has been allocated that way (functions like "
+            ],
+            [
+              "strdup ()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " are notable examples). Freeing a pointer that is,"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Please note that you can only call "
+          },
+          {
+            "Text": "free()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " on pointers that have directly been returned from the "
+          },
+          {
+            "Text": "malloc()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", "
+          },
+          {
+            "Text": "calloc()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", "
+          },
+          {
+            "Text": "realloc()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "aligned_alloc()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " functions, or where documentation tells you the memory has been allocated that way (functions like "
+          },
+          {
+            "Text": "strdup ()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " are notable examples). Freeing a pointer that is,"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936205628,
+        "id": "cb874de1-d2c5-454f-b556-f96a40d76bf8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936205628,
+        "parent_id": "d8722f7c-de00-4b5a-b758-c1152d76fc24",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "obtained by using the "
+            ],
+            [
+              "\u0026",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " operator on a variable, or"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "obtained by using the "
+          },
+          {
+            "Text": "\u0026",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " operator on a variable, or"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936205628,
+        "id": "30536ba6-917f-41a7-82d5-7197950c778c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936205628,
+        "parent_id": "d8722f7c-de00-4b5a-b758-c1152d76fc24",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "in the middle of an allocated block,"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "in the middle of an allocated block,"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936205628,
+        "id": "8df5104e-684f-42c9-831e-ef75d5009140",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936205628,
+        "parent_id": "d8722f7c-de00-4b5a-b758-c1152d76fc24",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "is forbidden. Such an error will usually not be diagnosed by your compiler but will lead the program execution in an undefined state."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "is forbidden. Such an error will usually not be diagnosed by your compiler but will lead the program execution in an undefined state."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936205628,
+        "id": "7764f3d4-3a83-4485-a3fc-b559b4ca04ef",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936205628,
+        "parent_id": "d8722f7c-de00-4b5a-b758-c1152d76fc24",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "There are two common strategies to prevent such instances of undefined behavior."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "There are two common strategies to prevent such instances of undefined behavior."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936205628,
+        "id": "57740c15-bf68-4374-915c-5658d0686b51",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936205628,
+        "parent_id": "d8722f7c-de00-4b5a-b758-c1152d76fc24",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The first and preferable is simple - have "
+            ],
+            [
+              "p",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " itself cease to exist when it is no longer needed, for example:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The first and preferable is simple - have "
+          },
+          {
+            "Text": "p",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " itself cease to exist when it is no longer needed, for example:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936205629,
+        "id": "0919b4ef-1243-46b0-952e-2e40c5c59cdd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936205629,
+        "parent_id": "d8722f7c-de00-4b5a-b758-c1152d76fc24",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "if (something_is_needed())\n{\n\n    int *p = malloc(10 * sizeof *p);\n    if (p == NULL) \n    {\n        perror(\"malloc failed\");\n        return -1;\n    }\n\n    /* do whatever is needed with p */\n\n    free(p);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "if (something_is_needed())\n{\n\n    int *p = malloc(10 * sizeof *p);\n    if (p == NULL) \n    {\n        perror(\"malloc failed\");\n        return -1;\n    }\n\n    /* do whatever is needed with p */\n\n    free(p);\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936205629,
+        "id": "2aeb7afa-098c-4ffa-9b5c-03b0bf1093c8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936205629,
+        "parent_id": "d8722f7c-de00-4b5a-b758-c1152d76fc24",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "By calling "
+            ],
+            [
+              "free()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " directly before the end of the containing block (i.e. the "
+            ],
+            [
+              "\\}",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "), "
+            ],
+            [
+              "p",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " itself ceases to exist. The compiler will give a compilation error on any attempt to use "
+            ],
+            [
+              "p",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " after that."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "By calling "
+          },
+          {
+            "Text": "free()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " directly before the end of the containing block (i.e. the "
+          },
+          {
+            "Text": "\\}",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "), "
+          },
+          {
+            "Text": "p",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " itself ceases to exist. The compiler will give a compilation error on any attempt to use "
+          },
+          {
+            "Text": "p",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " after that."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936205629,
+        "id": "3f905df5-f630-4e12-8206-11a46f3afa8f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936205629,
+        "parent_id": "d8722f7c-de00-4b5a-b758-c1152d76fc24",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "A second approach is to also invalidate the pointer itself after releasing the memory to which it points:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "A second approach is to also invalidate the pointer itself after releasing the memory to which it points:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936205629,
+        "id": "9fa399de-31fe-48a0-b742-3fb11e72175f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936205629,
+        "parent_id": "d8722f7c-de00-4b5a-b758-c1152d76fc24",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "free(p);\np = NULL;     // you may also use 0 instead of NULL"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "free(p);\np = NULL;     // you may also use 0 instead of NULL",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936205629,
+        "id": "2eddb5ee-1e67-42f2-ad6f-b13ed5f424c3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936205629,
+        "parent_id": "d8722f7c-de00-4b5a-b758-c1152d76fc24",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Arguments for this approach:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Arguments for this approach:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936205629,
+        "id": "7f6f4972-7d41-4880-96ac-03f95aa63f45",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936205629,
+        "parent_id": "d8722f7c-de00-4b5a-b758-c1152d76fc24",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "On many platforms, an attempt to dereference a null pointer will cause instant crash: Segmentation fault. Here, we get at least a stack trace pointing to the variable that was used after being freed."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "On many platforms, an attempt to dereference a null pointer will cause instant crash: Segmentation fault. Here, we get at least a stack trace pointing to the variable that was used after being freed."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936205630,
+        "id": "e2568f32-7178-4b48-9739-e9e7a554a85a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936205630,
+        "parent_id": "d8722f7c-de00-4b5a-b758-c1152d76fc24",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Without setting pointer to "
+            ],
+            [
+              "NULL",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " we have dangling pointer. The program will very likely still crash, but later, because the memory to which the pointer points will silently be corrupted. Such bugs are difficult to trace because they can result in a call stack that completely unrelated to the initial problem."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Without setting pointer to "
+          },
+          {
+            "Text": "NULL",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " we have dangling pointer. The program will very likely still crash, but later, because the memory to which the pointer points will silently be corrupted. Such bugs are difficult to trace because they can result in a call stack that completely unrelated to the initial problem."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936205630,
+        "id": "5f8445ec-fe2e-402a-84cc-b399ce1143ed",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936205630,
+        "parent_id": "d8722f7c-de00-4b5a-b758-c1152d76fc24",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This approach hence follows the "
+            ],
+            [
+              "fail-fast concept",
+              [
+                [
+                  "a",
+                  "https://en.wikipedia.org/wiki/Fail-fast"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This approach hence follows the "
+          },
+          {
+            "Text": "fail-fast concept",
+            "Link": "https://en.wikipedia.org/wiki/Fail-fast"
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936205631,
+        "id": "5b4b4798-d0c6-4ee3-853e-f7f87dd70764",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936205631,
+        "parent_id": "d8722f7c-de00-4b5a-b758-c1152d76fc24",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "It is safe to free a null pointer. The "
+            ],
+            [
+              "C Standard specifies",
+              [
+                [
+                  "a",
+                  "http://port70.net/~nsz/c/c89/c89-draft.html#4.10.3.2"
+                ]
+              ]
+            ],
+            [
+              " that "
+            ],
+            [
+              "free(NULL)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " has no effect:"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "It is safe to free a null pointer. The "
+          },
+          {
+            "Text": "C Standard specifies",
+            "Link": "http://port70.net/~nsz/c/c89/c89-draft.html#4.10.3.2"
+          },
+          {
+            "Text": " that "
+          },
+          {
+            "Text": "free(NULL)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " has no effect:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936205631,
+        "id": "8bc9d277-38fa-4e05-b18c-1412a8238fda",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936205631,
+        "parent_id": "d8722f7c-de00-4b5a-b758-c1152d76fc24",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The free function causes the space pointed to by ptr to be deallocated, that is, made available for further allocation. If ptr is a null pointer, no action occurs. Otherwise, if the argument does not match a pointer earlier returned by the calloc, malloc, or realloc function, or if the space has been deallocated by a call to free or realloc, the behavior is undefined."
+            ]
+          ]
+        },
+        "type": "quote",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The free function causes the space pointed to by ptr to be deallocated, that is, made available for further allocation. If ptr is a null pointer, no action occurs. Otherwise, if the argument does not match a pointer earlier returned by the calloc, malloc, or realloc function, or if the space has been deallocated by a call to free or realloc, the behavior is undefined."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936205632,
+        "id": "6458ab47-ee11-4985-85e0-7af5c8137543",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936205632,
+        "parent_id": "d8722f7c-de00-4b5a-b758-c1152d76fc24",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Sometimes the first approach cannot be used (e.g. memory is allocated in one function, and deallocated much later in a completely different function)"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Sometimes the first approach cannot be used (e.g. memory is allocated in one function, and deallocated much later in a completely different function)"
+          }
+        ]
+      }
+    ],
+    "title": "Freeing Memory",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

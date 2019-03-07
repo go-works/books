@@ -1,0 +1,225 @@
+{
+  "ID": "b30a4882-4f50-48cc-bf9b-058185f9bff2",
+  "Root": {
+    "alive": true,
+    "content": [
+      "d63c850c-0dcb-4c41-b768-c9a2687dca7d",
+      "873a6da7-f4af-4369-85b4-9fb81e002d1d",
+      "7c64a6bc-470b-4247-a2a0-ae22358ae227"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551936694161,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "b30a4882-4f50-48cc-bf9b-058185f9bff2",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551936694161,
+    "parent_id": "a25d942b-f182-4a59-8930-268903693536",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Thread local"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936694158,
+        "id": "d63c850c-0dcb-4c41-b768-c9a2687dca7d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936694158,
+        "parent_id": "b30a4882-4f50-48cc-bf9b-058185f9bff2",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This was a new storage specifier introduced in C11 along with multi-threading. This isn’t available in earlier C standards."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This was a new storage specifier introduced in C11 along with multi-threading. This isn’t available in earlier C standards."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936694161,
+        "id": "873a6da7-f4af-4369-85b4-9fb81e002d1d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936694161,
+        "parent_id": "b30a4882-4f50-48cc-bf9b-058185f9bff2",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Denotes "
+            ],
+            [
+              "thread storage duration",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              ". A variable declared with "
+            ],
+            [
+              "_Thread_local",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " storage specifier denotes that the object is "
+            ],
+            [
+              "local to that thread",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " and its lifetime is the entire execution of the thread in which it’s created. It can also appear along with "
+            ],
+            [
+              "static",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " or "
+            ],
+            [
+              "extern",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Denotes "
+          },
+          {
+            "Text": "thread storage duration",
+            "AttrFlags": 4
+          },
+          {
+            "Text": ". A variable declared with "
+          },
+          {
+            "Text": "_Thread_local",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " storage specifier denotes that the object is "
+          },
+          {
+            "Text": "local to that thread",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " and its lifetime is the entire execution of the thread in which it’s created. It can also appear along with "
+          },
+          {
+            "Text": "static",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " or "
+          },
+          {
+            "Text": "extern",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936694161,
+        "id": "7c64a6bc-470b-4247-a2a0-ae22358ae227",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936694161,
+        "parent_id": "b30a4882-4f50-48cc-bf9b-058185f9bff2",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003cthreads.h\u003e\n#include \u003cstdio.h\u003e\n#define SIZE 5\n\nint thread_func(void *id)\n{\n    /* thread local variable i. */\n    static _Thread_local int i;\n\n    /* Prints the ID passed from main() and the address of the i.\n     * Running this program will print different addresses for i, showing\n     * that they are all distinct objects. */\n    printf(\"From thread:[%d], Address of i (thread local): %p\\n\", *(int*)id, (void*)\u0026i);\n\n    return 0;\n}\n\nint main(void)\n{\n    thrd_t id[SIZE];\n    int arr[SIZE] = {1, 2, 3, 4, 5};\n\n    /* create 5 threads. */\n    for(int i = 0; i \u003c SIZE; i++) {\n        thrd_create(\u0026id[i], thread_func, \u0026arr[i]);\n    }\n\n    /* wait for threads to complete. */\n    for(int i = 0; i \u003c SIZE; i++) {\n        thrd_join(id[i], NULL);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \u003cthreads.h\u003e\n#include \u003cstdio.h\u003e\n#define SIZE 5\n\nint thread_func(void *id)\n{\n    /* thread local variable i. */\n    static _Thread_local int i;\n\n    /* Prints the ID passed from main() and the address of the i.\n     * Running this program will print different addresses for i, showing\n     * that they are all distinct objects. */\n    printf(\"From thread:[%d], Address of i (thread local): %p\\n\", *(int*)id, (void*)\u0026i);\n\n    return 0;\n}\n\nint main(void)\n{\n    thrd_t id[SIZE];\n    int arr[SIZE] = {1, 2, 3, 4, 5};\n\n    /* create 5 threads. */\n    for(int i = 0; i \u003c SIZE; i++) {\n        thrd_create(\u0026id[i], thread_func, \u0026arr[i]);\n    }\n\n    /* wait for threads to complete. */\n    for(int i = 0; i \u003c SIZE; i++) {\n        thrd_join(id[i], NULL);\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Thread local",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

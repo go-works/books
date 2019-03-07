@@ -1,0 +1,229 @@
+{
+  "ID": "5545579f-c09a-4185-a527-63ee75a33e9f",
+  "Root": {
+    "alive": true,
+    "content": [
+      "92dd0b09-547c-4c47-8a39-59e9fcf1753a",
+      "109dcb70-d3bf-4f3b-a2d7-ac6d90cfc2b6",
+      "7dd19f33-eb6b-43d9-b870-7888f3681879",
+      "55c7c2db-ba6f-4eb1-8ea9-36cd7a623b3c"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551936639469,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "5545579f-c09a-4185-a527-63ee75a33e9f",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551936639469,
+    "parent_id": "476e4bcf-2254-4ffd-82b2-b3dcbd9fdf01",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Power functions - pow powf powl"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936639468,
+        "id": "92dd0b09-547c-4c47-8a39-59e9fcf1753a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936639468,
+        "parent_id": "5545579f-c09a-4185-a527-63ee75a33e9f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The following example code computes the sum of "
+            ],
+            [
+              "1+4(3+3",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              "2+3",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              "3+3",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              "4+…+3",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              "N)",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " series using pow() family of standard math library."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The following example code computes the sum of "
+          },
+          {
+            "Text": "1+4(3+3",
+            "AttrFlags": 4
+          },
+          {
+            "Text": "2+3",
+            "AttrFlags": 4
+          },
+          {
+            "Text": "3+3",
+            "AttrFlags": 4
+          },
+          {
+            "Text": "4+…+3",
+            "AttrFlags": 4
+          },
+          {
+            "Text": "N)",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " series using pow() family of standard math library."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936639468,
+        "id": "109dcb70-d3bf-4f3b-a2d7-ac6d90cfc2b6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936639468,
+        "parent_id": "5545579f-c09a-4185-a527-63ee75a33e9f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003cstdio.h\u003e\n#include \u003cmath.h\u003e\n#include \u003cerrno.h\u003e\n#include \u003cfenv.h\u003e\n\nint main()\n{\n        double pwr, sum=0;\n        int i, n;\n\n        printf(\"\\n1+4(3+3^2+3^3+3^4+...+3^N)=?\\nEnter N:\");\n        scanf(\"%d\",\u0026n);\n        if (n\u003c=0) {\n                printf(\"Invalid power N=%d\", n);\n                return -1;\n        }\n\n        for (i=0; i\u003cn+1; i++) {\n                errno = 0;\n                feclearexcept(FE_ALL_EXCEPT);\n                pwr = powl(3,i);\n                if (fetestexcept(FE_INVALID | FE_DIVBYZERO | FE_OVERFLOW |\n                        FE_UNDERFLOW)) {\n                        perror(\"Math Error\");\n                }\n                sum += i ? pwr : 0;\n                printf(\"N= %d\\tS= %g\\n\", i, 1+4*sum);\n        }\n\n        return 0;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \u003cstdio.h\u003e\n#include \u003cmath.h\u003e\n#include \u003cerrno.h\u003e\n#include \u003cfenv.h\u003e\n\nint main()\n{\n        double pwr, sum=0;\n        int i, n;\n\n        printf(\"\\n1+4(3+3^2+3^3+3^4+...+3^N)=?\\nEnter N:\");\n        scanf(\"%d\",\u0026n);\n        if (n\u003c=0) {\n                printf(\"Invalid power N=%d\", n);\n                return -1;\n        }\n\n        for (i=0; i\u003cn+1; i++) {\n                errno = 0;\n                feclearexcept(FE_ALL_EXCEPT);\n                pwr = powl(3,i);\n                if (fetestexcept(FE_INVALID | FE_DIVBYZERO | FE_OVERFLOW |\n                        FE_UNDERFLOW)) {\n                        perror(\"Math Error\");\n                }\n                sum += i ? pwr : 0;\n                printf(\"N= %d\\tS= %g\\n\", i, 1+4*sum);\n        }\n\n        return 0;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936639468,
+        "id": "7dd19f33-eb6b-43d9-b870-7888f3681879",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936639468,
+        "parent_id": "5545579f-c09a-4185-a527-63ee75a33e9f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Example Output:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Example Output:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936639469,
+        "id": "55c7c2db-ba6f-4eb1-8ea9-36cd7a623b3c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936639469,
+        "parent_id": "5545579f-c09a-4185-a527-63ee75a33e9f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "1+4(3+3^2+3^3+3^4+...+3^N)=?\nEnter N:10\nN= 0    S= 1\nN= 1    S= 13\nN= 2    S= 49\nN= 3    S= 157\nN= 4    S= 481\nN= 5    S= 1453\nN= 6    S= 4369\nN= 7    S= 13117\nN= 8    S= 39361\nN= 9    S= 118093\nN= 10    S= 354289"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "1+4(3+3^2+3^3+3^4+...+3^N)=?\nEnter N:10\nN= 0    S= 1\nN= 1    S= 13\nN= 2    S= 49\nN= 3    S= 157\nN= 4    S= 481\nN= 5    S= 1453\nN= 6    S= 4369\nN= 7    S= 13117\nN= 8    S= 39361\nN= 9    S= 118093\nN= 10    S= 354289",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Power functions - pow powf powl",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,195 @@
+{
+  "ID": "4efa3f5b-c925-4796-b484-e20b105c677b",
+  "Root": {
+    "alive": true,
+    "content": [
+      "ea61f481-3f43-493d-9924-c38ba97ca126",
+      "8268bcde-9c50-4576-98dd-7a14c040baae",
+      "d89fc98d-1ff3-4584-aafc-03cdfa349831"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551936334178,
+    "id": "4efa3f5b-c925-4796-b484-e20b105c677b",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551936334178,
+    "parent_id": "f3ac34eb-110d-486b-9e30-6bd30082bba0",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "130 strspn and strcspn"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936334175,
+        "id": "ea61f481-3f43-493d-9924-c38ba97ca126",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936334175,
+        "parent_id": "4efa3f5b-c925-4796-b484-e20b105c677b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Given a string, "
+            ],
+            [
+              "strspn",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " calculates the length of the initial substring (span) consisting solely of a specific list of characters. "
+            ],
+            [
+              "strcspn",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is similar, except it calculates the length of the initial substring consisting of any characters except those listed:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Given a string, "
+          },
+          {
+            "Text": "strspn",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " calculates the length of the initial substring (span) consisting solely of a specific list of characters. "
+          },
+          {
+            "Text": "strcspn",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is similar, except it calculates the length of the initial substring consisting of any characters except those listed:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936334177,
+        "id": "8268bcde-9c50-4576-98dd-7a14c040baae",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936334177,
+        "parent_id": "4efa3f5b-c925-4796-b484-e20b105c677b",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "/*\n  Provided a string of \"tokens\" delimited by \"separators\", print the tokens along\n  with the token separators that get skipped.\n*/\n#include \u003cstdio.h\u003e\n#include \u003cstring.h\u003e\n\nint main(void)\n{\n    const char sepchars[] = \",.;!?\";\n    char foo[] = \";ball call,.fall gall hall!?.,\";\n    char *s;\n    int n;\n\n    for (s = foo; *s != 0; /*empty*/) {\n        /* Get the number of token separator characters. */\n        n = (int)strspn(s, sepchars);\n\n        if (n \u003e 0)\n            printf(\"skipping separators: \u003c\u003c %.*s \u003e\u003e (length=%d)\\n\", n, s, n);\n\n        /* Actually skip the separators now. */\n        s += n;\n\n        /* Get the number of token (non-separator) characters. */\n        n = (int)strcspn(s, sepchars);\n\n        if (n \u003e 0)\n            printf(\"token found: \u003c\u003c %.*s \u003e\u003e (length=%d)\\n\", n, s, n);\n\n        /* Skip the token now. */\n        s += n;\n    }\n\n    printf(\"== token list exhausted ==\\n\");\n\n    return 0;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "/*\n  Provided a string of \"tokens\" delimited by \"separators\", print the tokens along\n  with the token separators that get skipped.\n*/\n#include \u003cstdio.h\u003e\n#include \u003cstring.h\u003e\n\nint main(void)\n{\n    const char sepchars[] = \",.;!?\";\n    char foo[] = \";ball call,.fall gall hall!?.,\";\n    char *s;\n    int n;\n\n    for (s = foo; *s != 0; /*empty*/) {\n        /* Get the number of token separator characters. */\n        n = (int)strspn(s, sepchars);\n\n        if (n \u003e 0)\n            printf(\"skipping separators: \u003c\u003c %.*s \u003e\u003e (length=%d)\\n\", n, s, n);\n\n        /* Actually skip the separators now. */\n        s += n;\n\n        /* Get the number of token (non-separator) characters. */\n        n = (int)strcspn(s, sepchars);\n\n        if (n \u003e 0)\n            printf(\"token found: \u003c\u003c %.*s \u003e\u003e (length=%d)\\n\", n, s, n);\n\n        /* Skip the token now. */\n        s += n;\n    }\n\n    printf(\"== token list exhausted ==\\n\");\n\n    return 0;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936334178,
+        "id": "d89fc98d-1ff3-4584-aafc-03cdfa349831",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936334178,
+        "parent_id": "4efa3f5b-c925-4796-b484-e20b105c677b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Analogous functions using wide-character strings are "
+            ],
+            [
+              "wcsspn",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "wcscspn",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "; they're used the same way."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Analogous functions using wide-character strings are "
+          },
+          {
+            "Text": "wcsspn",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "wcscspn",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "; they're used the same way."
+          }
+        ]
+      }
+    ],
+    "title": "130 strspn and strcspn"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

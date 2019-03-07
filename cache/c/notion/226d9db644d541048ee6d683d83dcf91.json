@@ -1,0 +1,209 @@
+{
+  "ID": "226d9db6-44d5-4104-8ee6-d683d83dcf91",
+  "Root": {
+    "alive": true,
+    "content": [
+      "931f126f-78d5-44fc-ae52-0525f37bc388",
+      "b6fdc81c-acd4-44d0-86d1-6b7b11964cfe",
+      "a179527d-cc3a-483f-a5d1-24298d2a6583"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551935749364,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "226d9db6-44d5-4104-8ee6-d683d83dcf91",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551935749364,
+    "parent_id": "44b99e73-a03b-41cc-b542-2de7e97ca081",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Xorshift Generation"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935749363,
+        "id": "931f126f-78d5-44fc-ae52-0525f37bc388",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935749363,
+        "parent_id": "226d9db6-44d5-4104-8ee6-d683d83dcf91",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "A good and easy alternative to the flawed "
+            ],
+            [
+              "rand()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " procedures, is "
+            ],
+            [
+              "xorshift",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              ", a class of pseudo-random number generators discovered by "
+            ],
+            [
+              "George Marsaglia",
+              [
+                [
+                  "a",
+                  "https://en.wikipedia.org/wiki/George_Marsaglia"
+                ]
+              ]
+            ],
+            [
+              ". The xorshift generator is among the fastest non-cryptographically-secure random number generators. More information and other example implementaions are available on the "
+            ],
+            [
+              "xorshift Wikipedia page",
+              [
+                [
+                  "a",
+                  "https://en.wikipedia.org/wiki/xorshift"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "A good and easy alternative to the flawed "
+          },
+          {
+            "Text": "rand()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " procedures, is "
+          },
+          {
+            "Text": "xorshift",
+            "AttrFlags": 4
+          },
+          {
+            "Text": ", a class of pseudo-random number generators discovered by "
+          },
+          {
+            "Text": "George Marsaglia",
+            "Link": "https://en.wikipedia.org/wiki/George_Marsaglia"
+          },
+          {
+            "Text": ". The xorshift generator is among the fastest non-cryptographically-secure random number generators. More information and other example implementaions are available on the "
+          },
+          {
+            "Text": "xorshift Wikipedia page",
+            "Link": "https://en.wikipedia.org/wiki/xorshift"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935749364,
+        "id": "b6fdc81c-acd4-44d0-86d1-6b7b11964cfe",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935749364,
+        "parent_id": "226d9db6-44d5-4104-8ee6-d683d83dcf91",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Example implementation",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Example implementation",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935749364,
+        "id": "a179527d-cc3a-483f-a5d1-24298d2a6583",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935749364,
+        "parent_id": "226d9db6-44d5-4104-8ee6-d683d83dcf91",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003cstdint.h\u003e\n\n/* These state variables must be initialised so that they are not all zero. */\nuint32_t w, x, y, z;\n\nuint32_t xorshift128(void) \n{\n    uint32_t t = x;\n    t ^= t \u003c\u003c 11U;\n    t ^= t \u003e\u003e 8U;\n    x = y; y = z; z = w;\n    w ^= w \u003e\u003e 19U;\n    w ^= t;\n    return w;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \u003cstdint.h\u003e\n\n/* These state variables must be initialised so that they are not all zero. */\nuint32_t w, x, y, z;\n\nuint32_t xorshift128(void) \n{\n    uint32_t t = x;\n    t ^= t \u003c\u003c 11U;\n    t ^= t \u003e\u003e 8U;\n    x = y; y = z; z = w;\n    w ^= w \u003e\u003e 19U;\n    w ^= t;\n    return w;\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Xorshift Generation",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

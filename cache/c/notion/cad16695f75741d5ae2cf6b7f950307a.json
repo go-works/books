@@ -1,0 +1,97 @@
+{
+  "ID": "cad16695-f757-41d5-ae2c-f6b7f950307a",
+  "Root": {
+    "alive": true,
+    "content": [
+      "54829b8a-d385-44d2-8541-3edc28fcf40c",
+      "fb4770d0-a042-44d7-81ec-22398e7f10c2"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551936223148,
+    "id": "cad16695-f757-41d5-ae2c-f6b7f950307a",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551936223148,
+    "parent_id": "fceea03f-c65b-4f89-8e06-817d0fcf3348",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "060 Passing structs to functions"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936223146,
+        "id": "54829b8a-d385-44d2-8541-3edc28fcf40c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936223146,
+        "parent_id": "cad16695-f757-41d5-ae2c-f6b7f950307a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In C, all arguments are passed to functions by value, including structs. For small structs, this is a good thing as it means there is no overhead from accessing the data through a pointer. However, it also makes it very easy to accidentally pass a huge struct resulting in poor performance, particularly if the programmer is used to other languages where arguments are passed by reference."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In C, all arguments are passed to functions by value, including structs. For small structs, this is a good thing as it means there is no overhead from accessing the data through a pointer. However, it also makes it very easy to accidentally pass a huge struct resulting in poor performance, particularly if the programmer is used to other languages where arguments are passed by reference."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551936223148,
+        "id": "fb4770d0-a042-44d7-81ec-22398e7f10c2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551936223148,
+        "parent_id": "cad16695-f757-41d5-ae2c-f6b7f950307a",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "struct coordinates\n{\n    int x;\n    int y;\n    int z;\n};\n\n// Passing and returning a small struct by value, very fast\nstruct coordinates move(struct coordinates position, struct coordinates movement)\n{\n    position.x += movement.x;\n    position.y += movement.y;\n    position.z += movement.z;\n    return position;\n}\n\n// A very big struct\nstruct lotsOfData\n{\n    int param1;\n    char param2[80000];\n};\n\n// Passing and returning a large struct by value, very slow!\n// Given the large size of the struct this could even cause stack overflow\nstruct lotsOfData doubleParam1(struct lotsOfData value)\n{\n    value.param1 *= 2;\n    return value;\n}\n\n// Passing the large struct by pointer instead, fairly fast\nvoid doubleParam1ByPtr(struct lotsOfData *value)\n{\n    value-\u003eparam1 *= 2;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "struct coordinates\n{\n    int x;\n    int y;\n    int z;\n};\n\n// Passing and returning a small struct by value, very fast\nstruct coordinates move(struct coordinates position, struct coordinates movement)\n{\n    position.x += movement.x;\n    position.y += movement.y;\n    position.z += movement.z;\n    return position;\n}\n\n// A very big struct\nstruct lotsOfData\n{\n    int param1;\n    char param2[80000];\n};\n\n// Passing and returning a large struct by value, very slow!\n// Given the large size of the struct this could even cause stack overflow\nstruct lotsOfData doubleParam1(struct lotsOfData value)\n{\n    value.param1 *= 2;\n    return value;\n}\n\n// Passing the large struct by pointer instead, fairly fast\nvoid doubleParam1ByPtr(struct lotsOfData *value)\n{\n    value-\u003eparam1 *= 2;\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "060 Passing structs to functions"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

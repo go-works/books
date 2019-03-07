@@ -1,0 +1,323 @@
+{
+  "ID": "98af727d-4f9d-4cef-bd52-c1a846ec288e",
+  "Root": {
+    "alive": true,
+    "content": [
+      "b3618fa0-670d-4da0-809b-a2e40f6e20dd",
+      "6b092e5b-d8ba-4fba-81ff-d2e7554a4132",
+      "a9a1c424-0254-4260-8f78-9c931e214fc0",
+      "4c8dfb71-6d5f-426e-923a-184dcf87cbf6",
+      "21a794fb-f46c-43db-81ac-c461b1822b60",
+      "9b4d1deb-41c1-4228-b68e-213aebdefbaa",
+      "3caca8ae-741b-4223-99f9-514454af3446",
+      "eb890324-49a9-4e06-8fde-b764ee27b381"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551935825255,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "98af727d-4f9d-4cef-bd52-c1a846ec288e",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551935825255,
+    "parent_id": "9b4c9f4c-5f47-45ba-86a9-461b3aaa1198",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Open and write to a binary file"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935825251,
+        "id": "b3618fa0-670d-4da0-809b-a2e40f6e20dd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935825251,
+        "parent_id": "98af727d-4f9d-4cef-bd52-c1a846ec288e",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003cstdlib.h\u003e\n#include \u003cstdio.h\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \u003cstdlib.h\u003e\n#include \u003cstdio.h\u003e",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935825254,
+        "id": "6b092e5b-d8ba-4fba-81ff-d2e7554a4132",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935825254,
+        "parent_id": "98af727d-4f9d-4cef-bd52-c1a846ec288e",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "int main(void)\n{\n   result = EXIT_SUCCESS;\n\n   char file_name[] = \"outbut.bin\";\n   char str[] = \"This is a binary file example\";\n   FILE * fp = fopen(file_name, \"wb\");\n   \n   if (fp == NULL)  /* If an error occurs during the file creation */\n   {\n     result = EXIT_FAILURE;\n     fprintf(stderr, \"fopen() failed for '%s'\\n\", file_name);\n   }\n   else\n   {\n     size_t element_size = sizeof *str;\n     size_t elements_to_write = sizeof str;\n\n     /* Writes str (_including_ the NUL-terminator) to the binary file. */\n     size_t elements_written = fwrite(str, element_size, elements_to_write, fp); \n     if (elements_written != elements_to_write)\n     {\n       result = EXIT_FAILURE;\n       /* This works for \u003e=c99 only, else the z length modifier is unknown. */\n       fprintf(stderr, \"fwrite() failed: wrote only %zu out of %zu elements.\\n\", \n         elements_written, elements_to_write);\n       /* Use this for \u003cc99: *\n       fprintf(stderr, \"fwrite() failed: wrote only %lu out of %lu elements.\\n\", \n         (unsigned long) elements_written, (unsigned long) elements_to_write);\n        */\n     }\n\n     fclose(fp);\n   }\n\n   return result;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "int main(void)\n{\n   result = EXIT_SUCCESS;\n\n   char file_name[] = \"outbut.bin\";\n   char str[] = \"This is a binary file example\";\n   FILE * fp = fopen(file_name, \"wb\");\n   \n   if (fp == NULL)  /* If an error occurs during the file creation */\n   {\n     result = EXIT_FAILURE;\n     fprintf(stderr, \"fopen() failed for '%s'\\n\", file_name);\n   }\n   else\n   {\n     size_t element_size = sizeof *str;\n     size_t elements_to_write = sizeof str;\n\n     /* Writes str (_including_ the NUL-terminator) to the binary file. */\n     size_t elements_written = fwrite(str, element_size, elements_to_write, fp); \n     if (elements_written != elements_to_write)\n     {\n       result = EXIT_FAILURE;\n       /* This works for \u003e=c99 only, else the z length modifier is unknown. */\n       fprintf(stderr, \"fwrite() failed: wrote only %zu out of %zu elements.\\n\", \n         elements_written, elements_to_write);\n       /* Use this for \u003cc99: *\n       fprintf(stderr, \"fwrite() failed: wrote only %lu out of %lu elements.\\n\", \n         (unsigned long) elements_written, (unsigned long) elements_to_write);\n        */\n     }\n\n     fclose(fp);\n   }\n\n   return result;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935825254,
+        "id": "a9a1c424-0254-4260-8f78-9c931e214fc0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935825254,
+        "parent_id": "98af727d-4f9d-4cef-bd52-c1a846ec288e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This program creates and writes text in the binary form through the "
+            ],
+            [
+              "fwrite",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " function to the file "
+            ],
+            [
+              "output.bin",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This program creates and writes text in the binary form through the "
+          },
+          {
+            "Text": "fwrite",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " function to the file "
+          },
+          {
+            "Text": "output.bin",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935825254,
+        "id": "4c8dfb71-6d5f-426e-923a-184dcf87cbf6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935825254,
+        "parent_id": "98af727d-4f9d-4cef-bd52-c1a846ec288e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If a file with the same name already exists, its contents are discarded and the file is treated as a new empty file."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If a file with the same name already exists, its contents are discarded and the file is treated as a new empty file."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935825255,
+        "id": "21a794fb-f46c-43db-81ac-c461b1822b60",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935825255,
+        "parent_id": "98af727d-4f9d-4cef-bd52-c1a846ec288e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "A binary stream is an ordered sequence of characters that can transparently record internal data. In this mode, bytes are written between the program and the file without any interpretation."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "A binary stream is an ordered sequence of characters that can transparently record internal data. In this mode, bytes are written between the program and the file without any interpretation."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935825255,
+        "id": "9b4d1deb-41c1-4228-b68e-213aebdefbaa",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935825255,
+        "parent_id": "98af727d-4f9d-4cef-bd52-c1a846ec288e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To write integers portably, it must be known whether the file format expects them in big or little-endian format, and the size (usually 16, 32 or 64 bits). Bit shifting and masking may then be used to write out the bytes in the correct order. Integers in C are not guaranteed to have two’s complement representation (though almost all implementations do). Fortunately a conversion to unsigned "
+            ],
+            [
+              "is",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " guaranteed to use twos complement. The code for writing a signed integer to a binary file is therefore a little surprising."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To write integers portably, it must be known whether the file format expects them in big or little-endian format, and the size (usually 16, 32 or 64 bits). Bit shifting and masking may then be used to write out the bytes in the correct order. Integers in C are not guaranteed to have two’s complement representation (though almost all implementations do). Fortunately a conversion to unsigned "
+          },
+          {
+            "Text": "is",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " guaranteed to use twos complement. The code for writing a signed integer to a binary file is therefore a little surprising."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935825255,
+        "id": "3caca8ae-741b-4223-99f9-514454af3446",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935825255,
+        "parent_id": "98af727d-4f9d-4cef-bd52-c1a846ec288e",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "/* write a 16-bit little endian integer */\nint fput16le(int x, FILE *fp)\n{\n    unsigned int rep = x;\n    int e1, e2;\n\n    e1 = fputc(rep \u0026 0xFF, fp);\n    e2 = fputc((rep \u003e\u003e 8) \u0026 0xFF, fp);\n\n    if(e1 == EOF || e2 == EOF)\n        return EOF;\n    return 0;  \n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "/* write a 16-bit little endian integer */\nint fput16le(int x, FILE *fp)\n{\n    unsigned int rep = x;\n    int e1, e2;\n\n    e1 = fputc(rep \u0026 0xFF, fp);\n    e2 = fputc((rep \u003e\u003e 8) \u0026 0xFF, fp);\n\n    if(e1 == EOF || e2 == EOF)\n        return EOF;\n    return 0;  \n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935825255,
+        "id": "eb890324-49a9-4e06-8fde-b764ee27b381",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935825255,
+        "parent_id": "98af727d-4f9d-4cef-bd52-c1a846ec288e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The other functions follow the same pattern with minor modifications for size and byte order."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The other functions follow the same pattern with minor modifications for size and byte order."
+          }
+        ]
+      }
+    ],
+    "title": "Open and write to a binary file",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

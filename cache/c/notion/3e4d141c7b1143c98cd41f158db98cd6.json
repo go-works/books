@@ -1,0 +1,173 @@
+{
+  "ID": "3e4d141c-7b11-43c9-8cd4-1f158db98cd6",
+  "Root": {
+    "alive": true,
+    "content": [
+      "a7d72a8b-dc73-4fd9-b2db-7d6a7cd2d98d",
+      "9203d8fe-d4dd-4c9d-8f78-fa1a0a3319bc",
+      "fe6b3bd2-fd4e-4100-ab47-5eb169c9c886"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551937216243,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "3e4d141c-7b11-43c9-8cd4-1f158db98cd6",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551937216243,
+    "parent_id": "5e4385c8-606f-406e-b1af-53b610c5bf4a",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Using break and continue"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551937216240,
+        "id": "a7d72a8b-dc73-4fd9-b2db-7d6a7cd2d98d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551937216240,
+        "parent_id": "3e4d141c-7b11-43c9-8cd4-1f158db98cd6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Immediately "
+            ],
+            [
+              "continue",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " reading on invalid input or "
+            ],
+            [
+              "break",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " on user request or end-of-file:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Immediately "
+          },
+          {
+            "Text": "continue",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " reading on invalid input or "
+          },
+          {
+            "Text": "break",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " on user request or end-of-file:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551937216243,
+        "id": "9203d8fe-d4dd-4c9d-8f78-fa1a0a3319bc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551937216243,
+        "parent_id": "3e4d141c-7b11-43c9-8cd4-1f158db98cd6",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003cstdlib.h\u003e /* for EXIT_xxx macros */\n#include \u003cstdio.h\u003e  /* for printf() and getchar() */\n#include \u003cctype.h\u003e /* for isdigit() */\n\nvoid flush_input_stream(FILE * fp);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \u003cstdlib.h\u003e /* for EXIT_xxx macros */\n#include \u003cstdio.h\u003e  /* for printf() and getchar() */\n#include \u003cctype.h\u003e /* for isdigit() */\n\nvoid flush_input_stream(FILE * fp);",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551937216243,
+        "id": "fe6b3bd2-fd4e-4100-ab47-5eb169c9c886",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551937216243,
+        "parent_id": "3e4d141c-7b11-43c9-8cd4-1f158db98cd6",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "int main(void)\n{\n  int sum = 0;\n  printf(\"Enter digits to be summed up or 0 to exit:\\n\");\n\n  do\n  {\n    int c = getchar();\n    if (EOF == c)\n    {\n      printf(\"Read 'end-of-file', exiting!\\n\");\n\n      break;\n    }\n\n    if ('\\n' != c)\n    {\n      flush_input_stream(stdin);\n    }\n\n    if (!isdigit(c))\n    {\n      printf(\"%c is not a digit! Start over!\\n\", c);\n\n      continue;\n    }\n\n    if ('0' == c)\n    {\n      printf(\"Exit requested.\\n\");\n\n      break;\n    }\n\n    sum += c - '0';\n\n    printf(\"The current sum is %d.\\n\", sum);\n  } while (1);\n\n  return EXIT_SUCCESS;\n}\n\nvoid flush_input_stream(FILE * fp)\n{\n  size_t i = 0;\n  int c;\n  while ((c = fgetc(fp)) != '\\n' \u0026\u0026 c != EOF) /* Pull all until and including the next new-line. */\n  {\n    ++i;\n  }\n\n  if (0 != i)\n  {\n    fprintf(stderr, \"Flushed %zu characters from input.\\n\", i);\n  }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "int main(void)\n{\n  int sum = 0;\n  printf(\"Enter digits to be summed up or 0 to exit:\\n\");\n\n  do\n  {\n    int c = getchar();\n    if (EOF == c)\n    {\n      printf(\"Read 'end-of-file', exiting!\\n\");\n\n      break;\n    }\n\n    if ('\\n' != c)\n    {\n      flush_input_stream(stdin);\n    }\n\n    if (!isdigit(c))\n    {\n      printf(\"%c is not a digit! Start over!\\n\", c);\n\n      continue;\n    }\n\n    if ('0' == c)\n    {\n      printf(\"Exit requested.\\n\");\n\n      break;\n    }\n\n    sum += c - '0';\n\n    printf(\"The current sum is %d.\\n\", sum);\n  } while (1);\n\n  return EXIT_SUCCESS;\n}\n\nvoid flush_input_stream(FILE * fp)\n{\n  size_t i = 0;\n  int c;\n  while ((c = fgetc(fp)) != '\\n' \u0026\u0026 c != EOF) /* Pull all until and including the next new-line. */\n  {\n    ++i;\n  }\n\n  if (0 != i)\n  {\n    fprintf(stderr, \"Flushed %zu characters from input.\\n\", i);\n  }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Using break and continue",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

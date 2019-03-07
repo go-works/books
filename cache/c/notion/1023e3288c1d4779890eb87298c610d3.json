@@ -1,0 +1,629 @@
+{
+  "ID": "1023e328-8c1d-4779-890e-b87298c610d3",
+  "Root": {
+    "alive": true,
+    "content": [
+      "fb09c913-b030-46a6-9a69-5062bcb8b540",
+      "f6208bae-532f-4ddd-9c83-a82b3441def2",
+      "cc7f72ca-17ab-49ff-9ff0-3cf39624dbdd",
+      "93a20fad-996c-4133-9347-6b638cfbe21a",
+      "d37a1cbd-34fc-48a5-9eb2-a8f6c3bbc048",
+      "97361500-a4dc-4dc5-bb36-953fbc181186",
+      "f1f91909-3f95-4dec-ab17-bacd98b22b57",
+      "6fb63165-72e0-431c-8e83-c2ae5a9a7594"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551935820388,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "1023e328-8c1d-4779-890e-b87298c610d3",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551935820388,
+    "parent_id": "9b4c9f4c-5f47-45ba-86a9-461b3aaa1198",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Open and write to file"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935820383,
+        "id": "fb09c913-b030-46a6-9a69-5062bcb8b540",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935820383,
+        "parent_id": "1023e328-8c1d-4779-890e-b87298c610d3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#include \u003cstdio.h\u003e   /* for perror(), fopen(), fputs() and fclose() */\n#include \u003cstdlib.h\u003e  /* for the EXIT_* macros */\n \nint main(int argc, char **argv)\n{\n    int e = EXIT_SUCCESS;\n\n    /* Get path from argument to main else default to output.txt */\n    char *path = (argc \u003e 1) ? argv[1] : \"output.txt\";\n\n    /* Open file for writing and obtain file pointer */\n    FILE *file = fopen(path, \"w\");\n    \n    /* Print error message and exit if fopen() failed */\n    if (!file) \n    {\n        perror(path);\n        return EXIT_FAILURE;\n    }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#include \u003cstdio.h\u003e   /* for perror(), fopen(), fputs() and fclose() */\n#include \u003cstdlib.h\u003e  /* for the EXIT_* macros */\n \nint main(int argc, char **argv)\n{\n    int e = EXIT_SUCCESS;\n\n    /* Get path from argument to main else default to output.txt */\n    char *path = (argc \u003e 1) ? argv[1] : \"output.txt\";\n\n    /* Open file for writing and obtain file pointer */\n    FILE *file = fopen(path, \"w\");\n    \n    /* Print error message and exit if fopen() failed */\n    if (!file) \n    {\n        perror(path);\n        return EXIT_FAILURE;\n    }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935820386,
+        "id": "f6208bae-532f-4ddd-9c83-a82b3441def2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935820386,
+        "parent_id": "1023e328-8c1d-4779-890e-b87298c610d3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "/* Writes text to file. Unlike puts(), fputs() does not add a new-line. */\nif (fputs(\"Output in file.\\n\", file) == EOF)\n{\n    perror(path);\n    e = EXIT_FAILURE;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "/* Writes text to file. Unlike puts(), fputs() does not add a new-line. */\nif (fputs(\"Output in file.\\n\", file) == EOF)\n{\n    perror(path);\n    e = EXIT_FAILURE;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935820386,
+        "id": "cc7f72ca-17ab-49ff-9ff0-3cf39624dbdd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935820386,
+        "parent_id": "1023e328-8c1d-4779-890e-b87298c610d3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "/* Close file */\nif (fclose(file)) \n{\n    perror(path);\n    return EXIT_FAILURE;\n}\nreturn e;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "/* Close file */\nif (fclose(file)) \n{\n    perror(path);\n    return EXIT_FAILURE;\n}\nreturn e;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935820386,
+        "id": "93a20fad-996c-4133-9347-6b638cfbe21a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935820386,
+        "parent_id": "1023e328-8c1d-4779-890e-b87298c610d3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This program opens the file with name given in the argument to main, defaulting to "
+            ],
+            [
+              "output.txt",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " if no argument is given. If a file with the same name already exists, its contents are discarded and the file is treated as a new empty file. If the files does not already exist the "
+            ],
+            [
+              "fopen()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " call creates it."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This program opens the file with name given in the argument to main, defaulting to "
+          },
+          {
+            "Text": "output.txt",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " if no argument is given. If a file with the same name already exists, its contents are discarded and the file is treated as a new empty file. If the files does not already exist the "
+          },
+          {
+            "Text": "fopen()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " call creates it."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935820387,
+        "id": "d37a1cbd-34fc-48a5-9eb2-a8f6c3bbc048",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935820387,
+        "parent_id": "1023e328-8c1d-4779-890e-b87298c610d3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If the "
+            ],
+            [
+              "fopen()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " call fails for some reason, it returns a "
+            ],
+            [
+              "NULL",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " value and sets the global "
+            ],
+            [
+              "errno",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " variable value. This means that the program can test the returned value after the "
+            ],
+            [
+              "fopen()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " call and use "
+            ],
+            [
+              "perror()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " if "
+            ],
+            [
+              "fopen()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " fails."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If the "
+          },
+          {
+            "Text": "fopen()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " call fails for some reason, it returns a "
+          },
+          {
+            "Text": "NULL",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " value and sets the global "
+          },
+          {
+            "Text": "errno",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " variable value. This means that the program can test the returned value after the "
+          },
+          {
+            "Text": "fopen()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " call and use "
+          },
+          {
+            "Text": "perror()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " if "
+          },
+          {
+            "Text": "fopen()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " fails."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935820387,
+        "id": "97361500-a4dc-4dc5-bb36-953fbc181186",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935820387,
+        "parent_id": "1023e328-8c1d-4779-890e-b87298c610d3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If the "
+            ],
+            [
+              "fopen()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " call succeeds, it returns a valid "
+            ],
+            [
+              "FILE",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " pointer. This pointer can then be used to reference this file until "
+            ],
+            [
+              "fclose()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is called on it."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If the "
+          },
+          {
+            "Text": "fopen()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " call succeeds, it returns a valid "
+          },
+          {
+            "Text": "FILE",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " pointer. This pointer can then be used to reference this file until "
+          },
+          {
+            "Text": "fclose()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is called on it."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935820388,
+        "id": "f1f91909-3f95-4dec-ab17-bacd98b22b57",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935820388,
+        "parent_id": "1023e328-8c1d-4779-890e-b87298c610d3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The "
+            ],
+            [
+              "fputs()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " function writes the given text to the opened file, replacing any previous contents of the file. Similarly to "
+            ],
+            [
+              "fopen()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", the "
+            ],
+            [
+              "fputs()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " function also sets the "
+            ],
+            [
+              "errno",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " value if it fails, though in this case the function returns "
+            ],
+            [
+              "EOF",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to indicate the fail (it otherwise returns a non-negative value)."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The "
+          },
+          {
+            "Text": "fputs()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " function writes the given text to the opened file, replacing any previous contents of the file. Similarly to "
+          },
+          {
+            "Text": "fopen()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", the "
+          },
+          {
+            "Text": "fputs()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " function also sets the "
+          },
+          {
+            "Text": "errno",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " value if it fails, though in this case the function returns "
+          },
+          {
+            "Text": "EOF",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to indicate the fail (it otherwise returns a non-negative value)."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935820388,
+        "id": "6fb63165-72e0-431c-8e83-c2ae5a9a7594",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935820388,
+        "parent_id": "1023e328-8c1d-4779-890e-b87298c610d3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The "
+            ],
+            [
+              "fclose()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " function flushes any buffers, closes the file and frees the memory pointed to by "
+            ],
+            [
+              "FILE *",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". The return value indicates completion just as "
+            ],
+            [
+              "fputs()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " does (though it returns ‘0’ if successful), again also setting the "
+            ],
+            [
+              "errno",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " value in the case of a fail."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The "
+          },
+          {
+            "Text": "fclose()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " function flushes any buffers, closes the file and frees the memory pointed to by "
+          },
+          {
+            "Text": "FILE *",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". The return value indicates completion just as "
+          },
+          {
+            "Text": "fputs()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " does (though it returns ‘0’ if successful), again also setting the "
+          },
+          {
+            "Text": "errno",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " value in the case of a fail."
+          }
+        ]
+      }
+    ],
+    "title": "Open and write to file",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

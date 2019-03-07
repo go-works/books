@@ -1,0 +1,367 @@
+{
+  "ID": "fef874a2-b134-4d5a-8a33-c6e927bcdcba",
+  "Root": {
+    "alive": true,
+    "content": [
+      "2a3764f2-b764-4445-9827-9c6c50ce2b6e",
+      "60f1b91e-0513-49e4-8ce3-43692e62adab",
+      "18ba0d8e-d01b-4b9a-8d20-600e2ba15251",
+      "a1e109d2-7964-45f4-bcae-7ee260af0c21",
+      "08bab291-f0eb-414a-9c26-27ba311cdc09",
+      "e25385b4-1861-4a46-b1b5-0dbbe8a63503",
+      "df265f90-b49e-4713-9b1b-85bc5f89fb89",
+      "0ef748b6-04e9-4ca7-a65e-9717fe4e669e",
+      "5a9c3075-e982-4f1f-86dc-3e00e5768a0e"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551935731334,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "fef874a2-b134-4d5a-8a33-c6e927bcdcba",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551935731334,
+    "parent_id": "eff989d8-e4d4-4f97-952e-6c58e46dfb73",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Dereferencing a pointer to variable beyond its lifetime"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935731329,
+        "id": "2a3764f2-b764-4445-9827-9c6c50ce2b6e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935731329,
+        "parent_id": "fef874a2-b134-4d5a-8a33-c6e927bcdcba",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "int* foo(int bar)\n{\n    int baz = 6;\n    baz += bar;\n    return \u0026baz; /* (\u0026baz) copied to new memory location outside of foo. */\n} /* (1) The lifetime of baz and bar end here as they have automatic storage   \n   * duration (local variables), thus the returned pointer is not valid! */\n\nint main (void)\n{\n    int* p;\n\n    p = foo(5);  /* (2) this expression's behavior is undefined */\n    *p = *p - 6; /* (3) Undefined behaviour here */\n\n    return 0;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "int* foo(int bar)\n{\n    int baz = 6;\n    baz += bar;\n    return \u0026baz; /* (\u0026baz) copied to new memory location outside of foo. */\n} /* (1) The lifetime of baz and bar end here as they have automatic storage   \n   * duration (local variables), thus the returned pointer is not valid! */\n\nint main (void)\n{\n    int* p;\n\n    p = foo(5);  /* (2) this expression's behavior is undefined */\n    *p = *p - 6; /* (3) Undefined behaviour here */\n\n    return 0;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935731332,
+        "id": "60f1b91e-0513-49e4-8ce3-43692e62adab",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935731332,
+        "parent_id": "fef874a2-b134-4d5a-8a33-c6e927bcdcba",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Some compilers helpfully point this out. For example, "
+            ],
+            [
+              "gcc",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " warns with:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Some compilers helpfully point this out. For example, "
+          },
+          {
+            "Text": "gcc",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " warns with:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935731332,
+        "id": "18ba0d8e-d01b-4b9a-8d20-600e2ba15251",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935731332,
+        "parent_id": "fef874a2-b134-4d5a-8a33-c6e927bcdcba",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "warning: function returns address of local variable [-Wreturn-local-addr]"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "warning: function returns address of local variable [-Wreturn-local-addr]",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935731332,
+        "id": "a1e109d2-7964-45f4-bcae-7ee260af0c21",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935731332,
+        "parent_id": "fef874a2-b134-4d5a-8a33-c6e927bcdcba",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "and "
+            ],
+            [
+              "clang",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " warns with:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "and "
+          },
+          {
+            "Text": "clang",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " warns with:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935731332,
+        "id": "08bab291-f0eb-414a-9c26-27ba311cdc09",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935731332,
+        "parent_id": "fef874a2-b134-4d5a-8a33-c6e927bcdcba",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "warning: address of stack memory associated with local variable 'baz' returned \n[-Wreturn-stack-address]"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "warning: address of stack memory associated with local variable 'baz' returned \n[-Wreturn-stack-address]",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935731333,
+        "id": "e25385b4-1861-4a46-b1b5-0dbbe8a63503",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935731333,
+        "parent_id": "fef874a2-b134-4d5a-8a33-c6e927bcdcba",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "for the above code. But compilers may not be able to help in complex code."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "for the above code. But compilers may not be able to help in complex code."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935731333,
+        "id": "df265f90-b49e-4713-9b1b-85bc5f89fb89",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935731333,
+        "parent_id": "fef874a2-b134-4d5a-8a33-c6e927bcdcba",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Returning reference to variable declared "
+            ],
+            [
+              "static",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is defined behaviour, as the variable is not destroyed after leaving current scope."
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Returning reference to variable declared "
+          },
+          {
+            "Text": "static",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is defined behaviour, as the variable is not destroyed after leaving current scope."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935731333,
+        "id": "0ef748b6-04e9-4ca7-a65e-9717fe4e669e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935731333,
+        "parent_id": "fef874a2-b134-4d5a-8a33-c6e927bcdcba",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "According to ISO/IEC 9899:2011 6.2.4 §2, “The value of a pointer becomes indeterminate when the object it points to reaches the end of its lifetime.”"
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "According to ISO/IEC 9899:2011 6.2.4 §2, “The value of a pointer becomes indeterminate when the object it points to reaches the end of its lifetime.”"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551935731334,
+        "id": "5a9c3075-e982-4f1f-86dc-3e00e5768a0e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551935731334,
+        "parent_id": "fef874a2-b134-4d5a-8a33-c6e927bcdcba",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Dereferencing the pointer returned by the function "
+            ],
+            [
+              "foo",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is undefined behaviour as the memory it references holds an indeterminate value."
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Dereferencing the pointer returned by the function "
+          },
+          {
+            "Text": "foo",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is undefined behaviour as the memory it references holds an indeterminate value."
+          }
+        ]
+      }
+    ],
+    "title": "Dereferencing a pointer to variable beyond its lifetime",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}
