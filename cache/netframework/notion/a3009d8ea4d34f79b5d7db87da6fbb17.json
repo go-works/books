@@ -1,0 +1,83 @@
+{
+  "ID": "a3009d8e-a4d3-4f79-b5d7-db87da6fbb17",
+  "Root": {
+    "alive": true,
+    "content": [
+      "5ba40b83-e159-4b42-8e0d-9f567d4c69d5"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551950692335,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "a3009d8e-a4d3-4f79-b5d7-db87da6fbb17",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551950692335,
+    "parent_id": "921d5395-549c-407d-afd3-31f23e97aca9",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "GroupJoin"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551950692332,
+        "id": "5ba40b83-e159-4b42-8e0d-9f567d4c69d5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551950692332,
+        "parent_id": "a3009d8e-a4d3-4f79-b5d7-db87da6fbb17",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class Developer\n{\n    public int Id { get; set; }\n    public string Name { get; set; }\n}\n\nclass Project\n{\n    public int DeveloperId { get; set; }\n    public string Name { get; set; }\n}\n\nvar developers = new[] {\n    new Developer {\n        Id = 1,\n        Name = \"Foobuzz\"\n    },\n    new Developer {\n        Id = 2,\n        Name = \"Barfizz\"\n    }\n};\n\nvar projects = new[] {\n    new Project {\n        DeveloperId = 1,\n        Name = \"Hello World 3D\"\n    },\n    new Project {\n        DeveloperId = 1,\n        Name = \"Super Fizzbuzz Maker\"\n    },\n    new Project {\n        DeveloperId = 2,\n        Name = \"Citizen Kane - The action game\"\n    },\n    new Project {\n        DeveloperId = 2,\n        Name = \"Pro Pong 2016\"\n    }\n};\n\nvar grouped = developers.GroupJoin(\n    inner: projects,\n    outerKeySelector: dev =\u003e dev.Id,\n    innerKeySelector: proj =\u003e proj.DeveloperId,\n    resultSelector: \n        (dev, projs) =\u003e new {\n            DeveloperName = dev.Name, \n            ProjectNames = projs.Select(p =\u003e p.Name).ToArray()});\n    \nforeach(var item in grouped)\n{\n    Console.WriteLine(\n        \"{0}'s projects: {1}\", \n        item.DeveloperName,\n        string.Join(\", \", item.ProjectNames));\n}\n\n//Foobuzz's projects: Hello World 3D, Super Fizzbuzz Maker\n//Barfizz's projects: Citizen Kane - The action game, Pro Pong 2016"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class Developer\n{\n    public int Id { get; set; }\n    public string Name { get; set; }\n}\n\nclass Project\n{\n    public int DeveloperId { get; set; }\n    public string Name { get; set; }\n}\n\nvar developers = new[] {\n    new Developer {\n        Id = 1,\n        Name = \"Foobuzz\"\n    },\n    new Developer {\n        Id = 2,\n        Name = \"Barfizz\"\n    }\n};\n\nvar projects = new[] {\n    new Project {\n        DeveloperId = 1,\n        Name = \"Hello World 3D\"\n    },\n    new Project {\n        DeveloperId = 1,\n        Name = \"Super Fizzbuzz Maker\"\n    },\n    new Project {\n        DeveloperId = 2,\n        Name = \"Citizen Kane - The action game\"\n    },\n    new Project {\n        DeveloperId = 2,\n        Name = \"Pro Pong 2016\"\n    }\n};\n\nvar grouped = developers.GroupJoin(\n    inner: projects,\n    outerKeySelector: dev =\u003e dev.Id,\n    innerKeySelector: proj =\u003e proj.DeveloperId,\n    resultSelector: \n        (dev, projs) =\u003e new {\n            DeveloperName = dev.Name, \n            ProjectNames = projs.Select(p =\u003e p.Name).ToArray()});\n    \nforeach(var item in grouped)\n{\n    Console.WriteLine(\n        \"{0}'s projects: {1}\", \n        item.DeveloperName,\n        string.Join(\", \", item.ProjectNames));\n}\n\n//Foobuzz's projects: Hello World 3D, Super Fizzbuzz Maker\n//Barfizz's projects: Citizen Kane - The action game, Pro Pong 2016",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "GroupJoin",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

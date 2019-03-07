@@ -1,0 +1,191 @@
+{
+  "ID": "f38b3a8b-f662-4cb8-bbbb-01af503ccc79",
+  "Root": {
+    "alive": true,
+    "content": [
+      "b5e944d0-b5a2-415c-aad4-369e453a1da0",
+      "a5a8a7a9-8218-4b0c-9f09-8a37d43baca3",
+      "ed0cb693-9f43-42a8-be0c-5ebbf471e327"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551950788520,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "f38b3a8b-f662-4cb8-bbbb-01af503ccc79",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551950788520,
+    "parent_id": "8fb3262d-e5fa-4d3b-86ba-dae1d9f482b0",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Basic producer-consumer loop BlockingCollection"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551950788517,
+        "id": "b5e944d0-b5a2-415c-aad4-369e453a1da0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551950788517,
+        "parent_id": "f38b3a8b-f662-4cb8-bbbb-01af503ccc79",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var collection = new BlockingCollection\u003cint\u003e(5);\nvar random = new Random();\n\nvar producerTask = Task.Run(() =\u003e {\n    for(int item=1; item\u003c=10; item++) \n    {\n        collection.Add(item);\n        Console.WriteLine(\"Produced: \" + item);\n        Thread.Sleep(random.Next(10,1000));\n    }\n    collection.CompleteAdding();\n    Console.WriteLine(\"Producer completed!\");\n});"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var collection = new BlockingCollection\u003cint\u003e(5);\nvar random = new Random();\n\nvar producerTask = Task.Run(() =\u003e {\n    for(int item=1; item\u003c=10; item++) \n    {\n        collection.Add(item);\n        Console.WriteLine(\"Produced: \" + item);\n        Thread.Sleep(random.Next(10,1000));\n    }\n    collection.CompleteAdding();\n    Console.WriteLine(\"Producer completed!\");\n});",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551950788520,
+        "id": "a5a8a7a9-8218-4b0c-9f09-8a37d43baca3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551950788520,
+        "parent_id": "f38b3a8b-f662-4cb8-bbbb-01af503ccc79",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "It is worth noting that if you do not call "
+            ],
+            [
+              "collection.CompleteAdding();",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", you are able to keep adding to the collection even if your consumer task is running. Just call "
+            ],
+            [
+              "collection.CompleteAdding();",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " when you are sure there are no more additions. This functionality can be used to make a Multiple Producer to a Single Consumer pattern where you have multiple sources feeding items into the BlockingCollection and a single consumer pulling items out and doing something with them. If your BlockingCollection is empty before you call complete adding, the Enumerable from "
+            ],
+            [
+              "collection.GetConsumingEnumerable()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " will block until a new item is added to the collection or BlockingCollection.CompleteAdding(); is called and the queue is empty."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "It is worth noting that if you do not call "
+          },
+          {
+            "Text": "collection.CompleteAdding();",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", you are able to keep adding to the collection even if your consumer task is running. Just call "
+          },
+          {
+            "Text": "collection.CompleteAdding();",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " when you are sure there are no more additions. This functionality can be used to make a Multiple Producer to a Single Consumer pattern where you have multiple sources feeding items into the BlockingCollection and a single consumer pulling items out and doing something with them. If your BlockingCollection is empty before you call complete adding, the Enumerable from "
+          },
+          {
+            "Text": "collection.GetConsumingEnumerable()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " will block until a new item is added to the collection or BlockingCollection.CompleteAdding(); is called and the queue is empty."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551950788520,
+        "id": "ed0cb693-9f43-42a8-be0c-5ebbf471e327",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551950788520,
+        "parent_id": "f38b3a8b-f662-4cb8-bbbb-01af503ccc79",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var consumerTask = Task.Run(() =\u003e {\n    foreach(var item in collection.GetConsumingEnumerable())\n    {\n        Console.WriteLine(\"Consumed: \" + item);\n        Thread.Sleep(random.Next(10,1000));\n    }\n    Console.WriteLine(\"Consumer completed!\");\n});\n  \nTask.WaitAll(producerTask, consumerTask);\n       \nConsole.WriteLine(\"Everything completed!\");"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var consumerTask = Task.Run(() =\u003e {\n    foreach(var item in collection.GetConsumingEnumerable())\n    {\n        Console.WriteLine(\"Consumed: \" + item);\n        Thread.Sleep(random.Next(10,1000));\n    }\n    Console.WriteLine(\"Consumer completed!\");\n});\n  \nTask.WaitAll(producerTask, consumerTask);\n       \nConsole.WriteLine(\"Everything completed!\");",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Basic producer-consumer loop BlockingCollection",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

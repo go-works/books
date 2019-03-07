@@ -1,0 +1,121 @@
+{
+  "ID": "fc6f1d7e-53d5-4dd1-9ef3-df5275237e2a",
+  "Root": {
+    "alive": true,
+    "content": [
+      "8de20fdf-7a1e-4c4b-bd44-699deca06efb",
+      "56487ba6-cd8b-48d8-8ccd-cea3f921ab1e"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551950727459,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "fc6f1d7e-53d5-4dd1-9ef3-df5275237e2a",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551950727459,
+    "parent_id": "4bda71fd-ad0d-41b6-90bd-b47b4f14bed7",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Compare two objects with reflection"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551950727456,
+        "id": "8de20fdf-7a1e-4c4b-bd44-699deca06efb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551950727456,
+        "parent_id": "fc6f1d7e-53d5-4dd1-9ef3-df5275237e2a",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class Equatable\n{\n    public string field1;\n\n    public override bool Equals(object obj)\n    {\n        if (ReferenceEquals(null, obj)) return false;\n        if (ReferenceEquals(this, obj)) return true;\n\n        var type = obj.GetType();\n        if (GetType() != type)\n            return false;\n\n        var fields = type.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);\n        foreach (var field in fields)\n            if (field.GetValue(this) != field.GetValue(obj))\n                return false;\n\n        return true;\n    }\n\n    public override int GetHashCode()\n    {\n        var accumulator = 0;\n        var fields = GetType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);\n        foreach (var field in fields)\n            accumulator = unchecked ((accumulator * 937) ^ field.GetValue(this).GetHashCode());\n\n        return accumulator;\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class Equatable\n{\n    public string field1;\n\n    public override bool Equals(object obj)\n    {\n        if (ReferenceEquals(null, obj)) return false;\n        if (ReferenceEquals(this, obj)) return true;\n\n        var type = obj.GetType();\n        if (GetType() != type)\n            return false;\n\n        var fields = type.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);\n        foreach (var field in fields)\n            if (field.GetValue(this) != field.GetValue(obj))\n                return false;\n\n        return true;\n    }\n\n    public override int GetHashCode()\n    {\n        var accumulator = 0;\n        var fields = GetType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);\n        foreach (var field in fields)\n            accumulator = unchecked ((accumulator * 937) ^ field.GetValue(this).GetHashCode());\n\n        return accumulator;\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551950727458,
+        "id": "56487ba6-cd8b-48d8-8ccd-cea3f921ab1e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551950727458,
+        "parent_id": "fc6f1d7e-53d5-4dd1-9ef3-df5275237e2a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Note:",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " this example do a field based comparasion (ignore static fields and properties) for simplicity"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Note:",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " this example do a field based comparasion (ignore static fields and properties) for simplicity"
+          }
+        ]
+      }
+    ],
+    "title": "Compare two objects with reflection",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

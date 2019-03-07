@@ -1,0 +1,497 @@
+{
+  "ID": "b2cbd1b5-0a3c-4fb2-973c-07fb5aa835ec",
+  "Root": {
+    "alive": true,
+    "content": [
+      "45ad6eee-bcc7-43f3-a76e-ebb6d66fb8c8",
+      "52e3a22c-92e7-4243-a02e-8aa65d455bed",
+      "2678c428-1ec1-44af-b254-ef40ef97599a",
+      "24bdb528-5c35-4232-99b3-ce9c148cb4fa",
+      "bcec678a-7a53-4094-b587-8e74abc629d0",
+      "3c2c930d-e115-4771-bb47-0429e6f6a45e",
+      "16e58982-61cb-4e66-b69e-2f5b9e27de05",
+      "a1a5462d-d4f2-4bc6-a806-e95815569a5e",
+      "20c3c5d4-ddec-419b-bc1d-465c6114d569",
+      "00e4d450-5b8d-45e4-a110-ab2723ef9fe3",
+      "8180bc83-34db-4879-974c-f629f8eb2823",
+      "caf32796-b61a-4c9e-85ff-6df0654a6f7b",
+      "3ab3b758-026c-404e-b252-eb20c352d1a4"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551951506810,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "b2cbd1b5-0a3c-4fb2-973c-07fb5aa835ec",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551951506810,
+    "parent_id": "18dcfe20-840e-4ca3-b30d-2265cd6f3453",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Send Command to CMD and Receive Output"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951506806,
+        "id": "45ad6eee-bcc7-43f3-a76e-ebb6d66fb8c8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951506806,
+        "parent_id": "b2cbd1b5-0a3c-4fb2-973c-07fb5aa835ec",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This method allows a "
+            ],
+            [
+              "command",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to be sent to "
+            ],
+            [
+              "Cmd.exe",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", and returns the standard output (including standard error) as a string:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This method allows a "
+          },
+          {
+            "Text": "command",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to be sent to "
+          },
+          {
+            "Text": "Cmd.exe",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", and returns the standard output (including standard error) as a string:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951506808,
+        "id": "52e3a22c-92e7-4243-a02e-8aa65d455bed",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951506808,
+        "parent_id": "b2cbd1b5-0a3c-4fb2-973c-07fb5aa835ec",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "private static string SendCommand(string command)\n{\n    var cmdOut = string.Empty;\n    \n    var startInfo = new ProcessStartInfo(\"cmd\", command)\n    {\n        WorkingDirectory = @\"C:\\Windows\\System32\", // Directory to make the call from\n        WindowStyle = ProcessWindowStyle.Hidden,   // Hide the window\n        UseShellExecute = false,                   // Do not use the OS shell to start the process\n        CreateNoWindow = true,                     // Start the process in a new window \n        RedirectStandardOutput = true,             // This is required to get STDOUT\n        RedirectStandardError = true               // This is required to get STDERR\n    };\n\n    var p = new Process {StartInfo = startInfo};\n\n    p.Start();\n\n    p.OutputDataReceived += (x, y) =\u003e cmdOut += y.Data;\n    p.ErrorDataReceived += (x, y) =\u003e cmdOut += y.Data;\n    p.BeginOutputReadLine();\n    p.BeginErrorReadLine();\n    p.WaitForExit();\n    return cmdOut;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "private static string SendCommand(string command)\n{\n    var cmdOut = string.Empty;\n    \n    var startInfo = new ProcessStartInfo(\"cmd\", command)\n    {\n        WorkingDirectory = @\"C:\\Windows\\System32\", // Directory to make the call from\n        WindowStyle = ProcessWindowStyle.Hidden,   // Hide the window\n        UseShellExecute = false,                   // Do not use the OS shell to start the process\n        CreateNoWindow = true,                     // Start the process in a new window \n        RedirectStandardOutput = true,             // This is required to get STDOUT\n        RedirectStandardError = true               // This is required to get STDERR\n    };\n\n    var p = new Process {StartInfo = startInfo};\n\n    p.Start();\n\n    p.OutputDataReceived += (x, y) =\u003e cmdOut += y.Data;\n    p.ErrorDataReceived += (x, y) =\u003e cmdOut += y.Data;\n    p.BeginOutputReadLine();\n    p.BeginErrorReadLine();\n    p.WaitForExit();\n    return cmdOut;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951506808,
+        "id": "2678c428-1ec1-44af-b254-ef40ef97599a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951506808,
+        "parent_id": "b2cbd1b5-0a3c-4fb2-973c-07fb5aa835ec",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Usage",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Usage",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951506809,
+        "id": "24bdb528-5c35-4232-99b3-ce9c148cb4fa",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951506809,
+        "parent_id": "b2cbd1b5-0a3c-4fb2-973c-07fb5aa835ec",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var servername = \"SVR-01.domain.co.za\";\nvar currentUsers = SendCommand($\"/C QUERY USER /SERVER:{servername}\")"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var servername = \"SVR-01.domain.co.za\";\nvar currentUsers = SendCommand($\"/C QUERY USER /SERVER:{servername}\")",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951506809,
+        "id": "bcec678a-7a53-4094-b587-8e74abc629d0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951506809,
+        "parent_id": "b2cbd1b5-0a3c-4fb2-973c-07fb5aa835ec",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Output",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Output",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951506809,
+        "id": "3c2c930d-e115-4771-bb47-0429e6f6a45e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951506809,
+        "parent_id": "b2cbd1b5-0a3c-4fb2-973c-07fb5aa835ec",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "string currentUsers = “USERNAME SESSIONNAME ID STATE IDLE TIME LOGON TIME Joe.Bloggs ica-cgp#0 2 Active 24692+13:29 25/07/2016 07:50 Jim.McFlannegan ica-cgp#1 3 Active . 25/07/2016 08:33 Andy.McAnderson ica-cgp#2 4 Active . 25/07/2016 08:54 John.Smith ica-cgp#4 5 Active 14 25/07/2016 08:57 Bob.Bobbington ica-cgp#5 6 Active 24692+13:29 25/07/2016 09:05 Tim.Tom ica-cgp#6 7 Active . 25/07/2016 09:08 Bob.Joges ica-cgp#7 8 Active 24692+13:29 25/07/2016 09:13”"
+            ]
+          ]
+        },
+        "type": "quote",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "string currentUsers = “USERNAME SESSIONNAME ID STATE IDLE TIME LOGON TIME Joe.Bloggs ica-cgp#0 2 Active 24692+13:29 25/07/2016 07:50 Jim.McFlannegan ica-cgp#1 3 Active . 25/07/2016 08:33 Andy.McAnderson ica-cgp#2 4 Active . 25/07/2016 08:54 John.Smith ica-cgp#4 5 Active 14 25/07/2016 08:57 Bob.Bobbington ica-cgp#5 6 Active 24692+13:29 25/07/2016 09:05 Tim.Tom ica-cgp#6 7 Active . 25/07/2016 09:08 Bob.Joges ica-cgp#7 8 Active 24692+13:29 25/07/2016 09:13”"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951506809,
+        "id": "16e58982-61cb-4e66-b69e-2f5b9e27de05",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951506809,
+        "parent_id": "b2cbd1b5-0a3c-4fb2-973c-07fb5aa835ec",
+        "parent_table": "block",
+        "type": "divider",
+        "version": 1
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951506809,
+        "id": "a1a5462d-d4f2-4bc6-a806-e95815569a5e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951506809,
+        "parent_id": "b2cbd1b5-0a3c-4fb2-973c-07fb5aa835ec",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "On some occasions, access to the server in question may be restricted to certain users. If you have the login credentials for this user, then it is possible to send queries with this method:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "On some occasions, access to the server in question may be restricted to certain users. If you have the login credentials for this user, then it is possible to send queries with this method:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951506809,
+        "id": "20c3c5d4-ddec-419b-bc1d-465c6114d569",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951506809,
+        "parent_id": "b2cbd1b5-0a3c-4fb2-973c-07fb5aa835ec",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "private static string SendCommand(string command)\n{\n    var cmdOut = string.Empty;\n    \n    var startInfo = new ProcessStartInfo(\"cmd\", command)\n    {\n        WorkingDirectory = @\"C:\\Windows\\System32\",\n        WindowStyle = ProcessWindowStyle.Hidden,    // This does not actually work in conjunction with \"runas\" - the console window will still appear!\n        UseShellExecute = false,\n        CreateNoWindow = true,\n        RedirectStandardOutput = true, \n        RedirectStandardError = true,\n\n        Verb = \"runas\",\n        Domain = \"doman1.co.za\",\n        UserName = \"administrator\",\n        Password = GetPassword()\n    };\n\n    var p = new Process {StartInfo = startInfo};\n\n    p.Start();\n\n    p.OutputDataReceived += (x, y) =\u003e cmdOut += y.Data;\n    p.ErrorDataReceived += (x, y) =\u003e cmdOut += y.Data;\n    p.BeginOutputReadLine();\n    p.BeginErrorReadLine();\n    p.WaitForExit();\n    return cmdOut;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "private static string SendCommand(string command)\n{\n    var cmdOut = string.Empty;\n    \n    var startInfo = new ProcessStartInfo(\"cmd\", command)\n    {\n        WorkingDirectory = @\"C:\\Windows\\System32\",\n        WindowStyle = ProcessWindowStyle.Hidden,    // This does not actually work in conjunction with \"runas\" - the console window will still appear!\n        UseShellExecute = false,\n        CreateNoWindow = true,\n        RedirectStandardOutput = true, \n        RedirectStandardError = true,\n\n        Verb = \"runas\",\n        Domain = \"doman1.co.za\",\n        UserName = \"administrator\",\n        Password = GetPassword()\n    };\n\n    var p = new Process {StartInfo = startInfo};\n\n    p.Start();\n\n    p.OutputDataReceived += (x, y) =\u003e cmdOut += y.Data;\n    p.ErrorDataReceived += (x, y) =\u003e cmdOut += y.Data;\n    p.BeginOutputReadLine();\n    p.BeginErrorReadLine();\n    p.WaitForExit();\n    return cmdOut;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951506809,
+        "id": "00e4d450-5b8d-45e4-a110-ab2723ef9fe3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951506809,
+        "parent_id": "b2cbd1b5-0a3c-4fb2-973c-07fb5aa835ec",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Getting the password:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Getting the password:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951506809,
+        "id": "8180bc83-34db-4879-974c-f629f8eb2823",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951506809,
+        "parent_id": "b2cbd1b5-0a3c-4fb2-973c-07fb5aa835ec",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "static SecureString GetPassword()\n{\n    var plainText = \"password123\";\n    var ss = new SecureString();\n    foreach (char c in plainText)\n    {\n        ss.AppendChar(c);\n    }\n\n    return ss;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "static SecureString GetPassword()\n{\n    var plainText = \"password123\";\n    var ss = new SecureString();\n    foreach (char c in plainText)\n    {\n        ss.AppendChar(c);\n    }\n\n    return ss;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951506809,
+        "id": "caf32796-b61a-4c9e-85ff-6df0654a6f7b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951506809,
+        "parent_id": "b2cbd1b5-0a3c-4fb2-973c-07fb5aa835ec",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Notes",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Notes",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951506810,
+        "id": "3ab3b758-026c-404e-b252-eb20c352d1a4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951506810,
+        "parent_id": "b2cbd1b5-0a3c-4fb2-973c-07fb5aa835ec",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Both of the above methods will return a concatenation of STDOUT and STDERR, as "
+            ],
+            [
+              "OutputDataReceived",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "ErrorDataReceived",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " are both appending to the same variable - "
+            ],
+            [
+              "cmdOut",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Both of the above methods will return a concatenation of STDOUT and STDERR, as "
+          },
+          {
+            "Text": "OutputDataReceived",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "ErrorDataReceived",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " are both appending to the same variable - "
+          },
+          {
+            "Text": "cmdOut",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      }
+    ],
+    "title": "Send Command to CMD and Receive Output",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

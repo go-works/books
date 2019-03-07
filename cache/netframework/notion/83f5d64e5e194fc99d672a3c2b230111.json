@@ -1,0 +1,281 @@
+{
+  "ID": "83f5d64e-5e19-4fc9-9d67-2a3c2b230111",
+  "Root": {
+    "alive": true,
+    "content": [
+      "bcf08645-1ae8-44a5-9b01-6271523e6403",
+      "bfe1240a-7b1a-4d91-95d7-cc5b4660875f",
+      "6c26bfac-b091-4fa0-be7b-0b413e4ab3ae",
+      "0d68e9a7-b806-4b81-9101-090b08da1e5c"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551951723669,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "83f5d64e-5e19-4fc9-9d67-2a3c2b230111",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551951723669,
+    "parent_id": "44d59605-d50a-42aa-ab91-c7977fd8a8b4",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Execute code on the UI thread after performing background work"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951723665,
+        "id": "bcf08645-1ae8-44a5-9b01-6271523e6403",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951723665,
+        "parent_id": "83f5d64e-5e19-4fc9-9d67-2a3c2b230111",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This example shows how to update a UI component from a background thread by using a "
+            ],
+            [
+              "SynchronizationContext",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This example shows how to update a UI component from a background thread by using a "
+          },
+          {
+            "Text": "SynchronizationContext",
+            "AttrFlags": 2
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951723668,
+        "id": "bfe1240a-7b1a-4d91-95d7-cc5b4660875f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951723668,
+        "parent_id": "83f5d64e-5e19-4fc9-9d67-2a3c2b230111",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "void Button_Click(object sender, EventArgs args)\n{\n    SynchronizationContext context = SynchronizationContext.Current;\n    Task.Run(() =\u003e\n    {\n        for(int i = 0; i \u003c 10; i++) \n        {\n            Thread.Sleep(500); //simulate work being done\n            context.Post(ShowProgress, \"Work complete on item \" + i);\n        }\n    }\n}\n\nvoid UpdateCallback(object state)\n{\n    // UI can be safely updated as this method is only called from the UI thread\n    this.MyTextBox.Text = state as string;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "void Button_Click(object sender, EventArgs args)\n{\n    SynchronizationContext context = SynchronizationContext.Current;\n    Task.Run(() =\u003e\n    {\n        for(int i = 0; i \u003c 10; i++) \n        {\n            Thread.Sleep(500); //simulate work being done\n            context.Post(ShowProgress, \"Work complete on item \" + i);\n        }\n    }\n}\n\nvoid UpdateCallback(object state)\n{\n    // UI can be safely updated as this method is only called from the UI thread\n    this.MyTextBox.Text = state as string;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951723668,
+        "id": "6c26bfac-b091-4fa0-be7b-0b413e4ab3ae",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951723668,
+        "parent_id": "83f5d64e-5e19-4fc9-9d67-2a3c2b230111",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In this example, if you tried to directly update "
+            ],
+            [
+              "MyTextBox.Text",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " inside the "
+            ],
+            [
+              "for",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " loop, you would get a threading error. By posting the "
+            ],
+            [
+              "UpdateCallback",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " action to the "
+            ],
+            [
+              "SynchronizationContext",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", the text box is updated on the same thread as the rest of the UI."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In this example, if you tried to directly update "
+          },
+          {
+            "Text": "MyTextBox.Text",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " inside the "
+          },
+          {
+            "Text": "for",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " loop, you would get a threading error. By posting the "
+          },
+          {
+            "Text": "UpdateCallback",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " action to the "
+          },
+          {
+            "Text": "SynchronizationContext",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", the text box is updated on the same thread as the rest of the UI."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951723669,
+        "id": "0d68e9a7-b806-4b81-9101-090b08da1e5c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951723669,
+        "parent_id": "83f5d64e-5e19-4fc9-9d67-2a3c2b230111",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In practice, progress updates should be performed using an instance of "
+            ],
+            [
+              "System.IProgress\u003cT\u003e",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". The default implementation "
+            ],
+            [
+              "System.Progress\u003cT\u003e",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " automatically captures the synchronisation context it is created on."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In practice, progress updates should be performed using an instance of "
+          },
+          {
+            "Text": "System.IProgress\u003cT\u003e",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". The default implementation "
+          },
+          {
+            "Text": "System.Progress\u003cT\u003e",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " automatically captures the synchronisation context it is created on."
+          }
+        ]
+      }
+    ],
+    "title": "Execute code on the UI thread after performing background work",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

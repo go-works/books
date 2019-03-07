@@ -1,0 +1,509 @@
+{
+  "ID": "279f65df-53bf-4bfc-9227-94ee2e0a391d",
+  "Root": {
+    "alive": true,
+    "content": [
+      "17fb6942-9dac-4d51-99b8-c3e9e9e00e36",
+      "0dd989f8-d8ab-45c7-95a6-5d9f74b977fe",
+      "705876df-0b3e-4496-8be8-dbfcfa652422",
+      "8c5c5b4e-5fc9-44ef-aec0-029a5ecf106a",
+      "bb605d3a-3311-42b6-9b17-94af457e7977",
+      "fd1943d2-9e15-4109-8ed6-2278415b859c",
+      "da7b1ff0-f3e3-44a6-8d7b-2eec47e3165f",
+      "197d28cb-2309-48d6-a4c4-9bbdd035e796",
+      "5d7b16db-b8c7-4929-807e-cdc430dd5cb0"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551951567877,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "279f65df-53bf-4bfc-9227-94ee2e0a391d",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551951567877,
+    "parent_id": "13fcd1ea-9ee9-4041-b996-ee82c3fe1e11",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Dependency Injection - Simple example"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951567872,
+        "id": "17fb6942-9dac-4d51-99b8-c3e9e9e00e36",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951567872,
+        "parent_id": "279f65df-53bf-4bfc-9227-94ee2e0a391d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This class is called "
+            ],
+            [
+              "Greeter",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". Its responsibility is to output a greeting. It has two "
+            ],
+            [
+              "dependencies",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              ". It needs something that will give it the greeting to output, and then it needs a way to output that greeting. Those dependencies are both described as interfaces, "
+            ],
+            [
+              "IGreetingProvider",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "IGreetingWriter",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". In this example, those two dependencies are “injected” into "
+            ],
+            [
+              "Greeter",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". (Further explanation following the example.)"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This class is called "
+          },
+          {
+            "Text": "Greeter",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". Its responsibility is to output a greeting. It has two "
+          },
+          {
+            "Text": "dependencies",
+            "AttrFlags": 4
+          },
+          {
+            "Text": ". It needs something that will give it the greeting to output, and then it needs a way to output that greeting. Those dependencies are both described as interfaces, "
+          },
+          {
+            "Text": "IGreetingProvider",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "IGreetingWriter",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". In this example, those two dependencies are “injected” into "
+          },
+          {
+            "Text": "Greeter",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". (Further explanation following the example.)"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951567874,
+        "id": "0dd989f8-d8ab-45c7-95a6-5d9f74b977fe",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951567874,
+        "parent_id": "279f65df-53bf-4bfc-9227-94ee2e0a391d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public class Greeter\n{\n    private readonly IGreetingProvider _greetingProvider;\n    private readonly IGreetingWriter _greetingWriter;\n\n    public Greeter(IGreetingProvider greetingProvider, IGreetingWriter greetingWriter)\n    {\n        _greetingProvider = greetingProvider;\n        _greetingWriter = greetingWriter;\n    }\n\n    public void Greet()\n    {\n        var greeting = _greetingProvider.GetGreeting();\n        _greetingWriter.WriteGreeting(greeting);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public class Greeter\n{\n    private readonly IGreetingProvider _greetingProvider;\n    private readonly IGreetingWriter _greetingWriter;\n\n    public Greeter(IGreetingProvider greetingProvider, IGreetingWriter greetingWriter)\n    {\n        _greetingProvider = greetingProvider;\n        _greetingWriter = greetingWriter;\n    }\n\n    public void Greet()\n    {\n        var greeting = _greetingProvider.GetGreeting();\n        _greetingWriter.WriteGreeting(greeting);\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951567875,
+        "id": "705876df-0b3e-4496-8be8-dbfcfa652422",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951567875,
+        "parent_id": "279f65df-53bf-4bfc-9227-94ee2e0a391d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public interface IGreetingProvider\n{\n    string GetGreeting();\n}\n\npublic interface IGreetingWriter\n{\n    void WriteGreeting(string greeting);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public interface IGreetingProvider\n{\n    string GetGreeting();\n}\n\npublic interface IGreetingWriter\n{\n    void WriteGreeting(string greeting);\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951567875,
+        "id": "8c5c5b4e-5fc9-44ef-aec0-029a5ecf106a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951567875,
+        "parent_id": "279f65df-53bf-4bfc-9227-94ee2e0a391d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The "
+            ],
+            [
+              "Greeting",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " class depends on both "
+            ],
+            [
+              "IGreetingProvider",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "IGreetingWriter",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", but it is not responsible for creating instances of either. Instead it requires them in its constructor. Whatever creates an instance of "
+            ],
+            [
+              "Greeting",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " must provide those two dependencies. We can call that “injecting” the dependencies."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The "
+          },
+          {
+            "Text": "Greeting",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " class depends on both "
+          },
+          {
+            "Text": "IGreetingProvider",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "IGreetingWriter",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", but it is not responsible for creating instances of either. Instead it requires them in its constructor. Whatever creates an instance of "
+          },
+          {
+            "Text": "Greeting",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " must provide those two dependencies. We can call that “injecting” the dependencies."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951567875,
+        "id": "bb605d3a-3311-42b6-9b17-94af457e7977",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951567875,
+        "parent_id": "279f65df-53bf-4bfc-9227-94ee2e0a391d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Because dependencies are provided to the class in its constructor, this is also called “constructor injection.”"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Because dependencies are provided to the class in its constructor, this is also called “constructor injection.”"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951567875,
+        "id": "fd1943d2-9e15-4109-8ed6-2278415b859c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951567875,
+        "parent_id": "279f65df-53bf-4bfc-9227-94ee2e0a391d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "A few common conventions:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "A few common conventions:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951567876,
+        "id": "da7b1ff0-f3e3-44a6-8d7b-2eec47e3165f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951567876,
+        "parent_id": "279f65df-53bf-4bfc-9227-94ee2e0a391d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The constructor saves the dependencies as "
+            ],
+            [
+              "private",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " fields. As soon as the class is instantiated, those dependencies are available to all other non-static methods of the class."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The constructor saves the dependencies as "
+          },
+          {
+            "Text": "private",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " fields. As soon as the class is instantiated, those dependencies are available to all other non-static methods of the class."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951567876,
+        "id": "197d28cb-2309-48d6-a4c4-9bbdd035e796",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951567876,
+        "parent_id": "279f65df-53bf-4bfc-9227-94ee2e0a391d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The "
+            ],
+            [
+              "private",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " fields are "
+            ],
+            [
+              "readonly",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". Once they are set in the constructor they cannot be changed. This indicates that those fields should not (and cannot) be modified outside of the constructor. That further ensures that those dependencies will be available for the lifetime of the class."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The "
+          },
+          {
+            "Text": "private",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " fields are "
+          },
+          {
+            "Text": "readonly",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". Once they are set in the constructor they cannot be changed. This indicates that those fields should not (and cannot) be modified outside of the constructor. That further ensures that those dependencies will be available for the lifetime of the class."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951567877,
+        "id": "5d7b16db-b8c7-4929-807e-cdc430dd5cb0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951567877,
+        "parent_id": "279f65df-53bf-4bfc-9227-94ee2e0a391d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The dependencies are interfaces. This is not strictly necessary, but is common because it makes it easier to substitute one implementation of the dependency with another. It also allows providing a mocked version of the interface for unit testing purposes."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The dependencies are interfaces. This is not strictly necessary, but is common because it makes it easier to substitute one implementation of the dependency with another. It also allows providing a mocked version of the interface for unit testing purposes."
+          }
+        ]
+      }
+    ],
+    "title": "Dependency Injection - Simple example",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,239 @@
+{
+  "ID": "1e6c107c-ded9-4e05-9220-3645830857ba",
+  "Root": {
+    "alive": true,
+    "content": [
+      "cff1245f-5c64-4337-aae7-550e7558a69e",
+      "b20d1eb4-6a29-4b5f-83c0-e26dc76962e7",
+      "e2b38044-8fe5-409c-92da-a7fd49f57712",
+      "604a65eb-5920-4efe-bafd-477e422f36a7",
+      "f301eea2-aa6a-49a5-ab3e-dd6d30e9f8d5",
+      "d785d93d-d4b8-4b1a-bea0-59ffcfd58291"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551952146367,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "1e6c107c-ded9-4e05-9220-3645830857ba",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551952146367,
+    "parent_id": "b7cd86c1-4d1b-4e0a-8478-90678a901422",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "RijndaelManaged"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551952146364,
+        "id": "cff1245f-5c64-4337-aae7-550e7558a69e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551952146364,
+        "parent_id": "1e6c107c-ded9-4e05-9220-3645830857ba",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Required Namespace: "
+            ],
+            [
+              "System.Security.Cryptography",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Required Namespace: "
+          },
+          {
+            "Text": "System.Security.Cryptography",
+            "AttrFlags": 2
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551952146366,
+        "id": "b20d1eb4-6a29-4b5f-83c0-e26dc76962e7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551952146366,
+        "parent_id": "1e6c107c-ded9-4e05-9220-3645830857ba",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "private class Encryption {\n    \n          private const string SecretKey = \"topSecretKeyusedforEncryptions\";\n    \n          private const string SecretIv = \"secretVectorHere\";\n    \n          public string Encrypt(string data) {\n            return string.IsNullOrEmpty(data) ? data : Convert.ToBase64String(this.EncryptStringToBytesAes(data, this.GetCryptographyKey(), this.GetCryptographyIv()));\n          }\n    \n          public string Decrypt(string data) {\n            return string.IsNullOrEmpty(data) ? data : this.DecryptStringFromBytesAes(Convert.FromBase64String(data), this.GetCryptographyKey(), this.GetCryptographyIv());\n          }\n    \n          private byte[] GetCryptographyKey() {\n            return Encoding.ASCII.GetBytes(SecretKey.Replace('e', '!'));\n          }\n    \n          private byte[] GetCryptographyIv() {\n            return Encoding.ASCII.GetBytes(SecretIv.Replace('r', '!'));\n          }\n    \n          private byte[] EncryptStringToBytesAes(string plainText, byte[] key, byte[] iv) {\n            MemoryStream encrypt;\n            RijndaelManaged aesAlg = null;\n            try {\n              aesAlg = new RijndaelManaged {\n                Key = key,\n                IV = iv\n              };\n              var encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);\n              encrypt = new MemoryStream();\n              using (var csEncrypt = new CryptoStream(encrypt, encryptor, CryptoStreamMode.Write)) {\n                using (var swEncrypt = new StreamWriter(csEncrypt)) {\n                  swEncrypt.Write(plainText);\n                }\n              }\n            } finally {\n              aesAlg?.Clear();\n            }\n            return encrypt.ToArray();\n          }\n    \n          private string DecryptStringFromBytesAes(byte[] cipherText, byte[] key, byte[] iv) {\n            RijndaelManaged aesAlg = null;\n            string plaintext;\n            try {\n              aesAlg = new RijndaelManaged {\n                Key = key,\n                IV = iv\n              };\n              var decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);\n              using (var msDecrypt = new MemoryStream(cipherText)) {\n                using (var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read)) {\n                  using (var srDecrypt = new StreamReader(csDecrypt))\n                    plaintext = srDecrypt.ReadToEnd();\n                }\n              }\n            } finally {\n              aesAlg?.Clear();\n            }\n            return plaintext;\n          }\n        }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "private class Encryption {\n    \n          private const string SecretKey = \"topSecretKeyusedforEncryptions\";\n    \n          private const string SecretIv = \"secretVectorHere\";\n    \n          public string Encrypt(string data) {\n            return string.IsNullOrEmpty(data) ? data : Convert.ToBase64String(this.EncryptStringToBytesAes(data, this.GetCryptographyKey(), this.GetCryptographyIv()));\n          }\n    \n          public string Decrypt(string data) {\n            return string.IsNullOrEmpty(data) ? data : this.DecryptStringFromBytesAes(Convert.FromBase64String(data), this.GetCryptographyKey(), this.GetCryptographyIv());\n          }\n    \n          private byte[] GetCryptographyKey() {\n            return Encoding.ASCII.GetBytes(SecretKey.Replace('e', '!'));\n          }\n    \n          private byte[] GetCryptographyIv() {\n            return Encoding.ASCII.GetBytes(SecretIv.Replace('r', '!'));\n          }\n    \n          private byte[] EncryptStringToBytesAes(string plainText, byte[] key, byte[] iv) {\n            MemoryStream encrypt;\n            RijndaelManaged aesAlg = null;\n            try {\n              aesAlg = new RijndaelManaged {\n                Key = key,\n                IV = iv\n              };\n              var encryptor = aesAlg.CreateEncryptor(aesAlg.Key, aesAlg.IV);\n              encrypt = new MemoryStream();\n              using (var csEncrypt = new CryptoStream(encrypt, encryptor, CryptoStreamMode.Write)) {\n                using (var swEncrypt = new StreamWriter(csEncrypt)) {\n                  swEncrypt.Write(plainText);\n                }\n              }\n            } finally {\n              aesAlg?.Clear();\n            }\n            return encrypt.ToArray();\n          }\n    \n          private string DecryptStringFromBytesAes(byte[] cipherText, byte[] key, byte[] iv) {\n            RijndaelManaged aesAlg = null;\n            string plaintext;\n            try {\n              aesAlg = new RijndaelManaged {\n                Key = key,\n                IV = iv\n              };\n              var decryptor = aesAlg.CreateDecryptor(aesAlg.Key, aesAlg.IV);\n              using (var msDecrypt = new MemoryStream(cipherText)) {\n                using (var csDecrypt = new CryptoStream(msDecrypt, decryptor, CryptoStreamMode.Read)) {\n                  using (var srDecrypt = new StreamReader(csDecrypt))\n                    plaintext = srDecrypt.ReadToEnd();\n                }\n              }\n            } finally {\n              aesAlg?.Clear();\n            }\n            return plaintext;\n          }\n        }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551952146367,
+        "id": "e2b38044-8fe5-409c-92da-a7fd49f57712",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551952146367,
+        "parent_id": "1e6c107c-ded9-4e05-9220-3645830857ba",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Usage",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Usage",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551952146367,
+        "id": "604a65eb-5920-4efe-bafd-477e422f36a7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551952146367,
+        "parent_id": "1e6c107c-ded9-4e05-9220-3645830857ba",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var textToEncrypt = \"hello World\";\n\n var encrypted = new Encryption().Encrypt(textToEncrypt); //-\u003e zBmW+FUxOvdbpOGm9Ss/vQ==\n\n var decrypted = new Encryption().Decrypt(encrypted); //-\u003e hello World"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var textToEncrypt = \"hello World\";\n\n var encrypted = new Encryption().Encrypt(textToEncrypt); //-\u003e zBmW+FUxOvdbpOGm9Ss/vQ==\n\n var decrypted = new Encryption().Decrypt(encrypted); //-\u003e hello World",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551952146367,
+        "id": "f301eea2-aa6a-49a5-ab3e-dd6d30e9f8d5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551952146367,
+        "parent_id": "1e6c107c-ded9-4e05-9220-3645830857ba",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Note:",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Note:",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551952146367,
+        "id": "d785d93d-d4b8-4b1a-bea0-59ffcfd58291",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551952146367,
+        "parent_id": "1e6c107c-ded9-4e05-9220-3645830857ba",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Rijndael is the predecessor of the standard symmetric cryptographic algorithm AES."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Rijndael is the predecessor of the standard symmetric cryptographic algorithm AES."
+          }
+        ]
+      }
+    ],
+    "title": "RijndaelManaged",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

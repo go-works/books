@@ -1,0 +1,83 @@
+{
+  "ID": "9759fe6a-70a7-48a2-815c-64eafe458ef3",
+  "Root": {
+    "alive": true,
+    "content": [
+      "f8b938d9-0ea2-475f-bc8c-939c5b0bdeb4"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551950737596,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "9759fe6a-70a7-48a2-815c-64eafe458ef3",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551950737596,
+    "parent_id": "921d5395-549c-407d-afd3-31f23e97aca9",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Left Outer Join"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551950737596,
+        "id": "f8b938d9-0ea2-475f-bc8c-939c5b0bdeb4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551950737596,
+        "parent_id": "9759fe6a-70a7-48a2-815c-64eafe458ef3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class Person\n{\n    public string FirstName { get; set; }\n    public string LastName { get; set; }\n}\n\nclass Pet\n{\n    public string Name { get; set; }\n    public Person Owner { get; set; }\n}\n\npublic static void Main(string[] args)\n{\n    var magnus = new Person { FirstName = \"Magnus\", LastName = \"Hedlund\" };\n    var terry = new Person { FirstName = \"Terry\", LastName = \"Adams\" };\n\n    var barley = new Pet { Name = \"Barley\", Owner = terry };\n\n    var people = new[] { magnus, terry };\n    var pets = new[] { barley };\n\n    var query =\n        from person in people\n        join pet in pets on person equals pet.Owner into gj\n        from subpet in gj.DefaultIfEmpty()\n        select new\n        {\n            person.FirstName,\n            PetName = subpet?.Name ?? \"-\" // Use - if he has no pet\n        };\n\n    foreach (var p in query)\n        Console.WriteLine($\"{p.FirstName}: {p.PetName}\");\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class Person\n{\n    public string FirstName { get; set; }\n    public string LastName { get; set; }\n}\n\nclass Pet\n{\n    public string Name { get; set; }\n    public Person Owner { get; set; }\n}\n\npublic static void Main(string[] args)\n{\n    var magnus = new Person { FirstName = \"Magnus\", LastName = \"Hedlund\" };\n    var terry = new Person { FirstName = \"Terry\", LastName = \"Adams\" };\n\n    var barley = new Pet { Name = \"Barley\", Owner = terry };\n\n    var people = new[] { magnus, terry };\n    var pets = new[] { barley };\n\n    var query =\n        from person in people\n        join pet in pets on person equals pet.Owner into gj\n        from subpet in gj.DefaultIfEmpty()\n        select new\n        {\n            person.FirstName,\n            PetName = subpet?.Name ?? \"-\" // Use - if he has no pet\n        };\n\n    foreach (var p in query)\n        Console.WriteLine($\"{p.FirstName}: {p.PetName}\");\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Left Outer Join",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

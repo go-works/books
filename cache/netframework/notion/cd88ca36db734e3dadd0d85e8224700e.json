@@ -1,0 +1,128 @@
+{
+  "ID": "cd88ca36-db73-4e3d-add0-d85e8224700e",
+  "Root": {
+    "alive": true,
+    "content": [
+      "969d062f-3622-4581-890d-5ffceb566b04",
+      "9c22b7c1-948d-403a-8c75-6162f8acd9ee"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551950704345,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "cd88ca36-db73-4e3d-add0-d85e8224700e",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551950704345,
+    "parent_id": "5019b4e4-cd69-44b7-a825-05bcb1274fb1",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Basic SNTP client UdpClient"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551950704345,
+        "id": "969d062f-3622-4581-890d-5ffceb566b04",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551950704345,
+        "parent_id": "cd88ca36-db73-4e3d-add0-d85e8224700e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "See "
+            ],
+            [
+              "RFC 2030",
+              [
+                [
+                  "a",
+                  "http://tools.ietf.org/html/rfc2030"
+                ]
+              ]
+            ],
+            [
+              " for details on the SNTP protocol."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "See "
+          },
+          {
+            "Text": "RFC 2030",
+            "Link": "http://tools.ietf.org/html/rfc2030"
+          },
+          {
+            "Text": " for details on the SNTP protocol."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551950704345,
+        "id": "9c22b7c1-948d-403a-8c75-6162f8acd9ee",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551950704345,
+        "parent_id": "cd88ca36-db73-4e3d-add0-d85e8224700e",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "using System;\nusing System.Globalization;\nusing System.Linq;\nusing System.Net;\nusing System.Net.Sockets;\n\nclass SntpClient\n{\n    const int SntpPort = 123;\n    static DateTime BaseDate = new DateTime(1900, 1, 1);\n\n    static void Main(string[] args)\n    {\n        if(args.Length == 0) {\n            Console.WriteLine(\"Simple SNTP client\");\n            Console.WriteLine();\n            Console.WriteLine(\"Usage: sntpclient \u003csntp server url\u003e [\u003clocal timezone\u003e]\");\n            Console.WriteLine();\n            Console.WriteLine(\"\u003clocal timezone\u003e: a number between -12 and 12 as hours from UTC\");\n            Console.WriteLine(\"(append .5 for an extra half an hour)\");\n            return;\n        }\n\n        double localTimeZoneInHours = 0;\n        if(args.Length \u003e 1)\n            localTimeZoneInHours = double.Parse(args[1], CultureInfo.InvariantCulture);\n\n        var udpClient = new UdpClient();\n        udpClient.Client.ReceiveTimeout = 5000;\n\n        var sntpRequest = new byte[48];\n        sntpRequest[0] = 0x23; //LI=0 (no warning), VN=4, Mode=3 (client)\n\n        udpClient.Send(\n            dgram: sntpRequest,\n            bytes: sntpRequest.Length,\n            hostname: args[0],\n            port: SntpPort);\n\n        byte[] sntpResponse;\n        try\n        {\n            IPEndPoint remoteEndpoint = null;\n            sntpResponse = udpClient.Receive(ref remoteEndpoint);\n        }\n        catch(SocketException)\n        {\n            Console.WriteLine(\"*** No response received from the server\");\n            return;\n        }\n\n        uint numberOfSeconds;\n        if(BitConverter.IsLittleEndian)\n            numberOfSeconds = BitConverter.ToUInt32(\n                sntpResponse.Skip(40).Take(4).Reverse().ToArray()\n                ,0);\n        else\n            numberOfSeconds = BitConverter.ToUInt32(sntpResponse, 40);\n        \n        var date = BaseDate.AddSeconds(numberOfSeconds).AddHours(localTimeZoneInHours);\n\n        Console.WriteLine(\n            $\"Current date in server: {date:yyyy-MM-dd HH:mm:ss} UTC{localTimeZoneInHours:+0.#;-0.#;.}\");\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "using System;\nusing System.Globalization;\nusing System.Linq;\nusing System.Net;\nusing System.Net.Sockets;\n\nclass SntpClient\n{\n    const int SntpPort = 123;\n    static DateTime BaseDate = new DateTime(1900, 1, 1);\n\n    static void Main(string[] args)\n    {\n        if(args.Length == 0) {\n            Console.WriteLine(\"Simple SNTP client\");\n            Console.WriteLine();\n            Console.WriteLine(\"Usage: sntpclient \u003csntp server url\u003e [\u003clocal timezone\u003e]\");\n            Console.WriteLine();\n            Console.WriteLine(\"\u003clocal timezone\u003e: a number between -12 and 12 as hours from UTC\");\n            Console.WriteLine(\"(append .5 for an extra half an hour)\");\n            return;\n        }\n\n        double localTimeZoneInHours = 0;\n        if(args.Length \u003e 1)\n            localTimeZoneInHours = double.Parse(args[1], CultureInfo.InvariantCulture);\n\n        var udpClient = new UdpClient();\n        udpClient.Client.ReceiveTimeout = 5000;\n\n        var sntpRequest = new byte[48];\n        sntpRequest[0] = 0x23; //LI=0 (no warning), VN=4, Mode=3 (client)\n\n        udpClient.Send(\n            dgram: sntpRequest,\n            bytes: sntpRequest.Length,\n            hostname: args[0],\n            port: SntpPort);\n\n        byte[] sntpResponse;\n        try\n        {\n            IPEndPoint remoteEndpoint = null;\n            sntpResponse = udpClient.Receive(ref remoteEndpoint);\n        }\n        catch(SocketException)\n        {\n            Console.WriteLine(\"*** No response received from the server\");\n            return;\n        }\n\n        uint numberOfSeconds;\n        if(BitConverter.IsLittleEndian)\n            numberOfSeconds = BitConverter.ToUInt32(\n                sntpResponse.Skip(40).Take(4).Reverse().ToArray()\n                ,0);\n        else\n            numberOfSeconds = BitConverter.ToUInt32(sntpResponse, 40);\n        \n        var date = BaseDate.AddSeconds(numberOfSeconds).AddHours(localTimeZoneInHours);\n\n        Console.WriteLine(\n            $\"Current date in server: {date:yyyy-MM-dd HH:mm:ss} UTC{localTimeZoneInHours:+0.#;-0.#;.}\");\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Basic SNTP client UdpClient",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,449 @@
+{
+  "ID": "6e532182-59bf-42bd-a06c-eaa112cd09e4",
+  "Root": {
+    "alive": true,
+    "content": [
+      "52bc93ac-b2d9-436f-871f-84094cc50484",
+      "f3af1fea-2478-4d3b-be39-8eb7ceae3810",
+      "f587362a-ac23-40b1-aaf6-3f3809f7e5c3",
+      "41c25bba-a6ba-4f4e-b29a-e461098d2a75",
+      "bbeade0d-40bd-4c93-a734-debf5f44d599",
+      "70fc75f5-261d-467a-a67c-57182814b666",
+      "f9d51c27-0773-4b5c-8d55-663ac3c443ce",
+      "7370e763-96da-471f-8338-701b7424b29b",
+      "d1a2a0bb-f252-42c7-8e8f-ac7b6e3d5d4e",
+      "f5044246-1462-49e4-83db-bf1a2cf1b35c"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551951659030,
+    "id": "6e532182-59bf-42bd-a06c-eaa112cd09e4",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551951659030,
+    "parent_id": "13cc7af0-77b1-4d34-91b3-fbb702596d72",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "050 Asynchronous message receiver"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951659024,
+        "id": "52bc93ac-b2d9-436f-871f-84094cc50484",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951659024,
+        "parent_id": "6e532182-59bf-42bd-a06c-eaa112cd09e4",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "using System;\nusing System.Collections.Generic;\nusing System.IO.Ports;\nusing System.Text;\nusing System.Threading;\n\nnamespace AsyncReceiver\n{\n    class Program\n    {\n        const byte STX = 0x02;\n        const byte ETX = 0x03;\n        const byte ACK = 0x06;\n        const byte NAK = 0x15;\n        static ManualResetEvent terminateService = new ManualResetEvent(false);\n        static readonly object eventLock = new object();\n        static List\u003cbyte\u003e unprocessedBuffer = null;\n\n        static void Main(string[] args)\n        {\n            try\n            {\n                var serialPort = new SerialPort(\"COM11\", 9600, Parity.Even, 8, StopBits.One);\n                serialPort.DataReceived += DataReceivedHandler;\n                serialPort.ErrorReceived += ErrorReceivedHandler;\n                serialPort.Open();\n                terminateService.WaitOne();\n                serialPort.Close();\n            }\n            catch (Exception e)\n            {\n                Console.WriteLine(\"Exception occurred: {0}\", e.Message);\n            }\n            Console.ReadKey();\n        }\n\n        static void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)\n        {\n            lock (eventLock)\n            {\n                byte[] buffer = new byte[4096];\n                switch (e.EventType)\n                {\n                    case SerialData.Chars:\n                        var port = (SerialPort)sender;\n                        int bytesToRead = port.BytesToRead;\n                        if (bytesToRead \u003e buffer.Length)\n                            Array.Resize(ref buffer, bytesToRead);\n                        int bytesRead = port.Read(buffer, 0, bytesToRead);\n                        ProcessBuffer(buffer, bytesRead);\n                        break;\n                    case SerialData.Eof:\n                        terminateService.Set();\n                        break;\n                }\n            }\n        }\n        static void ErrorReceivedHandler(object sender, SerialErrorReceivedEventArgs e)\n        {\n            lock (eventLock)\n                if (e.EventType == SerialError.TXFull)\n                {\n                    Console.WriteLine(\"Error: TXFull. Can't handle this!\");\n                    terminateService.Set();\n                }\n                else\n                {\n                    Console.WriteLine(\"Error: {0}. Resetting everything\", e.EventType);\n                    var port = (SerialPort)sender;\n                    port.DiscardInBuffer();\n                    port.DiscardOutBuffer();\n                    unprocessedBuffer = null;\n                    port.Write(new byte[] { NAK }, 0, 1);\n                }\n        }\n\n        static void ProcessBuffer(byte[] buffer, int length)\n        {\n            List\u003cbyte\u003e message = unprocessedBuffer;\n            for (int i = 0; i \u003c length; i++)\n                if (buffer[i] == ETX)\n                {\n                    if (message != null)\n                    {\n                        Console.WriteLine(\"MessageReceived: {0}\", \n                            Encoding.ASCII.GetString(message.ToArray()));\n                        message = null;\n                    }\n                }\n                else if (buffer[i] == STX)\n                    message = null;\n                else if (message != null)\n                    message.Add(buffer[i]);\n            unprocessedBuffer = message;\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "using System;\nusing System.Collections.Generic;\nusing System.IO.Ports;\nusing System.Text;\nusing System.Threading;\n\nnamespace AsyncReceiver\n{\n    class Program\n    {\n        const byte STX = 0x02;\n        const byte ETX = 0x03;\n        const byte ACK = 0x06;\n        const byte NAK = 0x15;\n        static ManualResetEvent terminateService = new ManualResetEvent(false);\n        static readonly object eventLock = new object();\n        static List\u003cbyte\u003e unprocessedBuffer = null;\n\n        static void Main(string[] args)\n        {\n            try\n            {\n                var serialPort = new SerialPort(\"COM11\", 9600, Parity.Even, 8, StopBits.One);\n                serialPort.DataReceived += DataReceivedHandler;\n                serialPort.ErrorReceived += ErrorReceivedHandler;\n                serialPort.Open();\n                terminateService.WaitOne();\n                serialPort.Close();\n            }\n            catch (Exception e)\n            {\n                Console.WriteLine(\"Exception occurred: {0}\", e.Message);\n            }\n            Console.ReadKey();\n        }\n\n        static void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)\n        {\n            lock (eventLock)\n            {\n                byte[] buffer = new byte[4096];\n                switch (e.EventType)\n                {\n                    case SerialData.Chars:\n                        var port = (SerialPort)sender;\n                        int bytesToRead = port.BytesToRead;\n                        if (bytesToRead \u003e buffer.Length)\n                            Array.Resize(ref buffer, bytesToRead);\n                        int bytesRead = port.Read(buffer, 0, bytesToRead);\n                        ProcessBuffer(buffer, bytesRead);\n                        break;\n                    case SerialData.Eof:\n                        terminateService.Set();\n                        break;\n                }\n            }\n        }\n        static void ErrorReceivedHandler(object sender, SerialErrorReceivedEventArgs e)\n        {\n            lock (eventLock)\n                if (e.EventType == SerialError.TXFull)\n                {\n                    Console.WriteLine(\"Error: TXFull. Can't handle this!\");\n                    terminateService.Set();\n                }\n                else\n                {\n                    Console.WriteLine(\"Error: {0}. Resetting everything\", e.EventType);\n                    var port = (SerialPort)sender;\n                    port.DiscardInBuffer();\n                    port.DiscardOutBuffer();\n                    unprocessedBuffer = null;\n                    port.Write(new byte[] { NAK }, 0, 1);\n                }\n        }\n\n        static void ProcessBuffer(byte[] buffer, int length)\n        {\n            List\u003cbyte\u003e message = unprocessedBuffer;\n            for (int i = 0; i \u003c length; i++)\n                if (buffer[i] == ETX)\n                {\n                    if (message != null)\n                    {\n                        Console.WriteLine(\"MessageReceived: {0}\", \n                            Encoding.ASCII.GetString(message.ToArray()));\n                        message = null;\n                    }\n                }\n                else if (buffer[i] == STX)\n                    message = null;\n                else if (message != null)\n                    message.Add(buffer[i]);\n            unprocessedBuffer = message;\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951659027,
+        "id": "f3af1fea-2478-4d3b-be39-8eb7ceae3810",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951659027,
+        "parent_id": "6e532182-59bf-42bd-a06c-eaa112cd09e4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This program waits for messages enclosed in "
+            ],
+            [
+              "STX",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "ETX",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " bytes and outputs the text coming between them. Everything else is discarded. On write buffer overflow it stops. On other errors it reset input and output buffers and waits for further messages."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This program waits for messages enclosed in "
+          },
+          {
+            "Text": "STX",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "ETX",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " bytes and outputs the text coming between them. Everything else is discarded. On write buffer overflow it stops. On other errors it reset input and output buffers and waits for further messages."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951659027,
+        "id": "f587362a-ac23-40b1-aaf6-3f3809f7e5c3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951659027,
+        "parent_id": "6e532182-59bf-42bd-a06c-eaa112cd09e4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The code illustrates:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The code illustrates:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951659028,
+        "id": "41c25bba-a6ba-4f4e-b29a-e461098d2a75",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951659028,
+        "parent_id": "6e532182-59bf-42bd-a06c-eaa112cd09e4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Asynchronous serial port reading (see "
+            ],
+            [
+              "SerialPort.DataReceived",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " usage)."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Asynchronous serial port reading (see "
+          },
+          {
+            "Text": "SerialPort.DataReceived",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " usage)."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951659029,
+        "id": "bbeade0d-40bd-4c93-a734-debf5f44d599",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951659029,
+        "parent_id": "6e532182-59bf-42bd-a06c-eaa112cd09e4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Serial port error processing (see "
+            ],
+            [
+              "SerialPort.ErrorReceived",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " usage)."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Serial port error processing (see "
+          },
+          {
+            "Text": "SerialPort.ErrorReceived",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " usage)."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951659029,
+        "id": "70fc75f5-261d-467a-a67c-57182814b666",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951659029,
+        "parent_id": "6e532182-59bf-42bd-a06c-eaa112cd09e4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Non-text message-based protocol implementation."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Non-text message-based protocol implementation."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951659029,
+        "id": "f9d51c27-0773-4b5c-8d55-663ac3c443ce",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951659029,
+        "parent_id": "6e532182-59bf-42bd-a06c-eaa112cd09e4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Partial message reading."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Partial message reading."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951659029,
+        "id": "7370e763-96da-471f-8338-701b7424b29b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951659029,
+        "parent_id": "6e532182-59bf-42bd-a06c-eaa112cd09e4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The "
+            ],
+            [
+              "SerialPort.DataReceived",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " event may happen earlier than entire message (up to "
+            ],
+            [
+              "ETX",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ") comes. The entire message may also not be available in the input buffer (SerialPort.Read(…, …, port.BytesToRead) reads only a part of the message). In this case we stash the received part ("
+            ],
+            [
+              "unprocessedBuffer",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ") and carry on waiting for further data."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The "
+          },
+          {
+            "Text": "SerialPort.DataReceived",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " event may happen earlier than entire message (up to "
+          },
+          {
+            "Text": "ETX",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ") comes. The entire message may also not be available in the input buffer (SerialPort.Read(…, …, port.BytesToRead) reads only a part of the message). In this case we stash the received part ("
+          },
+          {
+            "Text": "unprocessedBuffer",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ") and carry on waiting for further data."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951659029,
+        "id": "d1a2a0bb-f252-42c7-8e8f-ac7b6e3d5d4e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951659029,
+        "parent_id": "6e532182-59bf-42bd-a06c-eaa112cd09e4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Dealing with several messages coming in one go."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Dealing with several messages coming in one go."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951659030,
+        "id": "f5044246-1462-49e4-83db-bf1a2cf1b35c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951659030,
+        "parent_id": "6e532182-59bf-42bd-a06c-eaa112cd09e4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The "
+            ],
+            [
+              "SerialPort.DataReceived",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " event may happen only after several messages have been sent by the other end."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The "
+          },
+          {
+            "Text": "SerialPort.DataReceived",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " event may happen only after several messages have been sent by the other end."
+          }
+        ]
+      }
+    ],
+    "title": "050 Asynchronous message receiver"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

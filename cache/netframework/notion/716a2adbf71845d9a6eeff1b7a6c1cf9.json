@@ -1,0 +1,243 @@
+{
+  "ID": "716a2adb-f718-45d9-a6ee-ff1b7a6c1cf9",
+  "Root": {
+    "alive": true,
+    "content": [
+      "f6b147ac-0d3e-4f1f-ae0f-fe0cf53a8ccd",
+      "840646d9-4cdb-4b5c-acc6-4cd5323c4db6",
+      "e1fd3723-b91d-475f-a4a0-bd31b8164280"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551951041505,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "716a2adb-f718-45d9-a6ee-ff1b7a6c1cf9",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551951041505,
+    "parent_id": "14c88a94-7b13-45dc-9cf2-d5a6b03bcf14",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Use SafeHandle when wrapping unmanaged resources"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 2,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951041502,
+        "id": "f6b147ac-0d3e-4f1f-ae0f-fe0cf53a8ccd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951041502,
+        "parent_id": "716a2adb-f718-45d9-a6ee-ff1b7a6c1cf9",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "When writing wrappers for unmanaged resources, you should subclass "
+            ],
+            [
+              "SafeHandle",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " rather than trying to implement "
+            ],
+            [
+              "IDisposable",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and a finalizer yourself. Your "
+            ],
+            [
+              "SafeHandle",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " subclass should be as small and simple as possible to minimize the chance of a handle leak. This likely means that your SafeHandle implementation would an internal implementation detail of a class which wraps it to provide a usable API. This class ensures that, even if a program leaks your "
+            ],
+            [
+              "SafeHandle",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " instance, your unmanaged handle is released."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "When writing wrappers for unmanaged resources, you should subclass "
+          },
+          {
+            "Text": "SafeHandle",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " rather than trying to implement "
+          },
+          {
+            "Text": "IDisposable",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and a finalizer yourself. Your "
+          },
+          {
+            "Text": "SafeHandle",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " subclass should be as small and simple as possible to minimize the chance of a handle leak. This likely means that your SafeHandle implementation would an internal implementation detail of a class which wraps it to provide a usable API. This class ensures that, even if a program leaks your "
+          },
+          {
+            "Text": "SafeHandle",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " instance, your unmanaged handle is released."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951041504,
+        "id": "840646d9-4cdb-4b5c-acc6-4cd5323c4db6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951041504,
+        "parent_id": "716a2adb-f718-45d9-a6ee-ff1b7a6c1cf9",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "using System.Runtime.InteropServices;\n\nclass MyHandle : SafeHandle\n{\n    public override bool IsInvalid =\u003e handle == IntPtr.Zero;\n    public MyHandle() : base(IntPtr.Zero, true)\n    { }\n\n    public MyHandle(int length) : this()\n    {\n        SetHandle(Marshal.AllocHGlobal(length));\n    }\n\n    protected override bool ReleaseHandle()\n    {\n        Marshal.FreeHGlobal(handle);\n        return true;\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "using System.Runtime.InteropServices;\n\nclass MyHandle : SafeHandle\n{\n    public override bool IsInvalid =\u003e handle == IntPtr.Zero;\n    public MyHandle() : base(IntPtr.Zero, true)\n    { }\n\n    public MyHandle(int length) : this()\n    {\n        SetHandle(Marshal.AllocHGlobal(length));\n    }\n\n    protected override bool ReleaseHandle()\n    {\n        Marshal.FreeHGlobal(handle);\n        return true;\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951041505,
+        "id": "e1fd3723-b91d-475f-a4a0-bd31b8164280",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951041505,
+        "parent_id": "716a2adb-f718-45d9-a6ee-ff1b7a6c1cf9",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Disclaimer: This example is an attempt to show how to guard a managed resource with "
+            ],
+            [
+              "SafeHandle",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " which implements "
+            ],
+            [
+              "IDisposable",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " for you and configures finalizers appropriately. It is very contrived and likely pointless to allocate a chunk of memory in this manner."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Disclaimer: This example is an attempt to show how to guard a managed resource with "
+          },
+          {
+            "Text": "SafeHandle",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " which implements "
+          },
+          {
+            "Text": "IDisposable",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " for you and configures finalizers appropriately. It is very contrived and likely pointless to allocate a chunk of memory in this manner."
+          }
+        ]
+      }
+    ],
+    "title": "010 Use SafeHandle when wrapping unmanaged resources",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

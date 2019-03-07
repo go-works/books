@@ -1,0 +1,145 @@
+{
+  "ID": "46a2d3a9-b6f1-41e9-9dd6-d26320863c39",
+  "Root": {
+    "alive": true,
+    "content": [
+      "3d8f4c00-f31d-429e-bc47-50234ed85673",
+      "4f3ee8e0-f068-4afe-9f8d-9085839e3452"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551950793291,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "46a2d3a9-b6f1-41e9-9dd6-d26320863c39",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551950793291,
+    "parent_id": "8fb3262d-e5fa-4d3b-86ba-dae1d9f482b0",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Parallel.ForEach"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551950793288,
+        "id": "3d8f4c00-f31d-429e-bc47-50234ed85673",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551950793288,
+        "parent_id": "46a2d3a9-b6f1-41e9-9dd6-d26320863c39",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This example uses "
+            ],
+            [
+              "Parallel.ForEach",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to calculate the sum of the numbers between 1 and 10000 by using multiple threads. To achieve thread-safety, "
+            ],
+            [
+              "Interlocked.Add",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is used to sum the numbers."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This example uses "
+          },
+          {
+            "Text": "Parallel.ForEach",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to calculate the sum of the numbers between 1 and 10000 by using multiple threads. To achieve thread-safety, "
+          },
+          {
+            "Text": "Interlocked.Add",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is used to sum the numbers."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551950793291,
+        "id": "4f3ee8e0-f068-4afe-9f8d-9085839e3452",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551950793291,
+        "parent_id": "46a2d3a9-b6f1-41e9-9dd6-d26320863c39",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "using System.Threading;\n\nint Foo()\n{\n    int total = 0;\n    var numbers = Enumerable.Range(1, 10000).ToList();\n    Parallel.ForEach(numbers, \n        () =\u003e 0, // initial value,\n        (num, state, localSum) =\u003e num + localSum,\n        localSum =\u003e Interlocked.Add(ref total, localSum));\n    return total; // total = 50005000\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "using System.Threading;\n\nint Foo()\n{\n    int total = 0;\n    var numbers = Enumerable.Range(1, 10000).ToList();\n    Parallel.ForEach(numbers, \n        () =\u003e 0, // initial value,\n        (num, state, localSum) =\u003e num + localSum,\n        localSum =\u003e Interlocked.Add(ref total, localSum));\n    return total; // total = 50005000\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Parallel.ForEach",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

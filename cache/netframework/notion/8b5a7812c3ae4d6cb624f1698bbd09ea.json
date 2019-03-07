@@ -1,0 +1,203 @@
+{
+  "ID": "8b5a7812-c3ae-4d6c-b624-f1698bbd09ea",
+  "Root": {
+    "alive": true,
+    "content": [
+      "b9fec417-7ae5-4f59-a417-31d1d34a6ad8",
+      "3aa9f111-cbc9-49c9-b39f-01ba8a3397d4",
+      "c1f132f4-0abb-44a5-8de0-4578cfbb0e99"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551951520377,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "8b5a7812-c3ae-4d6c-b624-f1698bbd09ea",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551951520377,
+    "parent_id": "979090b0-0d04-478a-ad39-b7311edd9afb",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Executing SQL statements as a command"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951520372,
+        "id": "b9fec417-7ae5-4f59-a417-31d1d34a6ad8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951520372,
+        "parent_id": "8b5a7812-c3ae-4d6c-b624-f1698bbd09ea",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Uses Windows authentication. Replace the Trusted_Connection parameter with\n// User Id=...;Password=...; to use SQL Server authentication instead. You may\n// want to find the appropriate connection string for your server.\nstring connectionString = @\"Server=myServer\\myInstance;Database=myDataBase;Trusted_Connection=True;\"\n\nstring sql = \"INSERT INTO myTable (myDateTimeField, myIntField) \" +\n    \"VALUES (@someDateTime, @someInt);\";\n\n// Most ADO.NET objects are disposable and, thus, require the using keyword.\nusing (var connection = new SqlConnection(connectionString))\nusing (var command = new SqlCommand(sql, connection))\n{\n    // Use parameters instead of string concatenation to add user-supplied\n    // values to avoid SQL injection and formatting issues. Explicitly supply datatype.\n\n    // System.Data.SqlDbType is an enumeration. See Note1\n    command.Parameters.Add(\"@someDateTime\", SqlDbType.DateTime).Value = myDateTimeVariable;\n    command.Parameters.Add(\"@someInt\", SqlDbType.Int).Value = myInt32Variable;\n\n    // Execute the SQL statement. Use ExecuteScalar and ExecuteReader instead\n    // for query that return results (or see the more specific examples, once\n    // those have been added).\n\n    connection.Open();\n    command.ExecuteNonQuery();\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Uses Windows authentication. Replace the Trusted_Connection parameter with\n// User Id=...;Password=...; to use SQL Server authentication instead. You may\n// want to find the appropriate connection string for your server.\nstring connectionString = @\"Server=myServer\\myInstance;Database=myDataBase;Trusted_Connection=True;\"\n\nstring sql = \"INSERT INTO myTable (myDateTimeField, myIntField) \" +\n    \"VALUES (@someDateTime, @someInt);\";\n\n// Most ADO.NET objects are disposable and, thus, require the using keyword.\nusing (var connection = new SqlConnection(connectionString))\nusing (var command = new SqlCommand(sql, connection))\n{\n    // Use parameters instead of string concatenation to add user-supplied\n    // values to avoid SQL injection and formatting issues. Explicitly supply datatype.\n\n    // System.Data.SqlDbType is an enumeration. See Note1\n    command.Parameters.Add(\"@someDateTime\", SqlDbType.DateTime).Value = myDateTimeVariable;\n    command.Parameters.Add(\"@someInt\", SqlDbType.Int).Value = myInt32Variable;\n\n    // Execute the SQL statement. Use ExecuteScalar and ExecuteReader instead\n    // for query that return results (or see the more specific examples, once\n    // those have been added).\n\n    connection.Open();\n    command.ExecuteNonQuery();\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951520376,
+        "id": "3aa9f111-cbc9-49c9-b39f-01ba8a3397d4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951520376,
+        "parent_id": "8b5a7812-c3ae-4d6c-b624-f1698bbd09ea",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Note 1:",
+              [
+                [
+                  "b"
+                ],
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " Please see "
+            ],
+            [
+              "SqlDbType Enumeration",
+              [
+                [
+                  "a",
+                  "https://msdn.microsoft.com/en-us/library/system.data.sqldbtype(v=vs.110).aspx"
+                ]
+              ]
+            ],
+            [
+              " for the MSFT SQL Server-specific variation."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Note 1:",
+            "AttrFlags": 5
+          },
+          {
+            "Text": " Please see "
+          },
+          {
+            "Text": "SqlDbType Enumeration",
+            "Link": "https://msdn.microsoft.com/en-us/library/system.data.sqldbtype(v=vs.110).aspx"
+          },
+          {
+            "Text": " for the MSFT SQL Server-specific variation."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951520377,
+        "id": "c1f132f4-0abb-44a5-8de0-4578cfbb0e99",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951520377,
+        "parent_id": "8b5a7812-c3ae-4d6c-b624-f1698bbd09ea",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Note 2:",
+              [
+                [
+                  "b"
+                ],
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " Please see "
+            ],
+            [
+              "MySqlDbType Enumeration",
+              [
+                [
+                  "a",
+                  "https://dev.mysql.com/doc/dev/connector-net/html/T_MySql_Data_MySqlClient_MySqlDbType.htm"
+                ]
+              ]
+            ],
+            [
+              " for the MySQL-specific variation."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Note 2:",
+            "AttrFlags": 5
+          },
+          {
+            "Text": " Please see "
+          },
+          {
+            "Text": "MySqlDbType Enumeration",
+            "Link": "https://dev.mysql.com/doc/dev/connector-net/html/T_MySql_Data_MySqlClient_MySqlDbType.htm"
+          },
+          {
+            "Text": " for the MySQL-specific variation."
+          }
+        ]
+      }
+    ],
+    "title": "Executing SQL statements as a command",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

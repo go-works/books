@@ -1,0 +1,168 @@
+{
+  "ID": "b925d08d-3d46-47ff-9725-d4b30f4627de",
+  "Root": {
+    "alive": true,
+    "content": [
+      "48f39c81-7e2d-4ba5-9aa6-8cb22ae53894",
+      "7278a0e6-29c2-4e5d-9169-936177fb0053",
+      "deb6b382-22c4-4ebb-9329-e395ec545182",
+      "e2c2ea6a-ee6a-48e6-a5de-0482fc823f6c"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551950657724,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "b925d08d-3d46-47ff-9725-d4b30f4627de",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551950657724,
+    "parent_id": "fb28bc7f-e61f-4ac8-b19d-4670cd051e98",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Catching and rethrowing caught exceptions"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551950657722,
+        "id": "48f39c81-7e2d-4ba5-9aa6-8cb22ae53894",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551950657722,
+        "parent_id": "b925d08d-3d46-47ff-9725-d4b30f4627de",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "When you want to catch an exception and do something, but you can’t continue execution of the current block of code because of the exception, you may want to rethrow the exception to the next exception handler in the call stack. There are good ways and bad ways to do this."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "When you want to catch an exception and do something, but you can’t continue execution of the current block of code because of the exception, you may want to rethrow the exception to the next exception handler in the call stack. There are good ways and bad ways to do this."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551950657722,
+        "id": "7278a0e6-29c2-4e5d-9169-936177fb0053",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551950657722,
+        "parent_id": "b925d08d-3d46-47ff-9725-d4b30f4627de",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "private static void AskTheUltimateQuestion()\n{\n    try\n    {\n        var x = 42;\n        var y = x / (x - x); // will throw a DivideByZeroException\n\n        // IMPORTANT NOTE: the error in following string format IS intentional\n        // and exists to throw an exception to the FormatException catch, below\n        Console.WriteLine(\"The secret to life, the universe, and everything is {1}\", y); \n    }\n    catch (DivideByZeroException)\n    {\n        // we do not need a reference to the exception\n        Console.WriteLine(\"Dividing by zero would destroy the universe.\");\n\n        // do this to preserve the stack trace:\n        throw;\n    }\n    catch (FormatException ex)\n    {\n        // only do this if you need to change the type of the Exception to be thrown \n        // and wrap the inner Exception\n\n        // remember that the stack trace of the outer Exception will point to the\n        // next line\n\n        // you'll need to examine the InnerException property to get the stack trace\n        // to the line that actually started the problem\n\n        throw new InvalidOperationException(\"Watch your format string indexes.\", ex);\n    }\n    catch (Exception ex)\n    {\n        Console.WriteLine(\"Something else horrible happened. The exception: \" + ex.Message);\n\n        // do not do this, because the stack trace will be changed to point to\n        // this location instead of the location where the exception\n        // was originally thrown:\n        throw ex; \n    }\n}\n\nstatic void Main()\n{\n    try\n    {\n        AskTheUltimateQuestion();\n    }\n    catch\n    {\n        // choose this kind of catch if you don't need any information about \n        // the exception that was caught\n\n        // this block \"eats\" all exceptions instead of rethrowing them\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "private static void AskTheUltimateQuestion()\n{\n    try\n    {\n        var x = 42;\n        var y = x / (x - x); // will throw a DivideByZeroException\n\n        // IMPORTANT NOTE: the error in following string format IS intentional\n        // and exists to throw an exception to the FormatException catch, below\n        Console.WriteLine(\"The secret to life, the universe, and everything is {1}\", y); \n    }\n    catch (DivideByZeroException)\n    {\n        // we do not need a reference to the exception\n        Console.WriteLine(\"Dividing by zero would destroy the universe.\");\n\n        // do this to preserve the stack trace:\n        throw;\n    }\n    catch (FormatException ex)\n    {\n        // only do this if you need to change the type of the Exception to be thrown \n        // and wrap the inner Exception\n\n        // remember that the stack trace of the outer Exception will point to the\n        // next line\n\n        // you'll need to examine the InnerException property to get the stack trace\n        // to the line that actually started the problem\n\n        throw new InvalidOperationException(\"Watch your format string indexes.\", ex);\n    }\n    catch (Exception ex)\n    {\n        Console.WriteLine(\"Something else horrible happened. The exception: \" + ex.Message);\n\n        // do not do this, because the stack trace will be changed to point to\n        // this location instead of the location where the exception\n        // was originally thrown:\n        throw ex; \n    }\n}\n\nstatic void Main()\n{\n    try\n    {\n        AskTheUltimateQuestion();\n    }\n    catch\n    {\n        // choose this kind of catch if you don't need any information about \n        // the exception that was caught\n\n        // this block \"eats\" all exceptions instead of rethrowing them\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551950657723,
+        "id": "deb6b382-22c4-4ebb-9329-e395ec545182",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551950657723,
+        "parent_id": "b925d08d-3d46-47ff-9725-d4b30f4627de",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "You can filter by exception type and even by exception properties (new in C# 6.0, a bit longer available in VB.NET (citation needed)):"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "You can filter by exception type and even by exception properties (new in C# 6.0, a bit longer available in VB.NET (citation needed)):"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551950657724,
+        "id": "e2c2ea6a-ee6a-48e6-a5de-0482fc823f6c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551950657724,
+        "parent_id": "b925d08d-3d46-47ff-9725-d4b30f4627de",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Documentation/C#/new features",
+              [
+                [
+                  "a",
+                  "http://stackoverflow.com/documentation/c%23/24/c-sharp-6-0-features/46/exception-filters"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Documentation/C#/new features",
+            "Link": "http://stackoverflow.com/documentation/c%23/24/c-sharp-6-0-features/46/exception-filters"
+          }
+        ]
+      }
+    ],
+    "title": "Catching and rethrowing caught exceptions",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

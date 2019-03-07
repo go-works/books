@@ -1,0 +1,245 @@
+{
+  "ID": "5d109225-b512-437c-a146-986fe90960da",
+  "Root": {
+    "alive": true,
+    "content": [
+      "d5f4019f-6f89-4201-9621-b82a0c5603a7",
+      "2b4eda4a-0db3-4935-bdd9-f31ade2cd465",
+      "14ab630b-3259-4b60-b16f-22ab72097f4a",
+      "f79d731f-2acf-4673-bec5-bf79994be118",
+      "cc54b8eb-1398-4b61-b1ac-ca4c849abff7",
+      "2d737211-3de4-4ce3-b55e-37e9e40f84cc",
+      "b79f6c1d-291e-42e5-80af-271afd2a2d8f"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551950718328,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "5d109225-b512-437c-a146-986fe90960da",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551950718328,
+    "parent_id": "921d5395-549c-407d-afd3-31f23e97aca9",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "GroupBy"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551950718327,
+        "id": "d5f4019f-6f89-4201-9621-b82a0c5603a7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551950718327,
+        "parent_id": "5d109225-b512-437c-a146-986fe90960da",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var persons = new[] {\n    new { Name=\"Fizz\", Job=\"Developer\"},\n    new { Name=\"Buzz\", Job=\"Developer\"},\n    new { Name=\"Foo\", Job=\"Astronaut\"},\n    new { Name=\"Bar\", Job=\"Astronaut\"},\n};\n\nvar groupedByJob = persons.GroupBy(p =\u003e p.Job);\n\nforeach(var theGroup in groupedByJob)\n{\n    Console.WriteLine(\n        \"{0} are {1}s\", \n        string.Join(\",\", theGroup.Select(g =\u003e g.Name).ToArray()),\n        theGroup.Key);\n}\n\n//Fizz,Buzz are Developers\n//Foo,Bar are Astronauts"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var persons = new[] {\n    new { Name=\"Fizz\", Job=\"Developer\"},\n    new { Name=\"Buzz\", Job=\"Developer\"},\n    new { Name=\"Foo\", Job=\"Astronaut\"},\n    new { Name=\"Bar\", Job=\"Astronaut\"},\n};\n\nvar groupedByJob = persons.GroupBy(p =\u003e p.Job);\n\nforeach(var theGroup in groupedByJob)\n{\n    Console.WriteLine(\n        \"{0} are {1}s\", \n        string.Join(\",\", theGroup.Select(g =\u003e g.Name).ToArray()),\n        theGroup.Key);\n}\n\n//Fizz,Buzz are Developers\n//Foo,Bar are Astronauts",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551950718327,
+        "id": "2b4eda4a-0db3-4935-bdd9-f31ade2cd465",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551950718327,
+        "parent_id": "5d109225-b512-437c-a146-986fe90960da",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Group invoices by country, generating a new object with the number of record, total paid, and average paid"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Group invoices by country, generating a new object with the number of record, total paid, and average paid"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551950718327,
+        "id": "14ab630b-3259-4b60-b16f-22ab72097f4a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551950718327,
+        "parent_id": "5d109225-b512-437c-a146-986fe90960da",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var a = db.Invoices.GroupBy(i =\u003e i.Country)\n          .Select(g =\u003e new { Country = g.Key,\n                             Count = g.Count(),\n                             Total = g.Sum(i =\u003e i.Paid),\n                             Average = g.Average(i =\u003e i.Paid) });"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var a = db.Invoices.GroupBy(i =\u003e i.Country)\n          .Select(g =\u003e new { Country = g.Key,\n                             Count = g.Count(),\n                             Total = g.Sum(i =\u003e i.Paid),\n                             Average = g.Average(i =\u003e i.Paid) });",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551950718327,
+        "id": "f79d731f-2acf-4673-bec5-bf79994be118",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551950718327,
+        "parent_id": "5d109225-b512-437c-a146-986fe90960da",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If we want only the totals, no group"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If we want only the totals, no group"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551950718328,
+        "id": "cc54b8eb-1398-4b61-b1ac-ca4c849abff7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551950718328,
+        "parent_id": "5d109225-b512-437c-a146-986fe90960da",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var a = db.Invoices.GroupBy(i =\u003e 1)\n          .Select(g =\u003e new { Count = g.Count(),\n                             Total = g.Sum(i =\u003e i.Paid),\n                             Average = g.Average(i =\u003e i.Paid) });"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var a = db.Invoices.GroupBy(i =\u003e 1)\n          .Select(g =\u003e new { Count = g.Count(),\n                             Total = g.Sum(i =\u003e i.Paid),\n                             Average = g.Average(i =\u003e i.Paid) });",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551950718328,
+        "id": "2d737211-3de4-4ce3-b55e-37e9e40f84cc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551950718328,
+        "parent_id": "5d109225-b512-437c-a146-986fe90960da",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If we need several counts"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If we need several counts"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551950718328,
+        "id": "b79f6c1d-291e-42e5-80af-271afd2a2d8f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551950718328,
+        "parent_id": "5d109225-b512-437c-a146-986fe90960da",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var a = db.Invoices.GroupBy(g =\u003e 1)\n          .Select(g =\u003e new { High = g.Count(i =\u003e i.Paid \u003e= 1000),\n                             Low = g.Count(i =\u003e i.Paid \u003c 1000),\n                             Sum = g.Sum(i =\u003e i.Paid) });"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var a = db.Invoices.GroupBy(g =\u003e 1)\n          .Select(g =\u003e new { High = g.Count(i =\u003e i.Paid \u003e= 1000),\n                             Low = g.Count(i =\u003e i.Paid \u003c 1000),\n                             Sum = g.Sum(i =\u003e i.Paid) });",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "GroupBy",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

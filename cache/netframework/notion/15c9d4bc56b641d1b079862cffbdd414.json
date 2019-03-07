@@ -1,0 +1,226 @@
+{
+  "ID": "15c9d4bc-56b6-41d1-b079-862cffbdd414",
+  "Root": {
+    "alive": true,
+    "content": [
+      "4db0fa72-a816-47ef-8057-2cee6227f6ea",
+      "901e713f-2e4f-432a-8f7d-d43956981497",
+      "71c6ce6e-5fc0-484c-b048-375275ffe729",
+      "9ef7e238-04d0-41c4-bab9-f63d53ecce66",
+      "74bab500-aa41-4d0b-b2f7-599f285ef1da"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551951178931,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "15c9d4bc-56b6-41d1-b079-862cffbdd414",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551951178931,
+    "parent_id": "4d4ce762-93e1-476b-ad26-3eca55fc31ca",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Contracts for Interfaces"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951178930,
+        "id": "4db0fa72-a816-47ef-8057-2cee6227f6ea",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951178930,
+        "parent_id": "15c9d4bc-56b6-41d1-b079-862cffbdd414",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Using Code Contracts it is possible to apply a contract to an interface. This is done by declaring an abstract class that implments the interfaces. The interface should be tagged with the "
+            ],
+            [
+              "ContractClassAttribute",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and the contract definition (the abstract class) should be tagged with the "
+            ],
+            [
+              "ContractClassForAttribute",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Using Code Contracts it is possible to apply a contract to an interface. This is done by declaring an abstract class that implments the interfaces. The interface should be tagged with the "
+          },
+          {
+            "Text": "ContractClassAttribute",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and the contract definition (the abstract class) should be tagged with the "
+          },
+          {
+            "Text": "ContractClassForAttribute",
+            "AttrFlags": 2
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951178930,
+        "id": "901e713f-2e4f-432a-8f7d-d43956981497",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951178930,
+        "parent_id": "15c9d4bc-56b6-41d1-b079-862cffbdd414",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "C# Example…",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "C# Example…",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951178930,
+        "id": "71c6ce6e-5fc0-484c-b048-375275ffe729",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951178930,
+        "parent_id": "15c9d4bc-56b6-41d1-b079-862cffbdd414",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "[ContractClass(typeof(MyInterfaceContract))]\npublic interface IMyInterface\n{\n    string DoWork(string input);\n}\n//Never inherit from this contract defintion class\n[ContractClassFor(typeof(IMyInterface))]\ninternal abstract class MyInterfaceContract : IMyInterface\n{\n    private MyInterfaceContract() { }\n\n    public string DoWork(string input)\n    {\n        Contract.Requires(!string.IsNullOrEmpty(input));\n        Contract.Ensures(!string.IsNullOrEmpty(Contract.Result\u003cstring\u003e()));\n        throw new NotSupportedException();\n    }\n}\npublic class MyInterfaceImplmentation : IMyInterface\n{\n    public string DoWork(string input)\n    {\n        return input;\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "[ContractClass(typeof(MyInterfaceContract))]\npublic interface IMyInterface\n{\n    string DoWork(string input);\n}\n//Never inherit from this contract defintion class\n[ContractClassFor(typeof(IMyInterface))]\ninternal abstract class MyInterfaceContract : IMyInterface\n{\n    private MyInterfaceContract() { }\n\n    public string DoWork(string input)\n    {\n        Contract.Requires(!string.IsNullOrEmpty(input));\n        Contract.Ensures(!string.IsNullOrEmpty(Contract.Result\u003cstring\u003e()));\n        throw new NotSupportedException();\n    }\n}\npublic class MyInterfaceImplmentation : IMyInterface\n{\n    public string DoWork(string input)\n    {\n        return input;\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951178931,
+        "id": "9ef7e238-04d0-41c4-bab9-f63d53ecce66",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951178931,
+        "parent_id": "15c9d4bc-56b6-41d1-b079-862cffbdd414",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Static Analysis Result…",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Static Analysis Result…",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951178931,
+        "id": "74bab500-aa41-4d0b-b2f7-599f285ef1da",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951178931,
+        "parent_id": "15c9d4bc-56b6-41d1-b079-862cffbdd414",
+        "parent_table": "block",
+        "properties": {
+          "source": [
+            [
+              "/tmp/c5ab0944-ecdb-497d-8e6c-7a4d149e0466/ed4efbe709db9c581e4be4105cb0105775d7466a.png"
+            ]
+          ]
+        },
+        "type": "image",
+        "version": 1,
+        "source": "/tmp/c5ab0944-ecdb-497d-8e6c-7a4d149e0466/ed4efbe709db9c581e4be4105cb0105775d7466a.png",
+        "image_url": "https://www.notion.so/image/https:%2F%2Fwww.notion.so%2Ftmp%2Fc5ab0944-ecdb-497d-8e6c-7a4d149e0466%2Fed4efbe709db9c581e4be4105cb0105775d7466a.png"
+      }
+    ],
+    "title": "Contracts for Interfaces",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

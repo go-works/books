@@ -1,0 +1,83 @@
+{
+  "ID": "f39e7604-b51f-4b8f-bfd3-4abe3ac547d0",
+  "Root": {
+    "alive": true,
+    "content": [
+      "62cd9370-637e-4400-819f-132f956d013a"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551951657294,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "f39e7604-b51f-4b8f-bfd3-4abe3ac547d0",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551951657294,
+    "parent_id": "13cc7af0-77b1-4d34-91b3-fbb702596d72",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Asynchronous read"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951657291,
+        "id": "62cd9370-637e-4400-819f-132f956d013a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951657291,
+        "parent_id": "f39e7604-b51f-4b8f-bfd3-4abe3ac547d0",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "void SetupAsyncRead(SerialPort serialPort)\n{\n    serialPort.DataReceived += (sender, e) =\u003e {\n        byte[] buffer = new byte[4096];\n        switch (e.EventType)\n        {\n            case SerialData.Chars:\n                var port = (SerialPort)sender;\n                int bytesToRead = port.BytesToRead;\n                if (bytesToRead \u003e buffer.Length)\n                    Array.Resize(ref buffer, bytesToRead);\n                int bytesRead = port.Read(buffer, 0, bytesToRead);\n                // Process the read buffer here\n                // ...\n                break;\n            case SerialData.Eof:\n                // Terminate the service here\n                // ...\n                break;\n        }\n    };"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "void SetupAsyncRead(SerialPort serialPort)\n{\n    serialPort.DataReceived += (sender, e) =\u003e {\n        byte[] buffer = new byte[4096];\n        switch (e.EventType)\n        {\n            case SerialData.Chars:\n                var port = (SerialPort)sender;\n                int bytesToRead = port.BytesToRead;\n                if (bytesToRead \u003e buffer.Length)\n                    Array.Resize(ref buffer, bytesToRead);\n                int bytesRead = port.Read(buffer, 0, bytesToRead);\n                // Process the read buffer here\n                // ...\n                break;\n            case SerialData.Eof:\n                // Terminate the service here\n                // ...\n                break;\n        }\n    };",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Asynchronous read",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

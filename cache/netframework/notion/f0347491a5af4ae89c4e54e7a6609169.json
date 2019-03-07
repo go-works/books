@@ -1,0 +1,83 @@
+{
+  "ID": "f0347491-a5af-4ae8-9c4e-54e7a6609169",
+  "Root": {
+    "alive": true,
+    "content": [
+      "197abb1f-16f6-4db6-bab2-c663dfacbdd4"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551950647478,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "f0347491-a5af-4ae8-9c4e-54e7a6609169",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551950647478,
+    "parent_id": "2a28de72-302f-4f78-8304-6adcd7189a32",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Basic HTTP downloader using System.Net.Http.HttpClient"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551950647476,
+        "id": "197abb1f-16f6-4db6-bab2-c663dfacbdd4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551950647476,
+        "parent_id": "f0347491-a5af-4ae8-9c4e-54e7a6609169",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "using System;\nusing System.IO;\nusing System.Linq;\nusing System.Net.Http;\nusing System.Threading.Tasks;\n\nclass HttpGet\n{\n    private static async Task DownloadAsync(string fromUrl, string toFile)\n    {\n        using (var fileStream = File.OpenWrite(toFile))\n        {\n            using (var httpClient = new HttpClient())\n            {\n                Console.WriteLine(\"Connecting...\");\n                using (var networkStream = await httpClient.GetStreamAsync(fromUrl))\n                {\n                    Console.WriteLine(\"Downloading...\");\n                    await networkStream.CopyToAsync(fileStream);\n                    await fileStream.FlushAsync();\n                }\n            }\n        }\n    }\n\n    static void Main(string[] args)\n    {\n        try\n        {\n            Run(args).Wait();\n        }\n        catch (Exception ex)\n        {\n            if (ex is AggregateException)\n                ex = ((AggregateException)ex).Flatten().InnerExceptions.First();\n\n            Console.WriteLine(\"--- Error: \" + \n                (ex.InnerException?.Message ?? ex.Message));\n        }\n    }\n    static async Task Run(string[] args)\n    {\n        if (args.Length \u003c 2)\n        {\n            Console.WriteLine(\"Basic HTTP downloader\");\n            Console.WriteLine();\n            Console.WriteLine(\"Usage: httpget \u003curl\u003e[\u003c:port\u003e] \u003cfile\u003e\");\n            return;\n        }\n\n        await DownloadAsync(fromUrl: args[0], toFile: args[1]);\n\n        Console.WriteLine(\"Done!\");\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "using System;\nusing System.IO;\nusing System.Linq;\nusing System.Net.Http;\nusing System.Threading.Tasks;\n\nclass HttpGet\n{\n    private static async Task DownloadAsync(string fromUrl, string toFile)\n    {\n        using (var fileStream = File.OpenWrite(toFile))\n        {\n            using (var httpClient = new HttpClient())\n            {\n                Console.WriteLine(\"Connecting...\");\n                using (var networkStream = await httpClient.GetStreamAsync(fromUrl))\n                {\n                    Console.WriteLine(\"Downloading...\");\n                    await networkStream.CopyToAsync(fileStream);\n                    await fileStream.FlushAsync();\n                }\n            }\n        }\n    }\n\n    static void Main(string[] args)\n    {\n        try\n        {\n            Run(args).Wait();\n        }\n        catch (Exception ex)\n        {\n            if (ex is AggregateException)\n                ex = ((AggregateException)ex).Flatten().InnerExceptions.First();\n\n            Console.WriteLine(\"--- Error: \" + \n                (ex.InnerException?.Message ?? ex.Message));\n        }\n    }\n    static async Task Run(string[] args)\n    {\n        if (args.Length \u003c 2)\n        {\n            Console.WriteLine(\"Basic HTTP downloader\");\n            Console.WriteLine();\n            Console.WriteLine(\"Usage: httpget \u003curl\u003e[\u003c:port\u003e] \u003cfile\u003e\");\n            return;\n        }\n\n        await DownloadAsync(fromUrl: args[0], toFile: args[1]);\n\n        Console.WriteLine(\"Done!\");\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Basic HTTP downloader using System.Net.Http.HttpClient",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

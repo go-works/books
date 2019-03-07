@@ -1,0 +1,83 @@
+{
+  "ID": "f89d8e2b-e86f-4342-bb2f-44a042319db3",
+  "Root": {
+    "alive": true,
+    "content": [
+      "2aa46147-09a7-4abc-9bec-bc4680f306da"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551952284622,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "f89d8e2b-e86f-4342-bb2f-44a042319db3",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551952284622,
+    "parent_id": "4d6337c3-ed63-4dd7-8571-3c5ded909939",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Read from standard error of child process"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551952284620,
+        "id": "2aa46147-09a7-4abc-9bec-bc4680f306da",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551952284620,
+        "parent_id": "f89d8e2b-e86f-4342-bb2f-44a042319db3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var errors = new System.Text.StringBuilder();\nvar process = new Process\n{\n    StartInfo = new ProcessStartInfo\n    {\n        RedirectStandardError = true,\n        FileName = \"xcopy.exe\",\n        Arguments = \"\\\"NonExistingFile\\\" \\\"DestinationFile\\\"\",\n        UseShellExecute = false\n    },\n            \n};\nprocess.ErrorDataReceived += (s, e) =\u003e errors.AppendLine(e.Data);\nprocess.Start();\nprocess.BeginErrorReadLine();\nprocess.WaitForExit();\n\nif (errors.Length \u003e 0) // something went wrong\n    System.Console.Error.WriteLine($\"Child process error: \\r\\n {errors}\");"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var errors = new System.Text.StringBuilder();\nvar process = new Process\n{\n    StartInfo = new ProcessStartInfo\n    {\n        RedirectStandardError = true,\n        FileName = \"xcopy.exe\",\n        Arguments = \"\\\"NonExistingFile\\\" \\\"DestinationFile\\\"\",\n        UseShellExecute = false\n    },\n            \n};\nprocess.ErrorDataReceived += (s, e) =\u003e errors.AppendLine(e.Data);\nprocess.Start();\nprocess.BeginErrorReadLine();\nprocess.WaitForExit();\n\nif (errors.Length \u003e 0) // something went wrong\n    System.Console.Error.WriteLine($\"Child process error: \\r\\n {errors}\");",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Read from standard error of child process",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,271 @@
+{
+  "ID": "be6c3658-3fd4-4e14-8ab9-e63592b17a7c",
+  "Root": {
+    "alive": true,
+    "content": [
+      "9fa5174d-6eec-4867-b5bd-7144af9fe451",
+      "90b9ba36-9c4d-4d4f-88a8-6d95dbe56c62",
+      "ea04a9ea-a591-4800-89ab-4171a61bad57",
+      "aabf8a1f-8a1c-424a-8fd8-f13ae1f6fb27",
+      "fc2dcc63-fc5a-4d90-8cb8-2f5bb5b28048",
+      "561c9e10-040c-477d-b05b-0f268bda7501"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551951120420,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "be6c3658-3fd4-4e14-8ab9-e63592b17a7c",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551951120420,
+    "parent_id": "b7cfb8cb-4348-49e4-a04a-0ba6eacab118",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Serialization using Json.NET with JsonSerializerSettings"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951120419,
+        "id": "9fa5174d-6eec-4867-b5bd-7144af9fe451",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951120419,
+        "parent_id": "be6c3658-3fd4-4e14-8ab9-e63592b17a7c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This serializer has some nice features that the default .net json serializer doesn’t have, like Null value handling, you just need to create the "
+            ],
+            [
+              "JsonSerializerSettings",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " :"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This serializer has some nice features that the default .net json serializer doesn’t have, like Null value handling, you just need to create the "
+          },
+          {
+            "Text": "JsonSerializerSettings",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " :"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951120419,
+        "id": "90b9ba36-9c4d-4d4f-88a8-6d95dbe56c62",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951120419,
+        "parent_id": "be6c3658-3fd4-4e14-8ab9-e63592b17a7c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public static string Serialize(T obj)\n{\n   string result = JsonConvert.SerializeObject(obj, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore});\n   return result;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public static string Serialize(T obj)\n{\n   string result = JsonConvert.SerializeObject(obj, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore});\n   return result;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951120420,
+        "id": "ea04a9ea-a591-4800-89ab-4171a61bad57",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951120420,
+        "parent_id": "be6c3658-3fd4-4e14-8ab9-e63592b17a7c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Another serious serializer issue in .net is the self referencing loop. In the case of a student that is enrolled in a course, its instance has a course property and a course has a collection of students that means a "
+            ],
+            [
+              "List\u003cStudent\u003e",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " which will create a reference loop. You can handle this with "
+            ],
+            [
+              "JsonSerializerSettings",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " :"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Another serious serializer issue in .net is the self referencing loop. In the case of a student that is enrolled in a course, its instance has a course property and a course has a collection of students that means a "
+          },
+          {
+            "Text": "List\u003cStudent\u003e",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " which will create a reference loop. You can handle this with "
+          },
+          {
+            "Text": "JsonSerializerSettings",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " :"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951120420,
+        "id": "aabf8a1f-8a1c-424a-8fd8-f13ae1f6fb27",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951120420,
+        "parent_id": "be6c3658-3fd4-4e14-8ab9-e63592b17a7c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public static string Serialize(T obj)\n{\n   string result = JsonConvert.SerializeObject(obj, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore});\n   return result;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public static string Serialize(T obj)\n{\n   string result = JsonConvert.SerializeObject(obj, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore});\n   return result;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951120420,
+        "id": "fc2dcc63-fc5a-4d90-8cb8-2f5bb5b28048",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951120420,
+        "parent_id": "be6c3658-3fd4-4e14-8ab9-e63592b17a7c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "You can put various serializations option like this:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "You can put various serializations option like this:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551951120420,
+        "id": "561c9e10-040c-477d-b05b-0f268bda7501",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551951120420,
+        "parent_id": "be6c3658-3fd4-4e14-8ab9-e63592b17a7c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "public static string Serialize(T obj)\n{\n   string result = JsonConvert.SerializeObject(obj, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, ReferenceLoopHandling = ReferenceLoopHandling.Ignore});\n   return result;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "public static string Serialize(T obj)\n{\n   string result = JsonConvert.SerializeObject(obj, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore, ReferenceLoopHandling = ReferenceLoopHandling.Ignore});\n   return result;\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Serialization using Json.NET with JsonSerializerSettings",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

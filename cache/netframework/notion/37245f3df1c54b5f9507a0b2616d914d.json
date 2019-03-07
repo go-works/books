@@ -1,0 +1,266 @@
+{
+  "ID": "37245f3d-f1c5-4b5f-9507-a0b2616d914d",
+  "Root": {
+    "alive": true,
+    "content": [
+      "6314355c-d3d0-49c8-9999-07c79db58ec9",
+      "02c49dd4-f03d-4251-9199-8b3de0356941",
+      "fb2c0763-37d5-4639-82b5-8ae2873e6614",
+      "9a609d3f-6321-40ea-9b6a-b19fd46bbfb7"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551950803478,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "37245f3d-f1c5-4b5f-9507-a0b2616d914d",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551950803478,
+    "parent_id": "8fb3262d-e5fa-4d3b-86ba-dae1d9f482b0",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Flowing execution context with AsyncLocal"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551950803477,
+        "id": "6314355c-d3d0-49c8-9999-07c79db58ec9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551950803477,
+        "parent_id": "37245f3d-f1c5-4b5f-9507-a0b2616d914d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "When you need to pass some data from the parent task to its children tasks, so it logically flows with the execution, use "
+            ],
+            [
+              "AsyncLocal",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " "
+            ],
+            [
+              "class",
+              [
+                [
+                  "a",
+                  "https://msdn.microsoft.com/en-us/library/dn906268(v=vs.110).aspx"
+                ]
+              ]
+            ],
+            [
+              ":"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "When you need to pass some data from the parent task to its children tasks, so it logically flows with the execution, use "
+          },
+          {
+            "Text": "AsyncLocal",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " "
+          },
+          {
+            "Text": "class",
+            "Link": "https://msdn.microsoft.com/en-us/library/dn906268(v=vs.110).aspx"
+          },
+          {
+            "Text": ":"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551950803478,
+        "id": "02c49dd4-f03d-4251-9199-8b3de0356941",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551950803478,
+        "parent_id": "37245f3d-f1c5-4b5f-9507-a0b2616d914d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "void Main()\n{\n    AsyncLocal\u003cstring\u003e user = new AsyncLocal\u003cstring\u003e();\n    user.Value = \"initial user\";\n    \n    // this does not affect other tasks - values are local relative to the branches of execution flow\n    Task.Run(() =\u003e user.Value = \"user from another task\"); \n    \n    var task1 = Task.Run(() =\u003e\n    {\n        Console.WriteLine(user.Value); // outputs \"initial user\"\n        Task.Run(() =\u003e\n        {\n            // outputs \"initial user\" - value has flown from main method to this task without being changed\n            Console.WriteLine(user.Value);\n        }).Wait();\n\n        user.Value = \"user from task1\";"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "void Main()\n{\n    AsyncLocal\u003cstring\u003e user = new AsyncLocal\u003cstring\u003e();\n    user.Value = \"initial user\";\n    \n    // this does not affect other tasks - values are local relative to the branches of execution flow\n    Task.Run(() =\u003e user.Value = \"user from another task\"); \n    \n    var task1 = Task.Run(() =\u003e\n    {\n        Console.WriteLine(user.Value); // outputs \"initial user\"\n        Task.Run(() =\u003e\n        {\n            // outputs \"initial user\" - value has flown from main method to this task without being changed\n            Console.WriteLine(user.Value);\n        }).Wait();\n\n        user.Value = \"user from task1\";",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551950803478,
+        "id": "fb2c0763-37d5-4639-82b5-8ae2873e6614",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551950803478,
+        "parent_id": "37245f3d-f1c5-4b5f-9507-a0b2616d914d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "Task.Run(() =\u003e\n{\n    // outputs \"user from task1\" - value has flown from main method to task1\n    // than value was changed and flown to this task.\n    Console.WriteLine(user.Value);\n}).Wait();\n});\n\ntask1.Wait();\n\n// ouputs \"initial user\" - changes do not propagate back upstream the execution flow    \nConsole.WriteLine(user.Value); \n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "Task.Run(() =\u003e\n{\n    // outputs \"user from task1\" - value has flown from main method to task1\n    // than value was changed and flown to this task.\n    Console.WriteLine(user.Value);\n}).Wait();\n});\n\ntask1.Wait();\n\n// ouputs \"initial user\" - changes do not propagate back upstream the execution flow    \nConsole.WriteLine(user.Value); \n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551950803478,
+        "id": "9a609d3f-6321-40ea-9b6a-b19fd46bbfb7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551950803478,
+        "parent_id": "37245f3d-f1c5-4b5f-9507-a0b2616d914d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Note:",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " As can be seen from the example above "
+            ],
+            [
+              "AsynLocal.Value",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " has "
+            ],
+            [
+              "copy on read",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " semantic, but if you flow some reference type and change its properties you will affect other tasks. Hence, best practice with "
+            ],
+            [
+              "AsyncLocal",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is to use value types or immutable types."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Note:",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " As can be seen from the example above "
+          },
+          {
+            "Text": "AsynLocal.Value",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " has "
+          },
+          {
+            "Text": "copy on read",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " semantic, but if you flow some reference type and change its properties you will affect other tasks. Hence, best practice with "
+          },
+          {
+            "Text": "AsyncLocal",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is to use value types or immutable types."
+          }
+        ]
+      }
+    ],
+    "title": "Flowing execution context with AsyncLocal",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}
