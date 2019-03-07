@@ -1,0 +1,106 @@
+{
+  "ID": "3a0bc3b3-ec41-4946-bba4-217cb99adc41",
+  "Root": {
+    "alive": true,
+    "content": [
+      "17d173f6-4184-43fb-8143-e35acbae6db5",
+      "65f0d84f-a74f-40e6-8f01-82831a319825"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551949730610,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "3a0bc3b3-ec41-4946-bba4-217cb99adc41",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551949730610,
+    "parent_id": "041fccae-eb96-4fce-9577-0aaf8da6dad2",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Line with arrowheads"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949730610,
+        "id": "17d173f6-4184-43fb-8143-e35acbae6db5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949730610,
+        "parent_id": "3a0bc3b3-ec41-4946-bba4-217cb99adc41",
+        "parent_table": "block",
+        "properties": {
+          "source": [
+            [
+              "/tmp/fe7679c2-97c9-4636-84b8-302b778b9b2b/4b978bb1a24a7b979b2ae4df86230525e98e4cf1.png"
+            ]
+          ]
+        },
+        "type": "image",
+        "version": 1,
+        "source": "/tmp/fe7679c2-97c9-4636-84b8-302b778b9b2b/4b978bb1a24a7b979b2ae4df86230525e98e4cf1.png",
+        "image_url": "https://www.notion.so/image/https:%2F%2Fwww.notion.so%2Ftmp%2Ffe7679c2-97c9-4636-84b8-302b778b9b2b%2F4b978bb1a24a7b979b2ae4df86230525e98e4cf1.png"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949730610,
+        "id": "65f0d84f-a74f-40e6-8f01-82831a319825",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949730610,
+        "parent_id": "3a0bc3b3-ec41-4946-bba4-217cb99adc41",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Usage: \ndrawLineWithArrows(50,50,150,50,5,8,true,true);\n\n// x0,y0: the line's starting point\n// x1,y1: the line's ending point\n// width: the distance the arrowhead perpendicularly extends away from the line\n// height: the distance the arrowhead extends backward from the endpoint\n// arrowStart: true/false directing to draw arrowhead at the line's starting point\n// arrowEnd: true/false directing to draw arrowhead at the line's ending point\n\nfunction drawLineWithArrows(x0,y0,x1,y1,aWidth,aLength,arrowStart,arrowEnd){\n    var dx=x1-x0;\n    var dy=y1-y0;\n    var angle=Math.atan2(dy,dx);\n    var length=Math.sqrt(dx*dx+dy*dy);\n    //\n    ctx.translate(x0,y0);\n    ctx.rotate(angle);\n    ctx.beginPath();\n    ctx.moveTo(0,0);\n    ctx.lineTo(length,0);\n    if(arrowStart){\n        ctx.moveTo(aLength,-aWidth);\n        ctx.lineTo(0,0);\n        ctx.lineTo(aLength,aWidth);\n    }\n    if(arrowEnd){\n        ctx.moveTo(length-aLength,-aWidth);\n        ctx.lineTo(length,0);\n        ctx.lineTo(length-aLength,aWidth);\n    }\n    //\n    ctx.stroke();\n    ctx.setTransform(1,0,0,1,0,0);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Usage: \ndrawLineWithArrows(50,50,150,50,5,8,true,true);\n\n// x0,y0: the line's starting point\n// x1,y1: the line's ending point\n// width: the distance the arrowhead perpendicularly extends away from the line\n// height: the distance the arrowhead extends backward from the endpoint\n// arrowStart: true/false directing to draw arrowhead at the line's starting point\n// arrowEnd: true/false directing to draw arrowhead at the line's ending point\n\nfunction drawLineWithArrows(x0,y0,x1,y1,aWidth,aLength,arrowStart,arrowEnd){\n    var dx=x1-x0;\n    var dy=y1-y0;\n    var angle=Math.atan2(dy,dx);\n    var length=Math.sqrt(dx*dx+dy*dy);\n    //\n    ctx.translate(x0,y0);\n    ctx.rotate(angle);\n    ctx.beginPath();\n    ctx.moveTo(0,0);\n    ctx.lineTo(length,0);\n    if(arrowStart){\n        ctx.moveTo(aLength,-aWidth);\n        ctx.lineTo(0,0);\n        ctx.lineTo(aLength,aWidth);\n    }\n    if(arrowEnd){\n        ctx.moveTo(length-aLength,-aWidth);\n        ctx.lineTo(length,0);\n        ctx.lineTo(length-aLength,aWidth);\n    }\n    //\n    ctx.stroke();\n    ctx.setTransform(1,0,0,1,0,0);\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Line with arrowheads",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

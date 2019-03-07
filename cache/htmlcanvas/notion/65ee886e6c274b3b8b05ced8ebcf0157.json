@@ -1,0 +1,186 @@
+{
+  "ID": "65ee886e-6c27-4b3b-8b05-ced8ebcf0157",
+  "Root": {
+    "alive": true,
+    "content": [
+      "b0c047cd-c0b9-41e8-90e6-3f1bab144caa",
+      "4cb616e9-7357-4f5b-9cd5-10bc313ce545",
+      "435e59ab-f696-4757-aa54-2ff5f7707dfc",
+      "2ed0c074-03f2-410f-91a2-605218f5f026"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551949651290,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "65ee886e-6c27-4b3b-8b05-ced8ebcf0157",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551949651290,
+    "parent_id": "7d650957-f574-48d4-85d0-f1426726d652",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Creating a responsive full page canvas"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949651285,
+        "id": "b0c047cd-c0b9-41e8-90e6-3f1bab144caa",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949651285,
+        "parent_id": "65ee886e-6c27-4b3b-8b05-ced8ebcf0157",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Starter code to create and remove a full page canvas that responds to resize events via javascript."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Starter code to create and remove a full page canvas that responds to resize events via javascript."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949651288,
+        "id": "4cb616e9-7357-4f5b-9cd5-10bc313ce545",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949651288,
+        "parent_id": "65ee886e-6c27-4b3b-8b05-ced8ebcf0157",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var canvas;    // Global canvas reference\nvar ctx;       // Global 2D context reference\n// Creates a canvas\nfunction createCanvas () {                \n    const canvas = document.createElement(\"canvas\"); \n    canvas.style.position = \"absolute\"; // Set the style \n    canvas.style.left     = \"0px\";      // Position in top left\n    canvas.style.top      = \"0px\";\n    canvas.style.zIndex   = 1;        \n    document.body.appendChild(canvas);  // Add to document\n    return canvas;\n}\n// Resizes canvas. Will create a canvas if it does not exist\nfunction sizeCanvas () {                \n    if (canvas === undefined) {         // Check for global canvas reference\n        canvas = createCanvas();        // Create a new canvas element\n        ctx = canvas.getContext(\"2d\");  // Get the 2D context\n    }\n    canvas.width  = innerWidth;         // Set the canvas resolution to fill the page\n    canvas.height = innerHeight;        \n}\n// Removes the canvas\nfunction removeCanvas () {\n    if (canvas !== undefined) {              // Make sure there is something to remove\n        removeEventListener(\"resize\", sizeCanvas); // Remove resize event\n        document.body.removeChild(canvas);   // Remove the canvas from the DOM\n        ctx = undefined;                     // Dereference the context\n        canvas = undefined;                  // Dereference the canvas\n     }\n}\n\n// Add the resize listener\naddEventListener(\"resize\", sizeCanvas); \n// Call sizeCanvas to create and set the canvas resolution\nsizeCanvas();\n// ctx and canvas are now available for use."
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var canvas;    // Global canvas reference\nvar ctx;       // Global 2D context reference\n// Creates a canvas\nfunction createCanvas () {                \n    const canvas = document.createElement(\"canvas\"); \n    canvas.style.position = \"absolute\"; // Set the style \n    canvas.style.left     = \"0px\";      // Position in top left\n    canvas.style.top      = \"0px\";\n    canvas.style.zIndex   = 1;        \n    document.body.appendChild(canvas);  // Add to document\n    return canvas;\n}\n// Resizes canvas. Will create a canvas if it does not exist\nfunction sizeCanvas () {                \n    if (canvas === undefined) {         // Check for global canvas reference\n        canvas = createCanvas();        // Create a new canvas element\n        ctx = canvas.getContext(\"2d\");  // Get the 2D context\n    }\n    canvas.width  = innerWidth;         // Set the canvas resolution to fill the page\n    canvas.height = innerHeight;        \n}\n// Removes the canvas\nfunction removeCanvas () {\n    if (canvas !== undefined) {              // Make sure there is something to remove\n        removeEventListener(\"resize\", sizeCanvas); // Remove resize event\n        document.body.removeChild(canvas);   // Remove the canvas from the DOM\n        ctx = undefined;                     // Dereference the context\n        canvas = undefined;                  // Dereference the canvas\n     }\n}\n\n// Add the resize listener\naddEventListener(\"resize\", sizeCanvas); \n// Call sizeCanvas to create and set the canvas resolution\nsizeCanvas();\n// ctx and canvas are now available for use.",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949651288,
+        "id": "435e59ab-f696-4757-aa54-2ff5f7707dfc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949651288,
+        "parent_id": "65ee886e-6c27-4b3b-8b05-ced8ebcf0157",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If you no longer need the canvas you can remove it by calling "
+            ],
+            [
+              "removeCanvas()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If you no longer need the canvas you can remove it by calling "
+          },
+          {
+            "Text": "removeCanvas()",
+            "AttrFlags": 2
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949651290,
+        "id": "2ed0c074-03f2-410f-91a2-605218f5f026",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949651290,
+        "parent_id": "65ee886e-6c27-4b3b-8b05-ced8ebcf0157",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "A demo of this example",
+              [
+                [
+                  "a",
+                  "https://jsfiddle.net/nzromo1n/"
+                ]
+              ]
+            ],
+            [
+              " at jsfiddle"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "A demo of this example",
+            "Link": "https://jsfiddle.net/nzromo1n/"
+          },
+          {
+            "Text": " at jsfiddle"
+          }
+        ]
+      }
+    ],
+    "title": "Creating a responsive full page canvas",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

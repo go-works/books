@@ -1,0 +1,109 @@
+{
+  "ID": "966bedbd-fd67-4a9a-b085-253167cec767",
+  "Root": {
+    "alive": true,
+    "content": [
+      "67710642-7475-43e5-ac2f-90a783ae4239",
+      "b24ac47f-4837-4393-aba0-4417b3fda257"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551949720396,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "966bedbd-fd67-4a9a-b085-253167cec767",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551949720396,
+    "parent_id": "c37198be-d8f3-48ef-8bfc-2cebe79b5d8b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Are 2 polygons colliding both concave and convex polys are allowed"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949720396,
+        "id": "67710642-7475-43e5-ac2f-90a783ae4239",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949720396,
+        "parent_id": "966bedbd-fd67-4a9a-b085-253167cec767",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Tests all polygon sides for intersections to determine if 2 polygons are colliding."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Tests all polygon sides for intersections to determine if 2 polygons are colliding."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949720396,
+        "id": "b24ac47f-4837-4393-aba0-4417b3fda257",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949720396,
+        "parent_id": "966bedbd-fd67-4a9a-b085-253167cec767",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// polygon objects are an array of vertices forming the polygon\n//     var polygon1=[{x:100,y:100},{x:150,y:150},{x:50,y:150},...];\n// The polygons can be both concave and convex\n// return true if the 2 polygons are colliding \n\nfunction polygonsCollide(p1,p2){\n    // turn vertices into line points\n    var lines1=verticesToLinePoints(p1);\n    var lines2=verticesToLinePoints(p2);\n    // test each poly1 side vs each poly2 side for intersections\n    for(i=0; i\u003clines1.length; i++){\n    for(j=0; j\u003clines2.length; j++){\n        // test if sides intersect\n        var p0=lines1[i][0];\n        var p1=lines1[i][1];\n        var p2=lines2[j][0];\n        var p3=lines2[j][1];\n        // found an intersection -- polys do collide\n        if(lineSegmentsCollide(p0,p1,p2,p3)){return(true);}\n    }}\n    // none of the sides intersect\n    return(false);\n}\n// helper: turn vertices into line points\nfunction verticesToLinePoints(p){\n    // make sure polys are self-closing\n    if(!(p[0].x==p[p.length-1].x \u0026\u0026 p[0].y==p[p.length-1].y)){\n        p.push({x:p[0].x,y:p[0].y});\n    }\n    var lines=[];\n    for(var i=1;i\u003cp.length;i++){\n        var p1=p[i-1];\n        var p2=p[i];\n        lines.push([ \n            {x:p1.x, y:p1.y},\n            {x:p2.x, y:p2.y}\n        ]);\n    }\n    return(lines);\n}\n// helper: test line intersections\n// point object: {x:, y:}\n// p0 \u0026 p1 form one segment, p2 \u0026 p3 form the second segment\n// Get interseting point of 2 line segments (if any)\n// Attribution: http://paulbourke.net/geometry/pointlineplane/\nfunction lineSegmentsCollide(p0,p1,p2,p3) {\n    var unknownA = (p3.x-p2.x) * (p0.y-p2.y) - (p3.y-p2.y) * (p0.x-p2.x);\n    var unknownB = (p1.x-p0.x) * (p0.y-p2.y) - (p1.y-p0.y) * (p0.x-p2.x);\n    var denominator  = (p3.y-p2.y) * (p1.x-p0.x) - (p3.x-p2.x) * (p1.y-p0.y);        \n\n    // Test if Coincident\n    // If the denominator and numerator for the ua and ub are 0\n    //    then the two lines are coincident.    \n    if(unknownA==0 \u0026\u0026 unknownB==0 \u0026\u0026 denominator==0){return(null);}\n\n    // Test if Parallel \n    // If the denominator for the equations for ua and ub is 0\n    //     then the two lines are parallel. \n    if (denominator == 0) return null;\n\n    // test if line segments are colliding\n    unknownA /= denominator;\n    unknownB /= denominator;\n    var isIntersecting=(unknownA\u003e=0 \u0026\u0026 unknownA\u003c=1 \u0026\u0026 unknownB\u003e=0 \u0026\u0026 unknownB\u003c=1)\n\n    return(isIntersecting);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// polygon objects are an array of vertices forming the polygon\n//     var polygon1=[{x:100,y:100},{x:150,y:150},{x:50,y:150},...];\n// The polygons can be both concave and convex\n// return true if the 2 polygons are colliding \n\nfunction polygonsCollide(p1,p2){\n    // turn vertices into line points\n    var lines1=verticesToLinePoints(p1);\n    var lines2=verticesToLinePoints(p2);\n    // test each poly1 side vs each poly2 side for intersections\n    for(i=0; i\u003clines1.length; i++){\n    for(j=0; j\u003clines2.length; j++){\n        // test if sides intersect\n        var p0=lines1[i][0];\n        var p1=lines1[i][1];\n        var p2=lines2[j][0];\n        var p3=lines2[j][1];\n        // found an intersection -- polys do collide\n        if(lineSegmentsCollide(p0,p1,p2,p3)){return(true);}\n    }}\n    // none of the sides intersect\n    return(false);\n}\n// helper: turn vertices into line points\nfunction verticesToLinePoints(p){\n    // make sure polys are self-closing\n    if(!(p[0].x==p[p.length-1].x \u0026\u0026 p[0].y==p[p.length-1].y)){\n        p.push({x:p[0].x,y:p[0].y});\n    }\n    var lines=[];\n    for(var i=1;i\u003cp.length;i++){\n        var p1=p[i-1];\n        var p2=p[i];\n        lines.push([ \n            {x:p1.x, y:p1.y},\n            {x:p2.x, y:p2.y}\n        ]);\n    }\n    return(lines);\n}\n// helper: test line intersections\n// point object: {x:, y:}\n// p0 \u0026 p1 form one segment, p2 \u0026 p3 form the second segment\n// Get interseting point of 2 line segments (if any)\n// Attribution: http://paulbourke.net/geometry/pointlineplane/\nfunction lineSegmentsCollide(p0,p1,p2,p3) {\n    var unknownA = (p3.x-p2.x) * (p0.y-p2.y) - (p3.y-p2.y) * (p0.x-p2.x);\n    var unknownB = (p1.x-p0.x) * (p0.y-p2.y) - (p1.y-p0.y) * (p0.x-p2.x);\n    var denominator  = (p3.y-p2.y) * (p1.x-p0.x) - (p3.x-p2.x) * (p1.y-p0.y);        \n\n    // Test if Coincident\n    // If the denominator and numerator for the ua and ub are 0\n    //    then the two lines are coincident.    \n    if(unknownA==0 \u0026\u0026 unknownB==0 \u0026\u0026 denominator==0){return(null);}\n\n    // Test if Parallel \n    // If the denominator for the equations for ua and ub is 0\n    //     then the two lines are parallel. \n    if (denominator == 0) return null;\n\n    // test if line segments are colliding\n    unknownA /= denominator;\n    unknownB /= denominator;\n    var isIntersecting=(unknownA\u003e=0 \u0026\u0026 unknownA\u003c=1 \u0026\u0026 unknownB\u003e=0 \u0026\u0026 unknownB\u003c=1)\n\n    return(isIntersecting);\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Are 2 polygons colliding both concave and convex polys are allowed",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,106 @@
+{
+  "ID": "c4cd866a-be93-4766-9a73-41f6baa0864a",
+  "Root": {
+    "alive": true,
+    "content": [
+      "13d52382-be24-446b-bbe7-7f113b0ba1d9",
+      "8f010d7b-0350-44b3-84b8-bedba9fd9cd9"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551949731791,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "c4cd866a-be93-4766-9a73-41f6baa0864a",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551949731791,
+    "parent_id": "041fccae-eb96-4fce-9577-0aaf8da6dad2",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Cubic Quadratic Bezier curve with arrowheads"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949731791,
+        "id": "13d52382-be24-446b-bbe7-7f113b0ba1d9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949731791,
+        "parent_id": "c4cd866a-be93-4766-9a73-41f6baa0864a",
+        "parent_table": "block",
+        "properties": {
+          "source": [
+            [
+              "/tmp/8e877f6b-dd2e-4796-aa97-d8c112dd4949/b364cee0c70cb086a23e86fcfc2047fddd116d04.png"
+            ]
+          ]
+        },
+        "type": "image",
+        "version": 1,
+        "source": "/tmp/8e877f6b-dd2e-4796-aa97-d8c112dd4949/b364cee0c70cb086a23e86fcfc2047fddd116d04.png",
+        "image_url": "https://www.notion.so/image/https:%2F%2Fwww.notion.so%2Ftmp%2F8e877f6b-dd2e-4796-aa97-d8c112dd4949%2Fb364cee0c70cb086a23e86fcfc2047fddd116d04.png"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949731791,
+        "id": "8f010d7b-0350-44b3-84b8-bedba9fd9cd9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949731791,
+        "parent_id": "c4cd866a-be93-4766-9a73-41f6baa0864a",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Usage:\nvar p0={x:50,y:100};\nvar p1={x:100,y:0};\nvar p2={x:200,y:200};\nvar p3={x:300,y:100};\n\ncubicCurveArrowHeads(p0, p1, p2, p3, 15, true, true);\n\nquadraticCurveArrowHeads(p0, p1, p2, 15, true, true);\n\n// or use defaults true for both ends with arrow heads\ncubicCurveArrowHeads(p0, p1, p2, p3, 15);\n\nquadraticCurveArrowHeads(p0, p1, p2, 15);\n\n\n\n// draws both cubic and quadratic bezier\nfunction bezWithArrowheads(p0, p1, p2, p3, arrowLength, hasStartArrow, hasEndArrow) {\n    var x, y, norm, ex, ey;\n    function pointsToNormalisedVec(p,pp){\n        var len;\n        norm.y = pp.x - p.x;\n        norm.x = -(pp.y - p.y);\n        len = Math.sqrt(norm.x * norm.x + norm.y * norm.y);\n        norm.x /= len;\n        norm.y /= len;\n        return norm;\n    }\n        \n    var arrowWidth = arrowLength / 2;\n    norm = {};\n    // defaults to true for both arrows if arguments not included\n    hasStartArrow = hasStartArrow === undefined || hasStartArrow === null ? true : hasStartArrow;\n    hasEndArrow = hasEndArrow === undefined || hasEndArrow === null ? true : hasEndArrow;\n    ctx.beginPath();\n    ctx.moveTo(p0.x, p0.y);\n    if (p3 === undefined) {\n        ctx.quadraticCurveTo(p1.x, p1.y, p2.x, p2.y);\n        ex = p2.x;  // get end point\n        ey = p2.y;\n        norm = pointsToNormalisedVec(p1,p2);\n    } else {\n        ctx.bezierCurveTo(p1.x, p1.y, p2.x, p2.y, p3.x, p3.y)\n        ex = p3.x; // get end point\n        ey = p3.y;\n        norm = pointsToNormalisedVec(p2,p3);\n    }\n    if (hasEndArrow) {\n        x = arrowWidth * norm.x + arrowLength * -norm.y;\n        y = arrowWidth * norm.y + arrowLength * norm.x;\n        ctx.moveTo(ex + x, ey + y);\n        ctx.lineTo(ex, ey);\n        x = arrowWidth * -norm.x + arrowLength * -norm.y;\n        y = arrowWidth * -norm.y + arrowLength * norm.x;\n        ctx.lineTo(ex + x, ey + y);\n    }\n    if (hasStartArrow) {\n        norm = pointsToNormalisedVec(p0,p1);\n        x = arrowWidth * norm.x - arrowLength * -norm.y;\n        y = arrowWidth * norm.y - arrowLength * norm.x;\n        ctx.moveTo(p0.x + x, p0.y + y);\n        ctx.lineTo(p0.x, p0.y);\n        x = arrowWidth * -norm.x - arrowLength * -norm.y;\n        y = arrowWidth * -norm.y - arrowLength * norm.x;\n        ctx.lineTo(p0.x + x, p0.y + y);\n    }\n\n    ctx.stroke();\n}\n\nfunction cubicCurveArrowHeads(p0, p1, p2, p3, arrowLength, hasStartArrow, hasEndArrow) {\n    bezWithArrowheads(p0, p1, p2, p3, arrowLength, hasStartArrow, hasEndArrow);\n}\nfunction quadraticCurveArrowHeads(p0, p1, p2, arrowLength, hasStartArrow, hasEndArrow) {\n    bezWithArrowheads(p0, p1, p2, undefined, arrowLength, hasStartArrow, hasEndArrow);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Usage:\nvar p0={x:50,y:100};\nvar p1={x:100,y:0};\nvar p2={x:200,y:200};\nvar p3={x:300,y:100};\n\ncubicCurveArrowHeads(p0, p1, p2, p3, 15, true, true);\n\nquadraticCurveArrowHeads(p0, p1, p2, 15, true, true);\n\n// or use defaults true for both ends with arrow heads\ncubicCurveArrowHeads(p0, p1, p2, p3, 15);\n\nquadraticCurveArrowHeads(p0, p1, p2, 15);\n\n\n\n// draws both cubic and quadratic bezier\nfunction bezWithArrowheads(p0, p1, p2, p3, arrowLength, hasStartArrow, hasEndArrow) {\n    var x, y, norm, ex, ey;\n    function pointsToNormalisedVec(p,pp){\n        var len;\n        norm.y = pp.x - p.x;\n        norm.x = -(pp.y - p.y);\n        len = Math.sqrt(norm.x * norm.x + norm.y * norm.y);\n        norm.x /= len;\n        norm.y /= len;\n        return norm;\n    }\n        \n    var arrowWidth = arrowLength / 2;\n    norm = {};\n    // defaults to true for both arrows if arguments not included\n    hasStartArrow = hasStartArrow === undefined || hasStartArrow === null ? true : hasStartArrow;\n    hasEndArrow = hasEndArrow === undefined || hasEndArrow === null ? true : hasEndArrow;\n    ctx.beginPath();\n    ctx.moveTo(p0.x, p0.y);\n    if (p3 === undefined) {\n        ctx.quadraticCurveTo(p1.x, p1.y, p2.x, p2.y);\n        ex = p2.x;  // get end point\n        ey = p2.y;\n        norm = pointsToNormalisedVec(p1,p2);\n    } else {\n        ctx.bezierCurveTo(p1.x, p1.y, p2.x, p2.y, p3.x, p3.y)\n        ex = p3.x; // get end point\n        ey = p3.y;\n        norm = pointsToNormalisedVec(p2,p3);\n    }\n    if (hasEndArrow) {\n        x = arrowWidth * norm.x + arrowLength * -norm.y;\n        y = arrowWidth * norm.y + arrowLength * norm.x;\n        ctx.moveTo(ex + x, ey + y);\n        ctx.lineTo(ex, ey);\n        x = arrowWidth * -norm.x + arrowLength * -norm.y;\n        y = arrowWidth * -norm.y + arrowLength * norm.x;\n        ctx.lineTo(ex + x, ey + y);\n    }\n    if (hasStartArrow) {\n        norm = pointsToNormalisedVec(p0,p1);\n        x = arrowWidth * norm.x - arrowLength * -norm.y;\n        y = arrowWidth * norm.y - arrowLength * norm.x;\n        ctx.moveTo(p0.x + x, p0.y + y);\n        ctx.lineTo(p0.x, p0.y);\n        x = arrowWidth * -norm.x - arrowLength * -norm.y;\n        y = arrowWidth * -norm.y - arrowLength * norm.x;\n        ctx.lineTo(p0.x + x, p0.y + y);\n    }\n\n    ctx.stroke();\n}\n\nfunction cubicCurveArrowHeads(p0, p1, p2, p3, arrowLength, hasStartArrow, hasEndArrow) {\n    bezWithArrowheads(p0, p1, p2, p3, arrowLength, hasStartArrow, hasEndArrow);\n}\nfunction quadraticCurveArrowHeads(p0, p1, p2, arrowLength, hasStartArrow, hasEndArrow) {\n    bezWithArrowheads(p0, p1, p2, undefined, arrowLength, hasStartArrow, hasEndArrow);\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Cubic Quadratic Bezier curve with arrowheads",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

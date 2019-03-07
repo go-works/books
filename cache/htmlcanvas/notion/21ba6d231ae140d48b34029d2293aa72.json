@@ -1,0 +1,129 @@
+{
+  "ID": "21ba6d23-1ae1-40d4-8b34-029d2293aa72",
+  "Root": {
+    "alive": true,
+    "content": [
+      "bbd421c3-8633-491d-8de1-118b463d9093",
+      "bd987c21-6d7a-439b-8e7b-9c219dc38e13",
+      "d0ee0588-7596-4ec6-b687-b4dab4d10b92"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551949701405,
+    "id": "21ba6d23-1ae1-40d4-8b34-029d2293aa72",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551949701405,
+    "parent_id": "43473e47-27d0-430a-914d-cd63a767322a",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 Animate at a specified interval add a new rectangle every 1 second"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949701402,
+        "id": "bbd421c3-8633-491d-8de1-118b463d9093",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949701402,
+        "parent_id": "21ba6d23-1ae1-40d4-8b34-029d2293aa72",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This example adds a new rectangle to the canvas every 1 second (== a 1 second interval)"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This example adds a new rectangle to the canvas every 1 second (== a 1 second interval)"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949701405,
+        "id": "bd987c21-6d7a-439b-8e7b-9c219dc38e13",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949701405,
+        "parent_id": "21ba6d23-1ae1-40d4-8b34-029d2293aa72",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Annotated Code:",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Annotated Code:",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949701405,
+        "id": "d0ee0588-7596-4ec6-b687-b4dab4d10b92",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949701405,
+        "parent_id": "21ba6d23-1ae1-40d4-8b34-029d2293aa72",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003c!doctype html\u003e\n\u003chtml\u003e\n\u003chead\u003e\n\u003cstyle\u003e\n    body{ background-color:white; }\n    #canvas{border:1px solid red; }\n\u003c/style\u003e\n\u003cscript\u003e\nwindow.onload=(function(){\n\n    // canvas related variables\n    var canvas=document.getElementById(\"canvas\");\n    var ctx=canvas.getContext(\"2d\");\n    var cw=canvas.width;\n    var ch=canvas.height;\n\n    // animation interval variables\n    var nextTime=0;      // the next animation begins at \"nextTime\"\n    var duration=1000;   // run animation every 1000ms\n\n    var x=20;            // the X where the next rect is drawn\n    \n    // start the animation\n    requestAnimationFrame(animate);\n\n    function animate(currentTime){\n\n        // wait for nextTime to occur\n        if(currentTime\u003cnextTime){\n            // request another loop of animation\n            requestAnimationFrame(animate);\n            // time hasn't elapsed so just return\n            return;\n        }\n        // set nextTime\n        nextTime=currentTime+duration;\n\n        // add another rectangle every 1000ms\n        ctx.fillStyle='#'+Math.floor(Math.random()*16777215).toString(16);\n        ctx.fillRect(x,30,30,30);\n\n        // update X position for next rectangle\n        x+=30;\n\n        // request another loop of animation\n        requestAnimationFrame(animate);\n    }\n\n}); // end $(function(){});\n\u003c/script\u003e\n\u003c/head\u003e\n\u003cbody\u003e\n    \u003ccanvas id=\"canvas\" width=512 height=512\u003e\u003c/canvas\u003e\n\u003c/body\u003e\n\u003c/html\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003c!doctype html\u003e\n\u003chtml\u003e\n\u003chead\u003e\n\u003cstyle\u003e\n    body{ background-color:white; }\n    #canvas{border:1px solid red; }\n\u003c/style\u003e\n\u003cscript\u003e\nwindow.onload=(function(){\n\n    // canvas related variables\n    var canvas=document.getElementById(\"canvas\");\n    var ctx=canvas.getContext(\"2d\");\n    var cw=canvas.width;\n    var ch=canvas.height;\n\n    // animation interval variables\n    var nextTime=0;      // the next animation begins at \"nextTime\"\n    var duration=1000;   // run animation every 1000ms\n\n    var x=20;            // the X where the next rect is drawn\n    \n    // start the animation\n    requestAnimationFrame(animate);\n\n    function animate(currentTime){\n\n        // wait for nextTime to occur\n        if(currentTime\u003cnextTime){\n            // request another loop of animation\n            requestAnimationFrame(animate);\n            // time hasn't elapsed so just return\n            return;\n        }\n        // set nextTime\n        nextTime=currentTime+duration;\n\n        // add another rectangle every 1000ms\n        ctx.fillStyle='#'+Math.floor(Math.random()*16777215).toString(16);\n        ctx.fillRect(x,30,30,30);\n\n        // update X position for next rectangle\n        x+=30;\n\n        // request another loop of animation\n        requestAnimationFrame(animate);\n    }\n\n}); // end $(function(){});\n\u003c/script\u003e\n\u003c/head\u003e\n\u003cbody\u003e\n    \u003ccanvas id=\"canvas\" width=512 height=512\u003e\u003c/canvas\u003e\n\u003c/body\u003e\n\u003c/html\u003e",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "030 Animate at a specified interval add a new rectangle every 1 second"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

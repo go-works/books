@@ -1,0 +1,153 @@
+{
+  "ID": "79857376-c841-49ea-b302-05128307ea9c",
+  "Root": {
+    "alive": true,
+    "content": [
+      "de913bfc-a5b8-405b-8583-e5d055a35aa2",
+      "d6c84e5a-81d1-4c4e-921a-85ef8fe0850a",
+      "038e0afc-d6bd-4c24-94cb-1688273e7a11"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551949776494,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "79857376-c841-49ea-b302-05128307ea9c",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551949776494,
+    "parent_id": "69ada749-d571-44f8-9e7e-47f98efde9a1",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Finding points along a line"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949776491,
+        "id": "de913bfc-a5b8-405b-8583-e5d055a35aa2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949776491,
+        "parent_id": "79857376-c841-49ea-b302-05128307ea9c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This example finds an array of approximately evenly spaced points along a line."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This example finds an array of approximately evenly spaced points along a line."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949776494,
+        "id": "d6c84e5a-81d1-4c4e-921a-85ef8fe0850a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949776494,
+        "parent_id": "79857376-c841-49ea-b302-05128307ea9c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "It decomposes Path segments created with "
+            ],
+            [
+              "context.lineTo",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " into points along that line."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "It decomposes Path segments created with "
+          },
+          {
+            "Text": "context.lineTo",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " into points along that line."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949776494,
+        "id": "038e0afc-d6bd-4c24-94cb-1688273e7a11",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949776494,
+        "parent_id": "79857376-c841-49ea-b302-05128307ea9c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Return: an array of approximately evenly spaced points along a line\n//\n// pxTolerance: approximate spacing allowed between points\n// Ax,Ay,Bx,By: end points defining the line\n//\nfunction plotLine(pxTolerance,Ax,Ay,Bx,By){\n    var dx=Bx-Ax;\n    var dy=By-Ay;\n    var ptCount=parseInt(Math.sqrt(dx*dx+dy*dy))*3;\n    var lastX=-10000;\n    var lastY=-10000;\n    var pts=[{x:Ax,y:Ay}];\n    for(var i=1;i\u003c=ptCount;i++){\n        var t=i/ptCount;\n        var x=Ax+dx*t;\n        var y=Ay+dy*t;\n        var dx1=x-lastX;\n        var dy1=y-lastY;\n        if(dx1*dx1+dy1*dy1\u003epxTolerance){\n            pts.push({x:x,y:y});\n            lastX=x;\n            lastY=y;\n        }\n    }\n    pts.push({x:Bx,y:By});\n    return(pts);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Return: an array of approximately evenly spaced points along a line\n//\n// pxTolerance: approximate spacing allowed between points\n// Ax,Ay,Bx,By: end points defining the line\n//\nfunction plotLine(pxTolerance,Ax,Ay,Bx,By){\n    var dx=Bx-Ax;\n    var dy=By-Ay;\n    var ptCount=parseInt(Math.sqrt(dx*dx+dy*dy))*3;\n    var lastX=-10000;\n    var lastY=-10000;\n    var pts=[{x:Ax,y:Ay}];\n    for(var i=1;i\u003c=ptCount;i++){\n        var t=i/ptCount;\n        var x=Ax+dx*t;\n        var y=Ay+dy*t;\n        var dx1=x-lastX;\n        var dy1=y-lastY;\n        if(dx1*dx1+dy1*dy1\u003epxTolerance){\n            pts.push({x:x,y:y});\n            lastX=x;\n            lastY=y;\n        }\n    }\n    pts.push({x:Bx,y:By});\n    return(pts);\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Finding points along a line",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

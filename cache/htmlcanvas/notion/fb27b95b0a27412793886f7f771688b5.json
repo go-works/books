@@ -1,0 +1,298 @@
+{
+  "ID": "fb27b95b-0a27-4127-9388-6f7f771688b5",
+  "Root": {
+    "alive": true,
+    "content": [
+      "353a91ce-22bd-4b6b-8a13-df607f0f7c60",
+      "c000318b-90f1-4b3d-8e1b-89b2a7000c4f",
+      "7c0d31ab-dcd7-4105-9068-7aa9a7072347",
+      "6641655d-aabc-4e7f-8f9d-dc6ce4100771"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551949652362,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "fb27b95b-0a27-4127-9388-6f7f771688b5",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551949652362,
+    "parent_id": "7d650957-f574-48d4-85d0-f1426726d652",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Detecting mouse position on the canvas"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949652357,
+        "id": "353a91ce-22bd-4b6b-8a13-df607f0f7c60",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949652357,
+        "parent_id": "fb27b95b-0a27-4127-9388-6f7f771688b5",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This example will show how to get the mouse position relative to the canvas, such that "
+            ],
+            [
+              "(0,0)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " will be the top-left hand corner of the HTML5 Canvas. The "
+            ],
+            [
+              "e.clientX",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "e.clientY",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " will get the mouse positions relative to the top of the document, to change this to be based on the top of the canvas we subtract the "
+            ],
+            [
+              "left",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "right",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " positions of the canvas from the client X and Y."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This example will show how to get the mouse position relative to the canvas, such that "
+          },
+          {
+            "Text": "(0,0)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " will be the top-left hand corner of the HTML5 Canvas. The "
+          },
+          {
+            "Text": "e.clientX",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "e.clientY",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " will get the mouse positions relative to the top of the document, to change this to be based on the top of the canvas we subtract the "
+          },
+          {
+            "Text": "left",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "right",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " positions of the canvas from the client X and Y."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949652360,
+        "id": "c000318b-90f1-4b3d-8e1b-89b2a7000c4f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949652360,
+        "parent_id": "fb27b95b-0a27-4127-9388-6f7f771688b5",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var canvas = document.getElementById(\"myCanvas\");\nvar ctx = canvas.getContext(\"2d\");\nctx.font = \"16px Arial\";\n\ncanvas.addEventListener(\"mousemove\", function(e) { \n    var cRect = canvas.getBoundingClientRect();        // Gets CSS pos, and width/height\n    var canvasX = Math.round(e.clientX - cRect.left);  // Subtract the 'left' of the canvas \n    var canvasY = Math.round(e.clientY - cRect.top);   // from the X/Y positions to make  \n    ctx.clearRect(0, 0, canvas.width, canvas.height);  // (0,0) the top left of the canvas\n    ctx.fillText(\"X: \"+canvasX+\", Y: \"+canvasY, 10, 20);\n});"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var canvas = document.getElementById(\"myCanvas\");\nvar ctx = canvas.getContext(\"2d\");\nctx.font = \"16px Arial\";\n\ncanvas.addEventListener(\"mousemove\", function(e) { \n    var cRect = canvas.getBoundingClientRect();        // Gets CSS pos, and width/height\n    var canvasX = Math.round(e.clientX - cRect.left);  // Subtract the 'left' of the canvas \n    var canvasY = Math.round(e.clientY - cRect.top);   // from the X/Y positions to make  \n    ctx.clearRect(0, 0, canvas.width, canvas.height);  // (0,0) the top left of the canvas\n    ctx.fillText(\"X: \"+canvasX+\", Y: \"+canvasY, 10, 20);\n});",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949652362,
+        "id": "7c0d31ab-dcd7-4105-9068-7aa9a7072347",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949652362,
+        "parent_id": "fb27b95b-0a27-4127-9388-6f7f771688b5",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Runnable Example",
+              [
+                [
+                  "i"
+                ],
+                [
+                  "a",
+                  "https://jsfiddle.net/ab1exorg/"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Runnable Example",
+            "AttrFlags": 4,
+            "Link": "https://jsfiddle.net/ab1exorg/"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949652362,
+        "id": "6641655d-aabc-4e7f-8f9d-dc6ce4100771",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949652362,
+        "parent_id": "fb27b95b-0a27-4127-9388-6f7f771688b5",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The use of "
+            ],
+            [
+              "Math.round",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is due to ensure the "
+            ],
+            [
+              "x,y",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " positions are integers, as the bounding rectangle of the canvas may not have integer positions."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The use of "
+          },
+          {
+            "Text": "Math.round",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is due to ensure the "
+          },
+          {
+            "Text": "x,y",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " positions are integers, as the bounding rectangle of the canvas may not have integer positions."
+          }
+        ]
+      }
+    ],
+    "title": "Detecting mouse position on the canvas",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

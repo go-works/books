@@ -1,0 +1,135 @@
+{
+  "ID": "8f5fd8af-15dd-4f8f-8cf8-399382546d8f",
+  "Root": {
+    "alive": true,
+    "content": [
+      "02926297-2c9c-4525-8004-cac92f076ee9",
+      "eed52679-747b-4236-a7d9-68810f58be50",
+      "9c916334-e649-41a2-b5e6-c3b00dcbe15f"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551949847984,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "8f5fd8af-15dd-4f8f-8cf8-399382546d8f",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551949847984,
+    "parent_id": "d29786c7-8259-4e77-8b8c-65265f7b95e3",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Mouse coordinates after resizing or scrolling"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949847981,
+        "id": "02926297-2c9c-4525-8004-cac92f076ee9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949847981,
+        "parent_id": "8f5fd8af-15dd-4f8f-8cf8-399382546d8f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Canvas apps often rely heavily on user interaction with the mouse, but when the window is resized, the mouse event coordinates that canvas relies on are likely changed because resizing causes the canvas to be offset in a different position relative to the window. Thus, responsive design requires that the canvas offset position be recalculated when the window is resized – and also recalculated when the window is scrolled."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Canvas apps often rely heavily on user interaction with the mouse, but when the window is resized, the mouse event coordinates that canvas relies on are likely changed because resizing causes the canvas to be offset in a different position relative to the window. Thus, responsive design requires that the canvas offset position be recalculated when the window is resized – and also recalculated when the window is scrolled."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949847983,
+        "id": "eed52679-747b-4236-a7d9-68810f58be50",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949847983,
+        "parent_id": "8f5fd8af-15dd-4f8f-8cf8-399382546d8f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This code listens for window resizing events and recalculates the offsets used in mouse event handlers:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This code listens for window resizing events and recalculates the offsets used in mouse event handlers:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949847983,
+        "id": "9c916334-e649-41a2-b5e6-c3b00dcbe15f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949847983,
+        "parent_id": "8f5fd8af-15dd-4f8f-8cf8-399382546d8f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// variables holding the current canvas offset position\n//    relative to the window\nvar offsetX,offsetY;\n\n// a function to recalculate the canvas offsets\nfunction reOffset(){\n    var BB=canvas.getBoundingClientRect();\n    offsetX=BB.left;\n    offsetY=BB.top;        \n}\n\n// listen for window resizing (and scrolling) events\n//     and then recalculate the canvas offsets\nwindow.onscroll=function(e){ reOffset(); }\nwindow.onresize=function(e){ reOffset(); }\n\n// example usage of the offsets in a mouse handler\nfunction handleMouseUp(e){\n    // use offsetX \u0026 offsetY to get the correct mouse position\n    mouseX=parseInt(e.clientX-offsetX);\n    mouseY=parseInt(e.clientY-offsetY);\n    // ...\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// variables holding the current canvas offset position\n//    relative to the window\nvar offsetX,offsetY;\n\n// a function to recalculate the canvas offsets\nfunction reOffset(){\n    var BB=canvas.getBoundingClientRect();\n    offsetX=BB.left;\n    offsetY=BB.top;        \n}\n\n// listen for window resizing (and scrolling) events\n//     and then recalculate the canvas offsets\nwindow.onscroll=function(e){ reOffset(); }\nwindow.onresize=function(e){ reOffset(); }\n\n// example usage of the offsets in a mouse handler\nfunction handleMouseUp(e){\n    // use offsetX \u0026 offsetY to get the correct mouse position\n    mouseX=parseInt(e.clientX-offsetX);\n    mouseY=parseInt(e.clientY-offsetY);\n    // ...\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Mouse coordinates after resizing or scrolling",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,154 @@
+{
+  "ID": "3f6e99f3-2fbf-483b-bfe5-6887e0ebf302",
+  "Root": {
+    "alive": true,
+    "content": [
+      "0dcf6c17-f986-4fcb-ac4a-1dc3cf516436",
+      "f5fbf2cd-61b6-4cb4-adda-aa922450749b",
+      "694f54d8-4751-4d31-8705-e050d24b90a3"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551949777926,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "3f6e99f3-2fbf-483b-bfe5-6887e0ebf302",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551949777926,
+    "parent_id": "69ada749-d571-44f8-9e7e-47f98efde9a1",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Finding extent of Quadratic Curve"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949777925,
+        "id": "0dcf6c17-f986-4fcb-ac4a-1dc3cf516436",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949777925,
+        "parent_id": "3f6e99f3-2fbf-483b-bfe5-6887e0ebf302",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "When you need to find the bounding rectangle of a quadratic bezier curve you can use the following performant method."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "When you need to find the bounding rectangle of a quadratic bezier curve you can use the following performant method."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949777925,
+        "id": "f5fbf2cd-61b6-4cb4-adda-aa922450749b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949777925,
+        "parent_id": "3f6e99f3-2fbf-483b-bfe5-6887e0ebf302",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// This method was discovered by Blindman67 and solves by first normalising the control point thereby reducing the algorithm complexity \n// x1,y1, x2,y2, x3,y3 Start, Control, and End coords of bezier\n// [extent] is optional and if provided the extent will be added to it allowing you to use the function\n//        to get the extent of many beziers.\n// returns extent object (if not supplied a new extent is created)\n// Extent object properties\n// top, left,right,bottom,width,height\nfunction getQuadraticCurevExtent(x1, y1, x2, y2, x3, y3, extent) {\n    var brx, bx, x, bry, by, y, px, py;\n\n    // solve quadratic for bounds by BM67 normalizing equation\n    brx = x3 - x1; // get x range\n    bx = x2 - x1; // get x control point offset\n    x = bx / brx; // normalise control point which is used to check if maxima is in range\n\n    // do the same for the y points\n    bry = y3 - y1;\n    by = y2 - y1;\n    y = by / bry;\n\n    px = x1; // set defaults in case maximas outside range\n    py = y1;\n\n    // find top/left, top/right, bottom/left, or bottom/right\n    if (x \u003c 0 || x \u003e 1) { // check if x maxima is on the curve\n        px = bx * bx / (2 * bx - brx) + x1; // get the x maxima\n    }\n    if (y \u003c 0 || y \u003e 1) { // same as x\n        py = by * by / (2 * by - bry) + y1;\n    }\n\n    // create extent object and add extent\n    if (extent === undefined) {\n        extent = {};\n        extent.left = Math.min(x1, x3, px);\n        extent.top = Math.min(y1, y3, py);\n        extent.right = Math.max(x1, x3, px);\n        extent.bottom = Math.max(y1, y3, py);\n    } else { // use spplied extent and extend it to fit this curve\n        extent.left = Math.min(x1, x3, px, extent.left);\n        extent.top = Math.min(y1, y3, py, extent.top);\n        extent.right = Math.max(x1, x3, px, extent.right);\n        extent.bottom = Math.max(y1, y3, py, extent.bottom);\n    }\n\n    extent.width = extent.right - extent.left;\n    extent.height = extent.bottom - extent.top;\n    return extent;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// This method was discovered by Blindman67 and solves by first normalising the control point thereby reducing the algorithm complexity \n// x1,y1, x2,y2, x3,y3 Start, Control, and End coords of bezier\n// [extent] is optional and if provided the extent will be added to it allowing you to use the function\n//        to get the extent of many beziers.\n// returns extent object (if not supplied a new extent is created)\n// Extent object properties\n// top, left,right,bottom,width,height\nfunction getQuadraticCurevExtent(x1, y1, x2, y2, x3, y3, extent) {\n    var brx, bx, x, bry, by, y, px, py;\n\n    // solve quadratic for bounds by BM67 normalizing equation\n    brx = x3 - x1; // get x range\n    bx = x2 - x1; // get x control point offset\n    x = bx / brx; // normalise control point which is used to check if maxima is in range\n\n    // do the same for the y points\n    bry = y3 - y1;\n    by = y2 - y1;\n    y = by / bry;\n\n    px = x1; // set defaults in case maximas outside range\n    py = y1;\n\n    // find top/left, top/right, bottom/left, or bottom/right\n    if (x \u003c 0 || x \u003e 1) { // check if x maxima is on the curve\n        px = bx * bx / (2 * bx - brx) + x1; // get the x maxima\n    }\n    if (y \u003c 0 || y \u003e 1) { // same as x\n        py = by * by / (2 * by - bry) + y1;\n    }\n\n    // create extent object and add extent\n    if (extent === undefined) {\n        extent = {};\n        extent.left = Math.min(x1, x3, px);\n        extent.top = Math.min(y1, y3, py);\n        extent.right = Math.max(x1, x3, px);\n        extent.bottom = Math.max(y1, y3, py);\n    } else { // use spplied extent and extend it to fit this curve\n        extent.left = Math.min(x1, x3, px, extent.left);\n        extent.top = Math.min(y1, y3, py, extent.top);\n        extent.right = Math.max(x1, x3, px, extent.right);\n        extent.bottom = Math.max(y1, y3, py, extent.bottom);\n    }\n\n    extent.width = extent.right - extent.left;\n    extent.height = extent.bottom - extent.top;\n    return extent;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949777926,
+        "id": "694f54d8-4751-4d31-8705-e050d24b90a3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949777926,
+        "parent_id": "3f6e99f3-2fbf-483b-bfe5-6887e0ebf302",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "For a more detailed look at solving for extent see answer "
+            ],
+            [
+              "To get extent of a quadratic bezier",
+              [
+                [
+                  "a",
+                  "http://stackoverflow.com/a/39396368/3877726"
+                ]
+              ]
+            ],
+            [
+              " which includes runnable demos."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "For a more detailed look at solving for extent see answer "
+          },
+          {
+            "Text": "To get extent of a quadratic bezier",
+            "Link": "http://stackoverflow.com/a/39396368/3877726"
+          },
+          {
+            "Text": " which includes runnable demos."
+          }
+        ]
+      }
+    ],
+    "title": "Finding extent of Quadratic Curve",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

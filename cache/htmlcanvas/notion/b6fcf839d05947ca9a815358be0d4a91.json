@@ -1,0 +1,83 @@
+{
+  "ID": "b6fcf839-d059-47ca-9a81-5358be0d4a91",
+  "Root": {
+    "alive": true,
+    "content": [
+      "4d49bc8c-6dda-4a28-ba08-23690731d330"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551949717417,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "b6fcf839-d059-47ca-9a81-5358be0d4a91",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551949717417,
+    "parent_id": "c37198be-d8f3-48ef-8bfc-2cebe79b5d8b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Are a line segment and circle colliding"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949717415,
+        "id": "4d49bc8c-6dda-4a28-ba08-23690731d330",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949717415,
+        "parent_id": "b6fcf839-d059-47ca-9a81-5358be0d4a91",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// [x0,y0] to [x1,y1] define a line segment\n// [cx,cy] is circle centerpoint, cr is circle radius \nfunction isCircleSegmentColliding(x0,y0,x1,y1,cx,cy,cr){\n\n    // calc delta distance: source point to line start\n    var dx=cx-x0;\n    var dy=cy-y0;\n\n    // calc delta distance: line start to end\n    var dxx=x1-x0;\n    var dyy=y1-y0;\n\n    // Calc position on line normalized between 0.00 \u0026 1.00\n    // == dot product divided by delta line distances squared\n    var t=(dx*dxx+dy*dyy)/(dxx*dxx+dyy*dyy);\n\n    // calc nearest pt on line\n    var x=x0+dxx*t;\n    var y=y0+dyy*t;\n    \n    // clamp results to being on the segment\n    if(t\u003c0){x=x0;y=y0;}\n    if(t\u003e1){x=x1;y=y1;}\n\n    return( (cx-x)*(cx-x)+(cy-y)*(cy-y) \u003c cr*cr );\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// [x0,y0] to [x1,y1] define a line segment\n// [cx,cy] is circle centerpoint, cr is circle radius \nfunction isCircleSegmentColliding(x0,y0,x1,y1,cx,cy,cr){\n\n    // calc delta distance: source point to line start\n    var dx=cx-x0;\n    var dy=cy-y0;\n\n    // calc delta distance: line start to end\n    var dxx=x1-x0;\n    var dyy=y1-y0;\n\n    // Calc position on line normalized between 0.00 \u0026 1.00\n    // == dot product divided by delta line distances squared\n    var t=(dx*dxx+dy*dyy)/(dxx*dxx+dyy*dyy);\n\n    // calc nearest pt on line\n    var x=x0+dxx*t;\n    var y=y0+dyy*t;\n    \n    // clamp results to being on the segment\n    if(t\u003c0){x=x0;y=y0;}\n    if(t\u003e1){x=x1;y=y1;}\n\n    return( (cx-x)*(cx-x)+(cy-y)*(cy-y) \u003c cr*cr );\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Are a line segment and circle colliding",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

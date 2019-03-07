@@ -1,0 +1,141 @@
+{
+  "ID": "a17f3846-1527-43c4-afc3-4650016f7fb4",
+  "Root": {
+    "alive": true,
+    "content": [
+      "c88a5aa6-879d-4e50-af61-143f91e0b7ba",
+      "dccc9d0b-696e-49b9-a6b8-47307a867396",
+      "6bdf099e-4882-4440-af4c-84b93ba420c9"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551949702663,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "a17f3846-1527-43c4-afc3-4650016f7fb4",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551949702663,
+    "parent_id": "43473e47-27d0-430a-914d-cd63a767322a",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Animate at a specified time an animated clock"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949702660,
+        "id": "c88a5aa6-879d-4e50-af61-143f91e0b7ba",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949702660,
+        "parent_id": "a17f3846-1527-43c4-afc3-4650016f7fb4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This example animates a clock showing the seconds as a filled wedge"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This example animates a clock showing the seconds as a filled wedge"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949702662,
+        "id": "dccc9d0b-696e-49b9-a6b8-47307a867396",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949702662,
+        "parent_id": "a17f3846-1527-43c4-afc3-4650016f7fb4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Annotated Code:",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Annotated Code:",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551949702662,
+        "id": "6bdf099e-4882-4440-af4c-84b93ba420c9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551949702662,
+        "parent_id": "a17f3846-1527-43c4-afc3-4650016f7fb4",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003c!doctype html\u003e\n\u003chtml\u003e\n\u003chead\u003e\n\u003cstyle\u003e\n    body{ background-color:white; }\n    #canvas{border:1px solid red; }\n\u003c/style\u003e\n\u003cscript\u003e\nwindow.onload=(function(){\n\n    // canvas related variables\n    var canvas=document.getElementById(\"canvas\");\n    var ctx=canvas.getContext(\"2d\");\n    var cw=canvas.width;\n    var ch=canvas.height;\n    // canvas styling for the clock\n    ctx.strokeStyle='lightgray';\n    ctx.fillStyle='skyblue';\n    ctx.lineWidth=5;\n    \n    // cache often used values\n    var PI=Math.PI;\n    var fullCircle=PI*2;\n    var sa=-PI/2;   // == the 12 o'clock angle in context.arc\n    \n    // start the animation\n    requestAnimationFrame(animate);\n\n    function animate(currentTime){\n\n        // get the current seconds value from the system clock\n        var date=new Date();\n        var seconds=date.getSeconds();\n        \n        // clear the canvas\n        ctx.clearRect(0,0,cw,ch);\n        \n        // draw a full circle (== the clock face);\n        ctx.beginPath();\n        ctx.moveTo(100,100);\n        ctx.arc(100,100,75,0,fullCircle);\n        ctx.stroke();\n        // draw a wedge representing the current seconds value\n        ctx.beginPath();\n        ctx.moveTo(100,100);\n        ctx.arc(100,100,75,sa,sa+fullCircle*seconds/60);\n        ctx.fill();\n\n        // request another loop of animation\n        requestAnimationFrame(animate);\n    }\n\n}); // end $(function(){});\n\u003c/script\u003e\n\u003c/head\u003e\n\u003cbody\u003e\n    \u003ccanvas id=\"canvas\" width=512 height=512\u003e\u003c/canvas\u003e\n\u003c/body\u003e\n\u003c/html\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003c!doctype html\u003e\n\u003chtml\u003e\n\u003chead\u003e\n\u003cstyle\u003e\n    body{ background-color:white; }\n    #canvas{border:1px solid red; }\n\u003c/style\u003e\n\u003cscript\u003e\nwindow.onload=(function(){\n\n    // canvas related variables\n    var canvas=document.getElementById(\"canvas\");\n    var ctx=canvas.getContext(\"2d\");\n    var cw=canvas.width;\n    var ch=canvas.height;\n    // canvas styling for the clock\n    ctx.strokeStyle='lightgray';\n    ctx.fillStyle='skyblue';\n    ctx.lineWidth=5;\n    \n    // cache often used values\n    var PI=Math.PI;\n    var fullCircle=PI*2;\n    var sa=-PI/2;   // == the 12 o'clock angle in context.arc\n    \n    // start the animation\n    requestAnimationFrame(animate);\n\n    function animate(currentTime){\n\n        // get the current seconds value from the system clock\n        var date=new Date();\n        var seconds=date.getSeconds();\n        \n        // clear the canvas\n        ctx.clearRect(0,0,cw,ch);\n        \n        // draw a full circle (== the clock face);\n        ctx.beginPath();\n        ctx.moveTo(100,100);\n        ctx.arc(100,100,75,0,fullCircle);\n        ctx.stroke();\n        // draw a wedge representing the current seconds value\n        ctx.beginPath();\n        ctx.moveTo(100,100);\n        ctx.arc(100,100,75,sa,sa+fullCircle*seconds/60);\n        ctx.fill();\n\n        // request another loop of animation\n        requestAnimationFrame(animate);\n    }\n\n}); // end $(function(){});\n\u003c/script\u003e\n\u003c/head\u003e\n\u003cbody\u003e\n    \u003ccanvas id=\"canvas\" width=512 height=512\u003e\u003c/canvas\u003e\n\u003c/body\u003e\n\u003c/html\u003e",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Animate at a specified time an animated clock",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}
