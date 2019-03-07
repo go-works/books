@@ -191,6 +191,24 @@ var (
 		// https://www.notion.so/kjkpublic/Essential-CSS-18bfe038109649f48904e71ca18d76ed
 		NotionStartPageID: "18bfe038109649f48904e71ca18d76ed",
 	}
+	bookGit = &Book{
+		NoPublish:      true,
+		Title:          "Git",
+		TitleLong:      "Essential Git",
+		Dir:            "git",
+		CoverImageName: "Git.png",
+		// https://www.notion.so/kjkpublic/Essential-Git-37913107a4194981b1fc745928c0df66
+		NotionStartPageID: "37913107a4194981b1fc745928c0df66",
+	}
+	bookHTML = &Book{
+		NoPublish:      true,
+		Title:          "HTML",
+		TitleLong:      "Essential HTML",
+		Dir:            "html",
+		CoverImageName: "HTML.png",
+		// https://www.notion.so/kjkpublic/Essential-HTML-1c13e594ccd5472fb58d4c56379e7540
+		NotionStartPageID: "1c13e594ccd5472fb58d4c56379e7540",
+	}
 )
 
 var (
@@ -200,7 +218,7 @@ var (
 		bookPostgresql, bookMysql,
 	}
 	booksUnpublished = []*Book{
-		bookSql, bookAlgorithm, bookBash, bookC, bookCSS,
+		bookSql, bookAlgorithm, bookBash, bookC, bookCSS, bookGit, bookHTML,
 	}
 	allBooks = append(booksMain, booksUnpublished...)
 )
