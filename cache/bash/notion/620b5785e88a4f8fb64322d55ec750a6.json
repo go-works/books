@@ -1,0 +1,369 @@
+{
+  "ID": "620b5785-e88a-4f8f-b643-22d55ec750a6",
+  "Root": {
+    "alive": true,
+    "content": [
+      "5e767501-fc23-42d9-bafe-4d776ee66b5c",
+      "5cb4cd20-05e6-46be-888c-a767203fba60",
+      "70da63b9-68b1-44bc-85b8-618386cfe6a9",
+      "d1234a21-50d7-4381-9725-c3f8960218c0",
+      "81607a1c-f100-4ac5-bebd-9c1b67847171",
+      "ecb74c26-8e49-49a2-937e-a78104e7e71a",
+      "00bbfdf3-0046-4b62-89ce-6f32253cfb22"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551929999760,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "620b5785-e88a-4f8f-b643-22d55ec750a6",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551929999760,
+    "parent_id": "a3bd5e91-86c3-45e3-b8b0-9455aef09f8e",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Handling flags and optional parameters"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551929999759,
+        "id": "5e767501-fc23-42d9-bafe-4d776ee66b5c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551929999759,
+        "parent_id": "620b5785-e88a-4f8f-b643-22d55ec750a6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The "
+            ],
+            [
+              "getopts",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " builtin can be used inside functions to write functions that accommodate flags and optional parameters. This presents no special difficulty but one has to handle appropriately the values touched by "
+            ],
+            [
+              "getopts",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              ". As an example, we define a "
+            ],
+            [
+              "failwith",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " function that writes a message on "
+            ],
+            [
+              "stderr",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " and exits with code 1 or an arbitrary code supplied as parameter to the "
+            ],
+            [
+              "-x",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " option:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The "
+          },
+          {
+            "Text": "getopts",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " builtin can be used inside functions to write functions that accommodate flags and optional parameters. This presents no special difficulty but one has to handle appropriately the values touched by "
+          },
+          {
+            "Text": "getopts",
+            "AttrFlags": 4
+          },
+          {
+            "Text": ". As an example, we define a "
+          },
+          {
+            "Text": "failwith",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " function that writes a message on "
+          },
+          {
+            "Text": "stderr",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " and exits with code 1 or an arbitrary code supplied as parameter to the "
+          },
+          {
+            "Text": "-x",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " option:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551929999759,
+        "id": "5cb4cd20-05e6-46be-888c-a767203fba60",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551929999759,
+        "parent_id": "620b5785-e88a-4f8f-b643-22d55ec750a6",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "# failwith [-x STATUS] PRINTF-LIKE-ARGV\n#  Fail with the given diagnostic message\n#\n# The -x flag can be used to convey a custom exit status, instead of\n# the value 1.  A newline is automatically added to the output.\n\nfailwith()\n{\n    local OPTIND OPTION OPTARG status\n\n    status=1\n    OPTIND=1\n\n    while getopts 'x:' OPTION; do\n        case ${OPTION} in\n            x)    status=\"${OPTARG}\";;\n            *)    1\u003e\u00262 printf 'failwith: %s: Unsupported option.\\n' \"${OPTION}\";;\n        esac\n    done\n\n    shift $(( OPTIND - 1 ))\n    {\n        printf 'Failure: '\n        printf \"$@\"\n        printf '\\n'\n    } 1\u003e\u00262\n    exit \"${status}\"\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "# failwith [-x STATUS] PRINTF-LIKE-ARGV\n#  Fail with the given diagnostic message\n#\n# The -x flag can be used to convey a custom exit status, instead of\n# the value 1.  A newline is automatically added to the output.\n\nfailwith()\n{\n    local OPTIND OPTION OPTARG status\n\n    status=1\n    OPTIND=1\n\n    while getopts 'x:' OPTION; do\n        case ${OPTION} in\n            x)    status=\"${OPTARG}\";;\n            *)    1\u003e\u00262 printf 'failwith: %s: Unsupported option.\\n' \"${OPTION}\";;\n        esac\n    done\n\n    shift $(( OPTIND - 1 ))\n    {\n        printf 'Failure: '\n        printf \"$@\"\n        printf '\\n'\n    } 1\u003e\u00262\n    exit \"${status}\"\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551929999760,
+        "id": "70da63b9-68b1-44bc-85b8-618386cfe6a9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551929999760,
+        "parent_id": "620b5785-e88a-4f8f-b643-22d55ec750a6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This function can be used as follows:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This function can be used as follows:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551929999760,
+        "id": "d1234a21-50d7-4381-9725-c3f8960218c0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551929999760,
+        "parent_id": "620b5785-e88a-4f8f-b643-22d55ec750a6",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "failwith '%s: File not found.' \"${filename}\"\nfailwith -x 70 'General internal error.'"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "failwith '%s: File not found.' \"${filename}\"\nfailwith -x 70 'General internal error.'",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551929999760,
+        "id": "81607a1c-f100-4ac5-bebd-9c1b67847171",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551929999760,
+        "parent_id": "620b5785-e88a-4f8f-b643-22d55ec750a6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "and so on."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "and so on."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551929999760,
+        "id": "ecb74c26-8e49-49a2-937e-a78104e7e71a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551929999760,
+        "parent_id": "620b5785-e88a-4f8f-b643-22d55ec750a6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Note that as for "
+            ],
+            [
+              "printf",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              ", variables should not be used as first argument. If the message to print consists of the content of a variable, one should use the "
+            ],
+            [
+              "%s",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " specifier to print it, like in"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Note that as for "
+          },
+          {
+            "Text": "printf",
+            "AttrFlags": 4
+          },
+          {
+            "Text": ", variables should not be used as first argument. If the message to print consists of the content of a variable, one should use the "
+          },
+          {
+            "Text": "%s",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " specifier to print it, like in"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551929999760,
+        "id": "00bbfdf3-0046-4b62-89ce-6f32253cfb22",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551929999760,
+        "parent_id": "620b5785-e88a-4f8f-b643-22d55ec750a6",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "failwith '%s' \"${message}\""
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "failwith '%s' \"${message}\"",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Handling flags and optional parameters",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

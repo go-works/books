@@ -1,0 +1,83 @@
+{
+  "ID": "633e1908-66b0-432a-810b-03b0040ad646",
+  "Root": {
+    "alive": true,
+    "content": [
+      "55fc6954-11de-42f5-976e-5f04150b9da7"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551930348805,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "633e1908-66b0-432a-810b-03b0040ad646",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551930348805,
+    "parent_id": "47f8ef93-03b3-472e-b3d0-727d372a9735",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Simple completion for options and filenames"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551930348804,
+        "id": "55fc6954-11de-42f5-976e-5f04150b9da7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551930348804,
+        "parent_id": "633e1908-66b0-432a-810b-03b0040ad646",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "# The following shell function will be used to generate completions for\n# the \"nuance_tune\" command.\n_nuance_tune_opts ()\n{\n  local curr_arg prev_arg\n  curr_arg=${COMP_WORDS[COMP_CWORD]}\n  prev_arg=${COMP_WORDS[COMP_CWORD-1]}\n\n  # The \"config\" option takes a file arg, so get a list of the files in the\n  # current dir.  A case statement is probably unnecessary here, but leaves\n  # room to customize the parameters for other flags.\n  case \"$prev_arg\" in\n    -config)\n      COMPREPLY=( $( /bin/ls -1 ) )\n      return 0\n      ;;\n    esac\n  \n    # Use compgen to provide completions for all known options.\n    COMPREPLY=( $(compgen -W '-analyze -experiment -generate_groups -compute_thresh -config -output -help -usage -force -lang -grammar_overrides -begin_date -end_date -group -dataset -multiparses -dump_records -no_index -confidencelevel -nrecs -dry_run -rec_scripts_only -save_temp -full_trc -single_session -verbose -ep -unsupervised -write_manifest -remap -noreparse -upload -reference -target -use_only_matching -histogram -stepsize' -- $curr_arg ) );\n}\n\n# The -o parameter tells Bash to process completions as filenames, where applicable.                                                                                                                                                        \ncomplete -o filenames -F _nuance_tune_opts nuance_tune"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "# The following shell function will be used to generate completions for\n# the \"nuance_tune\" command.\n_nuance_tune_opts ()\n{\n  local curr_arg prev_arg\n  curr_arg=${COMP_WORDS[COMP_CWORD]}\n  prev_arg=${COMP_WORDS[COMP_CWORD-1]}\n\n  # The \"config\" option takes a file arg, so get a list of the files in the\n  # current dir.  A case statement is probably unnecessary here, but leaves\n  # room to customize the parameters for other flags.\n  case \"$prev_arg\" in\n    -config)\n      COMPREPLY=( $( /bin/ls -1 ) )\n      return 0\n      ;;\n    esac\n  \n    # Use compgen to provide completions for all known options.\n    COMPREPLY=( $(compgen -W '-analyze -experiment -generate_groups -compute_thresh -config -output -help -usage -force -lang -grammar_overrides -begin_date -end_date -group -dataset -multiparses -dump_records -no_index -confidencelevel -nrecs -dry_run -rec_scripts_only -save_temp -full_trc -single_session -verbose -ep -unsupervised -write_manifest -remap -noreparse -upload -reference -target -use_only_matching -histogram -stepsize' -- $curr_arg ) );\n}\n\n# The -o parameter tells Bash to process completions as filenames, where applicable.                                                                                                                                                        \ncomplete -o filenames -F _nuance_tune_opts nuance_tune",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Simple completion for options and filenames",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

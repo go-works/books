@@ -1,0 +1,143 @@
+{
+  "ID": "5ef48425-8032-4e57-bc23-cd199275c26d",
+  "Root": {
+    "alive": true,
+    "content": [
+      "95c9ccc3-7bc5-465d-a885-65270ae75a27",
+      "7b6e5666-d86b-40ef-a481-f2a65d947343",
+      "112b6def-8008-4d55-87e3-5e5c17dd63b3"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551930381809,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "5ef48425-8032-4e57-bc23-cd199275c26d",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551930381809,
+    "parent_id": "ebb2d1c5-86ab-4f87-9d97-bbe51edefccf",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "pingnmap"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551930381808,
+        "id": "95c9ccc3-7bc5-465d-a885-65270ae75a27",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551930381808,
+        "parent_id": "5ef48425-8032-4e57-bc23-cd199275c26d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#!/bin/bash\n# Script name : pingnmap\n# Scenario : The systems admin in company X is tired of the monotonous job\n# of pinging and nmapping, so he decided to simplify the job using a script.\n# The tasks he wish to achieve is\n# 1. Ping - with a max count of 5 -the given IP address/domain. AND/OR\n# 2. Check if a particular port is open with a given IP address/domain.\n# And getopts is for her rescue.\n# A brief overview of the options\n# n : meant for nmap\n# t : meant for ping\n# i : The option to enter the IP address\n# p : The option to enter the port\n# v : The option to get the script version\n\n\nwhile getopts ':nti:p:v' opt\n#putting : in the beginnnig suppresses the errors for invalid options\ndo\ncase \"$opt\" in\n   'i')ip=\"${OPTARG}\"\n       ;;\n   'p')port=\"${OPTARG}\"\n       ;;\n   'n')nmap_yes=1;\n       ;; \n   't')ping_yes=1;\n       ;;\n   'v')echo \"pingnmap version 1.0.0\"\n       ;;\n    *) echo \"Invalid option $opt\"\n       echo \"Usage : \"\n       echo \"pingmap -[n|t[i|p]|v]\"\n       ;;\nesac\ndone\nif  [ ! -z \"$nmap_yes\" ] \u0026\u0026 [ \"$nmap_yes\" -eq \"1\" ]\nthen\n   if [ ! -z \"$ip\" ] \u0026\u0026 [ ! -z \"$port\" ]\n   then\n     nmap -p \"$port\" \"$ip\"\n   fi\nfi\n\nif  [ ! -z \"$ping_yes\" ] \u0026\u0026 [ \"$ping_yes\" -eq \"1\" ]\nthen\n   if [ ! -z \"$ip\" ]\n   then\n     ping -c 5 \"$ip\"\n   fi\nfi\nshift $(( OPTIND - 1 )) # Processing additional arguments\nif [ ! -z \"$@\" ]\nthen\n  echo \"Bogus arguments at the end : $@\"\nfi"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#!/bin/bash\n# Script name : pingnmap\n# Scenario : The systems admin in company X is tired of the monotonous job\n# of pinging and nmapping, so he decided to simplify the job using a script.\n# The tasks he wish to achieve is\n# 1. Ping - with a max count of 5 -the given IP address/domain. AND/OR\n# 2. Check if a particular port is open with a given IP address/domain.\n# And getopts is for her rescue.\n# A brief overview of the options\n# n : meant for nmap\n# t : meant for ping\n# i : The option to enter the IP address\n# p : The option to enter the port\n# v : The option to get the script version\n\n\nwhile getopts ':nti:p:v' opt\n#putting : in the beginnnig suppresses the errors for invalid options\ndo\ncase \"$opt\" in\n   'i')ip=\"${OPTARG}\"\n       ;;\n   'p')port=\"${OPTARG}\"\n       ;;\n   'n')nmap_yes=1;\n       ;; \n   't')ping_yes=1;\n       ;;\n   'v')echo \"pingnmap version 1.0.0\"\n       ;;\n    *) echo \"Invalid option $opt\"\n       echo \"Usage : \"\n       echo \"pingmap -[n|t[i|p]|v]\"\n       ;;\nesac\ndone\nif  [ ! -z \"$nmap_yes\" ] \u0026\u0026 [ \"$nmap_yes\" -eq \"1\" ]\nthen\n   if [ ! -z \"$ip\" ] \u0026\u0026 [ ! -z \"$port\" ]\n   then\n     nmap -p \"$port\" \"$ip\"\n   fi\nfi\n\nif  [ ! -z \"$ping_yes\" ] \u0026\u0026 [ \"$ping_yes\" -eq \"1\" ]\nthen\n   if [ ! -z \"$ip\" ]\n   then\n     ping -c 5 \"$ip\"\n   fi\nfi\nshift $(( OPTIND - 1 )) # Processing additional arguments\nif [ ! -z \"$@\" ]\nthen\n  echo \"Bogus arguments at the end : $@\"\nfi",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551930381809,
+        "id": "7b6e5666-d86b-40ef-a481-f2a65d947343",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551930381809,
+        "parent_id": "5ef48425-8032-4e57-bc23-cd199275c26d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Output",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Output",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551930381809,
+        "id": "112b6def-8008-4d55-87e3-5e5c17dd63b3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551930381809,
+        "parent_id": "5ef48425-8032-4e57-bc23-cd199275c26d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "$ ./pingnmap -nt -i google.com -p 80\n\nStarting Nmap 6.40 ( http://nmap.org ) at 2016-07-23 14:31 IST\nNmap scan report for google.com (216.58.197.78)\nHost is up (0.034s latency).\nrDNS record for 216.58.197.78: maa03s21-in-f14.1e100.net\nPORT   STATE SERVICE\n80/tcp open  http\n\nNmap done: 1 IP address (1 host up) scanned in 0.22 seconds\nPING google.com (216.58.197.78) 56(84) bytes of data.\n64 bytes from maa03s21-in-f14.1e100.net (216.58.197.78): icmp_seq=1 ttl=57 time=29.3 ms\n64 bytes from maa03s21-in-f14.1e100.net (216.58.197.78): icmp_seq=2 ttl=57 time=30.9 ms\n64 bytes from maa03s21-in-f14.1e100.net (216.58.197.78): icmp_seq=3 ttl=57 time=34.7 ms\n64 bytes from maa03s21-in-f14.1e100.net (216.58.197.78): icmp_seq=4 ttl=57 time=39.6 ms\n64 bytes from maa03s21-in-f14.1e100.net (216.58.197.78): icmp_seq=5 ttl=57 time=32.7 ms\n\n--- google.com ping statistics ---\n5 packets transmitted, 5 received, 0% packet loss, time 4007ms\nrtt min/avg/max/mdev = 29.342/33.481/39.631/3.576 ms\n$ ./pingnmap -v\npingnmap version 1.0.0\n$ ./pingnmap -h\nInvalid option ?\nUsage : \npingmap -[n|t[i|p]|v]\n$ ./pingnmap -v\npingnmap version 1.0.0\n$ ./pingnmap -h\nInvalid option ?\nUsage : \npingmap -[n|t[i|p]|v]"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "$ ./pingnmap -nt -i google.com -p 80\n\nStarting Nmap 6.40 ( http://nmap.org ) at 2016-07-23 14:31 IST\nNmap scan report for google.com (216.58.197.78)\nHost is up (0.034s latency).\nrDNS record for 216.58.197.78: maa03s21-in-f14.1e100.net\nPORT   STATE SERVICE\n80/tcp open  http\n\nNmap done: 1 IP address (1 host up) scanned in 0.22 seconds\nPING google.com (216.58.197.78) 56(84) bytes of data.\n64 bytes from maa03s21-in-f14.1e100.net (216.58.197.78): icmp_seq=1 ttl=57 time=29.3 ms\n64 bytes from maa03s21-in-f14.1e100.net (216.58.197.78): icmp_seq=2 ttl=57 time=30.9 ms\n64 bytes from maa03s21-in-f14.1e100.net (216.58.197.78): icmp_seq=3 ttl=57 time=34.7 ms\n64 bytes from maa03s21-in-f14.1e100.net (216.58.197.78): icmp_seq=4 ttl=57 time=39.6 ms\n64 bytes from maa03s21-in-f14.1e100.net (216.58.197.78): icmp_seq=5 ttl=57 time=32.7 ms\n\n--- google.com ping statistics ---\n5 packets transmitted, 5 received, 0% packet loss, time 4007ms\nrtt min/avg/max/mdev = 29.342/33.481/39.631/3.576 ms\n$ ./pingnmap -v\npingnmap version 1.0.0\n$ ./pingnmap -h\nInvalid option ?\nUsage : \npingmap -[n|t[i|p]|v]\n$ ./pingnmap -v\npingnmap version 1.0.0\n$ ./pingnmap -h\nInvalid option ?\nUsage : \npingmap -[n|t[i|p]|v]",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "pingnmap",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

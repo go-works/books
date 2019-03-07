@@ -1,0 +1,189 @@
+{
+  "ID": "269fd557-663e-49d7-8931-236e5d061f4d",
+  "Root": {
+    "alive": true,
+    "content": [
+      "e1466dd0-169c-4f6d-82da-62358ad4ed61",
+      "4ac598c6-3d0c-4b27-8072-53d1fb2ca16b",
+      "32bead5e-05f9-442c-9945-5b77720d6371"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551930858361,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "269fd557-663e-49d7-8931-236e5d061f4d",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551930858361,
+    "parent_id": "4fb8d03f-ca05-41b1-9319-a094b6e2f140",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "050 Using PS1"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 2,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551930858360,
+        "id": "e1466dd0-169c-4f6d-82da-62358ad4ed61",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551930858360,
+        "parent_id": "269fd557-663e-49d7-8931-236e5d061f4d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "PS1 is the normal system prompt indicating that bash waits for commands being typed in. It understands some escape sequences and can execute functions or progams. As bash has to position the cursor after the displayes prompt, it needs to know how to calculate the effective length of the prompt string. To indicate non printing sequences of chars within the PS1 variable escaped braces are used: "
+            ],
+            [
+              "\\[",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " "
+            ],
+            [
+              "a non printing sequence of chars",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " "
+            ],
+            [
+              "\\]",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              ". All being said holds true for all PS* vars."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "PS1 is the normal system prompt indicating that bash waits for commands being typed in. It understands some escape sequences and can execute functions or progams. As bash has to position the cursor after the displayes prompt, it needs to know how to calculate the effective length of the prompt string. To indicate non printing sequences of chars within the PS1 variable escaped braces are used: "
+          },
+          {
+            "Text": "\\[",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " "
+          },
+          {
+            "Text": "a non printing sequence of chars",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " "
+          },
+          {
+            "Text": "\\]",
+            "AttrFlags": 1
+          },
+          {
+            "Text": ". All being said holds true for all PS* vars."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551930858361,
+        "id": "4ac598c6-3d0c-4b27-8072-53d1fb2ca16b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551930858361,
+        "parent_id": "269fd557-663e-49d7-8931-236e5d061f4d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "(The black caret indicates cursor)"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "(The black caret indicates cursor)"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551930858361,
+        "id": "32bead5e-05f9-442c-9945-5b77720d6371",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551930858361,
+        "parent_id": "269fd557-663e-49d7-8931-236e5d061f4d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "#everything not being an escape sequence will be literally printed\nexport PS1=\"literal sequence \"  # Prompt is now:\nliteral sequence ▉\n\n# \\u == user \\h == host \\w == actual working directory\n# mind the single quotes avoiding interpretation by shell\nexport PS1='\\u@\\h:\\w \u003e ' # \\u == user, \\h == host, \\w actual working dir\nlooser@host:/some/path \u003e ▉\n\n# executing some commands within PS1\n# following line will set foreground color to red, if user==root, \n# else it resets attributes to default\n# $( (($EUID == 0)) \u0026\u0026  tput setaf 1)\n# later we do reset attributes to default with\n# $(  tput sgr0 )\n# assuming being root:\nPS1=\"\\[$( (($EUID == 0)) \u0026\u0026  tput setaf 1 \\]\\u\\[$(tput sgr0)\\]@\\w:\\w \\$ \"\nlooser@host:/some/path \u003e ▉  # if not root else \u003cred\u003eroot\u003cdefault\u003e@host...."
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "#everything not being an escape sequence will be literally printed\nexport PS1=\"literal sequence \"  # Prompt is now:\nliteral sequence ▉\n\n# \\u == user \\h == host \\w == actual working directory\n# mind the single quotes avoiding interpretation by shell\nexport PS1='\\u@\\h:\\w \u003e ' # \\u == user, \\h == host, \\w actual working dir\nlooser@host:/some/path \u003e ▉\n\n# executing some commands within PS1\n# following line will set foreground color to red, if user==root, \n# else it resets attributes to default\n# $( (($EUID == 0)) \u0026\u0026  tput setaf 1)\n# later we do reset attributes to default with\n# $(  tput sgr0 )\n# assuming being root:\nPS1=\"\\[$( (($EUID == 0)) \u0026\u0026  tput setaf 1 \\]\\u\\[$(tput sgr0)\\]@\\w:\\w \\$ \"\nlooser@host:/some/path \u003e ▉  # if not root else \u003cred\u003eroot\u003cdefault\u003e@host....",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "050 Using PS1",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

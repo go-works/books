@@ -1,0 +1,217 @@
+{
+  "ID": "e0c811b3-2e59-4975-a8d7-7202c33817e9",
+  "Root": {
+    "alive": true,
+    "content": [
+      "e60da85a-74cf-4aac-ae5e-3e140bd74926",
+      "83f2423e-c7c4-4a41-bce0-47a37f731d2d",
+      "f6bacb88-cce4-4d03-b0cd-dba832b922f9",
+      "b03dac07-ada5-4b85-9a23-4e72ccb07ca9",
+      "304116b3-70f6-48f7-8284-732d127ab102",
+      "0852c5ed-5583-4c4b-9304-08492aa114e1"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1551929999750,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "e0c811b3-2e59-4975-a8d7-7202c33817e9",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1551929999750,
+    "parent_id": "85a1d050-dd96-489e-a454-151dba0ec411",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Array insert function"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551929999747,
+        "id": "e60da85a-74cf-4aac-ae5e-3e140bd74926",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551929999747,
+        "parent_id": "e0c811b3-2e59-4975-a8d7-7202c33817e9",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This function will insert an element into an array at a given index:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This function will insert an element into an array at a given index:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551929999749,
+        "id": "83f2423e-c7c4-4a41-bce0-47a37f731d2d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551929999749,
+        "parent_id": "e0c811b3-2e59-4975-a8d7-7202c33817e9",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "insert(){\n    h='\n################## insert ########################\n# Usage:\n#   insert arr_name index element\n#\n#   Parameters:\n#       arr_name    : Name of the array variable\n#       index       : Index to insert at\n#       element     : Element to insert\n##################################################\n    '\n    [[ $1 = -h ]] \u0026\u0026 { echo \"$h\" \u003e/dev/stderr; return 1; }\n    declare -n __arr__=$1   # reference to the array variable\n    i=$2                    # index to insert at\n    el=\"$3\"                 # element to insert\n    # handle errors\n    [[ ! \"$i\" =~ ^[0-9]+$ ]] \u0026\u0026 { echo \"E: insert: index must be a valid integer\" \u003e/dev/stderr; return 1; }\n    (( $1 \u003c 0 )) \u0026\u0026 { echo \"E: insert: index can not be negative\" \u003e/dev/stderr; return 1; }\n    # Now insert $el at $i\n    __arr__=(\"${__arr__[@]:0:$i}\" \"$el\" \"${__arr__[@]:$i}\")\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "insert(){\n    h='\n################## insert ########################\n# Usage:\n#   insert arr_name index element\n#\n#   Parameters:\n#       arr_name    : Name of the array variable\n#       index       : Index to insert at\n#       element     : Element to insert\n##################################################\n    '\n    [[ $1 = -h ]] \u0026\u0026 { echo \"$h\" \u003e/dev/stderr; return 1; }\n    declare -n __arr__=$1   # reference to the array variable\n    i=$2                    # index to insert at\n    el=\"$3\"                 # element to insert\n    # handle errors\n    [[ ! \"$i\" =~ ^[0-9]+$ ]] \u0026\u0026 { echo \"E: insert: index must be a valid integer\" \u003e/dev/stderr; return 1; }\n    (( $1 \u003c 0 )) \u0026\u0026 { echo \"E: insert: index can not be negative\" \u003e/dev/stderr; return 1; }\n    # Now insert $el at $i\n    __arr__=(\"${__arr__[@]:0:$i}\" \"$el\" \"${__arr__[@]:$i}\")\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551929999750,
+        "id": "f6bacb88-cce4-4d03-b0cd-dba832b922f9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551929999750,
+        "parent_id": "e0c811b3-2e59-4975-a8d7-7202c33817e9",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Usage:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Usage:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551929999750,
+        "id": "b03dac07-ada5-4b85-9a23-4e72ccb07ca9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551929999750,
+        "parent_id": "e0c811b3-2e59-4975-a8d7-7202c33817e9",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "insert array_variable_name index element"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "insert array_variable_name index element",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551929999750,
+        "id": "304116b3-70f6-48f7-8284-732d127ab102",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551929999750,
+        "parent_id": "e0c811b3-2e59-4975-a8d7-7202c33817e9",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Example:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Example:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1551929999750,
+        "id": "0852c5ed-5583-4c4b-9304-08492aa114e1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1551929999750,
+        "parent_id": "e0c811b3-2e59-4975-a8d7-7202c33817e9",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "arr=(a b c d)\necho \"${arr[2]}\" # output: c\n# Now call the insert function and pass the array variable name,\n# index to insert at\n# and the element to insert\ninsert arr 2 'New Element'\n# 'New Element' was inserted at index 2 in arr, now print them\necho \"${arr[2]}\" # output: New Element\necho \"${arr[3]}\" # output: c"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "arr=(a b c d)\necho \"${arr[2]}\" # output: c\n# Now call the insert function and pass the array variable name,\n# index to insert at\n# and the element to insert\ninsert arr 2 'New Element'\n# 'New Element' was inserted at index 2 in arr, now print them\necho \"${arr[2]}\" # output: New Element\necho \"${arr[3]}\" # output: c",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Array insert function",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}
