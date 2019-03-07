@@ -182,6 +182,15 @@ var (
 		// https://www.notion.so/kjkpublic/Essential-C-84ae4145718e4b7b8cb43cf10ee4db6a
 		NotionStartPageID: "84ae4145718e4b7b8cb43cf10ee4db6a",
 	}
+	bookCSS = &Book{
+		NoPublish:      true,
+		Title:          "CSS",
+		TitleLong:      "Essential CSS",
+		Dir:            "css",
+		CoverImageName: "CSS.png",
+		// https://www.notion.so/kjkpublic/Essential-CSS-18bfe038109649f48904e71ca18d76ed
+		NotionStartPageID: "18bfe038109649f48904e71ca18d76ed",
+	}
 )
 
 var (
@@ -191,7 +200,7 @@ var (
 		bookPostgresql, bookMysql,
 	}
 	booksUnpublished = []*Book{
-		bookSql, bookAlgorithm, bookBash, bookC,
+		bookSql, bookAlgorithm, bookBash, bookC, bookCSS,
 	}
 	allBooks = append(booksMain, booksUnpublished...)
 )
