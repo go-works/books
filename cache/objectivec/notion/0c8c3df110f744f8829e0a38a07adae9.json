@@ -1,0 +1,127 @@
+{
+  "ID": "0c8c3df1-10f7-44f8-829e-0a38a07adae9",
+  "Root": {
+    "alive": true,
+    "content": [
+      "13082a7c-1ba5-4eef-a40e-23b1cd321f2e",
+      "40b51554-0181-459d-911c-60479213a7ce"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552021502150,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "0c8c3df1-10f7-44f8-829e-0a38a07adae9",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552021502150,
+    "parent_id": "1ba93139-aa14-4c2f-8bc2-51d74d0a5004",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Using Grand Central Dispatch GCD"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552021502147,
+        "id": "13082a7c-1ba5-4eef-a40e-23b1cd321f2e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552021502147,
+        "parent_id": "0c8c3df1-10f7-44f8-829e-0a38a07adae9",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "GCD will guarantee that your singleton only gets instantiated once, even if called from multiple threads. Insert this into any class for a singleton instance called "
+            ],
+            [
+              "shared",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "GCD will guarantee that your singleton only gets instantiated once, even if called from multiple threads. Insert this into any class for a singleton instance called "
+          },
+          {
+            "Text": "shared",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552021502150,
+        "id": "40b51554-0181-459d-911c-60479213a7ce",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552021502150,
+        "parent_id": "0c8c3df1-10f7-44f8-829e-0a38a07adae9",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "+ (instancetype)shared {\n\n    // Variable that will point to the singleton instance. The `static`\n    // modifier makes it behave like a global variable: the value assigned\n    // to it will \"survive\" the method call.\n    static id _shared;\n\n    static dispatch_once_t _onceToken;\n    dispatch_once(\u0026_onceToken, ^{\n\n        // This block is only executed once, in a thread-safe way.\n        // Create the instance and assign it to the static variable.\n        _shared = [self new];\n    });\n\n    return _shared;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "+ (instancetype)shared {\n\n    // Variable that will point to the singleton instance. The `static`\n    // modifier makes it behave like a global variable: the value assigned\n    // to it will \"survive\" the method call.\n    static id _shared;\n\n    static dispatch_once_t _onceToken;\n    dispatch_once(\u0026_onceToken, ^{\n\n        // This block is only executed once, in a thread-safe way.\n        // Create the instance and assign it to the static variable.\n        _shared = [self new];\n    });\n\n    return _shared;\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Using Grand Central Dispatch GCD",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,181 @@
+{
+  "ID": "455aeea2-ee76-44e6-a067-0c037d1a4896",
+  "Root": {
+    "alive": true,
+    "content": [
+      "25a72731-b460-43ea-a1a2-b4de9a89d545",
+      "eed93f39-1e8d-47d9-943e-ac2b60819017",
+      "8ef93136-3397-4a43-a238-4b4d61d6fa2a",
+      "0d08e20a-6afd-40a5-bdd4-f73026d13ecc"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552021495403,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "455aeea2-ee76-44e6-a067-0c037d1a4896",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552021495403,
+    "parent_id": "3732f308-d12a-4cbd-8512-6e4f9d34a917",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Manual Memory Management"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552021495399,
+        "id": "25a72731-b460-43ea-a1a2-b4de9a89d545",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552021495399,
+        "parent_id": "455aeea2-ee76-44e6-a067-0c037d1a4896",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This is an example of a program written with manual memory management. You really shouldn’t write your code like this, unless for some reason you can’t use ARC (like if you need to support 32-bit). The example avoids "
+            ],
+            [
+              "@property",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " notation to illustrate how you used to have to write getters and setters."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This is an example of a program written with manual memory management. You really shouldn’t write your code like this, unless for some reason you can’t use ARC (like if you need to support 32-bit). The example avoids "
+          },
+          {
+            "Text": "@property",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " notation to illustrate how you used to have to write getters and setters."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552021495402,
+        "id": "eed93f39-1e8d-47d9-943e-ac2b60819017",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552021495402,
+        "parent_id": "455aeea2-ee76-44e6-a067-0c037d1a4896",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "@interface MyObject : NSObject {\n    NSString *_property;\n}\n@end\n\n@implementation MyObject\n@synthesize property = _property;\n\n- (id)initWithProperty:(NSString *)property {\n    if (self = [super init]) {\n        // Grab a reference to property to make sure it doesn't go away.\n        // The reference is released in dealloc.\n        _property = [property retain];\n    }\n    return self;\n}\n\n- (NSString *)property {\n    return [[property retain] autorelease];\n}\n\n- (void)setProperty:(NSString *)property {\n    // Retain, then release. So setting it to the same value won't lose the reference.\n    [property retain];\n    [_property release];\n    _property = property;\n}\n\n- (void)dealloc {\n    [_property release];\n    [super dealloc]; // Don't forget!\n}\n\n@end"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "@interface MyObject : NSObject {\n    NSString *_property;\n}\n@end\n\n@implementation MyObject\n@synthesize property = _property;\n\n- (id)initWithProperty:(NSString *)property {\n    if (self = [super init]) {\n        // Grab a reference to property to make sure it doesn't go away.\n        // The reference is released in dealloc.\n        _property = [property retain];\n    }\n    return self;\n}\n\n- (NSString *)property {\n    return [[property retain] autorelease];\n}\n\n- (void)setProperty:(NSString *)property {\n    // Retain, then release. So setting it to the same value won't lose the reference.\n    [property retain];\n    [_property release];\n    _property = property;\n}\n\n- (void)dealloc {\n    [_property release];\n    [super dealloc]; // Don't forget!\n}\n\n@end",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552021495402,
+        "id": "8ef93136-3397-4a43-a238-4b4d61d6fa2a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552021495402,
+        "parent_id": "455aeea2-ee76-44e6-a067-0c037d1a4896",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "\u003c!–\u003e"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "\u003c!–\u003e"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552021495403,
+        "id": "0d08e20a-6afd-40a5-bdd4-f73026d13ecc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552021495403,
+        "parent_id": "455aeea2-ee76-44e6-a067-0c037d1a4896",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "int main() {\n    // create object\n    // obj is a reference that we need to release\n    MyObject *obj = [[MyObject alloc] init];\n    \n    // We have to release value because we created it.\n    NSString *value = [[NSString alloc] initWithString:@\"value\"];\n    [obj setProperty:value];\n    [value release];\n\n    // However, string constants never need to be released.\n    [obj setProperty:@\"value\"];\n    [obj release];\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "int main() {\n    // create object\n    // obj is a reference that we need to release\n    MyObject *obj = [[MyObject alloc] init];\n    \n    // We have to release value because we created it.\n    NSString *value = [[NSString alloc] initWithString:@\"value\"];\n    [obj setProperty:value];\n    [value release];\n\n    // However, string constants never need to be released.\n    [obj setProperty:@\"value\"];\n    [obj release];\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Manual Memory Management",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

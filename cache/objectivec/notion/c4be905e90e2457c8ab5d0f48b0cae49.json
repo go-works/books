@@ -1,0 +1,83 @@
+{
+  "ID": "c4be905e-90e2-457c-8ab5-d0f48b0cae49",
+  "Root": {
+    "alive": true,
+    "content": [
+      "c256c4f8-9193-4af9-9931-e38b0b53efe3"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552021598374,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "c4be905e-90e2-457c-8ab5-d0f48b0cae49",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552021598374,
+    "parent_id": "cb761839-f116-465c-a454-57011164d2e6",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Sorted by combinations of NSSortDescriptor"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552021598373,
+        "id": "c256c4f8-9193-4af9-9931-e38b0b53efe3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552021598373,
+        "parent_id": "c4be905e-90e2-457c-8ab5-d0f48b0cae49",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "NSArray *aryFName = @[ @\"Alice\", @\"Bob\", @\"Charlie\", @\"Quentin\" ];\nNSArray *aryLName = @[ @\"Smith\", @\"Jones\", @\"Smith\", @\"Alberts\" ];\nNSArray *aryAge = @[ @24, @27, @33, @31 ];\n    \n//Create a Custom class with properties for firstName \u0026 lastName of type NSString *,\n//and age, which is an NSUInteger.\n    \nNSMutableArray *aryPerson = [NSMutableArray array];\n[firstNames enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {\n    Person *person = [[Person alloc] init];\n    person.firstName = [aryFName objectAtIndex:idx];\n    person.lastName = [aryLName objectAtIndex:idx];\n    person.age = [aryAge objectAtIndex:idx];\n    [aryPerson addObject:person];\n}];\n    \nNSSortDescriptor *firstNameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@\"firstName\"\n                                             ascending:YES\n                                             selector:@selector(localizedStandardCompare:)];\n\nNSSortDescriptor *lastNameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@\"lastName\"\n                                            ascending:YES\n                                            selector:@selector(localizedStandardCompare:)];\n\nNSSortDescriptor *ageSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@\"age\"\n                                       ascending:NO];\n    \nNSLog(@\"By age: %@\", [aryPerson sortedArrayUsingDescriptors:@[ageSortDescriptor]]);\n// \"Charlie Smith\", \"Quentin Alberts\", \"Bob Jones\", \"Alice Smith\"\n    \n    \nNSLog(@\"By first name: %@\", [aryPerson sortedArrayUsingDescriptors:@[firstNameSortDescriptor]]);\n// \"Alice Smith\", \"Bob Jones\", \"Charlie Smith\", \"Quentin Alberts\"\n    \n    \nNSLog(@\"By last name, first name: %@\", [aryPerson sortedArrayUsingDescriptors:@[lastNameSortDescriptor, firstNameSortDescriptor]]);\n// \"Quentin Alberts\", \"Bob Jones\", \"Alice Smith\", \"Charlie Smith\""
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "NSArray *aryFName = @[ @\"Alice\", @\"Bob\", @\"Charlie\", @\"Quentin\" ];\nNSArray *aryLName = @[ @\"Smith\", @\"Jones\", @\"Smith\", @\"Alberts\" ];\nNSArray *aryAge = @[ @24, @27, @33, @31 ];\n    \n//Create a Custom class with properties for firstName \u0026 lastName of type NSString *,\n//and age, which is an NSUInteger.\n    \nNSMutableArray *aryPerson = [NSMutableArray array];\n[firstNames enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {\n    Person *person = [[Person alloc] init];\n    person.firstName = [aryFName objectAtIndex:idx];\n    person.lastName = [aryLName objectAtIndex:idx];\n    person.age = [aryAge objectAtIndex:idx];\n    [aryPerson addObject:person];\n}];\n    \nNSSortDescriptor *firstNameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@\"firstName\"\n                                             ascending:YES\n                                             selector:@selector(localizedStandardCompare:)];\n\nNSSortDescriptor *lastNameSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@\"lastName\"\n                                            ascending:YES\n                                            selector:@selector(localizedStandardCompare:)];\n\nNSSortDescriptor *ageSortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@\"age\"\n                                       ascending:NO];\n    \nNSLog(@\"By age: %@\", [aryPerson sortedArrayUsingDescriptors:@[ageSortDescriptor]]);\n// \"Charlie Smith\", \"Quentin Alberts\", \"Bob Jones\", \"Alice Smith\"\n    \n    \nNSLog(@\"By first name: %@\", [aryPerson sortedArrayUsingDescriptors:@[firstNameSortDescriptor]]);\n// \"Alice Smith\", \"Bob Jones\", \"Charlie Smith\", \"Quentin Alberts\"\n    \n    \nNSLog(@\"By last name, first name: %@\", [aryPerson sortedArrayUsingDescriptors:@[lastNameSortDescriptor, firstNameSortDescriptor]]);\n// \"Quentin Alberts\", \"Bob Jones\", \"Alice Smith\", \"Charlie Smith\"",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Sorted by combinations of NSSortDescriptor",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

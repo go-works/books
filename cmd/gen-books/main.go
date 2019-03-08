@@ -217,6 +217,22 @@ var (
 		// https://www.notion.so/kjkpublic/Essential-Node-a44f25f371164e69a70578bd98e71eb1
 		NotionStartPageID: "a44f25f371164e69a70578bd98e71eb1",
 	}
+	bookObjectiveC = &Book{
+		Title:          "Objective-C",
+		TitleLong:      "Essential Objective-C",
+		Dir:            "objectivec",
+		CoverImageName: "ObjectiveC.png",
+		// https://www.notion.so/kjkpublic/Essential-Objective-C-d16f98c8a3d641cd88a65fb67e6b0081
+		NotionStartPageID: "d16f98c8a3d641cd88a65fb67e6b0081",
+	}
+	bookPHP = &Book{
+		Title:          "PHP",
+		TitleLong:      "Essential PHP",
+		Dir:            "php",
+		CoverImageName: "PHP.png",
+		// https://www.notion.so/kjkpublic/Essential-PHP-b64d2e8d06e04dbea37e6e7d0e06bb48
+		NotionStartPageID: "b64d2e8d06e04dbea37e6e7d0e06bb48",
+	}
 )
 
 var (
@@ -227,7 +243,7 @@ var (
 	}
 	booksUnpublished = []*Book{
 		bookSql, bookAlgorithm, bookBash, bookC, bookCSS, bookGit, bookHTML,
-		bookHTMLCanvas, bookNETFramework, bookNode,
+		bookHTMLCanvas, bookNETFramework, bookNode, bookObjectiveC,
 	}
 	allBooks = append(booksMain, booksUnpublished...)
 )

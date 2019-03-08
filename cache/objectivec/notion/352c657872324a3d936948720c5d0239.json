@@ -1,0 +1,175 @@
+{
+  "ID": "352c6578-7232-4a3d-9369-48720c5d0239",
+  "Root": {
+    "alive": true,
+    "content": [
+      "2ac1db8b-43cc-4f64-b6f4-841f9acdf8e3",
+      "aa485fe9-6f7c-426a-ac36-f9cfe114d7ad",
+      "7678990a-e640-4c44-8e61-ef9615f9f654",
+      "6f23cb7e-ec2f-4980-9099-77a0d8ad2f8a"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552021206192,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "352c6578-7232-4a3d-9369-48720c5d0239",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552021206192,
+    "parent_id": "38d6d725-9d1b-46dd-90eb-5553450bfd05",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "NSData and Hexadecimal String"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552021206192,
+        "id": "2ac1db8b-43cc-4f64-b6f4-841f9acdf8e3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552021206192,
+        "parent_id": "352c6578-7232-4a3d-9369-48720c5d0239",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Get NSData from Hexadecimal String",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Get NSData from Hexadecimal String",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552021206192,
+        "id": "aa485fe9-6f7c-426a-ac36-f9cfe114d7ad",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552021206192,
+        "parent_id": "352c6578-7232-4a3d-9369-48720c5d0239",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "+ (NSData *)dataFromHexString:(NSString *)string\n{\n    string = [string lowercaseString];\n    NSMutableData *data= [NSMutableData new];\n    unsigned char whole_byte;\n    char byte_chars[3] = {'\\0','\\0','\\0'};\n    int i = 0;\n    int length = (int) string.length;\n    while (i \u003c length-1) {\n        char c = [string characterAtIndex:i++];\n        if (c \u003c '0' || (c \u003e '9' \u0026\u0026 c \u003c 'a') || c \u003e 'f')\n            continue;\n        byte_chars[0] = c;\n        byte_chars[1] = [string characterAtIndex:i++];\n        whole_byte = strtol(byte_chars, NULL, 16);\n        [data appendBytes:\u0026whole_byte length:1];\n    }\n    return data;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "+ (NSData *)dataFromHexString:(NSString *)string\n{\n    string = [string lowercaseString];\n    NSMutableData *data= [NSMutableData new];\n    unsigned char whole_byte;\n    char byte_chars[3] = {'\\0','\\0','\\0'};\n    int i = 0;\n    int length = (int) string.length;\n    while (i \u003c length-1) {\n        char c = [string characterAtIndex:i++];\n        if (c \u003c '0' || (c \u003e '9' \u0026\u0026 c \u003c 'a') || c \u003e 'f')\n            continue;\n        byte_chars[0] = c;\n        byte_chars[1] = [string characterAtIndex:i++];\n        whole_byte = strtol(byte_chars, NULL, 16);\n        [data appendBytes:\u0026whole_byte length:1];\n    }\n    return data;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552021206192,
+        "id": "7678990a-e640-4c44-8e61-ef9615f9f654",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552021206192,
+        "parent_id": "352c6578-7232-4a3d-9369-48720c5d0239",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Get Hexadecimal String from data:",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Get Hexadecimal String from data:",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552021206192,
+        "id": "6f23cb7e-ec2f-4980-9099-77a0d8ad2f8a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552021206192,
+        "parent_id": "352c6578-7232-4a3d-9369-48720c5d0239",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "+ (NSString *)hexStringForData:(NSData *)data\n{\n    if (data == nil) {\n        return nil;\n    }\n    \n    NSMutableString *hexString = [NSMutableString string];\n    \n    const unsigned char *p = [data bytes];\n    \n    for (int i=0; i \u003c [data length]; i++) {\n        [hexString appendFormat:@\"%02x\", *p++];\n    }\n    \n    return hexString;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "+ (NSString *)hexStringForData:(NSData *)data\n{\n    if (data == nil) {\n        return nil;\n    }\n    \n    NSMutableString *hexString = [NSMutableString string];\n    \n    const unsigned char *p = [data bytes];\n    \n    for (int i=0; i \u003c [data length]; i++) {\n        [hexString appendFormat:@\"%02x\", *p++];\n    }\n    \n    return hexString;\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "NSData and Hexadecimal String",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}
