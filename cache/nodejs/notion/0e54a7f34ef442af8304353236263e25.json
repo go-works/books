@@ -1,0 +1,418 @@
+{
+  "ID": "0e54a7f3-4ef4-42af-8304-353236263e25",
+  "Root": {
+    "alive": true,
+    "content": [
+      "3291c3ea-b3d6-4ce0-b1b8-006e74e7b8d1",
+      "c8edef8c-0f7e-4573-974d-683869534fbf",
+      "b557d4a5-ff9c-4e9f-8b64-0545aed68ed2",
+      "88996f1e-0c70-4fc5-9375-223a28f0a2cf",
+      "3a364104-1b48-4e2d-a2f2-ad19ef6d708c",
+      "8452bcaf-ff57-45b0-b415-d02d2382881d",
+      "8988dac2-c2a6-4e3b-a07e-c19e59781de2",
+      "acfb654e-1738-4976-ae7c-b8c760cb4a08"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552017893286,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "0e54a7f3-4ef4-42af-8304-353236263e25",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552017893286,
+    "parent_id": "b60b83af-cc4e-47ae-ab6e-4110865abee0",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Avoiding race conditions when creating or using an existing directory"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017893279,
+        "id": "3291c3ea-b3d6-4ce0-b1b8-006e74e7b8d1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017893279,
+        "parent_id": "0e54a7f3-4ef4-42af-8304-353236263e25",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Due to Node’s asynchronous nature, creating or using a directory by first:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Due to Node’s asynchronous nature, creating or using a directory by first:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017893282,
+        "id": "c8edef8c-0f7e-4573-974d-683869534fbf",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017893282,
+        "parent_id": "0e54a7f3-4ef4-42af-8304-353236263e25",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "checking for its existence with "
+            ],
+            [
+              "fs.stat()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", then"
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "checking for its existence with "
+          },
+          {
+            "Text": "fs.stat()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", then"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017893283,
+        "id": "b557d4a5-ff9c-4e9f-8b64-0545aed68ed2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017893283,
+        "parent_id": "0e54a7f3-4ef4-42af-8304-353236263e25",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "creating or using it depending of the results of the existence check,"
+            ]
+          ]
+        },
+        "type": "numbered_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "creating or using it depending of the results of the existence check,"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017893284,
+        "id": "88996f1e-0c70-4fc5-9375-223a28f0a2cf",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017893284,
+        "parent_id": "0e54a7f3-4ef4-42af-8304-353236263e25",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "can lead to a "
+            ],
+            [
+              "race condition",
+              [
+                [
+                  "a",
+                  "https://www.wikiwand.com/en/Race_condition#/File_systems"
+                ]
+              ]
+            ],
+            [
+              " if the folder is created between the time of the check and the time of the creation. The method below wraps "
+            ],
+            [
+              "fs.mkdir()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "fs.mkdirSync()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " in error-catching wrappers that let the exception pass if its code is "
+            ],
+            [
+              "EEXIST",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " (already exists). If the error is something else, like "
+            ],
+            [
+              "EPERM",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " (pemission denied), throw or pass an error like the native functions do."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "can lead to a "
+          },
+          {
+            "Text": "race condition",
+            "Link": "https://www.wikiwand.com/en/Race_condition#/File_systems"
+          },
+          {
+            "Text": " if the folder is created between the time of the check and the time of the creation. The method below wraps "
+          },
+          {
+            "Text": "fs.mkdir()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "fs.mkdirSync()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " in error-catching wrappers that let the exception pass if its code is "
+          },
+          {
+            "Text": "EEXIST",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " (already exists). If the error is something else, like "
+          },
+          {
+            "Text": "EPERM",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " (pemission denied), throw or pass an error like the native functions do."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017893285,
+        "id": "3a364104-1b48-4e2d-a2f2-ad19ef6d708c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017893285,
+        "parent_id": "0e54a7f3-4ef4-42af-8304-353236263e25",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Asynchronous version with ",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              "fs.mkdir()",
+              [
+                [
+                  "b"
+                ],
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Asynchronous version with ",
+            "AttrFlags": 1
+          },
+          {
+            "Text": "fs.mkdir()",
+            "AttrFlags": 3
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017893285,
+        "id": "8452bcaf-ff57-45b0-b415-d02d2382881d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017893285,
+        "parent_id": "0e54a7f3-4ef4-42af-8304-353236263e25",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var fs = require('fs');function mkdir (dirPath, callback) {fs.mkdir(dirPath, (err) =\u003e {callback(err \u0026\u0026 err.code !== 'EEXIST' ? err : null);});}mkdir('./existingDir', (err) =\u003e {if (err)return console.error(err.code);// Do something with `./existingDir` here});"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var fs = require('fs');function mkdir (dirPath, callback) {fs.mkdir(dirPath, (err) =\u003e {callback(err \u0026\u0026 err.code !== 'EEXIST' ? err : null);});}mkdir('./existingDir', (err) =\u003e {if (err)return console.error(err.code);// Do something with `./existingDir` here});",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017893285,
+        "id": "8988dac2-c2a6-4e3b-a07e-c19e59781de2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017893285,
+        "parent_id": "0e54a7f3-4ef4-42af-8304-353236263e25",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Synchronous version with ",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              "fs.mkdirSync()",
+              [
+                [
+                  "b"
+                ],
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Synchronous version with ",
+            "AttrFlags": 1
+          },
+          {
+            "Text": "fs.mkdirSync()",
+            "AttrFlags": 3
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017893286,
+        "id": "acfb654e-1738-4976-ae7c-b8c760cb4a08",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017893286,
+        "parent_id": "0e54a7f3-4ef4-42af-8304-353236263e25",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "function mkdirSync (dirPath) {try {fs.mkdirSync(dirPath);} catch(e) {if ( e.code !== 'EEXIST' ) throw e;}}mkdirSync('./existing-dir');// Do something with `./existing-dir` now"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "function mkdirSync (dirPath) {try {fs.mkdirSync(dirPath);} catch(e) {if ( e.code !== 'EEXIST' ) throw e;}}mkdirSync('./existing-dir');// Do something with `./existing-dir` now",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Avoiding race conditions when creating or using an existing directory",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

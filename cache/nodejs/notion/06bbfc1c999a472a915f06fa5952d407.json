@@ -1,0 +1,253 @@
+{
+  "ID": "06bbfc1c-999a-472a-915f-06fa5952d407",
+  "Root": {
+    "alive": true,
+    "content": [
+      "0af22c4d-5f99-4f3a-a4ff-78c6b651645b",
+      "8e65ea2c-c0ac-4d60-a492-b7e3a9b55409",
+      "c6391dba-58d5-44a9-97cb-16dac34ec551",
+      "87c04244-e914-4d45-83f4-f8541a44015b",
+      "ec143f48-be3d-4055-8202-81eed4ed901e",
+      "3d1e8dc8-d991-4707-8b45-80ca3c782093"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552019925188,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "06bbfc1c-999a-472a-915f-06fa5952d407",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552019925188,
+    "parent_id": "513bcc5d-2a59-4d0e-b96b-00eb1237d7dd",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Facebook authentication"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552019925184,
+        "id": "0af22c4d-5f99-4f3a-a4ff-78c6b651645b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552019925184,
+        "parent_id": "06bbfc1c-999a-472a-915f-06fa5952d407",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The "
+            ],
+            [
+              "passport-facebook",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " module is used to implement a "
+            ],
+            [
+              "Facebook",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " authentication. In this example, if the user does not exist on sign-in, he is created."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The "
+          },
+          {
+            "Text": "passport-facebook",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " module is used to implement a "
+          },
+          {
+            "Text": "Facebook",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " authentication. In this example, if the user does not exist on sign-in, he is created."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552019925187,
+        "id": "8e65ea2c-c0ac-4d60-a492-b7e3a9b55409",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552019925187,
+        "parent_id": "06bbfc1c-999a-472a-915f-06fa5952d407",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Implementing strategy :"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Implementing strategy :"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552019925187,
+        "id": "c6391dba-58d5-44a9-97cb-16dac34ec551",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552019925187,
+        "parent_id": "06bbfc1c-999a-472a-915f-06fa5952d407",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "const passport = require('passport');\nconst FacebookStrategy = require('passport-facebook').Strategy;\n\n// Strategy is named 'facebook' by default\npassport.use({\n    clientID: 'yourclientid',\n    clientSecret: 'yourclientsecret',\n    callbackURL: '/auth/facebook/callback'\n},\n// Facebook will send a token and user's profile\nfunction(token, refreshToken, profile, next) {\n    // Check in database if user is already registered\n    findUserByFacebookId(profile.id, function(user) {\n        // If user exists, returns his data to callback\n        if (user) return next(null, user);\n        // Else, we create the user\n        else {\n            let newUser = createUserFromFacebook(profile, token);\n\n            newUser.save(function() {\n                // Pass the user to the callback\n                return next(null, newUser);\n            });\n        }\n    });\n});"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "const passport = require('passport');\nconst FacebookStrategy = require('passport-facebook').Strategy;\n\n// Strategy is named 'facebook' by default\npassport.use({\n    clientID: 'yourclientid',\n    clientSecret: 'yourclientsecret',\n    callbackURL: '/auth/facebook/callback'\n},\n// Facebook will send a token and user's profile\nfunction(token, refreshToken, profile, next) {\n    // Check in database if user is already registered\n    findUserByFacebookId(profile.id, function(user) {\n        // If user exists, returns his data to callback\n        if (user) return next(null, user);\n        // Else, we create the user\n        else {\n            let newUser = createUserFromFacebook(profile, token);\n\n            newUser.save(function() {\n                // Pass the user to the callback\n                return next(null, newUser);\n            });\n        }\n    });\n});",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552019925187,
+        "id": "87c04244-e914-4d45-83f4-f8541a44015b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552019925187,
+        "parent_id": "06bbfc1c-999a-472a-915f-06fa5952d407",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Creating routes :"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Creating routes :"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552019925187,
+        "id": "ec143f48-be3d-4055-8202-81eed4ed901e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552019925187,
+        "parent_id": "06bbfc1c-999a-472a-915f-06fa5952d407",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// ...\napp.use(passport.initialize());\napp.use(passport.session());\n\n// Authentication route\napp.get('/auth/facebook', passport.authenticate('facebook', {\n    // Ask Facebook for more permissions\n    scope : 'email'\n}));\n\n// Called after Facebook has authenticated the user\napp.get('/auth/facebook/callback',\n    passport.authenticate('facebook', {\n        successRedirect : '/me',\n        failureRedirect : '/'\n}));"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// ...\napp.use(passport.initialize());\napp.use(passport.session());\n\n// Authentication route\napp.get('/auth/facebook', passport.authenticate('facebook', {\n    // Ask Facebook for more permissions\n    scope : 'email'\n}));\n\n// Called after Facebook has authenticated the user\napp.get('/auth/facebook/callback',\n    passport.authenticate('facebook', {\n        successRedirect : '/me',\n        failureRedirect : '/'\n}));",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552019925188,
+        "id": "3d1e8dc8-d991-4707-8b45-80ca3c782093",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552019925188,
+        "parent_id": "06bbfc1c-999a-472a-915f-06fa5952d407",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "//...\n\napp.listen(3000);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "//...\n\napp.listen(3000);",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Facebook authentication",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

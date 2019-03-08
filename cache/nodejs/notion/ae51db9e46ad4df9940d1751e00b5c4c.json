@@ -1,0 +1,83 @@
+{
+  "ID": "ae51db9e-46ad-4df9-940d-1751e00b5c4c",
+  "Root": {
+    "alive": true,
+    "content": [
+      "8319b9fd-8d2d-4937-807d-9d8d3b3bd7a7"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552018372624,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "ae51db9e-46ad-4df9-940d-1751e00b5c4c",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552018372624,
+    "parent_id": "cf84aada-7a3d-4c14-bbab-4d95919e9ad3",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Framework-less node server"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552018372616,
+        "id": "8319b9fd-8d2d-4937-807d-9d8d3b3bd7a7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552018372616,
+        "parent_id": "ae51db9e-46ad-4df9-940d-1751e00b5c4c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var http = require('http');\nvar fs = require('fs');\nvar path = require('path');\n\nhttp.createServer(function (request, response) {\nconsole.log('request ', request.url);\n\nvar filePath = '.' + request.url;\nif (filePath == './')\n    filePath = './index.html';\n\nvar extname = String(path.extname(filePath)).toLowerCase();\nvar contentType = 'text/html';\nvar mimeTypes = {\n    '.html': 'text/html',\n    '.js': 'text/javascript',\n    '.css': 'text/css',\n    '.json': 'application/json',\n    '.png': 'image/png',\n    '.jpg': 'image/jpg',\n    '.gif': 'image/gif',\n    '.wav': 'audio/wav',\n    '.mp4': 'video/mp4',\n    '.woff': 'application/font-woff',\n    '.ttf': 'applilcation/font-ttf',\n    '.eot': 'application/vnd.ms-fontobject',\n    '.otf': 'application/font-otf',\n    '.svg': 'application/image/svg+xml'\n};\n\ncontentType = mimeTypes[extname] || 'application/octect-stream';\n\nfs.readFile(filePath, function(error, content) {\n    if (error) {\n        if(error.code == 'ENOENT'){\n            fs.readFile('./404.html', function(error, content) {\n                response.writeHead(200, { 'Content-Type': contentType });\n                response.end(content, 'utf-8');\n            });\n        }\n        else {\n            response.writeHead(500);\n            response.end('Sorry, check with the site admin for error: '+error.code+' ..\\n');\n            response.end();\n        }\n    }\n    else {\n        response.writeHead(200, { 'Content-Type': contentType });\n        response.end(content, 'utf-8');\n    }\n });\n\n}).listen(8125);\nconsole.log('Server running at http://127.0.0.1:8125/');"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var http = require('http');\nvar fs = require('fs');\nvar path = require('path');\n\nhttp.createServer(function (request, response) {\nconsole.log('request ', request.url);\n\nvar filePath = '.' + request.url;\nif (filePath == './')\n    filePath = './index.html';\n\nvar extname = String(path.extname(filePath)).toLowerCase();\nvar contentType = 'text/html';\nvar mimeTypes = {\n    '.html': 'text/html',\n    '.js': 'text/javascript',\n    '.css': 'text/css',\n    '.json': 'application/json',\n    '.png': 'image/png',\n    '.jpg': 'image/jpg',\n    '.gif': 'image/gif',\n    '.wav': 'audio/wav',\n    '.mp4': 'video/mp4',\n    '.woff': 'application/font-woff',\n    '.ttf': 'applilcation/font-ttf',\n    '.eot': 'application/vnd.ms-fontobject',\n    '.otf': 'application/font-otf',\n    '.svg': 'application/image/svg+xml'\n};\n\ncontentType = mimeTypes[extname] || 'application/octect-stream';\n\nfs.readFile(filePath, function(error, content) {\n    if (error) {\n        if(error.code == 'ENOENT'){\n            fs.readFile('./404.html', function(error, content) {\n                response.writeHead(200, { 'Content-Type': contentType });\n                response.end(content, 'utf-8');\n            });\n        }\n        else {\n            response.writeHead(500);\n            response.end('Sorry, check with the site admin for error: '+error.code+' ..\\n');\n            response.end();\n        }\n    }\n    else {\n        response.writeHead(200, { 'Content-Type': contentType });\n        response.end(content, 'utf-8');\n    }\n });\n\n}).listen(8125);\nconsole.log('Server running at http://127.0.0.1:8125/');",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Framework-less node server",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

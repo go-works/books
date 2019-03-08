@@ -1,0 +1,145 @@
+{
+  "ID": "467e8b1d-f8f1-4edc-85c0-42f5958f64b8",
+  "Root": {
+    "alive": true,
+    "content": [
+      "cf65b4a9-5225-45d4-a6ff-e9452a9c98cd",
+      "96ae4878-5a3d-489c-8933-687311d2b405"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552018412505,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "467e8b1d-f8f1-4edc-85c0-42f5958f64b8",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552018412505,
+    "parent_id": "7d16c6d7-3772-4fac-989a-661e419cab77",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Graceful Shutdown - SIGTERM"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552018412503,
+        "id": "cf65b4a9-5225-45d4-a6ff-e9452a9c98cd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552018412503,
+        "parent_id": "467e8b1d-f8f1-4edc-85c0-42f5958f64b8",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "By using "
+            ],
+            [
+              "server.close()",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "process.exit()",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              ", we can catch the server exception and do a graceful shutdown."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "By using "
+          },
+          {
+            "Text": "server.close()",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "process.exit()",
+            "AttrFlags": 1
+          },
+          {
+            "Text": ", we can catch the server exception and do a graceful shutdown."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552018412505,
+        "id": "96ae4878-5a3d-489c-8933-687311d2b405",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552018412505,
+        "parent_id": "467e8b1d-f8f1-4edc-85c0-42f5958f64b8",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var http = require('http');\n\nvar server = http.createServer(function (req, res) {\n  setTimeout(function () { //simulate a long request\n    res.writeHead(200, {'Content-Type': 'text/plain'});\n    res.end('Hello World\\n');\n  }, 4000);\n}).listen(9090, function (err) {\n  console.log('listening http://localhost:9090/');\n  console.log('pid is ' + process.pid);\n});\n\nprocess.on('SIGTERM', function () {\n  server.close(function () {\n    process.exit(0);\n  });\n});"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var http = require('http');\n\nvar server = http.createServer(function (req, res) {\n  setTimeout(function () { //simulate a long request\n    res.writeHead(200, {'Content-Type': 'text/plain'});\n    res.end('Hello World\\n');\n  }, 4000);\n}).listen(9090, function (err) {\n  console.log('listening http://localhost:9090/');\n  console.log('pid is ' + process.pid);\n});\n\nprocess.on('SIGTERM', function () {\n  server.close(function () {\n    process.exit(0);\n  });\n});",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Graceful Shutdown - SIGTERM",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

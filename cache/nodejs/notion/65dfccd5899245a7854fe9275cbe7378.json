@@ -1,0 +1,484 @@
+{
+  "ID": "65dfccd5-8992-45a7-854f-e9275cbe7378",
+  "Root": {
+    "alive": true,
+    "content": [
+      "4d0fab13-e585-441b-ad12-58ef33a2b264",
+      "7b1efb63-7810-409e-9ad2-70770e96c882",
+      "6d2c8f18-5f4a-4e35-b0db-565c6691518e",
+      "e61acfc9-3055-4063-96b0-ef00c4a6f9f5",
+      "5463f087-7d41-47aa-8276-37ca8f1fbc4e",
+      "e1249b27-1900-4504-a86b-fc373f3b981a",
+      "0e2d51c9-55ac-4daf-8403-77f7d64671c4",
+      "b902c24a-52eb-4d86-b37a-e2d30e0ad157",
+      "1ef454a9-4cde-4b1b-bab8-7df6c261213a",
+      "928bdb2a-e0af-452a-89ef-87419ad37e85",
+      "a92b71b3-5888-4ea9-a42d-28729674e8be",
+      "419f564b-5232-4552-a361-d30ff3e613a4",
+      "be5ca8f8-8a27-439f-9bde-54c1162f0b4c",
+      "7d3dcda4-f271-47ef-ad82-97ec19d2f602",
+      "1d7d929f-e741-4734-99f4-dd876d96292f"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552017923132,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "65dfccd5-8992-45a7-854f-e9275cbe7378",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552017923132,
+    "parent_id": "f1b826ba-7399-4895-8361-4c3a3655ad1b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Using a connection pool"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017923126,
+        "id": "4d0fab13-e585-441b-ad12-58ef33a2b264",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017923126,
+        "parent_id": "65dfccd5-8992-45a7-854f-e9275cbe7378",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "a. Running multiple queries at same time"
+            ]
+          ]
+        },
+        "type": "sub_header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "a. Running multiple queries at same time"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017923128,
+        "id": "7b1efb63-7810-409e-9ad2-70770e96c882",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017923128,
+        "parent_id": "65dfccd5-8992-45a7-854f-e9275cbe7378",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "All queries in MySQL connection are done one after another. It means that if you want to do 10 queries and each query takes 2 seconds then it will take 20 seconds to complete whole execution. The solution is to create 10 connection and run each query in a different connection. This can be done automatically using connection pool"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "All queries in MySQL connection are done one after another. It means that if you want to do 10 queries and each query takes 2 seconds then it will take 20 seconds to complete whole execution. The solution is to create 10 connection and run each query in a different connection. This can be done automatically using connection pool"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017923129,
+        "id": "6d2c8f18-5f4a-4e35-b0db-565c6691518e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017923129,
+        "parent_id": "65dfccd5-8992-45a7-854f-e9275cbe7378",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var pool  = mysql.createPool({\n  connectionLimit : 10,\n  host            : 'example.org',\n  user            : 'bobby',\n  password        : 'pass',\n  database        : 'schema'\n});\n\nfor(var i=0;i\u003c10;i++){\n  pool.query('SELECT ` as example', function(err, rows, fields) {\n    if (err) throw err;\n    console.log(rows[0].example); //Show 1\n  });\n }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var pool  = mysql.createPool({\n  connectionLimit : 10,\n  host            : 'example.org',\n  user            : 'bobby',\n  password        : 'pass',\n  database        : 'schema'\n});\n\nfor(var i=0;i\u003c10;i++){\n  pool.query('SELECT ` as example', function(err, rows, fields) {\n    if (err) throw err;\n    console.log(rows[0].example); //Show 1\n  });\n }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017923129,
+        "id": "e61acfc9-3055-4063-96b0-ef00c4a6f9f5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017923129,
+        "parent_id": "65dfccd5-8992-45a7-854f-e9275cbe7378",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "It will run all the 10 queries in parallel."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "It will run all the 10 queries in parallel."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017923129,
+        "id": "5463f087-7d41-47aa-8276-37ca8f1fbc4e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017923129,
+        "parent_id": "65dfccd5-8992-45a7-854f-e9275cbe7378",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "When you use "
+            ],
+            [
+              "pool",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " you don’t need the connection anymore. You can query directly the pool. MySQL module will search for the next free connection to execute your query."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "When you use "
+          },
+          {
+            "Text": "pool",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " you don’t need the connection anymore. You can query directly the pool. MySQL module will search for the next free connection to execute your query."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017923129,
+        "id": "e1249b27-1900-4504-a86b-fc373f3b981a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017923129,
+        "parent_id": "65dfccd5-8992-45a7-854f-e9275cbe7378",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "b. Achieving multi-tenancy on database server with different databases hosted on it."
+            ]
+          ]
+        },
+        "type": "sub_header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "b. Achieving multi-tenancy on database server with different databases hosted on it."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017923129,
+        "id": "0e2d51c9-55ac-4daf-8403-77f7d64671c4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017923129,
+        "parent_id": "65dfccd5-8992-45a7-854f-e9275cbe7378",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Multitenancy is a common requirement of enterprise application nowadays and creating connection pool for each database in database server is not recommended. so, what we can do instead is create connection pool with database server and then switch them between databases hosted on database server on demand."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Multitenancy is a common requirement of enterprise application nowadays and creating connection pool for each database in database server is not recommended. so, what we can do instead is create connection pool with database server and then switch them between databases hosted on database server on demand."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017923129,
+        "id": "b902c24a-52eb-4d86-b37a-e2d30e0ad157",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017923129,
+        "parent_id": "65dfccd5-8992-45a7-854f-e9275cbe7378",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Suppose our application has different databases for each firm hosted on database server. We will connect to respective firm database when user hits the application. Here is the example on how to do that:-"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Suppose our application has different databases for each firm hosted on database server. We will connect to respective firm database when user hits the application. Here is the example on how to do that:-"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017923129,
+        "id": "1ef454a9-4cde-4b1b-bab8-7df6c261213a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017923129,
+        "parent_id": "65dfccd5-8992-45a7-854f-e9275cbe7378",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var pool  = mysql.createPool({\n      connectionLimit : 10,\n      host            : 'example.org',\n      user            : 'bobby',\n      password        : 'pass'\n    });\n    \npool.getConnection(function(err, connection){\n    if(err){\n        return cb(err);\n    }\n    connection.changeUser({database : \"firm1\"});\n    connection.query(\"SELECT * from history\", function(err, data){\n        connection.release();\n        cb(err, data);\n    });\n});"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var pool  = mysql.createPool({\n      connectionLimit : 10,\n      host            : 'example.org',\n      user            : 'bobby',\n      password        : 'pass'\n    });\n    \npool.getConnection(function(err, connection){\n    if(err){\n        return cb(err);\n    }\n    connection.changeUser({database : \"firm1\"});\n    connection.query(\"SELECT * from history\", function(err, data){\n        connection.release();\n        cb(err, data);\n    });\n});",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017923130,
+        "id": "928bdb2a-e0af-452a-89ef-87419ad37e85",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017923130,
+        "parent_id": "65dfccd5-8992-45a7-854f-e9275cbe7378",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Let me break down the example:-"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Let me break down the example:-"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017923130,
+        "id": "a92b71b3-5888-4ea9-a42d-28729674e8be",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017923130,
+        "parent_id": "65dfccd5-8992-45a7-854f-e9275cbe7378",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "When defining pool configuration i did not gave the database name but only gave database server i.e"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "When defining pool configuration i did not gave the database name but only gave database server i.e"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017923130,
+        "id": "419f564b-5232-4552-a361-d30ff3e613a4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017923130,
+        "parent_id": "65dfccd5-8992-45a7-854f-e9275cbe7378",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "{\n  connectionLimit : 10,\n  host            : 'example.org',\n  user            : 'bobby',\n  password        : 'pass'\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "{\n  connectionLimit : 10,\n  host            : 'example.org',\n  user            : 'bobby',\n  password        : 'pass'\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017923130,
+        "id": "be5ca8f8-8a27-439f-9bde-54c1162f0b4c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017923130,
+        "parent_id": "65dfccd5-8992-45a7-854f-e9275cbe7378",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "so when we want to use the specific database on database server, we ask the connection to hit database by using:-"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "so when we want to use the specific database on database server, we ask the connection to hit database by using:-"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017923130,
+        "id": "7d3dcda4-f271-47ef-ad82-97ec19d2f602",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017923130,
+        "parent_id": "65dfccd5-8992-45a7-854f-e9275cbe7378",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "connection.changeUser({database : \"firm1\"});"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "connection.changeUser({database : \"firm1\"});",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017923132,
+        "id": "1d7d929f-e741-4734-99f4-dd876d96292f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017923132,
+        "parent_id": "65dfccd5-8992-45a7-854f-e9275cbe7378",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "you can refer the official documentation "
+            ],
+            [
+              "here",
+              [
+                [
+                  "a",
+                  "https://github.com/mysqljs/mysql#switching-users-and-altering-connection-state"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "you can refer the official documentation "
+          },
+          {
+            "Text": "here",
+            "Link": "https://github.com/mysqljs/mysql#switching-users-and-altering-connection-state"
+          }
+        ]
+      }
+    ],
+    "title": "Using a connection pool",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,335 @@
+{
+  "ID": "a272e597-1f14-41be-bf16-0013feeb0ed6",
+  "Root": {
+    "alive": true,
+    "content": [
+      "c535697c-f748-4861-8383-a13ccd8b107b",
+      "6c37bf95-1fe3-4e73-a214-c1702dd0e1d4",
+      "14fb5c01-b31b-487c-95b5-a3ecdaf5e00d",
+      "bec8bb16-fde9-4944-a7d9-dcd8394a4ac1",
+      "715cf330-aaa6-4e79-abb1-69aefa8d13e1",
+      "1f0645b5-8771-4cf5-ba75-da4af090bcff",
+      "6147dd23-1ed6-4960-b024-3ce3ab30d14b",
+      "5c20dc0f-5166-426a-99b6-0048d461ede7"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552020340097,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "a272e597-1f14-41be-bf16-0013feeb0ed6",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552020340097,
+    "parent_id": "962a8d56-83e9-470a-8176-9e0cd8f96885",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Node.js as a systemd dmon"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552020340093,
+        "id": "c535697c-f748-4861-8383-a13ccd8b107b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552020340093,
+        "parent_id": "a272e597-1f14-41be-bf16-0013feeb0ed6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "systemd is the "
+            ],
+            [
+              "de facto",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " init system in most Linux distributions. After Node has been configured to run with systemd, it’s possible to use the "
+            ],
+            [
+              "service",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " command to manage it."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "systemd is the "
+          },
+          {
+            "Text": "de facto",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " init system in most Linux distributions. After Node has been configured to run with systemd, it’s possible to use the "
+          },
+          {
+            "Text": "service",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " command to manage it."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552020340096,
+        "id": "6c37bf95-1fe3-4e73-a214-c1702dd0e1d4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552020340096,
+        "parent_id": "a272e597-1f14-41be-bf16-0013feeb0ed6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "First of all, it needs a config file, let’s create it. For Debian based distros, it will be in "
+            ],
+            [
+              "/etc/systemd/system/node.service",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "First of all, it needs a config file, let’s create it. For Debian based distros, it will be in "
+          },
+          {
+            "Text": "/etc/systemd/system/node.service",
+            "AttrFlags": 2
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552020340096,
+        "id": "14fb5c01-b31b-487c-95b5-a3ecdaf5e00d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552020340096,
+        "parent_id": "a272e597-1f14-41be-bf16-0013feeb0ed6",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "[Unit]\nDescription=My super nodejs app\n\n[Service]\n# set the working directory to have consistent relative paths\nWorkingDirectory=/var/www/app\n\n# start the server file (file is relative to WorkingDirectory here)\nExecStart=/usr/bin/node serverCluster.js\n\n# if process crashes, always try to restart\nRestart=always\n\n# let 500ms between the crash and the restart\nRestartSec=500ms\n\n# send log tot syslog here (it doesn't compete with other log config in the app itself)\nStandardOutput=syslog\nStandardError=syslog\n\n# nodejs process name in syslog\nSyslogIdentifier=nodejs\n\n# user and group starting the app\nUser=www-data\nGroup=www-data\n\n# set the environement (dev, prod…)\nEnvironment=NODE_ENV=production"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "[Unit]\nDescription=My super nodejs app\n\n[Service]\n# set the working directory to have consistent relative paths\nWorkingDirectory=/var/www/app\n\n# start the server file (file is relative to WorkingDirectory here)\nExecStart=/usr/bin/node serverCluster.js\n\n# if process crashes, always try to restart\nRestart=always\n\n# let 500ms between the crash and the restart\nRestartSec=500ms\n\n# send log tot syslog here (it doesn't compete with other log config in the app itself)\nStandardOutput=syslog\nStandardError=syslog\n\n# nodejs process name in syslog\nSyslogIdentifier=nodejs\n\n# user and group starting the app\nUser=www-data\nGroup=www-data\n\n# set the environement (dev, prod…)\nEnvironment=NODE_ENV=production",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552020340096,
+        "id": "bec8bb16-fde9-4944-a7d9-dcd8394a4ac1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552020340096,
+        "parent_id": "a272e597-1f14-41be-bf16-0013feeb0ed6",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "[Install]\n# start node at multi user system level (= sysVinit runlevel 3) \nWantedBy=multi-user.target"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "[Install]\n# start node at multi user system level (= sysVinit runlevel 3) \nWantedBy=multi-user.target",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552020340096,
+        "id": "715cf330-aaa6-4e79-abb1-69aefa8d13e1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552020340096,
+        "parent_id": "a272e597-1f14-41be-bf16-0013feeb0ed6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "It’s now possible to respectively start, stop and restart the app with:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "It’s now possible to respectively start, stop and restart the app with:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552020340096,
+        "id": "1f0645b5-8771-4cf5-ba75-da4af090bcff",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552020340096,
+        "parent_id": "a272e597-1f14-41be-bf16-0013feeb0ed6",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "service node start\nservice node stop\nservice node restart"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "service node start\nservice node stop\nservice node restart",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552020340097,
+        "id": "6147dd23-1ed6-4960-b024-3ce3ab30d14b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552020340097,
+        "parent_id": "a272e597-1f14-41be-bf16-0013feeb0ed6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To tell systemd to automatically start node on boot, just type: "
+            ],
+            [
+              "systemctl enable node",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To tell systemd to automatically start node on boot, just type: "
+          },
+          {
+            "Text": "systemctl enable node",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552020340097,
+        "id": "5c20dc0f-5166-426a-99b6-0048d461ede7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552020340097,
+        "parent_id": "a272e597-1f14-41be-bf16-0013feeb0ed6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "That’s all, node now runs as a dæmon."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "That’s all, node now runs as a dæmon."
+          }
+        ]
+      }
+    ],
+    "title": "Node.js as a systemd dmon",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

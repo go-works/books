@@ -1,0 +1,234 @@
+{
+  "ID": "47e6f182-1c82-4609-8998-e665f96a0ae4",
+  "Root": {
+    "alive": true,
+    "content": [
+      "799cef18-58cf-4fd1-acd9-0aa7cfb796df",
+      "37c1c048-0db0-4c0e-b265-d0facc92d2df",
+      "ace0f8b9-fd7d-43d8-98de-fe08969e1d2c",
+      "ed9c8ac0-26fe-4bcd-87a9-fe63d25c9504",
+      "812fab3a-293e-4bf2-8b8a-e659ddd1670c",
+      "a201a8ad-487f-4267-969f-b604442af650"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552017893341,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "47e6f182-1c82-4609-8998-e665f96a0ae4",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552017893341,
+    "parent_id": "f2951439-dbd4-468d-b709-5d05eeed9c64",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Error handling"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017893340,
+        "id": "799cef18-58cf-4fd1-acd9-0aa7cfb796df",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017893340,
+        "parent_id": "47e6f182-1c82-4609-8998-e665f96a0ae4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Basic docs can be found "
+            ],
+            [
+              "here",
+              [
+                [
+                  "b"
+                ],
+                [
+                  "a",
+                  "http://expressjs.com/en/guide/error-handling.html"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Basic docs can be found "
+          },
+          {
+            "Text": "here",
+            "AttrFlags": 1,
+            "Link": "http://expressjs.com/en/guide/error-handling.html"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017893341,
+        "id": "37c1c048-0db0-4c0e-b265-d0facc92d2df",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017893341,
+        "parent_id": "47e6f182-1c82-4609-8998-e665f96a0ae4",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "app.get('/path/:id(\\\\d+)', function (req, res, next) { // please note: \"next\" is passed\n    if (req.params.id == 0) // validate param\n        return next(new Error('Id is 0')); // go to first Error handler, see below\n\n    // Catch error on sync operation\n    var data;\n    try {\n        data = JSON.parse('/file.json');\n    } catch (err) {\n        return next(err);\n    }\n\n    // If some critical error then stop application\n    if (!data)\n        throw new Error('Smth wrong');\n\n    // If you need send extra info to Error handler\n    // then send custom error (see Appendix B)\n    if (smth)\n        next(new MyError('smth wrong', arg1, arg2))\n\n    // Finish request by res.render or res.end\n    res.status(200).end('OK');\n});    \n\n// Be sure: order of app.use have matter\n// Error handler\napp.use(function(err, req, res, next)) {\n    if (smth-check, e.g. req.url != 'POST') \n        return next(err); // go-to Error handler 2.\n\n    console.log(req.url, err.message);\n\n    if (req.xhr) // if req via ajax then send json else render error-page\n        res.json(err);\n    else \n        res.render('error.html', {error: err.message});  \n});\n\n// Error handler 2\napp.use(function(err, req, res, next)) {\n    // do smth here e.g. check that error is MyError\n    if (err instanceof MyError) {\n        console.log(err.message, err.arg1, err.arg2);\n    }     \n    ...\n    res.end();\n});"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "app.get('/path/:id(\\\\d+)', function (req, res, next) { // please note: \"next\" is passed\n    if (req.params.id == 0) // validate param\n        return next(new Error('Id is 0')); // go to first Error handler, see below\n\n    // Catch error on sync operation\n    var data;\n    try {\n        data = JSON.parse('/file.json');\n    } catch (err) {\n        return next(err);\n    }\n\n    // If some critical error then stop application\n    if (!data)\n        throw new Error('Smth wrong');\n\n    // If you need send extra info to Error handler\n    // then send custom error (see Appendix B)\n    if (smth)\n        next(new MyError('smth wrong', arg1, arg2))\n\n    // Finish request by res.render or res.end\n    res.status(200).end('OK');\n});    \n\n// Be sure: order of app.use have matter\n// Error handler\napp.use(function(err, req, res, next)) {\n    if (smth-check, e.g. req.url != 'POST') \n        return next(err); // go-to Error handler 2.\n\n    console.log(req.url, err.message);\n\n    if (req.xhr) // if req via ajax then send json else render error-page\n        res.json(err);\n    else \n        res.render('error.html', {error: err.message});  \n});\n\n// Error handler 2\napp.use(function(err, req, res, next)) {\n    // do smth here e.g. check that error is MyError\n    if (err instanceof MyError) {\n        console.log(err.message, err.arg1, err.arg2);\n    }     \n    ...\n    res.end();\n});",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017893341,
+        "id": "ace0f8b9-fd7d-43d8-98de-fe08969e1d2c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017893341,
+        "parent_id": "47e6f182-1c82-4609-8998-e665f96a0ae4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Appendix A"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Appendix A"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017893341,
+        "id": "ed9c8ac0-26fe-4bcd-87a9-fe63d25c9504",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017893341,
+        "parent_id": "47e6f182-1c82-4609-8998-e665f96a0ae4",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// \"In Express, 404 responses are not the result of an error, \n// so the error-handler middleware will not capture them.\" \n// You can change it.\napp.use(function(req, res, next) {\n    next(new Error(404)); \n});"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// \"In Express, 404 responses are not the result of an error, \n// so the error-handler middleware will not capture them.\" \n// You can change it.\napp.use(function(req, res, next) {\n    next(new Error(404)); \n});",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017893341,
+        "id": "812fab3a-293e-4bf2-8b8a-e659ddd1670c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017893341,
+        "parent_id": "47e6f182-1c82-4609-8998-e665f96a0ae4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Appendix B"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Appendix B"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017893341,
+        "id": "a201a8ad-487f-4267-969f-b604442af650",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017893341,
+        "parent_id": "47e6f182-1c82-4609-8998-e665f96a0ae4",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// How to define custom error\nvar util = require('util');\n...\nfunction MyError(message, arg1, arg2) {\n    this.message = message;\n    this.arg1 = arg1;\n    this.arg2 = arg2;\n    Error.captureStackTrace(this, MyError);\n}\nutil.inherits(MyError, Error);\nMyError.prototype.name = 'MyError';"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// How to define custom error\nvar util = require('util');\n...\nfunction MyError(message, arg1, arg2) {\n    this.message = message;\n    this.arg1 = arg1;\n    this.arg2 = arg2;\n    Error.captureStackTrace(this, MyError);\n}\nutil.inherits(MyError, Error);\nMyError.prototype.name = 'MyError';",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Error handling",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

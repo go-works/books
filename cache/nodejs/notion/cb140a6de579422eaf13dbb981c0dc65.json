@@ -1,0 +1,83 @@
+{
+  "ID": "cb140a6d-e579-422e-af13-dbb981c0dc65",
+  "Root": {
+    "alive": true,
+    "content": [
+      "ebc5a89f-ed53-43bb-becf-e37aeb3e0cf2"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552019947115,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "cb140a6d-e579-422e-af13-dbb981c0dc65",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552019947115,
+    "parent_id": "324e6c7c-c251-4c41-ab28-109bc30caf12",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Console with command prompt"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552019947113,
+        "id": "ebc5a89f-ed53-43bb-becf-e37aeb3e0cf2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552019947113,
+        "parent_id": "cb140a6d-e579-422e-af13-dbb981c0dc65",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "const process = require('process');\nconst rl = require('readline').createInterface(process.stdin, process.stdout);\n\nrl.pause();\nconsole.log('Something long is happening here...');\n\nvar cliConfig = {\n    promptPrefix: ' \u003e '\n}\n\n/*\n    Commands recognition\n    BEGIN\n*/\nvar commands = {\n    eval: function(arg) { // Try typing in console: eval 2 * 10 ^ 3 + 2 ^ 4\n        arg = arg.join(' ');\n        try { console.log(eval(arg)); }\n        catch (e) { console.log(e); }\n    },\n    exit: function(arg) {\n        process.exit();\n    }\n};\nrl.on('line', (str) =\u003e {\n    rl.pause();\n    var arg = str.trim().match(/([^\"]+)|(\"(?:[^\"\\\\]|\\\\.)+\")/g); // Applying regular expression for removing all spaces except for what between double quotes: http://stackoverflow.com/a/14540319/2396907\n    if (arg) {\n        for (let n in arg) {\n            arg[n] = arg[n].replace(/^\\\"|\\\"$/g, '');\n        }\n        var commandName = arg[0];\n        var command = commands[commandName];\n        if (command) {\n            arg.shift();\n            command(arg);\n        }\n        else console.log('Command \"'+ commandName +'\" doesn\\'t exist');\n    }\n    rl.prompt();\n});\n/*\n    END OF\n    Commands recognition\n*/\n\nrl.setPrompt(cliConfig.promptPrefix);\nrl.prompt();"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "const process = require('process');\nconst rl = require('readline').createInterface(process.stdin, process.stdout);\n\nrl.pause();\nconsole.log('Something long is happening here...');\n\nvar cliConfig = {\n    promptPrefix: ' \u003e '\n}\n\n/*\n    Commands recognition\n    BEGIN\n*/\nvar commands = {\n    eval: function(arg) { // Try typing in console: eval 2 * 10 ^ 3 + 2 ^ 4\n        arg = arg.join(' ');\n        try { console.log(eval(arg)); }\n        catch (e) { console.log(e); }\n    },\n    exit: function(arg) {\n        process.exit();\n    }\n};\nrl.on('line', (str) =\u003e {\n    rl.pause();\n    var arg = str.trim().match(/([^\"]+)|(\"(?:[^\"\\\\]|\\\\.)+\")/g); // Applying regular expression for removing all spaces except for what between double quotes: http://stackoverflow.com/a/14540319/2396907\n    if (arg) {\n        for (let n in arg) {\n            arg[n] = arg[n].replace(/^\\\"|\\\"$/g, '');\n        }\n        var commandName = arg[0];\n        var command = commands[commandName];\n        if (command) {\n            arg.shift();\n            command(arg);\n        }\n        else console.log('Command \"'+ commandName +'\" doesn\\'t exist');\n    }\n    rl.prompt();\n});\n/*\n    END OF\n    Commands recognition\n*/\n\nrl.setPrompt(cliConfig.promptPrefix);\nrl.prompt();",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Console with command prompt",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

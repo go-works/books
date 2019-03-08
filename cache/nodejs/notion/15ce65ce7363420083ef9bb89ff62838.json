@@ -1,0 +1,83 @@
+{
+  "ID": "15ce65ce-7363-4200-83ef-9bb89ff62838",
+  "Root": {
+    "alive": true,
+    "content": [
+      "d5b83293-404e-4dbf-81d3-409d6ad2dcd1"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552019482022,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "15ce65ce-7363-4200-83ef-9bb89ff62838",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552019482022,
+    "parent_id": "8a470a5a-e085-4285-b053-7cc97da24b2c",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "A simple TCP client"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552019482019,
+        "id": "d5b83293-404e-4dbf-81d3-409d6ad2dcd1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552019482019,
+        "parent_id": "15ce65ce-7363-4200-83ef-9bb89ff62838",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Include Nodejs' net module.\nconst Net = require('net');\n// The port number and hostname of the server.\nconst port = 8080;\nconst host = 'localhost';\n\n// Create a new TCP client.\nconst client = new Net.Socket();\n// Send a connection request to the server.\nclient.connect({ port: port, host: host }), function() {\n    // If there is no error, the server has accepted the request and created a new \n    // socket dedicated to us.\n    console.log('TCP connection established with the server.');\n\n    // The client can now send data to the server by writing to its socket.\n    client.write('Hello, server.');\n});\n\n// The client can also receive data from the server by reading from its socket.\nclient.on('data', function(chunk) {\n    console.log(`Data received from the server: ${chunk.toString()}.`);\n    \n    // Request an end to the connection after the data has been received.\n    client.end();\n});\n\nclient.on('end', function() {\n    console.log('Requested an end to the TCP connection');\n});"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Include Nodejs' net module.\nconst Net = require('net');\n// The port number and hostname of the server.\nconst port = 8080;\nconst host = 'localhost';\n\n// Create a new TCP client.\nconst client = new Net.Socket();\n// Send a connection request to the server.\nclient.connect({ port: port, host: host }), function() {\n    // If there is no error, the server has accepted the request and created a new \n    // socket dedicated to us.\n    console.log('TCP connection established with the server.');\n\n    // The client can now send data to the server by writing to its socket.\n    client.write('Hello, server.');\n});\n\n// The client can also receive data from the server by reading from its socket.\nclient.on('data', function(chunk) {\n    console.log(`Data received from the server: ${chunk.toString()}.`);\n    \n    // Request an end to the connection after the data has been received.\n    client.end();\n});\n\nclient.on('end', function() {\n    console.log('Requested an end to the TCP connection');\n});",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "A simple TCP client",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

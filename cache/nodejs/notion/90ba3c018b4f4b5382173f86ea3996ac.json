@@ -1,0 +1,161 @@
+{
+  "ID": "90ba3c01-8b4f-4b53-8217-3f86ea3996ac",
+  "Root": {
+    "alive": true,
+    "content": [
+      "1df42263-d3aa-4674-a5b2-aa4038c571a9",
+      "af0f309c-f80e-47dc-ba23-a8b1023e9178",
+      "51bc6a43-567b-4114-b135-8460184c862b",
+      "720f29a5-8d6f-43db-9f8c-07f173f54dc8"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552019890405,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "90ba3c01-8b4f-4b53-8217-3f86ea3996ac",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552019890405,
+    "parent_id": "ce35d419-cfae-44b6-9678-cdab61f3b9ed",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Using fs And pipe To Stream Static Files From The Server"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552019890402,
+        "id": "1df42263-d3aa-4674-a5b2-aa4038c571a9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552019890402,
+        "parent_id": "90ba3c01-8b4f-4b53-8217-3f86ea3996ac",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "A good VOD (Video On Demand) service should start with the basics. Lets say you have a directory on your server that is not publicly accessible, yet through some sort of portal or paywall you want to allow users to access your media."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "A good VOD (Video On Demand) service should start with the basics. Lets say you have a directory on your server that is not publicly accessible, yet through some sort of portal or paywall you want to allow users to access your media."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552019890404,
+        "id": "af0f309c-f80e-47dc-ba23-a8b1023e9178",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552019890404,
+        "parent_id": "90ba3c01-8b4f-4b53-8217-3f86ea3996ac",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var movie = path.resolve('./public/' + req.params.filename);\n\n        fs.stat(movie, function (err, stats) {\n\n            var range = req.headers.range;\n\n            if (!range) {\n\n                return res.sendStatus(416);\n\n            }\n\n            //Chunk logic here\n            var positions = range.replace(/bytes=/, \"\").split(\"-\");\n            var start = parseInt(positions[0], 10);\n            var total = stats.size;\n            var end = positions[1] ? parseInt(positions[1], 10) : total - 1;\n            var chunksize = (end - start) + 1;\n\n            res.writeHead(206, {\n\n                'Transfer-Encoding': 'chunked',\n\n                \"Content-Range\": \"bytes \" + start + \"-\" + end + \"/\" + total,\n\n                \"Accept-Ranges\": \"bytes\",\n\n                \"Content-Length\": chunksize,\n\n                \"Content-Type\": mime.lookup(req.params.filename)\n\n            });\n\n            var stream = fs.createReadStream(movie, { start: start, end: end, autoClose: true })\n\n                .on('end', function () {\n\n                    console.log('Stream Done');\n\n                })\n\n                .on(\"error\", function (err) {\n\n                    res.end(err);\n\n                })\n\n                .pipe(res, { end: true });\n\n        });"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var movie = path.resolve('./public/' + req.params.filename);\n\n        fs.stat(movie, function (err, stats) {\n\n            var range = req.headers.range;\n\n            if (!range) {\n\n                return res.sendStatus(416);\n\n            }\n\n            //Chunk logic here\n            var positions = range.replace(/bytes=/, \"\").split(\"-\");\n            var start = parseInt(positions[0], 10);\n            var total = stats.size;\n            var end = positions[1] ? parseInt(positions[1], 10) : total - 1;\n            var chunksize = (end - start) + 1;\n\n            res.writeHead(206, {\n\n                'Transfer-Encoding': 'chunked',\n\n                \"Content-Range\": \"bytes \" + start + \"-\" + end + \"/\" + total,\n\n                \"Accept-Ranges\": \"bytes\",\n\n                \"Content-Length\": chunksize,\n\n                \"Content-Type\": mime.lookup(req.params.filename)\n\n            });\n\n            var stream = fs.createReadStream(movie, { start: start, end: end, autoClose: true })\n\n                .on('end', function () {\n\n                    console.log('Stream Done');\n\n                })\n\n                .on(\"error\", function (err) {\n\n                    res.end(err);\n\n                })\n\n                .pipe(res, { end: true });\n\n        });",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552019890405,
+        "id": "51bc6a43-567b-4114-b135-8460184c862b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552019890405,
+        "parent_id": "90ba3c01-8b4f-4b53-8217-3f86ea3996ac",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The above snippet is a basic outline for how you would like to stream your video to a client. The chunk logic depends on a variety of factors, including network traffic and latency. It is important to balance chuck size vs. quantity."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The above snippet is a basic outline for how you would like to stream your video to a client. The chunk logic depends on a variety of factors, including network traffic and latency. It is important to balance chuck size vs. quantity."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552019890405,
+        "id": "720f29a5-8d6f-43db-9f8c-07f173f54dc8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552019890405,
+        "parent_id": "90ba3c01-8b4f-4b53-8217-3f86ea3996ac",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Finally, the .pipe call lets node.js know to keep a connection open with the server and to send additional chunks as needed."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Finally, the .pipe call lets node.js know to keep a connection open with the server and to send additional chunks as needed."
+          }
+        ]
+      }
+    ],
+    "title": "Using fs And pipe To Stream Static Files From The Server",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

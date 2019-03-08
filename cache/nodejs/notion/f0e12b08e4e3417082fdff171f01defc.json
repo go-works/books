@@ -1,0 +1,305 @@
+{
+  "ID": "f0e12b08-e4e3-4170-82fd-ff171f01defc",
+  "Root": {
+    "alive": true,
+    "content": [
+      "e7a45536-2caa-45c4-a6c2-53d1093cb61d",
+      "4691ebcf-dbc1-4762-85e8-1ded0749abf9",
+      "5079778f-f7a8-4181-a5d7-921432f11f98",
+      "ba2452e4-1930-478a-b908-99bfde2b2109",
+      "4b02077c-1b20-4718-a23a-c8b60ba7a050",
+      "dfb0873e-f0c7-4874-8452-3cc6b9dee328"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552017886065,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "f0e12b08-e4e3-4170-82fd-ff171f01defc",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552017886065,
+    "parent_id": "f2951439-dbd4-468d-b709-5d05eeed9c64",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Hook How to execute code before any req and after any res"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017886064,
+        "id": "e7a45536-2caa-45c4-a6c2-53d1093cb61d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017886064,
+        "parent_id": "f0e12b08-e4e3-4170-82fd-ff171f01defc",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "app.use()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and middleware can be used for “before” and a combination of the "
+            ],
+            [
+              "close",
+              [
+                [
+                  "a",
+                  "https://nodejs.org/api/http.html#http_event_close_1"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "finish",
+              [
+                [
+                  "a",
+                  "https://nodejs.org/api/stream.html#stream_event_finish"
+                ]
+              ]
+            ],
+            [
+              " events can be used for “after”."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "app.use()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and middleware can be used for “before” and a combination of the "
+          },
+          {
+            "Text": "close",
+            "Link": "https://nodejs.org/api/http.html#http_event_close_1"
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "finish",
+            "Link": "https://nodejs.org/api/stream.html#stream_event_finish"
+          },
+          {
+            "Text": " events can be used for “after”."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017886064,
+        "id": "4691ebcf-dbc1-4762-85e8-1ded0749abf9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017886064,
+        "parent_id": "f0e12b08-e4e3-4170-82fd-ff171f01defc",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "app.use(function (req, res, next) {\n    function afterResponse() {\n        res.removeListener('finish', afterResponse);\n        res.removeListener('close', afterResponse);\n\n        // actions after response\n    }\n    res.on('finish', afterResponse);\n    res.on('close', afterResponse);\n\n    // action before request\n    // eventually calling `next()`\n    next();\n});\n...\napp.use(app.router);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "app.use(function (req, res, next) {\n    function afterResponse() {\n        res.removeListener('finish', afterResponse);\n        res.removeListener('close', afterResponse);\n\n        // actions after response\n    }\n    res.on('finish', afterResponse);\n    res.on('close', afterResponse);\n\n    // action before request\n    // eventually calling `next()`\n    next();\n});\n...\napp.use(app.router);",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017886064,
+        "id": "5079778f-f7a8-4181-a5d7-921432f11f98",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017886064,
+        "parent_id": "f0e12b08-e4e3-4170-82fd-ff171f01defc",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "An example of this is the "
+            ],
+            [
+              "logger",
+              [
+                [
+                  "a",
+                  "http://www.senchalabs.org/connect/logger.html"
+                ]
+              ]
+            ],
+            [
+              " middleware, which will append to the log after the response by default."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "An example of this is the "
+          },
+          {
+            "Text": "logger",
+            "Link": "http://www.senchalabs.org/connect/logger.html"
+          },
+          {
+            "Text": " middleware, which will append to the log after the response by default."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017886065,
+        "id": "ba2452e4-1930-478a-b908-99bfde2b2109",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017886065,
+        "parent_id": "f0e12b08-e4e3-4170-82fd-ff171f01defc",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Just make sure this “middleware” is used before "
+            ],
+            [
+              "app.router",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " as order does matter."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Just make sure this “middleware” is used before "
+          },
+          {
+            "Text": "app.router",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " as order does matter."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017886065,
+        "id": "4b02077c-1b20-4718-a23a-c8b60ba7a050",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017886065,
+        "parent_id": "f0e12b08-e4e3-4170-82fd-ff171f01defc",
+        "parent_table": "block",
+        "type": "divider",
+        "version": 1
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552017886065,
+        "id": "dfb0873e-f0c7-4874-8452-3cc6b9dee328",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552017886065,
+        "parent_id": "f0e12b08-e4e3-4170-82fd-ff171f01defc",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Original post is "
+            ],
+            [
+              "here",
+              [
+                [
+                  "b"
+                ],
+                [
+                  "a",
+                  "http://stackoverflow.com/questions/20175806/before-and-after-hooks-for-a-request-in-express-to-be-executed-before-any-req-a"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Original post is "
+          },
+          {
+            "Text": "here",
+            "AttrFlags": 1,
+            "Link": "http://stackoverflow.com/questions/20175806/before-and-after-hooks-for-a-request-in-express-to-be-executed-before-any-req-a"
+          }
+        ]
+      }
+    ],
+    "title": "Hook How to execute code before any req and after any res",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -66,7 +66,6 @@ var (
 		NotionStartPageID: "12e6f78e68a5497290c96e1365ae6259",
 	}
 	bookKotlin = &Book{
-		NoPublish:      true,
 		Title:          "Kotlin",
 		TitleLong:      "Essential Kotlin",
 		Dir:            "kotlin",
@@ -75,7 +74,6 @@ var (
 		NotionStartPageID: "2bdd47318f3a4e8681dda289a8b3472b",
 	}
 	bookJavaScript = &Book{
-		NoPublish:      true,
 		Title:          "JavaScript",
 		TitleLong:      "Essential JavaScript",
 		Dir:            "javascript",
@@ -84,7 +82,6 @@ var (
 		NotionStartPageID: "0b121710a160402fa9fd4646b87bed99",
 	}
 	bookDart = &Book{
-		NoPublish:      true,
 		Title:          "Dart",
 		TitleLong:      "Essential Dart",
 		Dir:            "dart",
@@ -93,7 +90,6 @@ var (
 		NotionStartPageID: "0e2d248bf94b4aebaefbcf51ae435df0",
 	}
 	bookJava = &Book{
-		NoPublish:      true,
 		Title:          "Java",
 		TitleLong:      "Essential Java",
 		Dir:            "java",
@@ -102,7 +98,6 @@ var (
 		NotionStartPageID: "d37cda98a07046f6b2cc375731ea3bdb",
 	}
 	bookAndroid = &Book{
-		NoPublish:      true,
 		Title:          "Android",
 		TitleLong:      "Essential Android",
 		Dir:            "android",
@@ -111,7 +106,6 @@ var (
 		NotionStartPageID: "f90b0a6b648343e28dc5ed6e8f5c0780",
 	}
 	bookSql = &Book{
-		NoPublish:      true,
 		Title:          "SQL",
 		TitleLong:      "Essential SQL",
 		Dir:            "sql",
@@ -120,7 +114,6 @@ var (
 		NotionStartPageID: "d1c8bb39bad4494e80abe28414c3d80e",
 	}
 	bookCpp = &Book{
-		NoPublish:      true,
 		Title:          "C++",
 		TitleLong:      "Essential C++",
 		Dir:            "cpp",
@@ -129,7 +122,6 @@ var (
 		NotionStartPageID: "ad527dc6d4a7420b923494d0b9bfb560",
 	}
 	bookIOS = &Book{
-		NoPublish:      true,
 		Title:          "iOS",
 		TitleLong:      "Essential iOS",
 		Dir:            "ios",
@@ -138,7 +130,6 @@ var (
 		NotionStartPageID: "3626edc1bd044431afddc89648a7050f",
 	}
 	bookPostgresql = &Book{
-		NoPublish:      true,
 		Title:          "PostgreSQL",
 		TitleLong:      "Essential PostgreSQL",
 		Dir:            "postgresql",
@@ -147,7 +138,6 @@ var (
 		NotionStartPageID: "799304340f2c4081b6c4b7eb28df368e",
 	}
 	bookMysql = &Book{
-		NoPublish:      true,
 		Title:          "MySQL",
 		TitleLong:      "Essential MySQL",
 		Dir:            "mysql",
@@ -156,7 +146,6 @@ var (
 		NotionStartPageID: "4489ab73989f4ae9912486561e165deb",
 	}
 	bookAlgorithm = &Book{
-		NoPublish:      true,
 		Title:          "Algorithms",
 		TitleLong:      "Essential Algorithms",
 		Dir:            "algorithms",
@@ -165,7 +154,6 @@ var (
 		NotionStartPageID: "039ec42ee62f412e983e6d5b6b201b60",
 	}
 	bookBash = &Book{
-		NoPublish:      true,
 		Title:          "Bash",
 		TitleLong:      "Essential Bash",
 		Dir:            "bash",
@@ -174,7 +162,6 @@ var (
 		NotionStartPageID: "77d28932012b489db9a6d0b349cea865",
 	}
 	bookC = &Book{
-		NoPublish:      true,
 		Title:          "C",
 		TitleLong:      "Essential C",
 		Dir:            "c",
@@ -183,7 +170,6 @@ var (
 		NotionStartPageID: "84ae4145718e4b7b8cb43cf10ee4db6a",
 	}
 	bookCSS = &Book{
-		NoPublish:      true,
 		Title:          "CSS",
 		TitleLong:      "Essential CSS",
 		Dir:            "css",
@@ -192,7 +178,6 @@ var (
 		NotionStartPageID: "18bfe038109649f48904e71ca18d76ed",
 	}
 	bookGit = &Book{
-		NoPublish:      true,
 		Title:          "Git",
 		TitleLong:      "Essential Git",
 		Dir:            "git",
@@ -201,7 +186,6 @@ var (
 		NotionStartPageID: "37913107a4194981b1fc745928c0df66",
 	}
 	bookHTML = &Book{
-		NoPublish:      true,
 		Title:          "HTML",
 		TitleLong:      "Essential HTML",
 		Dir:            "html",
@@ -210,7 +194,6 @@ var (
 		NotionStartPageID: "1c13e594ccd5472fb58d4c56379e7540",
 	}
 	bookHTMLCanvas = &Book{
-		NoPublish:      true,
 		Title:          "HTML Canvas",
 		TitleLong:      "Essential HTML Canvas",
 		Dir:            "htmlcanvas",
@@ -219,13 +202,20 @@ var (
 		NotionStartPageID: "227fa77d624c441d98011d7c998609a6",
 	}
 	bookNETFramework = &Book{
-		NoPublish:      true,
 		Title:          "NET Framework",
 		TitleLong:      "Essential NET Framework",
 		Dir:            "netframework",
 		CoverImageName: "NETFramework.png",
 		// https://www.notion.so/kjkpublic/Essential-NET-framework-6289ba4610874393844dfbae890ed035
 		NotionStartPageID: "6289ba4610874393844dfbae890ed035",
+	}
+	bookNode = &Book{
+		Title:          "Node.js",
+		TitleLong:      "Essential Node.js",
+		Dir:            "nodejs",
+		CoverImageName: "Node.js.png",
+		// https://www.notion.so/kjkpublic/Essential-Node-a44f25f371164e69a70578bd98e71eb1
+		NotionStartPageID: "a44f25f371164e69a70578bd98e71eb1",
 	}
 )
 
@@ -237,7 +227,7 @@ var (
 	}
 	booksUnpublished = []*Book{
 		bookSql, bookAlgorithm, bookBash, bookC, bookCSS, bookGit, bookHTML,
-		bookHTMLCanvas, bookNETFramework,
+		bookHTMLCanvas, bookNETFramework, bookNode,
 	}
 	allBooks = append(booksMain, booksUnpublished...)
 )

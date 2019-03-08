@@ -14,9 +14,6 @@ import (
 type Book struct {
 	//FileNameBase string // TODO: possibly not needed
 
-	// if true, doesn't publish on programming-books.io, just drafts
-	NoPublish bool
-
 	Title     string // "Go", "jQuery" etcc
 	TitleLong string // "Essential Go", "Essential jQuery" etc.
 

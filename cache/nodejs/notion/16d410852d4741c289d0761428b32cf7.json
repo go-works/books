@@ -1,0 +1,217 @@
+{
+  "ID": "16d41085-2d47-41c2-89d0-761428b32cf7",
+  "Root": {
+    "alive": true,
+    "content": [
+      "98046c83-e594-46f8-8566-44117bce45f0",
+      "ab7a65a0-6c4e-45a6-a805-67001d2a13fe",
+      "8e23540d-1e82-4457-a9a8-04dc198bf855",
+      "8f903e3c-354c-4a40-8d7a-2c5eb649776f",
+      "85ad97f5-9ddd-4b5d-a652-c93a4de0a5c2",
+      "6e2fa05b-9da4-4f21-acfe-b3340f46b228"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552018312111,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "16d41085-2d47-41c2-89d0-761428b32cf7",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552018312111,
+    "parent_id": "3e8c29bb-4121-476f-98d3-d04fff47537a",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Hello world with socket messages."
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552018312108,
+        "id": "98046c83-e594-46f8-8566-44117bce45f0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552018312108,
+        "parent_id": "16d41085-2d47-41c2-89d0-761428b32cf7",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Install node modules"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Install node modules"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552018312110,
+        "id": "ab7a65a0-6c4e-45a6-a805-67001d2a13fe",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552018312110,
+        "parent_id": "16d41085-2d47-41c2-89d0-761428b32cf7",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "npm install express\nnpm install socket.io"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "npm install express\nnpm install socket.io",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552018312111,
+        "id": "8e23540d-1e82-4457-a9a8-04dc198bf855",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552018312111,
+        "parent_id": "16d41085-2d47-41c2-89d0-761428b32cf7",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Node.js server"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Node.js server"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552018312111,
+        "id": "8f903e3c-354c-4a40-8d7a-2c5eb649776f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552018312111,
+        "parent_id": "16d41085-2d47-41c2-89d0-761428b32cf7",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "const express = require('express'); \nconst app = express();\nconst server = app.listen(3000,console.log(\"Socket.io Hello World server started!\"));\nconst io = require('socket.io')(server);\n\nio.on('connection', (socket) =\u003e {\n    //console.log(\"Client connected!\");\n    socket.on('message-from-client-to-server', (msg) =\u003e {\n        console.log(msg);\n    })\n    socket.emit('message-from-server-to-client', 'Hello World!');\n});"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "const express = require('express'); \nconst app = express();\nconst server = app.listen(3000,console.log(\"Socket.io Hello World server started!\"));\nconst io = require('socket.io')(server);\n\nio.on('connection', (socket) =\u003e {\n    //console.log(\"Client connected!\");\n    socket.on('message-from-client-to-server', (msg) =\u003e {\n        console.log(msg);\n    })\n    socket.emit('message-from-server-to-client', 'Hello World!');\n});",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552018312111,
+        "id": "85ad97f5-9ddd-4b5d-a652-c93a4de0a5c2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552018312111,
+        "parent_id": "16d41085-2d47-41c2-89d0-761428b32cf7",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Browser client"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Browser client"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552018312111,
+        "id": "6e2fa05b-9da4-4f21-acfe-b3340f46b228",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552018312111,
+        "parent_id": "16d41085-2d47-41c2-89d0-761428b32cf7",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003c!DOCTYPE html\u003e\n\u003chtml lang=\"en\"\u003e\n  \u003chead\u003e\n    \u003cmeta charset=\"UTF-8\"\u003e\n    \u003ctitle\u003eHello World with Socket.io\u003c/title\u003e\n  \u003c/head\u003e\n  \u003cbody\u003e\n    \u003cscript src=\"https://cdn.socket.io/socket.io-1.4.5.js\"\u003e\u003c/script\u003e\n    \u003cscript\u003e\n      var socket = io(\"http://localhost:3000\");\n      socket.on(\"message-from-server-to-client\", function(msg) {\n          document.getElementById('message').innerHTML = msg;\n      });\n      socket.emit('message-from-client-to-server', 'Hello World!');\n    \u003c/script\u003e\n    \u003cp\u003eSocket.io Hello World client started!\u003c/p\u003e\n    \u003cp id=\"message\"\u003e\u003c/p\u003e\n  \u003c/body\u003e\n\u003c/html\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003c!DOCTYPE html\u003e\n\u003chtml lang=\"en\"\u003e\n  \u003chead\u003e\n    \u003cmeta charset=\"UTF-8\"\u003e\n    \u003ctitle\u003eHello World with Socket.io\u003c/title\u003e\n  \u003c/head\u003e\n  \u003cbody\u003e\n    \u003cscript src=\"https://cdn.socket.io/socket.io-1.4.5.js\"\u003e\u003c/script\u003e\n    \u003cscript\u003e\n      var socket = io(\"http://localhost:3000\");\n      socket.on(\"message-from-server-to-client\", function(msg) {\n          document.getElementById('message').innerHTML = msg;\n      });\n      socket.emit('message-from-client-to-server', 'Hello World!');\n    \u003c/script\u003e\n    \u003cp\u003eSocket.io Hello World client started!\u003c/p\u003e\n    \u003cp id=\"message\"\u003e\u003c/p\u003e\n  \u003c/body\u003e\n\u003c/html\u003e",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Hello world with socket messages.",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,109 @@
+{
+  "ID": "173b6297-6676-42cf-8705-dfc6d2dc5073",
+  "Root": {
+    "alive": true,
+    "content": [
+      "a7aa682a-cd6e-4297-b7e3-4f7706d07923",
+      "dcf3b444-f898-451a-8dfc-51611a734ac2"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552018267115,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "173b6297-6676-42cf-8705-dfc6d2dc5073",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552018267115,
+    "parent_id": "4873ed8f-e753-4e4e-96f0-577822f3466d",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Taking advantage of clusters"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552018267112,
+        "id": "a7aa682a-cd6e-4297-b7e3-4f7706d07923",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552018267112,
+        "parent_id": "173b6297-6676-42cf-8705-dfc6d2dc5073",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "A single instance of Node.js runs in a single thread. To take advantage of multi-core systems the user will sometimes want to launch a cluster of Node.js processes to handle the load."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "A single instance of Node.js runs in a single thread. To take advantage of multi-core systems the user will sometimes want to launch a cluster of Node.js processes to handle the load."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552018267115,
+        "id": "dcf3b444-f898-451a-8dfc-51611a734ac2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552018267115,
+        "parent_id": "173b6297-6676-42cf-8705-dfc6d2dc5073",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "var cluster = require('cluster');\n   \n   var numCPUs = require('os').cpus().length;\n   \n       if (cluster.isMaster) {\n         // In real life, you'd probably use more than just 2 workers,\n         // and perhaps not put the master and worker in the same file.\n         //\n         // You can also of course get a bit fancier about logging, and\n         // implement whatever custom logic you need to prevent DoS\n         // attacks and other bad behavior.\n         //\n         // See the options in the cluster documentation.\n         //\n         // The important thing is that the master does very little,\n         // increasing our resilience to unexpected errors.\n           console.log('your server is working on ' + numCPUs + ' cores');\n           \n            for (var i = 0; i \u003c numCPUs; i++) {\n                   cluster.fork();\n                 }\n            \n         cluster.on('disconnect', function(worker) {\n           console.error('disconnect!');\n           //clearTimeout(timeout);\n           cluster.fork();\n         });\n   \n         \n       } else {\n           require('./app.js');\n       \n       }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "var cluster = require('cluster');\n   \n   var numCPUs = require('os').cpus().length;\n   \n       if (cluster.isMaster) {\n         // In real life, you'd probably use more than just 2 workers,\n         // and perhaps not put the master and worker in the same file.\n         //\n         // You can also of course get a bit fancier about logging, and\n         // implement whatever custom logic you need to prevent DoS\n         // attacks and other bad behavior.\n         //\n         // See the options in the cluster documentation.\n         //\n         // The important thing is that the master does very little,\n         // increasing our resilience to unexpected errors.\n           console.log('your server is working on ' + numCPUs + ' cores');\n           \n            for (var i = 0; i \u003c numCPUs; i++) {\n                   cluster.fork();\n                 }\n            \n         cluster.on('disconnect', function(worker) {\n           console.error('disconnect!');\n           //clearTimeout(timeout);\n           cluster.fork();\n         });\n   \n         \n       } else {\n           require('./app.js');\n       \n       }",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Taking advantage of clusters",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

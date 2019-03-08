@@ -1,0 +1,189 @@
+{
+  "ID": "308fa6c7-f535-4afe-9181-1ac305454a3a",
+  "Root": {
+    "alive": true,
+    "content": [
+      "d7d35a4c-1272-4f23-8b79-d1fa0105570b",
+      "6d140b77-63a4-45c1-86fd-db4f58a60ca7",
+      "696c152e-a7ec-44b2-a48d-c8cbf9b29e4e",
+      "e76b665b-6bc2-4b6c-8d21-dd26f2ddcf10",
+      "8f761fb0-8629-4751-9b15-d32299bdc877"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552019980174,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "308fa6c7-f535-4afe-9181-1ac305454a3a",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552019980174,
+    "parent_id": "772c1fae-73e6-4be2-a2f4-1071161d5339",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Using a local module for easier querying"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552019980171,
+        "id": "d7d35a4c-1272-4f23-8b79-d1fa0105570b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552019980171,
+        "parent_id": "308fa6c7-f535-4afe-9181-1ac305454a3a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To simplify your querying from ORACLE-DB, you may want to call your query like this:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To simplify your querying from ORACLE-DB, you may want to call your query like this:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552019980174,
+        "id": "6d140b77-63a4-45c1-86fd-db4f58a60ca7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552019980174,
+        "parent_id": "308fa6c7-f535-4afe-9181-1ac305454a3a",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "const oracle = require('./oracle.js');\n\nconst sql = \"select 'test' as c1, 'oracle' as c2 from dual\";\noracle.queryObject(sql, {}, {})\n    .then(function(result) {\n        console.log(result.rows[0]['C2']);\n    })\n    .catch(function(err) {\n        next(err);\n    });"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "const oracle = require('./oracle.js');\n\nconst sql = \"select 'test' as c1, 'oracle' as c2 from dual\";\noracle.queryObject(sql, {}, {})\n    .then(function(result) {\n        console.log(result.rows[0]['C2']);\n    })\n    .catch(function(err) {\n        next(err);\n    });",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552019980174,
+        "id": "696c152e-a7ec-44b2-a48d-c8cbf9b29e4e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552019980174,
+        "parent_id": "308fa6c7-f535-4afe-9181-1ac305454a3a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Building up the connection and executing is included in this oracle.js file with content as follows:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Building up the connection and executing is included in this oracle.js file with content as follows:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552019980174,
+        "id": "e76b665b-6bc2-4b6c-8d21-dd26f2ddcf10",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552019980174,
+        "parent_id": "308fa6c7-f535-4afe-9181-1ac305454a3a",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "'use strict';\nconst oracledb = require('oracledb');\n\nconst oracleDbRelease = function(conn) {\n  conn.release(function (err) {\n    if (err)\n      console.log(err.message);\n  });\n};\n\nfunction queryArray(sql, bindParams, options) {\n    options.isAutoCommit = false; // we only do SELECTs\n \n    return new Promise(function(resolve, reject) {\n        oracledb.getConnection(\n                  {\n                    user          : \"oli\",\n                    password      : \"password\",\n                    connectString : \"ORACLE_DEV_DB_TNA_NAME\"\n                })\n        .then(function(connection){\n            //console.log(\"sql log: \" + sql + \" params \" + bindParams);\n            connection.execute(sql, bindParams, options)\n            .then(function(results) {\n                resolve(results);\n                process.nextTick(function() {\n                    oracleDbRelease(connection);\n                });\n            })\n            .catch(function(err) {\n                reject(err);\n \n                process.nextTick(function() {\n                    oracleDbRelease(connection);\n                        });\n                    });\n            })\n            .catch(function(err) {\n                reject(err);\n            });\n    });\n}\n\nfunction queryObject(sql, bindParams, options) {\n    options['outFormat'] = oracledb.OBJECT; // default is oracledb.ARRAY\n    return queryArray(sql, bindParams, options);\n}\n\nmodule.exports = queryArray; \nmodule.exports.queryArray = queryArray; \nmodule.exports.queryObject = queryObject;"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "'use strict';\nconst oracledb = require('oracledb');\n\nconst oracleDbRelease = function(conn) {\n  conn.release(function (err) {\n    if (err)\n      console.log(err.message);\n  });\n};\n\nfunction queryArray(sql, bindParams, options) {\n    options.isAutoCommit = false; // we only do SELECTs\n \n    return new Promise(function(resolve, reject) {\n        oracledb.getConnection(\n                  {\n                    user          : \"oli\",\n                    password      : \"password\",\n                    connectString : \"ORACLE_DEV_DB_TNA_NAME\"\n                })\n        .then(function(connection){\n            //console.log(\"sql log: \" + sql + \" params \" + bindParams);\n            connection.execute(sql, bindParams, options)\n            .then(function(results) {\n                resolve(results);\n                process.nextTick(function() {\n                    oracleDbRelease(connection);\n                });\n            })\n            .catch(function(err) {\n                reject(err);\n \n                process.nextTick(function() {\n                    oracleDbRelease(connection);\n                        });\n                    });\n            })\n            .catch(function(err) {\n                reject(err);\n            });\n    });\n}\n\nfunction queryObject(sql, bindParams, options) {\n    options['outFormat'] = oracledb.OBJECT; // default is oracledb.ARRAY\n    return queryArray(sql, bindParams, options);\n}\n\nmodule.exports = queryArray; \nmodule.exports.queryArray = queryArray; \nmodule.exports.queryObject = queryObject;",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552019980174,
+        "id": "8f761fb0-8629-4751-9b15-d32299bdc877",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552019980174,
+        "parent_id": "308fa6c7-f535-4afe-9181-1ac305454a3a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Note that you have both methods queryArray and queryObject to call on your oracle object."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Note that you have both methods queryArray and queryObject to call on your oracle object."
+          }
+        ]
+      }
+    ],
+    "title": "Using a local module for easier querying",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

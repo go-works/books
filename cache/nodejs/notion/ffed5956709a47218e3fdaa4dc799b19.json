@@ -1,0 +1,135 @@
+{
+  "ID": "ffed5956-709a-4721-8e3f-daa4dc799b19",
+  "Root": {
+    "alive": true,
+    "content": [
+      "9b4fbea4-aa15-416a-9223-e2161599003d",
+      "3781d76e-eb6f-4175-a999-e8bbfbf01a6c",
+      "d667a4b7-e423-42b2-9f24-e822cbbbbc72"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552020385172,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "ffed5956-709a-4721-8e3f-daa4dc799b19",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552020385172,
+    "parent_id": "39acf5a6-ebc5-4d00-985c-6bc3886f607a",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "using i18n module to maintains localization in node js app"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552020385169,
+        "id": "9b4fbea4-aa15-416a-9223-e2161599003d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552020385169,
+        "parent_id": "ffed5956-709a-4721-8e3f-daa4dc799b19",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Lightweight simple translation module with dynamic json storage. Supports plain vanilla node.js apps and should work with any framework (like express, restify and probably more) that exposes an app.use() method passing in res and req objects. Uses common __(’…’) syntax in app and templates. Stores language files in json files compatible to webtranslateit json format. Adds new strings on-the-fly when first used in your app. No extra parsing needed."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Lightweight simple translation module with dynamic json storage. Supports plain vanilla node.js apps and should work with any framework (like express, restify and probably more) that exposes an app.use() method passing in res and req objects. Uses common __(’…’) syntax in app and templates. Stores language files in json files compatible to webtranslateit json format. Adds new strings on-the-fly when first used in your app. No extra parsing needed."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552020385172,
+        "id": "3781d76e-eb6f-4175-a999-e8bbfbf01a6c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552020385172,
+        "parent_id": "ffed5956-709a-4721-8e3f-daa4dc799b19",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "express + i18n-node + cookieParser and avoid concurrency issues"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "express + i18n-node + cookieParser and avoid concurrency issues"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552020385172,
+        "id": "d667a4b7-e423-42b2-9f24-e822cbbbbc72",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552020385172,
+        "parent_id": "ffed5956-709a-4721-8e3f-daa4dc799b19",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// usual requirements\nvar express = require('express'),\n    i18n = require('i18n'),\n    app = module.exports = express();\n\ni18n.configure({\n  // setup some locales - other locales default to en silently\n  locales: ['en', 'ru', 'de'],\n\n  // sets a custom cookie name to parse locale settings from\n  cookie: 'yourcookiename',\n\n  // where to store json files - defaults to './locales'\n  directory: __dirname + '/locales'\n});\n\napp.configure(function () {\n  // you will need to use cookieParser to expose cookies to req.cookies\n  app.use(express.cookieParser());\n\n  // i18n init parses req for language headers, cookies, etc.\n  app.use(i18n.init);\n\n});\n\n// serving homepage\napp.get('/', function (req, res) {\n  res.send(res.__('Hello World'));\n});\n\n// starting server\nif (!module.parent) {\n  app.listen(3000);\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// usual requirements\nvar express = require('express'),\n    i18n = require('i18n'),\n    app = module.exports = express();\n\ni18n.configure({\n  // setup some locales - other locales default to en silently\n  locales: ['en', 'ru', 'de'],\n\n  // sets a custom cookie name to parse locale settings from\n  cookie: 'yourcookiename',\n\n  // where to store json files - defaults to './locales'\n  directory: __dirname + '/locales'\n});\n\napp.configure(function () {\n  // you will need to use cookieParser to expose cookies to req.cookies\n  app.use(express.cookieParser());\n\n  // i18n init parses req for language headers, cookies, etc.\n  app.use(i18n.init);\n\n});\n\n// serving homepage\napp.get('/', function (req, res) {\n  res.send(res.__('Hello World'));\n});\n\n// starting server\nif (!module.parent) {\n  app.listen(3000);\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "using i18n module to maintains localization in node js app",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

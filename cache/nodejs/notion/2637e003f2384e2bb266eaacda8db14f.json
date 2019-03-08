@@ -1,0 +1,271 @@
+{
+  "ID": "2637e003-f238-4e2b-b266-eaacda8db14f",
+  "Root": {
+    "alive": true,
+    "content": [
+      "0056670a-c029-4792-9a04-40f26e8d426e",
+      "00385ca7-7af5-42e6-8ae1-c12e86a5fba9",
+      "03b5c1eb-9d12-483d-9266-72a240d2fe73",
+      "b1598ee3-da8e-4057-a1ac-25c92478583b",
+      "731eada6-dd34-4668-a00e-9b587c8217cb",
+      "458b9a59-2af5-42d6-8d7b-936bb7ca5a84",
+      "106ebea3-817b-4af2-95c2-bc6d891feb72",
+      "53e6ea2b-9d5c-4ad2-9785-47da3f4db20c"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552019981232,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "2637e003-f238-4e2b-b266-eaacda8db14f",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552019981232,
+    "parent_id": "772c1fae-73e6-4be2-a2f4-1071161d5339",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Query a connection object without parameters"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552019981229,
+        "id": "0056670a-c029-4792-9a04-40f26e8d426e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552019981229,
+        "parent_id": "2637e003-f238-4e2b-b266-eaacda8db14f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Use may now use the connExecute-Function for executing a query. You have the option to get the query result as an object or array. The result ist printed to console.log."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Use may now use the connExecute-Function for executing a query. You have the option to get the query result as an object or array. The result ist printed to console.log."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552019981231,
+        "id": "00385ca7-7af5-42e6-8ae1-c12e86a5fba9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552019981231,
+        "parent_id": "2637e003-f238-4e2b-b266-eaacda8db14f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "function connExecute(err, connection)\n{\n    if (err) {\n        console.error(err.message);\n        return;\n    }\n    sql = \"select 'test' as c1, 'oracle' as c2 from dual\";\n    connection.execute(sql, {}, { outFormat: oracledb.OBJECT }, // or oracledb.ARRAY\n        function(err, result)\n        {\n            if (err) {\n                console.error(err.message);\n                connRelease(connection);\n                return;\n            }\n            console.log(result.metaData);\n            console.log(result.rows);\n            connRelease(connection);\n        });\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "function connExecute(err, connection)\n{\n    if (err) {\n        console.error(err.message);\n        return;\n    }\n    sql = \"select 'test' as c1, 'oracle' as c2 from dual\";\n    connection.execute(sql, {}, { outFormat: oracledb.OBJECT }, // or oracledb.ARRAY\n        function(err, result)\n        {\n            if (err) {\n                console.error(err.message);\n                connRelease(connection);\n                return;\n            }\n            console.log(result.metaData);\n            console.log(result.rows);\n            connRelease(connection);\n        });\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552019981232,
+        "id": "03b5c1eb-9d12-483d-9266-72a240d2fe73",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552019981232,
+        "parent_id": "2637e003-f238-4e2b-b266-eaacda8db14f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Since we used a non-pooling connection, we have to release our connection again."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Since we used a non-pooling connection, we have to release our connection again."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552019981232,
+        "id": "b1598ee3-da8e-4057-a1ac-25c92478583b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552019981232,
+        "parent_id": "2637e003-f238-4e2b-b266-eaacda8db14f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "function connRelease(connection)\n{\n  connection.close(\n    function(err) {\n      if (err) {\n        console.error(err.message);\n      }\n    });\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "function connRelease(connection)\n{\n  connection.close(\n    function(err) {\n      if (err) {\n        console.error(err.message);\n      }\n    });\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552019981232,
+        "id": "731eada6-dd34-4668-a00e-9b587c8217cb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552019981232,
+        "parent_id": "2637e003-f238-4e2b-b266-eaacda8db14f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The output for an object will be"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The output for an object will be"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552019981232,
+        "id": "458b9a59-2af5-42d6-8d7b-936bb7ca5a84",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552019981232,
+        "parent_id": "2637e003-f238-4e2b-b266-eaacda8db14f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "[ { name: 'C1' }, { name: 'C2' } ]\n[ { C1: 'test', C2: 'oracle' } ]"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "[ { name: 'C1' }, { name: 'C2' } ]\n[ { C1: 'test', C2: 'oracle' } ]",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552019981232,
+        "id": "106ebea3-817b-4af2-95c2-bc6d891feb72",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552019981232,
+        "parent_id": "2637e003-f238-4e2b-b266-eaacda8db14f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "and the output for an array will be"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "and the output for an array will be"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552019981232,
+        "id": "53e6ea2b-9d5c-4ad2-9785-47da3f4db20c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552019981232,
+        "parent_id": "2637e003-f238-4e2b-b266-eaacda8db14f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "[ { name: 'C1' }, { name: 'C2' } ]\n[ [ 'test', 'oracle' ] ]"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "[ { name: 'C1' }, { name: 'C2' } ]\n[ [ 'test', 'oracle' ] ]",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Query a connection object without parameters",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

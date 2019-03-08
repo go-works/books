@@ -1,0 +1,236 @@
+{
+  "ID": "d80250c7-62ce-40b0-b2c2-ef86cfbd4e35",
+  "Root": {
+    "alive": true,
+    "content": [
+      "421f688f-e6de-41a9-8acb-8686eb8d6bdd",
+      "a24bd7e9-9903-40f4-a63c-8a92f0489f38",
+      "12c37bae-f3c8-44f8-b027-579a58359600",
+      "174be36f-1eec-4de6-8999-9dc6babb9ea1"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552018000096,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "d80250c7-62ce-40b0-b2c2-ef86cfbd4e35",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552018000096,
+    "parent_id": "f808cbc7-ed6a-4f29-af39-4dbab21890cb",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Errors and Promises"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552018000091,
+        "id": "421f688f-e6de-41a9-8acb-8686eb8d6bdd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552018000091,
+        "parent_id": "d80250c7-62ce-40b0-b2c2-ef86cfbd4e35",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Promises handle errors differently to synchronous or callback-driven code."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Promises handle errors differently to synchronous or callback-driven code."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552018000094,
+        "id": "a24bd7e9-9903-40f4-a63c-8a92f0489f38",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552018000094,
+        "parent_id": "d80250c7-62ce-40b0-b2c2-ef86cfbd4e35",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "const p = new Promise(function (resolve, reject) {\n    reject(new Error('Oops'));\n});\n\n// anything that is `reject`ed inside a promise will be available through catch\n// while a promise is rejected, `.then` will not be called\np\n    .then(() =\u003e {\n        console.log(\"won't be called\");\n    })\n    .catch(e =\u003e {\n        console.log(e.message); // output: Oops\n    })\n    // once the error is caught, execution flow resumes\n    .then(() =\u003e {\n        console.log('hello!'); // output: hello!\n    });"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "const p = new Promise(function (resolve, reject) {\n    reject(new Error('Oops'));\n});\n\n// anything that is `reject`ed inside a promise will be available through catch\n// while a promise is rejected, `.then` will not be called\np\n    .then(() =\u003e {\n        console.log(\"won't be called\");\n    })\n    .catch(e =\u003e {\n        console.log(e.message); // output: Oops\n    })\n    // once the error is caught, execution flow resumes\n    .then(() =\u003e {\n        console.log('hello!'); // output: hello!\n    });",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552018000096,
+        "id": "12c37bae-f3c8-44f8-b027-579a58359600",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552018000096,
+        "parent_id": "d80250c7-62ce-40b0-b2c2-ef86cfbd4e35",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "currently, errors thrown in a promise that are not caught results in the error being swallowed, which can make it difficult to track down the error. This can be "
+            ],
+            [
+              "solved",
+              [
+                [
+                  "a",
+                  "https://www.npmjs.com/package/eslint-plugin-promise"
+                ]
+              ]
+            ],
+            [
+              " using linting tools like "
+            ],
+            [
+              "eslint",
+              [
+                [
+                  "a",
+                  "http://eslint.org/"
+                ]
+              ]
+            ],
+            [
+              " or by ensuring you always have a "
+            ],
+            [
+              "catch",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " clause."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "currently, errors thrown in a promise that are not caught results in the error being swallowed, which can make it difficult to track down the error. This can be "
+          },
+          {
+            "Text": "solved",
+            "Link": "https://www.npmjs.com/package/eslint-plugin-promise"
+          },
+          {
+            "Text": " using linting tools like "
+          },
+          {
+            "Text": "eslint",
+            "Link": "http://eslint.org/"
+          },
+          {
+            "Text": " or by ensuring you always have a "
+          },
+          {
+            "Text": "catch",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " clause."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552018000096,
+        "id": "174be36f-1eec-4de6-8999-9dc6babb9ea1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552018000096,
+        "parent_id": "d80250c7-62ce-40b0-b2c2-ef86cfbd4e35",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This behaviour is deprecated "
+            ],
+            [
+              "in node 8",
+              [
+                [
+                  "a",
+                  "https://nodejs.org/dist/latest-v8.x/docs/api/deprecations.html#deprecations_dep0018_unhandled_promise_rejections"
+                ]
+              ]
+            ],
+            [
+              " in favour of terminating the node process."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This behaviour is deprecated "
+          },
+          {
+            "Text": "in node 8",
+            "Link": "https://nodejs.org/dist/latest-v8.x/docs/api/deprecations.html#deprecations_dep0018_unhandled_promise_rejections"
+          },
+          {
+            "Text": " in favour of terminating the node process."
+          }
+        ]
+      }
+    ],
+    "title": "Errors and Promises",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}
