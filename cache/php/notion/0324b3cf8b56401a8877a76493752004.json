@@ -1,0 +1,254 @@
+{
+  "ID": "0324b3cf-8b56-401a-8877-a76493752004",
+  "Root": {
+    "alive": true,
+    "content": [
+      "08cd250a-1887-457b-8432-463ec62091db",
+      "fe79b5a5-e23d-4b45-b8e9-91d91d6c9bb7",
+      "65e19bf3-23b0-4cfd-9007-c371e3cbccd6",
+      "ef1d546f-2d1b-4150-a919-227c41bf6c54"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552022307727,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "0324b3cf-8b56-401a-8877-a76493752004",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552022307727,
+    "parent_id": "feed5453-5dd0-4311-9546-05916acc717b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Autoloading as part of a framework solution"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022307721,
+        "id": "08cd250a-1887-457b-8432-463ec62091db",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022307721,
+        "parent_id": "0324b3cf-8b56-401a-8877-a76493752004",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// autoload.php\nspl_autoload_register(function ($class) {\n    require_once \"$class.php\";\n});\n\n// Animal.php\nclass Animal {\n    public function eats($food) {\n         echo \"Yum, $food!\";\n    }\n}\n\n// Ruminant.php\nclass Ruminant extends Animal {\n    public function eats($food) {\n        if ('grass' === $food) {\n            parent::eats($food);\n        } else {\n            echo \"Yuck, $food!\";\n        }\n    }\n}\n\n// Cow.php\nclass Cow extends Ruminant {\n}\n\n// pasture.php\nrequire 'autoload.php';\n$animal = new Cow;\n$animal-\u003eeats('grass');"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// autoload.php\nspl_autoload_register(function ($class) {\n    require_once \"$class.php\";\n});\n\n// Animal.php\nclass Animal {\n    public function eats($food) {\n         echo \"Yum, $food!\";\n    }\n}\n\n// Ruminant.php\nclass Ruminant extends Animal {\n    public function eats($food) {\n        if ('grass' === $food) {\n            parent::eats($food);\n        } else {\n            echo \"Yuck, $food!\";\n        }\n    }\n}\n\n// Cow.php\nclass Cow extends Ruminant {\n}\n\n// pasture.php\nrequire 'autoload.php';\n$animal = new Cow;\n$animal-\u003eeats('grass');",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022307724,
+        "id": "fe79b5a5-e23d-4b45-b8e9-91d91d6c9bb7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022307724,
+        "parent_id": "0324b3cf-8b56-401a-8877-a76493752004",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Thanks to our generic autoloader, we have access to any class that follows our autoloader naming convention. In this example, our convention is simple: the desired class must have a file in the same directory named for the class and ending in “.php”. Notice that the class name exactly matches the file name."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Thanks to our generic autoloader, we have access to any class that follows our autoloader naming convention. In this example, our convention is simple: the desired class must have a file in the same directory named for the class and ending in “.php”. Notice that the class name exactly matches the file name."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022307724,
+        "id": "65e19bf3-23b0-4cfd-9007-c371e3cbccd6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022307724,
+        "parent_id": "0324b3cf-8b56-401a-8877-a76493752004",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Without autoloading, we would have to manually "
+            ],
+            [
+              "require",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " base classes. If we built an entire zoo of animals, we’d have thousands of require statements that could more easily be replaced with a single autoloader."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Without autoloading, we would have to manually "
+          },
+          {
+            "Text": "require",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " base classes. If we built an entire zoo of animals, we’d have thousands of require statements that could more easily be replaced with a single autoloader."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022307727,
+        "id": "ef1d546f-2d1b-4150-a919-227c41bf6c54",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022307727,
+        "parent_id": "0324b3cf-8b56-401a-8877-a76493752004",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In the final analysis, PHP autoloading is a mechanism to help you write less mechanical code so you can focus on solving business problems. All you have to do is "
+            ],
+            [
+              "define a strategy that maps class name to file name",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              ". You can roll your own autoloading strategy, as done here. Or, you can use any of the standard ones the PHP community has adopted: "
+            ],
+            [
+              "PSR-0",
+              [
+                [
+                  "a",
+                  "http://www.php-fig.org/psr/psr-0/"
+                ]
+              ]
+            ],
+            [
+              " or "
+            ],
+            [
+              "PSR-4",
+              [
+                [
+                  "a",
+                  "http://www.php-fig.org/psr/psr-4/"
+                ]
+              ]
+            ],
+            [
+              ". Or, you can use "
+            ],
+            [
+              "composer",
+              [
+                [
+                  "a",
+                  "http://www.getcomposer.org/"
+                ]
+              ]
+            ],
+            [
+              " to generically define and manage these dependencies."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In the final analysis, PHP autoloading is a mechanism to help you write less mechanical code so you can focus on solving business problems. All you have to do is "
+          },
+          {
+            "Text": "define a strategy that maps class name to file name",
+            "AttrFlags": 4
+          },
+          {
+            "Text": ". You can roll your own autoloading strategy, as done here. Or, you can use any of the standard ones the PHP community has adopted: "
+          },
+          {
+            "Text": "PSR-0",
+            "Link": "http://www.php-fig.org/psr/psr-0/"
+          },
+          {
+            "Text": " or "
+          },
+          {
+            "Text": "PSR-4",
+            "Link": "http://www.php-fig.org/psr/psr-4/"
+          },
+          {
+            "Text": ". Or, you can use "
+          },
+          {
+            "Text": "composer",
+            "Link": "http://www.getcomposer.org/"
+          },
+          {
+            "Text": " to generically define and manage these dependencies."
+          }
+        ]
+      }
+    ],
+    "title": "Autoloading as part of a framework solution",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

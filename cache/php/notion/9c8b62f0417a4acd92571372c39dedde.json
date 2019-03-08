@@ -1,0 +1,269 @@
+{
+  "ID": "9c8b62f0-417a-4acd-9257-1372c39dedde",
+  "Root": {
+    "alive": true,
+    "content": [
+      "f693c733-3e3b-4dfd-adc4-ff8d28e242af",
+      "d4d9850b-8245-4056-ac7f-8365ec208cc7",
+      "396c703c-4b89-4db9-8b9b-5339fad1aeb7",
+      "b1617553-69d0-425e-bbfd-e0953644a752",
+      "83d3becd-6617-497c-8429-50850c5d8dd1",
+      "9cb1b0fa-0cd5-4f5e-b2f7-eb04f670d95e"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552022384087,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "9c8b62f0-417a-4acd-9257-1372c39dedde",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552022384087,
+    "parent_id": "7ea927a4-8c64-45ba-9d71-d5d5796e1b71",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Capturing the output buffer to re-use later"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022384083,
+        "id": "f693c733-3e3b-4dfd-adc4-ff8d28e242af",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022384083,
+        "parent_id": "9c8b62f0-417a-4acd-9257-1372c39dedde",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In this example, we have an array containing some data."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In this example, we have an array containing some data."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022384084,
+        "id": "d4d9850b-8245-4056-ac7f-8365ec208cc7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022384084,
+        "parent_id": "9c8b62f0-417a-4acd-9257-1372c39dedde",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "We capture the output buffer in "
+            ],
+            [
+              "$items_li_html",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and use it twice in the page."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "We capture the output buffer in "
+          },
+          {
+            "Text": "$items_li_html",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and use it twice in the page."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022384085,
+        "id": "396c703c-4b89-4db9-8b9b-5339fad1aeb7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022384085,
+        "parent_id": "9c8b62f0-417a-4acd-9257-1372c39dedde",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003c?php\n\n// Start capturing the output\nob_start();\n\n$items = ['Home', 'Blog', 'FAQ', 'Contact'];\n\nforeach($items as $item):\n\n// Note we're about to step \"out of PHP land\"\n?\u003e\n  \u003cli\u003e\u003c?php echo $item ?\u003e\u003c/li\u003e\n\u003c?php\n// Back in PHP land\nendforeach;\n\n// $items_lists contains all the HTML captured by the output buffer\n$items_li_html = ob_get_clean();\n?\u003e\n\n\u003c!-- Menu 1: We can now re-use that (multiple times if required) in our HTML. --\u003e\n\u003cul class=\"header-nav\"\u003e\n    \u003c?php echo $items_li_html ?\u003e\n\u003c/ul\u003e\n\n\u003c!-- Menu 2 --\u003e\n\u003cul class=\"footer-nav\"\u003e\n    \u003c?php echo $items_li_html ?\u003e\n\u003c/ul\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003c?php\n\n// Start capturing the output\nob_start();\n\n$items = ['Home', 'Blog', 'FAQ', 'Contact'];\n\nforeach($items as $item):\n\n// Note we're about to step \"out of PHP land\"\n?\u003e\n  \u003cli\u003e\u003c?php echo $item ?\u003e\u003c/li\u003e\n\u003c?php\n// Back in PHP land\nendforeach;\n\n// $items_lists contains all the HTML captured by the output buffer\n$items_li_html = ob_get_clean();\n?\u003e\n\n\u003c!-- Menu 1: We can now re-use that (multiple times if required) in our HTML. --\u003e\n\u003cul class=\"header-nav\"\u003e\n    \u003c?php echo $items_li_html ?\u003e\n\u003c/ul\u003e\n\n\u003c!-- Menu 2 --\u003e\n\u003cul class=\"footer-nav\"\u003e\n    \u003c?php echo $items_li_html ?\u003e\n\u003c/ul\u003e",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022384085,
+        "id": "b1617553-69d0-425e-bbfd-e0953644a752",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022384085,
+        "parent_id": "9c8b62f0-417a-4acd-9257-1372c39dedde",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Save the above code in a file "
+            ],
+            [
+              "output_buffer.php",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and run it via "
+            ],
+            [
+              "php output_buffer.php",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Save the above code in a file "
+          },
+          {
+            "Text": "output_buffer.php",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and run it via "
+          },
+          {
+            "Text": "php output_buffer.php",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022384086,
+        "id": "83d3becd-6617-497c-8429-50850c5d8dd1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022384086,
+        "parent_id": "9c8b62f0-417a-4acd-9257-1372c39dedde",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "You should see the 2 list items we created above with the same list items we generated in PHP using the output buffer:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "You should see the 2 list items we created above with the same list items we generated in PHP using the output buffer:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022384086,
+        "id": "9cb1b0fa-0cd5-4f5e-b2f7-eb04f670d95e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022384086,
+        "parent_id": "9c8b62f0-417a-4acd-9257-1372c39dedde",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003c!-- Menu 1: We can now re-use that (multiple times if required) in our HTML. --\u003e\n\u003cul class=\"header-nav\"\u003e\n  \u003cli\u003eHome\u003c/li\u003e\n  \u003cli\u003eBlog\u003c/li\u003e\n  \u003cli\u003eFAQ\u003c/li\u003e\n  \u003cli\u003eContact\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c!-- Menu 2 --\u003e\n\u003cul class=\"footer-nav\"\u003e\n  \u003cli\u003eHome\u003c/li\u003e\n  \u003cli\u003eBlog\u003c/li\u003e\n  \u003cli\u003eFAQ\u003c/li\u003e\n  \u003cli\u003eContact\u003c/li\u003e\n\u003c/ul\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003c!-- Menu 1: We can now re-use that (multiple times if required) in our HTML. --\u003e\n\u003cul class=\"header-nav\"\u003e\n  \u003cli\u003eHome\u003c/li\u003e\n  \u003cli\u003eBlog\u003c/li\u003e\n  \u003cli\u003eFAQ\u003c/li\u003e\n  \u003cli\u003eContact\u003c/li\u003e\n\u003c/ul\u003e\n\n\u003c!-- Menu 2 --\u003e\n\u003cul class=\"footer-nav\"\u003e\n  \u003cli\u003eHome\u003c/li\u003e\n  \u003cli\u003eBlog\u003c/li\u003e\n  \u003cli\u003eFAQ\u003c/li\u003e\n  \u003cli\u003eContact\u003c/li\u003e\n\u003c/ul\u003e",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Capturing the output buffer to re-use later",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -243,7 +243,7 @@ var (
 	}
 	booksUnpublished = []*Book{
 		bookSql, bookAlgorithm, bookBash, bookC, bookCSS, bookGit, bookHTML,
-		bookHTMLCanvas, bookNETFramework, bookNode, bookObjectiveC,
+		bookHTMLCanvas, bookNETFramework, bookNode, bookObjectiveC, bookPHP,
 	}
 	allBooks = append(booksMain, booksUnpublished...)
 )

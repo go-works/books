@@ -1,0 +1,323 @@
+{
+  "ID": "11bc49e3-93e1-47fb-ba6e-7f827dfb271a",
+  "Root": {
+    "alive": true,
+    "content": [
+      "041ad91a-ac05-455c-9d0f-5ac0ed67a2f7",
+      "cd699f22-ecc1-4182-a4f3-4a98a7348215",
+      "a1573f29-81a2-4e08-bef6-e979080b2388",
+      "ba5b98ea-d51d-45d8-917d-fc77ee83df4d",
+      "9d34501a-2361-4899-9015-e4e53de65d0b",
+      "32718635-a7ec-43fe-a803-c28ccb992e93",
+      "b30240c9-9904-426b-947d-b34950057e4f",
+      "d706ff9e-06d6-4f68-b1f4-ca4818ddbc3d"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552024722135,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "11bc49e3-93e1-47fb-ba6e-7f827dfb271a",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552024722135,
+    "parent_id": "1ee62efb-a132-4463-ad88-13047e39701a",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Symmetric Cipher"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024722132,
+        "id": "041ad91a-ac05-455c-9d0f-5ac0ed67a2f7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024722132,
+        "parent_id": "11bc49e3-93e1-47fb-ba6e-7f827dfb271a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This example illustrates the AES 256 symmetric cipher in CBC mode. An initialization vector is needed, so we generate one using an openssl function. The variable "
+            ],
+            [
+              "$strong",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is used to determine whether the IV generated was cryptographically strong."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This example illustrates the AES 256 symmetric cipher in CBC mode. An initialization vector is needed, so we generate one using an openssl function. The variable "
+          },
+          {
+            "Text": "$strong",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is used to determine whether the IV generated was cryptographically strong."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024722134,
+        "id": "cd699f22-ecc1-4182-a4f3-4a98a7348215",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024722134,
+        "parent_id": "11bc49e3-93e1-47fb-ba6e-7f827dfb271a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Encryption"
+            ]
+          ]
+        },
+        "type": "header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Encryption"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024722134,
+        "id": "a1573f29-81a2-4e08-bef6-e979080b2388",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024722134,
+        "parent_id": "11bc49e3-93e1-47fb-ba6e-7f827dfb271a",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "$method = \"aes-256-cbc\"; // cipher method\n$iv_length = openssl_cipher_iv_length($method); // obtain required IV length\n$strong = false; // set to false for next line\n$iv = openssl_random_pseudo_bytes($iv_length, $strong); // generate initialization vector\n\n/* NOTE: The IV needs to be retrieved later, so store it in a database.\nHowever, do not reuse the same IV to encrypt the data again. */\n\nif(!$strong) { // throw exception if the IV is not cryptographically strong\n    throw new Exception(\"IV not cryptographically strong!\");\n}\n\n$data = \"This is a message to be secured.\"; // Our secret message\n$pass = \"Stack0verfl0w\"; // Our password\n\n/* NOTE: Password should be submitted through POST over an HTTPS session.\nHere, it's being stored in a variable for demonstration purposes. */\n\n$enc_data = openssl_encrypt($data, $method, $password, true, $iv); // Encrypt"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "$method = \"aes-256-cbc\"; // cipher method\n$iv_length = openssl_cipher_iv_length($method); // obtain required IV length\n$strong = false; // set to false for next line\n$iv = openssl_random_pseudo_bytes($iv_length, $strong); // generate initialization vector\n\n/* NOTE: The IV needs to be retrieved later, so store it in a database.\nHowever, do not reuse the same IV to encrypt the data again. */\n\nif(!$strong) { // throw exception if the IV is not cryptographically strong\n    throw new Exception(\"IV not cryptographically strong!\");\n}\n\n$data = \"This is a message to be secured.\"; // Our secret message\n$pass = \"Stack0verfl0w\"; // Our password\n\n/* NOTE: Password should be submitted through POST over an HTTPS session.\nHere, it's being stored in a variable for demonstration purposes. */\n\n$enc_data = openssl_encrypt($data, $method, $password, true, $iv); // Encrypt",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024722135,
+        "id": "ba5b98ea-d51d-45d8-917d-fc77ee83df4d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024722135,
+        "parent_id": "11bc49e3-93e1-47fb-ba6e-7f827dfb271a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Decryption"
+            ]
+          ]
+        },
+        "type": "header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Decryption"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024722135,
+        "id": "9d34501a-2361-4899-9015-e4e53de65d0b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024722135,
+        "parent_id": "11bc49e3-93e1-47fb-ba6e-7f827dfb271a",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "/* Retrieve the IV from the database and the password from a POST request */\n$dec_data = openssl_decrypt($enc_data, $method, $pass, true, $iv); // Decrypt"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "/* Retrieve the IV from the database and the password from a POST request */\n$dec_data = openssl_decrypt($enc_data, $method, $pass, true, $iv); // Decrypt",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024722135,
+        "id": "32718635-a7ec-43fe-a803-c28ccb992e93",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024722135,
+        "parent_id": "11bc49e3-93e1-47fb-ba6e-7f827dfb271a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Base64 Encode \u0026 Decode"
+            ]
+          ]
+        },
+        "type": "header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Base64 Encode \u0026 Decode"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024722135,
+        "id": "b30240c9-9904-426b-947d-b34950057e4f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024722135,
+        "parent_id": "11bc49e3-93e1-47fb-ba6e-7f827dfb271a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If the encrypted data needs to be sent or stored in printable text, then the "
+            ],
+            [
+              "base64_encode()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "base64_decode()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " functions should be used respectively."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If the encrypted data needs to be sent or stored in printable text, then the "
+          },
+          {
+            "Text": "base64_encode()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "base64_decode()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " functions should be used respectively."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024722135,
+        "id": "d706ff9e-06d6-4f68-b1f4-ca4818ddbc3d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024722135,
+        "parent_id": "11bc49e3-93e1-47fb-ba6e-7f827dfb271a",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "/* Base64 Encoded Encryption */\n$enc_data = base64_encode(openssl_encrypt($data, $method, $password, true, $iv));\n\n/* Decode and Decrypt */\n$dec_data = openssl_decrypt(base64_decode($enc_data), $method, $password, true, $iv);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "/* Base64 Encoded Encryption */\n$enc_data = base64_encode(openssl_encrypt($data, $method, $password, true, $iv));\n\n/* Decode and Decrypt */\n$dec_data = openssl_decrypt(base64_decode($enc_data), $method, $password, true, $iv);",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Symmetric Cipher",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

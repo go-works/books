@@ -1,0 +1,201 @@
+{
+  "ID": "e4cb65a1-e739-4e8b-adfa-aa7e0ab505e0",
+  "Root": {
+    "alive": true,
+    "content": [
+      "cb96917a-86cc-4d6b-9ca6-eed638aaed4d",
+      "3a091a90-7152-4cd9-911c-4e459a3098dd",
+      "18faf677-2f0b-4c47-bf3b-694af6f14d59"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552022670116,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "e4cb65a1-e739-4e8b-adfa-aa7e0ab505e0",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552022670116,
+    "parent_id": "0f9ca6e7-305f-414a-9ea4-796bcec6a74b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Difference between CLASS get class and get called class"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022670113,
+        "id": "cb96917a-86cc-4d6b-9ca6-eed638aaed4d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022670113,
+        "parent_id": "e4cb65a1-e739-4e8b-adfa-aa7e0ab505e0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "__CLASS__",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " magic constant returns the same result as "
+            ],
+            [
+              "get_class()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " function called without parameters and they both return the name of the class where it was defined (i.e. where you wrote the function call/constant name )."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "__CLASS__",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " magic constant returns the same result as "
+          },
+          {
+            "Text": "get_class()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " function called without parameters and they both return the name of the class where it was defined (i.e. where you wrote the function call/constant name )."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022670116,
+        "id": "3a091a90-7152-4cd9-911c-4e459a3098dd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022670116,
+        "parent_id": "e4cb65a1-e739-4e8b-adfa-aa7e0ab505e0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In contrast, "
+            ],
+            [
+              "get_class($this)",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "get_called_class()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " functions call, will both return the name of the actual class which was instantiated:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In contrast, "
+          },
+          {
+            "Text": "get_class($this)",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "get_called_class()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " functions call, will both return the name of the actual class which was instantiated:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022670116,
+        "id": "18faf677-2f0b-4c47-bf3b-694af6f14d59",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022670116,
+        "parent_id": "e4cb65a1-e739-4e8b-adfa-aa7e0ab505e0",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003c?php\n\nclass Definition_Class {\n\n  public function say(){\n     echo '__CLASS__ value: ' . __CLASS__ . \"\\n\";\n     echo 'get_called_class() value: ' . get_called_class() . \"\\n\";\n     echo 'get_class($this) value: ' . get_class($this) . \"\\n\";\n     echo 'get_class() value: ' . get_class() . \"\\n\";\n  }\n  \n}\n\nclass Actual_Class extends Definition_Class {}\n\n$c = new Actual_Class();\n$c-\u003esay();\n// Output:\n// __CLASS__ value: Definition_Class\n// get_called_class() value: Actual_Class\n// get_class($this) value: Actual_Class\n// get_class() value: Definition_Class"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003c?php\n\nclass Definition_Class {\n\n  public function say(){\n     echo '__CLASS__ value: ' . __CLASS__ . \"\\n\";\n     echo 'get_called_class() value: ' . get_called_class() . \"\\n\";\n     echo 'get_class($this) value: ' . get_class($this) . \"\\n\";\n     echo 'get_class() value: ' . get_class() . \"\\n\";\n  }\n  \n}\n\nclass Actual_Class extends Definition_Class {}\n\n$c = new Actual_Class();\n$c-\u003esay();\n// Output:\n// __CLASS__ value: Definition_Class\n// get_called_class() value: Actual_Class\n// get_class($this) value: Actual_Class\n// get_class() value: Definition_Class",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Difference between CLASS get class and get called class",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,181 @@
+{
+  "ID": "59208f44-20ee-40fc-9417-bf75b81d6550",
+  "Root": {
+    "alive": true,
+    "content": [
+      "9deb50c2-388c-4b28-851f-6fc97686a70d",
+      "a4410a34-b17a-4cdc-b8ab-f23ba0f1ee38",
+      "b8428671-faa9-41a2-b9ab-185681d0c01c",
+      "c17c5336-8cd4-4bf5-8b31-fb22e5cd2d37"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552022369187,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "59208f44-20ee-40fc-9417-bf75b81d6550",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552022369187,
+    "parent_id": "1f2707b9-a751-475a-ba82-519f75e3c8bd",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Determine if an existing password hash can be upgraded to a stronger algorithm"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022369186,
+        "id": "9deb50c2-388c-4b28-851f-6fc97686a70d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022369186,
+        "parent_id": "59208f44-20ee-40fc-9417-bf75b81d6550",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If you are using the "
+            ],
+            [
+              "PASSWORD_DEFAULT",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method to let the system choose the best algorithm to hash your passwords with, as the default increases in strength you may wish to rehash old passwords as users log in"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If you are using the "
+          },
+          {
+            "Text": "PASSWORD_DEFAULT",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method to let the system choose the best algorithm to hash your passwords with, as the default increases in strength you may wish to rehash old passwords as users log in"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022369187,
+        "id": "a4410a34-b17a-4cdc-b8ab-f23ba0f1ee38",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022369187,
+        "parent_id": "59208f44-20ee-40fc-9417-bf75b81d6550",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003c?php\n// first determine if a supplied password is valid\nif (password_verify($plaintextPassword, $hashedPassword)) {\n\n    // now determine if the existing hash was created with an algorithm that is\n    // no longer the default\n    if (password_needs_rehash($hashedPassword, PASSWORD_DEFAULT)) {\n\n        // create a new hash with the new default\n        $newHashedPassword = password_hash($plaintextPassword, PASSWORD_DEFAULT);\n\n        // and then save it to your data store\n        //$db-\u003eupdate(...);\n    }\n}\n?\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003c?php\n// first determine if a supplied password is valid\nif (password_verify($plaintextPassword, $hashedPassword)) {\n\n    // now determine if the existing hash was created with an algorithm that is\n    // no longer the default\n    if (password_needs_rehash($hashedPassword, PASSWORD_DEFAULT)) {\n\n        // create a new hash with the new default\n        $newHashedPassword = password_hash($plaintextPassword, PASSWORD_DEFAULT);\n\n        // and then save it to your data store\n        //$db-\u003eupdate(...);\n    }\n}\n?\u003e",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022369187,
+        "id": "b8428671-faa9-41a2-b9ab-185681d0c01c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022369187,
+        "parent_id": "59208f44-20ee-40fc-9417-bf75b81d6550",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If the password_* functions are not available on your system (and you cannot use the compatibility pack linked in the remarks below), you can determine the algorithm and used to create the original hash in a method similar to the following:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If the password_* functions are not available on your system (and you cannot use the compatibility pack linked in the remarks below), you can determine the algorithm and used to create the original hash in a method similar to the following:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022369187,
+        "id": "c17c5336-8cd4-4bf5-8b31-fb22e5cd2d37",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022369187,
+        "parent_id": "59208f44-20ee-40fc-9417-bf75b81d6550",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003c?php\nif (substr($hashedPassword, 0, 4) == '$2y$' \u0026\u0026 strlen($hashedPassword) == 60) {\n    echo 'Algorithm is Bcrypt';\n    // the \"cost\" determines how strong this version of Bcrypt is\n    preg_match('/\\$2y\\$(\\d+)\\$/', $hashedPassword, $matches);\n    $cost = $matches[1];\n    echo 'Bcrypt cost is '.$cost;\n}\n?\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003c?php\nif (substr($hashedPassword, 0, 4) == '$2y$' \u0026\u0026 strlen($hashedPassword) == 60) {\n    echo 'Algorithm is Bcrypt';\n    // the \"cost\" determines how strong this version of Bcrypt is\n    preg_match('/\\$2y\\$(\\d+)\\$/', $hashedPassword, $matches);\n    $cost = $matches[1];\n    echo 'Bcrypt cost is '.$cost;\n}\n?\u003e",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Determine if an existing password hash can be upgraded to a stronger algorithm",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

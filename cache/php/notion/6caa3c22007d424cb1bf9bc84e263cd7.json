@@ -1,0 +1,420 @@
+{
+  "ID": "6caa3c22-007d-424c-b1bf-9bc84e263cd7",
+  "Root": {
+    "alive": true,
+    "content": [
+      "65d4a38e-8db2-4e3d-8406-e438395024e5",
+      "774f4e2e-b593-414f-8101-0584ba1bfa93",
+      "4c7d3300-b8dc-4c02-9e68-44b4d6a16520",
+      "218cad3e-83bb-428b-b346-5af88ed4f6bd",
+      "19700ea5-a82b-4d91-b6f1-8deef55e684e",
+      "a7dd961b-4209-4bb3-8234-57894d1dd0c1",
+      "6c1d5a23-4712-4da0-96dc-d1143405c598",
+      "a7bb5bc9-08e9-4ac9-8e67-a88f94d6a104",
+      "5a7327d3-3ef3-4d5d-b5e9-cbc57ba615e0",
+      "8b51b6a8-398f-4547-8a36-18f3866ed8e6"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552023033103,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "6caa3c22-007d-424c-b1bf-9bc84e263cd7",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552023033103,
+    "parent_id": "39389e18-4435-40d2-be30-84d806209e25",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Reading from a file"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552023033097,
+        "id": "65d4a38e-8db2-4e3d-8406-e438395024e5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552023033097,
+        "parent_id": "6caa3c22-007d-424c-b1bf-9bc84e263cd7",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "When reading from a file, we want to be able to know when we’ve reached the end of that file. Knowing that "
+            ],
+            [
+              "fgets()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " returns false at the end of the file, we might use this as the condition for a loop. However, if the data returned from the last read happens to be something that evaluates as boolean "
+            ],
+            [
+              "false",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", it can cause our file read loop to terminate prematurely."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "When reading from a file, we want to be able to know when we’ve reached the end of that file. Knowing that "
+          },
+          {
+            "Text": "fgets()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " returns false at the end of the file, we might use this as the condition for a loop. However, if the data returned from the last read happens to be something that evaluates as boolean "
+          },
+          {
+            "Text": "false",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", it can cause our file read loop to terminate prematurely."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552023033100,
+        "id": "774f4e2e-b593-414f-8101-0584ba1bfa93",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552023033100,
+        "parent_id": "6caa3c22-007d-424c-b1bf-9bc84e263cd7",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "$handle = fopen (\"/path/to/my/file\", \"r\");\n\nif ($handle === false) {\n    throw new Exception (\"Failed to open file for reading\");\n}\n\nwhile ($data = fgets($handle)) {\n    echo (\"Current file line is $data\\n\");\n}\n\nfclose ($handle);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "$handle = fopen (\"/path/to/my/file\", \"r\");\n\nif ($handle === false) {\n    throw new Exception (\"Failed to open file for reading\");\n}\n\nwhile ($data = fgets($handle)) {\n    echo (\"Current file line is $data\\n\");\n}\n\nfclose ($handle);",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552023033100,
+        "id": "4c7d3300-b8dc-4c02-9e68-44b4d6a16520",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552023033100,
+        "parent_id": "6caa3c22-007d-424c-b1bf-9bc84e263cd7",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If the file being read contains a blank line, the "
+            ],
+            [
+              "while",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " loop will be terminated at that point, because the empty string evaluates as boolean "
+            ],
+            [
+              "false",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If the file being read contains a blank line, the "
+          },
+          {
+            "Text": "while",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " loop will be terminated at that point, because the empty string evaluates as boolean "
+          },
+          {
+            "Text": "false",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552023033102,
+        "id": "218cad3e-83bb-428b-b346-5af88ed4f6bd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552023033102,
+        "parent_id": "6caa3c22-007d-424c-b1bf-9bc84e263cd7",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Instead, we can check for the boolean "
+            ],
+            [
+              "false",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " value explicitly, using "
+            ],
+            [
+              "strict equality operators",
+              [
+                [
+                  "a",
+                  "http://stackoverflow.com/documentation/php/1687/operators/6231/comparison-operators"
+                ]
+              ]
+            ],
+            [
+              ":"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Instead, we can check for the boolean "
+          },
+          {
+            "Text": "false",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " value explicitly, using "
+          },
+          {
+            "Text": "strict equality operators",
+            "Link": "http://stackoverflow.com/documentation/php/1687/operators/6231/comparison-operators"
+          },
+          {
+            "Text": ":"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552023033102,
+        "id": "19700ea5-a82b-4d91-b6f1-8deef55e684e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552023033102,
+        "parent_id": "6caa3c22-007d-424c-b1bf-9bc84e263cd7",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "while (($data = fgets($handle)) !== false) {\n    echo (\"Current file line is $data\\n\");\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "while (($data = fgets($handle)) !== false) {\n    echo (\"Current file line is $data\\n\");\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552023033102,
+        "id": "a7dd961b-4209-4bb3-8234-57894d1dd0c1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552023033102,
+        "parent_id": "6caa3c22-007d-424c-b1bf-9bc84e263cd7",
+        "parent_table": "block",
+        "type": "divider",
+        "version": 1
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552023033103,
+        "id": "6c1d5a23-4712-4da0-96dc-d1143405c598",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552023033103,
+        "parent_id": "6caa3c22-007d-424c-b1bf-9bc84e263cd7",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Note this is a contrived example; in real life we would use the following loop:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Note this is a contrived example; in real life we would use the following loop:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552023033103,
+        "id": "a7bb5bc9-08e9-4ac9-8e67-a88f94d6a104",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552023033103,
+        "parent_id": "6caa3c22-007d-424c-b1bf-9bc84e263cd7",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "while (!feof($handle)) {\n    $data = fgets($handle);\n    echo (\"Current file line is $data\\n\");\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "while (!feof($handle)) {\n    $data = fgets($handle);\n    echo (\"Current file line is $data\\n\");\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552023033103,
+        "id": "5a7327d3-3ef3-4d5d-b5e9-cbc57ba615e0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552023033103,
+        "parent_id": "6caa3c22-007d-424c-b1bf-9bc84e263cd7",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Or replace the whole thing with:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Or replace the whole thing with:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552023033103,
+        "id": "8b51b6a8-398f-4547-8a36-18f3866ed8e6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552023033103,
+        "parent_id": "6caa3c22-007d-424c-b1bf-9bc84e263cd7",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "$filedata = file(\"/path/to/my/file\");\nforeach ($filedata as $data) {\n    echo (\"Current file line is $data\\n\");\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "$filedata = file(\"/path/to/my/file\");\nforeach ($filedata as $data) {\n    echo (\"Current file line is $data\\n\");\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Reading from a file",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

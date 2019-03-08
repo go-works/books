@@ -1,0 +1,83 @@
+{
+  "ID": "51265987-cd79-44f3-942e-150b267aa2f3",
+  "Root": {
+    "alive": true,
+    "content": [
+      "a967bba2-49af-4976-99ee-5fbd1e01aec4"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552025107144,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "51265987-cd79-44f3-942e-150b267aa2f3",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552025107144,
+    "parent_id": "24526f5c-fac3-443f-911e-e2c72b4c6749",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "PHPs stmt-affected rows intermittently returning 0 when it should return a positive integer"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552025107142,
+        "id": "a967bba2-49af-4976-99ee-5fbd1e01aec4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552025107142,
+        "parent_id": "51265987-cd79-44f3-942e-150b267aa2f3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003c?php\n    // if device exists, update timestamp\n    $stmt = $mysqli-\u003eprepare(\"UPDATE new_devices SET nd_timestamp=? WHERE nd_deviceid=?\");\n    $stmt-\u003ebind_param('ss', $now, $device);\n    $stmt-\u003eexecute();\n    //echo \"Affected Rows: \".$stmt-\u003eaffected_rows; // This line is where I am checking the status of the update query.\n\n    if ($stmt-\u003eaffected_rows \u003c 1){ // Because affected_rows sometimes returns 0, the insert code runs instead of being skipped. Now I have many duplicate entries.\n        \n        $ins = $mysqli-\u003eprepare(\"INSERT INTO new_devices (nd_id,nd_deviceid,nd_timestamp) VALUES (nd_id,?,?)\");\n        $ins -\u003e bind_param(\"ss\",$device,$now);\n        $ins -\u003e execute();\n        $ins -\u003e store_result();\n        $ins -\u003e free_result();\n    }\n?\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003c?php\n    // if device exists, update timestamp\n    $stmt = $mysqli-\u003eprepare(\"UPDATE new_devices SET nd_timestamp=? WHERE nd_deviceid=?\");\n    $stmt-\u003ebind_param('ss', $now, $device);\n    $stmt-\u003eexecute();\n    //echo \"Affected Rows: \".$stmt-\u003eaffected_rows; // This line is where I am checking the status of the update query.\n\n    if ($stmt-\u003eaffected_rows \u003c 1){ // Because affected_rows sometimes returns 0, the insert code runs instead of being skipped. Now I have many duplicate entries.\n        \n        $ins = $mysqli-\u003eprepare(\"INSERT INTO new_devices (nd_id,nd_deviceid,nd_timestamp) VALUES (nd_id,?,?)\");\n        $ins -\u003e bind_param(\"ss\",$device,$now);\n        $ins -\u003e execute();\n        $ins -\u003e store_result();\n        $ins -\u003e free_result();\n    }\n?\u003e",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "PHPs stmt-affected rows intermittently returning 0 when it should return a positive integer",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

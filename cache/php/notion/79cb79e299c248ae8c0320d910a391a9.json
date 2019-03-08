@@ -1,0 +1,217 @@
+{
+  "ID": "79cb79e2-99c2-48ae-8c03-20d910a391a9",
+  "Root": {
+    "alive": true,
+    "content": [
+      "8712c125-627e-4207-be0f-baea68a5d0e9",
+      "88c409ec-3719-49a1-8f44-cebcc8f62f92",
+      "9163b404-9907-482d-a2d9-3d222a9d1b7f",
+      "aff74195-60ac-469e-953e-212356642209",
+      "211ca8cd-f64f-4c3e-8e50-016b94d17ad0",
+      "c52d26f4-48d8-47f4-8a48-c78842e0fa3d"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552022404148,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "79cb79e2-99c2-48ae-8c03-20d910a391a9",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552022404148,
+    "parent_id": "8e344e73-ab23-422f-9bc5-1b7a660edb69",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Testing privateprotected methods"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022404145,
+        "id": "8712c125-627e-4207-be0f-baea68a5d0e9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022404145,
+        "parent_id": "79cb79e2-99c2-48ae-8c03-20d910a391a9",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Sometimes it’s useful to test private \u0026 protected methods as well as public ones."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Sometimes it’s useful to test private \u0026 protected methods as well as public ones."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022404147,
+        "id": "88c409ec-3719-49a1-8f44-cebcc8f62f92",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022404147,
+        "parent_id": "79cb79e2-99c2-48ae-8c03-20d910a391a9",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class Car\n{\n    /**\n     * @param mixed $argument\n     *\n     * @return mixed\n     */\n    protected function drive($argument)\n    {\n        return $argument;\n    }\n\n    /**\n     * @return bool\n     */\n    private static function stop()\n    {\n        return true;\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class Car\n{\n    /**\n     * @param mixed $argument\n     *\n     * @return mixed\n     */\n    protected function drive($argument)\n    {\n        return $argument;\n    }\n\n    /**\n     * @return bool\n     */\n    private static function stop()\n    {\n        return true;\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022404148,
+        "id": "9163b404-9907-482d-a2d9-3d222a9d1b7f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022404148,
+        "parent_id": "79cb79e2-99c2-48ae-8c03-20d910a391a9",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Easiest way to test drive method is using reflection"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Easiest way to test drive method is using reflection"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022404148,
+        "id": "aff74195-60ac-469e-953e-212356642209",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022404148,
+        "parent_id": "79cb79e2-99c2-48ae-8c03-20d910a391a9",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class DriveTest\n{\n    /**\n     * @test\n     */\n    public function testDrive()\n    {\n        // prepare\n        $argument = 1;\n        $expected = $argument;\n        $car = new \\Car();\n\n        $reflection = new ReflectionClass(\\Car::class);\n        $method = $reflection-\u003egetMethod('drive');\n        $method-\u003esetAccessible(true);\n\n        // invoke logic\n        $result = $method-\u003einvokeArgs($car, [$argument]);\n\n        // test\n        $this-\u003eassertEquals($expected, $result);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class DriveTest\n{\n    /**\n     * @test\n     */\n    public function testDrive()\n    {\n        // prepare\n        $argument = 1;\n        $expected = $argument;\n        $car = new \\Car();\n\n        $reflection = new ReflectionClass(\\Car::class);\n        $method = $reflection-\u003egetMethod('drive');\n        $method-\u003esetAccessible(true);\n\n        // invoke logic\n        $result = $method-\u003einvokeArgs($car, [$argument]);\n\n        // test\n        $this-\u003eassertEquals($expected, $result);\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022404148,
+        "id": "211ca8cd-f64f-4c3e-8e50-016b94d17ad0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022404148,
+        "parent_id": "79cb79e2-99c2-48ae-8c03-20d910a391a9",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If the method is static you pass null in the place of the class instance"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If the method is static you pass null in the place of the class instance"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022404148,
+        "id": "c52d26f4-48d8-47f4-8a48-c78842e0fa3d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022404148,
+        "parent_id": "79cb79e2-99c2-48ae-8c03-20d910a391a9",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class StopTest\n{\n    /**\n     * @test\n     */\n    public function testStop()\n    {\n        // prepare\n        $expected = true;\n\n        $reflection = new ReflectionClass(\\Car::class);\n        $method = $reflection-\u003egetMethod('stop');\n        $method-\u003esetAccessible(true);\n\n        // invoke logic\n        $result = $method-\u003einvoke(null);\n\n        // test\n        $this-\u003eassertEquals($expected, $result);\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class StopTest\n{\n    /**\n     * @test\n     */\n    public function testStop()\n    {\n        // prepare\n        $expected = true;\n\n        $reflection = new ReflectionClass(\\Car::class);\n        $method = $reflection-\u003egetMethod('stop');\n        $method-\u003esetAccessible(true);\n\n        // invoke logic\n        $result = $method-\u003einvoke(null);\n\n        // test\n        $this-\u003eassertEquals($expected, $result);\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Testing privateprotected methods",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

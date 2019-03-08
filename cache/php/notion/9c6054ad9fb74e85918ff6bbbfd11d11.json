@@ -1,0 +1,305 @@
+{
+  "ID": "9c6054ad-9fb7-4e85-918f-f6bbbfd11d11",
+  "Root": {
+    "alive": true,
+    "content": [
+      "242f4fdb-62e9-471b-9eeb-d4720eb03a6e",
+      "abe71fb9-78e8-49e0-95bd-63a5ce4516d6",
+      "70d4edf1-0b1a-4d3b-9b40-1ab857ca4932",
+      "512b227f-e12b-4d2c-a981-b576d132d179",
+      "6b465eaa-5c0a-422c-a063-ecdf8accea51",
+      "82100c1d-3c7d-4e30-b381-bb069fa89097"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552024346144,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "9c6054ad-9fb7-4e85-918f-f6bbbfd11d11",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552024346144,
+    "parent_id": "6ba36b23-f2c3-4c8b-a9cc-1cf9cb37def5",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Memory Usage"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024346140,
+        "id": "242f4fdb-62e9-471b-9eeb-d4720eb03a6e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024346140,
+        "parent_id": "9c6054ad-9fb7-4e85-918f-f6bbbfd11d11",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "PHP’s runtime memory limit is set through the INI directive "
+            ],
+            [
+              "memory_limit",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". This setting prevents any single execution of PHP from using up too much memory, exhausting it for other scripts and system software. The memory limit defaults to 128M and can be changed in the "
+            ],
+            [
+              "php.ini",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " file or at runtime. It can be set to have no limit, but this is generally considered bad practice."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "PHP’s runtime memory limit is set through the INI directive "
+          },
+          {
+            "Text": "memory_limit",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". This setting prevents any single execution of PHP from using up too much memory, exhausting it for other scripts and system software. The memory limit defaults to 128M and can be changed in the "
+          },
+          {
+            "Text": "php.ini",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " file or at runtime. It can be set to have no limit, but this is generally considered bad practice."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024346143,
+        "id": "abe71fb9-78e8-49e0-95bd-63a5ce4516d6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024346143,
+        "parent_id": "9c6054ad-9fb7-4e85-918f-f6bbbfd11d11",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The exact memory usage used during runtime can be determined by calling "
+            ],
+            [
+              "memory_get_usage()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". It returns the number of bytes of memory allocated to the currently running script. As of PHP 5.2, it has one optional boolean parameter to get the total allocated system memory, as opposed to the memory that’s actively being used by PHP."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The exact memory usage used during runtime can be determined by calling "
+          },
+          {
+            "Text": "memory_get_usage()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". It returns the number of bytes of memory allocated to the currently running script. As of PHP 5.2, it has one optional boolean parameter to get the total allocated system memory, as opposed to the memory that’s actively being used by PHP."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024346143,
+        "id": "70d4edf1-0b1a-4d3b-9b40-1ab857ca4932",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024346143,
+        "parent_id": "9c6054ad-9fb7-4e85-918f-f6bbbfd11d11",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003c?php\necho memory_get_usage() . \"\\n\";\n// Outputs 350688 (or similar, depending on system and PHP version)\n\n// Let's use up some RAM\n$array = array_fill(0, 1000, 'abc');\n\necho memory_get_usage() . \"\\n\";\n// Outputs 387704\n\n// Remove the array from memory\nunset($array);\n\necho memory_get_usage() . \"\\n\";\n// Outputs 350784"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003c?php\necho memory_get_usage() . \"\\n\";\n// Outputs 350688 (or similar, depending on system and PHP version)\n\n// Let's use up some RAM\n$array = array_fill(0, 1000, 'abc');\n\necho memory_get_usage() . \"\\n\";\n// Outputs 387704\n\n// Remove the array from memory\nunset($array);\n\necho memory_get_usage() . \"\\n\";\n// Outputs 350784",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024346143,
+        "id": "512b227f-e12b-4d2c-a981-b576d132d179",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024346143,
+        "parent_id": "9c6054ad-9fb7-4e85-918f-f6bbbfd11d11",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Now "
+            ],
+            [
+              "memory_get_usage",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " gives you memory usage at the moment it is run. Between calls to this function you may allocate and deallocate other things in memory. To get the maximum amount of memory used up to a certain point, call "
+            ],
+            [
+              "memory_get_peak_usage()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Now "
+          },
+          {
+            "Text": "memory_get_usage",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " gives you memory usage at the moment it is run. Between calls to this function you may allocate and deallocate other things in memory. To get the maximum amount of memory used up to a certain point, call "
+          },
+          {
+            "Text": "memory_get_peak_usage()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024346143,
+        "id": "6b465eaa-5c0a-422c-a063-ecdf8accea51",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024346143,
+        "parent_id": "9c6054ad-9fb7-4e85-918f-f6bbbfd11d11",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003c?php\necho memory_get_peak_usage() . \"\\n\";\n// 385688\n$array = array_fill(0, 1000, 'abc');\necho memory_get_peak_usage() . \"\\n\";\n// 422736\nunset($array);\necho memory_get_peak_usage() . \"\\n\";\n// 422776"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003c?php\necho memory_get_peak_usage() . \"\\n\";\n// 385688\n$array = array_fill(0, 1000, 'abc');\necho memory_get_peak_usage() . \"\\n\";\n// 422736\nunset($array);\necho memory_get_peak_usage() . \"\\n\";\n// 422776",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024346144,
+        "id": "82100c1d-3c7d-4e30-b381-bb069fa89097",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024346144,
+        "parent_id": "9c6054ad-9fb7-4e85-918f-f6bbbfd11d11",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Notice the value will only go up or stay constant."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Notice the value will only go up or stay constant."
+          }
+        ]
+      }
+    ],
+    "title": "Memory Usage",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,391 @@
+{
+  "ID": "9f793a8b-2074-4672-80e3-3de6a14ddcc7",
+  "Root": {
+    "alive": true,
+    "content": [
+      "fc8c3809-27a5-4b68-a310-7968746d770d",
+      "576f94e8-3bae-4171-957c-12a3e32fd74a",
+      "a6ee99d5-8f34-42e6-be76-7c4735463013",
+      "85977862-8e16-43cb-bb87-749a2447680a",
+      "bd5cc814-e99e-4e9d-a57f-9435bd6cc9cb"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552024460838,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "9f793a8b-2074-4672-80e3-3de6a14ddcc7",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552024460838,
+    "parent_id": "cee10c4b-aca3-4ae1-bef8-0e0c7958d06b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Inter-Process Communication"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024460835,
+        "id": "fc8c3809-27a5-4b68-a310-7968746d770d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024460835,
+        "parent_id": "9f793a8b-2074-4672-80e3-3de6a14ddcc7",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Interprocess communication allows programmers to communicate between different processes. For example let us consider we need to write an PHP application that can run bash commands and print the output. We will be using "
+            ],
+            [
+              "proc_open",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " , which will execute the command and return a resource that we can communicate with. The following code shows a basic implementation that runs "
+            ],
+            [
+              "pwd",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " in "
+            ],
+            [
+              "bash",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " from "
+            ],
+            [
+              "php",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Interprocess communication allows programmers to communicate between different processes. For example let us consider we need to write an PHP application that can run bash commands and print the output. We will be using "
+          },
+          {
+            "Text": "proc_open",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " , which will execute the command and return a resource that we can communicate with. The following code shows a basic implementation that runs "
+          },
+          {
+            "Text": "pwd",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " in "
+          },
+          {
+            "Text": "bash",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " from "
+          },
+          {
+            "Text": "php",
+            "AttrFlags": 2
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024460838,
+        "id": "576f94e8-3bae-4171-957c-12a3e32fd74a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024460838,
+        "parent_id": "9f793a8b-2074-4672-80e3-3de6a14ddcc7",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003c?php\n    $descriptor = array(\n        0 =\u003e array(\"pipe\", \"r\"), // pipe for stdin of child\n        1 =\u003e array(\"pipe\", \"w\"), // pipe for stdout of child\n    );\n    $process = proc_open(\"bash\", $descriptor, $pipes);\n    if (is_resource($process)) {\n        fwrite($pipes[0], \"pwd\" . \"\\n\");\n        fclose($pipes[0]);\n        echo stream_get_contents($pipes[1]);\n        fclose($pipes[1]);\n        $return_value = proc_close($process);\n\n    }\n?\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003c?php\n    $descriptor = array(\n        0 =\u003e array(\"pipe\", \"r\"), // pipe for stdin of child\n        1 =\u003e array(\"pipe\", \"w\"), // pipe for stdout of child\n    );\n    $process = proc_open(\"bash\", $descriptor, $pipes);\n    if (is_resource($process)) {\n        fwrite($pipes[0], \"pwd\" . \"\\n\");\n        fclose($pipes[0]);\n        echo stream_get_contents($pipes[1]);\n        fclose($pipes[1]);\n        $return_value = proc_close($process);\n\n    }\n?\u003e",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024460838,
+        "id": "a6ee99d5-8f34-42e6-be76-7c4735463013",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024460838,
+        "parent_id": "9f793a8b-2074-4672-80e3-3de6a14ddcc7",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "proc_open",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " runs "
+            ],
+            [
+              "bash",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " command with "
+            ],
+            [
+              "$descriptor",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " as descriptor specifications. After that we use "
+            ],
+            [
+              "is_resource",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to validate the process. Once done we can start interacting with the child process using "
+            ],
+            [
+              "$pipes",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " which is generated according to descriptor specifications."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "proc_open",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " runs "
+          },
+          {
+            "Text": "bash",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " command with "
+          },
+          {
+            "Text": "$descriptor",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " as descriptor specifications. After that we use "
+          },
+          {
+            "Text": "is_resource",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to validate the process. Once done we can start interacting with the child process using "
+          },
+          {
+            "Text": "$pipes",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " which is generated according to descriptor specifications."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024460838,
+        "id": "85977862-8e16-43cb-bb87-749a2447680a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024460838,
+        "parent_id": "9f793a8b-2074-4672-80e3-3de6a14ddcc7",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "After that we can simply use "
+            ],
+            [
+              "fwrite",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to write to stdin of child process. In this case "
+            ],
+            [
+              "pwd",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " followed by carriage return. Finally "
+            ],
+            [
+              "stream_get_contents",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is used to read stdout of child process."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "After that we can simply use "
+          },
+          {
+            "Text": "fwrite",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to write to stdin of child process. In this case "
+          },
+          {
+            "Text": "pwd",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " followed by carriage return. Finally "
+          },
+          {
+            "Text": "stream_get_contents",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is used to read stdout of child process."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024460838,
+        "id": "bd5cc814-e99e-4e9d-a57f-9435bd6cc9cb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024460838,
+        "parent_id": "9f793a8b-2074-4672-80e3-3de6a14ddcc7",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Always remember to close the child process by using proc_close() which will terminate the child and return the exit status code."
+            ]
+          ]
+        },
+        "type": "quote",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Always remember to close the child process by using proc_close() which will terminate the child and return the exit status code."
+          }
+        ]
+      }
+    ],
+    "title": "Inter-Process Communication",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,1091 @@
+{
+  "ID": "000df194-eb09-473f-a9d1-d4d82a12b2e6",
+  "Root": {
+    "alive": true,
+    "content": [
+      "6196a774-8bad-4adf-b91b-a9405220aecd",
+      "f9d9cd17-e3a8-4925-abf6-3e41921583c4",
+      "d2fc94d2-d7ac-466c-9571-106c456a5210",
+      "5b259956-119d-4524-9eb9-c75a27b72e9d",
+      "d648c2b3-4a78-4ea7-adb4-ea6b7c51ca46",
+      "263df5b3-0efd-499d-9086-fe347b7935c6",
+      "82519428-f5d2-4303-ac1c-cbe4203dc5e5",
+      "7d53b019-1fdb-4ae4-8e98-33731e02e3fc",
+      "0a62dfab-1b85-4227-8773-00372c0866de",
+      "af7222be-a4cd-4e64-b54d-0f6b95ceee7d",
+      "ef2e0102-ca15-49b9-9ae9-1ea073a11fa7",
+      "7559cdbf-56db-4710-829a-f1ab70196b0f",
+      "a346f7eb-d924-439a-a8ef-ae40e9d98934",
+      "6f5793e4-9a9a-4868-a505-569046f5d042",
+      "9c781711-6399-45d2-9c28-7bc3b377e158",
+      "19f8463c-404a-4b36-8408-62b7c934b644",
+      "abbdcb45-fdf1-4a01-9992-14bf353ebf9c"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552024731150,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "000df194-eb09-473f-a9d1-d4d82a12b2e6",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552024731150,
+    "parent_id": "3bb8f2d9-3a30-426a-90e4-c8d89d2b2785",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Database Transactions with PDO"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024731144,
+        "id": "6196a774-8bad-4adf-b91b-a9405220aecd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024731144,
+        "parent_id": "000df194-eb09-473f-a9d1-d4d82a12b2e6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Database transactions ensure that a set of data changes will only be made permanent if every statement is successful. Any query or code failure during a transaction can be caught and you then have the option to roll back the attempted changes."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Database transactions ensure that a set of data changes will only be made permanent if every statement is successful. Any query or code failure during a transaction can be caught and you then have the option to roll back the attempted changes."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024731146,
+        "id": "f9d9cd17-e3a8-4925-abf6-3e41921583c4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024731146,
+        "parent_id": "000df194-eb09-473f-a9d1-d4d82a12b2e6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "PDO provides simple methods for beginning, committing, and rollbacking back transactions."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "PDO provides simple methods for beginning, committing, and rollbacking back transactions."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024731147,
+        "id": "d2fc94d2-d7ac-466c-9571-106c456a5210",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024731147,
+        "parent_id": "000df194-eb09-473f-a9d1-d4d82a12b2e6",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "$pdo = new PDO(\n    $dsn, \n    $username, \n    $password, \n    array(PDO::ATTR_ERRMODE =\u003e PDO::ERRMODE_EXCEPTION)\n);\n\ntry {\n    $statement = $pdo-\u003eprepare(\"UPDATE user SET name = :name\");\n\n    $pdo-\u003ebeginTransaction();\n\n    $statement-\u003eexecute([\"name\"=\u003e'Bob']);\n    $statement-\u003eexecute([\"name\"=\u003e'Joe']);\n\n    $pdo-\u003ecommit();\n} \ncatch (\\Exception $e) {\n    if ($pdo-\u003einTransaction()) {\n        $pdo-\u003erollback();\n        // If we got here our two data updates are not in the database\n    }\n    throw $e;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "$pdo = new PDO(\n    $dsn, \n    $username, \n    $password, \n    array(PDO::ATTR_ERRMODE =\u003e PDO::ERRMODE_EXCEPTION)\n);\n\ntry {\n    $statement = $pdo-\u003eprepare(\"UPDATE user SET name = :name\");\n\n    $pdo-\u003ebeginTransaction();\n\n    $statement-\u003eexecute([\"name\"=\u003e'Bob']);\n    $statement-\u003eexecute([\"name\"=\u003e'Joe']);\n\n    $pdo-\u003ecommit();\n} \ncatch (\\Exception $e) {\n    if ($pdo-\u003einTransaction()) {\n        $pdo-\u003erollback();\n        // If we got here our two data updates are not in the database\n    }\n    throw $e;\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024731147,
+        "id": "5b259956-119d-4524-9eb9-c75a27b72e9d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024731147,
+        "parent_id": "000df194-eb09-473f-a9d1-d4d82a12b2e6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "During a transaction any data changes made are only visible to the active connection. "
+            ],
+            [
+              "SELECT",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " statements will return the altered changes even if they are not yet committed to the database."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "During a transaction any data changes made are only visible to the active connection. "
+          },
+          {
+            "Text": "SELECT",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " statements will return the altered changes even if they are not yet committed to the database."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024731147,
+        "id": "d648c2b3-4a78-4ea7-adb4-ea6b7c51ca46",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024731147,
+        "parent_id": "000df194-eb09-473f-a9d1-d4d82a12b2e6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Note",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              ": See database vendor documentation for details about transaction support. Some systems do not support transactions at all. Some support nested transactions while others do not."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Note",
+            "AttrFlags": 4
+          },
+          {
+            "Text": ": See database vendor documentation for details about transaction support. Some systems do not support transactions at all. Some support nested transactions while others do not."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024731147,
+        "id": "263df5b3-0efd-499d-9086-fe347b7935c6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024731147,
+        "parent_id": "000df194-eb09-473f-a9d1-d4d82a12b2e6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Practical Example Using Transactions with PDO",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Practical Example Using Transactions with PDO",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024731147,
+        "id": "82519428-f5d2-4303-ac1c-cbe4203dc5e5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024731147,
+        "parent_id": "000df194-eb09-473f-a9d1-d4d82a12b2e6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In the following section is demonstrated a practical real world example where the use of transactions ensures the consistency of database."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In the following section is demonstrated a practical real world example where the use of transactions ensures the consistency of database."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024731148,
+        "id": "7d53b019-1fdb-4ae4-8e98-33731e02e3fc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024731148,
+        "parent_id": "000df194-eb09-473f-a9d1-d4d82a12b2e6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Imagine the following scenario, let’s say you are building a shopping cart for an e-commerce website and you decided to keep the orders in two database tables. One named "
+            ],
+            [
+              "orders",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " with the fields "
+            ],
+            [
+              "order_id",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", "
+            ],
+            [
+              "name",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", "
+            ],
+            [
+              "address",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", "
+            ],
+            [
+              "telephone",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "created_at",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". And a second one named "
+            ],
+            [
+              "orders_products",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " with the fields "
+            ],
+            [
+              "order_id",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", "
+            ],
+            [
+              "product_id",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "quantity",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". The first table contains the "
+            ],
+            [
+              "metadata",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " of the order while the second one the actual "
+            ],
+            [
+              "products",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " that have been ordered."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Imagine the following scenario, let’s say you are building a shopping cart for an e-commerce website and you decided to keep the orders in two database tables. One named "
+          },
+          {
+            "Text": "orders",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " with the fields "
+          },
+          {
+            "Text": "order_id",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", "
+          },
+          {
+            "Text": "name",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", "
+          },
+          {
+            "Text": "address",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", "
+          },
+          {
+            "Text": "telephone",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "created_at",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". And a second one named "
+          },
+          {
+            "Text": "orders_products",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " with the fields "
+          },
+          {
+            "Text": "order_id",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", "
+          },
+          {
+            "Text": "product_id",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "quantity",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". The first table contains the "
+          },
+          {
+            "Text": "metadata",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " of the order while the second one the actual "
+          },
+          {
+            "Text": "products",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " that have been ordered."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024731148,
+        "id": "0a62dfab-1b85-4227-8773-00372c0866de",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024731148,
+        "parent_id": "000df194-eb09-473f-a9d1-d4d82a12b2e6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Inserting a new order to the database",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Inserting a new order to the database",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024731149,
+        "id": "af7222be-a4cd-4e64-b54d-0f6b95ceee7d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024731149,
+        "parent_id": "000df194-eb09-473f-a9d1-d4d82a12b2e6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To insert a new order into the database you need to do two things. First you need to "
+            ],
+            [
+              "INSERT",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " a new record inside the "
+            ],
+            [
+              "orders",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " table that will contain the "
+            ],
+            [
+              "metadata",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " of the order ("
+            ],
+            [
+              "name",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", "
+            ],
+            [
+              "address",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", etc). And then you need to "
+            ],
+            [
+              "INSERT",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " one record into the "
+            ],
+            [
+              "orders_products",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " table, for each one of the products that are included in the order."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To insert a new order into the database you need to do two things. First you need to "
+          },
+          {
+            "Text": "INSERT",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " a new record inside the "
+          },
+          {
+            "Text": "orders",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " table that will contain the "
+          },
+          {
+            "Text": "metadata",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " of the order ("
+          },
+          {
+            "Text": "name",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", "
+          },
+          {
+            "Text": "address",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", etc). And then you need to "
+          },
+          {
+            "Text": "INSERT",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " one record into the "
+          },
+          {
+            "Text": "orders_products",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " table, for each one of the products that are included in the order."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024731149,
+        "id": "ef2e0102-ca15-49b9-9ae9-1ea073a11fa7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024731149,
+        "parent_id": "000df194-eb09-473f-a9d1-d4d82a12b2e6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "You could do this by doing something similar to the following:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "You could do this by doing something similar to the following:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024731149,
+        "id": "7559cdbf-56db-4710-829a-f1ab70196b0f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024731149,
+        "parent_id": "000df194-eb09-473f-a9d1-d4d82a12b2e6",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Insert the metadata of the order into the database\n$preparedStatement = $db-\u003eprepare(\n    'INSERT INTO `orders` (`name`, `address`, `telephone`, `created_at`)\n     VALUES (:name, :address, :telephone, :created_at)'\n);\n\n$preparedStatement-\u003eexecute([\n    'name' =\u003e $name,\n    'address' =\u003e $address,\n    'telephone' =\u003e $telephone,\n    'created_at' =\u003e time(),\n]);\n\n// Get the generated `order_id`\n$orderId = $db-\u003elastInsertId();\n\n// Construct the query for inserting the products of the order\n$insertProductsQuery = 'INSERT INTO `orders_products` (`order_id`, `product_id`, `quantity`) VALUES';\n\n$count = 0;\nforeach ( $products as $productId =\u003e $quantity ) {\n    $insertProductsQuery .= ' (:order_id' . $count . ', :product_id' . $count . ', :quantity' . $count . ')';\n    \n    $insertProductsParams['order_id' . $count] = $orderId;\n    $insertProductsParams['product_id' . $count] = $productId;\n    $insertProductsParams['quantity' . $count] = $quantity;\n    \n    ++$count;\n}\n\n// Insert the products included in the order into the database\n$preparedStatement = $db-\u003eprepare($insertProductsQuery);\n$preparedStatement-\u003eexecute($insertProductsParams);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Insert the metadata of the order into the database\n$preparedStatement = $db-\u003eprepare(\n    'INSERT INTO `orders` (`name`, `address`, `telephone`, `created_at`)\n     VALUES (:name, :address, :telephone, :created_at)'\n);\n\n$preparedStatement-\u003eexecute([\n    'name' =\u003e $name,\n    'address' =\u003e $address,\n    'telephone' =\u003e $telephone,\n    'created_at' =\u003e time(),\n]);\n\n// Get the generated `order_id`\n$orderId = $db-\u003elastInsertId();\n\n// Construct the query for inserting the products of the order\n$insertProductsQuery = 'INSERT INTO `orders_products` (`order_id`, `product_id`, `quantity`) VALUES';\n\n$count = 0;\nforeach ( $products as $productId =\u003e $quantity ) {\n    $insertProductsQuery .= ' (:order_id' . $count . ', :product_id' . $count . ', :quantity' . $count . ')';\n    \n    $insertProductsParams['order_id' . $count] = $orderId;\n    $insertProductsParams['product_id' . $count] = $productId;\n    $insertProductsParams['quantity' . $count] = $quantity;\n    \n    ++$count;\n}\n\n// Insert the products included in the order into the database\n$preparedStatement = $db-\u003eprepare($insertProductsQuery);\n$preparedStatement-\u003eexecute($insertProductsParams);",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024731149,
+        "id": "a346f7eb-d924-439a-a8ef-ae40e9d98934",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024731149,
+        "parent_id": "000df194-eb09-473f-a9d1-d4d82a12b2e6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This will work great for inserting a new order into the database, until something unexpected happens and for some reason the second "
+            ],
+            [
+              "INSERT",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " query fails. If that happens you will end up with a new order inside the "
+            ],
+            [
+              "orders",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " table, which will have no products associated to it. Fortunately, the fix is very simple, all you have to do is to make the queries in the form of a single database transaction."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This will work great for inserting a new order into the database, until something unexpected happens and for some reason the second "
+          },
+          {
+            "Text": "INSERT",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " query fails. If that happens you will end up with a new order inside the "
+          },
+          {
+            "Text": "orders",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " table, which will have no products associated to it. Fortunately, the fix is very simple, all you have to do is to make the queries in the form of a single database transaction."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024731149,
+        "id": "6f5793e4-9a9a-4868-a505-569046f5d042",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024731149,
+        "parent_id": "000df194-eb09-473f-a9d1-d4d82a12b2e6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Inserting a new order into the database with a transaction",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Inserting a new order into the database with a transaction",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024731150,
+        "id": "9c781711-6399-45d2-9c28-7bc3b377e158",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024731150,
+        "parent_id": "000df194-eb09-473f-a9d1-d4d82a12b2e6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To start a transaction using "
+            ],
+            [
+              "PDO",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " all you have to do is to call the "
+            ],
+            [
+              "beginTransaction",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method before you execute any queries to your database. Then you make any changes you want to your data by executing "
+            ],
+            [
+              "INSERT",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and / or "
+            ],
+            [
+              "UPDATE",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " queries. And finally you call the "
+            ],
+            [
+              "commit",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method of the "
+            ],
+            [
+              "PDO",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " object to make the changes permanent. Until you call the "
+            ],
+            [
+              "commit",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method every change you have done to your data up to this point is not yet permanent, and can be easily reverted by simply calling the "
+            ],
+            [
+              "rollback",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method of the "
+            ],
+            [
+              "PDO",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " object."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To start a transaction using "
+          },
+          {
+            "Text": "PDO",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " all you have to do is to call the "
+          },
+          {
+            "Text": "beginTransaction",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method before you execute any queries to your database. Then you make any changes you want to your data by executing "
+          },
+          {
+            "Text": "INSERT",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and / or "
+          },
+          {
+            "Text": "UPDATE",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " queries. And finally you call the "
+          },
+          {
+            "Text": "commit",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method of the "
+          },
+          {
+            "Text": "PDO",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " object to make the changes permanent. Until you call the "
+          },
+          {
+            "Text": "commit",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method every change you have done to your data up to this point is not yet permanent, and can be easily reverted by simply calling the "
+          },
+          {
+            "Text": "rollback",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method of the "
+          },
+          {
+            "Text": "PDO",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " object."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024731150,
+        "id": "19f8463c-404a-4b36-8408-62b7c934b644",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024731150,
+        "parent_id": "000df194-eb09-473f-a9d1-d4d82a12b2e6",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "On the following example is demonstrated the use of transactions for inserting a new order into the database, while ensuring the same time the consistency of the data. If one of the two queries fails all the changes will be reverted."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "On the following example is demonstrated the use of transactions for inserting a new order into the database, while ensuring the same time the consistency of the data. If one of the two queries fails all the changes will be reverted."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552024731150,
+        "id": "abbdcb45-fdf1-4a01-9992-14bf353ebf9c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552024731150,
+        "parent_id": "000df194-eb09-473f-a9d1-d4d82a12b2e6",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// In this example we are using MySQL but this applies to any database that has support for transactions\n$db = new PDO('mysql:host=' . $host . ';dbname=' . $dbname . ';charset=utf8', $username, $password);    \n\n// Make sure that PDO will throw an exception in case of error to make error handling easier\n$db-\u003esetAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);\n\ntry {\n    // From this point and until the transaction is being committed every change to the database can be reverted\n    $db-\u003ebeginTransaction();    \n    \n    // Insert the metadata of the order into the database\n    $preparedStatement = $db-\u003eprepare(\n        'INSERT INTO `orders` (`order_id`, `name`, `address`, `created_at`)\n         VALUES (:name, :address, :telephone, :created_at)'\n    );\n    \n    $preparedStatement-\u003eexecute([\n        'name' =\u003e $name,\n        'address' =\u003e $address,\n        'telephone' =\u003e $telephone,\n        'created_at' =\u003e time(),\n    ]);\n    \n    // Get the generated `order_id`\n    $orderId = $db-\u003elastInsertId();\n\n    // Construct the query for inserting the products of the order\n    $insertProductsQuery = 'INSERT INTO `orders_products` (`order_id`, `product_id`, `quantity`) VALUES';\n    \n    $count = 0;\n    foreach ( $products as $productId =\u003e $quantity ) {\n        $insertProductsQuery .= ' (:order_id' . $count . ', :product_id' . $count . ', :quantity' . $count . ')';\n        \n        $insertProductsParams['order_id' . $count] = $orderId;\n        $insertProductsParams['product_id' . $count] = $productId;\n        $insertProductsParams['quantity' . $count] = $quantity;\n        \n        ++$count;\n    }\n    \n    // Insert the products included in the order into the database\n    $preparedStatement = $db-\u003eprepare($insertProductsQuery);\n    $preparedStatement-\u003eexecute($insertProductsParams);\n    \n    // Make the changes to the database permanent\n    $db-\u003ecommit();\n}\ncatch ( PDOException $e ) { \n    // Failed to insert the order into the database so we rollback any changes\n    $db-\u003erollback();\n    throw $e;\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// In this example we are using MySQL but this applies to any database that has support for transactions\n$db = new PDO('mysql:host=' . $host . ';dbname=' . $dbname . ';charset=utf8', $username, $password);    \n\n// Make sure that PDO will throw an exception in case of error to make error handling easier\n$db-\u003esetAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);\n\ntry {\n    // From this point and until the transaction is being committed every change to the database can be reverted\n    $db-\u003ebeginTransaction();    \n    \n    // Insert the metadata of the order into the database\n    $preparedStatement = $db-\u003eprepare(\n        'INSERT INTO `orders` (`order_id`, `name`, `address`, `created_at`)\n         VALUES (:name, :address, :telephone, :created_at)'\n    );\n    \n    $preparedStatement-\u003eexecute([\n        'name' =\u003e $name,\n        'address' =\u003e $address,\n        'telephone' =\u003e $telephone,\n        'created_at' =\u003e time(),\n    ]);\n    \n    // Get the generated `order_id`\n    $orderId = $db-\u003elastInsertId();\n\n    // Construct the query for inserting the products of the order\n    $insertProductsQuery = 'INSERT INTO `orders_products` (`order_id`, `product_id`, `quantity`) VALUES';\n    \n    $count = 0;\n    foreach ( $products as $productId =\u003e $quantity ) {\n        $insertProductsQuery .= ' (:order_id' . $count . ', :product_id' . $count . ', :quantity' . $count . ')';\n        \n        $insertProductsParams['order_id' . $count] = $orderId;\n        $insertProductsParams['product_id' . $count] = $productId;\n        $insertProductsParams['quantity' . $count] = $quantity;\n        \n        ++$count;\n    }\n    \n    // Insert the products included in the order into the database\n    $preparedStatement = $db-\u003eprepare($insertProductsQuery);\n    $preparedStatement-\u003eexecute($insertProductsParams);\n    \n    // Make the changes to the database permanent\n    $db-\u003ecommit();\n}\ncatch ( PDOException $e ) { \n    // Failed to insert the order into the database so we rollback any changes\n    $db-\u003erollback();\n    throw $e;\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Database Transactions with PDO",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

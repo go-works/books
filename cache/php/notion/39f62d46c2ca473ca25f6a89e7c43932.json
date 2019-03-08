@@ -1,0 +1,157 @@
+{
+  "ID": "39f62d46-c2ca-473c-a25f-6a89e7c43932",
+  "Root": {
+    "alive": true,
+    "content": [
+      "493994ea-60b4-4af4-87ad-951ba5df3ac9",
+      "1306586f-c229-447a-9490-9b3af554bd30"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552022647078,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "39f62d46-c2ca-473c-a25f-6a89e7c43932",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552022647078,
+    "parent_id": "73d52685-2f50-4a6a-b764-7a1742062923",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "construct and destruct"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022647075,
+        "id": "493994ea-60b4-4af4-87ad-951ba5df3ac9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022647075,
+        "parent_id": "39f62d46-c2ca-473c-a25f-6a89e7c43932",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "__construct()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is the most common magic method in PHP, because it is used to set up a class when it is initialized. The opposite of the "
+            ],
+            [
+              "__construct()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method is the "
+            ],
+            [
+              "__destruct()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method. This method is called when there are no more references to an object that you created or when you force its deletion. PHP’s garbage collection will clean up the object by first calling its destructor and then removing it from memory."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "__construct()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is the most common magic method in PHP, because it is used to set up a class when it is initialized. The opposite of the "
+          },
+          {
+            "Text": "__construct()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method is the "
+          },
+          {
+            "Text": "__destruct()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method. This method is called when there are no more references to an object that you created or when you force its deletion. PHP’s garbage collection will clean up the object by first calling its destructor and then removing it from memory."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022647078,
+        "id": "1306586f-c229-447a-9490-9b3af554bd30",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022647078,
+        "parent_id": "39f62d46-c2ca-473c-a25f-6a89e7c43932",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class Shape {\n    public function __construct() {\n        echo \"Shape created!\\n\";\n    }\n}\n\nclass Rectangle extends Shape {\n    public $width;\n    public $height;\n\n    public function __construct($width, $height) {\n        parent::__construct();\n\n        $this-\u003ewidth = $width;\n        $this-\u003eheight = $height;\n        echo \"Created {$this-\u003ewidth}x{$this-\u003eheight} Rectangle\\n\"; \n    }\n\n    public function __destruct() {\n        echo \"Destroying {$this-\u003ewidth}x{$this-\u003eheight} Rectangle\\n\";\n    }\n}\n\nfunction createRectangle() {\n    // Instantiating an object will call the constructor with the specified arguments\n    $rectangle = new Rectangle(20, 50);\n\n    // 'Shape Created' will be printed\n    // 'Created 20x50 Rectangle' will be printed\n}\n\ncreateRectangle();\n// 'Destroying 20x50 Rectangle' will be printed, because\n// the `$rectangle` object was local to the createRectangle function, so\n// When the function scope is exited, the object is destroyed and its\n// destructor is called.\n\n// The destructor of an object is also called when unset is used:\nunset(new Rectangle(20, 50));"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class Shape {\n    public function __construct() {\n        echo \"Shape created!\\n\";\n    }\n}\n\nclass Rectangle extends Shape {\n    public $width;\n    public $height;\n\n    public function __construct($width, $height) {\n        parent::__construct();\n\n        $this-\u003ewidth = $width;\n        $this-\u003eheight = $height;\n        echo \"Created {$this-\u003ewidth}x{$this-\u003eheight} Rectangle\\n\"; \n    }\n\n    public function __destruct() {\n        echo \"Destroying {$this-\u003ewidth}x{$this-\u003eheight} Rectangle\\n\";\n    }\n}\n\nfunction createRectangle() {\n    // Instantiating an object will call the constructor with the specified arguments\n    $rectangle = new Rectangle(20, 50);\n\n    // 'Shape Created' will be printed\n    // 'Created 20x50 Rectangle' will be printed\n}\n\ncreateRectangle();\n// 'Destroying 20x50 Rectangle' will be printed, because\n// the `$rectangle` object was local to the createRectangle function, so\n// When the function scope is exited, the object is destroyed and its\n// destructor is called.\n\n// The destructor of an object is also called when unset is used:\nunset(new Rectangle(20, 50));",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "construct and destruct",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,339 @@
+{
+  "ID": "8e5764d5-1104-4bb6-a98f-cd610270e321",
+  "Root": {
+    "alive": true,
+    "content": [
+      "93e730d6-7183-41c5-9949-0cb44b81f11d",
+      "d1325d21-efc7-4db8-a187-b76bf5c98d79",
+      "396d92b9-1f90-4752-99bd-03fe5a58024c",
+      "ed393536-5ce9-4b42-a570-10bd692d88b7",
+      "8145073a-e094-4ab2-a80e-fa6fb37fb73c",
+      "58f2bf2d-89fe-4167-93f2-7959dda7e0c0"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552022345134,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "8e5764d5-1104-4bb6-a98f-cd610270e321",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552022345134,
+    "parent_id": "dd3184e6-59de-418c-9116-ab565faa8a55",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Destroy an entire session"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022345132,
+        "id": "93e730d6-7183-41c5-9949-0cb44b81f11d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022345132,
+        "parent_id": "8e5764d5-1104-4bb6-a98f-cd610270e321",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If you’ve got a session which you wish to destroy, you can do this with "
+            ],
+            [
+              "session_destroy()",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "http://php.net/session_destroy"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If you’ve got a session which you wish to destroy, you can do this with "
+          },
+          {
+            "Text": "session_destroy()",
+            "AttrFlags": 2,
+            "Link": "http://php.net/session_destroy"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022345133,
+        "id": "d1325d21-efc7-4db8-a187-b76bf5c98d79",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022345133,
+        "parent_id": "8e5764d5-1104-4bb6-a98f-cd610270e321",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "/*\n    Let us assume that our session looks like this:\n    Array([firstname] =\u003e Jon, [id] =\u003e 123)\n\n    We first need to start our session:\n*/\nsession_start();\n\n/*\n    We can now remove all the values from the `SESSION` superglobal:\n    If you omitted this step all of the global variables stored in the \n    superglobal would still exist even though the session had been destroyed.\n*/\n$_SESSION = array();\n\n// If it's desired to kill the session, also delete the session cookie.\n// Note: This will destroy the session, and not just the session data!\nif (ini_get(\"session.use_cookies\")) {\n    $params = session_get_cookie_params();\n    setcookie(session_name(), '', time() - 42000,\n        $params[\"path\"], $params[\"domain\"],\n        $params[\"secure\"], $params[\"httponly\"]\n    );\n}\n\n//Finally we can destroy the session:\nsession_destroy();"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "/*\n    Let us assume that our session looks like this:\n    Array([firstname] =\u003e Jon, [id] =\u003e 123)\n\n    We first need to start our session:\n*/\nsession_start();\n\n/*\n    We can now remove all the values from the `SESSION` superglobal:\n    If you omitted this step all of the global variables stored in the \n    superglobal would still exist even though the session had been destroyed.\n*/\n$_SESSION = array();\n\n// If it's desired to kill the session, also delete the session cookie.\n// Note: This will destroy the session, and not just the session data!\nif (ini_get(\"session.use_cookies\")) {\n    $params = session_get_cookie_params();\n    setcookie(session_name(), '', time() - 42000,\n        $params[\"path\"], $params[\"domain\"],\n        $params[\"secure\"], $params[\"httponly\"]\n    );\n}\n\n//Finally we can destroy the session:\nsession_destroy();",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022345133,
+        "id": "396d92b9-1f90-4752-99bd-03fe5a58024c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022345133,
+        "parent_id": "8e5764d5-1104-4bb6-a98f-cd610270e321",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Using "
+            ],
+            [
+              "session_destroy()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is different to using something like "
+            ],
+            [
+              "$_SESSION = array();",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " which will remove all of the values stored in the "
+            ],
+            [
+              "SESSION",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " superglobal but it will not destroy the actual stored version of the session."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Using "
+          },
+          {
+            "Text": "session_destroy()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is different to using something like "
+          },
+          {
+            "Text": "$_SESSION = array();",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " which will remove all of the values stored in the "
+          },
+          {
+            "Text": "SESSION",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " superglobal but it will not destroy the actual stored version of the session."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022345133,
+        "id": "ed393536-5ce9-4b42-a570-10bd692d88b7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022345133,
+        "parent_id": "8e5764d5-1104-4bb6-a98f-cd610270e321",
+        "parent_table": "block",
+        "type": "divider",
+        "version": 1
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022345134,
+        "id": "8145073a-e094-4ab2-a80e-fa6fb37fb73c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022345134,
+        "parent_id": "8e5764d5-1104-4bb6-a98f-cd610270e321",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Note",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              ": We use "
+            ],
+            [
+              "$_SESSION = array();",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " instead of "
+            ],
+            [
+              "session_unset()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " because "
+            ],
+            [
+              "the manual",
+              [
+                [
+                  "a",
+                  "http://php.net/session_destroy"
+                ]
+              ]
+            ],
+            [
+              " stipulates:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Note",
+            "AttrFlags": 1
+          },
+          {
+            "Text": ": We use "
+          },
+          {
+            "Text": "$_SESSION = array();",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " instead of "
+          },
+          {
+            "Text": "session_unset()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " because "
+          },
+          {
+            "Text": "the manual",
+            "Link": "http://php.net/session_destroy"
+          },
+          {
+            "Text": " stipulates:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552022345134,
+        "id": "58f2bf2d-89fe-4167-93f2-7959dda7e0c0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552022345134,
+        "parent_id": "8e5764d5-1104-4bb6-a98f-cd610270e321",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Only use session_unset() for older deprecated code that does not use $_SESSION."
+            ]
+          ]
+        },
+        "type": "quote",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Only use session_unset() for older deprecated code that does not use $_SESSION."
+          }
+        ]
+      }
+    ],
+    "title": "Destroy an entire session",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 18
+    }
+  ],
+  "Tables": null
+}
