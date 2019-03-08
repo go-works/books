@@ -155,22 +155,9 @@ func (p *Page) CanonnicalURL() string {
 	return urlJoin(siteBaseURL, p.URL())
 }
 
-// SuggestEditText returns text we display in GitHub box
-func (p *Page) SuggestEditText() string {
-	return "Suggest an edit"
-}
-
-// SuggestEditURL returns url to edit 000-index.md document
-func (p *Page) SuggestEditURL() string {
+// NotionURL returns url to edit 000-index.md document
+func (p *Page) NotionURL() string {
 	return notionBaseURL + normalizeID(p.NotionID)
-}
-
-// GitHubIssueURL returns link for reporting an issue about an article on githbu
-// https://github.com/essentialbooks/books/issues/new?title=${title}&body=${body}&labels=docs"
-func (p *Page) GitHubIssueURL() string {
-	title := fmt.Sprintf("Issue for chapter '%s'", p.Title)
-	body := fmt.Sprintf("From URL: %s\nFile: %s\n", p.CanonnicalURL(), p.SuggestEditURL())
-	return gitHubBaseURL + fmt.Sprintf("/issues/new?title=%s&body=%s&labels=docs", title, body)
 }
 
 func (p *Page) destFilePath() string {

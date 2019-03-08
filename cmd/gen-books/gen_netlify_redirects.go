@@ -30,32 +30,34 @@ func genNetlifyHeaders() {
 func genNetlifyRedirectsForBook(b *Book) []string {
 	var res []string
 
-	pages := b.GetAllPages()
-	for _, page := range pages {
-		id := page.NotionID
-		uri := page.URLLastPath()
-		s := fmt.Sprintf(`/essential/%s/%s* /essential/%s/%s 302`, b.Dir, id, b.Dir, uri)
-		res = append(res, s)
-	}
-
-	if b.Dir == "go" {
-		// only for Go book, add redirect from old ids to new ones
+	if false {
+		pages := b.GetAllPages()
 		for _, page := range pages {
-			id := page.getID()
-			if id == "" {
-				continue
-			}
+			id := page.NotionID
 			uri := page.URLLastPath()
-			s := fmt.Sprintf(`/essential/%s/%s-* /essential/%s/%s 302`, b.Dir, id, b.Dir, uri)
+			s := fmt.Sprintf(`/essential/%s/%s* /essential/%s/%s 302`, b.Dir, id, b.Dir, uri)
 			res = append(res, s)
+		}
+
+		if b.Dir == "go" {
+			// only for Go book, add redirect from old ids to new ones
+			for _, page := range pages {
+				id := page.getID()
+				if id == "" {
+					continue
+				}
+				uri := page.URLLastPath()
+				s := fmt.Sprintf(`/essential/%s/%s-* /essential/%s/%s 302`, b.Dir, id, b.Dir, uri)
+				res = append(res, s)
+			}
 		}
 	}
 
 	// catch-all redirect for all other missing pages
 	s := fmt.Sprintf(`/essential/%s/* /essential/%s/404.html 404`, b.Dir, b.Dir)
 	res = append(res, s)
-	res = append(res, "")
-	return nil
+	//res = append(res, "")
+	return res
 }
 
 func genNetlifyRedirects(books []*Book) {

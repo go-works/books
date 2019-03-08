@@ -91,11 +91,6 @@ func (b *Book) ContributorsURL() string {
 	return b.URL() + "/9999-contributors"
 }
 
-// SuggestEditText returns text we show in GitHub link
-func (b *Book) SuggestEditText() string {
-	return "Suggest an edit"
-}
-
 // GitHubURL returns link to GitHub for this book
 func (b *Book) GitHubURL() string {
 	return gitHubBaseURL + "/tree/master/books/" + filepath.Base(b.destDir())

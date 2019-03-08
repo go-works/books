@@ -147,14 +147,12 @@ func gen404TopLevel() {
 func genIndex(books []*Book) {
 	d := struct {
 		PageCommon
-		Books           []*Book
-		SuggestEditText string
-		SuggestEditURL  string
+		Books     []*Book
+		NotionURL string
 	}{
-		PageCommon:      getPageCommon(),
-		Books:           books,
-		SuggestEditText: "GitHub",
-		SuggestEditURL:  gitHubBaseURL,
+		PageCommon: getPageCommon(),
+		Books:      books,
+		NotionURL:  gitHubBaseURL,
 	}
 	path := filepath.Join(destDir, "index.html")
 	execTemplateToFileMaybeMust("index.tmpl.html", d, path)
@@ -269,7 +267,7 @@ func genBook(book *Book) {
 		return
 	}
 
-	d := struct {
+	data := struct {
 		PageCommon
 		Book *Book
 	}{
@@ -278,14 +276,11 @@ func genBook(book *Book) {
 	}
 
 	path := filepath.Join(book.destDir(), "index.html")
-	execTemplateToFileSilentMaybeMust("book_index.tmpl.html", d, path)
+	execTemplateToFileSilentMaybeMust("book_index.tmpl.html", data, path)
 
 	// TODO: per-book 404 should link to top of book, not top of website
-	// and now that we generate redirects for each page id, we don't need
-	// javascript for doing redirects
 	path = filepath.Join(book.destDir(), "404.html")
-	execTemplateToFileSilentMaybeMust("404.tmpl.html", d, path)
-
+	execTemplateToFileSilentMaybeMust("404.tmpl.html", data, path)
 	addSitemapURL(book.CanonnicalURL())
 
 	for i, chapter := range book.Chapters() {
