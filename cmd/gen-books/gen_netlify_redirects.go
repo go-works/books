@@ -26,6 +26,7 @@ func genNetlifyHeaders() {
 	panicIfErr(err)
 }
 
+// TODO: this should be in 404.html for each book
 func genNetlifyRedirectsForBook(b *Book) []string {
 	var res []string
 
@@ -54,7 +55,7 @@ func genNetlifyRedirectsForBook(b *Book) []string {
 	s := fmt.Sprintf(`/essential/%s/* /essential/%s/404.html 404`, b.Dir, b.Dir)
 	res = append(res, s)
 	res = append(res, "")
-	return res
+	return nil
 }
 
 func genNetlifyRedirects(books []*Book) {
