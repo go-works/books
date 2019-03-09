@@ -257,11 +257,20 @@ var (
 		// https://www.notion.so/kjkpublic/Essential-React-Native-c7980909d5144eb5aee8b28bbe60ec9b
 		NotionStartPageID: "c7980909d5144eb5aee8b28bbe60ec9b",
 	}
+	bookRuby = &Book{
+		Title:          "Ruby",
+		TitleLong:      "Essential Ruby",
+		Dir:            "ruby",
+		CoverImageName: "Ruby.png",
+		// https://www.notion.so/kjkpublic/Essential-Ruby-51f7633cdf1f4ab1a7778e8095f599bd
+		NotionStartPageID: "51f7633cdf1f4ab1a7778e8095f599bd",
+	}
 )
 
 // To download:
 // react
 // react-native
+// ruby
 
 var (
 	booksMain = []*Book{
@@ -272,7 +281,7 @@ var (
 	booksUnpublished = []*Book{
 		bookSql, bookAlgorithm, bookBash, bookC, bookCSS, bookGit, bookHTML,
 		bookHTMLCanvas, bookNETFramework, bookNode, bookObjectiveC, bookPHP,
-		bookPowershell, bookReact, bookReactNative,
+		bookPowershell, bookReact, bookReactNative, bookRuby
 	}
 	allBooks = append(booksMain, booksUnpublished...)
 )
