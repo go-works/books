@@ -40,6 +40,21 @@ var (
 	notionAuthToken string
 )
 
+var (
+	booksMain = []*Book{
+		bookGo, bookCsharp, bookPython, bookKotlin, bookJavaScript,
+		bookDart, bookJava, bookAndroid, bookCpp, bookIOS,
+		bookPostgresql, bookMysql,
+	}
+	booksUnpublished = []*Book{
+		bookSql, bookAlgorithm, bookBash, bookC, bookCSS, bookGit, bookHTML,
+		bookHTMLCanvas, bookNETFramework, bookNode, bookObjectiveC, bookPHP,
+		bookPowershell, bookReact, bookReactNative, bookRuby, bookRubyOnRails,
+		bookSwift, bookTypeScript,
+	}
+	allBooks = append(booksMain, booksUnpublished...)
+)
+
 func parseFlags() {
 	flag.StringVar(&flgAnalytics, "analytics", "", "google analytics code")
 	flag.BoolVar(&flgPreview, "preview", false, "if true will start watching for file changes and re-build everything")
@@ -80,8 +95,9 @@ func parseFlags() {
 func downloadBook(c *notionapi.Client, book *Book) {
 	notionStartPageID := book.NotionStartPageID
 	book.pageIDToPage = map[string]*notionapi.Page{}
+	fmt.Printf("Loading %s...", book.Title)
 	loadNotionPages(book, c, notionStartPageID, book.pageIDToPage, !flgNoCache)
-	fmt.Printf("Loaded %d pages for book %s\n", len(book.pageIDToPage), book.Title)
+	fmt.Printf(" got %d pages\n", len(book.pageIDToPage))
 	bookFromPages(book)
 }
 
@@ -222,7 +238,7 @@ func isNotionCachedInDir(dir string, id string) bool {
 func findBookFromCachedPageID(id string) *Book {
 	files, err := ioutil.ReadDir("cache")
 	panicIfErr(err)
-	for _, book := range booksMain {
+	for _, book := range allBooks {
 		if book.NotionStartPageID == id {
 			return book
 		}
@@ -357,35 +373,38 @@ func main() {
 		}
 	}
 
-	for _, book := range booksMain {
+	books := booksMain
+	if flgPreview {
+		books = allBooks
+		if len(flag.Args()) > 0 {
+			var newBooks []*Book
+			for _, name := range flag.Args() {
+				book := findBook(name)
+				if book == nil {
+					fmt.Printf("Didn't find book named '%s'\n", name)
+					continue
+				}
+				newBooks = append(newBooks, book)
+			}
+			if len(newBooks) > 0 {
+				books = newBooks
+			}
+		}
+	}
+
+	for _, book := range books {
 		initBook(book)
 		downloadBook(client, book)
 		loadSoContributorsMust(book)
 	}
 
-	books := booksMain
-	if 
-	if flgPreview && len(flag.Args()) > 0 {
-		var newBooks []*Book
-		for _, name := range flag.Args() {
-			book := findBook(name)
-			if book == nil {
-				fmt.Printf("Didn't find book named '%s'\n", name)
-				continue
-			}
-			newBooks = append(newBooks, book)
-		}
-		if len(newBooks) > 0 {
-			books = newBooks
-		}
-	}
 	genBooks(books)
 	genNetlifyHeaders()
 	genNetlifyRedirects(books)
 	printAndClearErrors()
 
 	if flgUpdateOutput || flgRedownloadOne != "" {
-		for _, b := range booksMain {
+		for _, b := range books {
 			saveCachedOutputFiles(b)
 		}
 	}

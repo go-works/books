@@ -250,18 +250,3 @@ var (
 		NotionStartPageID: "9f3a0df9855747b1ab85b76637971d62",
 	}
 )
-
-var (
-	booksMain = []*Book{
-		bookGo, bookCsharp, bookPython, bookKotlin, bookJavaScript,
-		bookDart, bookJava, bookAndroid, bookCpp, bookIOS,
-		bookPostgresql, bookMysql,
-	}
-	booksUnpublished = []*Book{
-		bookSql, bookAlgorithm, bookBash, bookC, bookCSS, bookGit, bookHTML,
-		bookHTMLCanvas, bookNETFramework, bookNode, bookObjectiveC, bookPHP,
-		bookPowershell, bookReact, bookReactNative, bookRuby, bookRubyOnRails,
-		bookSwift, bookTypeScript,
-	}
-	allBooks = append(booksMain, booksUnpublished...)
-)
