@@ -1,0 +1,245 @@
+{
+  "ID": "6f71e474-c6f8-44b3-8993-7dd305941de1",
+  "Root": {
+    "alive": true,
+    "content": [
+      "d06364df-f25f-44fb-b165-43af1c485e23",
+      "feb148ff-9f93-4edd-a86a-4a8a776da219",
+      "aba6c560-27c3-420a-9e9e-a114bf3fc43d",
+      "404b64c1-c130-49a6-8d1e-598b96854cee",
+      "dab0f940-1526-4051-bb36-ea75b3910caf",
+      "953597d1-a25b-492e-b6f2-23eed0eee791",
+      "ab5fe3eb-9c69-461c-af70-e02e092b3f87"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552105871081,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "6f71e474-c6f8-44b3-8993-7dd305941de1",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552105871081,
+    "parent_id": "2e9691dd-0811-4161-964f-0af0c454280b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Password Based Key Derivation 2 Swift 2.3"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105871077,
+        "id": "d06364df-f25f-44fb-b165-43af1c485e23",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105871077,
+        "parent_id": "6f71e474-c6f8-44b3-8993-7dd305941de1",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "See Swift 3 example for usage information and notes"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "See Swift 3 example for usage information and notes"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105871080,
+        "id": "feb148ff-9f93-4edd-a86a-4a8a776da219",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105871080,
+        "parent_id": "6f71e474-c6f8-44b3-8993-7dd305941de1",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "func pbkdf2SHA1(password: String, salt: [UInt8], keyCount: Int, rounds: Int) -\u003e [UInt8]? {\n    return pbkdf2(CCPBKDFAlgorithm(kCCPRFHmacAlgSHA1), password:password, salt:salt, keyCount:keyCount, rounds:UInt32(rounds))\n}\n\nfunc pbkdf2SHA256(password: String, salt: [UInt8], keyCount: Int, rounds: Int) -\u003e [UInt8]? {\n    return pbkdf2(CCPBKDFAlgorithm(kCCPRFHmacAlgSHA256), password:password, salt:salt, keyCount:keyCount, rounds:UInt32(rounds))\n}\n\nfunc pbkdf2SHA512(password: String, salt: [UInt8], keyCount: Int, rounds: Int) -\u003e [UInt8]? {\n    return pbkdf2(CCPBKDFAlgorithm(kCCPRFHmacAlgSHA512), password:password, salt:salt, keyCount:keyCount, rounds:UInt32(rounds))\n}\n\nfunc pbkdf2(hash :CCPBKDFAlgorithm, password: String, salt: [UInt8], keyCount: Int, rounds: UInt32!) -\u003e [UInt8]! {\n    let derivedKey   = [UInt8](count:keyCount, repeatedValue:0)\n    let passwordData = password.dataUsingEncoding(NSUTF8StringEncoding)!\n\n    let derivationStatus = CCKeyDerivationPBKDF(\n        CCPBKDFAlgorithm(kCCPBKDF2),\n        UnsafePointer\u003cInt8\u003e(passwordData.bytes), passwordData.length,\n        UnsafePointer\u003cUInt8\u003e(salt), salt.count,\n        CCPseudoRandomAlgorithm(hash),\n        rounds,\n        UnsafeMutablePointer\u003cUInt8\u003e(derivedKey),\n        derivedKey.count)"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "func pbkdf2SHA1(password: String, salt: [UInt8], keyCount: Int, rounds: Int) -\u003e [UInt8]? {\n    return pbkdf2(CCPBKDFAlgorithm(kCCPRFHmacAlgSHA1), password:password, salt:salt, keyCount:keyCount, rounds:UInt32(rounds))\n}\n\nfunc pbkdf2SHA256(password: String, salt: [UInt8], keyCount: Int, rounds: Int) -\u003e [UInt8]? {\n    return pbkdf2(CCPBKDFAlgorithm(kCCPRFHmacAlgSHA256), password:password, salt:salt, keyCount:keyCount, rounds:UInt32(rounds))\n}\n\nfunc pbkdf2SHA512(password: String, salt: [UInt8], keyCount: Int, rounds: Int) -\u003e [UInt8]? {\n    return pbkdf2(CCPBKDFAlgorithm(kCCPRFHmacAlgSHA512), password:password, salt:salt, keyCount:keyCount, rounds:UInt32(rounds))\n}\n\nfunc pbkdf2(hash :CCPBKDFAlgorithm, password: String, salt: [UInt8], keyCount: Int, rounds: UInt32!) -\u003e [UInt8]! {\n    let derivedKey   = [UInt8](count:keyCount, repeatedValue:0)\n    let passwordData = password.dataUsingEncoding(NSUTF8StringEncoding)!\n\n    let derivationStatus = CCKeyDerivationPBKDF(\n        CCPBKDFAlgorithm(kCCPBKDF2),\n        UnsafePointer\u003cInt8\u003e(passwordData.bytes), passwordData.length,\n        UnsafePointer\u003cUInt8\u003e(salt), salt.count,\n        CCPseudoRandomAlgorithm(hash),\n        rounds,\n        UnsafeMutablePointer\u003cUInt8\u003e(derivedKey),\n        derivedKey.count)",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105871080,
+        "id": "aba6c560-27c3-420a-9e9e-a114bf3fc43d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105871080,
+        "parent_id": "6f71e474-c6f8-44b3-8993-7dd305941de1",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "if (derivationStatus != 0) {\n    print(\"Error: \\(derivationStatus)\")\n    return nil;\n}\n\nreturn derivedKey\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "if (derivationStatus != 0) {\n    print(\"Error: \\(derivationStatus)\")\n    return nil;\n}\n\nreturn derivedKey\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105871080,
+        "id": "404b64c1-c130-49a6-8d1e-598b96854cee",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105871080,
+        "parent_id": "6f71e474-c6f8-44b3-8993-7dd305941de1",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Example usage:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Example usage:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105871080,
+        "id": "dab0f940-1526-4051-bb36-ea75b3910caf",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105871080,
+        "parent_id": "6f71e474-c6f8-44b3-8993-7dd305941de1",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "let password = \"password\"\n// let salt  = [UInt8](\"saltData\".utf8)\nlet salt     = [UInt8]([0x73, 0x61, 0x6c, 0x74, 0x44, 0x61, 0x74, 0x61])\nlet rounds   = 100_000\nlet keyCount = 16\n\nlet derivedKey = pbkdf2SHA1(password, salt:salt, keyCount:keyCount, rounds:rounds)\nprint(\"derivedKey (SHA1):   \\(NSData(bytes:derivedKey!, length:derivedKey!.count))\")"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "let password = \"password\"\n// let salt  = [UInt8](\"saltData\".utf8)\nlet salt     = [UInt8]([0x73, 0x61, 0x6c, 0x74, 0x44, 0x61, 0x74, 0x61])\nlet rounds   = 100_000\nlet keyCount = 16\n\nlet derivedKey = pbkdf2SHA1(password, salt:salt, keyCount:keyCount, rounds:rounds)\nprint(\"derivedKey (SHA1):   \\(NSData(bytes:derivedKey!, length:derivedKey!.count))\")",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105871080,
+        "id": "953597d1-a25b-492e-b6f2-23eed0eee791",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105871080,
+        "parent_id": "6f71e474-c6f8-44b3-8993-7dd305941de1",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Example Output:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Example Output:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105871081,
+        "id": "ab5fe3eb-9c69-461c-af70-e02e092b3f87",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105871081,
+        "parent_id": "6f71e474-c6f8-44b3-8993-7dd305941de1",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "derivedKey (SHA1):   \u003c6b9d4fa3 0385d128 f6d196ee 3f1d6dbf\u003e"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "derivedKey (SHA1):   \u003c6b9d4fa3 0385d128 f6d196ee 3f1d6dbf\u003e",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Password Based Key Derivation 2 Swift 2.3",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

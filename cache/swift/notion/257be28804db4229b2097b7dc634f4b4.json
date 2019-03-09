@@ -1,0 +1,163 @@
+{
+  "ID": "257be288-04db-4229-b209-7b7dc634f4b4",
+  "Root": {
+    "alive": true,
+    "content": [
+      "329c97e3-60b1-4a27-99a1-5d2d442a705f",
+      "77cb0bd7-7d3d-4b3b-8e85-63b084cb67c4"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552105548346,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "257be288-04db-4229-b209-7b7dc634f4b4",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552105548346,
+    "parent_id": "b5d22e19-0056-4916-bf50-cc1dc2f38c0e",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Basics of Swift Swizzling"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105548343,
+        "id": "329c97e3-60b1-4a27-99a1-5d2d442a705f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105548343,
+        "parent_id": "257be288-04db-4229-b209-7b7dc634f4b4",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Let’s swap the implementation of "
+            ],
+            [
+              "methodOne()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "methodTwo()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " in our "
+            ],
+            [
+              "TestSwizzling",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " class:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Let’s swap the implementation of "
+          },
+          {
+            "Text": "methodOne()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "methodTwo()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " in our "
+          },
+          {
+            "Text": "TestSwizzling",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " class:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105548346,
+        "id": "77cb0bd7-7d3d-4b3b-8e85-63b084cb67c4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105548346,
+        "parent_id": "257be288-04db-4229-b209-7b7dc634f4b4",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class TestSwizzling : NSObject {\n    dynamic func methodOne()-\u003eInt{\n        return 1\n    }\n}\n\nextension TestSwizzling {\n    \n    //In Objective-C you'd perform the swizzling in load(), \n    //but this method is not permitted in Swift\n    override class func initialize()\n    {\n\n        struct Inner {\n            static let i: () = {\n\n                let originalSelector = #selector(TestSwizzling.methodOne)\n                let swizzledSelector = #selector(TestSwizzling.methodTwo)                 \n                let originalMethod = class_getInstanceMethod(TestSwizzling.self, originalSelector);\n                let swizzledMethod = class_getInstanceMethod(TestSwizzling.self, swizzledSelector)                \n                method_exchangeImplementations(originalMethod, swizzledMethod)\n            }\n        }\n        let _ = Inner.i\n    }\n    \n    func methodTwo()-\u003eInt{\n        // It will not be a recursive call anymore after the swizzling\n        return methodTwo()+1\n    }\n}\n\nvar c = TestSwizzling()\nprint(c.methodOne())\nprint(c.methodTwo())"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class TestSwizzling : NSObject {\n    dynamic func methodOne()-\u003eInt{\n        return 1\n    }\n}\n\nextension TestSwizzling {\n    \n    //In Objective-C you'd perform the swizzling in load(), \n    //but this method is not permitted in Swift\n    override class func initialize()\n    {\n\n        struct Inner {\n            static let i: () = {\n\n                let originalSelector = #selector(TestSwizzling.methodOne)\n                let swizzledSelector = #selector(TestSwizzling.methodTwo)                 \n                let originalMethod = class_getInstanceMethod(TestSwizzling.self, originalSelector);\n                let swizzledMethod = class_getInstanceMethod(TestSwizzling.self, swizzledSelector)                \n                method_exchangeImplementations(originalMethod, swizzledMethod)\n            }\n        }\n        let _ = Inner.i\n    }\n    \n    func methodTwo()-\u003eInt{\n        // It will not be a recursive call anymore after the swizzling\n        return methodTwo()+1\n    }\n}\n\nvar c = TestSwizzling()\nprint(c.methodOne())\nprint(c.methodTwo())",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Basics of Swift Swizzling",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

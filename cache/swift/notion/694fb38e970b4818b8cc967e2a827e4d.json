@@ -1,0 +1,261 @@
+{
+  "ID": "694fb38e-970b-4818-b8cc-967e2a827e4d",
+  "Root": {
+    "alive": true,
+    "content": [
+      "6b9f2c1c-a249-4b9a-8abf-a36acbc3d1d6",
+      "fe19d8c1-9fa8-4af7-b6b2-06c35c8224bd",
+      "c617b773-9421-4aee-a808-7c3ca17188ee",
+      "1853238c-fea3-4127-8629-995f9bb242cf",
+      "7b32bbe2-59ed-47b9-8f9d-e1b493332be5",
+      "598f365d-5950-4519-b81e-6bba8e9d5465",
+      "ae512497-6685-4473-beef-4eb235f61b07"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552105048593,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "694fb38e-970b-4818-b8cc-967e2a827e4d",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552105048593,
+    "parent_id": "752e5fcf-89e9-482f-8ab5-40b382d1513b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Using closures for asynchronous coding"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105048589,
+        "id": "6b9f2c1c-a249-4b9a-8abf-a36acbc3d1d6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105048589,
+        "parent_id": "694fb38e-970b-4818-b8cc-967e2a827e4d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Closures are often used for asynchronous tasks, for example when fetching data from a website."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Closures are often used for asynchronous tasks, for example when fetching data from a website."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105048592,
+        "id": "fe19d8c1-9fa8-4af7-b6b2-06c35c8224bd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105048592,
+        "parent_id": "694fb38e-970b-4818-b8cc-967e2a827e4d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "func getData(urlString: String, callback: (result: NSData?) -\u003e Void) {\n\n    // Turn the URL string into an NSURLRequest.\n    guard let url = NSURL(string: urlString) else { return }\n    let request = NSURLRequest(URL: url)\n    \n    // Asynchronously fetch data from the given URL.\n    let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {(data: NSData?, response: NSURLResponse?, error: NSError?) in\n\n        // We now have the NSData response from the website.\n        // We can get it \"out\" of the function by using the callback \n        // that was passed to this function as a parameter.\n\n        callback(result: data)\n    }\n        \n    task.resume()\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "func getData(urlString: String, callback: (result: NSData?) -\u003e Void) {\n\n    // Turn the URL string into an NSURLRequest.\n    guard let url = NSURL(string: urlString) else { return }\n    let request = NSURLRequest(URL: url)\n    \n    // Asynchronously fetch data from the given URL.\n    let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {(data: NSData?, response: NSURLResponse?, error: NSError?) in\n\n        // We now have the NSData response from the website.\n        // We can get it \"out\" of the function by using the callback \n        // that was passed to this function as a parameter.\n\n        callback(result: data)\n    }\n        \n    task.resume()\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105048592,
+        "id": "c617b773-9421-4aee-a808-7c3ca17188ee",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105048592,
+        "parent_id": "694fb38e-970b-4818-b8cc-967e2a827e4d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This function is asynchronous, so will not block the thread it is being called on (it won’t freeze the interface if called on the main thread of your GUI application)."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This function is asynchronous, so will not block the thread it is being called on (it won’t freeze the interface if called on the main thread of your GUI application)."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105048592,
+        "id": "1853238c-fea3-4127-8629-995f9bb242cf",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105048592,
+        "parent_id": "694fb38e-970b-4818-b8cc-967e2a827e4d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "print(\"1. Going to call getData\")\n\ngetData(\"http://www.example.com\") {(result: NSData?) -\u003e Void in\n\n    // Called when the data from http://www.example.com has been fetched.\n    print(\"2. Fetched data\")\n}\n\nprint(\"3. Called getData\")"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "print(\"1. Going to call getData\")\n\ngetData(\"http://www.example.com\") {(result: NSData?) -\u003e Void in\n\n    // Called when the data from http://www.example.com has been fetched.\n    print(\"2. Fetched data\")\n}\n\nprint(\"3. Called getData\")",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105048592,
+        "id": "7b32bbe2-59ed-47b9-8f9d-e1b493332be5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105048592,
+        "parent_id": "694fb38e-970b-4818-b8cc-967e2a827e4d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Because the task is asynchronous, the output will usually look like this:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Because the task is asynchronous, the output will usually look like this:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105048593,
+        "id": "598f365d-5950-4519-b81e-6bba8e9d5465",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105048593,
+        "parent_id": "694fb38e-970b-4818-b8cc-967e2a827e4d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\"1. Going to call getData\"\n\"3. Called getData\"\n\"2. Fetched data\""
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\"1. Going to call getData\"\n\"3. Called getData\"\n\"2. Fetched data\"",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105048593,
+        "id": "ae512497-6685-4473-beef-4eb235f61b07",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105048593,
+        "parent_id": "694fb38e-970b-4818-b8cc-967e2a827e4d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Because the code inside of the closure, "
+            ],
+            [
+              "print(\"2. Fetched data\")",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", will not be called until the data from the URL is fetched."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Because the code inside of the closure, "
+          },
+          {
+            "Text": "print(\"2. Fetched data\")",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", will not be called until the data from the URL is fetched."
+          }
+        ]
+      }
+    ],
+    "title": "Using closures for asynchronous coding",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,223 @@
+{
+  "ID": "93df2dfa-ae99-4bf8-a76a-fa6668705fe3",
+  "Root": {
+    "alive": true,
+    "content": [
+      "71d3e149-c707-45aa-ab85-72df61f3f361",
+      "7b8c3ec3-83b1-4654-8222-8ff715328a9d",
+      "17967d5c-3836-481d-a5f6-d50be1de7243",
+      "5df3f155-9a18-4df0-9e53-f7200ae5e654",
+      "81b59391-fd7f-41d0-97d4-ee9fa2ffee58"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552105829065,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "93df2dfa-ae99-4bf8-a76a-fa6668705fe3",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552105829065,
+    "parent_id": "00935eb8-d316-43d4-9d14-f133a4cf1c91",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Factory Method"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105829063,
+        "id": "71d3e149-c707-45aa-ab85-72df61f3f361",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105829063,
+        "parent_id": "93df2dfa-ae99-4bf8-a76a-fa6668705fe3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In class-based programming, the factory method pattern is a creational pattern that uses factory methods to deal with the problem of creating objects without having to specify the exact class of the object that will be created. Wikipedia reference"
+            ]
+          ]
+        },
+        "type": "quote",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In class-based programming, the factory method pattern is a creational pattern that uses factory methods to deal with the problem of creating objects without having to specify the exact class of the object that will be created. Wikipedia reference"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105829064,
+        "id": "7b8c3ec3-83b1-4654-8222-8ff715328a9d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105829064,
+        "parent_id": "93df2dfa-ae99-4bf8-a76a-fa6668705fe3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "protocol SenderProtocol\n{\n    func send(package: AnyObject)\n}\n\nclass Fedex: SenderProtocol\n{\n    func send(package: AnyObject)\n    {\n        print(\"Fedex deliver\")\n    }\n}\n\nclass RegularPriorityMail: SenderProtocol\n{\n    func send(package: AnyObject)\n    {\n        print(\"Regular Priority Mail deliver\")\n    }\n}\n\n// This is our Factory\nclass DeliverFactory\n{\n    // It will be responsable for returning the proper instance that will handle the task\n    static func makeSender(isLate isLate: Bool) -\u003e SenderProtocol\n    {\n        return isLate ? Fedex() : RegularPriorityMail()\n    }\n}\n\n// Usage:\nlet package = [\"Item 1\", \"Item 2\"]\n\n// Fedex class will handle the delivery\nDeliverFactory.makeSender(isLate:true).send(package)\n\n// Regular Priority Mail class will handle the delivery\nDeliverFactory.makeSender(isLate:false).send(package)"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "protocol SenderProtocol\n{\n    func send(package: AnyObject)\n}\n\nclass Fedex: SenderProtocol\n{\n    func send(package: AnyObject)\n    {\n        print(\"Fedex deliver\")\n    }\n}\n\nclass RegularPriorityMail: SenderProtocol\n{\n    func send(package: AnyObject)\n    {\n        print(\"Regular Priority Mail deliver\")\n    }\n}\n\n// This is our Factory\nclass DeliverFactory\n{\n    // It will be responsable for returning the proper instance that will handle the task\n    static func makeSender(isLate isLate: Bool) -\u003e SenderProtocol\n    {\n        return isLate ? Fedex() : RegularPriorityMail()\n    }\n}\n\n// Usage:\nlet package = [\"Item 1\", \"Item 2\"]\n\n// Fedex class will handle the delivery\nDeliverFactory.makeSender(isLate:true).send(package)\n\n// Regular Priority Mail class will handle the delivery\nDeliverFactory.makeSender(isLate:false).send(package)",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105829064,
+        "id": "17967d5c-3836-481d-a5f6-d50be1de7243",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105829064,
+        "parent_id": "93df2dfa-ae99-4bf8-a76a-fa6668705fe3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "By doing that we don’t depend on the real implementation of the class, making the "
+            ],
+            [
+              "sender()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " completely transparent to who is consuming it."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "By doing that we don’t depend on the real implementation of the class, making the "
+          },
+          {
+            "Text": "sender()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " completely transparent to who is consuming it."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105829064,
+        "id": "5df3f155-9a18-4df0-9e53-f7200ae5e654",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105829064,
+        "parent_id": "93df2dfa-ae99-4bf8-a76a-fa6668705fe3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In this case all we need to know is that a sender will handle the deliver and exposes a method called "
+            ],
+            [
+              "send()",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". There are several other advantages: reduce classes coupling, easier to test, easier to add new behaviours without having to change who is consuming it."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In this case all we need to know is that a sender will handle the deliver and exposes a method called "
+          },
+          {
+            "Text": "send()",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". There are several other advantages: reduce classes coupling, easier to test, easier to add new behaviours without having to change who is consuming it."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105829064,
+        "id": "81b59391-fd7f-41d0-97d4-ee9fa2ffee58",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105829064,
+        "parent_id": "93df2dfa-ae99-4bf8-a76a-fa6668705fe3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Within object-oriented design, interfaces provide layers of abstraction that facilitate conceptual explanation of the code and create a barrier preventing dependencies.Wikipedia reference"
+            ]
+          ]
+        },
+        "type": "quote",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Within object-oriented design, interfaces provide layers of abstraction that facilitate conceptual explanation of the code and create a barrier preventing dependencies.Wikipedia reference"
+          }
+        ]
+      }
+    ],
+    "title": "Factory Method",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

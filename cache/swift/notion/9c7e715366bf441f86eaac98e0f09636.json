@@ -1,0 +1,404 @@
+{
+  "ID": "9c7e7153-66bf-441f-86ea-ac98e0f09636",
+  "Root": {
+    "alive": true,
+    "content": [
+      "6c45dbe4-dd76-4ba4-b55a-7b3be1d4fe11",
+      "2f59a47e-1a6b-4e6d-ae82-fc28577e10e1",
+      "54b3f518-8f15-4ac4-8af7-a63e9005a533",
+      "a6aaf026-b6fa-4c7e-8034-bd507efc4764",
+      "c715260c-8d33-4527-8cde-1b70a58f82d3",
+      "4e823a29-a987-48ff-b154-06ecb1e08be7",
+      "5bc32409-0d9b-4dcd-b632-924e2ea32415",
+      "1c031cf7-993b-4bfc-bf17-1a39ee15437d",
+      "01f98e2c-13de-400a-b6df-5ff2118af1c2",
+      "402e1409-4a71-44b4-8a34-b83d78f05a97"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552105046964,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "9c7e7153-66bf-441f-86ea-ac98e0f09636",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552105046964,
+    "parent_id": "752e5fcf-89e9-482f-8ab5-40b382d1513b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Captures strongweak references and retain cycles"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105046958,
+        "id": "6c45dbe4-dd76-4ba4-b55a-7b3be1d4fe11",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105046958,
+        "parent_id": "9c7e7153-66bf-441f-86ea-ac98e0f09636",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class MyClass {\n    func sayHi() { print(\"Hello\") }\n    deinit { print(\"Goodbye\") }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class MyClass {\n    func sayHi() { print(\"Hello\") }\n    deinit { print(\"Goodbye\") }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105046960,
+        "id": "2f59a47e-1a6b-4e6d-ae82-fc28577e10e1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105046960,
+        "parent_id": "9c7e7153-66bf-441f-86ea-ac98e0f09636",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "When a closure captures a reference type (a class instance), it holds a strong reference by default:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "When a closure captures a reference type (a class instance), it holds a strong reference by default:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105046960,
+        "id": "54b3f518-8f15-4ac4-8af7-a63e9005a533",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105046960,
+        "parent_id": "9c7e7153-66bf-441f-86ea-ac98e0f09636",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "let closure: () -\u003e Void\ndo {\n    let obj = MyClass()\n    // Captures a strong reference to `obj`: the object will be kept alive\n    // as long as the closure itself is alive.\n    closure = { obj.sayHi() }\n    closure()  // The object is still alive; prints \"Hello\"\n} // obj goes out of scope\nclosure()  // The object is still alive; prints \"Hello\""
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "let closure: () -\u003e Void\ndo {\n    let obj = MyClass()\n    // Captures a strong reference to `obj`: the object will be kept alive\n    // as long as the closure itself is alive.\n    closure = { obj.sayHi() }\n    closure()  // The object is still alive; prints \"Hello\"\n} // obj goes out of scope\nclosure()  // The object is still alive; prints \"Hello\"",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105046960,
+        "id": "a6aaf026-b6fa-4c7e-8034-bd507efc4764",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105046960,
+        "parent_id": "9c7e7153-66bf-441f-86ea-ac98e0f09636",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The closure’s "
+            ],
+            [
+              "capture list",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " can be used to specify a weak or unowned reference:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The closure’s "
+          },
+          {
+            "Text": "capture list",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " can be used to specify a weak or unowned reference:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105046961,
+        "id": "c715260c-8d33-4527-8cde-1b70a58f82d3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105046961,
+        "parent_id": "9c7e7153-66bf-441f-86ea-ac98e0f09636",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "weak"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "weak",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105046961,
+        "id": "4e823a29-a987-48ff-b154-06ecb1e08be7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105046961,
+        "parent_id": "9c7e7153-66bf-441f-86ea-ac98e0f09636",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "assumedunownedcrash!"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "assumedunownedcrash!",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105046963,
+        "id": "5bc32409-0d9b-4dcd-b632-924e2ea32415",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105046963,
+        "parent_id": "9c7e7153-66bf-441f-86ea-ac98e0f09636",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "For more information, see the "
+            ],
+            [
+              "Memory Management",
+              [
+                [
+                  "a",
+                  "http://stackoverflow.com/documentation/swift/745/memory-management#t=201607211838216466797"
+                ]
+              ]
+            ],
+            [
+              " topic, and the "
+            ],
+            [
+              "Automatic Reference Counting",
+              [
+                [
+                  "a",
+                  "https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/AutomaticReferenceCounting.html"
+                ]
+              ]
+            ],
+            [
+              " section of The Swift Programming Language."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "For more information, see the "
+          },
+          {
+            "Text": "Memory Management",
+            "Link": "http://stackoverflow.com/documentation/swift/745/memory-management#t=201607211838216466797"
+          },
+          {
+            "Text": " topic, and the "
+          },
+          {
+            "Text": "Automatic Reference Counting",
+            "Link": "https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/AutomaticReferenceCounting.html"
+          },
+          {
+            "Text": " section of The Swift Programming Language."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105046963,
+        "id": "1c031cf7-993b-4bfc-bf17-1a39ee15437d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105046963,
+        "parent_id": "9c7e7153-66bf-441f-86ea-ac98e0f09636",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Retain cycles"
+            ]
+          ]
+        },
+        "type": "header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Retain cycles"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105046963,
+        "id": "01f98e2c-13de-400a-b6df-5ff2118af1c2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105046963,
+        "parent_id": "9c7e7153-66bf-441f-86ea-ac98e0f09636",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If an object holds onto a closure, which also holds a strong reference to the object, this is a "
+            ],
+            [
+              "retain cycle",
+              [
+                [
+                  "b"
+                ],
+                [
+                  "a",
+                  "http://stackoverflow.com/documentation/swift/745/memory-management/2533/reference-cycles-and-weak-references#t=201607211838216466797"
+                ]
+              ]
+            ],
+            [
+              ". Unless the cycle is broken, the memory storing the object and closure will be leaked (never reclaimed)."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If an object holds onto a closure, which also holds a strong reference to the object, this is a "
+          },
+          {
+            "Text": "retain cycle",
+            "AttrFlags": 1,
+            "Link": "http://stackoverflow.com/documentation/swift/745/memory-management/2533/reference-cycles-and-weak-references#t=201607211838216466797"
+          },
+          {
+            "Text": ". Unless the cycle is broken, the memory storing the object and closure will be leaked (never reclaimed)."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105046963,
+        "id": "402e1409-4a71-44b4-8a34-b83d78f05a97",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105046963,
+        "parent_id": "9c7e7153-66bf-441f-86ea-ac98e0f09636",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "BAD:SOLUTION:[weak self] inguard let strongSelf = self else { return }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "BAD:SOLUTION:[weak self] inguard let strongSelf = self else { return }",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Captures strongweak references and retain cycles",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,109 @@
+{
+  "ID": "8c5069a6-2505-4419-9b9f-783769611b30",
+  "Root": {
+    "alive": true,
+    "content": [
+      "efc00b6a-1248-43f6-ba7e-ed0414fbe8b1",
+      "70fd2dfe-8624-4383-b6e2-76ae7bb1a4dc"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552105582979,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "8c5069a6-2505-4419-9b9f-783769611b30",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552105582979,
+    "parent_id": "a95c626d-6b55-449a-91a2-173c29e1c6a7",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Using Filter with Structs"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105582976,
+        "id": "efc00b6a-1248-43f6-ba7e-ed0414fbe8b1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105582976,
+        "parent_id": "8c5069a6-2505-4419-9b9f-783769611b30",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Frequently you may want to filter structures and other complex data types. Searching an array of structs for entries that contain a particular value is a very common task, and easily achieved in Swift using functional programming features. What’s more, the code is extremely succinct."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Frequently you may want to filter structures and other complex data types. Searching an array of structs for entries that contain a particular value is a very common task, and easily achieved in Swift using functional programming features. What’s more, the code is extremely succinct."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105582979,
+        "id": "70fd2dfe-8624-4383-b6e2-76ae7bb1a4dc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105582979,
+        "parent_id": "8c5069a6-2505-4419-9b9f-783769611b30",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "struct Painter {\n    enum Type { case Impressionist, Expressionist, Surrealist, Abstract, Pop }\n    var firstName: String\n    var lastName: String\n    var type: Type\n}\n\nlet painters = [\n    Painter(firstName: \"Claude\", lastName: \"Monet\", type: .Impressionist),\n    Painter(firstName: \"Edgar\", lastName: \"Degas\", type: .Impressionist),\n    Painter(firstName: \"Egon\", lastName: \"Schiele\", type: .Expressionist),\n    Painter(firstName: \"George\", lastName: \"Grosz\", type: .Expressionist),\n    Painter(firstName: \"Mark\", lastName: \"Rothko\", type: .Abstract),\n    Painter(firstName: \"Jackson\", lastName: \"Pollock\", type: .Abstract),\n    Painter(firstName: \"Pablo\", lastName: \"Picasso\", type: .Surrealist),\n    Painter(firstName: \"Andy\", lastName: \"Warhol\", type: .Pop)\n]\n\n// list the expressionists\ndump(painters.filter({$0.type == .Expressionist}))\n\n// count the expressionists\ndump(painters.filter({$0.type == .Expressionist}).count)    \n// prints \"2\"\n\n// combine filter and map for more complex operations, for example listing all\n// non-impressionist and non-expressionists by surname\ndump(painters.filter({$0.type != .Impressionist \u0026\u0026 $0.type != .Expressionist})\n    .map({$0.lastName}).joinWithSeparator(\", \"))  \n// prints \"Rothko, Pollock, Picasso, Warhol\""
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "struct Painter {\n    enum Type { case Impressionist, Expressionist, Surrealist, Abstract, Pop }\n    var firstName: String\n    var lastName: String\n    var type: Type\n}\n\nlet painters = [\n    Painter(firstName: \"Claude\", lastName: \"Monet\", type: .Impressionist),\n    Painter(firstName: \"Edgar\", lastName: \"Degas\", type: .Impressionist),\n    Painter(firstName: \"Egon\", lastName: \"Schiele\", type: .Expressionist),\n    Painter(firstName: \"George\", lastName: \"Grosz\", type: .Expressionist),\n    Painter(firstName: \"Mark\", lastName: \"Rothko\", type: .Abstract),\n    Painter(firstName: \"Jackson\", lastName: \"Pollock\", type: .Abstract),\n    Painter(firstName: \"Pablo\", lastName: \"Picasso\", type: .Surrealist),\n    Painter(firstName: \"Andy\", lastName: \"Warhol\", type: .Pop)\n]\n\n// list the expressionists\ndump(painters.filter({$0.type == .Expressionist}))\n\n// count the expressionists\ndump(painters.filter({$0.type == .Expressionist}).count)    \n// prints \"2\"\n\n// combine filter and map for more complex operations, for example listing all\n// non-impressionist and non-expressionists by surname\ndump(painters.filter({$0.type != .Impressionist \u0026\u0026 $0.type != .Expressionist})\n    .map({$0.lastName}).joinWithSeparator(\", \"))  \n// prints \"Rothko, Pollock, Picasso, Warhol\"",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Using Filter with Structs",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

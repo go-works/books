@@ -1,0 +1,83 @@
+{
+  "ID": "0c98e1c8-b8d3-4768-8ddc-ed9ba95d473e",
+  "Root": {
+    "alive": true,
+    "content": [
+      "9d677f62-26ac-47a8-82a0-a54b236ab003"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552105948991,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "0c98e1c8-b8d3-4768-8ddc-ed9ba95d473e",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552105948991,
+    "parent_id": "d04ea4c2-1d96-49c5-b911-1de41c18c770",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Completion handler with input argument"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552105948991,
+        "id": "9d677f62-26ac-47a8-82a0-a54b236ab003",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552105948991,
+        "parent_id": "0c98e1c8-b8d3-4768-8ddc-ed9ba95d473e",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "enum ReadResult{\n    case Successful\n    case Failed\n    case Pending\n}\n\nstruct OutpuData {\n    var data = Data()\n    var result: ReadResult\n    var error: Error?\n}\n\nfunc readData(from url: String, completion: @escaping (OutpuData) -\u003e  Void) {\n    var _data = OutpuData(data: Data(), result: .Pending, error: nil)\n    DispatchQueue.global().async {\n        let url=URL(string: url)\n        do {\n            let rawData = try Data(contentsOf: url!)\n            _data.result = .Successful\n            _data.data = rawData\n            completion(_data)\n        }\n        catch let error {\n            _data.result = .Failed\n            _data.error = error\n            completion(_data)\n        }\n        \n    }\n}\n\nreadData(from: \"https://raw.githubusercontent.com/trev/bearcal/master/sample-data-large.json\") { (output) in\n    switch output.result {\n    case .Successful:\n        break\n    case .Failed:\n        break\n    case .Pending:\n        break\n        \n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "enum ReadResult{\n    case Successful\n    case Failed\n    case Pending\n}\n\nstruct OutpuData {\n    var data = Data()\n    var result: ReadResult\n    var error: Error?\n}\n\nfunc readData(from url: String, completion: @escaping (OutpuData) -\u003e  Void) {\n    var _data = OutpuData(data: Data(), result: .Pending, error: nil)\n    DispatchQueue.global().async {\n        let url=URL(string: url)\n        do {\n            let rawData = try Data(contentsOf: url!)\n            _data.result = .Successful\n            _data.data = rawData\n            completion(_data)\n        }\n        catch let error {\n            _data.result = .Failed\n            _data.error = error\n            completion(_data)\n        }\n        \n    }\n}\n\nreadData(from: \"https://raw.githubusercontent.com/trev/bearcal/master/sample-data-large.json\") { (output) in\n    switch output.result {\n    case .Successful:\n        break\n    case .Failed:\n        break\n    case .Pending:\n        break\n        \n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Completion handler with input argument",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}
