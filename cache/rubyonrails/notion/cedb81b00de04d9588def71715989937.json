@@ -1,0 +1,949 @@
+{
+  "ID": "cedb81b0-0de0-4d95-88de-f71715989937",
+  "Root": {
+    "alive": true,
+    "content": [
+      "45a6225f-049d-47c9-983b-a143a7519bba",
+      "ca011c26-a91b-43b1-a6b8-861e5d340882",
+      "a75cb25e-8f71-4a74-804d-24b9322d9a9b",
+      "bb29810a-4789-4c81-977e-78c72580b9d5",
+      "4a1e74b0-9dd6-4239-b6f8-952892888acc",
+      "17dca5bd-72f6-4e45-a7c4-701b41bc1048",
+      "fe2e56a2-cd7a-473a-a16b-dbdd0b1062f4",
+      "742d5dd6-6ab5-4034-9eba-65d92439175e",
+      "f6a0fdfc-d253-42a6-823a-1e837bb71da3",
+      "decc8e9b-ef02-4619-8d04-d180d4874cac",
+      "1d8107e0-8869-4b22-9982-09fd16fb041a",
+      "47cbc39a-8978-45f6-8a28-ccb571c2a453",
+      "3ea2e56a-0f98-4e77-85a6-91847c0f83b3",
+      "2b11c5f7-deac-4ba2-ab4f-550f1d44c713",
+      "a4b329d9-17f7-447d-8bf1-25f9142ab73d",
+      "60e32014-ab0a-4a45-aea0-c44965317044",
+      "83a707f7-47f2-48f4-b402-fbb29c26dc2c",
+      "611afd60-b626-48f6-8c6c-e1e91b761b88",
+      "e1cabfc7-4529-47f8-b87a-d19b066abe91",
+      "4d9bd801-5b00-45ba-bc4a-48d5af37725a",
+      "2c8ba733-2578-4f7c-80f5-0d6f19264aa6",
+      "cb5736fd-dc58-4849-b73d-9e58219456fe"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552103163074,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "cedb81b0-0de0-4d95-88de-f71715989937",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552103163074,
+    "parent_id": "b354d383-4db8-4609-8b0a-e58e843de7f1",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Set locale through requests"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103163067,
+        "id": "45a6225f-049d-47c9-983b-a143a7519bba",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103163067,
+        "parent_id": "cedb81b0-0de0-4d95-88de-f71715989937",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In most cases, you may want to set "
+            ],
+            [
+              "I18n",
+              [
+                [
+                  "b"
+                ],
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " locale. One might want to set the locale for the current session, the current user, or based on a URL parameter This is easily achievable by implementing a "
+            ],
+            [
+              "before_action",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " in one of your controllers, or in "
+            ],
+            [
+              "ApplicationController",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to have it in all of your controllers."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In most cases, you may want to set "
+          },
+          {
+            "Text": "I18n",
+            "AttrFlags": 3
+          },
+          {
+            "Text": " locale. One might want to set the locale for the current session, the current user, or based on a URL parameter This is easily achievable by implementing a "
+          },
+          {
+            "Text": "before_action",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " in one of your controllers, or in "
+          },
+          {
+            "Text": "ApplicationController",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to have it in all of your controllers."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103163071,
+        "id": "ca011c26-a91b-43b1-a6b8-861e5d340882",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103163071,
+        "parent_id": "cedb81b0-0de0-4d95-88de-f71715989937",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class ApplicationController \u003c ActionController::Base\n  before_action :set_locale\n\n  protected\n\n  def set_locale\n    # Remove inappropriate/unnecessary ones\n    I18n.locale = params[:locale] ||    # Request parameter\n      session[:locale] ||               # Current session\n      (current_user.preferred_locale if user_signed_in?) ||  # Model saved configuration\n      extract_locale_from_accept_language_header ||          # Language header - browser config\n      I18n.default_locale               # Set in your config files, english by super-default\n  end\n\n  # Extract language from request header\n  def extract_locale_from_accept_language_header\n    if request.env['HTTP_ACCEPT_LANGUAGE']\n      lg = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first.to_sym\n      lg.in?([:en, YOUR_AVAILABLE_LANGUAGES]) ? lg : nil\n    end\n  end"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class ApplicationController \u003c ActionController::Base\n  before_action :set_locale\n\n  protected\n\n  def set_locale\n    # Remove inappropriate/unnecessary ones\n    I18n.locale = params[:locale] ||    # Request parameter\n      session[:locale] ||               # Current session\n      (current_user.preferred_locale if user_signed_in?) ||  # Model saved configuration\n      extract_locale_from_accept_language_header ||          # Language header - browser config\n      I18n.default_locale               # Set in your config files, english by super-default\n  end\n\n  # Extract language from request header\n  def extract_locale_from_accept_language_header\n    if request.env['HTTP_ACCEPT_LANGUAGE']\n      lg = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first.to_sym\n      lg.in?([:en, YOUR_AVAILABLE_LANGUAGES]) ? lg : nil\n    end\n  end",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103163071,
+        "id": "a75cb25e-8f71-4a74-804d-24b9322d9a9b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103163071,
+        "parent_id": "cedb81b0-0de0-4d95-88de-f71715989937",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "URL-based"
+            ]
+          ]
+        },
+        "type": "header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "URL-based"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103163071,
+        "id": "bb29810a-4789-4c81-977e-78c72580b9d5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103163071,
+        "parent_id": "cedb81b0-0de0-4d95-88de-f71715989937",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The "
+            ],
+            [
+              "locale",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " param could come from an URL like this"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The "
+          },
+          {
+            "Text": "locale",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " param could come from an URL like this"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103163071,
+        "id": "4a1e74b0-9dd6-4239-b6f8-952892888acc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103163071,
+        "parent_id": "cedb81b0-0de0-4d95-88de-f71715989937",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "http://yourapplication.com/products?locale=en"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "http://yourapplication.com/products?locale=en",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103163072,
+        "id": "17dca5bd-72f6-4e45-a7c4-701b41bc1048",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103163072,
+        "parent_id": "cedb81b0-0de0-4d95-88de-f71715989937",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Or"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Or"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103163072,
+        "id": "fe2e56a2-cd7a-473a-a16b-dbdd0b1062f4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103163072,
+        "parent_id": "cedb81b0-0de0-4d95-88de-f71715989937",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "http://yourapplication.com/en/products"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "http://yourapplication.com/en/products",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103163072,
+        "id": "742d5dd6-6ab5-4034-9eba-65d92439175e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103163072,
+        "parent_id": "cedb81b0-0de0-4d95-88de-f71715989937",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To achieve the latter, you need to edit your "
+            ],
+            [
+              "routes",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", adding a "
+            ],
+            [
+              "scope",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ":"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To achieve the latter, you need to edit your "
+          },
+          {
+            "Text": "routes",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", adding a "
+          },
+          {
+            "Text": "scope",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ":"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103163072,
+        "id": "f6a0fdfc-d253-42a6-823a-1e837bb71da3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103163072,
+        "parent_id": "cedb81b0-0de0-4d95-88de-f71715989937",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "# config/routes.rb\nscope \"(:locale)\", locale: /en|fr/ do\n  resources :products\nend"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "# config/routes.rb\nscope \"(:locale)\", locale: /en|fr/ do\n  resources :products\nend",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103163072,
+        "id": "decc8e9b-ef02-4619-8d04-d180d4874cac",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103163072,
+        "parent_id": "cedb81b0-0de0-4d95-88de-f71715989937",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "By doing this, visiting "
+            ],
+            [
+              "http://yourapplication.com/en/products",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " will set your locale to "
+            ],
+            [
+              ":en",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". Instead, visiting "
+            ],
+            [
+              "http://yourapplication.com/fr/products",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " will set it to "
+            ],
+            [
+              ":fr",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". Furthermore, you won’t get a routing error when missing the "
+            ],
+            [
+              ":locale",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " param, as visiting "
+            ],
+            [
+              "http://yourapplication.com/products",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " will load the default "
+            ],
+            [
+              "I18n",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " locale."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "By doing this, visiting "
+          },
+          {
+            "Text": "http://yourapplication.com/en/products",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " will set your locale to "
+          },
+          {
+            "Text": ":en",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". Instead, visiting "
+          },
+          {
+            "Text": "http://yourapplication.com/fr/products",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " will set it to "
+          },
+          {
+            "Text": ":fr",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". Furthermore, you won’t get a routing error when missing the "
+          },
+          {
+            "Text": ":locale",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " param, as visiting "
+          },
+          {
+            "Text": "http://yourapplication.com/products",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " will load the default "
+          },
+          {
+            "Text": "I18n",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " locale."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103163073,
+        "id": "1d8107e0-8869-4b22-9982-09fd16fb041a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103163073,
+        "parent_id": "cedb81b0-0de0-4d95-88de-f71715989937",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Session-based or persistence-based"
+            ]
+          ]
+        },
+        "type": "header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Session-based or persistence-based"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103163073,
+        "id": "47cbc39a-8978-45f6-8a28-ccb571c2a453",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103163073,
+        "parent_id": "cedb81b0-0de0-4d95-88de-f71715989937",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This assumes the user can click on a button/language flag to change the language. The action can route to a controller that sets the session to the current language (and eventually persist the changes to a database if the user is connected)"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This assumes the user can click on a button/language flag to change the language. The action can route to a controller that sets the session to the current language (and eventually persist the changes to a database if the user is connected)"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103163073,
+        "id": "3ea2e56a-0f98-4e77-85a6-91847c0f83b3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103163073,
+        "parent_id": "cedb81b0-0de0-4d95-88de-f71715989937",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class SetLanguageController \u003c ApplicationController\n  skip_before_filter :authenticate_user!\n  after_action :set_preferred_locale\n\n  # Generic version to handle a large list of languages\n  def change_locale\n    I18n.locale = sanitize_language_param\n    set_session_and_redirect\n  end"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class SetLanguageController \u003c ApplicationController\n  skip_before_filter :authenticate_user!\n  after_action :set_preferred_locale\n\n  # Generic version to handle a large list of languages\n  def change_locale\n    I18n.locale = sanitize_language_param\n    set_session_and_redirect\n  end",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103163073,
+        "id": "2b11c5f7-deac-4ba2-ab4f-550f1d44c713",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103163073,
+        "parent_id": "cedb81b0-0de0-4d95-88de-f71715989937",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "You have to define sanitize_language_param with your list of available languages, and eventually handle errors in case the language doesn’t exist."
+            ]
+          ]
+        },
+        "type": "quote",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "You have to define sanitize_language_param with your list of available languages, and eventually handle errors in case the language doesn’t exist."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103163073,
+        "id": "a4b329d9-17f7-447d-8bf1-25f9142ab73d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103163073,
+        "parent_id": "cedb81b0-0de0-4d95-88de-f71715989937",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If you have very few languages, it may be worth defining them like this instead:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If you have very few languages, it may be worth defining them like this instead:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103163073,
+        "id": "60e32014-ab0a-4a45-aea0-c44965317044",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103163073,
+        "parent_id": "cedb81b0-0de0-4d95-88de-f71715989937",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "def fr\n  I18n.locale = :fr\n  set_session_and_redirect\nend\n\ndef en\n  I18n.locale = :en\n  set_session_and_redirect\nend\n\nprivate\n\n  def set_session_and_redirect\n    session[:locale] = I18n.locale\n    redirect_to :back\n  end\n\n  def set_preferred_locale\n    if user_signed_in?\n      current_user.preferred_locale = I18n.locale.to_s\n      current_user.save if current_user.changed?\n    end\n  end\nend"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "def fr\n  I18n.locale = :fr\n  set_session_and_redirect\nend\n\ndef en\n  I18n.locale = :en\n  set_session_and_redirect\nend\n\nprivate\n\n  def set_session_and_redirect\n    session[:locale] = I18n.locale\n    redirect_to :back\n  end\n\n  def set_preferred_locale\n    if user_signed_in?\n      current_user.preferred_locale = I18n.locale.to_s\n      current_user.save if current_user.changed?\n    end\n  end\nend",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103163073,
+        "id": "83a707f7-47f2-48f4-b402-fbb29c26dc2c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103163073,
+        "parent_id": "cedb81b0-0de0-4d95-88de-f71715989937",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Note: don’t forget to add some routes to your ",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              "change_language",
+              [
+                [
+                  "i"
+                ],
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " actions",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Note: don’t forget to add some routes to your ",
+            "AttrFlags": 4
+          },
+          {
+            "Text": "change_language",
+            "AttrFlags": 6
+          },
+          {
+            "Text": " actions",
+            "AttrFlags": 4
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103163074,
+        "id": "611afd60-b626-48f6-8c6c-e1e91b761b88",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103163074,
+        "parent_id": "cedb81b0-0de0-4d95-88de-f71715989937",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Default Locale"
+            ]
+          ]
+        },
+        "type": "header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Default Locale"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103163074,
+        "id": "e1cabfc7-4529-47f8-b87a-d19b066abe91",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103163074,
+        "parent_id": "cedb81b0-0de0-4d95-88de-f71715989937",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Remember that you need to set your application default locale. You can do it by either setting it in "
+            ],
+            [
+              "config/application.rb",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ":"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Remember that you need to set your application default locale. You can do it by either setting it in "
+          },
+          {
+            "Text": "config/application.rb",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ":"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103163074,
+        "id": "4d9bd801-5b00-45ba-bc4a-48d5af37725a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103163074,
+        "parent_id": "cedb81b0-0de0-4d95-88de-f71715989937",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "config.i18n.default_locale = :de"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "config.i18n.default_locale = :de",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103163074,
+        "id": "2c8ba733-2578-4f7c-80f5-0d6f19264aa6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103163074,
+        "parent_id": "cedb81b0-0de0-4d95-88de-f71715989937",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "or by creating an initializer in the "
+            ],
+            [
+              "config/initializers",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " folder:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "or by creating an initializer in the "
+          },
+          {
+            "Text": "config/initializers",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " folder:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103163074,
+        "id": "cb5736fd-dc58-4849-b73d-9e58219456fe",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103163074,
+        "parent_id": "cedb81b0-0de0-4d95-88de-f71715989937",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "# config/initializers/locale.rb\nI18n.default_locale = :it"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "# config/initializers/locale.rb\nI18n.default_locale = :it",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Set locale through requests",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

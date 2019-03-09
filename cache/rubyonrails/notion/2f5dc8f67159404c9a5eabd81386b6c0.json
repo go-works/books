@@ -1,0 +1,288 @@
+{
+  "ID": "2f5dc8f6-7159-404c-9a5e-abd81386b6c0",
+  "Root": {
+    "alive": true,
+    "content": [
+      "b771ae7a-b442-44e5-a86b-1ad8d9d78ae8",
+      "d8ba1e01-9c1c-476e-bbdf-b86de8dfeed4",
+      "2a0de39e-0766-4534-b88c-e4a34ce2eebd",
+      "349e156f-b34c-45e1-83e0-bc81febf7060",
+      "3110017c-901e-4176-9bf2-bdd0f8152d85",
+      "5e34034e-b9db-4776-91f2-932fd8eece3a"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552104512906,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "2f5dc8f6-7159-404c-9a5e-abd81386b6c0",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552104512906,
+    "parent_id": "ac174a28-eb65-4a8f-a32c-ce461b09b56b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Docker and docker-compose"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552104512904,
+        "id": "b771ae7a-b442-44e5-a86b-1ad8d9d78ae8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552104512904,
+        "parent_id": "2f5dc8f6-7159-404c-9a5e-abd81386b6c0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "First of all, we will need to create our "
+            ],
+            [
+              "Dockerfile",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". A good example can be found on this "
+            ],
+            [
+              "blog",
+              [
+                [
+                  "a",
+                  "https://nickjanetakis.com/blog/dockerize-a-rails-5-postgres-redis-sidekiq-action-cable-app-with-docker-compose"
+                ]
+              ]
+            ],
+            [
+              " by Nick Janetakis."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "First of all, we will need to create our "
+          },
+          {
+            "Text": "Dockerfile",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". A good example can be found on this "
+          },
+          {
+            "Text": "blog",
+            "Link": "https://nickjanetakis.com/blog/dockerize-a-rails-5-postgres-redis-sidekiq-action-cable-app-with-docker-compose"
+          },
+          {
+            "Text": " by Nick Janetakis."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552104512905,
+        "id": "d8ba1e01-9c1c-476e-bbdf-b86de8dfeed4",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552104512905,
+        "parent_id": "2f5dc8f6-7159-404c-9a5e-abd81386b6c0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This code contains the script that will be executed on our docker machine at the moment of start.For this reason, we are installing all the required libraries and ends with the start of Puma (RoR dev server)"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This code contains the script that will be executed on our docker machine at the moment of start.For this reason, we are installing all the required libraries and ends with the start of Puma (RoR dev server)"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552104512906,
+        "id": "2a0de39e-0766-4534-b88c-e4a34ce2eebd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552104512906,
+        "parent_id": "2f5dc8f6-7159-404c-9a5e-abd81386b6c0",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "# Use the barebones version of Ruby 2.3.\nFROM ruby:2.3.0-slim\n\n# Optionally set a maintainer name to let people know who made this image.\nMAINTAINER Nick Janetakis \u003cnick.janetakis@gmail.com\u003e\n\n# Install dependencies:\n# - build-essential: To ensure certain gems can be compiled\n# - nodejs: Compile assets\n# - libpq-dev: Communicate with postgres through the postgres gem\nRUN apt-get update \u0026\u0026 apt-get install -qq -y --no-install-recommends \\\n      build-essential nodejs libpq-dev git\n\n\n# Set an environment variable to store where the app is installed to inside\n# of the Docker image. The name matches the project name out of convention only.\nENV INSTALL_PATH /mh-backend\nRUN mkdir -p $INSTALL_PATH\n\n# This sets the context of where commands will be running in and is documented\n# on Docker's website extensively.\nWORKDIR $INSTALL_PATH\n\n# We want binstubs to be available so we can directly call sidekiq and\n# potentially other binaries as command overrides without depending on\n# bundle exec.\nCOPY Gemfile* $INSTALL_PATH/\n\nENV BUNDLE_GEMFILE $INSTALL_PATH/Gemfile\nENV BUNDLE_JOBS 2 \nENV BUNDLE_PATH /gembox\n\nRUN bundle install\n\n# Copy in the application code from your work station at the current directory\n# over to the working directory.\nCOPY . .\n\n# Ensure the static assets are exposed to a volume so that nginx can read\n# in these values later.\nVOLUME [\"$INSTALL_PATH/public\"]\n\nENV RAILS_LOG_TO_STDOUT true\n\n\n# The default command that gets run will be to start the Puma server.\nCMD bundle exec puma -C config/puma.rb"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "# Use the barebones version of Ruby 2.3.\nFROM ruby:2.3.0-slim\n\n# Optionally set a maintainer name to let people know who made this image.\nMAINTAINER Nick Janetakis \u003cnick.janetakis@gmail.com\u003e\n\n# Install dependencies:\n# - build-essential: To ensure certain gems can be compiled\n# - nodejs: Compile assets\n# - libpq-dev: Communicate with postgres through the postgres gem\nRUN apt-get update \u0026\u0026 apt-get install -qq -y --no-install-recommends \\\n      build-essential nodejs libpq-dev git\n\n\n# Set an environment variable to store where the app is installed to inside\n# of the Docker image. The name matches the project name out of convention only.\nENV INSTALL_PATH /mh-backend\nRUN mkdir -p $INSTALL_PATH\n\n# This sets the context of where commands will be running in and is documented\n# on Docker's website extensively.\nWORKDIR $INSTALL_PATH\n\n# We want binstubs to be available so we can directly call sidekiq and\n# potentially other binaries as command overrides without depending on\n# bundle exec.\nCOPY Gemfile* $INSTALL_PATH/\n\nENV BUNDLE_GEMFILE $INSTALL_PATH/Gemfile\nENV BUNDLE_JOBS 2 \nENV BUNDLE_PATH /gembox\n\nRUN bundle install\n\n# Copy in the application code from your work station at the current directory\n# over to the working directory.\nCOPY . .\n\n# Ensure the static assets are exposed to a volume so that nginx can read\n# in these values later.\nVOLUME [\"$INSTALL_PATH/public\"]\n\nENV RAILS_LOG_TO_STDOUT true\n\n\n# The default command that gets run will be to start the Puma server.\nCMD bundle exec puma -C config/puma.rb",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552104512906,
+        "id": "349e156f-b34c-45e1-83e0-bc81febf7060",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552104512906,
+        "parent_id": "2f5dc8f6-7159-404c-9a5e-abd81386b6c0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Also, we will use docker-compose, for that, we will create "
+            ],
+            [
+              "docker-compose.yml",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ". The explanation of this file will be more a docker-compose tutorial than an integration with Rails and I will not cover here."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Also, we will use docker-compose, for that, we will create "
+          },
+          {
+            "Text": "docker-compose.yml",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ". The explanation of this file will be more a docker-compose tutorial than an integration with Rails and I will not cover here."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552104512906,
+        "id": "3110017c-901e-4176-9bf2-bdd0f8152d85",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552104512906,
+        "parent_id": "2f5dc8f6-7159-404c-9a5e-abd81386b6c0",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "version: '2'\n\nservices:\n  backend:\n    links:\n      - #whatever you need to link like db\n    build: .\n    command: ./scripts/start.sh\n    ports:\n      - '3000:3000'\n    volumes:\n      - .:/backend\n    volumes_from:\n      - gembox\n    env_file:\n      - .dev-docker.env\n    stdin_open: true\n    tty: true"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "version: '2'\n\nservices:\n  backend:\n    links:\n      - #whatever you need to link like db\n    build: .\n    command: ./scripts/start.sh\n    ports:\n      - '3000:3000'\n    volumes:\n      - .:/backend\n    volumes_from:\n      - gembox\n    env_file:\n      - .dev-docker.env\n    stdin_open: true\n    tty: true",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552104512906,
+        "id": "5e34034e-b9db-4776-91f2-932fd8eece3a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552104512906,
+        "parent_id": "2f5dc8f6-7159-404c-9a5e-abd81386b6c0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Just with these two files you will have enough to run "
+            ],
+            [
+              "docker-compose up",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and wake up your docker"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Just with these two files you will have enough to run "
+          },
+          {
+            "Text": "docker-compose up",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and wake up your docker"
+          }
+        ]
+      }
+    ],
+    "title": "Docker and docker-compose",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

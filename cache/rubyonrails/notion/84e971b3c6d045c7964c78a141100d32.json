@@ -1,0 +1,207 @@
+{
+  "ID": "84e971b3-c6d0-45c7-964c-78a141100d32",
+  "Root": {
+    "alive": true,
+    "content": [
+      "33c872f8-b91b-4fcd-ad2d-e42fe4cfb46b",
+      "5f276c9a-7137-4da0-a195-1785fbd3b99d",
+      "d2245910-0940-4b16-90bb-1b3008ee82fb",
+      "6b29c9b4-42ac-4fe2-a1fe-ad4f405ac02f",
+      "20520d0c-592d-41d4-9b26-5a9e38088a52"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552104423149,
+    "id": "84e971b3-c6d0-45c7-964c-78a141100d32",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552104423149,
+    "parent_id": "f2fb97f4-aa4f-473d-83a7-f2b220c21778",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Getting Started with Active Record Transactions"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552104423146,
+        "id": "33c872f8-b91b-4fcd-ad2d-e42fe4cfb46b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552104423146,
+        "parent_id": "84e971b3-c6d0-45c7-964c-78a141100d32",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Active Record Transactions can be applied to Model classes as well as Model instances, the objects within the transaction block need not all be instances of same class. This is because transactions are per-database connection, not per-model. For example:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Active Record Transactions can be applied to Model classes as well as Model instances, the objects within the transaction block need not all be instances of same class. This is because transactions are per-database connection, not per-model. For example:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552104423149,
+        "id": "5f276c9a-7137-4da0-a195-1785fbd3b99d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552104423149,
+        "parent_id": "84e971b3-c6d0-45c7-964c-78a141100d32",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "User.transaction do\n  account.save!\n  profile.save!\n  print \"All saves success, returning 1\"\n  return 1\nend\nrescue_from ActiveRecord::RecordInvalid do |exception|\n  print \"Exception thrown, transaction rolledback\"\n  render_error \"failure\", exception.record.errors.full_messages.to_sentence\nend"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "User.transaction do\n  account.save!\n  profile.save!\n  print \"All saves success, returning 1\"\n  return 1\nend\nrescue_from ActiveRecord::RecordInvalid do |exception|\n  print \"Exception thrown, transaction rolledback\"\n  render_error \"failure\", exception.record.errors.full_messages.to_sentence\nend",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552104423149,
+        "id": "d2245910-0940-4b16-90bb-1b3008ee82fb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552104423149,
+        "parent_id": "84e971b3-c6d0-45c7-964c-78a141100d32",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Using save with a bang ensures that transaction will be automatically rolled back when the exception is thrown and after the rollback, control goes to the rescue block for the exception. "
+            ],
+            [
+              "Make sure you rescue the exceptions thrown from the save! in Transaction Block.",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Using save with a bang ensures that transaction will be automatically rolled back when the exception is thrown and after the rollback, control goes to the rescue block for the exception. "
+          },
+          {
+            "Text": "Make sure you rescue the exceptions thrown from the save! in Transaction Block.",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552104423149,
+        "id": "6b29c9b4-42ac-4fe2-a1fe-ad4f405ac02f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552104423149,
+        "parent_id": "84e971b3-c6d0-45c7-964c-78a141100d32",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If you don’t want to use save!, you can manually raise "
+            ],
+            [
+              "raise ActiveRecord::Rollback",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " when the save fails. You need not handle this exception. It will then rollback the transaction and take the control to the next statement after transaction block."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If you don’t want to use save!, you can manually raise "
+          },
+          {
+            "Text": "raise ActiveRecord::Rollback",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " when the save fails. You need not handle this exception. It will then rollback the transaction and take the control to the next statement after transaction block."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552104423149,
+        "id": "20520d0c-592d-41d4-9b26-5a9e38088a52",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552104423149,
+        "parent_id": "84e971b3-c6d0-45c7-964c-78a141100d32",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "User.transaction do\n   if account.save \u0026\u0026 profile.save\n     print \"All saves success, returning 1\"\n     return 1\n   else\n     raise ActiveRecord::Rollback\n   end\n end\n print \"Transaction Rolled Back\""
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "User.transaction do\n   if account.save \u0026\u0026 profile.save\n     print \"All saves success, returning 1\"\n     return 1\n   else\n     raise ActiveRecord::Rollback\n   end\n end\n print \"Transaction Rolled Back\"",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 Getting Started with Active Record Transactions"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

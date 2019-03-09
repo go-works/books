@@ -1,0 +1,201 @@
+{
+  "ID": "00dc5429-313b-4e40-b7f3-42f5f1776792",
+  "Root": {
+    "alive": true,
+    "content": [
+      "420ffe61-f3ac-4274-989b-b853851b4a9b",
+      "53dd0137-b7e8-4ed4-b4e4-452ac4affd26",
+      "83b52195-d201-44a5-8e31-0733e4c78142"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552103659860,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "00dc5429-313b-4e40-b7f3-42f5f1776792",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552103659860,
+    "parent_id": "5dbb6a98-3cca-47de-99f2-45d81435d638",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Rolling back a transaction"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103659856,
+        "id": "420ffe61-f3ac-4274-989b-b853851b4a9b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103659856,
+        "parent_id": "00dc5429-313b-4e40-b7f3-42f5f1776792",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "ActiveRecord::Base.transaction",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " uses the "
+            ],
+            [
+              "ActiveRecord::Rollback",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " exception to distinguish a deliberate rollback from other exceptional situations. Normally, raising an exception will cause the "
+            ],
+            [
+              ".transaction",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method to rollback the database transaction and pass on the exception. But if you raise an "
+            ],
+            [
+              "ActiveRecord::Rollback",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " exception, then the database transaction will be rolled back, without passing on the exception."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "ActiveRecord::Base.transaction",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " uses the "
+          },
+          {
+            "Text": "ActiveRecord::Rollback",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " exception to distinguish a deliberate rollback from other exceptional situations. Normally, raising an exception will cause the "
+          },
+          {
+            "Text": ".transaction",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method to rollback the database transaction and pass on the exception. But if you raise an "
+          },
+          {
+            "Text": "ActiveRecord::Rollback",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " exception, then the database transaction will be rolled back, without passing on the exception."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103659859,
+        "id": "53dd0137-b7e8-4ed4-b4e4-452ac4affd26",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103659859,
+        "parent_id": "00dc5429-313b-4e40-b7f3-42f5f1776792",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "For example, you could do this in your controller to rollback a transaction:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "For example, you could do this in your controller to rollback a transaction:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103659859,
+        "id": "83b52195-d201-44a5-8e31-0733e4c78142",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103659859,
+        "parent_id": "00dc5429-313b-4e40-b7f3-42f5f1776792",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class BooksController \u003c ActionController::Base\n  def create\n    Book.transaction do\n      book = Book.new(params[:book])\n      book.save!\n      if today_is_friday?\n        # The system must fail on Friday so that our support department\n        # won't be out of job. We silently rollback this transaction\n        # without telling the user.\n        raise ActiveRecord::Rollback, \"Call tech support!\"\n      end\n    end\n    # ActiveRecord::Rollback is the only exception that won't be passed on\n    # by ActiveRecord::Base.transaction, so this line will still be reached\n    # even on Friday.\n    redirect_to root_url\n  end\nend"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class BooksController \u003c ActionController::Base\n  def create\n    Book.transaction do\n      book = Book.new(params[:book])\n      book.save!\n      if today_is_friday?\n        # The system must fail on Friday so that our support department\n        # won't be out of job. We silently rollback this transaction\n        # without telling the user.\n        raise ActiveRecord::Rollback, \"Call tech support!\"\n      end\n    end\n    # ActiveRecord::Rollback is the only exception that won't be passed on\n    # by ActiveRecord::Base.transaction, so this line will still be reached\n    # even on Friday.\n    redirect_to root_url\n  end\nend",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Rolling back a transaction",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

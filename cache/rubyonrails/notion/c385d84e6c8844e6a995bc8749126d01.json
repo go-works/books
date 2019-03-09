@@ -1,0 +1,239 @@
+{
+  "ID": "c385d84e-6c88-44e6-a995-bc8749126d01",
+  "Root": {
+    "alive": true,
+    "content": [
+      "6e378a4d-ab49-42ed-85a0-4aca44b93380",
+      "5340b828-ac87-410e-b35a-f15f51580e44",
+      "8c613c3e-3f19-4cf1-9569-ab0c9feeb3bb",
+      "dc3c77a1-0c7e-490b-977d-067018526319",
+      "22d59bba-1ab0-49e3-bd4f-0d8371b52abe",
+      "52932a87-2fad-4fc2-8db9-3a867cea1e23",
+      "5a9bcee5-6cb0-451c-a312-aea49809c2bf"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552104050974,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "c385d84e-6c88-44e6-a995-bc8749126d01",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552104050974,
+    "parent_id": "764ca6f6-b8a3-44a0-86c1-397b12bb8a61",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Model Class"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552104050973,
+        "id": "6e378a4d-ab49-42ed-85a0-4aca44b93380",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552104050973,
+        "parent_id": "c385d84e-6c88-44e6-a995-bc8749126d01",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class Post \u003c ActiveRecord::Base\n  belongs_to :user\n  has_many :comments\n\n  validates :user, presence: true\n  validates :title, presence: true, length: { in: 6..40 }\n\n  scope :topic, -\u003e (topic) { joins(:topics).where(topic: topic) }\n\n  before_save :update_slug\n  after_create :send_welcome_email\n\n  def publish!\n    update(published_at: Time.now, published: true)\n  end\n\n  def self.find_by_slug(slug)\n    find_by(slug: slug)\n  end\n\n  private\n\n  def update_slug\n    self.slug = title.join('-')\n  end\n\n  def send_welcome_email\n    WelcomeMailer.welcome(self).deliver_now\n  end\nend"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class Post \u003c ActiveRecord::Base\n  belongs_to :user\n  has_many :comments\n\n  validates :user, presence: true\n  validates :title, presence: true, length: { in: 6..40 }\n\n  scope :topic, -\u003e (topic) { joins(:topics).where(topic: topic) }\n\n  before_save :update_slug\n  after_create :send_welcome_email\n\n  def publish!\n    update(published_at: Time.now, published: true)\n  end\n\n  def self.find_by_slug(slug)\n    find_by(slug: slug)\n  end\n\n  private\n\n  def update_slug\n    self.slug = title.join('-')\n  end\n\n  def send_welcome_email\n    WelcomeMailer.welcome(self).deliver_now\n  end\nend",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552104050973,
+        "id": "5340b828-ac87-410e-b35a-f15f51580e44",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552104050973,
+        "parent_id": "c385d84e-6c88-44e6-a995-bc8749126d01",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Models are typically responsible for:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Models are typically responsible for:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552104050973,
+        "id": "8c613c3e-3f19-4cf1-9569-ab0c9feeb3bb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552104050973,
+        "parent_id": "c385d84e-6c88-44e6-a995-bc8749126d01",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "setting up relationships"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "setting up relationships"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552104050974,
+        "id": "dc3c77a1-0c7e-490b-977d-067018526319",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552104050974,
+        "parent_id": "c385d84e-6c88-44e6-a995-bc8749126d01",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "validating data"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "validating data"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552104050974,
+        "id": "22d59bba-1ab0-49e3-bd4f-0d8371b52abe",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552104050974,
+        "parent_id": "c385d84e-6c88-44e6-a995-bc8749126d01",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "providing access to data via scopes and methods"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "providing access to data via scopes and methods"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552104050974,
+        "id": "52932a87-2fad-4fc2-8db9-3a867cea1e23",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552104050974,
+        "parent_id": "c385d84e-6c88-44e6-a995-bc8749126d01",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Performing actions around persistence of data."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Performing actions around persistence of data."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552104050974,
+        "id": "5a9bcee5-6cb0-451c-a312-aea49809c2bf",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552104050974,
+        "parent_id": "c385d84e-6c88-44e6-a995-bc8749126d01",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "At the highest level, models describe domain concepts and manages their persistence."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "At the highest level, models describe domain concepts and manages their persistence."
+          }
+        ]
+      }
+    ],
+    "title": "Model Class",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,151 @@
+{
+  "ID": "e68846a5-afd8-4d3b-8614-09f84db8a9ad",
+  "Root": {
+    "alive": true,
+    "content": [
+      "5a0da78b-3b1e-4800-8575-33572c22bfd2",
+      "83d57517-301c-4537-af94-5d99882eb87e"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552103539015,
+    "id": "e68846a5-afd8-4d3b-8614-09f84db8a9ad",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552103539015,
+    "parent_id": "f855f2f5-7646-454a-b295-4e202bedc7da",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "030 Defining abilities"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103539014,
+        "id": "5a0da78b-3b1e-4800-8575-33572c22bfd2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103539014,
+        "parent_id": "e68846a5-afd8-4d3b-8614-09f84db8a9ad",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Abilities are defined in the "
+            ],
+            [
+              "Ability",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " class using "
+            ],
+            [
+              "can",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "cannot",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " methods. Consider the following commented example for basic reference:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Abilities are defined in the "
+          },
+          {
+            "Text": "Ability",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " class using "
+          },
+          {
+            "Text": "can",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "cannot",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " methods. Consider the following commented example for basic reference:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103539015,
+        "id": "83d57517-301c-4537-af94-5d99882eb87e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103539015,
+        "parent_id": "e68846a5-afd8-4d3b-8614-09f84db8a9ad",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class Ability\n  include CanCan::Ability\n\n  def initialize(user)\n    # for any visitor or user\n    can :read, Article\n\n    if user\n      if user.admin?\n        # admins can do any action on any model or action\n        can :manage, :all\n      else\n        # regular users can read all content\n        can :read, :all\n        # and edit, update and destroy their own user only\n        can [:edit, :destroy], User, id: user_id\n        # but cannot read hidden articles\n        cannot :read, Article, hidden: true\n      end\n    else\n      # only unlogged visitors can visit a sign_up page:\n      can :read, :sign_up\n    end\n  end\nend"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class Ability\n  include CanCan::Ability\n\n  def initialize(user)\n    # for any visitor or user\n    can :read, Article\n\n    if user\n      if user.admin?\n        # admins can do any action on any model or action\n        can :manage, :all\n      else\n        # regular users can read all content\n        can :read, :all\n        # and edit, update and destroy their own user only\n        can [:edit, :destroy], User, id: user_id\n        # but cannot read hidden articles\n        cannot :read, Article, hidden: true\n      end\n    else\n      # only unlogged visitors can visit a sign_up page:\n      can :read, :sign_up\n    end\n  end\nend",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "030 Defining abilities"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

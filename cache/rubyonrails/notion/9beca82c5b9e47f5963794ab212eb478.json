@@ -1,0 +1,181 @@
+{
+  "ID": "9beca82c-5b9e-47f5-9637-94ab212eb478",
+  "Root": {
+    "alive": true,
+    "content": [
+      "2b957d95-3ea5-4c5b-81eb-66f3ec38f943",
+      "6427d6cd-69fc-4d46-8a1d-9f4f517efc65"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552103087440,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "9beca82c-5b9e-47f5-9637-94ab212eb478",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552103087440,
+    "parent_id": "a3fc5651-092a-4de3-9569-c3129179c417",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Adding a NOT NULL constraint to existing data"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103087439,
+        "id": "2b957d95-3ea5-4c5b-81eb-66f3ec38f943",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103087439,
+        "parent_id": "9beca82c-5b9e-47f5-9637-94ab212eb478",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Say you want to add a foreign key "
+            ],
+            [
+              "company_id",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to the "
+            ],
+            [
+              "users",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " table, and you want to have a "
+            ],
+            [
+              "NOT NULL",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " constraint on it. If you already have data in "
+            ],
+            [
+              "users",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", you will have to do this in multiple steps."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Say you want to add a foreign key "
+          },
+          {
+            "Text": "company_id",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to the "
+          },
+          {
+            "Text": "users",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " table, and you want to have a "
+          },
+          {
+            "Text": "NOT NULL",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " constraint on it. If you already have data in "
+          },
+          {
+            "Text": "users",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", you will have to do this in multiple steps."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552103087440,
+        "id": "6427d6cd-69fc-4d46-8a1d-9f4f517efc65",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552103087440,
+        "parent_id": "9beca82c-5b9e-47f5-9637-94ab212eb478",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class AddCompanyIdToUsers \u003c ActiveRecord::Migration\n  def up\n    # add the column with NULL allowed\n    add_column :users, :company_id, :integer\n\n    # make sure every row has a value\n    User.find_each do |user|\n      # find the appropriate company record for the user\n      # according to your business logic\n      company = Company.first\n      user.update!(company_id: company.id)\n    end\n\n    # add NOT NULL constraint\n    change_column_null :users, :company_id, false\n  end\n\n  # Migrations that manipulate data must use up/down instead of change\n  def down\n    remove_column :users, :company_id\n  end\nend"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class AddCompanyIdToUsers \u003c ActiveRecord::Migration\n  def up\n    # add the column with NULL allowed\n    add_column :users, :company_id, :integer\n\n    # make sure every row has a value\n    User.find_each do |user|\n      # find the appropriate company record for the user\n      # according to your business logic\n      company = Company.first\n      user.update!(company_id: company.id)\n    end\n\n    # add NOT NULL constraint\n    change_column_null :users, :company_id, false\n  end\n\n  # Migrations that manipulate data must use up/down instead of change\n  def down\n    remove_column :users, :company_id\n  end\nend",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Adding a NOT NULL constraint to existing data",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}
