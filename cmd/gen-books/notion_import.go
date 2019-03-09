@@ -164,7 +164,7 @@ func loadNotionPage(b *Book, c *notionapi.Client, pageID string, getFromCache bo
 		return page, nil
 	}
 
-	time.Sleep(time.Second)
+	time.Sleep(time.Millisecond * 100)
 	page, err = downloadAndCachePage(b, c, pageID)
 	if err == nil {
 		fmt.Printf("Downloaded %d %s %s\n", n, page.ID, page.Root.Title)

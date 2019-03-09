@@ -292,7 +292,6 @@ var (
 )
 
 // To download:
-// ruby
 // ruby on rails
 // swift
 // typescript
