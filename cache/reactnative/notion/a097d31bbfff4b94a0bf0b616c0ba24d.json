@@ -1,0 +1,109 @@
+{
+  "ID": "a097d31b-bfff-4b94-a0bf-0b616c0ba24d",
+  "Root": {
+    "alive": true,
+    "content": [
+      "f88ae783-c0dd-4ee5-94a3-aca524d8a32d",
+      "692cdf81-5113-4276-bbca-2dd9b5b6de84"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552100954308,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "a097d31b-bfff-4b94-a0bf-0b616c0ba24d",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552100954308,
+    "parent_id": "b4f344f2-336e-4f43-8154-9f142b70d653",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Navigating to scene from Notification"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552100954307,
+        "id": "f88ae783-c0dd-4ee5-94a3-aca524d8a32d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552100954307,
+        "parent_id": "a097d31b-bfff-4b94-a0bf-0b616c0ba24d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Here’s a simple example to demonstrate that how can we jump/open a specific screen based on the notification. For example, when a user clicks on the notification, the app should open and directly jump to notifications page instead of home page."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Here’s a simple example to demonstrate that how can we jump/open a specific screen based on the notification. For example, when a user clicks on the notification, the app should open and directly jump to notifications page instead of home page."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552100954308,
+        "id": "692cdf81-5113-4276-bbca-2dd9b5b6de84",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552100954308,
+        "parent_id": "a097d31b-bfff-4b94-a0bf-0b616c0ba24d",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "'use strict';\n\nimport React, { Component } from 'react';\nimport {\n    StyleSheet,\n    Text,\n    View,\n    Navigator,\n    TouchableOpacity,\n    AsyncStorage,\n    BackAndroid,\n    Platform,\n} from 'react-native';\nimport PushNotification from 'react-native-push-notification';\n\nlet initialRoute = { id: 'loginview' }\n\nexport default class MainClass extends Component\n{\n    constructor(props)\n    {\n        super(props);\n\n        this.handleNotification = this.handleNotification.bind(this);\n    }\n\n    handleNotification(notification)\n    {\n        console.log('handleNotification');\n        var notificationId = ''\n        //your logic to get relevant information from the notification\n        \n    //here you navigate to a scene in your app based on the notification info\n        this.navigator.push({ id: Constants.ITEM_VIEW_ID, item: item });\n    }\n\n    componentDidMount()\n    {\n        var that = this;\n\n        PushNotification.configure({\n\n            // (optional) Called when Token is generated (iOS and Android)\n            onRegister: function(token) {\n                console.log( 'TOKEN:', token );\n            },\n\n            // (required) Called when a remote or local notification is opened or received\n            onNotification(notification) {\n                console.log('onNotification')\n                console.log( notification );\n\n                that.handleNotification(notification);\n            },\n\n            // ANDROID ONLY: (optional) GCM Sender ID.\n            senderID: \"Vizido\",\n\n            // IOS ONLY (optional): default: all - Permissions to register.\n            permissions: {\n                alert: true,\n                badge: true,\n                sound: true\n            },\n\n            // Should the initial notification be popped automatically\n            // default: true\n            popInitialNotification: true,\n\n            /**\n              * (optional) default: true\n              * - Specified if permissions (ios) and token (android and ios) will requested or not,\n              * - if not, you must call PushNotificationsHandler.requestPermissions() later\n              */\n            requestPermissions: true,\n        });\n    }\n\n    render()\n    {\n\n        return (\n            \u003cNavigator\n                ref={(nav) =\u003e this.navigator = nav }\n                initialRoute={initialRoute}\n                renderScene={this.renderScene.bind(this)}\n                configureScene={(route) =\u003e\n                    {\n                        if (route.sceneConfig)\n                        {\n                            return route.sceneConfig;\n                        }\n                        return Navigator.SceneConfigs.FadeAndroid;\n                    }\n                }\n            /\u003e\n        );\n    }\n\n    renderScene(route, navigator)\n    {\n\n        switch (route.id)\n        {\n            // do your routing here\n            case 'mainview':\n                return ( \u003cMainView navigator={navigator} /\u003e );\n\n            default:\n                return ( \u003cMainView navigator={navigator} /\u003e );\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "'use strict';\n\nimport React, { Component } from 'react';\nimport {\n    StyleSheet,\n    Text,\n    View,\n    Navigator,\n    TouchableOpacity,\n    AsyncStorage,\n    BackAndroid,\n    Platform,\n} from 'react-native';\nimport PushNotification from 'react-native-push-notification';\n\nlet initialRoute = { id: 'loginview' }\n\nexport default class MainClass extends Component\n{\n    constructor(props)\n    {\n        super(props);\n\n        this.handleNotification = this.handleNotification.bind(this);\n    }\n\n    handleNotification(notification)\n    {\n        console.log('handleNotification');\n        var notificationId = ''\n        //your logic to get relevant information from the notification\n        \n    //here you navigate to a scene in your app based on the notification info\n        this.navigator.push({ id: Constants.ITEM_VIEW_ID, item: item });\n    }\n\n    componentDidMount()\n    {\n        var that = this;\n\n        PushNotification.configure({\n\n            // (optional) Called when Token is generated (iOS and Android)\n            onRegister: function(token) {\n                console.log( 'TOKEN:', token );\n            },\n\n            // (required) Called when a remote or local notification is opened or received\n            onNotification(notification) {\n                console.log('onNotification')\n                console.log( notification );\n\n                that.handleNotification(notification);\n            },\n\n            // ANDROID ONLY: (optional) GCM Sender ID.\n            senderID: \"Vizido\",\n\n            // IOS ONLY (optional): default: all - Permissions to register.\n            permissions: {\n                alert: true,\n                badge: true,\n                sound: true\n            },\n\n            // Should the initial notification be popped automatically\n            // default: true\n            popInitialNotification: true,\n\n            /**\n              * (optional) default: true\n              * - Specified if permissions (ios) and token (android and ios) will requested or not,\n              * - if not, you must call PushNotificationsHandler.requestPermissions() later\n              */\n            requestPermissions: true,\n        });\n    }\n\n    render()\n    {\n\n        return (\n            \u003cNavigator\n                ref={(nav) =\u003e this.navigator = nav }\n                initialRoute={initialRoute}\n                renderScene={this.renderScene.bind(this)}\n                configureScene={(route) =\u003e\n                    {\n                        if (route.sceneConfig)\n                        {\n                            return route.sceneConfig;\n                        }\n                        return Navigator.SceneConfigs.FadeAndroid;\n                    }\n                }\n            /\u003e\n        );\n    }\n\n    renderScene(route, navigator)\n    {\n\n        switch (route.id)\n        {\n            // do your routing here\n            case 'mainview':\n                return ( \u003cMainView navigator={navigator} /\u003e );\n\n            default:\n                return ( \u003cMainView navigator={navigator} /\u003e );\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Navigating to scene from Notification",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

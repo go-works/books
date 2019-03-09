@@ -1,0 +1,360 @@
+{
+  "ID": "4c5e142e-42ae-4cd5-9bdf-4014bc155352",
+  "Root": {
+    "alive": true,
+    "content": [
+      "6139156e-217c-46e2-84f0-fe1936db4d98",
+      "48ca5a5b-608f-44aa-a173-b7f35f5e6ecb",
+      "75c21194-a77d-4070-8594-5da059662318",
+      "cda7027a-a915-48c2-9cb7-7413ec9481fc",
+      "88f8a42e-2cb9-42c6-bdc4-b4e6c687ea99",
+      "731627b4-04ae-4a30-95e6-aee02e7f1155",
+      "0bb5544b-b2ff-45b8-876c-f2b6dc0161fd",
+      "ab6e1098-6fc2-4355-8dda-3942188e7abd",
+      "fe577f13-b261-4abf-8d8c-0a9fb14b628c"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552100680806,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "4c5e142e-42ae-4cd5-9bdf-4014bc155352",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552100680806,
+    "parent_id": "2b9aac7c-9b3f-43e7-9251-15d32c33179a",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "React Native - ListView with Firebase"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552100680801,
+        "id": "6139156e-217c-46e2-84f0-fe1936db4d98",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552100680801,
+        "parent_id": "4c5e142e-42ae-4cd5-9bdf-4014bc155352",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This is what I do when I’m working with Firebase and I want to use ListView."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This is what I do when I’m working with Firebase and I want to use ListView."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552100680803,
+        "id": "48ca5a5b-608f-44aa-a173-b7f35f5e6ecb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552100680803,
+        "parent_id": "4c5e142e-42ae-4cd5-9bdf-4014bc155352",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Use a parent component to retrieve the data from Firebase (Posts.js):"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Use a parent component to retrieve the data from Firebase (Posts.js):"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552100680804,
+        "id": "75c21194-a77d-4070-8594-5da059662318",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552100680804,
+        "parent_id": "4c5e142e-42ae-4cd5-9bdf-4014bc155352",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Posts.js",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Posts.js",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552100680804,
+        "id": "cda7027a-a915-48c2-9cb7-7413ec9481fc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552100680804,
+        "parent_id": "4c5e142e-42ae-4cd5-9bdf-4014bc155352",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import PostsList from './PostsList';\n\nclass Posts extends Component{\n    constructor(props) {\n        super(props);\n        this.state = {\n            posts: []\n        }\n    }\n    \n    componentWillMount() {\n        firebase.database().ref('Posts/').on('value', function(data) {\n            this.setState({ posts: data.val() });\n        });\n    }\n\n    render() {\n        return \u003cPostsList posts={this.state.posts}/\u003e\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import PostsList from './PostsList';\n\nclass Posts extends Component{\n    constructor(props) {\n        super(props);\n        this.state = {\n            posts: []\n        }\n    }\n    \n    componentWillMount() {\n        firebase.database().ref('Posts/').on('value', function(data) {\n            this.setState({ posts: data.val() });\n        });\n    }\n\n    render() {\n        return \u003cPostsList posts={this.state.posts}/\u003e\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552100680804,
+        "id": "88f8a42e-2cb9-42c6-bdc4-b4e6c687ea99",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552100680804,
+        "parent_id": "4c5e142e-42ae-4cd5-9bdf-4014bc155352",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "PostsList.js",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "PostsList.js",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552100680804,
+        "id": "731627b4-04ae-4a30-95e6-aee02e7f1155",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552100680804,
+        "parent_id": "4c5e142e-42ae-4cd5-9bdf-4014bc155352",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class PostsList extends Component {\n    constructor(props) {\n        super(props);\n        this.state = {\n            dataSource: new ListView.DataSource({\n                rowHasChanged: (row1, row2) =\u003e row1 !== row2\n            }),\n        }\n    }\n\n    getDataSource(posts: Array\u003cany\u003e): ListView.DataSource {\n        if(!posts) return;\n        return this.state.dataSource.cloneWithRows(posts);\n    }\n\n    componentDidMount() {\n        this.setState({dataSource: this.getDataSource(this.props.posts)});\n    }\n\n    componentWillReceiveProps(props) {\n        this.setState({dataSource: this.getDataSource(props.posts)});\n    }\n\n    renderRow = (post) =\u003e {\n        return (\n            \u003cView\u003e\n                \u003cText\u003e{post.title}\u003c/Text\u003e\n                \u003cText\u003e{post.content}\u003c/Text\u003e\n            \u003c/View\u003e\n        );\n    }\n\n    render() {\n        return(\n            \u003cListView\n                dataSource={this.state.dataSource}\n                renderRow={this.renderRow}\n                enableEmptySections={true}\n            /\u003e\n        );\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class PostsList extends Component {\n    constructor(props) {\n        super(props);\n        this.state = {\n            dataSource: new ListView.DataSource({\n                rowHasChanged: (row1, row2) =\u003e row1 !== row2\n            }),\n        }\n    }\n\n    getDataSource(posts: Array\u003cany\u003e): ListView.DataSource {\n        if(!posts) return;\n        return this.state.dataSource.cloneWithRows(posts);\n    }\n\n    componentDidMount() {\n        this.setState({dataSource: this.getDataSource(this.props.posts)});\n    }\n\n    componentWillReceiveProps(props) {\n        this.setState({dataSource: this.getDataSource(props.posts)});\n    }\n\n    renderRow = (post) =\u003e {\n        return (\n            \u003cView\u003e\n                \u003cText\u003e{post.title}\u003c/Text\u003e\n                \u003cText\u003e{post.content}\u003c/Text\u003e\n            \u003c/View\u003e\n        );\n    }\n\n    render() {\n        return(\n            \u003cListView\n                dataSource={this.state.dataSource}\n                renderRow={this.renderRow}\n                enableEmptySections={true}\n            /\u003e\n        );\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552100680804,
+        "id": "0bb5544b-b2ff-45b8-876c-f2b6dc0161fd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552100680804,
+        "parent_id": "4c5e142e-42ae-4cd5-9bdf-4014bc155352",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "I want to point out that in "
+            ],
+            [
+              "Posts.js",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", I’m not importing "
+            ],
+            [
+              "firebase",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " because you only need to import it once, in the main component of your project (where you have the navigator) and use it anywhere."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "I want to point out that in "
+          },
+          {
+            "Text": "Posts.js",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", I’m not importing "
+          },
+          {
+            "Text": "firebase",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " because you only need to import it once, in the main component of your project (where you have the navigator) and use it anywhere."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552100680804,
+        "id": "ab6e1098-6fc2-4355-8dda-3942188e7abd",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552100680804,
+        "parent_id": "4c5e142e-42ae-4cd5-9bdf-4014bc155352",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This is the solution someone suggested in a question I asked when I was struggling with ListView. I thought it would be nice to share it.",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This is the solution someone suggested in a question I asked when I was struggling with ListView. I thought it would be nice to share it.",
+            "AttrFlags": 1
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552100680806,
+        "id": "fe577f13-b261-4abf-8d8c-0a9fb14b628c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552100680806,
+        "parent_id": "4c5e142e-42ae-4cd5-9bdf-4014bc155352",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Source: "
+            ],
+            [
+              "http://stackoverflow.com/questions/38414289/react-native-listview-not-rendering-data-from-firebase",
+              [
+                [
+                  "a",
+                  "http://stackoverflow.com/questions/38414289/react-native-listview-not-rendering-data-from-firebase"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Source: "
+          },
+          {
+            "Text": "http://stackoverflow.com/questions/38414289/react-native-listview-not-rendering-data-from-firebase",
+            "Link": "http://stackoverflow.com/questions/38414289/react-native-listview-not-rendering-data-from-firebase"
+          }
+        ]
+      }
+    ],
+    "title": "React Native - ListView with Firebase",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

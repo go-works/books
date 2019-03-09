@@ -1,0 +1,83 @@
+{
+  "ID": "f0dd1fd9-d998-4759-8430-05fa60d5a3aa",
+  "Root": {
+    "alive": true,
+    "content": [
+      "8ed759fa-8fd6-45d8-ba89-1af7a5fcf2d5"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552100691165,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "f0dd1fd9-d998-4759-8430-05fa60d5a3aa",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552100691165,
+    "parent_id": "7c3551c7-1340-4c19-9fee-452b03b7e9cb",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Full commented example"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552100691162,
+        "id": "8ed759fa-8fd6-45d8-ba89-1af7a5fcf2d5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552100691162,
+        "parent_id": "f0dd1fd9-d998-4759-8430-05fa60d5a3aa",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "'use strict';import React, {Component} from 'react';import ReactNative from 'react-native';const {AppRegistry,StyleSheet,Text,View,Navigator,Alert,TouchableHighlight} = ReactNative;//This is the app container that contains the navigator stuffclass AppContainer extends Component {renderScene(route, navigator) {switch(route.name) {case \"Home\"://You must pass route as a prop for this trick to work properlyreturn \u003cHome route={route} navigator={navigator} {...route.passProps}  /\u003edefault:return (\u003cText route={route}style={styles.container}\u003eYour route name is probably incorrect {JSON.stringify(route)}\u003c/Text\u003e);}}render() {return (\u003cNavigatornavigationBar={\u003cNavigator.NavigationBarstyle={ styles.navbar }routeMapper={ NavigationBarRouteMapper } /\u003e}initialRoute={{ name: 'Home' }}renderScene={ this.renderScene }/\u003e);}}//Nothing fancy here, except for checking for injected buttons.//Notice how we are checking if there are injected buttons inside the route object.//Also, we are showing a \"Back\" button when the page is not at index-0 (e.g. not home)var NavigationBarRouteMapper = {LeftButton(route, navigator, index, navState) {if(route.leftNavButton) {return (\u003cTouchableHighlightstyle={styles.leftNavButton}underlayColor=\"transparent\"onPress={route.leftNavButton.onPress}\u003e\u003cText style={styles.navbarButtonText}\u003e{route.leftNavButton.text}\u003c/Text\u003e\u003c/TouchableHighlight\u003e);}else if(route.enableBackButton) {return (\u003cTouchableHighlightstyle={styles.leftNavButton}underlayColor=\"transparent\"onPress={() =\u003e navigator.pop() }\u003e\u003cText style={styles.navbarButtonText}\u003eBack\u003c/Text\u003e\u003c/TouchableHighlight\u003e);}},RightButton(route, navigator, index, navState) {if(route.rightNavButton) {return (\u003cTouchableHighlightstyle={styles.rightNavButton}underlayColor=\"transparent\"onPress={route.rightNavButton.onPress}\u003e\u003cText style={styles.navbarButtonText}\u003e{route.rightNavButton.text}\u003c/Text\u003e\u003c/TouchableHighlight\u003e);}},Title(route, navigator, index, navState) {//You can inject the title aswell.  If you don't we'll use the route name.return (\u003cText style={styles.navbarTitle}\u003e{route.navbarTitle || route.name}\u003c/Text\u003e);}};//This is considered a sub-page that navigator is showingclass Home extends Component {//This trick depends on that componentWillMount fires before the navbar is createdcomponentWillMount() {this.props.route.navbarTitle = \"Home\";this.props.route.rightNavButton = {text: \"Button\",onPress: this._doSomething.bind(this)};}//This method will be invoked by pressing the injected button._doSomething() {Alert.alert('Awesome, eh?',null,[{text: 'Indeed'},])}render() {return (\u003cView style={styles.container}\u003e\u003cText\u003eYou are home\u003c/Text\u003e\u003c/View\u003e);}}var styles = StyleSheet.create({container: {flex: 1,justifyContent: 'center',alignItems: 'center',backgroundColor: '#F5FCFF',marginTop: 66},navbar: {backgroundColor: '#ffffff',},navbarTitle: {marginVertical: 10,fontSize: 17},leftNavButton: {marginVertical: 10,paddingLeft: 8,},rightNavButton: {marginVertical: 10,paddingRight: 8,},navbarButtonText: {fontSize: 17,color: \"#007AFF\"}});AppRegistry.registerComponent('AppContainer', () =\u003e AppContainer);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "'use strict';import React, {Component} from 'react';import ReactNative from 'react-native';const {AppRegistry,StyleSheet,Text,View,Navigator,Alert,TouchableHighlight} = ReactNative;//This is the app container that contains the navigator stuffclass AppContainer extends Component {renderScene(route, navigator) {switch(route.name) {case \"Home\"://You must pass route as a prop for this trick to work properlyreturn \u003cHome route={route} navigator={navigator} {...route.passProps}  /\u003edefault:return (\u003cText route={route}style={styles.container}\u003eYour route name is probably incorrect {JSON.stringify(route)}\u003c/Text\u003e);}}render() {return (\u003cNavigatornavigationBar={\u003cNavigator.NavigationBarstyle={ styles.navbar }routeMapper={ NavigationBarRouteMapper } /\u003e}initialRoute={{ name: 'Home' }}renderScene={ this.renderScene }/\u003e);}}//Nothing fancy here, except for checking for injected buttons.//Notice how we are checking if there are injected buttons inside the route object.//Also, we are showing a \"Back\" button when the page is not at index-0 (e.g. not home)var NavigationBarRouteMapper = {LeftButton(route, navigator, index, navState) {if(route.leftNavButton) {return (\u003cTouchableHighlightstyle={styles.leftNavButton}underlayColor=\"transparent\"onPress={route.leftNavButton.onPress}\u003e\u003cText style={styles.navbarButtonText}\u003e{route.leftNavButton.text}\u003c/Text\u003e\u003c/TouchableHighlight\u003e);}else if(route.enableBackButton) {return (\u003cTouchableHighlightstyle={styles.leftNavButton}underlayColor=\"transparent\"onPress={() =\u003e navigator.pop() }\u003e\u003cText style={styles.navbarButtonText}\u003eBack\u003c/Text\u003e\u003c/TouchableHighlight\u003e);}},RightButton(route, navigator, index, navState) {if(route.rightNavButton) {return (\u003cTouchableHighlightstyle={styles.rightNavButton}underlayColor=\"transparent\"onPress={route.rightNavButton.onPress}\u003e\u003cText style={styles.navbarButtonText}\u003e{route.rightNavButton.text}\u003c/Text\u003e\u003c/TouchableHighlight\u003e);}},Title(route, navigator, index, navState) {//You can inject the title aswell.  If you don't we'll use the route name.return (\u003cText style={styles.navbarTitle}\u003e{route.navbarTitle || route.name}\u003c/Text\u003e);}};//This is considered a sub-page that navigator is showingclass Home extends Component {//This trick depends on that componentWillMount fires before the navbar is createdcomponentWillMount() {this.props.route.navbarTitle = \"Home\";this.props.route.rightNavButton = {text: \"Button\",onPress: this._doSomething.bind(this)};}//This method will be invoked by pressing the injected button._doSomething() {Alert.alert('Awesome, eh?',null,[{text: 'Indeed'},])}render() {return (\u003cView style={styles.container}\u003e\u003cText\u003eYou are home\u003c/Text\u003e\u003c/View\u003e);}}var styles = StyleSheet.create({container: {flex: 1,justifyContent: 'center',alignItems: 'center',backgroundColor: '#F5FCFF',marginTop: 66},navbar: {backgroundColor: '#ffffff',},navbarTitle: {marginVertical: 10,fontSize: 17},leftNavButton: {marginVertical: 10,paddingLeft: 8,},rightNavButton: {marginVertical: 10,paddingRight: 8,},navbarButtonText: {fontSize: 17,color: \"#007AFF\"}});AppRegistry.registerComponent('AppContainer', () =\u003e AppContainer);",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Full commented example",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

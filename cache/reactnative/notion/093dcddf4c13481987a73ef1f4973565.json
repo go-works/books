@@ -1,0 +1,121 @@
+{
+  "ID": "093dcddf-4c13-4819-87a7-3ef1f4973565",
+  "Root": {
+    "alive": true,
+    "content": [
+      "a0f47429-8579-4a99-a81d-776505f5f740",
+      "eb87b46d-4c3f-4928-bb90-bdea39b5886b"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552100902035,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "093dcddf-4c13-4819-87a7-3ef1f4973565",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552100902035,
+    "parent_id": "8ca4b67f-295a-4473-a671-12816413dd1f",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Refresh Control with ListView Full Example"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552100902033,
+        "id": "a0f47429-8579-4a99-a81d-776505f5f740",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552100902033,
+        "parent_id": "093dcddf-4c13-4819-87a7-3ef1f4973565",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "RefreshControl",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " is used inside a ScrollView or ListView to add pull to refresh functionality. at this example we will use it with ListView"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "RefreshControl",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " is used inside a ScrollView or ListView to add pull to refresh functionality. at this example we will use it with ListView"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552100902035,
+        "id": "eb87b46d-4c3f-4928-bb90-bdea39b5886b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552100902035,
+        "parent_id": "093dcddf-4c13-4819-87a7-3ef1f4973565",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "'use strict'\nimport React, { Component } from 'react';\nimport { StyleSheet, View, ListView, RefreshControl, Text } from 'react-native'\n\n\nclass RefreshControlExample extends Component {\n  constructor () {\n    super()\n    this.state = {\n      refreshing: false,\n      dataSource: new ListView.DataSource({\n        rowHasChanged: (row1, row2) =\u003e row1 !== row2 }),\n      cars : [\n        {name:'Datsun',color:'White'},\n        {name:'Camry',color:'Green'}\n      ]\n    }\n  }\n\n   componentWillMount(){\n     this.setState({ dataSource:\n       this.state.dataSource.cloneWithRows(this.state.cars) })\n   }\n\n  render() {\n    return (\n      \u003cView style={{flex:1}}\u003e\n        \u003cListView\n          refreshControl={this._refreshControl()}\n          dataSource={this.state.dataSource}\n          renderRow={(car) =\u003e this._renderListView(car)}\u003e\n        \u003c/ListView\u003e\n      \u003c/View\u003e\n    )\n  }\n\n  _renderListView(car){\n    return(\n      \u003cView style={styles.listView}\u003e\n        \u003cText\u003e{car.name}\u003c/Text\u003e\n        \u003cText\u003e{car.color}\u003c/Text\u003e\n      \u003c/View\u003e\n    )\n  }\n\n  _refreshControl(){\n    return (\n      \u003cRefreshControl\n        refreshing={this.state.refreshing}\n        onRefresh={()=\u003ethis._refreshListView()} /\u003e\n    )\n  }\n\n  _refreshListView(){\n    //Start Rendering Spinner\n    this.setState({refreshing:true})\n    this.state.cars.push(\n      {name:'Fusion',color:'Black'},\n      {name:'Yaris',color:'Blue'}\n    )\n    //Updating the dataSource with new data\n    this.setState({ dataSource:\n        this.state.dataSource.cloneWithRows(this.state.cars) })\n    this.setState({refreshing:false}) //Stop Rendering Spinner\n  }\n\n}\n\nconst styles = StyleSheet.create({\n\n  listView: {\n    flex: 1,\n    backgroundColor:'#fff',\n    marginTop:10,\n    marginRight:10,\n    marginLeft:10,\n    padding:10,\n    borderWidth:.5,\n    borderColor:'#dddddd',\n    height:70\n  }\n\n})\n\nmodule.exports = RefreshControlExample"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "'use strict'\nimport React, { Component } from 'react';\nimport { StyleSheet, View, ListView, RefreshControl, Text } from 'react-native'\n\n\nclass RefreshControlExample extends Component {\n  constructor () {\n    super()\n    this.state = {\n      refreshing: false,\n      dataSource: new ListView.DataSource({\n        rowHasChanged: (row1, row2) =\u003e row1 !== row2 }),\n      cars : [\n        {name:'Datsun',color:'White'},\n        {name:'Camry',color:'Green'}\n      ]\n    }\n  }\n\n   componentWillMount(){\n     this.setState({ dataSource:\n       this.state.dataSource.cloneWithRows(this.state.cars) })\n   }\n\n  render() {\n    return (\n      \u003cView style={{flex:1}}\u003e\n        \u003cListView\n          refreshControl={this._refreshControl()}\n          dataSource={this.state.dataSource}\n          renderRow={(car) =\u003e this._renderListView(car)}\u003e\n        \u003c/ListView\u003e\n      \u003c/View\u003e\n    )\n  }\n\n  _renderListView(car){\n    return(\n      \u003cView style={styles.listView}\u003e\n        \u003cText\u003e{car.name}\u003c/Text\u003e\n        \u003cText\u003e{car.color}\u003c/Text\u003e\n      \u003c/View\u003e\n    )\n  }\n\n  _refreshControl(){\n    return (\n      \u003cRefreshControl\n        refreshing={this.state.refreshing}\n        onRefresh={()=\u003ethis._refreshListView()} /\u003e\n    )\n  }\n\n  _refreshListView(){\n    //Start Rendering Spinner\n    this.setState({refreshing:true})\n    this.state.cars.push(\n      {name:'Fusion',color:'Black'},\n      {name:'Yaris',color:'Blue'}\n    )\n    //Updating the dataSource with new data\n    this.setState({ dataSource:\n        this.state.dataSource.cloneWithRows(this.state.cars) })\n    this.setState({refreshing:false}) //Stop Rendering Spinner\n  }\n\n}\n\nconst styles = StyleSheet.create({\n\n  listView: {\n    flex: 1,\n    backgroundColor:'#fff',\n    marginTop:10,\n    marginRight:10,\n    marginLeft:10,\n    padding:10,\n    borderWidth:.5,\n    borderColor:'#dddddd',\n    height:70\n  }\n\n})\n\nmodule.exports = RefreshControlExample",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Refresh Control with ListView Full Example",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

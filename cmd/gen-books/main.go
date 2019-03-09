@@ -292,9 +292,11 @@ var (
 )
 
 // To download:
-// react
 // react-native
 // ruby
+// ruby on rails
+// swift
+// typescript
 
 var (
 	booksMain = []*Book{
@@ -306,7 +308,7 @@ var (
 		bookSql, bookAlgorithm, bookBash, bookC, bookCSS, bookGit, bookHTML,
 		bookHTMLCanvas, bookNETFramework, bookNode, bookObjectiveC, bookPHP,
 		bookPowershell, bookReact, bookReactNative, bookRuby, bookRubyOnRails,
-		bookSwift, bookTypeScript
+		bookSwift, bookTypeScript,
 	}
 	allBooks = append(booksMain, booksUnpublished...)
 )
