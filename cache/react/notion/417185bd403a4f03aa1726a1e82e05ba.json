@@ -1,0 +1,111 @@
+{
+  "ID": "417185bd-403a-4f03-aa17-26a1e82e05ba",
+  "Root": {
+    "alive": true,
+    "content": [
+      "7ec3b6bb-dc60-49b7-8878-01d4d23c3465",
+      "6ce0c813-3704-493e-b365-041d0d6524c0"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552099966883,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "417185bd-403a-4f03-aa17-26a1e82e05ba",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552099966883,
+    "parent_id": "d7004271-2e4c-4340-bb8b-d5647d3f0de2",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "React Routing Async"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552099966880,
+        "id": "7ec3b6bb-dc60-49b7-8878-01d4d23c3465",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552099966880,
+        "parent_id": "417185bd-403a-4f03-aa17-26a1e82e05ba",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import React from 'react';\nimport { Route, IndexRoute } from 'react-router';\n\nimport Index from './containers/home';\nimport App from './components/app';\n\n//for single Component lazy load use this\nconst ContactComponent = () =\u003e {\n  return {\n      getComponent: (location, callback)=\u003e {\n        require.ensure([], require =\u003e {\n          callback(null, require('./components/Contact')[\"default\"]);\n        }, 'Contact');\n      }\n    }\n};"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import React from 'react';\nimport { Route, IndexRoute } from 'react-router';\n\nimport Index from './containers/home';\nimport App from './components/app';\n\n//for single Component lazy load use this\nconst ContactComponent = () =\u003e {\n  return {\n      getComponent: (location, callback)=\u003e {\n        require.ensure([], require =\u003e {\n          callback(null, require('./components/Contact')[\"default\"]);\n        }, 'Contact');\n      }\n    }\n};",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552099966883,
+        "id": "6ce0c813-3704-493e-b365-041d0d6524c0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552099966883,
+        "parent_id": "417185bd-403a-4f03-aa17-26a1e82e05ba",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "//for multiple componnets\n const groupedComponents = (pageName) =\u003e {\n  return {\n      getComponent: (location, callback)=\u003e {\n        require.ensure([], require =\u003e {\n          switch(pageName){\n            case 'about' :\n                callback(null, require( \"./components/about\" )[\"default\"]);\n                    break ;\n            case 'tos' :\n                callback(null, require( \"./components/tos\" )[\"default\"]);\n                    break ;\n          }\n        }, \"groupedComponents\");\n      }\n    }\n};\nexport default(\n  \u003cRoute path=\"/\" component={App}\u003e\n    \u003cIndexRoute component={Index} /\u003e\n    \u003cRoute path=\"/contact\" {...ContactComponent()} /\u003e\n    \u003cRoute path=\"/about\" {...groupedComponents('about')} /\u003e\n    \u003cRoute path=\"/tos\" {...groupedComponents('tos')} /\u003e\n  \u003c/Route\u003e\n);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "//for multiple componnets\n const groupedComponents = (pageName) =\u003e {\n  return {\n      getComponent: (location, callback)=\u003e {\n        require.ensure([], require =\u003e {\n          switch(pageName){\n            case 'about' :\n                callback(null, require( \"./components/about\" )[\"default\"]);\n                    break ;\n            case 'tos' :\n                callback(null, require( \"./components/tos\" )[\"default\"]);\n                    break ;\n          }\n        }, \"groupedComponents\");\n      }\n    }\n};\nexport default(\n  \u003cRoute path=\"/\" component={App}\u003e\n    \u003cIndexRoute component={Index} /\u003e\n    \u003cRoute path=\"/contact\" {...ContactComponent()} /\u003e\n    \u003cRoute path=\"/about\" {...groupedComponents('about')} /\u003e\n    \u003cRoute path=\"/tos\" {...groupedComponents('tos')} /\u003e\n  \u003c/Route\u003e\n);",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "React Routing Async",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

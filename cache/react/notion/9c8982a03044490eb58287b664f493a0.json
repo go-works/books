@@ -1,0 +1,135 @@
+{
+  "ID": "9c8982a0-3044-490e-b582-87b664f493a0",
+  "Root": {
+    "alive": true,
+    "content": [
+      "9ef8665c-267e-4211-9a1c-7ff9b94cfaf3",
+      "77049cb0-cf22-4279-8fbb-06bb2f9400c1",
+      "9193fb05-25ff-48be-abad-eeadf5e6af41"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552099940187,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "9c8982a0-3044-490e-b582-87b664f493a0",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552099940188,
+    "parent_id": "3be1a9d3-83e8-46d7-add6-1ee03c2e1899",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "React Component Container"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552099940184,
+        "id": "9ef8665c-267e-4211-9a1c-7ff9b94cfaf3",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552099940184,
+        "parent_id": "9c8982a0-3044-490e-b582-87b664f493a0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "When building a React application, it is often desirable to divide components based on their primary responsibility, into Presentational and Container components."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "When building a React application, it is often desirable to divide components based on their primary responsibility, into Presentational and Container components."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552099940187,
+        "id": "77049cb0-cf22-4279-8fbb-06bb2f9400c1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552099940187,
+        "parent_id": "9c8982a0-3044-490e-b582-87b664f493a0",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Presentational components are concerned only with displaying data - they can be regarded as, and are often implemented as, functions that convert a model to a view. Typically they do not maintain any internal state. Container components are concerned with managing data. This may be done internally through their own state, or by acting as intermediaries with a state-management library such as Redux. The container component will not directly display data, rather it will pass the data to a presentational component."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Presentational components are concerned only with displaying data - they can be regarded as, and are often implemented as, functions that convert a model to a view. Typically they do not maintain any internal state. Container components are concerned with managing data. This may be done internally through their own state, or by acting as intermediaries with a state-management library such as Redux. The container component will not directly display data, rather it will pass the data to a presentational component."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552099940187,
+        "id": "9193fb05-25ff-48be-abad-eeadf5e6af41",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552099940187,
+        "parent_id": "9c8982a0-3044-490e-b582-87b664f493a0",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// Container component\nimport React, { Component } from 'react';\nimport Api from 'path/to/api';\n\nclass CommentsListContainer extends Component {\n    constructor() {\n        super();\n        // Set initial state\n        this.state = { comments: [] }\n    }\n\n    componentDidMount() {\n        // Make API call and update state with returned comments\n        Api.getComments().then(comments =\u003e this.setState({ comments }));\n    }\n\n    render() {\n        // Pass our state comments to the presentational component\n        return (\n            \u003cCommentsList comments={this.state.comments} /\u003e;\n        );\n    }\n}\n\n// Presentational Component\nconst CommentsList = ({ comments }) =\u003e (\n    \u003cdiv\u003e\n        {comments.map(comment =\u003e (\n            \u003cdiv\u003e{comment}\u003c/div\u003e\n        )}\n    \u003c/div\u003e\n);\n\nCommentsList.propTypes = {\n    comments: React.PropTypes.arrayOf(React.PropTypes.string)\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// Container component\nimport React, { Component } from 'react';\nimport Api from 'path/to/api';\n\nclass CommentsListContainer extends Component {\n    constructor() {\n        super();\n        // Set initial state\n        this.state = { comments: [] }\n    }\n\n    componentDidMount() {\n        // Make API call and update state with returned comments\n        Api.getComments().then(comments =\u003e this.setState({ comments }));\n    }\n\n    render() {\n        // Pass our state comments to the presentational component\n        return (\n            \u003cCommentsList comments={this.state.comments} /\u003e;\n        );\n    }\n}\n\n// Presentational Component\nconst CommentsList = ({ comments }) =\u003e (\n    \u003cdiv\u003e\n        {comments.map(comment =\u003e (\n            \u003cdiv\u003e{comment}\u003c/div\u003e\n        )}\n    \u003c/div\u003e\n);\n\nCommentsList.propTypes = {\n    comments: React.PropTypes.arrayOf(React.PropTypes.string)\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "React Component Container",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

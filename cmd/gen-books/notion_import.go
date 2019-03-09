@@ -120,22 +120,22 @@ func downloadAndCachePage(b *Book, c *notionapi.Client, pageID string) (*notiona
 			lf.Close()
 		}()
 	}
-	cachedPath := filepath.Join(b.NotionCacheDir(), pageID+".json")
 	page, err := downloadPageRetry(c, pageID)
 	if err != nil {
 		return nil, err
 	}
 	d, err := json.MarshalIndent(page, "", "  ")
-	if err == nil {
-
-		err = os.MkdirAll(filepath.Dir(cachedPath), 0755)
-		panicIfErr(err)
-		err = ioutil.WriteFile(cachedPath, d, 0644)
-		panicIfErr(err)
-	} else {
+	if err != nil {
 		// not a fatal error, just a warning
 		fmt.Printf("json.Marshal() on pageID '%s' failed with %s\n", pageID, err)
+		return page, nil
 	}
+
+	cachedPath := filepath.Join(b.NotionCacheDir(), pageID+".json")
+	err = os.MkdirAll(filepath.Dir(cachedPath), 0755)
+	panicIfErr(err)
+	err = ioutil.WriteFile(cachedPath, d, 0644)
+	panicIfErr(err)
 	return page, nil
 }
 
@@ -160,13 +160,16 @@ func loadNotionPage(b *Book, c *notionapi.Client, pageID string, getFromCache bo
 	}
 
 	updated := updateFormatOrTitleIfNeeded(page)
-	if updated {
-		page, err = downloadAndCachePage(b, c, pageID)
-		if err == nil {
-			fmt.Printf("Downloaded %d %s %s\n", n, page.ID, page.Root.Title)
-		} else {
-			return nil, err
-		}
+	if !updated {
+		return page, nil
+	}
+
+	time.Sleep(time.Millisecond * 300)
+	page, err = downloadAndCachePage(b, c, pageID)
+	if err == nil {
+		fmt.Printf("Downloaded %d %s %s\n", n, page.ID, page.Root.Title)
+	} else {
+		return nil, err
 	}
 
 	return page, nil

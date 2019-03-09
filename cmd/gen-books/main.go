@@ -265,6 +265,14 @@ var (
 		// https://www.notion.so/kjkpublic/Essential-Ruby-51f7633cdf1f4ab1a7778e8095f599bd
 		NotionStartPageID: "51f7633cdf1f4ab1a7778e8095f599bd",
 	}
+	bookRubyOnRails = &Book{
+		Title:          "Ruby On Rails",
+		TitleLong:      "Essential Ruby On Rails",
+		Dir:            "rubyonrails",
+		CoverImageName: "RubyOnRails.png",
+		// https://www.notion.so/kjkpublic/Essential-Ruby-On-Rails-80d02f56455d4162a91223e5fc1341e0
+		NotionStartPageID: "80d02f56455d4162a91223e5fc1341e0",
+	}
 )
 
 // To download:
@@ -281,7 +289,7 @@ var (
 	booksUnpublished = []*Book{
 		bookSql, bookAlgorithm, bookBash, bookC, bookCSS, bookGit, bookHTML,
 		bookHTMLCanvas, bookNETFramework, bookNode, bookObjectiveC, bookPHP,
-		bookPowershell, bookReact, bookReactNative, bookRuby
+		bookPowershell, bookReact, bookReactNative, bookRuby, bookRubyOnRails,
 	}
 	allBooks = append(booksMain, booksUnpublished...)
 )

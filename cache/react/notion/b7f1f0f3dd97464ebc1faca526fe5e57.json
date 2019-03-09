@@ -1,0 +1,335 @@
+{
+  "ID": "b7f1f0f3-dd97-464e-bc1f-aca526fe5e57",
+  "Root": {
+    "alive": true,
+    "content": [
+      "5475a48f-483a-441a-8e73-2db8b241eb7e",
+      "e22a4b9d-587c-4790-b369-412291157db1",
+      "1013236e-1f41-4c83-a28f-3ccc04ad5ebc",
+      "c29bf047-44f0-47d6-92b0-2d3aa025eb7d",
+      "d580c87f-08c3-4c79-a0ad-86d78e56d1cf",
+      "2b0d4c3e-5ab3-4d03-b704-bd0561bae5d5",
+      "fb0b5451-9179-45fe-841d-751c550cd74b"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552100294871,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "b7f1f0f3-dd97-464e-bc1f-aca526fe5e57",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552100294871,
+    "parent_id": "ce608663-33cc-4b42-bb6b-adecebad2004",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "PanelGroup"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552100294869,
+        "id": "5475a48f-483a-441a-8e73-2db8b241eb7e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552100294869,
+        "parent_id": "b7f1f0f3-dd97-464e-bc1f-aca526fe5e57",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "import React from 'react';\nimport Tab from './Tab.js';\n\nclass PanelGroup extends React.Component {\n    constructor(props) {\n        super(props);\n        this.setState({\n            panels: props.panels\n        });\n    }\n\n    render() {\n        this.tabSet = [];\n        this.panelSet = [];\n        for (let panelData of this.state.panels) {\n            var tabIsActive = this.state.activeTab == panelData.name;\n            this.tabSet.push(React.createElement(\n                Tab, {\n                    name: panelData.name,\n                    active: tabIsActive,\n                    panelClass: panelData.class,\n                    onMouseDown: () =\u003e this.openTab(panelData.name)\n                }\n            ));\n            this.panelSet.push(React.createElement(\n                panelData.class, {\n                    id: panelData.name,\n                    active: tabIsActive,\n                    ref: tabIsActive ? 'activePanel' : null\n                }\n            ));\n        }\n        return React.createElement(\n            'div', { className: 'PanelGroup' },\n            React.createElement(\n                'nav', null,\n                React.createElement(\n                    'ul', null,\n                    ...this.tabSet\n                )\n            ),\n            ...this.panelSet\n        );\n    }\n\n    openTab(name) {\n        this.setState({ activeTab: name });\n        this.findDOMNode(this.refs.activePanel).focus();\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "import React from 'react';\nimport Tab from './Tab.js';\n\nclass PanelGroup extends React.Component {\n    constructor(props) {\n        super(props);\n        this.setState({\n            panels: props.panels\n        });\n    }\n\n    render() {\n        this.tabSet = [];\n        this.panelSet = [];\n        for (let panelData of this.state.panels) {\n            var tabIsActive = this.state.activeTab == panelData.name;\n            this.tabSet.push(React.createElement(\n                Tab, {\n                    name: panelData.name,\n                    active: tabIsActive,\n                    panelClass: panelData.class,\n                    onMouseDown: () =\u003e this.openTab(panelData.name)\n                }\n            ));\n            this.panelSet.push(React.createElement(\n                panelData.class, {\n                    id: panelData.name,\n                    active: tabIsActive,\n                    ref: tabIsActive ? 'activePanel' : null\n                }\n            ));\n        }\n        return React.createElement(\n            'div', { className: 'PanelGroup' },\n            React.createElement(\n                'nav', null,\n                React.createElement(\n                    'ul', null,\n                    ...this.tabSet\n                )\n            ),\n            ...this.panelSet\n        );\n    }\n\n    openTab(name) {\n        this.setState({ activeTab: name });\n        this.findDOMNode(this.refs.activePanel).focus();\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552100294869,
+        "id": "e22a4b9d-587c-4790-b369-412291157db1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552100294869,
+        "parent_id": "b7f1f0f3-dd97-464e-bc1f-aca526fe5e57",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "panels",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " property of "
+            ],
+            [
+              "PanelGroup",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " instance must contain array with objects. Every object there declares important data about panels:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "panels",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " property of "
+          },
+          {
+            "Text": "PanelGroup",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " instance must contain array with objects. Every object there declares important data about panels:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552100294870,
+        "id": "1013236e-1f41-4c83-a28f-3ccc04ad5ebc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552100294870,
+        "parent_id": "b7f1f0f3-dd97-464e-bc1f-aca526fe5e57",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "name",
+              [
+                [
+                  "b"
+                ],
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " - identifier of panel used by controller script;"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "name",
+            "AttrFlags": 3
+          },
+          {
+            "Text": " - identifier of panel used by controller script;"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552100294870,
+        "id": "c29bf047-44f0-47d6-92b0-2d3aa025eb7d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552100294870,
+        "parent_id": "b7f1f0f3-dd97-464e-bc1f-aca526fe5e57",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "class",
+              [
+                [
+                  "b"
+                ],
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " - panel’s class."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "class",
+            "AttrFlags": 3
+          },
+          {
+            "Text": " - panel’s class."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552100294870,
+        "id": "d580c87f-08c3-4c79-a0ad-86d78e56d1cf",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552100294870,
+        "parent_id": "b7f1f0f3-dd97-464e-bc1f-aca526fe5e57",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Don’t forget to set property "
+            ],
+            [
+              "activeTab",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to name of needed tab."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Don’t forget to set property "
+          },
+          {
+            "Text": "activeTab",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to name of needed tab."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552100294870,
+        "id": "2b0d4c3e-5ab3-4d03-b704-bd0561bae5d5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552100294870,
+        "parent_id": "b7f1f0f3-dd97-464e-bc1f-aca526fe5e57",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Clarification"
+            ]
+          ]
+        },
+        "type": "sub_header",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Clarification"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552100294871,
+        "id": "fb0b5451-9179-45fe-841d-751c550cd74b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552100294871,
+        "parent_id": "b7f1f0f3-dd97-464e-bc1f-aca526fe5e57",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "When tab is down, needed panel is getting class name "
+            ],
+            [
+              "active",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " on DOM element (means that it gonna be visible) and it’s focused now."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "When tab is down, needed panel is getting class name "
+          },
+          {
+            "Text": "active",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " on DOM element (means that it gonna be visible) and it’s focused now."
+          }
+        ]
+      }
+    ],
+    "title": "PanelGroup",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

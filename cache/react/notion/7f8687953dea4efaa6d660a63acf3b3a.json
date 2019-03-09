@@ -1,0 +1,197 @@
+{
+  "ID": "7f868795-3dea-4efa-a6d6-60a63acf3b3a",
+  "Root": {
+    "alive": true,
+    "content": [
+      "00027207-0911-4a4e-8725-ff62fc472642",
+      "d0abaa81-81e6-40f1-aa08-14db765c3dc9",
+      "8bfc394d-2d8d-4fe3-b879-3ae76fd2e0c0",
+      "6a6bf36f-36be-4445-aeda-203c4c1ba008"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552099909851,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "7f868795-3dea-4efa-a6d6-60a63acf3b3a",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552099909851,
+    "parent_id": "da8fafc6-5f35-4220-90b1-92f7b2069ee8",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Component states - Dynamic user-interface"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552099909848,
+        "id": "00027207-0911-4a4e-8725-ff62fc472642",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552099909848,
+        "parent_id": "7f868795-3dea-4efa-a6d6-60a63acf3b3a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Suppose we want to have the following behaviour - We have a heading (say h3 element) and on clicking it, we want it to become an input box so that we can modify heading name. React makes this highly simple and intuitive using component states and if else statements. (Code explanation below)"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Suppose we want to have the following behaviour - We have a heading (say h3 element) and on clicking it, we want it to become an input box so that we can modify heading name. React makes this highly simple and intuitive using component states and if else statements. (Code explanation below)"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552099909851,
+        "id": "d0abaa81-81e6-40f1-aa08-14db765c3dc9",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552099909851,
+        "parent_id": "7f868795-3dea-4efa-a6d6-60a63acf3b3a",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "// I have used ReactBootstrap elements. But the code works with regular html elements also\nvar Button = ReactBootstrap.Button;\nvar Form = ReactBootstrap.Form;\nvar FormGroup = ReactBootstrap.FormGroup;\nvar FormControl = ReactBootstrap.FormControl;\n\nvar Comment = reactCreateClass({\n  getInitialState: function() {\n    return {show: false, newTitle: ''};\n  },\n\n  handleTitleSubmit: function() {\n     //code to handle input box submit - for example, issue an ajax request to change name in database\n  },\n\n  handleTitleChange: function(e) {\n    //code to change the name in form input box. newTitle is initialized as empty string. We need to update it with the string currently entered by user in the form\n    this.setState({newTitle: e.target.value});\n  },\n\n  changeComponent: function() {\n    // this toggles the show variable which is used  for dynamic UI\n    this.setState({show: !this.state.show)};\n  },\n\n  render: function() {\n\n    var clickableTitle;\n\n    if(this.state.show) {\n        clickableTitle = \u003cForm inline onSubmit={this.handleTitleSubmit}\u003e\n                             \u003cFormGroup controlId=\"formInlineTitle\"\u003e\n                                 \u003cFormControl type=\"text\" onChange={this.handleTitleChange}\u003e\n                             \u003c/FormGroup\u003e\n                         \u003c/Form\u003e;\n    } else {\n        clickabletitle = \u003cdiv\u003e\n                            \u003cButton bsStyle=\"link\" onClick={this.changeComponent}\u003e\n                                \u003ch3\u003e Default Text \u003c/h3\u003e\n                            \u003c/Button\u003e\n                         \u003c/div\u003e;\n    }\n\n    return (\n        \u003cdiv className=\"comment\"\u003e\n            {clickableTitle}\n        \u003c/div\u003e\n    );\n  }\n});\n\nReactDOM.render(\n    \u003cComment /\u003e, document.getElementById('content')\n);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "// I have used ReactBootstrap elements. But the code works with regular html elements also\nvar Button = ReactBootstrap.Button;\nvar Form = ReactBootstrap.Form;\nvar FormGroup = ReactBootstrap.FormGroup;\nvar FormControl = ReactBootstrap.FormControl;\n\nvar Comment = reactCreateClass({\n  getInitialState: function() {\n    return {show: false, newTitle: ''};\n  },\n\n  handleTitleSubmit: function() {\n     //code to handle input box submit - for example, issue an ajax request to change name in database\n  },\n\n  handleTitleChange: function(e) {\n    //code to change the name in form input box. newTitle is initialized as empty string. We need to update it with the string currently entered by user in the form\n    this.setState({newTitle: e.target.value});\n  },\n\n  changeComponent: function() {\n    // this toggles the show variable which is used  for dynamic UI\n    this.setState({show: !this.state.show)};\n  },\n\n  render: function() {\n\n    var clickableTitle;\n\n    if(this.state.show) {\n        clickableTitle = \u003cForm inline onSubmit={this.handleTitleSubmit}\u003e\n                             \u003cFormGroup controlId=\"formInlineTitle\"\u003e\n                                 \u003cFormControl type=\"text\" onChange={this.handleTitleChange}\u003e\n                             \u003c/FormGroup\u003e\n                         \u003c/Form\u003e;\n    } else {\n        clickabletitle = \u003cdiv\u003e\n                            \u003cButton bsStyle=\"link\" onClick={this.changeComponent}\u003e\n                                \u003ch3\u003e Default Text \u003c/h3\u003e\n                            \u003c/Button\u003e\n                         \u003c/div\u003e;\n    }\n\n    return (\n        \u003cdiv className=\"comment\"\u003e\n            {clickableTitle}\n        \u003c/div\u003e\n    );\n  }\n});\n\nReactDOM.render(\n    \u003cComment /\u003e, document.getElementById('content')\n);",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552099909851,
+        "id": "8bfc394d-2d8d-4fe3-b879-3ae76fd2e0c0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552099909851,
+        "parent_id": "7f868795-3dea-4efa-a6d6-60a63acf3b3a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The main part of the code is the "
+            ],
+            [
+              "clickableTitle",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " variable. Based on the state variable "
+            ],
+            [
+              "show",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              ", it can be either be a Form element or a Button element. React allows nesting of components."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The main part of the code is the "
+          },
+          {
+            "Text": "clickableTitle",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " variable. Based on the state variable "
+          },
+          {
+            "Text": "show",
+            "AttrFlags": 1
+          },
+          {
+            "Text": ", it can be either be a Form element or a Button element. React allows nesting of components."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552099909851,
+        "id": "6a6bf36f-36be-4445-aeda-203c4c1ba008",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552099909851,
+        "parent_id": "7f868795-3dea-4efa-a6d6-60a63acf3b3a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "So we can add a {clickableTitle} element in the render function. It looks for the clickableTitle variable. Based on the value ‘this.state.show’, it displays the corresponding element."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "So we can add a {clickableTitle} element in the render function. It looks for the clickableTitle variable. Based on the value ‘this.state.show’, it displays the corresponding element."
+          }
+        ]
+      }
+    ],
+    "title": "Component states - Dynamic user-interface",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}
