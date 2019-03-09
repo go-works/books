@@ -273,6 +273,22 @@ var (
 		// https://www.notion.so/kjkpublic/Essential-Ruby-On-Rails-80d02f56455d4162a91223e5fc1341e0
 		NotionStartPageID: "80d02f56455d4162a91223e5fc1341e0",
 	}
+	bookSwift = &Book{
+		Title:          "Swift",
+		TitleLong:      "Essential Swift",
+		Dir:            "swift",
+		CoverImageName: "Swift.png",
+		// https://www.notion.so/kjkpublic/Essential-Swift-e76d42906b0e493291a60bbd351f3b6b
+		NotionStartPageID: "e76d42906b0e493291a60bbd351f3b6b",
+	}
+	bookTypeScript = &Book{
+		Title:          "TypeScript",
+		TitleLong:      "Essential TypeScript",
+		Dir:            "typescript",
+		CoverImageName: "TypeScript.png",
+		// https://www.notion.so/kjkpublic/Essential-TypeScript-9f3a0df9855747b1ab85b76637971d62
+		NotionStartPageID: "9f3a0df9855747b1ab85b76637971d62",
+	}
 )
 
 // To download:
@@ -290,6 +306,7 @@ var (
 		bookSql, bookAlgorithm, bookBash, bookC, bookCSS, bookGit, bookHTML,
 		bookHTMLCanvas, bookNETFramework, bookNode, bookObjectiveC, bookPHP,
 		bookPowershell, bookReact, bookReactNative, bookRuby, bookRubyOnRails,
+		bookSwift, bookTypeScript
 	}
 	allBooks = append(booksMain, booksUnpublished...)
 )
