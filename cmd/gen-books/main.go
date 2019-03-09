@@ -292,7 +292,6 @@ var (
 )
 
 // To download:
-// react-native
 // ruby
 // ruby on rails
 // swift

@@ -1,0 +1,459 @@
+{
+  "ID": "5e89c877-9a75-45f3-90ae-ade93733b89c",
+  "Root": {
+    "alive": true,
+    "content": [
+      "b8311e98-60b9-46e4-83e4-6ba6198c82e2",
+      "9fbd23aa-a191-4da2-abdc-dd119390386b",
+      "da3e264e-75a7-4bd0-9014-74c71a14a8c5",
+      "445fae8d-998e-4bf2-a116-56d1bd87005c",
+      "2a9560be-362f-4532-8481-2167845e381f",
+      "54643c1a-d596-4d47-bf68-424c91f41347",
+      "f72f8349-d162-41eb-8b28-e5c0bf4e50a0",
+      "a3406ea6-8e8d-464d-8311-2297a956a2ca",
+      "00284d6a-d818-43ff-aa1d-f2be68140193"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552101278954,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "5e89c877-9a75-45f3-90ae-ade93733b89c",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552101278954,
+    "parent_id": "d43d4630-d5f4-4667-982d-03e02440c201",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Creating a custom exception type"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101278939,
+        "id": "b8311e98-60b9-46e4-83e4-6ba6198c82e2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101278939,
+        "parent_id": "5e89c877-9a75-45f3-90ae-ade93733b89c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "A custom exception is any class that extends "
+            ],
+            [
+              "Exception",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " or a subclass of "
+            ],
+            [
+              "Exception",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "A custom exception is any class that extends "
+          },
+          {
+            "Text": "Exception",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " or a subclass of "
+          },
+          {
+            "Text": "Exception",
+            "AttrFlags": 2
+          },
+          {
+            "Text": "."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101278940,
+        "id": "9fbd23aa-a191-4da2-abdc-dd119390386b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101278940,
+        "parent_id": "5e89c877-9a75-45f3-90ae-ade93733b89c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "In general, you should always extend "
+            ],
+            [
+              "StandardError",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " or a descendant. The "
+            ],
+            [
+              "Exception",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " family are usually for virtual-machine or system errors, rescuing them can prevent a forced interruption from working as expected."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "In general, you should always extend "
+          },
+          {
+            "Text": "StandardError",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " or a descendant. The "
+          },
+          {
+            "Text": "Exception",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " family are usually for virtual-machine or system errors, rescuing them can prevent a forced interruption from working as expected."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101278940,
+        "id": "da3e264e-75a7-4bd0-9014-74c71a14a8c5",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101278940,
+        "parent_id": "5e89c877-9a75-45f3-90ae-ade93733b89c",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "# Defines a new custom exception called FileNotFound\nclass FileNotFound \u003c StandardError\nend\n\ndef read_file(path)\n  File.exist?(path) || raise(FileNotFound, \"File #{path} not found\")\n  File.read(path)\nend\n\nread_file(\"missing.txt\")  #=\u003e raises FileNotFound.new(\"File `missing.txt` not found\")\nread_file(\"valid.txt\")    #=\u003e reads and returns the content of the file"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "# Defines a new custom exception called FileNotFound\nclass FileNotFound \u003c StandardError\nend\n\ndef read_file(path)\n  File.exist?(path) || raise(FileNotFound, \"File #{path} not found\")\n  File.read(path)\nend\n\nread_file(\"missing.txt\")  #=\u003e raises FileNotFound.new(\"File `missing.txt` not found\")\nread_file(\"valid.txt\")    #=\u003e reads and returns the content of the file",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101278940,
+        "id": "445fae8d-998e-4bf2-a116-56d1bd87005c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101278940,
+        "parent_id": "5e89c877-9a75-45f3-90ae-ade93733b89c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "It’s common to name exceptions by adding the "
+            ],
+            [
+              "Error",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " suffix at the end:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "It’s common to name exceptions by adding the "
+          },
+          {
+            "Text": "Error",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " suffix at the end:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101278941,
+        "id": "2a9560be-362f-4532-8481-2167845e381f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101278941,
+        "parent_id": "5e89c877-9a75-45f3-90ae-ade93733b89c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "ConnectionError",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "ConnectionError",
+            "AttrFlags": 2
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101278941,
+        "id": "54643c1a-d596-4d47-bf68-424c91f41347",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101278941,
+        "parent_id": "5e89c877-9a75-45f3-90ae-ade93733b89c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "DontPanicError",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "DontPanicError",
+            "AttrFlags": 2
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101278942,
+        "id": "f72f8349-d162-41eb-8b28-e5c0bf4e50a0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101278942,
+        "parent_id": "5e89c877-9a75-45f3-90ae-ade93733b89c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "However, when the error is self-explanatory, you don’t need to add the "
+            ],
+            [
+              "Error",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " suffix because would be redundant:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "However, when the error is self-explanatory, you don’t need to add the "
+          },
+          {
+            "Text": "Error",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " suffix because would be redundant:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101278954,
+        "id": "a3406ea6-8e8d-464d-8311-2297a956a2ca",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101278954,
+        "parent_id": "5e89c877-9a75-45f3-90ae-ade93733b89c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "FileNotFound",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " vs "
+            ],
+            [
+              "FileNotFoundError",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "FileNotFound",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " vs "
+          },
+          {
+            "Text": "FileNotFoundError",
+            "AttrFlags": 2
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101278954,
+        "id": "00284d6a-d818-43ff-aa1d-f2be68140193",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101278954,
+        "parent_id": "5e89c877-9a75-45f3-90ae-ade93733b89c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "DatabaseExploded",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " vs "
+            ],
+            [
+              "DatabaseExplodedError",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "DatabaseExploded",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " vs "
+          },
+          {
+            "Text": "DatabaseExplodedError",
+            "AttrFlags": 2
+          }
+        ]
+      }
+    ],
+    "title": "Creating a custom exception type",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

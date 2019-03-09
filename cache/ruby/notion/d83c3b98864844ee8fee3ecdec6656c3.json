@@ -1,0 +1,163 @@
+{
+  "ID": "d83c3b98-8648-44ee-8fee-3ecdec6656c3",
+  "Root": {
+    "alive": true,
+    "content": [
+      "41105508-baa3-4856-8690-962e77504088",
+      "4c1e309f-00cc-4a00-a733-8aef6c26b9e1",
+      "04a39307-677e-4ff4-b3b9-6ec4ac63633d",
+      "4eb9572c-3974-48d5-aa6d-87228f02c2a0"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552101301999,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "d83c3b98-8648-44ee-8fee-3ecdec6656c3",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552101301999,
+    "parent_id": "dad9079e-f86e-45ca-a86d-64c83fac38ae",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Method Definitions are Expressions"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101301996,
+        "id": "41105508-baa3-4856-8690-962e77504088",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101301996,
+        "parent_id": "d83c3b98-8648-44ee-8fee-3ecdec6656c3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Defining a method in Ruby 2.x returns a symbol representing the name:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Defining a method in Ruby 2.x returns a symbol representing the name:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101301999,
+        "id": "4c1e309f-00cc-4a00-a733-8aef6c26b9e1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101301999,
+        "parent_id": "d83c3b98-8648-44ee-8fee-3ecdec6656c3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class Example\n  puts def hello\n  end\nend\n\n#=\u003e :hello"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class Example\n  puts def hello\n  end\nend\n\n#=\u003e :hello",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101301999,
+        "id": "04a39307-677e-4ff4-b3b9-6ec4ac63633d",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101301999,
+        "parent_id": "d83c3b98-8648-44ee-8fee-3ecdec6656c3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This allows for interesting metaprogramming techniques. For instance, methods can be wrapped by other methods:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This allows for interesting metaprogramming techniques. For instance, methods can be wrapped by other methods:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101301999,
+        "id": "4eb9572c-3974-48d5-aa6d-87228f02c2a0",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101301999,
+        "parent_id": "d83c3b98-8648-44ee-8fee-3ecdec6656c3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "class Class\n  def logged(name)\n    original_method = instance_method(name)\n    define_method(name) do |*args|\n      puts \"Calling #{name} with #{args.inspect}.\"\n      original_method.bind(self).call(*args)\n      puts \"Completed #{name}.\"\n    end\n  end\nend\n\nclass Meal\n  def initialize\n    @food = []\n  end\n  \n  logged def add(item)\n    @food \u003c\u003c item\n  end\nend\n\nmeal = Meal.new\nmeal.add \"Coffee\"\n# Calling add with [\"Coffee\"].\n# Completed add."
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "class Class\n  def logged(name)\n    original_method = instance_method(name)\n    define_method(name) do |*args|\n      puts \"Calling #{name} with #{args.inspect}.\"\n      original_method.bind(self).call(*args)\n      puts \"Completed #{name}.\"\n    end\n  end\nend\n\nclass Meal\n  def initialize\n    @food = []\n  end\n  \n  logged def add(item)\n    @food \u003c\u003c item\n  end\nend\n\nmeal = Meal.new\nmeal.add \"Coffee\"\n# Calling add with [\"Coffee\"].\n# Completed add.",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Method Definitions are Expressions",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

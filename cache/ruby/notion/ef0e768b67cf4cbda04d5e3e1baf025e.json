@@ -1,0 +1,222 @@
+{
+  "ID": "ef0e768b-67cf-4cbd-a04d-5e3e1baf025e",
+  "Root": {
+    "alive": true,
+    "content": [
+      "934d2244-6964-44e3-a12c-66cf4edb6f5a",
+      "fd2b6e3d-8469-45e6-9db7-90c93c2a45f2",
+      "bdf3d0e0-e5c9-4a52-a84d-55023fd5bedb",
+      "85b73109-4492-4f34-a845-4d3b8e7e37fe"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552102154901,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "ef0e768b-67cf-4cbd-a04d-5e3e1baf025e",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552102154901,
+    "parent_id": "cb0e2d47-43c5-4809-b173-e764dfc894dc",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Dynamically Creating Methods from Strings"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552102154900,
+        "id": "934d2244-6964-44e3-a12c-66cf4edb6f5a",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552102154900,
+        "parent_id": "ef0e768b-67cf-4cbd-a04d-5e3e1baf025e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Ruby offers "
+            ],
+            [
+              "define_method",
+              [
+                [
+                  "c"
+                ],
+                [
+                  "a",
+                  "http://ruby-doc.org/core-2.3.1/Module.html#method-i-define_method"
+                ]
+              ]
+            ],
+            [
+              " as a private method on modules and classes for defining new instance methods. However, the ‘body’ of the method must be a "
+            ],
+            [
+              "Proc",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " or another existing method."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Ruby offers "
+          },
+          {
+            "Text": "define_method",
+            "AttrFlags": 2,
+            "Link": "http://ruby-doc.org/core-2.3.1/Module.html#method-i-define_method"
+          },
+          {
+            "Text": " as a private method on modules and classes for defining new instance methods. However, the ‘body’ of the method must be a "
+          },
+          {
+            "Text": "Proc",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " or another existing method."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552102154901,
+        "id": "fd2b6e3d-8469-45e6-9db7-90c93c2a45f2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552102154901,
+        "parent_id": "ef0e768b-67cf-4cbd-a04d-5e3e1baf025e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "One way to create a method from raw string data is to use "
+            ],
+            [
+              "eval",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " to create a Proc from the code:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "One way to create a method from raw string data is to use "
+          },
+          {
+            "Text": "eval",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " to create a Proc from the code:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552102154901,
+        "id": "bdf3d0e0-e5c9-4a52-a84d-55023fd5bedb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552102154901,
+        "parent_id": "ef0e768b-67cf-4cbd-a04d-5e3e1baf025e",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "xml = \u003c\u003cENDXML\n\u003cmethods\u003e\n  \u003cmethod name=\"go\"\u003eputs \"I'm going!\"\u003c/method\u003e\n  \u003cmethod name=\"stop\"\u003e7*6\u003c/method\u003e\n\u003c/methods\u003e\nENDXML\n\nclass Foo\n  def self.add_method(name,code)\n    body = eval( \"Proc.new{ #{code} }\" )\n    define_method(name,body)\n  end\nend\n\nrequire 'nokogiri' # gem install nokogiri\ndoc = Nokogiri.XML(xml)\ndoc.xpath('//method').each do |meth|\n  Foo.add_method( meth['name'], meth.text )\nend"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "xml = \u003c\u003cENDXML\n\u003cmethods\u003e\n  \u003cmethod name=\"go\"\u003eputs \"I'm going!\"\u003c/method\u003e\n  \u003cmethod name=\"stop\"\u003e7*6\u003c/method\u003e\n\u003c/methods\u003e\nENDXML\n\nclass Foo\n  def self.add_method(name,code)\n    body = eval( \"Proc.new{ #{code} }\" )\n    define_method(name,body)\n  end\nend\n\nrequire 'nokogiri' # gem install nokogiri\ndoc = Nokogiri.XML(xml)\ndoc.xpath('//method').each do |meth|\n  Foo.add_method( meth['name'], meth.text )\nend",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552102154901,
+        "id": "85b73109-4492-4f34-a845-4d3b8e7e37fe",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552102154901,
+        "parent_id": "ef0e768b-67cf-4cbd-a04d-5e3e1baf025e",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "f = Foo.new\np Foo.instance_methods(false)  #=\u003e [:go, :stop]\np f.public_methods(false)      #=\u003e [:go, :stop]\nf.go                           #=\u003e \"I'm going!\"\np f.stop                       #=\u003e 42"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "f = Foo.new\np Foo.instance_methods(false)  #=\u003e [:go, :stop]\np f.public_methods(false)      #=\u003e [:go, :stop]\nf.go                           #=\u003e \"I'm going!\"\np f.stop                       #=\u003e 42",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Dynamically Creating Methods from Strings",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

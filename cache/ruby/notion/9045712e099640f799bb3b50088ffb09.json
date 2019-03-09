@@ -1,0 +1,269 @@
+{
+  "ID": "9045712e-0996-40f7-99bb-3b50088ffb09",
+  "Root": {
+    "alive": true,
+    "content": [
+      "72262413-dbdc-428c-8123-4dbd7d170bda",
+      "56caa486-78a1-436f-bbee-1fce4feb3641",
+      "0b705fe9-f9f9-48af-bcb2-8c19922f9974",
+      "03e77d65-a2e4-436f-ba38-3b9924ca060e",
+      "efb799dc-f722-4486-a6b8-d1f38febf47f",
+      "e2a77c9b-40f5-4fc4-8d9d-5b520dacae40",
+      "b6fe1132-f381-46bc-a326-bb2990c2827e",
+      "22a2beeb-cf2a-4a68-8dee-55650f91f930"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552101905895,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "9045712e-0996-40f7-99bb-3b50088ffb09",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552101905895,
+    "parent_id": "fcfe325e-bfdb-4741-9e78-def959689142",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Merging Two Queues"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101905894,
+        "id": "72262413-dbdc-428c-8123-4dbd7d170bda",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101905894,
+        "parent_id": "9045712e-0996-40f7-99bb-3b50088ffb09",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To avoid infinitely blocking, reading from queues shouldn’t happen on the thread merge is happening on."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To avoid infinitely blocking, reading from queues shouldn’t happen on the thread merge is happening on."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101905894,
+        "id": "56caa486-78a1-436f-bbee-1fce4feb3641",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101905894,
+        "parent_id": "9045712e-0996-40f7-99bb-3b50088ffb09",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To avoid synchronization or infinitely waiting for one of queues while other has data, reading from queues shouldn’t happen on same thread."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "To avoid synchronization or infinitely waiting for one of queues while other has data, reading from queues shouldn’t happen on same thread."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101905895,
+        "id": "0b705fe9-f9f9-48af-bcb2-8c19922f9974",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101905895,
+        "parent_id": "9045712e-0996-40f7-99bb-3b50088ffb09",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Let’s start by defining and populating two queues:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Let’s start by defining and populating two queues:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101905895,
+        "id": "03e77d65-a2e4-436f-ba38-3b9924ca060e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101905895,
+        "parent_id": "9045712e-0996-40f7-99bb-3b50088ffb09",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "q1 = Queue.new\nq2 = Queue.new\n(1..100).each { |e| q1 \u003c\u003c e }\n(101..200).each { |e| q2 \u003c\u003c e }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "q1 = Queue.new\nq2 = Queue.new\n(1..100).each { |e| q1 \u003c\u003c e }\n(101..200).each { |e| q2 \u003c\u003c e }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101905895,
+        "id": "efb799dc-f722-4486-a6b8-d1f38febf47f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101905895,
+        "parent_id": "9045712e-0996-40f7-99bb-3b50088ffb09",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "We should create another queue and push data from other threads into it:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "We should create another queue and push data from other threads into it:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101905895,
+        "id": "e2a77c9b-40f5-4fc4-8d9d-5b520dacae40",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101905895,
+        "parent_id": "9045712e-0996-40f7-99bb-3b50088ffb09",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "merged = Queue.new\n\n[q1, q2].map do |q|\n  Thread.new do\n    loop do\n      merged \u003c\u003c q.pop\n    end\n  end\nend"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "merged = Queue.new\n\n[q1, q2].map do |q|\n  Thread.new do\n    loop do\n      merged \u003c\u003c q.pop\n    end\n  end\nend",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101905895,
+        "id": "b6fe1132-f381-46bc-a326-bb2990c2827e",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101905895,
+        "parent_id": "9045712e-0996-40f7-99bb-3b50088ffb09",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "If you know you can completely consume both queues (consumption speed is higher than production, you won’t run out of RAM) there is a simpler approach:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "If you know you can completely consume both queues (consumption speed is higher than production, you won’t run out of RAM) there is a simpler approach:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101905895,
+        "id": "22a2beeb-cf2a-4a68-8dee-55650f91f930",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101905895,
+        "parent_id": "9045712e-0996-40f7-99bb-3b50088ffb09",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "merged = Queue.new\nmerged \u003c\u003c q1.pop until q1.empty?\nmerged \u003c\u003c q2.pop until q2.empty?"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "merged = Queue.new\nmerged \u003c\u003c q1.pop until q1.empty?\nmerged \u003c\u003c q2.pop until q2.empty?",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Merging Two Queues",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

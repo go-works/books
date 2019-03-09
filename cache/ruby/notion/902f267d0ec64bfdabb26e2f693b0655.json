@@ -1,0 +1,153 @@
+{
+  "ID": "902f267d-0ec6-4bfd-abb2-6e2f693b0655",
+  "Root": {
+    "alive": true,
+    "content": [
+      "7206906b-cebd-456d-843b-0f943d6fb731",
+      "88072a1b-0ac5-4c4b-9912-e8d6b29721b1",
+      "b0eee8a9-5b0b-427b-ae08-e3cad4d88458"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552102240885,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "902f267d-0ec6-4bfd-abb2-6e2f693b0655",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552102240885,
+    "parent_id": "3d619f09-c104-4572-a105-9167b3454634",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Dual-purpose modules refinements or global patches"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552102240883,
+        "id": "7206906b-cebd-456d-843b-0f943d6fb731",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552102240883,
+        "parent_id": "902f267d-0ec6-4bfd-abb2-6e2f693b0655",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "It’s a good practice to scope patches using Refinements, but sometimes it’s nice to load it globally (for example in development, or testing)."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "It’s a good practice to scope patches using Refinements, but sometimes it’s nice to load it globally (for example in development, or testing)."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552102240884,
+        "id": "88072a1b-0ac5-4c4b-9912-e8d6b29721b1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552102240884,
+        "parent_id": "902f267d-0ec6-4bfd-abb2-6e2f693b0655",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Say for example you want to start a console, require your library, and then have the patched methods available in the global scope. You couldn’t do this with refinements because "
+            ],
+            [
+              "using",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " needs to be called in a class/module definition. But it’s possible to write the code in such a way that it’s dual purpose:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Say for example you want to start a console, require your library, and then have the patched methods available in the global scope. You couldn’t do this with refinements because "
+          },
+          {
+            "Text": "using",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " needs to be called in a class/module definition. But it’s possible to write the code in such a way that it’s dual purpose:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552102240885,
+        "id": "b0eee8a9-5b0b-427b-ae08-e3cad4d88458",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552102240885,
+        "parent_id": "902f267d-0ec6-4bfd-abb2-6e2f693b0655",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "module Patch\n  def patched?; true; end\n  refine String do\n    include Patch\n  end\nend\n\n# globally\nString.include Patch\n\"\".patched? # =\u003e true\n\n# refinement\nclass LoadPatch\n  using Patch\n  \"\".patched? # =\u003e true\nend"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "module Patch\n  def patched?; true; end\n  refine String do\n    include Patch\n  end\nend\n\n# globally\nString.include Patch\n\"\".patched? # =\u003e true\n\n# refinement\nclass LoadPatch\n  using Patch\n  \"\".patched? # =\u003e true\nend",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Dual-purpose modules refinements or global patches",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

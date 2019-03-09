@@ -1,0 +1,109 @@
+{
+  "ID": "7ea63594-9029-4c18-a19f-6e6ba2e93871",
+  "Root": {
+    "alive": true,
+    "content": [
+      "cb783042-9c9a-4f35-9628-c18d719d5205",
+      "629e2b99-3d0a-4b4b-83c0-3f59fdfcadda"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552102240036,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "7ea63594-9029-4c18-a19f-6e6ba2e93871",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552102240036,
+    "parent_id": "3d619f09-c104-4572-a105-9167b3454634",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Monkey patching with limited scope"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552102240033,
+        "id": "cb783042-9c9a-4f35-9628-c18d719d5205",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552102240033,
+        "parent_id": "7ea63594-9029-4c18-a19f-6e6ba2e93871",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Monkey patching’s main issue is that it pollutes the global scope. Your code working is at the mercy of all the modules you use not stepping on each others toes. The Ruby solution to this is refinements, which are basically monkey patches in a limited scope."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Monkey patching’s main issue is that it pollutes the global scope. Your code working is at the mercy of all the modules you use not stepping on each others toes. The Ruby solution to this is refinements, which are basically monkey patches in a limited scope."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552102240036,
+        "id": "629e2b99-3d0a-4b4b-83c0-3f59fdfcadda",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552102240036,
+        "parent_id": "7ea63594-9029-4c18-a19f-6e6ba2e93871",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "module Patches\n  refine Fixnum do\n    def plus_one\n      self + 1\n    end\n\n    def plus(num)\n      self + num\n    end\n\n    def concat_one\n      self.to_s + '1'\n    end\n  end\nend\n\nclass RefinementTest\n  # has access to our patches\n  using Patches\n\n  def initialize\n    puts 1.plus_one\n    puts 3.concat_one\n  end\nend\n\n# Main scope doesn't have changes\n\n1.plus_one\n# =\u003e undefined method `plus_one' for 1:Fixnum (NoMethodError)\n\nRefinementTest.new\n# =\u003e 2\n# =\u003e '31'"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "module Patches\n  refine Fixnum do\n    def plus_one\n      self + 1\n    end\n\n    def plus(num)\n      self + num\n    end\n\n    def concat_one\n      self.to_s + '1'\n    end\n  end\nend\n\nclass RefinementTest\n  # has access to our patches\n  using Patches\n\n  def initialize\n    puts 1.plus_one\n    puts 3.concat_one\n  end\nend\n\n# Main scope doesn't have changes\n\n1.plus_one\n# =\u003e undefined method `plus_one' for 1:Fixnum (NoMethodError)\n\nRefinementTest.new\n# =\u003e 2\n# =\u003e '31'",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Monkey patching with limited scope",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

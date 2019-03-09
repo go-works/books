@@ -1,0 +1,369 @@
+{
+  "ID": "1151ff22-8bde-45df-a951-554269ff6e26",
+  "Root": {
+    "alive": true,
+    "content": [
+      "0e50b433-094f-4521-b476-77b2e61d7bd7",
+      "3f5da323-2e71-4c0a-ae27-70ae671044b8",
+      "aae7a840-2a31-427b-9606-e85cf9cf1ddf",
+      "c7881855-72e0-4fd1-b656-2612637b1d48",
+      "e627675c-f205-4173-9eb8-4b3d6928ae7c",
+      "625b27a3-b253-404a-a67a-49dd2d4280f8",
+      "a547f892-8f52-46bf-99eb-2acf0d2b268f",
+      "3ede1f49-cc90-4124-b885-965175aa5bb6",
+      "c76ea097-93af-4a5f-bc17-9f5783f989ed"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552101900986,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "1151ff22-8bde-45df-a951-554269ff6e26",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552101900986,
+    "parent_id": "fcfe325e-bfdb-4741-9e78-def959689142",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "One Source - Pipeline of Work - One Sink"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101900984,
+        "id": "0e50b433-094f-4521-b476-77b2e61d7bd7",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101900984,
+        "parent_id": "1151ff22-8bde-45df-a951-554269ff6e26",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "We want to process data in parallel and push it down the line to be processed by other workers."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "We want to process data in parallel and push it down the line to be processed by other workers."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101900985,
+        "id": "3f5da323-2e71-4c0a-ae27-70ae671044b8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101900985,
+        "parent_id": "1151ff22-8bde-45df-a951-554269ff6e26",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Since Workers both consume and produce data we have to create two queues:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Since Workers both consume and produce data we have to create two queues:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101900985,
+        "id": "aae7a840-2a31-427b-9606-e85cf9cf1ddf",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101900985,
+        "parent_id": "1151ff22-8bde-45df-a951-554269ff6e26",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "first_input_source = Queue.new\nfirst_output_sink  = Queue.new\n100.times { |i| first_input_source \u003c\u003c i }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "first_input_source = Queue.new\nfirst_output_sink  = Queue.new\n100.times { |i| first_input_source \u003c\u003c i }",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101900985,
+        "id": "c7881855-72e0-4fd1-b656-2612637b1d48",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101900985,
+        "parent_id": "1151ff22-8bde-45df-a951-554269ff6e26",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "First wave of workers read an item from "
+            ],
+            [
+              "first_input_source",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", process the item, and write results in "
+            ],
+            [
+              "first_output_sink",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ":"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "First wave of workers read an item from "
+          },
+          {
+            "Text": "first_input_source",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", process the item, and write results in "
+          },
+          {
+            "Text": "first_output_sink",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ":"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101900985,
+        "id": "e627675c-f205-4173-9eb8-4b3d6928ae7c",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101900985,
+        "parent_id": "1151ff22-8bde-45df-a951-554269ff6e26",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "(1..16).to_a.map do\n  Thread.new do\n    loop do\n      item = first_input_source.pop\n      first_output_source \u003c\u003c item ** 2\n      first_output_source \u003c\u003c item ** 3\n    end\n  end\nend"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "(1..16).to_a.map do\n  Thread.new do\n    loop do\n      item = first_input_source.pop\n      first_output_source \u003c\u003c item ** 2\n      first_output_source \u003c\u003c item ** 3\n    end\n  end\nend",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101900985,
+        "id": "625b27a3-b253-404a-a67a-49dd2d4280f8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101900985,
+        "parent_id": "1151ff22-8bde-45df-a951-554269ff6e26",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Second wave of workers uses "
+            ],
+            [
+              "first_output_sink",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " as its input source and reads, process then writes to another output sink:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Second wave of workers uses "
+          },
+          {
+            "Text": "first_output_sink",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " as its input source and reads, process then writes to another output sink:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101900985,
+        "id": "a547f892-8f52-46bf-99eb-2acf0d2b268f",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101900985,
+        "parent_id": "1151ff22-8bde-45df-a951-554269ff6e26",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "second_input_source = first_output_sink\nsecond_output_sink  = Queue.new\n\n(1..32).to_a.map do\n  Thread.new do\n    loop do\n      item = second_input_source.pop\n      second_output_sink \u003c\u003c item * 2\n      second_output_sink \u003c\u003c item * 3\n    end\n  end\nend"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "second_input_source = first_output_sink\nsecond_output_sink  = Queue.new\n\n(1..32).to_a.map do\n  Thread.new do\n    loop do\n      item = second_input_source.pop\n      second_output_sink \u003c\u003c item * 2\n      second_output_sink \u003c\u003c item * 3\n    end\n  end\nend",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101900986,
+        "id": "3ede1f49-cc90-4124-b885-965175aa5bb6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101900986,
+        "parent_id": "1151ff22-8bde-45df-a951-554269ff6e26",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Now "
+            ],
+            [
+              "second_output_sink",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is the sink, let’s convert it to an array:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Now "
+          },
+          {
+            "Text": "second_output_sink",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is the sink, let’s convert it to an array:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552101900986,
+        "id": "c76ea097-93af-4a5f-bc17-9f5783f989ed",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552101900986,
+        "parent_id": "1151ff22-8bde-45df-a951-554269ff6e26",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "sleep 5 # workaround in place of synchronization\nsink = second_output_sink\n[].tap { |a| a \u003c\u003c sink.pop until sink.empty? }"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "sleep 5 # workaround in place of synchronization\nsink = second_output_sink\n[].tap { |a| a \u003c\u003c sink.pop until sink.empty? }",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "One Source - Pipeline of Work - One Sink",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}
