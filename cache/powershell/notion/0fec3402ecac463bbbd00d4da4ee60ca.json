@@ -1,0 +1,196 @@
+{
+  "ID": "0fec3402-ecac-463b-bbd0-0d4da4ee60ca",
+  "Root": {
+    "alive": true,
+    "content": [
+      "c33ce4a9-b04f-4796-8135-3cc6d52bb944",
+      "ee753182-06ff-4c38-8119-6bd10b0d4809",
+      "98083998-d32e-474a-820b-91ed146c9ba8"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552099269854,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "0fec3402-ecac-463b-bbd0-0d4da4ee60ca",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552099269854,
+    "parent_id": "88016185-6ae1-48cd-8808-b263af18e5ba",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Quick Start Decoding"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552099269849,
+        "id": "c33ce4a9-b04f-4796-8135-3cc6d52bb944",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552099269849,
+        "parent_id": "0fec3402-ecac-463b-bbd0-0d4da4ee60ca",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Note:",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " these examples use the variables created in the "
+            ],
+            [
+              "Quick Start: Encoding",
+              [
+                [
+                  "i"
+                ]
+              ]
+            ],
+            [
+              " section above."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Note:",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " these examples use the variables created in the "
+          },
+          {
+            "Text": "Quick Start: Encoding",
+            "AttrFlags": 4
+          },
+          {
+            "Text": " section above."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552099269851,
+        "id": "ee753182-06ff-4c38-8119-6bd10b0d4809",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552099269851,
+        "parent_id": "0fec3402-ecac-463b-bbd0-0d4da4ee60ca",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "# url1: http%3A%2F%2Ftest.com%3Ftest%3Dmy%20value\n[uri]::UnescapeDataString($url1)\n# Returns: http://test.com?test=my value\n\n# url2: http://test.com?test=my%20value\n[uri]::UnescapeDataString($url2)\n# Returns: http://test.com?test=my value\n\n# url3: http%3a%2f%2ftest.com%3ftest%3dmy+value\n[uri]::UnescapeDataString($url3)\n# Returns: http://test.com?test=my+value\n\n# Note: There is no `[uri]::UnescapeUriString()`; \n#       which makes sense since the `[uri]::UnescapeDataString()` \n#       function handles everything it would handle plus more.\n\n# HttpUtility requires at least .NET 1.1 to be installed.\n# url1: http%3A%2F%2Ftest.com%3Ftest%3Dmy%20value\n[System.Web.HttpUtility]::UrlDecode($url1)\n# Returns: http://test.com?test=my value\n\n# HttpUtility requires at least .NET 1.1 to be installed.\n# url2: http://test.com?test=my%20value\n[System.Web.HttpUtility]::UrlDecode($url2)\n# Returns: http://test.com?test=my value\n\n# HttpUtility requires at least .NET 1.1 to be installed.\n# url3: http%3a%2f%2ftest.com%3ftest%3dmy+value\n[System.Web.HttpUtility]::UrlDecode($url3)\n# Returns: http://test.com?test=my value"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "# url1: http%3A%2F%2Ftest.com%3Ftest%3Dmy%20value\n[uri]::UnescapeDataString($url1)\n# Returns: http://test.com?test=my value\n\n# url2: http://test.com?test=my%20value\n[uri]::UnescapeDataString($url2)\n# Returns: http://test.com?test=my value\n\n# url3: http%3a%2f%2ftest.com%3ftest%3dmy+value\n[uri]::UnescapeDataString($url3)\n# Returns: http://test.com?test=my+value\n\n# Note: There is no `[uri]::UnescapeUriString()`; \n#       which makes sense since the `[uri]::UnescapeDataString()` \n#       function handles everything it would handle plus more.\n\n# HttpUtility requires at least .NET 1.1 to be installed.\n# url1: http%3A%2F%2Ftest.com%3Ftest%3Dmy%20value\n[System.Web.HttpUtility]::UrlDecode($url1)\n# Returns: http://test.com?test=my value\n\n# HttpUtility requires at least .NET 1.1 to be installed.\n# url2: http://test.com?test=my%20value\n[System.Web.HttpUtility]::UrlDecode($url2)\n# Returns: http://test.com?test=my value\n\n# HttpUtility requires at least .NET 1.1 to be installed.\n# url3: http%3a%2f%2ftest.com%3ftest%3dmy+value\n[System.Web.HttpUtility]::UrlDecode($url3)\n# Returns: http://test.com?test=my value",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552099269854,
+        "id": "98083998-d32e-474a-820b-91ed146c9ba8",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552099269854,
+        "parent_id": "0fec3402-ecac-463b-bbd0-0d4da4ee60ca",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Note:",
+              [
+                [
+                  "b"
+                ]
+              ]
+            ],
+            [
+              " "
+            ],
+            [
+              "More info on HTTPUtility",
+              [
+                [
+                  "a",
+                  "https://msdn.microsoft.com/en-us/library/system.web.httputility(v=vs.110).aspx"
+                ]
+              ]
+            ],
+            [
+              "."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Note:",
+            "AttrFlags": 1
+          },
+          {
+            "Text": " "
+          },
+          {
+            "Text": "More info on HTTPUtility",
+            "Link": "https://msdn.microsoft.com/en-us/library/system.web.httputility(v=vs.110).aspx"
+          },
+          {
+            "Text": "."
+          }
+        ]
+      }
+    ],
+    "title": "Quick Start Decoding",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

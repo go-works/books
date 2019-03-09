@@ -1,0 +1,207 @@
+{
+  "ID": "2278dc54-c89b-43ab-9e9c-b69ae9342c59",
+  "Root": {
+    "alive": true,
+    "content": [
+      "6076b40b-e886-4a78-afcb-801af9146c0b",
+      "c3e196c5-65fa-4104-8f7e-adeb9ad43954",
+      "2dc122db-779f-46be-b88b-7b917a7bcc76",
+      "106cd557-daee-46bc-a0c3-75cf67423425",
+      "2c10d782-09e0-46a7-90b4-96dc123599bb"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552099628920,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "2278dc54-c89b-43ab-9e9c-b69ae9342c59",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552099628920,
+    "parent_id": "9505364a-5bbd-4d06-a463-606b2eab668b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Detect Image Labels with AWS Rekognition"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552099628904,
+        "id": "6076b40b-e886-4a78-afcb-801af9146c0b",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552099628904,
+        "parent_id": "2278dc54-c89b-43ab-9e9c-b69ae9342c59",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "$BucketName = 'trevorrekognition'\n$FileName = 'kitchen.jpg'\n\nNew-S3Bucket -BucketName $BucketName\nWrite-S3Object -BucketName $BucketName -File $FileName\n$REKResult = Find-REKLabel -Region us-east-1 -ImageBucket $BucketName -ImageName $FileName\n\n$REKResult.Labels"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "$BucketName = 'trevorrekognition'\n$FileName = 'kitchen.jpg'\n\nNew-S3Bucket -BucketName $BucketName\nWrite-S3Object -BucketName $BucketName -File $FileName\n$REKResult = Find-REKLabel -Region us-east-1 -ImageBucket $BucketName -ImageName $FileName\n\n$REKResult.Labels",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552099628919,
+        "id": "c3e196c5-65fa-4104-8f7e-adeb9ad43954",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552099628919,
+        "parent_id": "2278dc54-c89b-43ab-9e9c-b69ae9342c59",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "After running the script above, you should have results printed in your PowerShell host that look something similar to the following:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "After running the script above, you should have results printed in your PowerShell host that look something similar to the following:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552099628919,
+        "id": "2dc122db-779f-46be-b88b-7b917a7bcc76",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552099628919,
+        "parent_id": "2278dc54-c89b-43ab-9e9c-b69ae9342c59",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "RESULTS:\n\nConfidence Name\n---------- ----\n86.87605   Indoors\n86.87605   Interior Design\n86.87605   Room\n77.4853    Kitchen\n77.25354   Housing\n77.25354   Loft\n66.77325   Appliance\n66.77325   Oven"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "RESULTS:\n\nConfidence Name\n---------- ----\n86.87605   Indoors\n86.87605   Interior Design\n86.87605   Room\n77.4853    Kitchen\n77.25354   Housing\n77.25354   Loft\n66.77325   Appliance\n66.77325   Oven",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552099628919,
+        "id": "106cd557-daee-46bc-a0c3-75cf67423425",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552099628919,
+        "parent_id": "2278dc54-c89b-43ab-9e9c-b69ae9342c59",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Using the AWS PowerShell module in conjunction with the AWS Rekognition service, you can detect labels in an image, such as identifying objects in a room, attributes about photos you took, and the corresponding confidence level that AWS Rekognition has for each of those attributes."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Using the AWS PowerShell module in conjunction with the AWS Rekognition service, you can detect labels in an image, such as identifying objects in a room, attributes about photos you took, and the corresponding confidence level that AWS Rekognition has for each of those attributes."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552099628920,
+        "id": "2c10d782-09e0-46a7-90b4-96dc123599bb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552099628920,
+        "parent_id": "2278dc54-c89b-43ab-9e9c-b69ae9342c59",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The "
+            ],
+            [
+              "Find-REKLabel",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " command is the one that enables you to invoke a search for these attributes / labels. While you can provide image content as a byte array during the API call, a better method is to upload your image files to an AWS S3 Bucket, and then point the Rekognition service over to the S3 Objects that you want to analyze. The example above shows how to accomplish this."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "The "
+          },
+          {
+            "Text": "Find-REKLabel",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " command is the one that enables you to invoke a search for these attributes / labels. While you can provide image content as a byte array during the API call, a better method is to upload your image files to an AWS S3 Bucket, and then point the Rekognition service over to the S3 Objects that you want to analyze. The example above shows how to accomplish this."
+          }
+        ]
+      }
+    ],
+    "title": "Detect Image Labels with AWS Rekognition",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

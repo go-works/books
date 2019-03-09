@@ -1,0 +1,83 @@
+{
+  "ID": "17550a7e-f7a3-449c-9143-10bab9de0989",
+  "Root": {
+    "alive": true,
+    "content": [
+      "4fda8ce2-d205-4bf4-ad7f-d7062f392137"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552099600841,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "17550a7e-f7a3-449c-9143-10bab9de0989",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552099600841,
+    "parent_id": "75390aa6-2be6-4de3-87e6-10715c9026cf",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Anonymize IP address in text file"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552099600838,
+        "id": "4fda8ce2-d205-4bf4-ad7f-d7062f392137",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552099600838,
+        "parent_id": "17550a7e-f7a3-449c-9143-10bab9de0989",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "# Read a text file and replace the IPv4 and IPv6 by fake IP Address\n\n\n# Describe all variables \n$SourceFile = \"C:\\sourcefile.txt\"\n$IPv4File = \"C:\\IPV4.txt\"\n$DestFile = \"C:\\ANONYM.txt\"\n$Regex_v4 = \"(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})\"\n$Anonym_v4 = \"XXX.XXX.XXX.XXX\"\n$Regex_v6 = \"((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((b((25[0-5])|(1d{2})|(2[0-4]d)|(d{1,2}))b).){3}(b((25[0-5])|(1d{2})|(2[0-4]d)|(d{1,2}))b))|(([0-9A-Fa-f]{1,4}:){0,5}:((b((25[0-5])|(1d{2})|(2[0-4]d)|(d{1,2}))b).){3}(b((25[0-5])|(1d{2})|(2[0-4]d)|(d{1,2}))b))|(::([0-9A-Fa-f]{1,4}:){0,5}((b((25[0-5])|(1d{2})|(2[0-4]d)|(d{1,2}))b).){3}(b((25[0-5])|(1d{2})|(2[0-4]d)|(d{1,2}))b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))\"\n$Anonym_v6 = \"YYYY:YYYY:YYYY:YYYY:YYYY:YYYY:YYYY:YYYY\"\n$SuffixName = \"-ANONYM.\"\n$AnonymFile = ($Parts[0] + $SuffixName + $Parts[1])\n\n# Replace matching IPv4 from sourcefile and creating a temp file IPV4.txt\nGet-Content $SourceFile | Foreach-Object {$_ -replace $Regex_v4, $Anonym_v4} | Set-Content $IPv4File\n\n# Replace matching IPv6 from IPV4.txt and creating a temp file ANONYM.txt\nGet-Content $IPv4File | Foreach-Object {$_ -replace $Regex_v6, $Anonym_v6} | Set-Content $DestFile\n\n# Delete temp IPV4.txt file\nRemove-Item $IPv4File\n\n# Rename ANONYM.txt in sourcefile-ANONYM.txt\n$Parts = $SourceFile.Split(\".\")\nIf (Test-Path $AnonymFile)\n{\n    Remove-Item $AnonymFile\n    Rename-Item $DestFile -NewName $AnonymFile\n    }\n    Else\n    {\n    Rename-Item $DestFile -NewName $AnonymFile\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "# Read a text file and replace the IPv4 and IPv6 by fake IP Address\n\n\n# Describe all variables \n$SourceFile = \"C:\\sourcefile.txt\"\n$IPv4File = \"C:\\IPV4.txt\"\n$DestFile = \"C:\\ANONYM.txt\"\n$Regex_v4 = \"(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})\"\n$Anonym_v4 = \"XXX.XXX.XXX.XXX\"\n$Regex_v6 = \"((([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}:[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){5}:([0-9A-Fa-f]{1,4}:)?[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){4}:([0-9A-Fa-f]{1,4}:){0,2}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){3}:([0-9A-Fa-f]{1,4}:){0,3}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){2}:([0-9A-Fa-f]{1,4}:){0,4}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){6}((b((25[0-5])|(1d{2})|(2[0-4]d)|(d{1,2}))b).){3}(b((25[0-5])|(1d{2})|(2[0-4]d)|(d{1,2}))b))|(([0-9A-Fa-f]{1,4}:){0,5}:((b((25[0-5])|(1d{2})|(2[0-4]d)|(d{1,2}))b).){3}(b((25[0-5])|(1d{2})|(2[0-4]d)|(d{1,2}))b))|(::([0-9A-Fa-f]{1,4}:){0,5}((b((25[0-5])|(1d{2})|(2[0-4]d)|(d{1,2}))b).){3}(b((25[0-5])|(1d{2})|(2[0-4]d)|(d{1,2}))b))|([0-9A-Fa-f]{1,4}::([0-9A-Fa-f]{1,4}:){0,5}[0-9A-Fa-f]{1,4})|(::([0-9A-Fa-f]{1,4}:){0,6}[0-9A-Fa-f]{1,4})|(([0-9A-Fa-f]{1,4}:){1,7}:))\"\n$Anonym_v6 = \"YYYY:YYYY:YYYY:YYYY:YYYY:YYYY:YYYY:YYYY\"\n$SuffixName = \"-ANONYM.\"\n$AnonymFile = ($Parts[0] + $SuffixName + $Parts[1])\n\n# Replace matching IPv4 from sourcefile and creating a temp file IPV4.txt\nGet-Content $SourceFile | Foreach-Object {$_ -replace $Regex_v4, $Anonym_v4} | Set-Content $IPv4File\n\n# Replace matching IPv6 from IPV4.txt and creating a temp file ANONYM.txt\nGet-Content $IPv4File | Foreach-Object {$_ -replace $Regex_v6, $Anonym_v6} | Set-Content $DestFile\n\n# Delete temp IPV4.txt file\nRemove-Item $IPv4File\n\n# Rename ANONYM.txt in sourcefile-ANONYM.txt\n$Parts = $SourceFile.Split(\".\")\nIf (Test-Path $AnonymFile)\n{\n    Remove-Item $AnonymFile\n    Rename-Item $DestFile -NewName $AnonymFile\n    }\n    Else\n    {\n    Rename-Item $DestFile -NewName $AnonymFile\n}",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Anonymize IP address in text file",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

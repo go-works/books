@@ -1,0 +1,139 @@
+{
+  "ID": "7d25d64e-1a56-4228-9c94-13734afc9130",
+  "Root": {
+    "alive": true,
+    "content": [
+      "ed255fb9-f1a9-418a-9486-b97b3e679324",
+      "4ff3ebb7-7ba8-4840-9c22-cc47cb5aee31"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552099672830,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "7d25d64e-1a56-4228-9c94-13734afc9130",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552099672830,
+    "parent_id": "abc464cc-438c-4cc3-8745-f319265f083d",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Run PowerShell Script in Scheduled Task"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552099672827,
+        "id": "ed255fb9-f1a9-418a-9486-b97b3e679324",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552099672828,
+        "parent_id": "7d25d64e-1a56-4228-9c94-13734afc9130",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Creates a scheduled task that executes immediately, then on start up to run "
+            ],
+            [
+              "C:\\myscript.ps1",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " as "
+            ],
+            [
+              "SYSTEM",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Creates a scheduled task that executes immediately, then on start up to run "
+          },
+          {
+            "Text": "C:\\myscript.ps1",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " as "
+          },
+          {
+            "Text": "SYSTEM",
+            "AttrFlags": 2
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552099672830,
+        "id": "4ff3ebb7-7ba8-4840-9c22-cc47cb5aee31",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552099672830,
+        "parent_id": "7d25d64e-1a56-4228-9c94-13734afc9130",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "$ScheduledTaskPrincipal = New-ScheduledTaskPrincipal -UserId \"SYSTEM\" -LogonType ServiceAccount\n$ScheduledTaskTrigger1 = New-ScheduledTaskTrigger -AtStartup\n$ScheduledTaskTrigger2 = New-ScheduledTaskTrigger -Once -At $(Get-Date) -RepetitionInterval \"00:01:00\" -RepetitionDuration $([timeSpan] \"24855.03:14:07\")\n$ScheduledTaskActionParams = @{\n    Execute = \"PowerShell.exe\" \n    Argument = '-executionpolicy Bypass -NonInteractive -c C:\\myscript.ps1 -verbose \u003e\u003e  C:\\output.log 2\u003e\u00261\"'\n}\n$ScheduledTaskAction = New-ScheduledTaskAction @ScheduledTaskActionParams\nRegister-ScheduledTask -Principal $ScheduledTaskPrincipal -Trigger @($ScheduledTaskTrigger1,$ScheduledTaskTrigger2) -TaskName \"Example Task\" -Action $ScheduledTaskAction"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "$ScheduledTaskPrincipal = New-ScheduledTaskPrincipal -UserId \"SYSTEM\" -LogonType ServiceAccount\n$ScheduledTaskTrigger1 = New-ScheduledTaskTrigger -AtStartup\n$ScheduledTaskTrigger2 = New-ScheduledTaskTrigger -Once -At $(Get-Date) -RepetitionInterval \"00:01:00\" -RepetitionDuration $([timeSpan] \"24855.03:14:07\")\n$ScheduledTaskActionParams = @{\n    Execute = \"PowerShell.exe\" \n    Argument = '-executionpolicy Bypass -NonInteractive -c C:\\myscript.ps1 -verbose \u003e\u003e  C:\\output.log 2\u003e\u00261\"'\n}\n$ScheduledTaskAction = New-ScheduledTaskAction @ScheduledTaskActionParams\nRegister-ScheduledTask -Principal $ScheduledTaskPrincipal -Trigger @($ScheduledTaskTrigger1,$ScheduledTaskTrigger2) -TaskName \"Example Task\" -Action $ScheduledTaskAction",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Run PowerShell Script in Scheduled Task",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

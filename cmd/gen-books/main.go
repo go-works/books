@@ -233,7 +233,35 @@ var (
 		// https://www.notion.so/kjkpublic/Essential-PHP-b64d2e8d06e04dbea37e6e7d0e06bb48
 		NotionStartPageID: "b64d2e8d06e04dbea37e6e7d0e06bb48",
 	}
+	bookPowershell = &Book{
+		Title:          "PowerShell",
+		TitleLong:      "Essential PowerShell",
+		Dir:            "powershell",
+		CoverImageName: "PowerShell.png",
+		// https://www.notion.so/kjkpublic/Essential-Powershell-6042c6d3aed54250a12900e7f6b326e0
+		NotionStartPageID: "6042c6d3aed54250a12900e7f6b326e0",
+	}
+	bookReact = &Book{
+		Title:          "React",
+		TitleLong:      "Essential React",
+		Dir:            "react",
+		CoverImageName: "Ruby.png", // TODO: need the cover
+		// https://www.notion.so/kjkpublic/Essential-React-2a68b0d047344fdb97c510b64a7a3e2d
+		NotionStartPageID: "2a68b0d047344fdb97c510b64a7a3e2d",
+	}
+	bookReactNative = &Book{
+		Title:          "React Native",
+		TitleLong:      "Essential React Native",
+		Dir:            "reactnative",
+		CoverImageName: "Ruby.png", // TODO: need the cover
+		// https://www.notion.so/kjkpublic/Essential-React-Native-c7980909d5144eb5aee8b28bbe60ec9b
+		NotionStartPageID: "c7980909d5144eb5aee8b28bbe60ec9b",
+	}
 )
+
+// To download:
+// react
+// react-native
 
 var (
 	booksMain = []*Book{
@@ -244,6 +272,7 @@ var (
 	booksUnpublished = []*Book{
 		bookSql, bookAlgorithm, bookBash, bookC, bookCSS, bookGit, bookHTML,
 		bookHTMLCanvas, bookNETFramework, bookNode, bookObjectiveC, bookPHP,
+		bookPowershell, bookReact, bookReactNative,
 	}
 	allBooks = append(booksMain, booksUnpublished...)
 )

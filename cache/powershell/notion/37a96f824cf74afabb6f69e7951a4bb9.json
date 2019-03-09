@@ -1,0 +1,109 @@
+{
+  "ID": "37a96f82-4cf7-4afa-bb6f-69e7951a4bb9",
+  "Root": {
+    "alive": true,
+    "content": [
+      "9c7d6610-2540-42f0-9cfe-74a640e578f2",
+      "9fa064e3-78d3-4175-b168-28da5beac687"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552099651796,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "37a96f82-4cf7-4afa-bb6f-69e7951a4bb9",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552099651796,
+    "parent_id": "c752edd4-ff62-453e-9eaa-03223f190cae",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "C Example"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552099651793,
+        "id": "9c7d6610-2540-42f0-9cfe-74a640e578f2",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552099651793,
+        "parent_id": "37a96f82-4cf7-4afa-bb6f-69e7951a4bb9",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This example shows how to embed some basic C# into a PowerShell script, add it to the runspace/session and utilise the code within PowerShell syntax."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This example shows how to embed some basic C# into a PowerShell script, add it to the runspace/session and utilise the code within PowerShell syntax."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552099651796,
+        "id": "9fa064e3-78d3-4175-b168-28da5beac687",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552099651796,
+        "parent_id": "37a96f82-4cf7-4afa-bb6f-69e7951a4bb9",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "$code = \"\nusing System;\n\nnamespace MyNameSpace\n{\n    public class Responder\n    {\n        public static void StaticRespond()\n        {\n            Console.WriteLine(\"Static Response\");\n        }\n\n        public void Respond()\n        {\n            Console.WriteLine(\"Instance Respond\");\n        }\n    }\n}\n\"@\n\n# Check the type has not been previously added within the session, otherwise an exception is raised\nif (-not ([System.Management.Automation.PSTypeName]'MyNameSpace.Responder').Type)\n{\n    Add-Type -TypeDefinition $code -Language CSharp;\n}\n\n[MyNameSpace.Responder]::StaticRespond();\n\n$instance = New-Object MyNameSpace.Responder;\n$instance.Respond();"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "$code = \"\nusing System;\n\nnamespace MyNameSpace\n{\n    public class Responder\n    {\n        public static void StaticRespond()\n        {\n            Console.WriteLine(\"Static Response\");\n        }\n\n        public void Respond()\n        {\n            Console.WriteLine(\"Instance Respond\");\n        }\n    }\n}\n\"@\n\n# Check the type has not been previously added within the session, otherwise an exception is raised\nif (-not ([System.Management.Automation.PSTypeName]'MyNameSpace.Responder').Type)\n{\n    Add-Type -TypeDefinition $code -Language CSharp;\n}\n\n[MyNameSpace.Responder]::StaticRespond();\n\n$instance = New-Object MyNameSpace.Responder;\n$instance.Respond();",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "C Example",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

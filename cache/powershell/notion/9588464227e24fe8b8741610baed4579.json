@@ -1,0 +1,83 @@
+{
+  "ID": "95884642-27e2-4fe8-b874-1610baed4579",
+  "Root": {
+    "alive": true,
+    "content": [
+      "6621ed4c-bbd8-4750-94af-9f06edca8114"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552099576973,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "95884642-27e2-4fe8-b874-1610baed4579",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552099576973,
+    "parent_id": "15dc2243-c31b-4125-9bfc-27158ad1a14b",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Powershell Script for downloading the latest artifcat"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552099576970,
+        "id": "6621ed4c-bbd8-4750-94af-9f06edca8114",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552099576970,
+        "parent_id": "95884642-27e2-4fe8-b874-1610baed4579",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "$username = 'user'\n$password= 'password'\n$DESTINATION = \"D:\\test\\latest.tar.gz\"\n$client = New-Object System.Net.WebClient\n$client.Credentials = new-object System.Net.NetworkCredential($username, $password)\n$lastModifiedResponse = $client.DownloadString('https://domain.org.com/artifactory/api/storage/FOLDER/repo/?lastModified')\n[System.Reflection.Assembly]::LoadWithPartialName(\"System.Web.Extensions\")\n$serializer = New-Object System.Web.Script.Serialization.JavaScriptSerializer\n$getLatestModifiedResponse = $serializer.DeserializeObject($lastModifiedResponse) \n$downloaUriResponse = $getLatestModifiedResponse.uri\nWrite-Host $json.uri\n$latestArtifcatUrlResponse=$client.DownloadString($downloaUriResponse)\n[System.Reflection.Assembly]::LoadWithPartialName(\"System.Web.Extensions\")\n$serializer = New-Object System.Web.Script.Serialization.JavaScriptSerializer\n$getLatestArtifact = $serializer.DeserializeObject($latestArtifcatUrlResponse) \nWrite-Host $getLatestArtifact.downloadUri\n$SOURCE=$getLatestArtifact.downloadUri\n$client.DownloadFile($SOURCE,$DESTINATION)"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "$username = 'user'\n$password= 'password'\n$DESTINATION = \"D:\\test\\latest.tar.gz\"\n$client = New-Object System.Net.WebClient\n$client.Credentials = new-object System.Net.NetworkCredential($username, $password)\n$lastModifiedResponse = $client.DownloadString('https://domain.org.com/artifactory/api/storage/FOLDER/repo/?lastModified')\n[System.Reflection.Assembly]::LoadWithPartialName(\"System.Web.Extensions\")\n$serializer = New-Object System.Web.Script.Serialization.JavaScriptSerializer\n$getLatestModifiedResponse = $serializer.DeserializeObject($lastModifiedResponse) \n$downloaUriResponse = $getLatestModifiedResponse.uri\nWrite-Host $json.uri\n$latestArtifcatUrlResponse=$client.DownloadString($downloaUriResponse)\n[System.Reflection.Assembly]::LoadWithPartialName(\"System.Web.Extensions\")\n$serializer = New-Object System.Web.Script.Serialization.JavaScriptSerializer\n$getLatestArtifact = $serializer.DeserializeObject($latestArtifcatUrlResponse) \nWrite-Host $getLatestArtifact.downloadUri\n$SOURCE=$getLatestArtifact.downloadUri\n$client.DownloadFile($SOURCE,$DESTINATION)",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Powershell Script for downloading the latest artifcat",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

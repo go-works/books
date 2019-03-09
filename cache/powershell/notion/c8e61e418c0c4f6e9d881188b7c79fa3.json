@@ -1,0 +1,155 @@
+{
+  "ID": "c8e61e41-8c0c-4f6e-9d88-1188b7c79fa3",
+  "Root": {
+    "alive": true,
+    "content": [
+      "28ee7733-be7d-4291-9bfb-3b44ab3754bc",
+      "34b20981-2586-4b03-a898-acca6db617c1",
+      "6a502bbf-7b3c-4685-9416-648840e20458"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552098835167,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "c8e61e41-8c0c-4f6e-9d88-1188b7c79fa3",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552098835167,
+    "parent_id": "f1b117e2-2932-444c-afcf-4c55369bb710",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "TCP listener"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552098835164,
+        "id": "28ee7733-be7d-4291-9bfb-3b44ab3754bc",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552098835164,
+        "parent_id": "c8e61e41-8c0c-4f6e-9d88-1188b7c79fa3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "Function Receive-TCPMessage {\n    Param ( \n        [Parameter(Mandatory=$true, Position=0)]\n        [ValidateNotNullOrEmpty()] \n        [int] $Port\n    ) \n    Process {\n        Try { \n            # Set up endpoint and start listening\n            $endpoint = new-object System.Net.IPEndPoint([ipaddress]::any,$port) \n            $listener = new-object System.Net.Sockets.TcpListener $EndPoint\n            $listener.start() \n \n            # Wait for an incoming connection \n            $data = $listener.AcceptTcpClient() \n        \n            # Stream setup\n            $stream = $data.GetStream() \n            $bytes = New-Object System.Byte[] 1024\n\n            # Read data from stream and write it to host\n            while (($i = $stream.Read($bytes,0,$bytes.Length)) -ne 0){\n                $EncodedText = New-Object System.Text.ASCIIEncoding\n                $data = $EncodedText.GetString($bytes,0, $i)\n                Write-Output $data\n            }\n         \n            # Close TCP connection and stop listening\n            $stream.close()\n            $listener.stop()\n        }\n        Catch {\n            \"Receive Message failed with: `n\" + $Error[0]\n        }\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "Function Receive-TCPMessage {\n    Param ( \n        [Parameter(Mandatory=$true, Position=0)]\n        [ValidateNotNullOrEmpty()] \n        [int] $Port\n    ) \n    Process {\n        Try { \n            # Set up endpoint and start listening\n            $endpoint = new-object System.Net.IPEndPoint([ipaddress]::any,$port) \n            $listener = new-object System.Net.Sockets.TcpListener $EndPoint\n            $listener.start() \n \n            # Wait for an incoming connection \n            $data = $listener.AcceptTcpClient() \n        \n            # Stream setup\n            $stream = $data.GetStream() \n            $bytes = New-Object System.Byte[] 1024\n\n            # Read data from stream and write it to host\n            while (($i = $stream.Read($bytes,0,$bytes.Length)) -ne 0){\n                $EncodedText = New-Object System.Text.ASCIIEncoding\n                $data = $EncodedText.GetString($bytes,0, $i)\n                Write-Output $data\n            }\n         \n            # Close TCP connection and stop listening\n            $stream.close()\n            $listener.stop()\n        }\n        Catch {\n            \"Receive Message failed with: `n\" + $Error[0]\n        }\n    }\n}",
+        "code_language": "Plain Text"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552098835167,
+        "id": "34b20981-2586-4b03-a898-acca6db617c1",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552098835167,
+        "parent_id": "c8e61e41-8c0c-4f6e-9d88-1188b7c79fa3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Start listening with the following and capture any message in the variable "
+            ],
+            [
+              "$msg",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ":"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Start listening with the following and capture any message in the variable "
+          },
+          {
+            "Text": "$msg",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ":"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552098835167,
+        "id": "6a502bbf-7b3c-4685-9416-648840e20458",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552098835167,
+        "parent_id": "c8e61e41-8c0c-4f6e-9d88-1188b7c79fa3",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "$msg = Receive-TCPMessage -Port 29800"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "$msg = Receive-TCPMessage -Port 29800",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "TCP listener",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

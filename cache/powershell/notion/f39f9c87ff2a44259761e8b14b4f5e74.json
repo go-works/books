@@ -1,0 +1,123 @@
+{
+  "ID": "f39f9c87-ff2a-4425-9761-e8b14b4f5e74",
+  "Root": {
+    "alive": true,
+    "content": [
+      "9e5468dc-0574-4f35-9b35-fbc099b35639",
+      "95f2e617-1128-49b1-8196-668bc28b0aef",
+      "ffb76a69-0eef-43fc-a155-d2b14c4b03d6"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552098443858,
+    "id": "f39f9c87-ff2a-4425-9761-e8b14b4f5e74",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552098443858,
+    "parent_id": "11cd84fb-597b-46ce-953a-c1ed2216ed3a",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "010 Full Usage Example"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 1,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552098443855,
+        "id": "9e5468dc-0574-4f35-9b35-fbc099b35639",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552098443855,
+        "parent_id": "f39f9c87-ff2a-4425-9761-e8b14b4f5e74",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Other examples couldn’t clearly explain to me how to trigger the conditional logic."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "Other examples couldn’t clearly explain to me how to trigger the conditional logic."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552098443857,
+        "id": "95f2e617-1128-49b1-8196-668bc28b0aef",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552098443857,
+        "parent_id": "f39f9c87-ff2a-4425-9761-e8b14b4f5e74",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "This example also shows that underlying commands will also listen to the -Confirm flag!"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 1,
+        "inline_content": [
+          {
+            "Text": "This example also shows that underlying commands will also listen to the -Confirm flag!"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552098443858,
+        "id": "ffb76a69-0eef-43fc-a155-d2b14c4b03d6",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552098443858,
+        "parent_id": "f39f9c87-ff2a-4425-9761-e8b14b4f5e74",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "\u003c#\nRestart-Win32Computer\n#\u003e\n\nfunction Restart-Win32Computer \n{\n    [CmdletBinding(SupportsShouldProcess=$true,ConfirmImpact=\"High\")]\n    param (\n    [parameter(Mandatory=$true,ValueFromPipeline=$true,ValueFromPipelineByPropertyName=$true)]\n    [string[]]$computerName,\n    [parameter(Mandatory=$true)]\n    [string][ValidateSet(\"Restart\",\"LogOff\",\"Shutdown\",\"PowerOff\")] $action,\n    [boolean]$force = $false\n)\nBEGIN {\n# translate action to numeric value required by the method\nswitch($action) {\n    \"Restart\"\n    {\n        $_action = 2\n        break\n    }\n    \"LogOff\"\n    {\n        $_action = 0\n        break\n    }\n    \"Shutdown\"\n    {\n        $_action = 2\n        break\n    }\n    \"PowerOff\"\n    {\n        $_action = 8\n        break\n    }\n}\n# to force, add 4 to the value\nif($force) \n{\n    $_action += 4\n}\nwrite-verbose \"Action set to $action\"\n}\nPROCESS {\n    write-verbose \"Attempting to connect to $computername\"\n    # this is how we support -whatif and -confirm\n    # which are enabled by the SupportsShouldProcess\n    # parameter in the cmdlet bindnig\n    if($pscmdlet.ShouldProcess($computername)) {\n        get-wmiobject win32_operatingsystem -computername $computername | invoke-wmimethod -name Win32Shutdown -argumentlist $_action\n    }\n}\n} \n#Usage:\n#This will only output a description of the actions that this command would execute if -WhatIf is removed.\n'localhost','server1'| Restart-Win32Computer -action LogOff -whatif \n\n#This will request the permission of the caller to continue with this item.\n#Attention: in this example you will get two confirmation request because all cmdlets called by this cmdlet that also support ShouldProcess, will ask for their own confirmations...\n'localhost','server1'| Restart-Win32Computer -action LogOff -Confirm"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "\u003c#\nRestart-Win32Computer\n#\u003e\n\nfunction Restart-Win32Computer \n{\n    [CmdletBinding(SupportsShouldProcess=$true,ConfirmImpact=\"High\")]\n    param (\n    [parameter(Mandatory=$true,ValueFromPipeline=$true,ValueFromPipelineByPropertyName=$true)]\n    [string[]]$computerName,\n    [parameter(Mandatory=$true)]\n    [string][ValidateSet(\"Restart\",\"LogOff\",\"Shutdown\",\"PowerOff\")] $action,\n    [boolean]$force = $false\n)\nBEGIN {\n# translate action to numeric value required by the method\nswitch($action) {\n    \"Restart\"\n    {\n        $_action = 2\n        break\n    }\n    \"LogOff\"\n    {\n        $_action = 0\n        break\n    }\n    \"Shutdown\"\n    {\n        $_action = 2\n        break\n    }\n    \"PowerOff\"\n    {\n        $_action = 8\n        break\n    }\n}\n# to force, add 4 to the value\nif($force) \n{\n    $_action += 4\n}\nwrite-verbose \"Action set to $action\"\n}\nPROCESS {\n    write-verbose \"Attempting to connect to $computername\"\n    # this is how we support -whatif and -confirm\n    # which are enabled by the SupportsShouldProcess\n    # parameter in the cmdlet bindnig\n    if($pscmdlet.ShouldProcess($computername)) {\n        get-wmiobject win32_operatingsystem -computername $computername | invoke-wmimethod -name Win32Shutdown -argumentlist $_action\n    }\n}\n} \n#Usage:\n#This will only output a description of the actions that this command would execute if -WhatIf is removed.\n'localhost','server1'| Restart-Win32Computer -action LogOff -whatif \n\n#This will request the permission of the caller to continue with this item.\n#Attention: in this example you will get two confirmation request because all cmdlets called by this cmdlet that also support ShouldProcess, will ask for their own confirmations...\n'localhost','server1'| Restart-Win32Computer -action LogOff -Confirm",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "010 Full Usage Example"
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}
