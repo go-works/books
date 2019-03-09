@@ -291,10 +291,6 @@ var (
 	}
 )
 
-// To download:
-// swift
-// typescript
-
 var (
 	booksMain = []*Book{
 		bookGo, bookCsharp, bookPython, bookKotlin, bookJavaScript,

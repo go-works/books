@@ -1,0 +1,83 @@
+{
+  "ID": "6350e222-5b98-4f81-a382-ca38a02be4fa",
+  "Root": {
+    "alive": true,
+    "content": [
+      "5b2ecf15-8405-473b-8286-ac0dd738f0eb"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552106414043,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "6350e222-5b98-4f81-a382-ca38a02be4fa",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552106414043,
+    "parent_id": "c14589c3-4f59-4c6c-a29e-b754617639d1",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Directive"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552106414041,
+        "id": "5b2ecf15-8405-473b-8286-ac0dd738f0eb",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552106414041,
+        "parent_id": "6350e222-5b98-4f81-a382-ca38a02be4fa",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "interface IMyDirectiveController {\n    // specify exposed controller methods and properties here\n    getUrl(): string;\n}\n\nclass MyDirectiveController implements IMyDirectiveController {\n\n    // Inner injections, per each directive \n    public static $inject = [\"$location\", \"toaster\"];\n\n    constructor(private $location: ng.ILocationService, private toaster: any) {\n        // $location and toaster are now properties of the controller\n    }\n\n    public getUrl(): string {\n        return this.$location.url(); // utilize $location to retrieve the URL\n    }\n}\n\n/*\n * Outer injections, for run once controll. \n * For example we have all templates in one value, and we wan't to use it.\n */\nexport function myDirective(templatesUrl: ITemplates): ng.IDirective {\n    return {\n        controller: MyDirectiveController,\n        controllerAs: \"vm\",\n\n        link: (scope: ng.IScope,\n               element: ng.IAugmentedJQuery,\n               attributes: ng.IAttributes,\n               controller: IMyDirectiveController): void =\u003e {\n\n            let url = controller.getUrl();\n            element.text(\"Current URL: \" + url);\n\n        },\n\n        replace: true,\n        require: \"ngModel\",\n        restrict: \"A\",\n        templateUrl: templatesUrl.myDirective,\n    };\n}\n\nmyDirective.$inject = [\n    Templates.prototype.slug,\n];\n\n// Using slug naming across the projects simplifies change of the directive name\nmyDirective.prototype.slug = \"myDirective\";\n\n// You can place this in some bootstrap file, or have them at the same file\nangular.module(\"myApp\").\n    directive(myDirective.prototype.slug, myDirective);"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "interface IMyDirectiveController {\n    // specify exposed controller methods and properties here\n    getUrl(): string;\n}\n\nclass MyDirectiveController implements IMyDirectiveController {\n\n    // Inner injections, per each directive \n    public static $inject = [\"$location\", \"toaster\"];\n\n    constructor(private $location: ng.ILocationService, private toaster: any) {\n        // $location and toaster are now properties of the controller\n    }\n\n    public getUrl(): string {\n        return this.$location.url(); // utilize $location to retrieve the URL\n    }\n}\n\n/*\n * Outer injections, for run once controll. \n * For example we have all templates in one value, and we wan't to use it.\n */\nexport function myDirective(templatesUrl: ITemplates): ng.IDirective {\n    return {\n        controller: MyDirectiveController,\n        controllerAs: \"vm\",\n\n        link: (scope: ng.IScope,\n               element: ng.IAugmentedJQuery,\n               attributes: ng.IAttributes,\n               controller: IMyDirectiveController): void =\u003e {\n\n            let url = controller.getUrl();\n            element.text(\"Current URL: \" + url);\n\n        },\n\n        replace: true,\n        require: \"ngModel\",\n        restrict: \"A\",\n        templateUrl: templatesUrl.myDirective,\n    };\n}\n\nmyDirective.$inject = [\n    Templates.prototype.slug,\n];\n\n// Using slug naming across the projects simplifies change of the directive name\nmyDirective.prototype.slug = \"myDirective\";\n\n// You can place this in some bootstrap file, or have them at the same file\nangular.module(\"myApp\").\n    directive(myDirective.prototype.slug, myDirective);",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Directive",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}

@@ -1,0 +1,83 @@
+{
+  "ID": "fd64e276-dac8-491a-803e-de7ce040fc9f",
+  "Root": {
+    "alive": true,
+    "content": [
+      "c7de6ca5-4b5b-4cd8-a46f-9c172a8278fa"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1552106408974,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "fd64e276-dac8-491a-803e-de7ce040fc9f",
+    "ignore_block_count": true,
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1552106408974,
+    "parent_id": "9d04aa98-ad4e-4010-9d3f-002b3ff21e5f",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Extending enums without custom enum implementation"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 3,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552106408971,
+        "id": "c7de6ca5-4b5b-4cd8-a46f-9c172a8278fa",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552106408971,
+        "parent_id": "fd64e276-dac8-491a-803e-de7ce040fc9f",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Plain Text"
+            ]
+          ],
+          "title": [
+            [
+              "enum SourceEnum {\n  value1 = \u003cany\u003e'value1',\n  value2 = \u003cany\u003e'value2'\n}\n\nenum AdditionToSourceEnum {\n  value3 = \u003cany\u003e'value3',\n  value4 = \u003cany\u003e'value4'\n}\n\n// we need this type for TypeScript to resolve the types correctly\ntype TestEnumType = SourceEnum | AdditionToSourceEnum;\n// and we need this value \"instance\" to use values\nlet TestEnum = Object.assign({}, SourceEnum, AdditionToSourceEnum);\n// also works fine the TypeScript 2 feature\n// let TestEnum = { ...SourceEnum, ...AdditionToSourceEnum };\n\nfunction check(test: TestEnumType) {\n  return test === TestEnum.value2;\n}\n\nconsole.log(TestEnum.value1);\nconsole.log(TestEnum.value2 === \u003cany\u003e'value2');\nconsole.log(check(TestEnum.value2));\nconsole.log(check(TestEnum.value3));"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 1,
+        "code": "enum SourceEnum {\n  value1 = \u003cany\u003e'value1',\n  value2 = \u003cany\u003e'value2'\n}\n\nenum AdditionToSourceEnum {\n  value3 = \u003cany\u003e'value3',\n  value4 = \u003cany\u003e'value4'\n}\n\n// we need this type for TypeScript to resolve the types correctly\ntype TestEnumType = SourceEnum | AdditionToSourceEnum;\n// and we need this value \"instance\" to use values\nlet TestEnum = Object.assign({}, SourceEnum, AdditionToSourceEnum);\n// also works fine the TypeScript 2 feature\n// let TestEnum = { ...SourceEnum, ...AdditionToSourceEnum };\n\nfunction check(test: TestEnumType) {\n  return test === TestEnum.value2;\n}\n\nconsole.log(TestEnum.value1);\nconsole.log(TestEnum.value2 === \u003cany\u003e'value2');\nconsole.log(check(TestEnum.value2));\nconsole.log(check(TestEnum.value3));",
+        "code_language": "Plain Text"
+      }
+    ],
+    "title": "Extending enums without custom enum implementation",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "en",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "America/Los_Angeles",
+      "version": 19
+    }
+  ],
+  "Tables": null
+}
