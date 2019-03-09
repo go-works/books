@@ -24,6 +24,7 @@ import (
 var (
 	flgAnalytics           string
 	flgPreview             bool
+	flgAllBooks            bool
 	flgNoCache             bool
 	flgRecreateOutput      bool
 	flgUpdateOutput        bool
@@ -58,6 +59,7 @@ var (
 func parseFlags() {
 	flag.StringVar(&flgAnalytics, "analytics", "", "google analytics code")
 	flag.BoolVar(&flgPreview, "preview", false, "if true will start watching for file changes and re-build everything")
+	flag.BoolVar(&flgAllBooks, "all-books", false, "if true will do all books")
 	flag.BoolVar(&flgRecreateOutput, "recreate-output", false, "if true, recreates ouput files in cache")
 	flag.BoolVar(&flgUpdateOutput, "update-output", false, "if true, will update ouput files in cache")
 	flag.BoolVar(&flgNoCache, "no-cache", false, "if true, disables cache for notion")
@@ -374,8 +376,10 @@ func main() {
 	}
 
 	books := booksMain
-	if flgPreview {
+	if flgAllBooks {
 		books = allBooks
+	}
+	if flgPreview {
 		if len(flag.Args()) > 0 {
 			var newBooks []*Book
 			for _, name := range flag.Args() {

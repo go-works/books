@@ -89,10 +89,11 @@ func loadTemplateMaybeMust(name string) *template.Template {
 	return loadTemplateHelperMaybeMust(name, ref)
 }
 
-func execTemplateToFileSilentMaybeMust(name string, data interface{}, path string) {
+func execTemplateToFileSilentMaybeMust(name string, data interface{}, path string) error {
+	var errToReturn error
 	tmpl := loadTemplateMaybeMust(name)
 	if tmpl == nil {
-		return
+		return nil
 	}
 	var buf bytes.Buffer
 	err := tmpl.Execute(&buf, data)
@@ -101,19 +102,22 @@ func execTemplateToFileSilentMaybeMust(name string, data interface{}, path strin
 	d := buf.Bytes()
 	if doMinify {
 		d2, err := minifier.Bytes("text/html", d)
-		maybePanicIfErr(err)
+		//maybePanicIfErr(err)
 		if err == nil {
 			totalHTMLBytes += len(d)
 			totalHTMLBytesMinified += len(d2)
 			d = d2
+		} else {
+			errToReturn = err
 		}
 	}
 	err = ioutil.WriteFile(path, d, 0644)
 	maybePanicIfErr(err)
+	return errToReturn
 }
 
-func execTemplateToFileMaybeMust(name string, data interface{}, path string) {
-	execTemplateToFileSilentMaybeMust(name, data, path)
+func execTemplateToFileMaybeMust(name string, data interface{}, path string) error {
+	return execTemplateToFileSilentMaybeMust(name, data, path)
 }
 
 // PageCommon is a common information for most pages
@@ -185,7 +189,7 @@ func genAbout() {
 }
 
 // TODO: consolidate chapter/article html
-func genArticle(page *Page, currChapNo int, currArticleNo int) {
+func genArticle(book *Book, page *Page, currChapNo int, currArticleNo int) {
 	addSitemapURL(page.CanonnicalURL())
 
 	d := struct {
@@ -201,13 +205,16 @@ func genArticle(page *Page, currChapNo int, currArticleNo int) {
 	}
 
 	path := page.destFilePath()
-	execTemplateToFileSilentMaybeMust("article.tmpl.html", d, path)
+	err := execTemplateToFileSilentMaybeMust("article.tmpl.html", d, path)
+	if err != nil {
+		fmt.Printf("Failed to minify page %s in book %s\n", page.NotionID, book.Title)
+	}
 }
 
-func genChapter(page *Page, currNo int) {
+func genChapter(book *Book, page *Page, currNo int) {
 	addSitemapURL(page.CanonnicalURL())
 	for i, article := range page.Pages {
-		genArticle(article, currNo, i)
+		genArticle(book, article, currNo, i)
 	}
 
 	path := page.destFilePath()
@@ -284,7 +291,7 @@ func genBook(book *Book) {
 	addSitemapURL(book.CanonnicalURL())
 
 	for i, chapter := range book.Chapters() {
-		genChapter(chapter, i)
+		genChapter(book, chapter, i)
 	}
 
 	fmt.Printf("Generated book '%s' in %s\n", book.Title, time.Since(timeStart))
