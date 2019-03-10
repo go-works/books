@@ -220,7 +220,8 @@ func getOutputCachedForReplit(b *Book, replit *Replit, sf *SourceFile) error {
 		return nil
 	}
 
-	sha1Hex := u.Sha1HexOfBytes(sf.Data)
+	// TODO: replace with CodeToRun() ?
+	sha1Hex := u.Sha1HexOfBytes(sf.CodeSnippet)
 
 	cof := b.sha1ToCachedOutputFile[sha1Hex]
 	if cof != nil {

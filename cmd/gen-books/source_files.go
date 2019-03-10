@@ -28,6 +28,67 @@ type FileDirective struct {
 	DoOutput     bool // :output
 }
 
+// SourceFile represents source file. It comes from a code block in
+// Notion, replit, file in repository etc.
+type SourceFile struct {
+	EmbedURL string
+
+	// full path of the file
+	Path string
+	// name of the file
+	FileName string
+
+	SnippetName string
+
+	// URL on GitHub for this file
+	GitHubURL string
+	// language of the file, detected from name
+	Lang string
+
+	// for Go files, this is playground id
+	GoPlaygroundID string
+	// for some files, this is glot.io snippet id
+	GlotPlaygroundID string
+
+	PlaygroundURI string
+
+	// optional, extracted from first line of the file
+	// allows providing meta-data instruction for this file
+	Directive *FileDirective
+
+	// raw content of the code snippet with line endings normalized to '\n'
+	// it can either come from code block in Notion or a file on disk
+	// or replit etc.
+	CodeSnippet []byte
+
+	LinesRaw []string // Data split into lines
+
+	// LinesRaw after extracting directive, run cmd at the top
+	// and removing :show annotation lines
+	// This is the content to execute
+	LinesToRun []string
+
+	// the part that we want to show i.e. the parts inside
+	// :show start, :show end blocks
+	LinesCode []string
+
+	// output of running a file
+	Output string
+}
+
+// DataToRun returns content of the file after filtering, that's the
+// version we want to execute to get the output
+func (f *SourceFile) DataToRun() []byte {
+	s := strings.Join(f.LinesToRun, "\n")
+	return []byte(s)
+}
+
+// DataCode returns part of the file tbat we want to show
+func (f *SourceFile) DataCode() []byte {
+	s := strings.Join(f.LinesCode, "\n")
+	return []byte(s)
+}
+
 // strip "//" or "#" comment mark from line and return string
 // after removing the mark
 func stripComment(line string) (string, bool) {
@@ -107,65 +168,6 @@ func extractFileDirective(lines []string) (*FileDirective, []string, error) {
 		return &FileDirective{}, lines, err
 	}
 	return directive, lines[1:], nil
-}
-
-// SourceFile represents source file present in the repository
-// and embedded via https://www.onlinetool.io/gitoembed/
-type SourceFile struct {
-	EmbedURL string
-
-	// full path of the file
-	Path string
-	// name of the file
-	FileName string
-
-	SnippetName string
-
-	// URL on GitHub for this file
-	GitHubURL string
-	// language of the file, detected from name
-	Lang string
-
-	// for Go files, this is playground id
-	GoPlaygroundID string
-	// for some files, this is glot.io snippet id
-	GlotPlaygroundID string
-
-	PlaygroundURI string
-
-	// optional, extracted from first line of the file
-	// allows providing meta-data instruction for this file
-	Directive *FileDirective
-
-	// raw content of the file with line endings normalized to '\n'
-	Data []byte
-
-	LinesRaw []string // Data split into lines
-
-	// LinesRaw after extracting directive, run cmd at the top
-	// and removing :show annotation lines
-	// This is the content to execute
-	LinesToRun []string
-
-	// the part that we want to show i.e. the parts inside
-	// :show start, :show end blocks
-	LinesCode []string
-
-	// output of running a file
-	Output string
-}
-
-// DataToRun returns content of the file after filtering, that's the
-// version we want to execute to get the output
-func (f *SourceFile) DataToRun() []byte {
-	s := strings.Join(f.LinesToRun, "\n")
-	return []byte(s)
-}
-
-// DataCode returns part of the file tbat we want to show
-func (f *SourceFile) DataCode() []byte {
-	s := strings.Join(f.LinesCode, "\n")
-	return []byte(s)
 }
 
 // https://www.onlinetool.io/gitoembed/widget?url=https%3A%2F%2Fgithub.com%2Fessentialbooks%2Fbooks%2Fblob%2Fmaster%2Fbooks%2Fgo%2F0020-basic-types%2Fbooleans.go
@@ -272,8 +274,8 @@ func setGlotPlaygroundID(b *Book, sf *SourceFile) error {
 }
 
 func setSourceFileData(sf *SourceFile, data []byte) error {
-	sf.Data = data
-	sf.LinesRaw = dataToLines(sf.Data)
+	sf.CodeSnippet = data
+	sf.LinesRaw = dataToLines(sf.CodeSnippet)
 	lines := sf.LinesRaw
 	directive, lines, err := extractFileDirective(lines)
 	sf.Directive = directive
