@@ -324,7 +324,7 @@ func redownloadBook(id string) {
 }
 
 func main() {
-	if true {
+	if false {
 		glotRunTestAndExit()
 	}
 
