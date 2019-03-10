@@ -300,6 +300,8 @@ func initBook(book *Book) {
 	reloadCachedOutputFilesMust(book)
 	path := filepath.Join(book.OutputCacheDir(), "sha1_to_go_playground_id.txt")
 	book.sha1ToGoPlaygroundCache = readSha1ToGoPlaygroundCache(path)
+	path = filepath.Join(book.OutputCacheDir(), "sha1_to_glot_playground_id.txt")
+	book.sha1ToGlotPlaygroundCache = readSha1ToGlotPlaygroundCache(path)
 	book.replitCache, err = LoadReplitCache(book.ReplitCachePath())
 	panicIfErr(err)
 }
@@ -334,6 +336,9 @@ func redownloadBook(id string) {
 func main() {
 	if false {
 		glotRunTestAndExit()
+	}
+	if true {
+		glotGetSnippedIDTestAndExit()
 	}
 
 	parseFlags()

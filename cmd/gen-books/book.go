@@ -40,10 +40,11 @@ type Book struct {
 	CoverImageName string
 
 	// cache related
-	cachedOutputFiles       []*cachedOutputFile
-	sha1ToCachedOutputFile  map[string]*cachedOutputFile
-	sha1ToGoPlaygroundCache *Sha1ToGoPlaygroundCache
-	replitCache             *ReplitCache
+	cachedOutputFiles         []*cachedOutputFile
+	sha1ToCachedOutputFile    map[string]*cachedOutputFile
+	sha1ToGoPlaygroundCache   *Sha1ToGoPlaygroundCache
+	sha1ToGlotPlaygroundCache *Sha1ToGlotPlaygroundCache
+	replitCache               *ReplitCache
 
 	// for concurrency
 	sem chan bool

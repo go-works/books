@@ -122,6 +122,8 @@ type SourceFile struct {
 	// name of the file
 	FileName string
 
+	SnippetName string
+
 	// URL on GitHub for this file
 	GitHubURL string
 	// language of the file, detected from name
@@ -129,6 +131,8 @@ type SourceFile struct {
 
 	// for Go files, this is playground id
 	GoPlaygroundID string
+	// for some files, this is glot.io snippet id
+	GlotPlaygroundID string
 
 	PlaygroundURI string
 
@@ -240,6 +244,31 @@ func setGoPlaygroundID(b *Book, sf *SourceFile) error {
 	}
 	sf.GoPlaygroundID = id
 	sf.PlaygroundURI = "https://goplay.space/#" + sf.GoPlaygroundID
+	return nil
+}
+
+var allowedLanguages = map[string]bool{
+	"go":         true,
+	"javascript": true,
+}
+
+func setGlotPlaygroundID(b *Book, sf *SourceFile) error {
+	lang := strings.ToLower(sf.Lang)
+	if _, ok := allowedLanguages[lang]; !ok {
+		return nil
+	}
+	if sf.Directive.NoPlayground {
+		return nil
+	}
+
+	fileName := sf.Directive.FileName
+	snippetName := sf.SnippetName
+	id, err := getSha1ToGlotPlaygroundIDCached(b, sf.DataFiltered(), snippetName, fileName, lang)
+	if err != nil {
+		return err
+	}
+	sf.GlotPlaygroundID = id
+	sf.PlaygroundURI = "https://snippets.glot.io/snippets/" + sf.GlotPlaygroundID
 	return nil
 }
 

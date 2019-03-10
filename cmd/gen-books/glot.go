@@ -217,32 +217,57 @@ type glotRunResponse struct {
 	Error  string `json:"error"`
 }
 
-func glotHTTPPostJSON(uri string, json []byte) ([]byte, error) {
+type glotMakeSnippetRequest struct {
+	Language string      `json:"language"`
+	Title    string      `json:"title"`
+	Public   bool        `json:"public"`
+	Files    []*glotFile `json:"files"`
+}
+
+type glotMakeSnippetResponse struct {
+	ID  string `json:"id"`
+	URL string `json:"url"`
+	// created
+	// modified
+	FilesHash string      `json:"files_hash"`
+	Language  string      `json:"language"`
+	Title     string      `json:"title"`
+	Public    bool        `json:"public"`
+	Owner     string      `json:"owner"`
+	Files     []*glotFile `json:"files"`
+}
+
+func glotHTTPPostJSON(uri string, reqIn interface{}, rspOut interface{}) error {
+	js, err := json.Marshal(reqIn)
+	if err != nil {
+		return err
+	}
 	hc := &http.Client{
 		Timeout: 5 * time.Second,
 	}
-	body := bytes.NewBuffer(json)
+	body := bytes.NewBuffer(js)
 	req, err := http.NewRequest("POST", uri, body)
 	if err != nil {
-		return nil, err
+		return err
 	}
 	req.Header.Set("Authorization", "Token 10f32ff1-fa02-4a7c-bb71-22d4ed5d286b")
 	req.Header.Set("Content-Type", "application/json")
 	resp, err := hc.Do(req)
 	if err != nil {
-		return nil, err
+		return err
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode >= 400 {
 		d, _ := ioutil.ReadAll(resp.Body)
-		return nil, fmt.Errorf("Request was '%s' (%d) and not OK (200). Body:\n%s\nurl: %s", resp.Status, resp.StatusCode, string(d), uri)
+		return fmt.Errorf("Request was '%s' (%d) and not OK (200). Body:\n%s\nurl: %s", resp.Status, resp.StatusCode, string(d), uri)
 	}
 	d, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return nil, err
+		return err
 	}
-	return d, nil
+
+	return json.Unmarshal(d, rspOut)
 }
 
 func glotRun(req *glotRunRequest) (*glotRunResponse, error) {
@@ -250,16 +275,34 @@ func glotRun(req *glotRunRequest) (*glotRunResponse, error) {
 	if err != nil {
 		return nil, err
 	}
-	d, err := json.Marshal(req)
-	if err != nil {
-		return nil, err
-	}
-	data, err := glotHTTPPostJSON(runURL, d)
-	if err != nil {
-		return nil, err
-	}
 	var res *glotRunResponse
-	err = json.Unmarshal(data, &res)
+	err = glotHTTPPostJSON(runURL, req, &res)
+	if err != nil {
+		return nil, err
+	}
+	return res, nil
+}
+
+// submit the data to Glot playground and get snippet id
+func glotGetSnippedID(content []byte, snippetName string, fileName string, lang string) (*glotMakeSnippetResponse, error) {
+	_, err := glotFindRunURLForLang(lang)
+	if err != nil {
+		return nil, err
+	}
+	uri := "https://snippets.glot.io/snippets"
+
+	file := &glotFile{
+		Name:    fileName,
+		Content: string(content),
+	}
+	req := &glotMakeSnippetRequest{
+		Public:   true,
+		Title:    snippetName,
+		Language: lang,
+		Files:    []*glotFile{file},
+	}
+	var res *glotMakeSnippetResponse
+	err = glotHTTPPostJSON(uri, req, &res)
 	if err != nil {
 		return nil, err
 	}
@@ -282,5 +325,29 @@ func glotRunTestAndExit() {
 	}
 	fmt.Printf("glotRun() returned:\n")
 	pretty.Print(resp)
+	os.Exit(0)
+}
+
+func glotGetSnippedIDTestAndExit() {
+	s := `package main
+
+import (
+	"fmt"
+	"strconv"
+)
+
+func main() {
+	// :show start
+	var i1 int = -38
+	fmt.Printf("i1: %s\n", strconv.Itoa(i1))
+
+	var i2 int32 = 148
+	fmt.Printf("i2: %s\n", strconv.Itoa(int(i2)))
+	// :show end
+}
+	`
+	res, err := glotGetSnippedID([]byte(s), "foo", "foo.go", "go")
+	panicIfErr(err)
+	fmt.Printf("share id: '%s', url: %s\n", res.ID, res.URL)
 	os.Exit(0)
 }

@@ -398,3 +398,17 @@ func cleanTitle(s string) string {
 	}
 	return strings.TrimSpace(rest)
 }
+
+// appends a line to a file
+func appendToFile(path string, s string) error {
+	f, err := os.OpenFile(path, os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0666)
+	if err != nil {
+		return err
+	}
+	_, err = f.WriteString(s)
+	if err != nil {
+		f.Close()
+		return err
+	}
+	return f.Close()
+}
