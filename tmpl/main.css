@@ -639,7 +639,7 @@ hr.toc-sep {
 /* this allows to position child absolutely */
 .code-box {
   font-size: 85%;
-  /*background-color: #fafafa;*/
+  background-color: #f7f6f3;
   /* color: #657b83; */
   /* border: 1px solid #e5e5e5; */
   /*
@@ -647,14 +647,17 @@ hr.toc-sep {
   border-bottom: 1px solid #e5e5e5;
   */
   overflow-x: visible;
+  position: relative; /* so that code-box-playground can be placed to the right */
 }
 
 /* box that potentially displays file name linking to github and 'run' button for playground */
 .code-box {
   margin-bottom: 1em;
   /* padding-bottom: 4px; */
+  /*
   border-top: 1px solid #e5e5e5;
   border-bottom: 1px solid #e5e5e5;
+  */
 }
 
 .code-box-nav {
@@ -662,11 +665,18 @@ hr.toc-sep {
   display: inline-block;
   /* background-color: #fafafa; */
   /* transform: translateY(1px); */
+
+  /* position in the right-bottom corner */
+  position: absolute;
+  bottom: 4px;
+  right: -2px;
+
 }
 
 .code-box-github a,
 .code-box-playground a {
-  color: gray;
+  /* color: gray; */
+  color: rgba(55, 53, 47, 0.6);
   text-decoration: none;
 }
 
@@ -675,31 +685,54 @@ hr.toc-sep {
   color: black;
 }
 
+/*
+higlight color in notion code box
+rgba(55, 53, 47, 0.08)
+
+color of text:
+rgba(55, 53, 47, 0.6)
+
+background color in notion code box:
+rgb(247, 246, 243)
+
+
+svg for down arro
+<svg viewBox="0 0 30 30" style="width: 10px; height: 100%; display: block; fill: rgba(55, 53, 47, 0.3); flex-shrink: 0; backface-visibility: hidden; margin-left: 4px;"><polygon points="15,17.4 4.8,7 2,9.8 15,23 28,9.8 25.2,7 "></polygon></svg>
+
+*/
+
 .code-box-github,
 .code-box-playground {
   display: inline-block;
   margin: 0;
   padding: 4px 8px;
-  background: white;
+  font-weight: bold;
+  /* background: white; */
+  /*
   border: 1px solid #e5e5e5;
   transition: box-shadow 0.3s ease-in-out;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.04);
-}
-
-.code-box-playground:hover,
-.code-box-github:hover {
-  /* background-color: #e5e5e5; */
-  color: black;
-  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.26), 0 0 0 1px rgba(0, 0, 0, 0.14);
+  */
 }
 
 .code-box-playground {
   margin-right: 8px;
 }
 
+.code-box-playground:hover,
+.code-box-github:hover {
+  /* background-color: #e5e5e5; */
+  /*color: black;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.26), 0 0 0 1px rgba(0, 0, 0, 0.14);
+  */
+  background-color: rgba(55, 53, 47, 0.08);
+}
+
 .lang-output {
-  border-top: 0px;
   margin-top: -1em;
+  border: 0px;
+  border-top: 1px solid #cbcbcb;
+  background-color: #f8f8f8;
 }
 
 /* for compact output */
@@ -829,9 +862,12 @@ xcode
 */
 
 /* Background */
+/*
 .chroma {
   background-color: #ffffff;
 }
+*/
+
 /* Error */
 .chroma .err {
   color: #ff0000;
