@@ -112,7 +112,7 @@ func urlify(title string) string {
 
 var (
 	softErrorMode bool
-	errors        []string
+	delayedErrors []string
 
 	totalHTMLBytes         int
 	totalHTMLBytesMinified int
@@ -125,22 +125,22 @@ func maybePanicIfErr(err error) {
 	if !softErrorMode {
 		panicIfErr(err)
 	}
-	errors = append(errors, err.Error())
+	delayedErrors = append(delayedErrors, err.Error())
 }
 
 func clearErrors() {
-	errors = nil
+	delayedErrors = nil
 	totalHTMLBytes = 0
 	totalHTMLBytesMinified = 0
 }
 
 func printAndClearErrors() {
 	fmt.Printf("HTML: optimized %d => %d (saved %d bytes)\n", totalHTMLBytes, totalHTMLBytesMinified, totalHTMLBytes-totalHTMLBytesMinified)
-	if len(errors) == 0 {
+	if len(delayedErrors) == 0 {
 		return
 	}
-	errStr := strings.Join(errors, "\n")
-	fmt.Printf("\n%d errors:\n%s\n\n", len(errors), errStr)
+	errStr := strings.Join(delayedErrors, "\n")
+	fmt.Printf("\n%d errors:\n%s\n\n", len(delayedErrors), errStr)
 	clearErrors()
 }
 

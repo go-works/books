@@ -12,6 +12,7 @@ require (
 	github.com/kjk/notionapi v0.0.0-20190305063215-c623fa66806e
 	github.com/kjk/siser v0.0.0-20170927035209-f1af2d1a21bb
 	github.com/kjk/u v0.0.0-20170711051841-93181be023c9
+	github.com/kylelemons/godebug v0.0.0-20170820004349-d65d576e9348
 	github.com/mattn/go-isatty v0.0.4 // indirect
 	github.com/sergi/go-diff v1.0.0 // indirect
 	github.com/stretchr/testify v1.2.2

@@ -324,6 +324,10 @@ func redownloadBook(id string) {
 }
 
 func main() {
+	if true {
+		glotRunTestAndExit()
+	}
+
 	parseFlags()
 
 	if flgRedownloadOneReplit != "" {
