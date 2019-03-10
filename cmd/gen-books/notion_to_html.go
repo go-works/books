@@ -86,7 +86,7 @@ func (g *HTMLGenerator) maybeReplaceNotionLink(uri string) string {
 	}
 	page := g.book.idToPage[id]
 	if page == nil {
-		fmt.Printf("Didn't find page with id '%s' extracted from url '%s'\n", id, uri)
+		fmt.Printf("Didn't find page with id '%s' extracted from url %s\n", id, uri)
 		return uri
 	}
 	return page.URL()
@@ -533,7 +533,7 @@ func (g *HTMLGenerator) genBlock(block *notionapi.Block) {
 		start := fmt.Sprintf(`<h2 class="hdr%s" id="%s">`, levelCls, h.ID)
 		close := `</h2>`
 		g.genBlockSurrouded(block, start, close)
-	case "sub_sub_header":
+	case notionapi.BlockSubSubHeader:
 		g.currHeaderID++
 		h := HeadingInfo{
 			Text: genInlineBlocksText(block.InlineContent),
@@ -570,20 +570,47 @@ func (g *HTMLGenerator) genBlock(block *notionapi.Block) {
 		html := fmt.Sprintf(`<div class="%s%s"><a href="%s">%s</a></div>`, cls, levelCls, url, title)
 		fmt.Fprintf(g.f, "%s\n", html)
 	case notionapi.BlockCode:
-		/*
-			code := template.HTMLEscapeString(block.Code)
-			fmt.Fprintf(g.f, `<div class="%s">Lang for code: %s</div>
-			<pre class="%s">
-			%s
-			</pre>`, levelCls, block.CodeLanguage, levelCls, code)
-		*/
-		var tmp bytes.Buffer
-		htmlHighlight(&tmp, string(block.Code), block.CodeLanguage, "")
-		d := tmp.Bytes()
-		var info CodeBlockInfo
-		// TODO: set Lang, GitHubURI and PlaygroundURI
-		s := fixupHTMLCodeBlock(string(d), &info)
-		g.f.WriteString(s)
+		//lang := getLangFromFileExt(filepath.Ext(path))
+		//gitHubURL := getGitHubPathForFile(path)
+		lang := block.CodeLanguage
+		sf := &SourceFile{
+			//Path:      path,
+			//FileName:  name,
+			//GitHubURL: gitHubURL,
+		}
+		sf.Lang = lang
+
+		data := []byte(block.Code)
+		err := setSourceFileData(sf, data)
+		if err != nil {
+			fmt.Printf("genBlock: setSourceFileData() failed with '%s'\n", err)
+			panicIfErr(err)
+		}
+		// for embedded code blocks by default we don't set playground or output
+		// unless explicitly asked for
+		sf.Directive.NoPlayground = !sf.Directive.GoPlayground
+		sf.Directive.NoOutput = !sf.Directive.DoOutput
+		setDefaultFileNameFromLanguage(sf)
+		err = getOutputCached(g.book, sf)
+		panicIfErr(err)
+		g.genSourceFile(sf)
+
+		if false {
+			/*
+				code := template.HTMLEscapeString(block.Code)
+				fmt.Fprintf(g.f, `<div class="%s">Lang for code: %s</div>
+				<pre class="%s">
+				%s
+				</pre>`, levelCls, block.CodeLanguage, levelCls, code)
+			*/
+			var tmp bytes.Buffer
+			htmlHighlight(&tmp, string(block.Code), block.CodeLanguage, "")
+			d := tmp.Bytes()
+			var info CodeBlockInfo
+			// TODO: set Lang, GitHubURI and PlaygroundURI
+			s := fixupHTMLCodeBlock(string(d), &info)
+			g.f.WriteString(s)
+		}
 	case notionapi.BlockBookmark:
 		fmt.Fprintf(g.f, `<div class="bookmark %s">Bookmark to %s</div>`+"\n", levelCls, block.Link)
 	case notionapi.BlockGist:
@@ -602,6 +629,26 @@ func (g *HTMLGenerator) genBlock(block *notionapi.Block) {
 		fmt.Printf("Unsupported block type '%s', id: %s\n", block.Type, block.ID)
 		panic(fmt.Sprintf("Unsupported block type '%s'", block.Type))
 	}
+}
+
+func setDefaultFileNameFromLanguage(sf *SourceFile) error {
+	if sf.Directive.FileName != "" {
+		return nil
+	}
+	if sf.Directive.NoOutput {
+		return nil
+	}
+	ext := ""
+	lang := strings.ToLower(sf.Lang)
+	switch lang {
+	case "go":
+		ext = ".go"
+	default:
+		fmt.Printf("detectFileNameFromLanguage: lang '%s' is not supported\n", sf.Lang)
+		panic("")
+	}
+	sf.Directive.FileName = "main" + ext
+	return nil
 }
 
 func (g *HTMLGenerator) genBlocks(blocks []*notionapi.Block) {

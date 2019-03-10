@@ -16,52 +16,87 @@ FileDirective describes reulst of parsing a line like:
 // no output, no playground
 */
 type FileDirective struct {
-	NoOutput     bool // "no output"
-	AllowError   bool // "allow error"
-	LineLimit    int  // limit ${n}
-	NoPlayground bool // no playground
+	FileName     string // :file foo.txt
+	NoOutput     bool   // "no output"
+	AllowError   bool   // "allow error"
+	LineLimit    int    // limit ${n}
+	NoPlayground bool   // no playground
+	RunCmd       string // :run ${cmd}
+
+	Glot         bool // :glot, use glot.io to execute the code snippet
+	GoPlayground bool // :goplay, use go playground to execute the snippet
+	DoOutput     bool // :output
+}
+
+// strip "//" or "#" comment mark from line and return string
+// after removing the mark
+func stripComment(line string) (string, bool) {
+	line = strings.TrimSpace(line)
+	s := strings.TrimPrefix(line, "//")
+	if s != line {
+		return s, true
+	}
+	s = strings.TrimPrefix(line, "#")
+	if s != line {
+		return s, true
+	}
+	return "", false
 }
 
 /* Parses a line like:
 // no output, no playground, line ${n}, allow error
 */
 func parseFileDirective(line string) (*FileDirective, error) {
-	line = strings.TrimSpace(line)
-	s := strings.TrimPrefix(line, "//")
-	// doesn't start with a comment, so is not a file directive
-	if s == line {
+	s, ok := stripComment(line)
+	if !ok {
+		// doesn't start with a comment, so is not a file directive
 		return nil, nil
 	}
 	res := &FileDirective{}
-	hasInfo := false
 	parts := strings.Split(s, ",")
 	for _, s := range parts {
 		s = strings.TrimSpace(s)
-		switch s {
-		case "no output":
+		// directives can also start with ":", to make them more distinct
+		startsWithColon := strings.HasPrefix(s, ":")
+		s = strings.TrimPrefix(s, ":")
+		if s == "glot" {
+			res.Glot = true
+		} else if s == "output" {
+			res.DoOutput = true
+		} else if s == "goplay" {
+			res.GoPlayground = true
+		} else if s == "no output" || s == "nooutput" {
 			res.NoOutput = true
-			hasInfo = true
-		case "no playground", "noplayground":
+		} else if s == "no playground" || s == "noplayground" {
 			res.NoPlayground = true
-			hasInfo = true
-		case "allow error", "allow_error":
+		} else if s == "allow error" || s == "allow_error" {
 			res.AllowError = true
-			hasInfo = true
-		default:
-			rest := strings.TrimPrefix(s, "line ")
-			if rest == s {
+		} else if strings.HasPrefix(s, "file ") {
+			// expect: file foo.txt
+			rest := strings.TrimSpace(strings.TrimPrefix(s, "file "))
+			if len(rest) == 0 {
 				return nil, fmt.Errorf("parseFileDirective: invalid line '%s'", line)
 			}
+			res.FileName = rest
+		} else if strings.HasPrefix(s, "line ") {
+			rest := strings.TrimSpace(strings.TrimPrefix(s, "line "))
 			n, err := strconv.Atoi(rest)
 			if err != nil {
 				return nil, fmt.Errorf("parseFileDirective: invalid line '%s'", line)
 			}
 			res.LineLimit = n
-			hasInfo = true
+		} else if strings.HasPrefix(s, "run ") {
+			rest := strings.TrimSpace(strings.TrimPrefix(s, "run "))
+			res.RunCmd = rest
+		} else {
+			// if started with ":" we assume it was meant to be a directive
+			// but there was a typo
+			if startsWithColon {
+				return nil, fmt.Errorf("parseFileDirective: invalid line '%s'", line)
+			}
+			// otherwise we assume this is just a comment
+			return nil, nil
 		}
-	}
-	if !hasInfo {
-		return nil, nil
 	}
 	return res, nil
 }
@@ -86,13 +121,11 @@ type SourceFile struct {
 	Path string
 	// name of the file
 	FileName string
+
 	// URL on GitHub for this file
 	GitHubURL string
 	// language of the file, detected from name
 	Lang string
-
-	// optional, ":run ${cmd}" extracted from file content
-	RunCmd string
 
 	// for Go files, this is playground id
 	GoPlaygroundID string
@@ -110,7 +143,7 @@ type SourceFile struct {
 
 	// LinesRaw after extracting directive, run cmd at the top
 	// and removing :show annotation lines
-	// This is the content sent to playgrounds
+	// This is the content to execute
 	LinesFiltered []string
 
 	// the part that we want to show i.e. the parts inside
@@ -214,7 +247,6 @@ func setSourceFileData(sf *SourceFile, data []byte) error {
 	sf.Data = data
 	sf.LinesRaw = dataToLines(sf.Data)
 	lines := sf.LinesRaw
-	sf.RunCmd, lines = extractRunCmd(lines)
 	directive, lines, err := extractFileDirective(lines)
 	if err != nil {
 		return err

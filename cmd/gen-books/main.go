@@ -22,11 +22,12 @@ import (
 )
 
 var (
-	flgAnalytics           string
-	flgPreview             bool
-	flgAllBooks            bool
-	flgNoCache             bool
-	flgRecreateOutput      bool
+	flgAnalytics string
+	flgPreview   bool
+	flgAllBooks  bool
+	flgNoCache   bool
+	// url or id of the page to rebuild
+	flgRebuildOnePage      string
 	flgUpdateOutput        bool
 	flgRedownloadReplit    bool
 	flgRedownloadOne       string
@@ -43,15 +44,19 @@ var (
 
 var (
 	booksMain = []*Book{
-		bookGo, bookCsharp, bookPython, bookKotlin, bookJavaScript,
-		bookDart, bookJava, bookAndroid, bookCpp, bookIOS,
+		bookGo, bookCpp,
+		bookJavaScript, bookCSS, bookHTML, bookHTMLCanvas,
+		bookJava,
+		bookCsharp, bookPython,
 		bookPostgresql, bookMysql,
+		bookIOS, bookAndroid,
 	}
 	booksUnpublished = []*Book{
-		bookSql, bookAlgorithm, bookBash, bookC, bookCSS, bookGit, bookHTML,
-		bookHTMLCanvas, bookNETFramework, bookNode, bookObjectiveC, bookPHP,
-		bookPowershell, bookReact, bookReactNative, bookRuby, bookRubyOnRails,
-		bookSwift, bookTypeScript,
+		bookSql, bookAlgorithm, bookBash, bookC, bookGit,
+		bookNETFramework, bookNode, bookObjectiveC, bookPHP,
+		bookPowershell, bookReact, bookReactNative, bookRuby,
+		bookRubyOnRails, bookSwift, bookTypeScript,
+		bookDart, bookKotlin,
 	}
 	allBooks = append(booksMain, booksUnpublished...)
 )
@@ -60,10 +65,10 @@ func parseFlags() {
 	flag.StringVar(&flgAnalytics, "analytics", "", "google analytics code")
 	flag.BoolVar(&flgPreview, "preview", false, "if true will start watching for file changes and re-build everything")
 	flag.BoolVar(&flgAllBooks, "all-books", false, "if true will do all books")
-	flag.BoolVar(&flgRecreateOutput, "recreate-output", false, "if true, recreates ouput files in cache")
 	flag.BoolVar(&flgUpdateOutput, "update-output", false, "if true, will update ouput files in cache")
 	flag.BoolVar(&flgNoCache, "no-cache", false, "if true, disables cache for notion")
 	flag.StringVar(&flgRedownloadOne, "redownload-one", "", "notion id of a page to re-download")
+	flag.StringVar(&flgRebuildOnePage, "rebuild-one", "", "notion id of a page to re-build")
 	flag.BoolVar(&flgRedownloadReplit, "redownload-replit", false, "if true, redownloads replits")
 	flag.StringVar(&flgRedownloadOneReplit, "redownload-one-replit", "", "replit url and book to download")
 	flag.StringVar(&flgRedownloadBook, "redownload-book", "", "redownload a book")
@@ -71,6 +76,9 @@ func parseFlags() {
 
 	if flgRedownloadOne != "" {
 		flgRedownloadOne = extractNotionIDFromURL(flgRedownloadOne)
+	}
+	if flgRebuildOnePage != "" {
+		flgRebuildOnePage = extractNotionIDFromURL(flgRebuildOnePage)
 	}
 
 	if flgAnalytics != "" {
@@ -349,9 +357,34 @@ func main() {
 		return
 	}
 
+	initMinify()
+	loadSOUserMappingsMust()
+
 	client := &notionapi.Client{
 		AuthToken: notionAuthToken,
 	}
+
+	if flgRebuildOnePage != "" {
+		book := findBookFromCachedPageID(flgRebuildOnePage)
+		if book == nil {
+			fmt.Printf("didn't find book for id %s\n", flgRebuildOnePage)
+			os.Exit(1)
+		}
+		fmt.Printf("Rebuilding %s for book %s\n", flgRebuildOnePage, book.Dir)
+		page := loadPageFromCache(book, flgRebuildOnePage)
+		flgNoCache = false
+		initBook(book)
+		downloadBook(client, book)
+		loadSoContributorsMust(book)
+		genOnePage(book, page.ID)
+		os.Exit(0)
+	}
+
+	books := booksMain
+	if flgAllBooks {
+		books = allBooks
+	}
+
 	if flgRedownloadOne != "" {
 		book := findBookFromCachedPageID(flgRedownloadOne)
 		if book == nil {
@@ -360,29 +393,21 @@ func main() {
 		}
 		fmt.Printf("Downloading %s for book %s\n", flgRedownloadOne, book.Dir)
 		// download a single page from notion and re-generate content
-		_, err := downloadAndCachePage(book, client, flgRedownloadOne)
+		page, err := downloadAndCachePage(book, client, flgRedownloadOne)
 		if err != nil {
 			fmt.Printf("downloadAndCachePage of '%s' failed with %s\n", flgRedownloadOne, err)
 			os.Exit(1)
 		}
+		flgNoCache = false
+		initBook(book)
+		downloadBook(client, book)
+		loadSoContributorsMust(book)
+		genOnePage(book, page.ID)
 		flgPreview = true
+		books = []*Book{book}
 		// and fallthrough to re-generate books
 	}
 
-	initMinify()
-	loadSOUserMappingsMust()
-
-	if flgUpdateOutput {
-		// TODO: must be done somewhere else
-		if flgRecreateOutput {
-			//os.RemoveAll(cachedOutputDir)
-		}
-	}
-
-	books := booksMain
-	if flgAllBooks {
-		books = allBooks
-	}
 	if flgPreview {
 		if len(flag.Args()) > 0 {
 			var newBooks []*Book

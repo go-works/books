@@ -66,20 +66,6 @@ func extractCodeSnippets(lines []string) ([]string, error) {
 	return trimEmptyLines(all), nil
 }
 
-// finds ":run ${cmd}" directive embedded in the file
-// and returns ${cmd} part or empty string if not found
-func extractRunCmd(lines []string) (string, []string) {
-	for i, line := range lines {
-		if idx := strings.Index(line, ":run "); idx != -1 {
-			s := line[idx+len(":run "):]
-			s = strings.TrimSpace(s)
-			lines = append(lines[:i], lines[i+1:]...)
-			return s, lines
-		}
-	}
-	return "", lines
-}
-
 func getLangFromFileExt(fileName string) string {
 	ext := strings.ToLower(filepath.Ext(fileName))
 	switch ext {

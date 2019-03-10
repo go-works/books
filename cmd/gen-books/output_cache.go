@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"os"
@@ -268,7 +269,6 @@ func getOutputCached(b *Book, sf *SourceFile) error {
 	if sf.Directive.NoOutput {
 		return nil
 	}
-
 	sha1Hex := u.Sha1HexOfBytes(sf.Data)
 
 	cof := b.sha1ToCachedOutputFile[sha1Hex]
@@ -285,17 +285,45 @@ func getOutputCached(b *Book, sf *SourceFile) error {
 		return nil
 	}
 
-	// fmt.Printf("loadFileCached('%s') failed with '%s'\n", outputPath, err)
-	s, err := getOutput(path, sf.RunCmd)
-	if err != nil {
-		if !sf.Directive.AllowError {
-			fmt.Printf("getOutput('%s'), output is:\n%s\n", path, s)
-			return err
+	var s string
+	var err error
+	if sf.Directive.Glot {
+		f := &glotFile{
+			Name:    sf.Directive.FileName,
+			Content: string(sf.Data),
 		}
-		err = nil
+		req := &glotRunRequest{
+			language: sf.Lang,
+			Files:    []*glotFile{f},
+		}
+		fmt.Printf("getOutputCached: running glotRun()\n")
+		rsp, err := glotRun(req)
+		panicIfErr(err)
+		if rsp.Error != "" {
+			// TODO: should this be neutralized by sf.Directive.AllowError ?
+			panic(rsp.Error)
+		}
+		s = rsp.Stdout
+		if rsp.Stderr != "" {
+			if !sf.Directive.AllowError {
+				fmt.Printf("getOutput('%s'), output is:\n%s\n", path, s)
+				return errors.New(rsp.Stderr)
+			}
+		}
+
+	} else {
+		// fmt.Printf("loadFileCached('%s') failed with '%s'\n", outputPath, err)
+		s, err = getOutput(path, sf.Directive.RunCmd)
+		if err != nil {
+			if !sf.Directive.AllowError {
+				fmt.Printf("getOutput('%s'), output is:\n%s\n", path, s)
+				return err
+			}
+			err = nil
+		}
+		fmt.Printf("Got output '%s' for '%s'\n", sha1Hex, path)
 	}
 
-	fmt.Printf("Got output '%s' for '%s'\n", sha1Hex, path)
 	cof = getCurrentOutputCacheFile(b)
 	cof.doc = kvstore.ReplaceOrAppend(cof.doc, sha1Hex, s)
 

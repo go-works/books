@@ -81,7 +81,7 @@ func makeHTTPServer() *http.Server {
 }
 func startPreview() {
 	httpSrv := makeHTTPServer()
-	httpSrv.Addr = "127.0.0.1:8080"
+	httpSrv.Addr = "127.0.0.1:8173"
 
 	go func() {
 		err := httpSrv.ListenAndServe()
@@ -93,7 +93,7 @@ func startPreview() {
 		fmt.Printf("HTTP server shutdown gracefully\n")
 	}()
 	fmt.Printf("Started listening on %s\n", httpSrv.Addr)
-	openBrowser("http://127.0.0.1:8080")
+	openBrowser("http://" + httpSrv.Addr)
 
 	c := make(chan os.Signal, 2)
 	signal.Notify(c, os.Interrupt /* SIGINT */, syscall.SIGTERM)

@@ -257,6 +257,65 @@ func bookPagesToHTML(book *Book) {
 	fmt.Printf("bookPagesToHTML: processed %d pages for book %s\n", nProcessed, book.TitleLong)
 }
 
+func bookPageToHTML(book *Book, id string) {
+	pages := book.GetAllPages()
+	for _, page := range pages {
+		if page.NotionID == id {
+			fmt.Printf("bookPageToHTML: processed page %s for book %s\n", id, book.TitleLong)
+			html := notionToHTML(page, book)
+			page.BodyHTML = template.HTML(string(html))
+			return
+		}
+	}
+	fmt.Printf("bookPageToHTML: didn't find page '%s' for book %s\n", id, book.TitleLong)
+}
+
+func genOnePage(book *Book, id string) {
+	fmt.Printf("genOnePage(): id %s\n", id)
+	id = normalizeID(id)
+
+	err := os.MkdirAll(book.destDir(), 0755)
+	panicIfErr(err)
+
+	buildIDToPage(book)
+	genContributorsPage(book)
+
+	bookPageToHTML(book, id)
+
+	for currNo, page := range book.Chapters() {
+		if normalizeID(page.NotionID) == id {
+			fmt.Printf("genOnePage(): re-generated chapter %s %s\n", page.NotionID, page.Title)
+			path := page.destFilePath()
+			d := struct {
+				PageCommon
+				*Page
+				CurrentChapterNo int
+			}{
+				PageCommon:       getPageCommon(),
+				Page:             page,
+				CurrentChapterNo: currNo,
+			}
+			execTemplateToFileSilentMaybeMust("chapter.tmpl.html", d, path)
+
+			for _, imagePath := range page.images {
+				imageName := filepath.Base(imagePath)
+				dst := page.destImagePath(imageName)
+				copyFileMaybeMust(dst, imagePath)
+			}
+			return
+		}
+
+		for j, article := range page.Pages {
+			if normalizeID(article.NotionID) == id {
+				genArticle(book, article, currNo, j)
+				fmt.Printf("genOnePage(): re-generated article %s %s\n", article.NotionID, article.Title)
+				return
+			}
+		}
+	}
+	fmt.Printf("genOnePage(): didn't find chapter or article with id %s\n", id)
+}
+
 func genBook(book *Book) {
 	fmt.Printf("Started genering book %s\n", book.Title)
 	timeStart := time.Now()

@@ -11,7 +11,7 @@ import (
 
 var (
 	muSitemapURLS sync.Mutex
-	sitemapURLS   map[string]struct{}
+	sitemapURLS   = map[string]struct{}{}
 )
 
 func clearSitemapURLS() {
