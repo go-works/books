@@ -574,6 +574,7 @@ func (g *HTMLGenerator) genBlock(block *notionapi.Block) {
 		//gitHubURL := getGitHubPathForFile(path)
 		lang := block.CodeLanguage
 		sf := &SourceFile{
+			NotionOriginURL: fmt.Sprintf("https://notion.so/%s", normalizeID(g.page.NotionID)),
 			//Path:      path,
 			//FileName:  name,
 			//GitHubURL: gitHubURL,
@@ -587,10 +588,8 @@ func (g *HTMLGenerator) genBlock(block *notionapi.Block) {
 		data := []byte(block.Code)
 		err := setSourceFileData(sf, data)
 		if err != nil {
-			id := normalizeID(g.page.NotionID)
-			uri := fmt.Sprintf("https://notion.so/%s", id)
 			fmt.Printf("genBlock: setSourceFileData() failed with '%s'\n", err)
-			fmt.Printf("page: %s\n", uri)
+			fmt.Printf("page: %s\n", sf.NotionOriginURL)
 			//panicIfErr(err)
 		}
 
@@ -602,8 +601,6 @@ func (g *HTMLGenerator) genBlock(block *notionapi.Block) {
 			sf.Directive.NoPlayground = true
 			sf.Directive.NoOutput = true
 		}
-
-		sf.Directive.NoOutput = true
 		setDefaultFileNameFromLanguage(sf)
 		err = getOutputCached(g.book, sf)
 		if err != nil {
@@ -657,9 +654,12 @@ func setDefaultFileNameFromLanguage(sf *SourceFile) error {
 	if sf.Directive.FileName != "" {
 		return nil
 	}
-	if sf.Directive.NoOutput {
+
+	// we don't care unless it goes to glot.io
+	if !sf.Directive.Glot {
 		return nil
 	}
+
 	ext := ""
 	lang := strings.ToLower(sf.Lang)
 	switch lang {
@@ -667,6 +667,7 @@ func setDefaultFileNameFromLanguage(sf *SourceFile) error {
 		ext = ".go"
 	default:
 		fmt.Printf("detectFileNameFromLanguage: lang '%s' is not supported\n", sf.Lang)
+		fmt.Printf("Notion page: %s\n", sf.NotionOriginURL)
 		panic("")
 	}
 	sf.Directive.FileName = "main" + ext

@@ -25,7 +25,7 @@
     "id": "d6542c35-3d41-466c-82d9-e76694b3070c",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1552219260000,
+    "last_edited_time": 1552256640000,
     "parent_id": "ccc8d069-58ae-4431-9b21-f9973716e3ca",
     "parent_table": "block",
     "properties": {
@@ -36,7 +36,7 @@
       ]
     },
     "type": "page",
-    "version": 61,
+    "version": 62,
     "content_resolved": [
       {
         "alive": true,
@@ -154,7 +154,7 @@
         "created_time": 1552219190358,
         "id": "b16bfeb6-e679-494e-9404-85c10231cca1",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1552219200000,
+        "last_edited_time": 1552256640000,
         "parent_id": "d6542c35-3d41-466c-82d9-e76694b3070c",
         "parent_table": "block",
         "properties": {
@@ -165,13 +165,13 @@
           ],
           "title": [
             [
-              "// :glot, :output, :name main.go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"io/ioutil\"\n\t\"log\"\n\t\"strings\"\n)\n\n// :show start\n// ReadFileAsLines reads a file and splits it into lines\nfunc ReadFileAsLines(path string) ([]string, error) {\n\td, err := ioutil.ReadFile(path)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\ts := string(d)\n\tlines := strings.Split(s, \"\\n\")\n\treturn lines, nil\n}\n\n// :show end\n\nfunc main() {\n\tpath := \"main.go\"\n\tlines, err := ReadFileAsLines(path)\n\tif err != nil {\n\t\tlog.Fatalf(\"ReadFileAsLines() failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"There are %d lines in '%s'\\n\", len(lines), path)\n}"
+              "// :glot, :name main.go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"io/ioutil\"\n\t\"log\"\n\t\"strings\"\n)\n\n// :show start\n// ReadFileAsLines reads a file and splits it into lines\nfunc ReadFileAsLines(path string) ([]string, error) {\n\td, err := ioutil.ReadFile(path)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\ts := string(d)\n\tlines := strings.Split(s, \"\\n\")\n\treturn lines, nil\n}\n\n// :show end\n\nfunc main() {\n\tpath := \"main.go\"\n\tlines, err := ReadFileAsLines(path)\n\tif err != nil {\n\t\tlog.Fatalf(\"ReadFileAsLines() failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"There are %d lines in '%s'\\n\", len(lines), path)\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 44,
-        "code": "// :glot, :output, :name main.go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"io/ioutil\"\n\t\"log\"\n\t\"strings\"\n)\n\n// :show start\n// ReadFileAsLines reads a file and splits it into lines\nfunc ReadFileAsLines(path string) ([]string, error) {\n\td, err := ioutil.ReadFile(path)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\ts := string(d)\n\tlines := strings.Split(s, \"\\n\")\n\treturn lines, nil\n}\n\n// :show end\n\nfunc main() {\n\tpath := \"main.go\"\n\tlines, err := ReadFileAsLines(path)\n\tif err != nil {\n\t\tlog.Fatalf(\"ReadFileAsLines() failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"There are %d lines in '%s'\\n\", len(lines), path)\n}",
+        "version": 49,
+        "code": "// :glot, :name main.go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"io/ioutil\"\n\t\"log\"\n\t\"strings\"\n)\n\n// :show start\n// ReadFileAsLines reads a file and splits it into lines\nfunc ReadFileAsLines(path string) ([]string, error) {\n\td, err := ioutil.ReadFile(path)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\ts := string(d)\n\tlines := strings.Split(s, \"\\n\")\n\treturn lines, nil\n}\n\n// :show end\n\nfunc main() {\n\tpath := \"main.go\"\n\tlines, err := ReadFileAsLines(path)\n\tif err != nil {\n\t\tlog.Fatalf(\"ReadFileAsLines() failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"There are %d lines in '%s'\\n\", len(lines), path)\n}",
         "code_language": "Go"
       },
       {
@@ -278,7 +278,7 @@
         "created_time": 1552219246895,
         "id": "0a376b39-d230-4cd0-842f-08c407cb7e35",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1552219260000,
+        "last_edited_time": 1552256640000,
         "parent_id": "d6542c35-3d41-466c-82d9-e76694b3070c",
         "parent_table": "block",
         "properties": {
@@ -289,13 +289,13 @@
           ],
           "title": [
             [
-              "// :glot, :output, :file main.go\npackage main\n\nimport (\n  \"fmt\"\n  \"os\"\n  \"bufio\"\n)\n\n// :show start\nfunc IterLinesInFile(filePath string, process func (s string) bool) error {\n    file, err := os.Open(filePath)\n    if err != nil {\n        return err\n    }\n    defer file.Close()\n    scanner := bufio.NewScanner(file)\n    // Scan() reads next line and returns false when reached end or error\n    for scanner.Scan() {\n        line := scanner.Text()\n        if !process(line) {\n          return nil\n        }\n        // process the line\n    }\n    // check if Scan() finished because of error or because it reached end of file\n    return scanner.Err()\n}\n// :show end\n\nfunc main() {\n  nLines := 0\n  IterLinesInFile(\"main.go\", func(s string) bool {\n    nLines++\n    return true\n  })\n  fmt.Printf(\"%d lines in 'main.go'\\n\", nLines)\n}"
+              "// :glot, :file main.go\npackage main\n\nimport (\n  \"fmt\"\n  \"os\"\n  \"bufio\"\n)\n\n// :show start\nfunc IterLinesInFile(filePath string, process func (s string) bool) error {\n    file, err := os.Open(filePath)\n    if err != nil {\n        return err\n    }\n    defer file.Close()\n    scanner := bufio.NewScanner(file)\n    // Scan() reads next line and returns false when reached end or error\n    for scanner.Scan() {\n        line := scanner.Text()\n        if !process(line) {\n          return nil\n        }\n        // process the line\n    }\n    // check if Scan() finished because of error or because it reached end of file\n    return scanner.Err()\n}\n// :show end\n\nfunc main() {\n  nLines := 0\n  IterLinesInFile(\"main.go\", func(s string) bool {\n    nLines++\n    return true\n  })\n  fmt.Printf(\"%d lines in 'main.go'\\n\", nLines)\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 49,
-        "code": "// :glot, :output, :file main.go\npackage main\n\nimport (\n  \"fmt\"\n  \"os\"\n  \"bufio\"\n)\n\n// :show start\nfunc IterLinesInFile(filePath string, process func (s string) bool) error {\n    file, err := os.Open(filePath)\n    if err != nil {\n        return err\n    }\n    defer file.Close()\n    scanner := bufio.NewScanner(file)\n    // Scan() reads next line and returns false when reached end or error\n    for scanner.Scan() {\n        line := scanner.Text()\n        if !process(line) {\n          return nil\n        }\n        // process the line\n    }\n    // check if Scan() finished because of error or because it reached end of file\n    return scanner.Err()\n}\n// :show end\n\nfunc main() {\n  nLines := 0\n  IterLinesInFile(\"main.go\", func(s string) bool {\n    nLines++\n    return true\n  })\n  fmt.Printf(\"%d lines in 'main.go'\\n\", nLines)\n}",
+        "version": 54,
+        "code": "// :glot, :file main.go\npackage main\n\nimport (\n  \"fmt\"\n  \"os\"\n  \"bufio\"\n)\n\n// :show start\nfunc IterLinesInFile(filePath string, process func (s string) bool) error {\n    file, err := os.Open(filePath)\n    if err != nil {\n        return err\n    }\n    defer file.Close()\n    scanner := bufio.NewScanner(file)\n    // Scan() reads next line and returns false when reached end or error\n    for scanner.Scan() {\n        line := scanner.Text()\n        if !process(line) {\n          return nil\n        }\n        // process the line\n    }\n    // check if Scan() finished because of error or because it reached end of file\n    return scanner.Err()\n}\n// :show end\n\nfunc main() {\n  nLines := 0\n  IterLinesInFile(\"main.go\", func(s string) bool {\n    nLines++\n    return true\n  })\n  fmt.Printf(\"%d lines in 'main.go'\\n\", nLines)\n}",
         "code_language": "Go"
       },
       {

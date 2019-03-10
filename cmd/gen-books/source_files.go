@@ -31,6 +31,10 @@ type FileDirective struct {
 // SourceFile represents source file. It comes from a code block in
 // Notion, replit, file in repository etc.
 type SourceFile struct {
+	// for debugging, url of page on notion from which this
+	// snippet comes from
+	NotionOriginURL string
+
 	EmbedURL string
 
 	// full path of the file

@@ -22,7 +22,7 @@
     "id": "5e911a69-8c43-432d-bf3c-e33fc32dafe1",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1552217820000,
+    "last_edited_time": 1552256700000,
     "parent_id": "2cab1ed2-b7a4-4584-b56b-0d3ca9b80185",
     "parent_table": "block",
     "properties": {
@@ -33,7 +33,7 @@
       ]
     },
     "type": "page",
-    "version": 66,
+    "version": 67,
     "content_resolved": [
       {
         "alive": true,
@@ -126,7 +126,7 @@
         "created_time": 1552217683842,
         "id": "86796b1f-cdcf-4389-9094-3443b5dc5d6a",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1552217640000,
+        "last_edited_time": 1552256700000,
         "parent_id": "5e911a69-8c43-432d-bf3c-e33fc32dafe1",
         "parent_table": "block",
         "properties": {
@@ -137,13 +137,13 @@
           ],
           "title": [
             [
-              "// :glot, :output\npackage main\n\nimport (\n\t\"bytes\"\n\t\"fmt\"\n\t\"io\"\n)\n\n// :show start\n// declaration of a single top-level variable\nvar topLevel int64 = 5\n\n// grouping of multiple top-level declarations\nvar (\n\tintVal int            // value is initialized with zero-value\n\tstr    string = \"str\" // assigning\n\n\t// functions are first-class values so can be assigned to variables\n\t// fn is variable of type func(a int) string\n\t// it's uninitialized so is nil (zero-value for function variables)\n\tfn func(a int) string\n)\n\nfunc f() {\n\t// shorthand using local type inference\n\t// type of `i` is int and is inferred from the value\n\t// note: this is not allowed at top-level\n\ti := 4\n\n\t// grouping inside a function\n\tvar (\n\t\ti2 int\n\t\ts  string\n\t)\n\n\t// _ is like a variable whose value is discarded. It's called blank identifier.\n\t// Useful when we don't care about one of the values returned by a function\n\t_, err := io.Copy(dst, src) // don't care how many bytes were written\n\t// ...\n\n\tfmt.Printf(\"i: %d, i2: %d, s: %s, err: %v\\n\", i, i2, s, err)\n}\n\n// :show end\n\nvar (\n\tdst io.Writer = \u0026bytes.Buffer{}\n\tsrc io.Reader = \u0026bytes.Buffer{}\n)\n\nfunc main() {\n\tf()\n}"
+              "// :glot\npackage main\n\nimport (\n\t\"bytes\"\n\t\"fmt\"\n\t\"io\"\n)\n\n// :show start\n// declaration of a single top-level variable\nvar topLevel int64 = 5\n\n// grouping of multiple top-level declarations\nvar (\n\tintVal int            // value is initialized with zero-value\n\tstr    string = \"str\" // assigning\n\n\t// functions are first-class values so can be assigned to variables\n\t// fn is variable of type func(a int) string\n\t// it's uninitialized so is nil (zero-value for function variables)\n\tfn func(a int) string\n)\n\nfunc f() {\n\t// shorthand using local type inference\n\t// type of `i` is int and is inferred from the value\n\t// note: this is not allowed at top-level\n\ti := 4\n\n\t// grouping inside a function\n\tvar (\n\t\ti2 int\n\t\ts  string\n\t)\n\n\t// _ is like a variable whose value is discarded. It's called blank identifier.\n\t// Useful when we don't care about one of the values returned by a function\n\t_, err := io.Copy(dst, src) // don't care how many bytes were written\n\t// ...\n\n\tfmt.Printf(\"i: %d, i2: %d, s: %s, err: %v\\n\", i, i2, s, err)\n}\n\n// :show end\n\nvar (\n\tdst io.Writer = \u0026bytes.Buffer{}\n\tsrc io.Reader = \u0026bytes.Buffer{}\n)\n\nfunc main() {\n\tf()\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 30,
-        "code": "// :glot, :output\npackage main\n\nimport (\n\t\"bytes\"\n\t\"fmt\"\n\t\"io\"\n)\n\n// :show start\n// declaration of a single top-level variable\nvar topLevel int64 = 5\n\n// grouping of multiple top-level declarations\nvar (\n\tintVal int            // value is initialized with zero-value\n\tstr    string = \"str\" // assigning\n\n\t// functions are first-class values so can be assigned to variables\n\t// fn is variable of type func(a int) string\n\t// it's uninitialized so is nil (zero-value for function variables)\n\tfn func(a int) string\n)\n\nfunc f() {\n\t// shorthand using local type inference\n\t// type of `i` is int and is inferred from the value\n\t// note: this is not allowed at top-level\n\ti := 4\n\n\t// grouping inside a function\n\tvar (\n\t\ti2 int\n\t\ts  string\n\t)\n\n\t// _ is like a variable whose value is discarded. It's called blank identifier.\n\t// Useful when we don't care about one of the values returned by a function\n\t_, err := io.Copy(dst, src) // don't care how many bytes were written\n\t// ...\n\n\tfmt.Printf(\"i: %d, i2: %d, s: %s, err: %v\\n\", i, i2, s, err)\n}\n\n// :show end\n\nvar (\n\tdst io.Writer = \u0026bytes.Buffer{}\n\tsrc io.Reader = \u0026bytes.Buffer{}\n)\n\nfunc main() {\n\tf()\n}",
+        "version": 35,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"bytes\"\n\t\"fmt\"\n\t\"io\"\n)\n\n// :show start\n// declaration of a single top-level variable\nvar topLevel int64 = 5\n\n// grouping of multiple top-level declarations\nvar (\n\tintVal int            // value is initialized with zero-value\n\tstr    string = \"str\" // assigning\n\n\t// functions are first-class values so can be assigned to variables\n\t// fn is variable of type func(a int) string\n\t// it's uninitialized so is nil (zero-value for function variables)\n\tfn func(a int) string\n)\n\nfunc f() {\n\t// shorthand using local type inference\n\t// type of `i` is int and is inferred from the value\n\t// note: this is not allowed at top-level\n\ti := 4\n\n\t// grouping inside a function\n\tvar (\n\t\ti2 int\n\t\ts  string\n\t)\n\n\t// _ is like a variable whose value is discarded. It's called blank identifier.\n\t// Useful when we don't care about one of the values returned by a function\n\t_, err := io.Copy(dst, src) // don't care how many bytes were written\n\t// ...\n\n\tfmt.Printf(\"i: %d, i2: %d, s: %s, err: %v\\n\", i, i2, s, err)\n}\n\n// :show end\n\nvar (\n\tdst io.Writer = \u0026bytes.Buffer{}\n\tsrc io.Reader = \u0026bytes.Buffer{}\n)\n\nfunc main() {\n\tf()\n}",
         "code_language": "Go"
       },
       {
@@ -169,7 +169,7 @@
         "id": "393a4717-4330-4998-b25d-388a8ff7556f",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1552217700000,
+        "last_edited_time": 1552256700000,
         "parent_id": "5e911a69-8c43-432d-bf3c-e33fc32dafe1",
         "parent_table": "block",
         "properties": {
@@ -180,7 +180,7 @@
           ]
         },
         "type": "page",
-        "version": 40,
+        "version": 41,
         "title": "Basic variable declaration",
         "format_page": {
           "page_cover": "",
@@ -202,7 +202,7 @@
         "id": "e6085895-f34a-4fb7-beb5-5f0e460ea905",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1552217760000,
+        "last_edited_time": 1552256700000,
         "parent_id": "5e911a69-8c43-432d-bf3c-e33fc32dafe1",
         "parent_table": "block",
         "properties": {
@@ -213,7 +213,7 @@
           ]
         },
         "type": "page",
-        "version": 61,
+        "version": 62,
         "title": "Multiple variable assignment",
         "format_page": {
           "page_cover": "",
@@ -235,7 +235,7 @@
         "id": "1ac75368-0907-4689-b3f8-041d7a2b1e4a",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1552217820000,
+        "last_edited_time": 1552256760000,
         "parent_id": "5e911a69-8c43-432d-bf3c-e33fc32dafe1",
         "parent_table": "block",
         "properties": {
@@ -246,7 +246,7 @@
           ]
         },
         "type": "page",
-        "version": 57,
+        "version": 60,
         "title": "Blank identifier",
         "format_page": {
           "page_cover": "",

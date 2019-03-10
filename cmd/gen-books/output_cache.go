@@ -273,7 +273,7 @@ func getOutputCached(b *Book, sf *SourceFile) error {
 	// even better
 	if sf.Directive.NoOutput {
 		if sf.Directive.Glot {
-			// if running on glot, we do want to execute even if
+			// if running on glot, we want to execute even if
 			// we don't show the output (to check syntax errors)
 		} else {
 			return nil
@@ -289,8 +289,6 @@ func getOutputCached(b *Book, sf *SourceFile) error {
 		return nil
 	}
 
-	var s string
-	var err error
 	if sf.Directive.Glot {
 		f := &glotFile{
 			Name:    sf.Directive.FileName,
@@ -302,19 +300,21 @@ func getOutputCached(b *Book, sf *SourceFile) error {
 		}
 		rsp, err := glotRun(req)
 		panicIfErr(err)
-		s = rsp.Stdout + rsp.Stderr
+		s := rsp.Stdout + rsp.Stderr
 		if rsp.Error != "" {
 			if !sf.Directive.AllowError {
 				//fmt.Printf("getOutput('%s'), output is:\n%s\n", path, s)
 				return errors.New(rsp.Stderr)
 			}
 		} else if rsp.Stderr != "" {
+			fmt.Printf("getOutputCached: got stderr: %s\n", rsp.Stderr)
 			if !sf.Directive.AllowError {
 				//fmt.Printf("getOutput('%s'), output is:\n%s\n", path, s)
 				return errors.New(rsp.Stderr)
 			}
 		}
-		fmt.Printf("Got output for '%s' by running on glot\n", sf.Directive.FileName)
+		sf.Output = s
+		fmt.Printf("Got output (%d bytes) for '%s' by running on glot\n", len(sf.Output), sf.Directive.FileName)
 	} else {
 		path := sf.Path
 		ext := strings.ToLower(filepath.Ext(path))
@@ -324,22 +324,22 @@ func getOutputCached(b *Book, sf *SourceFile) error {
 		}
 
 		// fmt.Printf("loadFileCached('%s') failed with '%s'\n", outputPath, err)
-		s, err = getOutput(path, sf.Directive.RunCmd)
+		s, err := getOutput(path, sf.Directive.RunCmd)
 		if err != nil {
 			if !sf.Directive.AllowError {
-				fmt.Printf("getOutput('%s'), output is:\n%s\n", path, s)
+				fmt.Printf("getOutput('%s'), got error:\n%s\n", path, s)
 				return err
 			}
 			err = nil
 		}
-		fmt.Printf("Got output '%s' for '%s' by running locally\n", sha1Hex, path)
+		sf.Output = s
+		fmt.Printf("Got output (%d bytes) for '%s' by running locally\n", len(sf.Output), path)
 	}
 
 	cof = getCurrentOutputCacheFile(b)
-	cof.doc = kvstore.ReplaceOrAppend(cof.doc, sha1Hex, s)
+	cof.doc = kvstore.ReplaceOrAppend(cof.doc, sha1Hex, sf.Output)
 
 	b.sha1ToCachedOutputFile[sha1Hex] = cof
-	sf.Output = s
 	if flgUpdateOutput {
 		saveCachedOutputFiles(b)
 	}

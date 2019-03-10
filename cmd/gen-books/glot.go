@@ -264,10 +264,46 @@ func glotHTTPPostJSON(uri string, reqIn interface{}, rspOut interface{}) error {
 	}
 	d, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
+		fmt.Printf("glotHTTPPostJSON: ioutil.ReadAll() failed with '%s'\n", err)
 		return err
 	}
 
-	return json.Unmarshal(d, rspOut)
+	// TODO: this sucks because I can't tell a difference between
+	// a valid "no output" (the program doesn't print anything)
+	// or caused by an error (e.g. I forgot to name the files so nothing
+	// gets executed)
+	// special case: when doing 'run' requests and it returns 204 No Content
+	// it might be a valid program that doesn't print anything to stdout
+	// in which case trying to decode empty string as JSON will fail
+	if resp.StatusCode == http.StatusNoContent {
+		fmt.Printf("glotHTTPPostJSON: got 204 No Content\n")
+		if _, ok := reqIn.(*glotRunRequest); ok {
+			if req, ok := reqIn.(*glotRunRequest); ok {
+				for _, f := range req.Files {
+					fmt.Printf("Name: %s\n", f.Name)
+					fmt.Printf("Content:\n%s\n", f.Content)
+				}
+			}
+			// allow Unmarshal to work (and set everything to default empty fields)
+			d = []byte("{}")
+		}
+	}
+
+	err = json.Unmarshal(d, rspOut)
+	if err != nil {
+		if req, ok := reqIn.(*glotRunRequest); ok {
+			for _, f := range req.Files {
+				fmt.Printf("Name: %s\n", f.Name)
+				fmt.Printf("Content:\n%s\n", f.Content)
+			}
+		}
+
+		fmt.Printf("glotHTTPPostJSON: json.Unmarshal() failed with '%s' on:\n%s\n", err, string(d))
+		fmt.Printf("   uri: '%s', input type: %T, output type: %T\n", uri, reqIn, rspOut)
+		fmt.Printf("   status code: %d, status: '%s'\n", resp.StatusCode, resp.Status)
+		return err
+	}
+	return nil
 }
 
 func glotRun(req *glotRunRequest) (*glotRunResponse, error) {
@@ -285,6 +321,9 @@ func glotRun(req *glotRunRequest) (*glotRunResponse, error) {
 
 // submit the data to Glot playground and get snippet id
 func glotGetSnippedID(content []byte, snippetName string, fileName string, lang string) (*glotMakeSnippetResponse, error) {
+	if fileName == "" {
+		panic("fileName cannot be empty")
+	}
 	_, err := glotFindRunURLForLang(lang)
 	if err != nil {
 		return nil, err
