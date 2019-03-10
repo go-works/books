@@ -250,12 +250,13 @@ var allowedLanguages = map[string]bool{
 }
 
 func setGlotPlaygroundID(b *Book, sf *SourceFile) error {
-	lang := strings.ToLower(sf.Lang)
-	if _, ok := allowedLanguages[lang]; !ok {
+	// TODO: should this be NoPlayground
+	if sf.Directive.NoOutput {
 		return nil
 	}
-	if sf.Directive.NoPlayground {
-		return nil
+	lang := strings.ToLower(sf.Lang)
+	if _, ok := allowedLanguages[lang]; !ok {
+		return fmt.Errorf("'%s' is not a supported language", sf.Lang)
 	}
 
 	fileName := sf.Directive.FileName
@@ -265,7 +266,8 @@ func setGlotPlaygroundID(b *Book, sf *SourceFile) error {
 		return err
 	}
 	sf.GlotPlaygroundID = id
-	sf.PlaygroundURI = "https://snippets.glot.io/snippets/" + sf.GlotPlaygroundID
+	sf.PlaygroundURI = "https://glot.io/snippets/" + sf.GlotPlaygroundID
+	fmt.Printf("setGlotPlaygroundID: assigned glot snippet %s\n", sf.PlaygroundURI)
 	return nil
 }
 

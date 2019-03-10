@@ -299,18 +299,18 @@ func getOutputCached(b *Book, sf *SourceFile) error {
 		fmt.Printf("getOutputCached: running glotRun()\n")
 		rsp, err := glotRun(req)
 		panicIfErr(err)
+		s = rsp.Stdout + rsp.Stderr
 		if rsp.Error != "" {
-			// TODO: should this be neutralized by sf.Directive.AllowError ?
-			panic(rsp.Error)
-		}
-		s = rsp.Stdout
-		if rsp.Stderr != "" {
 			if !sf.Directive.AllowError {
-				fmt.Printf("getOutput('%s'), output is:\n%s\n", path, s)
+				//fmt.Printf("getOutput('%s'), output is:\n%s\n", path, s)
+				return errors.New(rsp.Stderr)
+			}
+		} else if rsp.Stderr != "" {
+			if !sf.Directive.AllowError {
+				//fmt.Printf("getOutput('%s'), output is:\n%s\n", path, s)
 				return errors.New(rsp.Stderr)
 			}
 		}
-
 	} else {
 		// fmt.Printf("loadFileCached('%s') failed with '%s'\n", outputPath, err)
 		s, err = getOutput(path, sf.Directive.RunCmd)
