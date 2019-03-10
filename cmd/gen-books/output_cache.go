@@ -79,7 +79,7 @@ func reloadCachedOutputFilesMust(b *Book) {
 		if fi.IsDir() {
 			continue
 		}
-		if fi.Name() == "sha1_to_go_playground_id.txt" {
+		if fi.Name() == "sha1_to_go_playground_id.txt" || fi.Name() == "sha1_to_glot_playground_id.txt" {
 			continue
 		}
 		if !isCachedOutputFile(fi.Name()) {

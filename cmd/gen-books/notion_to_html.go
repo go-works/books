@@ -579,12 +579,19 @@ func (g *HTMLGenerator) genBlock(block *notionapi.Block) {
 			//GitHubURL: gitHubURL,
 		}
 		sf.Lang = lang
+		sf.SnippetName = g.page.PageTitle()
+		if sf.SnippetName == "" {
+			sf.SnippetName = "untitled"
+		}
 
 		data := []byte(block.Code)
 		err := setSourceFileData(sf, data)
 		if err != nil {
+			id := normalizeID(g.page.NotionID)
+			uri := fmt.Sprintf("https://notion.so/%s", id)
 			fmt.Printf("genBlock: setSourceFileData() failed with '%s'\n", err)
-			panicIfErr(err)
+			fmt.Printf("page: %s\n", uri)
+			//panicIfErr(err)
 		}
 		// for embedded code blocks by default we don't set playground or output
 		// unless explicitly asked for
@@ -593,6 +600,10 @@ func (g *HTMLGenerator) genBlock(block *notionapi.Block) {
 		setDefaultFileNameFromLanguage(sf)
 		err = getOutputCached(g.book, sf)
 		panicIfErr(err)
+		err = setGlotPlaygroundID(g.book, sf)
+		if err != nil {
+			fmt.Printf("setGlotPlaygroundID() failed with '%s'\n", err)
+		}
 		g.genSourceFile(sf)
 
 		if false {
@@ -648,6 +659,10 @@ func setDefaultFileNameFromLanguage(sf *SourceFile) error {
 		panic("")
 	}
 	sf.Directive.FileName = "main" + ext
+	if sf.FileName == "" {
+		sf.FileName = sf.Directive.FileName
+		sf.Path = sf.FileName
+	}
 	return nil
 }
 

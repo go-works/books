@@ -103,11 +103,8 @@ func parseFileDirective(line string) (*FileDirective, error) {
 
 func extractFileDirective(lines []string) (*FileDirective, []string, error) {
 	directive, err := parseFileDirective(lines[0])
-	if err != nil {
-		return nil, nil, err
-	}
-	if directive == nil {
-		return &FileDirective{}, lines, nil
+	if err != nil || directive == nil {
+		return &FileDirective{}, lines, err
 	}
 	return directive, lines[1:], nil
 }
@@ -277,9 +274,6 @@ func setSourceFileData(sf *SourceFile, data []byte) error {
 	sf.LinesRaw = dataToLines(sf.Data)
 	lines := sf.LinesRaw
 	directive, lines, err := extractFileDirective(lines)
-	if err != nil {
-		return err
-	}
 	sf.Directive = directive
 	sf.LinesFiltered = removeAnnotationLines(lines)
 	sf.LinesCode, err = extractCodeSnippets(lines)
