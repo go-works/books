@@ -403,6 +403,7 @@ func main() {
 		downloadBook(client, book)
 		loadSoContributorsMust(book)
 		genOnePage(book, page.ID)
+		saveCachedOutputFiles(book)
 		flgPreview = true
 		books = []*Book{book}
 		// and fallthrough to re-generate books
@@ -436,7 +437,7 @@ func main() {
 	genNetlifyRedirects(books)
 	printAndClearErrors()
 
-	if flgUpdateOutput || flgRedownloadOne != "" {
+	if flgUpdateOutput {
 		for _, b := range books {
 			saveCachedOutputFiles(b)
 		}
