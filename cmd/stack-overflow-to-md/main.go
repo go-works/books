@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -19,19 +20,35 @@ import (
 	"github.com/kjk/u"
 )
 
+// DocTag is an alias
 type DocTag = stackoverflow.DocTag
+
+// Topic is an alias
 type Topic = stackoverflow.Topic
+
+// Example is an alias
 type Example = stackoverflow.Example
+
+// TopicHistory is an alias
 type TopicHistory = stackoverflow.TopicHistory
+
+// Contributor is an alias
 type Contributor = stackoverflow.Contributor
 
 var (
+	flgPrintStats bool
+
 	emptyExamplexs []*Example
 	// if true, prints more information
 	verbose = true
 
 	booksToImport = common.BooksToProcess
 )
+
+func parseFlags() {
+	flag.BoolVar(&flgPrintStats, "stats", false, "if true will show book stats")
+	flag.Parse()
+}
 
 func getTopicsByDocID(docID int) map[int]bool {
 	res := make(map[int]bool)
@@ -63,7 +80,7 @@ func calcExampleCount(docTag *DocTag) {
 }
 
 func printDocTagsAndExit() {
-	loadAll()
+	loadAll(false)
 	docs := loadDocTagsMust()
 	for i := range docs {
 		docTag := &docs[i]
@@ -96,16 +113,6 @@ func loadDocTagsMust() []DocTag {
 	return docTagsCached
 }
 
-func loadTopicsMust() []Topic {
-	if topicsCached == nil {
-		var err error
-		path := path.Join("stack-overflow-docs-dump", "topics.json.gz")
-		topicsCached, err = stackoverflow.LoadTopics(path)
-		u.PanicIfErr(err)
-	}
-	return topicsCached
-}
-
 func loadTopicHistoriesMust() []TopicHistory {
 	if topicHistoriesCached == nil {
 		var err error
@@ -124,6 +131,16 @@ func loadContributorsMust() []*Contributor {
 		u.PanicIfErr(err)
 	}
 	return contributorsCached
+}
+
+func loadTopicsMust() []Topic {
+	if topicsCached == nil {
+		var err error
+		path := path.Join("stack-overflow-docs-dump", "topics.json.gz")
+		topicsCached, err = stackoverflow.LoadTopics(path)
+		u.PanicIfErr(err)
+	}
+	return topicsCached
 }
 
 func loadExamplesMust() []*Example {
@@ -146,15 +163,19 @@ func findDocTagByTitleMust(docTags []DocTag, title string) DocTag {
 	return DocTag{}
 }
 
-func loadAll() {
+func loadAll(silent bool) {
 	timeStart := time.Now()
-	fmt.Printf("Loading Stack Overflow data...")
+	if !silent {
+		fmt.Printf("Loading Stack Overflow data...")
+	}
 	loadDocTagsMust()
 	loadTopicsMust()
 	loadExamplesMust()
 	loadTopicHistoriesMust()
 	loadContributorsMust()
-	fmt.Printf(" took %s\n", time.Since(timeStart))
+	if !silent {
+		fmt.Printf(" took %s\n", time.Since(timeStart))
+	}
 }
 
 func getTopicsByDocTagID(docTagID int) []*Topic {
@@ -473,7 +494,7 @@ func writeBookAsMarkdown(docTag *DocTag, bookName string) {
 	}
 
 	fmt.Printf("Importing a book %s\n", bookName)
-	loadAll()
+	loadAll(false)
 
 	//fmt.Printf("%s: docID: %d\n", title, docTag.Id)
 	topics := getTopicsByDocTagID(docTag.Id)
@@ -532,11 +553,6 @@ func writeBookAsMarkdown(docTag *DocTag, bookName string) {
 	fmt.Printf("Imported %s (%d chapters, %d articles) in %s\n", bookName, nChapters, nArticles, time.Since(timeStart))
 }
 
-func dumpMetaAndExit() {
-	loadAll()
-	os.Exit(0)
-}
-
 func getImportedBooks() []string {
 	books, err := common.GetDirs("books")
 	u.PanicIfErr(err)
@@ -544,9 +560,9 @@ func getImportedBooks() []string {
 }
 
 func getAllBooks() []string {
-	gDocTags := loadDocTagsMust()
+	docTags := loadDocTagsMust()
 	var books []string
-	for _, doc := range gDocTags {
+	for _, doc := range docTags {
 		book := doc.Title
 		books = append(books, book)
 	}
@@ -599,13 +615,23 @@ func fixupBookName(soName string) string {
 	return soName
 }
 
+func findBookByDocID(id int) *DocTag {
+	docTags := loadDocTagsMust()
+	for i, doc := range docTags {
+		if id == doc.Id {
+			return &docTags[i]
+		}
+	}
+	return nil
+}
+
 func findBookByName(bookName string) *DocTag {
 	nameNoCase := strings.ToLower(bookName)
-	gDocTags := loadDocTagsMust()
-	for i, doc := range gDocTags {
+	docTags := loadDocTagsMust()
+	for i, doc := range docTags {
 		titleNoCase := strings.ToLower(doc.Title)
 		if nameNoCase == titleNoCase {
-			return &gDocTags[i]
+			return &docTags[i]
 		}
 	}
 	return nil
@@ -616,11 +642,62 @@ func pathExists(path string) bool {
 	return err == nil
 }
 
+type bookStat struct {
+	n        int
+	docID    int
+	bookName string
+}
+
+// prints how many articles in each book, sorted by article count
+func printStats() {
+	// fmt.Printf("printStats: starting\n")
+	loadAll(true)
+
+	topicIDToExampleCount := map[int]int{}
+	examples := loadExamplesMust()
+	for _, e := range examples {
+		topicIDToExampleCount[e.DocTopicId]++
+	}
+	// fmt.Printf("len(topicIDToExampleCount): %d\n", len(topicIDToExampleCount))
+
+	docIDToArticleCount := map[int]int{}
+	topics := loadTopicsMust()
+	for _, topic := range topics {
+		nExamples := topicIDToExampleCount[topic.Id] + 1
+		docIDToArticleCount[topic.DocTagId] += nExamples
+	}
+	//fmt.Printf("len(docIDToArticleCount): %d\n", len(docIDToArticleCount))
+
+	a := []*bookStat{}
+	for docID, n := range docIDToArticleCount {
+		s := &bookStat{
+			n:     n,
+			docID: docID,
+		}
+		doc := findBookByDocID(docID)
+		s.bookName = doc.Title
+		a = append(a, s)
+	}
+	sort.Slice(a, func(i, j int) bool {
+		return a[i].n < a[j].n
+	})
+	//fmt.Printf("len(a): %d\n", len(a))
+	fmt.Printf("count,name\n")
+	for _, stat := range a {
+		fmt.Printf("%d,%s\n", stat.n, stat.bookName)
+	}
+}
+
 func main() {
 	// for ad-hoc operations uncomment one of those
 	// genContributorsAndExit()
-	// dumpMetaAndExit()
 	// printDocTagsAndExit()
+
+	parseFlags()
+	if flgPrintStats {
+		printStats()
+		return
+	}
 
 	args := os.Args[1:]
 	if len(args) != 1 {
