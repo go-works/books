@@ -599,7 +599,10 @@ func (g *HTMLGenerator) genBlock(block *notionapi.Block) {
 		sf.Directive.NoOutput = !sf.Directive.DoOutput
 		setDefaultFileNameFromLanguage(sf)
 		err = getOutputCached(g.book, sf)
-		panicIfErr(err)
+		if err != nil {
+			fmt.Printf("getOutputCached() failed. sf.Data:\n%s\nsf.DataToRun():\n%s\n", sf.Data, sf.DataToRun())
+			panicIfErr(err)
+		}
 		err = setGlotPlaygroundID(g.book, sf)
 		if err != nil {
 			fmt.Printf("setGlotPlaygroundID() failed with '%s'\n", err)

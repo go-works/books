@@ -145,7 +145,7 @@ type SourceFile struct {
 	// LinesRaw after extracting directive, run cmd at the top
 	// and removing :show annotation lines
 	// This is the content to execute
-	LinesFiltered []string
+	LinesToRun []string
 
 	// the part that we want to show i.e. the parts inside
 	// :show start, :show end blocks
@@ -155,9 +155,10 @@ type SourceFile struct {
 	Output string
 }
 
-// DataFiltered returns content of the file after filtering
-func (f *SourceFile) DataFiltered() []byte {
-	s := strings.Join(f.LinesFiltered, "\n")
+// DataToRun returns content of the file after filtering, that's the
+// version we want to execute to get the output
+func (f *SourceFile) DataToRun() []byte {
+	s := strings.Join(f.LinesToRun, "\n")
 	return []byte(s)
 }
 
@@ -235,7 +236,7 @@ func setGoPlaygroundID(b *Book, sf *SourceFile) error {
 	if sf.Directive.NoPlayground {
 		return nil
 	}
-	id, err := getSha1ToGoPlaygroundIDCached(b, sf.DataFiltered())
+	id, err := getSha1ToGoPlaygroundIDCached(b, sf.DataToRun())
 	if err != nil {
 		return err
 	}
@@ -261,13 +262,12 @@ func setGlotPlaygroundID(b *Book, sf *SourceFile) error {
 
 	fileName := sf.Directive.FileName
 	snippetName := sf.SnippetName
-	id, err := getSha1ToGlotPlaygroundIDCached(b, sf.DataFiltered(), snippetName, fileName, lang)
+	id, err := getSha1ToGlotPlaygroundIDCached(b, sf.DataToRun(), snippetName, fileName, lang)
 	if err != nil {
 		return err
 	}
 	sf.GlotPlaygroundID = id
 	sf.PlaygroundURI = "https://glot.io/snippets/" + sf.GlotPlaygroundID
-	fmt.Printf("setGlotPlaygroundID: assigned glot snippet %s\n", sf.PlaygroundURI)
 	return nil
 }
 
@@ -277,7 +277,7 @@ func setSourceFileData(sf *SourceFile, data []byte) error {
 	lines := sf.LinesRaw
 	directive, lines, err := extractFileDirective(lines)
 	sf.Directive = directive
-	sf.LinesFiltered = removeAnnotationLines(lines)
+	sf.LinesToRun = removeAnnotationLines(lines)
 	sf.LinesCode, err = extractCodeSnippets(lines)
 	return err
 }

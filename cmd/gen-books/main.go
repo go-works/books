@@ -442,12 +442,6 @@ func main() {
 	genNetlifyRedirects(books)
 	printAndClearErrors()
 
-	if flgUpdateOutput {
-		for _, b := range books {
-			saveCachedOutputFiles(b)
-		}
-	}
-
 	if flgPreview {
 		startPreview()
 	}

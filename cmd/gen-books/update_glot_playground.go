@@ -75,7 +75,8 @@ func getSha1ToGlotPlaygroundIDCached(b *Book, d []byte, snippetName string, file
 	}
 	if nUpdates != b.sha1ToGlotPlaygroundCache.nUpdates {
 		sha1 := u.Sha1HexOfBytes(d)
-		fmt.Printf("getSha1ToGlotPlaygroundIDCached: %s => %s\n", sha1, id)
+		uri := "https://glot.io/snippets/" + id
+		fmt.Printf("getSha1ToGlotPlaygroundIDCached: %s => %s, %s\n", sha1, id, uri)
 	}
 	return id, nil
 }

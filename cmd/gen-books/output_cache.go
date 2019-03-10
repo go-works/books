@@ -24,6 +24,7 @@ type cachedOutputFile struct {
 	no   int
 }
 
+// returns n-th cache file to be used to save the cached output
 func getCurrentOutputCacheFile(b *Book) *cachedOutputFile {
 	n := len(b.cachedOutputFiles) - 1
 	if n >= 0 {
@@ -71,7 +72,8 @@ func cachedFileNo(path string) int {
 
 // files are cached_output_${no}.txt
 func reloadCachedOutputFilesMust(b *Book) {
-	b.sha1ToCachedOutputFile = make(map[string]*cachedOutputFile)
+	b.sha1ToCachedOutputFile = map[string]*cachedOutputFile{}
+	b.cachedOutputFiles = nil
 
 	fileInfos, err := ioutil.ReadDir(b.OutputCacheDir())
 	u.PanicIfErr(err)
@@ -269,7 +271,8 @@ func getOutputCached(b *Book, sf *SourceFile) error {
 	if sf.Directive.NoOutput {
 		return nil
 	}
-	sha1Hex := u.Sha1HexOfBytes(sf.Data)
+	code := sf.DataToRun()
+	sha1Hex := u.Sha1HexOfBytes(code)
 
 	cof := b.sha1ToCachedOutputFile[sha1Hex]
 	if cof != nil {
@@ -278,25 +281,17 @@ func getOutputCached(b *Book, sf *SourceFile) error {
 		return nil
 	}
 
-	path := sf.Path
-	ext := strings.ToLower(filepath.Ext(path))
-	switch ext {
-	case ".json", ".csv", ".yml", ".xml":
-		return nil
-	}
-
 	var s string
 	var err error
 	if sf.Directive.Glot {
 		f := &glotFile{
 			Name:    sf.Directive.FileName,
-			Content: string(sf.Data),
+			Content: string(code),
 		}
 		req := &glotRunRequest{
 			language: sf.Lang,
 			Files:    []*glotFile{f},
 		}
-		fmt.Printf("getOutputCached: running glotRun()\n")
 		rsp, err := glotRun(req)
 		panicIfErr(err)
 		s = rsp.Stdout + rsp.Stderr
@@ -311,7 +306,15 @@ func getOutputCached(b *Book, sf *SourceFile) error {
 				return errors.New(rsp.Stderr)
 			}
 		}
+		fmt.Printf("Got output for '%s' by running on glot\n", sf.Directive.FileName)
 	} else {
+		path := sf.Path
+		ext := strings.ToLower(filepath.Ext(path))
+		switch ext {
+		case ".json", ".csv", ".yml", ".xml":
+			return nil
+		}
+
 		// fmt.Printf("loadFileCached('%s') failed with '%s'\n", outputPath, err)
 		s, err = getOutput(path, sf.Directive.RunCmd)
 		if err != nil {
@@ -321,7 +324,7 @@ func getOutputCached(b *Book, sf *SourceFile) error {
 			}
 			err = nil
 		}
-		fmt.Printf("Got output '%s' for '%s'\n", sha1Hex, path)
+		fmt.Printf("Got output '%s' for '%s' by running locally\n", sha1Hex, path)
 	}
 
 	cof = getCurrentOutputCacheFile(b)
@@ -329,5 +332,8 @@ func getOutputCached(b *Book, sf *SourceFile) error {
 
 	b.sha1ToCachedOutputFile[sha1Hex] = cof
 	sf.Output = s
+	if flgUpdateOutput {
+		saveCachedOutputFiles(b)
+	}
 	return nil
 }
