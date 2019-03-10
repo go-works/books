@@ -637,7 +637,8 @@ func (g *HTMLGenerator) genBlock(block *notionapi.Block) {
 	case notionapi.BlockEmbed:
 		g.genEmbed(block)
 	default:
-		fmt.Printf("Unsupported block type '%s', id: %s\n", block.Type, block.ID)
+		uri := "https://notion.so/" + normalizeID(g.page.NotionID)
+		fmt.Printf("Unsupported block type '%s', id: %s in page %s\n", block.Type, block.ID, uri)
 		panic(fmt.Sprintf("Unsupported block type '%s'", block.Type))
 	}
 }

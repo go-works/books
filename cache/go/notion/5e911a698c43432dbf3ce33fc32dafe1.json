@@ -7,7 +7,7 @@
       "0694b7e1-dd82-43f0-a8d1-8b6947ebc5e4",
       "05d83e0a-8294-41f8-8dc3-1cef3d9ee1f7",
       "afb6fae9-4e08-4fd0-8384-300f4d92da45",
-      "47ae9c75-1443-4934-bbd9-0b12e03f7186",
+      "86796b1f-cdcf-4389-9094-3443b5dc5d6a",
       "2381037e-8874-4db7-80df-fe0472d99885",
       "393a4717-4330-4998-b25d-388a8ff7556f",
       "e6085895-f34a-4fb7-beb5-5f0e460ea905",
@@ -22,7 +22,7 @@
     "id": "5e911a69-8c43-432d-bf3c-e33fc32dafe1",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539748330001,
+    "last_edited_time": 1552217820000,
     "parent_id": "2cab1ed2-b7a4-4584-b56b-0d3ca9b80185",
     "parent_table": "block",
     "properties": {
@@ -33,7 +33,7 @@
       ]
     },
     "type": "page",
-    "version": 57,
+    "version": 66,
     "content_resolved": [
       {
         "alive": true,
@@ -123,37 +123,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539748322201,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/book-define-variables?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "47ae9c75-1443-4934-bbd9-0b12e03f7186",
+        "created_time": 1552217683842,
+        "id": "86796b1f-cdcf-4389-9094-3443b5dc5d6a",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539748324038,
+        "last_edited_time": 1552217640000,
         "parent_id": "5e911a69-8c43-432d-bf3c-e33fc32dafe1",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/book-define-variables"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot, :output\npackage main\n\nimport (\n\t\"bytes\"\n\t\"fmt\"\n\t\"io\"\n)\n\n// :show start\n// declaration of a single top-level variable\nvar topLevel int64 = 5\n\n// grouping of multiple top-level declarations\nvar (\n\tintVal int            // value is initialized with zero-value\n\tstr    string = \"str\" // assigning\n\n\t// functions are first-class values so can be assigned to variables\n\t// fn is variable of type func(a int) string\n\t// it's uninitialized so is nil (zero-value for function variables)\n\tfn func(a int) string\n)\n\nfunc f() {\n\t// shorthand using local type inference\n\t// type of `i` is int and is inferred from the value\n\t// note: this is not allowed at top-level\n\ti := 4\n\n\t// grouping inside a function\n\tvar (\n\t\ti2 int\n\t\ts  string\n\t)\n\n\t// _ is like a variable whose value is discarded. It's called blank identifier.\n\t// Useful when we don't care about one of the values returned by a function\n\t_, err := io.Copy(dst, src) // don't care how many bytes were written\n\t// ...\n\n\tfmt.Printf(\"i: %d, i2: %d, s: %s, err: %v\\n\", i, i2, s, err)\n}\n\n// :show end\n\nvar (\n\tdst io.Writer = \u0026bytes.Buffer{}\n\tsrc io.Reader = \u0026bytes.Buffer{}\n)\n\nfunc main() {\n\tf()\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/book-define-variables",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/book-define-variables?lite=true"
-        }
+        "type": "code",
+        "version": 30,
+        "code": "// :glot, :output\npackage main\n\nimport (\n\t\"bytes\"\n\t\"fmt\"\n\t\"io\"\n)\n\n// :show start\n// declaration of a single top-level variable\nvar topLevel int64 = 5\n\n// grouping of multiple top-level declarations\nvar (\n\tintVal int            // value is initialized with zero-value\n\tstr    string = \"str\" // assigning\n\n\t// functions are first-class values so can be assigned to variables\n\t// fn is variable of type func(a int) string\n\t// it's uninitialized so is nil (zero-value for function variables)\n\tfn func(a int) string\n)\n\nfunc f() {\n\t// shorthand using local type inference\n\t// type of `i` is int and is inferred from the value\n\t// note: this is not allowed at top-level\n\ti := 4\n\n\t// grouping inside a function\n\tvar (\n\t\ti2 int\n\t\ts  string\n\t)\n\n\t// _ is like a variable whose value is discarded. It's called blank identifier.\n\t// Useful when we don't care about one of the values returned by a function\n\t_, err := io.Copy(dst, src) // don't care how many bytes were written\n\t// ...\n\n\tfmt.Printf(\"i: %d, i2: %d, s: %s, err: %v\\n\", i, i2, s, err)\n}\n\n// :show end\n\nvar (\n\tdst io.Writer = \u0026bytes.Buffer{}\n\tsrc io.Reader = \u0026bytes.Buffer{}\n)\n\nfunc main() {\n\tf()\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,
@@ -178,7 +169,7 @@
         "id": "393a4717-4330-4998-b25d-388a8ff7556f",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539748298367,
+        "last_edited_time": 1552217700000,
         "parent_id": "5e911a69-8c43-432d-bf3c-e33fc32dafe1",
         "parent_table": "block",
         "properties": {
@@ -189,7 +180,7 @@
           ]
         },
         "type": "page",
-        "version": 35,
+        "version": 40,
         "title": "Basic variable declaration",
         "format_page": {
           "page_cover": "",
@@ -211,7 +202,7 @@
         "id": "e6085895-f34a-4fb7-beb5-5f0e460ea905",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539748220302,
+        "last_edited_time": 1552217760000,
         "parent_id": "5e911a69-8c43-432d-bf3c-e33fc32dafe1",
         "parent_table": "block",
         "properties": {
@@ -222,7 +213,7 @@
           ]
         },
         "type": "page",
-        "version": 51,
+        "version": 61,
         "title": "Multiple variable assignment",
         "format_page": {
           "page_cover": "",
@@ -244,7 +235,7 @@
         "id": "1ac75368-0907-4689-b3f8-041d7a2b1e4a",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539748063935,
+        "last_edited_time": 1552217820000,
         "parent_id": "5e911a69-8c43-432d-bf3c-e33fc32dafe1",
         "parent_table": "block",
         "properties": {
@@ -255,7 +246,7 @@
           ]
         },
         "type": "page",
-        "version": 47,
+        "version": 57,
         "title": "Blank identifier",
         "format_page": {
           "page_cover": "",

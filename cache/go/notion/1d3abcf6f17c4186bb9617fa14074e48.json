@@ -15,7 +15,7 @@
       "030e8c42-39e7-4d48-a730-604d41430480",
       "8e116ab9-6e95-4c0a-bc12-0cfeae360c1c",
       "9cdc1dd8-9059-4c15-b588-94a737968c8d",
-      "837914f1-1ae7-425c-8299-fcebea25cd76",
+      "555f0e1f-8a5b-4101-a214-c6854740f071",
       "52ea612a-9f01-45c5-b4fd-98950a6dfb56"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -27,7 +27,7 @@
     "id": "1d3abcf6-f17c-4186-bb96-17fa14074e48",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539753781237,
+    "last_edited_time": 1552219260000,
     "parent_id": "ccc8d069-58ae-4431-9b21-f9973716e3ca",
     "parent_table": "block",
     "properties": {
@@ -38,7 +38,7 @@
       ]
     },
     "type": "page",
-    "version": 35,
+    "version": 40,
     "content_resolved": [
       {
         "alive": true,
@@ -377,37 +377,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539753754712,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/book-normalize-newlines?lite=true",
-          "block_full_width": false,
-          "block_page_width": true,
-          "block_preserve_scale": false
-        },
-        "id": "837914f1-1ae7-425c-8299-fcebea25cd76",
+        "created_time": 1552219277221,
+        "id": "555f0e1f-8a5b-4101-a214-c6854740f071",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539753756473,
+        "last_edited_time": 1552219260000,
         "parent_id": "1d3abcf6-f17c-4186-bb96-17fa14074e48",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/book-normalize-newlines"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot, :output\npackage main\n\nimport (\n\t\"bytes\"\n\t\"fmt\"\n)\n\n// :show start\n// NormalizeNewLines normalizes \\r\\n (windows) and \\r (mac)\n// into \\n (unix)\nfunc NormalizeNewlines(d []byte) []byte {\n\t// replace CR LF \\r\\n (windows) with LF \\n (unix)\n\td = bytes.Replace(d, []byte{13, 10}, []byte{10}, -1)\n\t// replace CF \\r (mac) with LF \\n (unix)\n\td = bytes.Replace(d, []byte{13}, []byte{10}, -1)\n\treturn d\n}\n\n// :show end\n\nfunc main() {\n\td := []byte(\"new\\r\\nline\")\n\td = NormalizeNewlines(d)\n\tfmt.Printf(\"%#v\\n\", string(d))\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/book-normalize-newlines",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": true,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/book-normalize-newlines?lite=true"
-        }
+        "type": "code",
+        "version": 24,
+        "code": "// :glot, :output\npackage main\n\nimport (\n\t\"bytes\"\n\t\"fmt\"\n)\n\n// :show start\n// NormalizeNewLines normalizes \\r\\n (windows) and \\r (mac)\n// into \\n (unix)\nfunc NormalizeNewlines(d []byte) []byte {\n\t// replace CR LF \\r\\n (windows) with LF \\n (unix)\n\td = bytes.Replace(d, []byte{13, 10}, []byte{10}, -1)\n\t// replace CF \\r (mac) with LF \\n (unix)\n\td = bytes.Replace(d, []byte{13}, []byte{10}, -1)\n\treturn d\n}\n\n// :show end\n\nfunc main() {\n\td := []byte(\"new\\r\\nline\")\n\td = NormalizeNewlines(d)\n\tfmt.Printf(\"%#v\\n\", string(d))\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,
