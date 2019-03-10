@@ -337,7 +337,7 @@ func main() {
 	if false {
 		glotRunTestAndExit()
 	}
-	if true {
+	if false {
 		glotGetSnippedIDTestAndExit()
 	}
 
