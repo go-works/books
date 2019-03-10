@@ -593,10 +593,17 @@ func (g *HTMLGenerator) genBlock(block *notionapi.Block) {
 			fmt.Printf("page: %s\n", uri)
 			//panicIfErr(err)
 		}
-		// for embedded code blocks by default we don't set playground or output
-		// unless explicitly asked for
-		sf.Directive.NoPlayground = false // !sf.Directive.GoPlayground
-		sf.Directive.NoOutput = !sf.Directive.DoOutput
+
+		if sf.Directive.Glot || sf.Directive.GoPlayground {
+			// for those we respect no output/no playground
+		} else {
+			// for embedded code blocks by default we don't set playground
+			// or output unless explicitly asked for
+			sf.Directive.NoPlayground = true
+			sf.Directive.NoOutput = true
+		}
+
+		sf.Directive.NoOutput = true
 		setDefaultFileNameFromLanguage(sf)
 		err = getOutputCached(g.book, sf)
 		if err != nil {

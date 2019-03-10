@@ -253,10 +253,13 @@ var allowedLanguages = map[string]bool{
 }
 
 func setGlotPlaygroundID(b *Book, sf *SourceFile) error {
-	// TODO: should this be NoPlayground
-	if sf.Directive.NoOutput {
+	if !sf.Directive.Glot {
 		return nil
 	}
+	if sf.Directive.NoPlayground {
+		return nil
+	}
+
 	lang := strings.ToLower(sf.Lang)
 	if _, ok := allowedLanguages[lang]; !ok {
 		return fmt.Errorf("'%s' is not a supported language", sf.Lang)

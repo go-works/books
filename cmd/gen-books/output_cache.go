@@ -269,8 +269,15 @@ func getOutputCachedForReplit(b *Book, replit *Replit, sf *SourceFile) error {
 // This is useful when e.g. executing "go run" on a program that is
 // intentionally not valid.
 func getOutputCached(b *Book, sf *SourceFile) error {
+	// TODO: make the check for when not to execute the file
+	// even better
 	if sf.Directive.NoOutput {
-		return nil
+		if sf.Directive.Glot {
+			// if running on glot, we do want to execute even if
+			// we don't show the output (to check syntax errors)
+		} else {
+			return nil
+		}
 	}
 	code := sf.DataToRun()
 	sha1Hex := u.Sha1HexOfBytes(code)
