@@ -205,8 +205,10 @@ type glotRunRequest struct {
 	language string
 
 	// Command is optional
-	Command string      `json:"command,omitempty"`
-	Files   []*glotFile `json:"files"`
+	Command string `json:"command,omitempty"`
+	// Stdin is optional
+	Stdin string      `json:"stdin,omitempty"`
+	Files []*glotFile `json:"files"`
 }
 
 type glotRunResponse struct {
