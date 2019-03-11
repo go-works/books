@@ -268,6 +268,7 @@ func setGoPlaygroundID(b *Book, sf *SourceFile) error {
 var allowedLanguages = map[string]bool{
 	"go":         true,
 	"javascript": true,
+	"cpp":        true,
 }
 
 func setGlotPlaygroundID(b *Book, sf *SourceFile) error {
@@ -279,8 +280,9 @@ func setGlotPlaygroundID(b *Book, sf *SourceFile) error {
 	}
 
 	lang := strings.ToLower(sf.Lang)
+	lang = glotConvertLanguage(lang)
 	if _, ok := allowedLanguages[lang]; !ok {
-		return fmt.Errorf("'%s' is not a supported language", sf.Lang)
+		return fmt.Errorf("'%s' ('%s') is not a supported language", sf.Lang, lang)
 	}
 
 	fileName := sf.Directive.FileName

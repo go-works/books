@@ -667,7 +667,7 @@ func setDefaultFileNameFromLanguage(sf *SourceFile) error {
 		ext = ".go"
 	case "javascript":
 		ext = ".js"
-	case "cpp", "cplusplus":
+	case "cpp", "cplusplus", "c++":
 		ext = ".cpp"
 	default:
 		fmt.Printf("detectFileNameFromLanguage: lang '%s' is not supported\n", sf.Lang)

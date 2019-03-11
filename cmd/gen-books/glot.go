@@ -176,6 +176,15 @@ var (
 	gGlotLangs []*glotLang
 )
 
+func glotConvertLanguage(s string) string {
+	s = strings.ToLower(s)
+	switch s {
+	case "c++", "cplusplus":
+		return "cpp"
+	}
+	return s
+}
+
 func glotGetLangs() []*glotLang {
 	if gGlotLangs != nil {
 		return gGlotLangs
@@ -307,6 +316,7 @@ func glotHTTPPostJSON(uri string, reqIn interface{}, rspOut interface{}) error {
 }
 
 func glotRun(req *glotRunRequest) (*glotRunResponse, error) {
+	req.language = glotConvertLanguage(req.language)
 	runURL, err := glotFindRunURLForLang(req.language)
 	if err != nil {
 		return nil, err
@@ -324,6 +334,7 @@ func glotGetSnippedID(content []byte, snippetName string, fileName string, lang 
 	if fileName == "" {
 		panic("fileName cannot be empty")
 	}
+	lang = glotConvertLanguage(lang)
 	_, err := glotFindRunURLForLang(lang)
 	if err != nil {
 		return nil, err
