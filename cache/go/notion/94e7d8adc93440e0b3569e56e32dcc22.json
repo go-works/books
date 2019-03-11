@@ -8,7 +8,7 @@
       "c2bac9ed-feb8-4660-aeda-dc2309418718",
       "c29c75ba-8f93-4d40-bfbc-4d862fef28ed",
       "185be217-ffd4-49b9-91a8-1dbd5404a4ae",
-      "f720498e-7494-4dc7-889f-9b51a15781b1",
+      "82d8d9b0-bd2c-4bd2-9032-f43ea56f1808",
       "1c5168c6-7e45-46d8-b101-a232105b9895"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -20,7 +20,7 @@
     "id": "94e7d8ad-c934-40e0-b356-9e56e32dcc22",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539851805835,
+    "last_edited_time": 1552277040000,
     "parent_id": "c7fea6b1-76b7-4c54-ab35-f2d8fdd56f13",
     "parent_table": "block",
     "properties": {
@@ -31,7 +31,7 @@
       ]
     },
     "type": "page",
-    "version": 35,
+    "version": 40,
     "content_resolved": [
       {
         "alive": true,
@@ -182,37 +182,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539851801098,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-reflection-pointers?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "f720498e-7494-4dc7-889f-9b51a15781b1",
+        "created_time": 1552277082205,
+        "id": "82d8d9b0-bd2c-4bd2-9032-f43ea56f1808",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539851803108,
+        "last_edited_time": 1552277040000,
         "parent_id": "94e7d8ad-c934-40e0-b356-9e56e32dcc22",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-reflection-pointers"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"reflect\"\n)\n\n// :show start\nfunc printIntResolvingPointers(v interface{}) {\n\trv := reflect.ValueOf(v)\n\ttypeName := rv.Type().String()\n\tname := \"\"\n\tfor rv.Kind() == reflect.Ptr {\n\t\tname = \"pointer to \" + name\n\t\trv = rv.Elem()\n\t}\n\tname += rv.Type().String()\n\tfmt.Printf(\"Value: %d. Type: '%s' i.e. '%s'.\\n\\n\", rv.Int(), name, typeName)\n}\n\nfunc main() {\n\tn := 3\n\tprintIntResolvingPointers(n)\n\n\tn = 4\n\tprintIntResolvingPointers(\u0026n)\n\n\tn = 5\n\tnp := \u0026n\n\tprintIntResolvingPointers(\u0026np)\n}\n\n// :show end"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-reflection-pointers",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-reflection-pointers?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"reflect\"\n)\n\n// :show start\nfunc printIntResolvingPointers(v interface{}) {\n\trv := reflect.ValueOf(v)\n\ttypeName := rv.Type().String()\n\tname := \"\"\n\tfor rv.Kind() == reflect.Ptr {\n\t\tname = \"pointer to \" + name\n\t\trv = rv.Elem()\n\t}\n\tname += rv.Type().String()\n\tfmt.Printf(\"Value: %d. Type: '%s' i.e. '%s'.\\n\\n\", rv.Int(), name, typeName)\n}\n\nfunc main() {\n\tn := 3\n\tprintIntResolvingPointers(n)\n\n\tn = 4\n\tprintIntResolvingPointers(\u0026n)\n\n\tn = 5\n\tnp := \u0026n\n\tprintIntResolvingPointers(\u0026np)\n}\n\n// :show end",
+        "code_language": "Go"
       },
       {
         "alive": true,

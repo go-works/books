@@ -14,7 +14,7 @@
       "104583a5-5bcf-493b-bb44-4256c616c670",
       "562b8349-d5bc-4e36-ae4f-e7267adbe871",
       "2e2ce789-1336-42d3-8dc0-4dde39ba1f19",
-      "00d6c79a-fe95-4553-9240-89526b05945e",
+      "a0e44abe-ddff-4a0c-b9ef-679f2aa97350",
       "579dd2bc-ba5e-48cc-8d70-179de9866309",
       "ab7f9d8c-28e9-4e91-998b-692c33f233c8",
       "f8e314b4-bf75-4965-9c6d-587df18e0926",
@@ -33,7 +33,7 @@
     "id": "474ffe54-eb92-473b-908b-5ef162789cad",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539852608067,
+    "last_edited_time": 1552287180000,
     "parent_id": "301bb328-156d-4206-94eb-f5489d2cb744",
     "parent_table": "block",
     "properties": {
@@ -44,7 +44,7 @@
       ]
     },
     "type": "page",
-    "version": 171,
+    "version": 185,
     "content_resolved": [
       {
         "alive": true,
@@ -301,37 +301,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539852597345,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-cryptography-encrypt-decrypt?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "00d6c79a-fe95-4553-9240-89526b05945e",
+        "created_time": 1552287189720,
+        "id": "a0e44abe-ddff-4a0c-b9ef-679f2aa97350",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539852599362,
+        "last_edited_time": 1552287180000,
         "parent_id": "474ffe54-eb92-473b-908b-5ef162789cad",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-cryptography-encrypt-decrypt"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "package main\n\nimport (\n\t\"bytes\"\n\t\"crypto/aes\"\n\t\"crypto/cipher\"\n\t\"crypto/rand\"\n\t\"errors\"\n\t\"fmt\"\n\t\"io\"\n\t\"io/ioutil\"\n\t\"log\"\n\n\t\"golang.org/x/crypto/scrypt\"\n)\n\nfunc aesKeyFromPassword(password string) ([]byte, error) {\n\t// DO NOT use this salt value; generate your own random salt. 8 bytes is\n\t// a good length. Keep the salt secret.\n\tsecretSalt := []byte{0xbc, 0x1e, 0x07, 0xd7, 0xb2, 0xa2, 0x5e, 0x2c}\n\treturn scrypt.Key([]byte(password), secretSalt, 32768, 8, 1, 32)\n}\n\nfunc aesGcmEncrypt(unencrypted []byte, password string) ([]byte, error) {\n\tkey, err := aesKeyFromPassword(password)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\tblock, err := aes.NewCipher(key)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\n\tgcm, err := cipher.NewGCM(block)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\n\t// generate a random nonce (makes encryption stronger)\n\tnonce := make([]byte, gcm.NonceSize())\n\tif _, err := io.ReadFull(rand.Reader, nonce); err != nil {\n\t\treturn nil, err\n\t}\n\n\tencrypted := gcm.Seal(nil, nonce, unencrypted, nil)\n\t// we need nonce for decryption so we put it at the beginning\n\t// of encrypted text\n\treturn append(nonce, encrypted...), nil\n}\n\nfunc aesGcmDecrypt(encrypted []byte, password string) ([]byte, error) {\n\tkey, err := aesKeyFromPassword(password)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\n\tblock, err := aes.NewCipher(key)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\n\tgcm, err := cipher.NewGCM(block)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\n\tif len(encrypted) \u003c gcm.NonceSize() {\n\t\treturn nil, errors.New(\"Invalid data\")\n\t}\n\n\t// extract random nonce we added to the beginning of the file\n\tnonce := encrypted[:gcm.NonceSize()]\n\tencrypted = encrypted[gcm.NonceSize():]\n\n\treturn gcm.Open(nil, nonce, encrypted, nil)\n}\n\nfunc main() {\n\tpassword := \"my password\"\n\td, err := ioutil.ReadFile(\"main.go\")\n\tif err != nil {\n\t\tlog.Fatalf(\"ioutil.ReadFile() failed with %s\\n\", err)\n\t}\n\tencrypted, err := aesGcmEncrypt(d, password)\n\tif err != nil {\n\t\tlog.Fatalf(\"aesGcmEncrypt() failed with %s\\n\", err)\n\t}\n\tdecrypted, err := aesGcmDecrypt(encrypted, password)\n\tif err != nil {\n\t\tlog.Fatalf(\"aesGcmDecrypt() failed with %s\\n\", err)\n\t}\n\tif !bytes.Equal(d, decrypted) {\n\t\tlog.Fatalf(\"decryption created data different than original\\n\")\n\t} else {\n\t\tfmt.Printf(\"Encryption in decryption worked!\\n\")\n\t}\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-cryptography-encrypt-decrypt",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-cryptography-encrypt-decrypt?lite=true"
-        }
+        "type": "code",
+        "version": 6,
+        "code": "package main\n\nimport (\n\t\"bytes\"\n\t\"crypto/aes\"\n\t\"crypto/cipher\"\n\t\"crypto/rand\"\n\t\"errors\"\n\t\"fmt\"\n\t\"io\"\n\t\"io/ioutil\"\n\t\"log\"\n\n\t\"golang.org/x/crypto/scrypt\"\n)\n\nfunc aesKeyFromPassword(password string) ([]byte, error) {\n\t// DO NOT use this salt value; generate your own random salt. 8 bytes is\n\t// a good length. Keep the salt secret.\n\tsecretSalt := []byte{0xbc, 0x1e, 0x07, 0xd7, 0xb2, 0xa2, 0x5e, 0x2c}\n\treturn scrypt.Key([]byte(password), secretSalt, 32768, 8, 1, 32)\n}\n\nfunc aesGcmEncrypt(unencrypted []byte, password string) ([]byte, error) {\n\tkey, err := aesKeyFromPassword(password)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\tblock, err := aes.NewCipher(key)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\n\tgcm, err := cipher.NewGCM(block)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\n\t// generate a random nonce (makes encryption stronger)\n\tnonce := make([]byte, gcm.NonceSize())\n\tif _, err := io.ReadFull(rand.Reader, nonce); err != nil {\n\t\treturn nil, err\n\t}\n\n\tencrypted := gcm.Seal(nil, nonce, unencrypted, nil)\n\t// we need nonce for decryption so we put it at the beginning\n\t// of encrypted text\n\treturn append(nonce, encrypted...), nil\n}\n\nfunc aesGcmDecrypt(encrypted []byte, password string) ([]byte, error) {\n\tkey, err := aesKeyFromPassword(password)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\n\tblock, err := aes.NewCipher(key)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\n\tgcm, err := cipher.NewGCM(block)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\n\tif len(encrypted) \u003c gcm.NonceSize() {\n\t\treturn nil, errors.New(\"Invalid data\")\n\t}\n\n\t// extract random nonce we added to the beginning of the file\n\tnonce := encrypted[:gcm.NonceSize()]\n\tencrypted = encrypted[gcm.NonceSize():]\n\n\treturn gcm.Open(nil, nonce, encrypted, nil)\n}\n\nfunc main() {\n\tpassword := \"my password\"\n\td, err := ioutil.ReadFile(\"main.go\")\n\tif err != nil {\n\t\tlog.Fatalf(\"ioutil.ReadFile() failed with %s\\n\", err)\n\t}\n\tencrypted, err := aesGcmEncrypt(d, password)\n\tif err != nil {\n\t\tlog.Fatalf(\"aesGcmEncrypt() failed with %s\\n\", err)\n\t}\n\tdecrypted, err := aesGcmDecrypt(encrypted, password)\n\tif err != nil {\n\t\tlog.Fatalf(\"aesGcmDecrypt() failed with %s\\n\", err)\n\t}\n\tif !bytes.Equal(d, decrypted) {\n\t\tlog.Fatalf(\"decryption created data different than original\\n\")\n\t} else {\n\t\tfmt.Printf(\"Encryption in decryption worked!\\n\")\n\t}\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,

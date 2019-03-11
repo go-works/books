@@ -8,7 +8,7 @@
       "64ac9a29-3f59-42ec-8aa4-789d072e04bf",
       "fec62f76-1d96-4e0c-bc0a-756b45b4f02f",
       "f8b12d82-b786-41a8-88f2-5d690e650ee0",
-      "9e74087c-8797-4893-b256-31a3b9cdd26b",
+      "2b40033e-241c-4c80-a4c9-c1cad6cd29f3",
       "b157e52e-85f9-417e-b5aa-8cfc5e187ab5",
       "7f8bcf04-6954-46c1-ae4d-22db9b847d6f",
       "b25f07ac-7152-47bf-b86f-2d6152105355",
@@ -54,7 +54,7 @@
     "id": "05239fc0-69c3-463d-abc5-32b9d808612e",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1544683710784,
+    "last_edited_time": 1552283760000,
     "parent_id": "2cab1ed2-b7a4-4584-b56b-0d3ca9b80185",
     "parent_table": "block",
     "properties": {
@@ -65,7 +65,7 @@
       ]
     },
     "type": "page",
-    "version": 47,
+    "version": 56,
     "content_resolved": [
       {
         "alive": true,
@@ -202,37 +202,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539842428537,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-cmdline-args-basics?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "9e74087c-8797-4893-b256-31a3b9cdd26b",
+        "created_time": 1552283612154,
+        "id": "2b40033e-241c-4c80-a4c9-c1cad6cd29f3",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539842429914,
+        "last_edited_time": 1552283580000,
         "parent_id": "05239fc0-69c3-463d-abc5-32b9d808612e",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-cmdline-args-basics"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot, :name main.go\n// :run go run main.go -echo echo-arg additional arg\npackage main\n\nimport (\n\t\"flag\"\n\t\"fmt\"\n\t\"os\"\n)\n\n// :show start\nvar (\n\tflgHelp bool\n\tflgEcho string\n)\n\nfunc parseCmdLineFlags() {\n\tflag.BoolVar(\u0026flgHelp, \"help\", false, \"if true, show help\")\n\tflag.StringVar(\u0026flgEcho, \"echo\", \"\", \"\")\n\tflag.Parse()\n}\n\nfunc main() {\n\tparseCmdLineFlags()\n\tif flgHelp {\n\t\tflag.Usage()\n\t\tos.Exit(0)\n\t}\n\tif flgEcho != \"\" {\n\t\tfmt.Printf(\"flag -echo: '%s'\\n\", flgEcho)\n\t}\n\n\tremainingArgs := flag.Args()\n\tfor _, arg := range remainingArgs {\n\t\tfmt.Printf(\"Remainig arg: '%s'\\n\", arg)\n\t}\n}\n\n// :show end"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-cmdline-args-basics",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-cmdline-args-basics?lite=true"
-        }
+        "type": "code",
+        "version": 47,
+        "code": "// :glot, :name main.go\n// :run go run main.go -echo echo-arg additional arg\npackage main\n\nimport (\n\t\"flag\"\n\t\"fmt\"\n\t\"os\"\n)\n\n// :show start\nvar (\n\tflgHelp bool\n\tflgEcho string\n)\n\nfunc parseCmdLineFlags() {\n\tflag.BoolVar(\u0026flgHelp, \"help\", false, \"if true, show help\")\n\tflag.StringVar(\u0026flgEcho, \"echo\", \"\", \"\")\n\tflag.Parse()\n}\n\nfunc main() {\n\tparseCmdLineFlags()\n\tif flgHelp {\n\t\tflag.Usage()\n\t\tos.Exit(0)\n\t}\n\tif flgEcho != \"\" {\n\t\tfmt.Printf(\"flag -echo: '%s'\\n\", flgEcho)\n\t}\n\n\tremainingArgs := flag.Args()\n\tfor _, arg := range remainingArgs {\n\t\tfmt.Printf(\"Remainig arg: '%s'\\n\", arg)\n\t}\n}\n\n// :show end",
+        "code_language": "Go"
       },
       {
         "alive": true,
@@ -1601,7 +1592,7 @@
         "id": "38aac629-ecf1-47c1-b056-3b754b1cbd69",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539842378338,
+        "last_edited_time": 1552283760000,
         "parent_id": "05239fc0-69c3-463d-abc5-32b9d808612e",
         "parent_table": "block",
         "properties": {
@@ -1612,7 +1603,7 @@
           ]
         },
         "type": "page",
-        "version": 35,
+        "version": 41,
         "title": "Raw access to command line arguments",
         "format_page": {
           "page_cover": "",

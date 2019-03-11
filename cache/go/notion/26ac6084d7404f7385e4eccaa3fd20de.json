@@ -13,7 +13,7 @@
       "0b245560-93ab-4228-a024-e29e546978ba",
       "b4492807-5e67-4b9a-a4cc-67de9bd74dcb",
       "62811c2f-68d6-4168-928f-788faa2bb776",
-      "175afe58-a133-4c92-9e9d-86c508e1114c",
+      "88e8f46e-7f2d-46ee-866c-da4ffbe80c3c",
       "c1744bde-b607-4c8f-8532-404ed0ac01ba",
       "70f3e3e8-f0e5-47d0-b712-3bcc343baafc",
       "9dbbed64-5fb2-4c53-b79a-fa9c971be642"
@@ -27,7 +27,7 @@
     "id": "26ac6084-d740-4f73-85e4-eccaa3fd20de",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539838585141,
+    "last_edited_time": 1552278240000,
     "parent_id": "16e8d8c3-d77e-44fa-af68-57a1df368ce8",
     "parent_table": "block",
     "properties": {
@@ -38,7 +38,7 @@
       ]
     },
     "type": "page",
-    "version": 43,
+    "version": 48,
     "content_resolved": [
       {
         "alive": true,
@@ -277,37 +277,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539838580467,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-concurrency-limit-with-semaphore?lite=true",
-          "block_full_width": false,
-          "block_page_width": true,
-          "block_preserve_scale": false
-        },
-        "id": "175afe58-a133-4c92-9e9d-86c508e1114c",
+        "created_time": 1552278289948,
+        "id": "88e8f46e-7f2d-46ee-866c-da4ffbe80c3c",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539838581746,
+        "last_edited_time": 1552278240000,
         "parent_id": "26ac6084-d740-4f73-85e4-eccaa3fd20de",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-concurrency-limit-with-semaphore"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"sync\"\n\t\"time\"\n)\n\n// :show start\n\nvar (\n\tsemaphoreSize = 4\n\n\tmu                 sync.Mutex\n\ttotalTasks         int\n\tcurConcurrentTasks int\n\tmaxConcurrentTasks int\n)\n\nfunc timeConsumingTask() {\n\tmu.Lock()\n\ttotalTasks++\n\tcurConcurrentTasks++\n\tif curConcurrentTasks \u003e maxConcurrentTasks {\n\t\tmaxConcurrentTasks = curConcurrentTasks\n\t}\n\tmu.Unlock()\n\n\t// in real system this would be a CPU intensive operation\n\ttime.Sleep(10 * time.Millisecond)\n\n\tmu.Lock()\n\tcurConcurrentTasks--\n\tmu.Unlock()\n}\n\nfunc main() {\n\tsem := make(chan struct{}, semaphoreSize)\n\tvar wg sync.WaitGroup\n\tfor i := 0; i \u003c 32; i++ {\n\t\t// acquire semaphore\n\t\tsem \u003c- struct{}{}\n\t\twg.Add(1)\n\n\t\tgo func() {\n\t\t\ttimeConsumingTask()\n\t\t\t// release semaphore\n\t\t\t\u003c-sem\n\t\t\twg.Done()\n\t\t}()\n\t}\n\n\t// wait for all task to finish\n\twg.Wait()\n\n\tfmt.Printf(\"total tasks         : %d\\n\", totalTasks)\n\tfmt.Printf(\"max concurrent tasks: %d\\n\", maxConcurrentTasks)\n}\n\n// :show end"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-concurrency-limit-with-semaphore",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": true,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-concurrency-limit-with-semaphore?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"sync\"\n\t\"time\"\n)\n\n// :show start\n\nvar (\n\tsemaphoreSize = 4\n\n\tmu                 sync.Mutex\n\ttotalTasks         int\n\tcurConcurrentTasks int\n\tmaxConcurrentTasks int\n)\n\nfunc timeConsumingTask() {\n\tmu.Lock()\n\ttotalTasks++\n\tcurConcurrentTasks++\n\tif curConcurrentTasks \u003e maxConcurrentTasks {\n\t\tmaxConcurrentTasks = curConcurrentTasks\n\t}\n\tmu.Unlock()\n\n\t// in real system this would be a CPU intensive operation\n\ttime.Sleep(10 * time.Millisecond)\n\n\tmu.Lock()\n\tcurConcurrentTasks--\n\tmu.Unlock()\n}\n\nfunc main() {\n\tsem := make(chan struct{}, semaphoreSize)\n\tvar wg sync.WaitGroup\n\tfor i := 0; i \u003c 32; i++ {\n\t\t// acquire semaphore\n\t\tsem \u003c- struct{}{}\n\t\twg.Add(1)\n\n\t\tgo func() {\n\t\t\ttimeConsumingTask()\n\t\t\t// release semaphore\n\t\t\t\u003c-sem\n\t\t\twg.Done()\n\t\t}()\n\t}\n\n\t// wait for all task to finish\n\twg.Wait()\n\n\tfmt.Printf(\"total tasks         : %d\\n\", totalTasks)\n\tfmt.Printf(\"max concurrent tasks: %d\\n\", maxConcurrentTasks)\n}\n\n// :show end",
+        "code_language": "Go"
       },
       {
         "alive": true,

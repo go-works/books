@@ -8,7 +8,7 @@
       "1a38f763-f3ed-4a59-945c-b1a4d0ea6159",
       "0c5c89e4-c237-4863-8dac-5b1d42846b40",
       "79351d89-3323-4f88-9472-06b5ce786f09",
-      "c781630f-cd5f-4c5f-9b83-949a7c905ac8",
+      "b7a9e207-f89e-4f03-b39f-ef9776143150",
       "9f8fb3ab-b36c-47dc-a781-2da9b355f69b",
       "179105ef-264e-42ec-8f23-1f44eb3a56be",
       "9867e9e3-8f6f-4d8d-90bf-72dc3ec934b0",
@@ -19,7 +19,7 @@
       "4e00686a-a9be-454e-806d-70bdbba1cee5",
       "5f95ccf2-380b-4a73-9b16-dc02900fc0dd",
       "67c5b416-516c-4133-a403-f68c4fa79ac9",
-      "ef776444-85d3-42a1-a8a8-5db37823bb16",
+      "6ffc0b72-e988-4386-93a2-9c359c81cfe9",
       "87752082-a7e6-4b26-8267-2c951fefab0d",
       "5dba840c-faa3-43ac-bc02-9e4f29be2fb7",
       "b926088d-f48c-44e6-86b0-be7ab933ee68",
@@ -51,7 +51,7 @@
     "id": "6744c6d0-d620-448d-be66-e224f64b6f8b",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539845382700,
+    "last_edited_time": 1552285260000,
     "parent_id": "2cab1ed2-b7a4-4584-b56b-0d3ca9b80185",
     "parent_table": "block",
     "properties": {
@@ -62,7 +62,7 @@
       ]
     },
     "type": "page",
-    "version": 53,
+    "version": 65,
     "content_resolved": [
       {
         "alive": true,
@@ -237,37 +237,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539845374741,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-xml-unmarshal-simple?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "c781630f-cd5f-4c5f-9b83-949a7c905ac8",
+        "created_time": 1552284784965,
+        "id": "b7a9e207-f89e-4f03-b39f-ef9776143150",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539845376299,
+        "last_edited_time": 1552284780000,
         "parent_id": "6744c6d0-d620-448d-be66-e224f64b6f8b",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-xml-unmarshal-simple"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"encoding/xml\"\n\t\"fmt\"\n\t\"log\"\n)\n\n// :show start\nvar xmlStr = `\n\u003cpeople\u003e\n\t\u003cperson age=\"34\"\u003e\n\t\t\u003cfirst-name\u003eJohn\u003c/first-name\u003e\n\t\t\u003caddress\u003e\n\t\t\t\u003ccity\u003eSan Francisco\u003c/city\u003e\n\t\t\t\u003cstate\u003eCA\u003c/state\u003e\n\t\t\u003c/address\u003e\n\t\u003c/person\u003e\n\n\t\u003cperson age=\"23\"\u003e\n\t\t\u003cfirst-name\u003eJulia\u003c/first-name\u003e\n\t\u003c/person\u003e\n\u003c/people\u003e`\n\ntype People struct {\n\tPerson []Person `xml:\"person\"`\n}\n\ntype Person struct {\n\tAge       int     `xml:\"age,attr\"`\n\tFirstName string  `xml:\"first-name\"`\n\tAddress   Address `xml:\"address\"`\n}\n\ntype Address struct {\n\tCity  *string `xml:\"city\"`\n\tState string  `xml:\"state\"`\n}\n\n// :show end\n\nfunc main() {\n\t// :show start\n\tvar people People\n\tdata := []byte(xmlStr)\n\terr := xml.Unmarshal(data, \u0026people)\n\tif err != nil {\n\t\tlog.Fatalf(\"xml.Unmarshal failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"%#v\\n\\n\", people)\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-xml-unmarshal-simple",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-xml-unmarshal-simple?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"encoding/xml\"\n\t\"fmt\"\n\t\"log\"\n)\n\n// :show start\nvar xmlStr = `\n\u003cpeople\u003e\n\t\u003cperson age=\"34\"\u003e\n\t\t\u003cfirst-name\u003eJohn\u003c/first-name\u003e\n\t\t\u003caddress\u003e\n\t\t\t\u003ccity\u003eSan Francisco\u003c/city\u003e\n\t\t\t\u003cstate\u003eCA\u003c/state\u003e\n\t\t\u003c/address\u003e\n\t\u003c/person\u003e\n\n\t\u003cperson age=\"23\"\u003e\n\t\t\u003cfirst-name\u003eJulia\u003c/first-name\u003e\n\t\u003c/person\u003e\n\u003c/people\u003e`\n\ntype People struct {\n\tPerson []Person `xml:\"person\"`\n}\n\ntype Person struct {\n\tAge       int     `xml:\"age,attr\"`\n\tFirstName string  `xml:\"first-name\"`\n\tAddress   Address `xml:\"address\"`\n}\n\ntype Address struct {\n\tCity  *string `xml:\"city\"`\n\tState string  `xml:\"state\"`\n}\n\n// :show end\n\nfunc main() {\n\t// :show start\n\tvar people People\n\tdata := []byte(xmlStr)\n\terr := xml.Unmarshal(data, \u0026people)\n\tif err != nil {\n\t\tlog.Fatalf(\"xml.Unmarshal failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"%#v\\n\\n\", people)\n\t// :show end\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,
@@ -732,37 +723,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539845311239,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-xml-marshal-simple?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "ef776444-85d3-42a1-a8a8-5db37823bb16",
+        "created_time": 1552284803909,
+        "id": "6ffc0b72-e988-4386-93a2-9c359c81cfe9",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539845312793,
+        "last_edited_time": 1552284780000,
         "parent_id": "6744c6d0-d620-448d-be66-e224f64b6f8b",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-xml-marshal-simple"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"encoding/xml\"\n\t\"fmt\"\n\t\"log\"\n)\n\n// :show start\ntype People struct {\n\tXMLName        xml.Name `xml:\"people\"`\n\tPerson         []Person `xml:\"person\"`\n\tnoteSerialized int\n}\n\ntype Person struct {\n\tAge       int     `xml:\"age,attr\"`\n\tFirstName string  `xml:\"first-name\"`\n\tAddress   Address `xml:\"address\"`\n}\n\ntype Address struct {\n\tCity  string `xml:\"city\"`\n\tState string `xml:\"state\"`\n}\n\n// :show end\n\nfunc main() {\n\t// :show start\n\tpeople := People{\n\t\tPerson: []Person{\n\t\t\tPerson{\n\t\t\t\tAge:       34,\n\t\t\t\tFirstName: \"John\",\n\t\t\t\tAddress:   Address{City: \"San Francisco\", State: \"CA\"},\n\t\t\t},\n\t\t},\n\t\tnoteSerialized: 8,\n\t}\n\td, err := xml.Marshal(\u0026people)\n\tif err != nil {\n\t\tlog.Fatalf(\"xml.Marshal failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"Compact XML: %s\\n\\n\", string(d))\n\n\td, err = xml.MarshalIndent(\u0026people, \"\", \"  \")\n\tif err != nil {\n\t\tlog.Fatalf(\"xml.MarshalIndent failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"Pretty printed XML:\\n%s\\n\", string(d))\n\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-xml-marshal-simple",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-xml-marshal-simple?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"encoding/xml\"\n\t\"fmt\"\n\t\"log\"\n)\n\n// :show start\ntype People struct {\n\tXMLName        xml.Name `xml:\"people\"`\n\tPerson         []Person `xml:\"person\"`\n\tnoteSerialized int\n}\n\ntype Person struct {\n\tAge       int     `xml:\"age,attr\"`\n\tFirstName string  `xml:\"first-name\"`\n\tAddress   Address `xml:\"address\"`\n}\n\ntype Address struct {\n\tCity  string `xml:\"city\"`\n\tState string `xml:\"state\"`\n}\n\n// :show end\n\nfunc main() {\n\t// :show start\n\tpeople := People{\n\t\tPerson: []Person{\n\t\t\tPerson{\n\t\t\t\tAge:       34,\n\t\t\t\tFirstName: \"John\",\n\t\t\t\tAddress:   Address{City: \"San Francisco\", State: \"CA\"},\n\t\t\t},\n\t\t},\n\t\tnoteSerialized: 8,\n\t}\n\td, err := xml.Marshal(\u0026people)\n\tif err != nil {\n\t\tlog.Fatalf(\"xml.Marshal failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"Compact XML: %s\\n\\n\", string(d))\n\n\td, err = xml.MarshalIndent(\u0026people, \"\", \"  \")\n\tif err != nil {\n\t\tlog.Fatalf(\"xml.MarshalIndent failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"Pretty printed XML:\\n%s\\n\", string(d))\n\n\t// :show end\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,
@@ -1379,7 +1361,7 @@
         "id": "737850ee-fd45-462e-807a-2c0dc7b83430",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539845261966,
+        "last_edited_time": 1552284840000,
         "parent_id": "6744c6d0-d620-448d-be66-e224f64b6f8b",
         "parent_table": "block",
         "properties": {
@@ -1390,7 +1372,7 @@
           ]
         },
         "type": "page",
-        "version": 33,
+        "version": 39,
         "title": "Pull (streaming) XML parsing",
         "format_page": {
           "page_cover": "",
@@ -1412,7 +1394,7 @@
         "id": "b343b332-2335-4280-b863-0a96bd11561b",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539845193223,
+        "last_edited_time": 1552284840000,
         "parent_id": "6744c6d0-d620-448d-be66-e224f64b6f8b",
         "parent_table": "block",
         "properties": {
@@ -1423,7 +1405,7 @@
           ]
         },
         "type": "page",
-        "version": 100,
+        "version": 105,
         "title": "Hybrid XML parsing: combine pull and unmarshal",
         "format_page": {
           "page_cover": "",
@@ -1445,7 +1427,7 @@
         "id": "59e924ef-82eb-462a-86a3-fe905d13c2ce",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539845135967,
+        "last_edited_time": 1552284840000,
         "parent_id": "6744c6d0-d620-448d-be66-e224f64b6f8b",
         "parent_table": "block",
         "properties": {
@@ -1456,7 +1438,7 @@
           ]
         },
         "type": "page",
-        "version": 39,
+        "version": 44,
         "title": "Parse XML from file",
         "format_page": {
           "page_cover": "",
@@ -1478,7 +1460,7 @@
         "id": "7d0ad68b-65cd-4074-aa98-85b63da9e3b0",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539845048219,
+        "last_edited_time": 1552285260000,
         "parent_id": "6744c6d0-d620-448d-be66-e224f64b6f8b",
         "parent_table": "block",
         "properties": {
@@ -1489,7 +1471,7 @@
           ]
         },
         "type": "page",
-        "version": 145,
+        "version": 185,
         "title": "Configuring XML parsing and serialization",
         "format_page": {
           "page_cover": "",
@@ -1511,7 +1493,7 @@
         "id": "aa8105fe-264b-4b19-8647-cbc718480ba1",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539844499377,
+        "last_edited_time": 1552285080000,
         "parent_id": "6744c6d0-d620-448d-be66-e224f64b6f8b",
         "parent_table": "block",
         "properties": {
@@ -1522,7 +1504,7 @@
           ]
         },
         "type": "page",
-        "version": 35,
+        "version": 40,
         "title": "Custom XML marshaling",
         "format_page": {
           "page_cover": "",

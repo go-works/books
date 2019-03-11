@@ -8,7 +8,7 @@
       "d560be09-b358-49f3-ad4f-47a8f288740e",
       "dc903045-52a6-4960-8d61-bd4c3a99a9be",
       "262584b6-042c-44df-936c-0357f2d79088",
-      "19e014a0-6c4a-492f-90f1-e3522a6fee35",
+      "78c1d642-bb9a-49d1-8bc7-2c127407c277",
       "7061c5b6-9a3f-4cd4-ad38-721f081b6358"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -20,7 +20,7 @@
     "id": "d349946b-5cb6-42b5-800b-7c75fe3ac9d0",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539843994740,
+    "last_edited_time": 1552284660000,
     "parent_id": "1479bc5a-08b6-4dbb-8aa0-e2f5ed17782f",
     "parent_table": "block",
     "properties": {
@@ -31,7 +31,7 @@
       ]
     },
     "type": "page",
-    "version": 46,
+    "version": 51,
     "content_resolved": [
       {
         "alive": true,
@@ -164,37 +164,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539843974905,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-json-file?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "19e014a0-6c4a-492f-90f1-e3522a6fee35",
+        "created_time": 1552284671702,
+        "id": "78c1d642-bb9a-49d1-8bc7-2c127407c277",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539843976433,
+        "last_edited_time": 1552284660000,
         "parent_id": "d349946b-5cb6-42b5-800b-7c75fe3ac9d0",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-json-file"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"bytes\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"io\"\n\t\"log\"\n\t\"os\"\n)\n\n// :show start\ntype Student struct {\n\tName     string\n\tStandard int `json:\"Standard\"`\n}\n\nfunc decodeFromReader(r io.Reader) ([]*Student, error) {\n\tvar res []*Student\n\n\tdec := json.NewDecoder(r)\n\terr := dec.Decode(\u0026res)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\treturn res, nil\n}\n\nfunc decodeFromString(s string) ([]*Student, error) {\n\tr := bytes.NewBufferString(s)\n\treturn decodeFromReader(r)\n}\n\nfunc decodeFromFile(path string) ([]*Student, error) {\n\tf, err := os.Open(path)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\tdefer f.Close()\n\treturn decodeFromReader(f)\n}\n\n// :show end\n\nconst jsonStr = `\n[\n    {\n        \"Name\" : \"John Doe\",\n        \"Standard\" : 4\n    },\n    {\n        \"Name\" : \"Peter Parker\",\n        \"Standard\" : 11\n    },\n    {\n        \"Name\" : \"Bilbo Baggins\",\n        \"Standard\" : 150\n    }\n]\n`\n\nfunc main() {\n\t// studentList, err := decodeFromFile(\"data.json\")\n\tstudentList, err := decodeFromString(jsonStr)\n\tif err != nil {\n\t\tlog.Fatalf(\"decodeFromString() failed with '%s'\\n\", err)\n\t}\n\tfor _, student := range studentList {\n\t\tfmt.Printf(\"Student: %s, standard: %d\\n\", student.Name, student.Standard)\n\t}\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-json-file",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-json-file?lite=true"
-        }
+        "type": "code",
+        "version": 17,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"bytes\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"io\"\n\t\"log\"\n\t\"os\"\n)\n\n// :show start\ntype Student struct {\n\tName     string\n\tStandard int `json:\"Standard\"`\n}\n\nfunc decodeFromReader(r io.Reader) ([]*Student, error) {\n\tvar res []*Student\n\n\tdec := json.NewDecoder(r)\n\terr := dec.Decode(\u0026res)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\treturn res, nil\n}\n\nfunc decodeFromString(s string) ([]*Student, error) {\n\tr := bytes.NewBufferString(s)\n\treturn decodeFromReader(r)\n}\n\nfunc decodeFromFile(path string) ([]*Student, error) {\n\tf, err := os.Open(path)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\tdefer f.Close()\n\treturn decodeFromReader(f)\n}\n\n// :show end\n\nconst jsonStr = `\n[\n    {\n        \"Name\" : \"John Doe\",\n        \"Standard\" : 4\n    },\n    {\n        \"Name\" : \"Peter Parker\",\n        \"Standard\" : 11\n    },\n    {\n        \"Name\" : \"Bilbo Baggins\",\n        \"Standard\" : 150\n    }\n]\n`\n\nfunc main() {\n\t// studentList, err := decodeFromFile(\"data.json\")\n\tstudentList, err := decodeFromString(jsonStr)\n\tif err != nil {\n\t\tlog.Fatalf(\"decodeFromString() failed with '%s'\\n\", err)\n\t}\n\tfor _, student := range studentList {\n\t\tfmt.Printf(\"Student: %s, standard: %d\\n\", student.Name, student.Standard)\n\t}\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,

@@ -10,7 +10,7 @@
       "94ae08be-8eb6-4021-839e-e97c41963a9e",
       "097c5566-7ba2-425b-b613-a9d52148f082",
       "e36cf55f-5c66-484a-a931-0f9504a3033d",
-      "bdf42a1d-5c28-4c59-bfe5-cca3a86fac2b",
+      "c6afdbe3-86f8-4d7d-abd2-f204de6ebb6f",
       "080df4a5-c39b-4669-a4b0-50102af5b012",
       "f1a99525-fdb6-4b26-8123-fe56ecc9e02c",
       "0f8f8273-bd13-44e6-af21-3d2914e7cfd0",
@@ -29,7 +29,7 @@
     "id": "aa8105fe-264b-4b19-8647-cbc718480ba1",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539844499377,
+    "last_edited_time": 1552285080000,
     "parent_id": "6744c6d0-d620-448d-be66-e224f64b6f8b",
     "parent_table": "block",
     "properties": {
@@ -40,7 +40,7 @@
       ]
     },
     "type": "page",
-    "version": 35,
+    "version": 40,
     "content_resolved": [
       {
         "alive": true,
@@ -273,37 +273,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539844492382,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-xml-custom-marshal?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "bdf42a1d-5c28-4c59-bfe5-cca3a86fac2b",
+        "created_time": 1552285098037,
+        "id": "c6afdbe3-86f8-4d7d-abd2-f204de6ebb6f",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539844494056,
+        "last_edited_time": 1552285080000,
         "parent_id": "aa8105fe-264b-4b19-8647-cbc718480ba1",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-xml-custom-marshal"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"encoding/xml\"\n\t\"fmt\"\n\t\"log\"\n\t\"time\"\n)\n\nfunc notCustom() {\n\t// :show start\n\ttype Event struct {\n\t\tWhat string\n\t\tWhen time.Time\n\t}\n\te := Event{\n\t\tWhat: \"earthquake\",\n\t\tWhen: time.Now(),\n\t}\n\td, err := xml.Marshal(\u0026e)\n\tif err != nil {\n\t\tlog.Fatalf(\"json.MarshalIndent failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"Standard time JSON: %s\\n\", string(d))\n\t// :show end\n}\n\n// :show start\ntype customTime time.Time\n\nconst customTimeFormat = `2006-02-01`\n\nfunc (ct customTime) MarshalXML(e *xml.Encoder, start xml.StartElement) error {\n\tt := time.Time(ct)\n\tv := t.Format(customTimeFormat)\n\treturn e.EncodeElement(v, start)\n}\n\nfunc (ct *customTime) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {\n\tvar s string\n\terr := d.DecodeElement(\u0026s, \u0026start)\n\tif err != nil {\n\t\treturn err\n\t}\n\tt, err := time.Parse(customTimeFormat, s)\n\tif err != nil {\n\t\treturn err\n\t}\n\t*ct = customTime(t)\n\treturn nil\n}\n\ntype Event2 struct {\n\tWhat string\n\tWhen customTime\n}\n\n// :show end\n\nfunc custom() {\n\t// :show start\n\te := Event2{\n\t\tWhat: \"earthquake\",\n\t\tWhen: customTime(time.Now()),\n\t}\n\td, err := xml.Marshal(\u0026e)\n\tif err != nil {\n\t\tlog.Fatalf(\"xml.Marshal failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"\\nCustom time XML: %s\\n\", string(d))\n\tvar decoded Event2\n\terr = xml.Unmarshal(d, \u0026decoded)\n\tif err != nil {\n\t\tlog.Fatalf(\"xml.Unmarshal failed with '%s'\\n\", err)\n\t}\n\tt := time.Time(decoded.When)\n\tfmt.Printf(\"Decoded custom time: %s\\n\", t.Format(customTimeFormat))\n\t// :show end\n}\n\nfunc main() {\n\t// :show start\n\tnotCustom()\n\tcustom()\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-xml-custom-marshal",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-xml-custom-marshal?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"encoding/xml\"\n\t\"fmt\"\n\t\"log\"\n\t\"time\"\n)\n\nfunc notCustom() {\n\t// :show start\n\ttype Event struct {\n\t\tWhat string\n\t\tWhen time.Time\n\t}\n\te := Event{\n\t\tWhat: \"earthquake\",\n\t\tWhen: time.Now(),\n\t}\n\td, err := xml.Marshal(\u0026e)\n\tif err != nil {\n\t\tlog.Fatalf(\"json.MarshalIndent failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"Standard time JSON: %s\\n\", string(d))\n\t// :show end\n}\n\n// :show start\ntype customTime time.Time\n\nconst customTimeFormat = `2006-02-01`\n\nfunc (ct customTime) MarshalXML(e *xml.Encoder, start xml.StartElement) error {\n\tt := time.Time(ct)\n\tv := t.Format(customTimeFormat)\n\treturn e.EncodeElement(v, start)\n}\n\nfunc (ct *customTime) UnmarshalXML(d *xml.Decoder, start xml.StartElement) error {\n\tvar s string\n\terr := d.DecodeElement(\u0026s, \u0026start)\n\tif err != nil {\n\t\treturn err\n\t}\n\tt, err := time.Parse(customTimeFormat, s)\n\tif err != nil {\n\t\treturn err\n\t}\n\t*ct = customTime(t)\n\treturn nil\n}\n\ntype Event2 struct {\n\tWhat string\n\tWhen customTime\n}\n\n// :show end\n\nfunc custom() {\n\t// :show start\n\te := Event2{\n\t\tWhat: \"earthquake\",\n\t\tWhen: customTime(time.Now()),\n\t}\n\td, err := xml.Marshal(\u0026e)\n\tif err != nil {\n\t\tlog.Fatalf(\"xml.Marshal failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"\\nCustom time XML: %s\\n\", string(d))\n\tvar decoded Event2\n\terr = xml.Unmarshal(d, \u0026decoded)\n\tif err != nil {\n\t\tlog.Fatalf(\"xml.Unmarshal failed with '%s'\\n\", err)\n\t}\n\tt := time.Time(decoded.When)\n\tfmt.Printf(\"Decoded custom time: %s\\n\", t.Format(customTimeFormat))\n\t// :show end\n}\n\nfunc main() {\n\t// :show start\n\tnotCustom()\n\tcustom()\n\t// :show end\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,

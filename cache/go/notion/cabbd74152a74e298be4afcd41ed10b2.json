@@ -9,7 +9,7 @@
       "184f27cd-1a38-4639-919c-e4f89498f7b4",
       "17cc96c8-950d-4131-b9da-8cef59a0ab74",
       "4cc6b76e-79a3-48d8-a104-80e13623d35b",
-      "e02b6d3c-ddae-4b9d-b524-f9c60d2d0ab6",
+      "15dd83e3-d297-45df-9068-97f3b9ae9cb7",
       "4d7cef4f-37df-4f89-9eda-497b5ba2203d",
       "095fa832-ba49-44f1-8a29-bae522c49e76",
       "362a1b48-9e55-48fc-9aca-a23254669ead",
@@ -18,7 +18,7 @@
       "579dee39-cdaf-4b18-8310-63d3a7f1796d",
       "98a89e53-28aa-4da7-81e0-e5426cd31595",
       "ed81e1d4-a34b-4426-8e3e-796f45db5895",
-      "feccfec1-8849-48d6-b64c-cc24820821a1",
+      "c1bc6ad2-46a5-4c09-a720-9fa687cb5950",
       "636d7de3-b55f-434f-a2b6-d781b330d984",
       "d2e025c6-8e55-4d5e-8f82-2db7c386a16d",
       "1a5e26da-98e5-4e16-887a-2483bcb736c1",
@@ -43,7 +43,7 @@
     "id": "cabbd741-52a7-4e29-8be4-afcd41ed10b2",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539851418326,
+    "last_edited_time": 1552285860000,
     "parent_id": "2cab1ed2-b7a4-4584-b56b-0d3ca9b80185",
     "parent_table": "block",
     "properties": {
@@ -54,7 +54,7 @@
       ]
     },
     "type": "page",
-    "version": 55,
+    "version": 70,
     "content_resolved": [
       {
         "alive": true,
@@ -248,37 +248,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539851372276,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-template-basics?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "e02b6d3c-ddae-4b9d-b524-f9c60d2d0ab6",
+        "created_time": 1552285479076,
+        "id": "15dd83e3-d297-45df-9068-97f3b9ae9cb7",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539851374105,
+        "last_edited_time": 1552285500000,
         "parent_id": "cabbd741-52a7-4e29-8be4-afcd41ed10b2",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-template-basics"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"log\"\n\t\"os\"\n\t\"text/template\"\n)\n\n// :show start\nvar tmplStr = `User {{.User}} has {{.TotalTweets}} tweets.\n{{- $tweetCount := len .RecentTweets }}\nRecent tweets:\n{{range $idx, $tweet := .RecentTweets}}Tweet {{$idx}} of {{$tweetCount}}: '{{.}}'\n{{end -}}\nMost recent tweet: '{{index .RecentTweets 0}}'\n`\n\n// :show end\n\nfunc main() {\n\t// :show start\n\tt := template.New(\"tweets\")\n\tt, err := t.Parse(tmplStr)\n\tif err != nil {\n\t\tlog.Fatalf(\"template.Parse() failed with '%s'\\n\", err)\n\t}\n\tdata := struct {\n\t\tUser         string\n\t\tTotalTweets  int\n\t\tRecentTweets []string\n\t}{\n\t\tUser:         \"kjk\",\n\t\tTotalTweets:  124,\n\t\tRecentTweets: []string{\"hello\", \"there\"},\n\t}\n\terr = t.Execute(os.Stdout, data)\n\tif err != nil {\n\t\tlog.Fatalf(\"t.Execute() failed with '%s'\\n\", err)\n\t}\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-template-basics",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-template-basics?lite=true"
-        }
+        "type": "code",
+        "version": 16,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"log\"\n\t\"os\"\n\t\"text/template\"\n)\n\n// :show start\nvar tmplStr = `User {{.User}} has {{.TotalTweets}} tweets.\n{{- $tweetCount := len .RecentTweets }}\nRecent tweets:\n{{range $idx, $tweet := .RecentTweets}}Tweet {{$idx}} of {{$tweetCount}}: '{{.}}'\n{{end -}}\nMost recent tweet: '{{index .RecentTweets 0}}'\n`\n\n// :show end\n\nfunc main() {\n\t// :show start\n\tt := template.New(\"tweets\")\n\tt, err := t.Parse(tmplStr)\n\tif err != nil {\n\t\tlog.Fatalf(\"template.Parse() failed with '%s'\\n\", err)\n\t}\n\tdata := struct {\n\t\tUser         string\n\t\tTotalTweets  int\n\t\tRecentTweets []string\n\t}{\n\t\tUser:         \"kjk\",\n\t\tTotalTweets:  124,\n\t\tRecentTweets: []string{\"hello\", \"there\"},\n\t}\n\terr = t.Execute(os.Stdout, data)\n\tif err != nil {\n\t\tlog.Fatalf(\"t.Execute() failed with '%s'\\n\", err)\n\t}\n\t// :show end\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,
@@ -639,37 +630,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539851413726,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-template-basics-2?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "feccfec1-8849-48d6-b64c-cc24820821a1",
+        "created_time": 1552285492326,
+        "id": "c1bc6ad2-46a5-4c09-a720-9fa687cb5950",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539851415475,
+        "last_edited_time": 1552285440000,
         "parent_id": "cabbd741-52a7-4e29-8be4-afcd41ed10b2",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-template-basics-2"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"log\"\n\t\"os\"\n\t\"text/template\"\n)\n\nfunc main() {\n\t// :show start\n\ttmplStr := \"Data: {{.}}\\n\"\n\tt := template.Must(template.New(\"simple\").Parse(tmplStr))\n\texecWithData := func(data interface{}) {\n\t\terr := t.Execute(os.Stdout, data)\n\t\tif err != nil {\n\t\t\tlog.Fatalf(\"t.Execute() failed with '%s'\\n\", err)\n\t\t}\n\t}\n\n\texecWithData(5)\n\texecWithData(\"foo\")\n\tst := struct {\n\t\tNumber int\n\t\tStr    string\n\t}{\n\t\tNumber: 3,\n\t\tStr:    \"hello\",\n\t}\n\texecWithData(st)\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-template-basics-2",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-template-basics-2?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"log\"\n\t\"os\"\n\t\"text/template\"\n)\n\nfunc main() {\n\t// :show start\n\ttmplStr := \"Data: {{.}}\\n\"\n\tt := template.Must(template.New(\"simple\").Parse(tmplStr))\n\texecWithData := func(data interface{}) {\n\t\terr := t.Execute(os.Stdout, data)\n\t\tif err != nil {\n\t\t\tlog.Fatalf(\"t.Execute() failed with '%s'\\n\", err)\n\t\t}\n\t}\n\n\texecWithData(5)\n\texecWithData(\"foo\")\n\tst := struct {\n\t\tNumber int\n\t\tStr    string\n\t}{\n\t\tNumber: 3,\n\t\tStr:    \"hello\",\n\t}\n\texecWithData(st)\n\t// :show end\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,
@@ -1085,7 +1067,7 @@
         "id": "49ade771-9cac-4acb-8692-826c2f72f155",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539851306456,
+        "last_edited_time": 1552285500000,
         "parent_id": "cabbd741-52a7-4e29-8be4-afcd41ed10b2",
         "parent_table": "block",
         "properties": {
@@ -1096,7 +1078,7 @@
           ]
         },
         "type": "page",
-        "version": 35,
+        "version": 41,
         "title": "Methods as data",
         "format_page": {
           "page_cover": "",
@@ -1118,7 +1100,7 @@
         "id": "5b30aba2-23fd-49be-9896-634263873069",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539851253360,
+        "last_edited_time": 1552285560000,
         "parent_id": "cabbd741-52a7-4e29-8be4-afcd41ed10b2",
         "parent_table": "block",
         "properties": {
@@ -1129,7 +1111,7 @@
           ]
         },
         "type": "page",
-        "version": 77,
+        "version": 92,
         "title": "if action",
         "format_page": {
           "page_cover": "",
@@ -1151,7 +1133,7 @@
         "id": "a5607165-a992-4553-82fc-804a092c0d90",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539851059077,
+        "last_edited_time": 1552285620000,
         "parent_id": "cabbd741-52a7-4e29-8be4-afcd41ed10b2",
         "parent_table": "block",
         "properties": {
@@ -1162,7 +1144,7 @@
           ]
         },
         "type": "page",
-        "version": 61,
+        "version": 77,
         "title": "range action",
         "format_page": {
           "page_cover": "",
@@ -1184,7 +1166,7 @@
         "id": "0d2f825a-78fa-4725-9b55-92c48f773097",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539850905720,
+        "last_edited_time": 1552285680000,
         "parent_id": "cabbd741-52a7-4e29-8be4-afcd41ed10b2",
         "parent_table": "block",
         "properties": {
@@ -1195,7 +1177,7 @@
           ]
         },
         "type": "page",
-        "version": 100,
+        "version": 122,
         "title": "Built-in functions",
         "format_page": {
           "page_cover": "",
@@ -1217,7 +1199,7 @@
         "id": "0f5276a7-333b-442f-a05d-d9ec15eb55ea",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539850637642,
+        "last_edited_time": 1552285680000,
         "parent_id": "cabbd741-52a7-4e29-8be4-afcd41ed10b2",
         "parent_table": "block",
         "properties": {
@@ -1228,7 +1210,7 @@
           ]
         },
         "type": "page",
-        "version": 35,
+        "version": 40,
         "title": "Custom functions",
         "format_page": {
           "page_cover": "",
@@ -1250,7 +1232,7 @@
         "id": "7570e77c-0314-479e-8c25-c6321af65f06",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539850577997,
+        "last_edited_time": 1552285740000,
         "parent_id": "cabbd741-52a7-4e29-8be4-afcd41ed10b2",
         "parent_table": "block",
         "properties": {
@@ -1261,7 +1243,7 @@
           ]
         },
         "type": "page",
-        "version": 51,
+        "version": 60,
         "title": "HTML templates",
         "format_page": {
           "page_cover": "",

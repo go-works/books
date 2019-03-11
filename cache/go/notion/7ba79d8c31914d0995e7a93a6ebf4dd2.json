@@ -14,7 +14,7 @@
       "b77138d6-96ec-40d9-a8c8-a46c4e08d928",
       "53b1ad9a-8d81-47c7-b49b-68ec3c909ace",
       "6732d7b2-d64e-41c0-ba48-9b981f100ddd",
-      "61973ec4-424c-4d0d-bf58-97fd2416ae4d"
+      "bc0bdbf5-74fd-47ec-801c-9c7501096a25"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1532156070181,
@@ -25,7 +25,7 @@
     "id": "7ba79d8c-3191-4d09-95e7-a93a6ebf4dd2",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539839023488,
+    "last_edited_time": 1552278480000,
     "parent_id": "4fac57c0-9168-477a-a120-69484979f419",
     "parent_table": "block",
     "properties": {
@@ -36,7 +36,7 @@
       ]
     },
     "type": "page",
-    "version": 42,
+    "version": 47,
     "content_resolved": [
       {
         "alive": true,
@@ -300,37 +300,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539839014380,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-channels-buffered?lite=true",
-          "block_full_width": false,
-          "block_page_width": true,
-          "block_preserve_scale": false
-        },
-        "id": "61973ec4-424c-4d0d-bf58-97fd2416ae4d",
+        "created_time": 1552278529856,
+        "id": "bc0bdbf5-74fd-47ec-801c-9c7501096a25",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539839016168,
+        "last_edited_time": 1552278480000,
         "parent_id": "7ba79d8c-3191-4d09-95e7-a93a6ebf4dd2",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-channels-buffered"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"time\"\n)\n\n// :show start\n\nfunc producer(ch chan int) {\n\tfor i := 0; i \u003c 5; i++ {\n\t\tif i%2 == 0 {\n\t\t\ttime.Sleep(10 * time.Millisecond)\n\t\t} else {\n\t\t\ttime.Sleep(1 * time.Millisecond)\n\t\t}\n\t\tch \u003c- i\n\t}\n}\n\nfunc consumer(ch chan int) {\n\ttotal := 0\n\tfor i := 0; i \u003c 5; i++ {\n\t\tif i%2 == 1 {\n\t\t\ttime.Sleep(10 * time.Millisecond)\n\t\t} else {\n\t\t\ttime.Sleep(1 * time.Millisecond)\n\t\t}\n\t\ttotal += \u003c-ch\n\t}\n}\n\nfunc unbuffered() {\n\ttimeStart := time.Now()\n\tch := make(chan int)\n\tgo producer(ch)\n\tconsumer(ch)\n\tfmt.Printf(\"Unbuffered version took %s\\n\", time.Since(timeStart))\n}\n\nfunc buffered() {\n\ttimeStart := time.Now()\n\tch := make(chan int, 5)\n\tgo producer(ch)\n\tconsumer(ch)\n\tfmt.Printf(\"Buffered version took %s\\n\", time.Since(timeStart))\n}\n\nfunc main() {\n\tunbuffered()\n\tbuffered()\n}\n\n// :show end"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-channels-buffered",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": true,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-channels-buffered?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"time\"\n)\n\n// :show start\n\nfunc producer(ch chan int) {\n\tfor i := 0; i \u003c 5; i++ {\n\t\tif i%2 == 0 {\n\t\t\ttime.Sleep(10 * time.Millisecond)\n\t\t} else {\n\t\t\ttime.Sleep(1 * time.Millisecond)\n\t\t}\n\t\tch \u003c- i\n\t}\n}\n\nfunc consumer(ch chan int) {\n\ttotal := 0\n\tfor i := 0; i \u003c 5; i++ {\n\t\tif i%2 == 1 {\n\t\t\ttime.Sleep(10 * time.Millisecond)\n\t\t} else {\n\t\t\ttime.Sleep(1 * time.Millisecond)\n\t\t}\n\t\ttotal += \u003c-ch\n\t}\n}\n\nfunc unbuffered() {\n\ttimeStart := time.Now()\n\tch := make(chan int)\n\tgo producer(ch)\n\tconsumer(ch)\n\tfmt.Printf(\"Unbuffered version took %s\\n\", time.Since(timeStart))\n}\n\nfunc buffered() {\n\ttimeStart := time.Now()\n\tch := make(chan int, 5)\n\tgo producer(ch)\n\tconsumer(ch)\n\tfmt.Printf(\"Buffered version took %s\\n\", time.Since(timeStart))\n}\n\nfunc main() {\n\tunbuffered()\n\tbuffered()\n}\n\n// :show end",
+        "code_language": "Go"
       }
     ],
     "title": "Buffered vs. unbuffered channels",

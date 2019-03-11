@@ -11,7 +11,7 @@
       "a8fa7d42-46a5-4a9f-8762-fbb9d10d2ec8",
       "647e3e9b-f070-4299-8a1f-248f63be8dca",
       "a8ecb600-10b5-4c77-9073-f14fc150432b",
-      "7fd07767-4d0d-4621-a84d-e4bc60715ada",
+      "949c8fe1-1173-443a-9b0f-7a8a960b3f35",
       "dc133e45-a6c0-44c5-a489-e2b1c42b783b",
       "89be5c89-83f6-47d0-9f81-b4b133f18ac7",
       "a8cb605d-ab76-414e-ab48-95d6b34da712",
@@ -20,7 +20,7 @@
       "7a39a89a-9007-4e70-8bfa-973449e04dea",
       "786d83ed-0cde-404c-a64b-2190a1ecf4de",
       "831ed9eb-6aa9-4ea9-a757-05c3e1168575",
-      "21347bf4-936d-4453-b7fe-06eca9ae2589",
+      "6178b7da-5653-41d1-aefc-d74a74a8b9ae",
       "c853a6bc-35f3-4edf-9580-340594f9034f",
       "73fcffe3-b154-4b8e-9c27-a772a2531415",
       "3f50b1be-7c52-4f1a-a85b-4eedd3bd5f92",
@@ -38,7 +38,7 @@
     "id": "468765d1-44a3-4e87-b913-c7674e66c3a4",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539843862172,
+    "last_edited_time": 1552284720000,
     "parent_id": "1479bc5a-08b6-4dbb-8aa0-e2f5ed17782f",
     "parent_table": "block",
     "properties": {
@@ -49,7 +49,7 @@
       ]
     },
     "type": "page",
-    "version": 49,
+    "version": 59,
     "content_resolved": [
       {
         "alive": true,
@@ -306,37 +306,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539843776620,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-json-custom-marshal?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "7fd07767-4d0d-4621-a84d-e4bc60715ada",
+        "created_time": 1552284699518,
+        "id": "949c8fe1-1173-443a-9b0f-7a8a960b3f35",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539843778128,
+        "last_edited_time": 1552284660000,
         "parent_id": "468765d1-44a3-4e87-b913-c7674e66c3a4",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-json-custom-marshal"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n\t\"time\"\n)\n\nfunc notCustom() {\n\t// :show start\n\ttype Event struct {\n\t\tWhat string\n\t\tWhen time.Time\n\t}\n\te := Event{\n\t\tWhat: \"earthquake\",\n\t\tWhen: time.Now(),\n\t}\n\td, err := json.Marshal(\u0026e)\n\tif err != nil {\n\t\tlog.Fatalf(\"json.MarshalIndent failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"Standard time JSON: %s\\n\", string(d))\n\t// :show end\n}\n\n// :show start\ntype customTime time.Time\n\nconst customTimeFormat = `\"2006-02-01\"`\n\nfunc (ct customTime) MarshalJSON() ([]byte, error) {\n\tt := time.Time(ct)\n\ts := t.Format(customTimeFormat)\n\treturn []byte(s), nil\n}\n\nfunc (ct *customTime) UnmarshalJSON(d []byte) error {\n\tt, err := time.Parse(customTimeFormat, string(d))\n\tif err != nil {\n\t\treturn err\n\t}\n\t*ct = customTime(t)\n\treturn nil\n}\n\ntype Event2 struct {\n\tWhat string\n\tWhen customTime\n}\n\n// :show end\n\nfunc custom() {\n\t// :show start\n\te := Event2{\n\t\tWhat: \"earthquake\",\n\t\tWhen: customTime(time.Now()),\n\t}\n\td, err := json.Marshal(\u0026e)\n\tif err != nil {\n\t\tlog.Fatalf(\"json.Marshal failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"\\nCustom time JSON: %s\\n\", string(d))\n\tvar decoded Event2\n\terr = json.Unmarshal(d, \u0026decoded)\n\tif err != nil {\n\t\tlog.Fatalf(\"json.Unmarshal failed with '%s'\\n\", err)\n\t}\n\tt := time.Time(decoded.When)\n\tfmt.Printf(\"Decoded custom time: %s\\n\", t.Format(customTimeFormat))\n\t// :show end\n}\n\nfunc main() {\n\t// :show start\n\tnotCustom()\n\tcustom()\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-json-custom-marshal",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-json-custom-marshal?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n\t\"time\"\n)\n\nfunc notCustom() {\n\t// :show start\n\ttype Event struct {\n\t\tWhat string\n\t\tWhen time.Time\n\t}\n\te := Event{\n\t\tWhat: \"earthquake\",\n\t\tWhen: time.Now(),\n\t}\n\td, err := json.Marshal(\u0026e)\n\tif err != nil {\n\t\tlog.Fatalf(\"json.MarshalIndent failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"Standard time JSON: %s\\n\", string(d))\n\t// :show end\n}\n\n// :show start\ntype customTime time.Time\n\nconst customTimeFormat = `\"2006-02-01\"`\n\nfunc (ct customTime) MarshalJSON() ([]byte, error) {\n\tt := time.Time(ct)\n\ts := t.Format(customTimeFormat)\n\treturn []byte(s), nil\n}\n\nfunc (ct *customTime) UnmarshalJSON(d []byte) error {\n\tt, err := time.Parse(customTimeFormat, string(d))\n\tif err != nil {\n\t\treturn err\n\t}\n\t*ct = customTime(t)\n\treturn nil\n}\n\ntype Event2 struct {\n\tWhat string\n\tWhen customTime\n}\n\n// :show end\n\nfunc custom() {\n\t// :show start\n\te := Event2{\n\t\tWhat: \"earthquake\",\n\t\tWhen: customTime(time.Now()),\n\t}\n\td, err := json.Marshal(\u0026e)\n\tif err != nil {\n\t\tlog.Fatalf(\"json.Marshal failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"\\nCustom time JSON: %s\\n\", string(d))\n\tvar decoded Event2\n\terr = json.Unmarshal(d, \u0026decoded)\n\tif err != nil {\n\t\tlog.Fatalf(\"json.Unmarshal failed with '%s'\\n\", err)\n\t}\n\tt := time.Time(decoded.When)\n\tfmt.Printf(\"Decoded custom time: %s\\n\", t.Format(customTimeFormat))\n\t// :show end\n}\n\nfunc main() {\n\t// :show start\n\tnotCustom()\n\tcustom()\n\t// :show end\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,
@@ -615,37 +606,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539843856872,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-json-marshal-private?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "21347bf4-936d-4453-b7fe-06eca9ae2589",
+        "created_time": 1552284720761,
+        "id": "6178b7da-5653-41d1-aefc-d74a74a8b9ae",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539843858285,
+        "last_edited_time": 1552284720000,
         "parent_id": "468765d1-44a3-4e87-b913-c7674e66c3a4",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-json-marshal-private"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n)\n\n// :show start\ntype MyStruct struct {\n\tuuid string\n\tName string\n}\n\nfunc (m MyStruct) MarshalJSON() ([]byte, error) {\n\tj, err := json.Marshal(struct {\n\t\tUuid string\n\t\tName string\n\t}{\n\t\tUuid: m.uuid,\n\t\tName: m.Name,\n\t})\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\treturn j, nil\n}\n\n// :show end\n\nfunc main() {\n\t// :show start\n\ts := MyStruct{\n\t\tuuid: \"uid-john\",\n\t\tName: \"John\",\n\t}\n\td, err := json.Marshal(\u0026s)\n\tif err != nil {\n\t\tlog.Fatalf(\"json.MarshalIndent failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"Person in compact JSON: %s\\n\", string(d))\n\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-json-marshal-private",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-json-marshal-private?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n)\n\n// :show start\ntype MyStruct struct {\n\tuuid string\n\tName string\n}\n\nfunc (m MyStruct) MarshalJSON() ([]byte, error) {\n\tj, err := json.Marshal(struct {\n\t\tUuid string\n\t\tName string\n\t}{\n\t\tUuid: m.uuid,\n\t\tName: m.Name,\n\t})\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\treturn j, nil\n}\n\n// :show end\n\nfunc main() {\n\t// :show start\n\ts := MyStruct{\n\t\tuuid: \"uid-john\",\n\t\tName: \"John\",\n\t}\n\td, err := json.Marshal(\u0026s)\n\tif err != nil {\n\t\tlog.Fatalf(\"json.MarshalIndent failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"Person in compact JSON: %s\\n\", string(d))\n\n\t// :show end\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,

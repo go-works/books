@@ -8,7 +8,7 @@
       "7809586c-48d4-4e24-92fb-4acfb41097b5",
       "6835f2bf-2c4f-424d-9078-b29e00b64af3",
       "41735023-5f2c-4617-9e86-f053bb9928ba",
-      "4d8f5c00-d807-41d4-ae31-92c222a6fa18",
+      "5eeeaf62-3c76-4e1a-b3d8-c042811a27f5",
       "267495f5-bbfc-4777-83a0-833ca3f021d9",
       "77d4fcc4-39d1-4182-b8af-90ece0699eef",
       "1a45ab6f-a217-4f15-a36e-2ceab79976c1",
@@ -23,7 +23,7 @@
     "id": "cc86ac32-2701-4af0-acd1-e44f6546c43c",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539844111853,
+    "last_edited_time": 1552284600000,
     "parent_id": "1479bc5a-08b6-4dbb-8aa0-e2f5ed17782f",
     "parent_table": "block",
     "properties": {
@@ -34,7 +34,7 @@
       ]
     },
     "type": "page",
-    "version": 35,
+    "version": 40,
     "content_resolved": [
       {
         "alive": true,
@@ -186,37 +186,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539844107215,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-json-parse-arbitrary?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "4d8f5c00-d807-41d4-ae31-92c222a6fa18",
+        "created_time": 1552284620104,
+        "id": "5eeeaf62-3c76-4e1a-b3d8-c042811a27f5",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539844108924,
+        "last_edited_time": 1552284600000,
         "parent_id": "cc86ac32-2701-4af0-acd1-e44f6546c43c",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-json-parse-arbitrary"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n)\n\n// :show start\nvar jsonStr = `{\n\t\"name\": \"Jane\",\n\t\"age\": 24,\n\t\"city\": \"ny\"\n}`\n// :show end\n\nfunc main() {\n\t// :show start\n\tvar doc map[string]interface{}\n\terr := json.Unmarshal([]byte(jsonStr), \u0026doc)\n\tif err != nil {\n\t\tlog.Fatalf(\"json.Unmarshal failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"doc: %#v\\n\", doc)\n\tname, ok := doc[\"name\"].(string)\n\tif !ok {\n\t\tlog.Fatalf(\"doc has no key 'name' or its value is not string\\n\")\n\t}\n\tfmt.Printf(\"name: %#v\\n\", name)\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-json-parse-arbitrary",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-json-parse-arbitrary?lite=true"
-        }
+        "type": "code",
+        "version": 26,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n)\n\n// :show start\nvar jsonStr = `{\n\t\"name\": \"Jane\",\n\t\"age\": 24,\n\t\"city\": \"ny\"\n}`\n// :show end\n\nfunc main() {\n\t// :show start\n\tvar doc map[string]interface{}\n\terr := json.Unmarshal([]byte(jsonStr), \u0026doc)\n\tif err != nil {\n\t\tlog.Fatalf(\"json.Unmarshal failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"doc: %#v\\n\", doc)\n\tname, ok := doc[\"name\"].(string)\n\tif !ok {\n\t\tlog.Fatalf(\"doc has no key 'name' or its value is not string\\n\")\n\t}\n\tfmt.Printf(\"name: %#v\\n\", name)\n\t// :show end\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,

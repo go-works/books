@@ -6,8 +6,7 @@
       "038d4afd-221c-45d9-8741-7241055ee227",
       "36ed2d7f-3324-4ee3-a6ef-ad5c88c828e3",
       "46a38232-d2b4-40fd-9d24-b091cc015f18",
-      "1f93cd50-61b9-45e7-be9a-bc5b4365388b",
-      "577ab51a-51fc-4f67-a915-22defa5e2210"
+      "d812a3a3-7d6b-4d00-b590-db11abb0596a"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1532156151181,
@@ -18,7 +17,7 @@
     "id": "49ade771-9cac-4acb-8692-826c2f72f155",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539851306456,
+    "last_edited_time": 1552285500000,
     "parent_id": "cabbd741-52a7-4e29-8be4-afcd41ed10b2",
     "parent_table": "block",
     "properties": {
@@ -29,7 +28,7 @@
       ]
     },
     "type": "page",
-    "version": 35,
+    "version": 41,
     "content_resolved": [
       {
         "alive": true,
@@ -149,49 +148,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539851301772,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-template-methods-as-data?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "1f93cd50-61b9-45e7-be9a-bc5b4365388b",
+        "created_time": 1552285529584,
+        "id": "d812a3a3-7d6b-4d00-b590-db11abb0596a",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539851303520,
+        "last_edited_time": 1552285500000,
         "parent_id": "49ade771-9cac-4acb-8692-826c2f72f155",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-template-methods-as-data"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"log\"\n\t\"os\"\n\t\"text/template\"\n)\n\n// :show start\nvar tmplStr = `Data from a field: '{{ .Field }}'\nData from a method: '{{ .Method }}'\n`\n\n// :show end\n\ntype Data struct {\n\tField int\n}\n\nfunc (d Data) Method() string {\n\treturn \"data from a method\"\n}\n\nfunc main() {\n\t// :show start\n\tt := template.New(\"method\")\n\tt, err := t.Parse(tmplStr)\n\tif err != nil {\n\t\tlog.Fatalf(\"template.Parse() failed with '%s'\\n\", err)\n\t}\n\n\tdata := Data{\n\t\tField: 5,\n\t}\n\n\terr = t.Execute(os.Stdout, data)\n\tif err != nil {\n\t\tlog.Fatalf(\"t.Execute() failed with '%s'\\n\", err)\n\t}\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-template-methods-as-data",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-template-methods-as-data?lite=true"
-        }
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1532209347010,
-        "id": "577ab51a-51fc-4f67-a915-22defa5e2210",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1532209347010,
-        "parent_id": "49ade771-9cac-4acb-8692-826c2f72f155",
-        "parent_table": "block",
-        "type": "text",
-        "version": 4
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"log\"\n\t\"os\"\n\t\"text/template\"\n)\n\n// :show start\nvar tmplStr = `Data from a field: '{{ .Field }}'\nData from a method: '{{ .Method }}'\n`\n\n// :show end\n\ntype Data struct {\n\tField int\n}\n\nfunc (d Data) Method() string {\n\treturn \"data from a method\"\n}\n\nfunc main() {\n\t// :show start\n\tt := template.New(\"method\")\n\tt, err := t.Parse(tmplStr)\n\tif err != nil {\n\t\tlog.Fatalf(\"template.Parse() failed with '%s'\\n\", err)\n\t}\n\n\tdata := Data{\n\t\tField: 5,\n\t}\n\n\terr = t.Execute(os.Stdout, data)\n\tif err != nil {\n\t\tlog.Fatalf(\"t.Execute() failed with '%s'\\n\", err)\n\t}\n\t// :show end\n}",
+        "code_language": "Go"
       }
     ],
     "title": "Methods as data",

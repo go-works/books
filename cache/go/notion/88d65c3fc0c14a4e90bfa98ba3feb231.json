@@ -35,7 +35,7 @@
     "id": "88d65c3f-c0c1-4a4e-90bf-a98ba3feb231",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550534940000,
+    "last_edited_time": 1552282920000,
     "parent_id": "7a55634f-b819-4a85-bcc6-036eeba61b39",
     "parent_table": "block",
     "properties": {
@@ -46,7 +46,7 @@
       ]
     },
     "type": "page",
-    "version": 31,
+    "version": 37,
     "content_resolved": [
       {
         "alive": true,
@@ -371,7 +371,7 @@
         "id": "3f925ac0-d0e3-403e-8cb0-737c6680df03",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550534940000,
+        "last_edited_time": 1552282500000,
         "parent_id": "88d65c3f-c0c1-4a4e-90bf-a98ba3feb231",
         "parent_table": "block",
         "properties": {
@@ -382,13 +382,13 @@
           ],
           "title": [
             [
-              "path := filepath.Join(\"dir\", \"file.txt\")"
+              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"path/filepath\"\n)\n\nfunc main() {\n\t// :show start\n\tpath := filepath.Join(\"dir\", \"file.txt\")\n\tfmt.Printf(\"path: %s\\n\", path)\n\t// :show end\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 7,
-        "code": "path := filepath.Join(\"dir\", \"file.txt\")",
+        "version": 10,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"path/filepath\"\n)\n\nfunc main() {\n\t// :show start\n\tpath := filepath.Join(\"dir\", \"file.txt\")\n\tfmt.Printf(\"path: %s\\n\", path)\n\t// :show end\n}",
         "code_language": "Go"
       },
       {
@@ -509,7 +509,7 @@
         "id": "6b279ad9-9806-48af-9d42-3ade71039ba0",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1532206663519,
+        "last_edited_time": 1552282560000,
         "parent_id": "88d65c3f-c0c1-4a4e-90bf-a98ba3feb231",
         "parent_table": "block",
         "properties": {
@@ -520,13 +520,13 @@
           ],
           "title": [
             [
-              "path := filepath.Join(\"dir\", \"file.txt\")\ndir, file := filepath.Split(path)"
+              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"path/filepath\"\n)\n\nfunc main() {\n\t// :show start\n\tpath := filepath.Join(\"dir\", \"file.txt\")\n\tdir, file := filepath.Split(path)\n\tfmt.Printf(\"dir: %s, file: %s\\n\", dir, file)\n\t// :show end\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 3,
-        "code": "path := filepath.Join(\"dir\", \"file.txt\")\ndir, file := filepath.Split(path)",
+        "version": 6,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"path/filepath\"\n)\n\nfunc main() {\n\t// :show start\n\tpath := filepath.Join(\"dir\", \"file.txt\")\n\tdir, file := filepath.Split(path)\n\tfmt.Printf(\"dir: %s, file: %s\\n\", dir, file)\n\t// :show end\n}",
         "code_language": "Go"
       },
       {
@@ -536,21 +536,21 @@
         "id": "5a467550-eba3-4bf8-9c23-1540ff5bb875",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1532156089206,
+        "last_edited_time": 1552282800000,
         "parent_id": "88d65c3f-c0c1-4a4e-90bf-a98ba3feb231",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "Split path into all components"
+              "Split list of paths"
             ]
           ]
         },
         "type": "sub_header",
-        "version": 1,
+        "version": 22,
         "inline_content": [
           {
-            "Text": "Split path into all components"
+            "Text": "Split list of paths"
           }
         ]
       },
@@ -561,7 +561,7 @@
         "id": "e7c5e1e7-09c0-4485-ab15-27aed3d69f26",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1532206667433,
+        "last_edited_time": 1552282740000,
         "parent_id": "88d65c3f-c0c1-4a4e-90bf-a98ba3feb231",
         "parent_table": "block",
         "properties": {
@@ -572,13 +572,13 @@
           ],
           "title": [
             [
-              "path := filepath.Join(\"dir\", \"subdir\", \"file.txt\")\nparts := filepath.SplitList(path)\n// parts = []string{\"dir\", \"subdir\", \"file.txt\"}"
+              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"path/filepath\"\n)\n\nfunc main() {\n\t// :show start\n\n\tparts := filepath.SplitList(\"/usr/bin:/tmp\")\n\tfmt.Printf(\"parts: %#v\\n\", parts)\n\t// :show end\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 3,
-        "code": "path := filepath.Join(\"dir\", \"subdir\", \"file.txt\")\nparts := filepath.SplitList(path)\n// parts = []string{\"dir\", \"subdir\", \"file.txt\"}",
+        "version": 6,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"path/filepath\"\n)\n\nfunc main() {\n\t// :show start\n\n\tparts := filepath.SplitList(\"/usr/bin:/tmp\")\n\tfmt.Printf(\"parts: %#v\\n\", parts)\n\t// :show end\n}",
         "code_language": "Go"
       },
       {
@@ -613,7 +613,7 @@
         "id": "46efec91-aead-4924-958f-7408fc1186ba",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1532206669805,
+        "last_edited_time": 1552282860000,
         "parent_id": "88d65c3f-c0c1-4a4e-90bf-a98ba3feb231",
         "parent_table": "block",
         "properties": {
@@ -624,13 +624,13 @@
           ],
           "title": [
             [
-              "path := filepath.Join(\"dir\", \"file.txt\")\nfile := filepath.Base(path)\n// file = \"file.txt\""
+              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"path/filepath\"\n)\n\nfunc main() {\n\t// :show start\n\tpath := filepath.Join(\"dir\", \"file.txt\")\n\tfile := filepath.Base(path)\n\tfmt.Printf(\"path: %s, file: %s\\n\", path, file)\n\t// :show end\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 3,
-        "code": "path := filepath.Join(\"dir\", \"file.txt\")\nfile := filepath.Base(path)\n// file = \"file.txt\"",
+        "version": 6,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"path/filepath\"\n)\n\nfunc main() {\n\t// :show start\n\tpath := filepath.Join(\"dir\", \"file.txt\")\n\tfile := filepath.Base(path)\n\tfmt.Printf(\"path: %s, file: %s\\n\", path, file)\n\t// :show end\n}",
         "code_language": "Go"
       },
       {
@@ -665,7 +665,7 @@
         "id": "0fadd30a-748b-46b2-8129-800874015aa9",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1532206672542,
+        "last_edited_time": 1552282920000,
         "parent_id": "88d65c3f-c0c1-4a4e-90bf-a98ba3feb231",
         "parent_table": "block",
         "properties": {
@@ -676,13 +676,13 @@
           ],
           "title": [
             [
-              "path := filepath.Join(\"dir\", \"file.txt\")\ndir := filepath.Dir(path)\n// dir = \"dir\""
+              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"path/filepath\"\n)\n\nfunc main() {\n\t// :show start\n\tpath := filepath.Join(\"dir\", \"file.txt\")\n\tdir := filepath.Dir(path)\n\tfmt.Printf(\"path: %s, dif: %s\\n\", path, dir)\n\t// :show end\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 3,
-        "code": "path := filepath.Join(\"dir\", \"file.txt\")\ndir := filepath.Dir(path)\n// dir = \"dir\"",
+        "version": 6,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"path/filepath\"\n)\n\nfunc main() {\n\t// :show start\n\tpath := filepath.Join(\"dir\", \"file.txt\")\n\tdir := filepath.Dir(path)\n\tfmt.Printf(\"path: %s, dif: %s\\n\", path, dir)\n\t// :show end\n}",
         "code_language": "Go"
       },
       {
@@ -717,7 +717,7 @@
         "id": "10b8fa14-28a9-413c-bdba-8e31c4197d0f",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1532206675252,
+        "last_edited_time": 1552282920000,
         "parent_id": "88d65c3f-c0c1-4a4e-90bf-a98ba3feb231",
         "parent_table": "block",
         "properties": {
@@ -728,13 +728,13 @@
           ],
           "title": [
             [
-              "ext := filepath.Ext(\"file.txt\")\n// ext = \".txt\""
+              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"path/filepath\"\n)\n\nfunc main() {\n\t// :show start\n\text := filepath.Ext(\"file.txt\")\n\tfmt.Printf(\"ext: %s\\n\", ext)\n\t// :show end\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 3,
-        "code": "ext := filepath.Ext(\"file.txt\")\n// ext = \".txt\"",
+        "version": 6,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"path/filepath\"\n)\n\nfunc main() {\n\t// :show start\n\text := filepath.Ext(\"file.txt\")\n\tfmt.Printf(\"ext: %s\\n\", ext)\n\t// :show end\n}",
         "code_language": "Go"
       }
     ],

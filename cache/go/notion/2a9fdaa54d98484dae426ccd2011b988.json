@@ -13,7 +13,7 @@
       "e8808aaf-5edc-4121-8792-5325fa56574a",
       "1a520260-efb5-4edb-97c0-c4901f37dcfc",
       "c00db962-d3cb-49df-a597-d0ea58d6abe6",
-      "455423e6-0833-4753-af56-bebb4c0ab8e9",
+      "59b4d289-377b-4d98-9047-941a04204e81",
       "d0b4d41a-e296-468c-8398-bb8c45d21761"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -25,7 +25,7 @@
     "id": "2a9fdaa5-4d98-484d-ae42-6ccd2011b988",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539840841846,
+    "last_edited_time": 1552281900000,
     "parent_id": "7a55634f-b819-4a85-bcc6-036eeba61b39",
     "parent_table": "block",
     "properties": {
@@ -36,7 +36,7 @@
       ]
     },
     "type": "page",
-    "version": 40,
+    "version": 45,
     "content_resolved": [
       {
         "alive": true,
@@ -382,37 +382,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539840836639,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-file-read-lines?lite=true",
-          "block_full_width": false,
-          "block_page_width": true,
-          "block_preserve_scale": false
-        },
-        "id": "455423e6-0833-4753-af56-bebb4c0ab8e9",
+        "created_time": 1552281927495,
+        "id": "59b4d289-377b-4d98-9047-941a04204e81",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539840838891,
+        "last_edited_time": 1552281900000,
         "parent_id": "2a9fdaa5-4d98-484d-ae42-6ccd2011b988",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-file-read-lines"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot, :name main.go\npackage main\n\nimport (\n\t\"bufio\"\n\t\"fmt\"\n\t\"log\"\n\t\"os\"\n)\n\n// :show start\n\n// ReadLines reads all lines from a file\nfunc ReadLines(filePath string) ([]string, error) {\n\tfile, err := os.OpenFile(filePath, os.O_RDONLY, 0666)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\tdefer file.Close()\n\tscanner := bufio.NewScanner(file)\n\tres := make([]string, 0)\n\tfor scanner.Scan() {\n\t\tline := scanner.Bytes()\n\t\tres = append(res, string(line))\n\t}\n\tif err = scanner.Err(); err != nil {\n\t\treturn nil, err\n\t}\n\treturn res, nil\n}\n\nfunc main() {\n\tpath := \"main.go\"\n\tlines, err := ReadLines(path)\n\tif err != nil {\n\t\tlog.Fatalf(\"ReadLines failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"File %s has %d lines\\n\", path, len(lines))\n}\n\n// :show end"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-file-read-lines",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": true,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-file-read-lines?lite=true"
-        }
+        "type": "code",
+        "version": 32,
+        "code": "// :glot, :name main.go\npackage main\n\nimport (\n\t\"bufio\"\n\t\"fmt\"\n\t\"log\"\n\t\"os\"\n)\n\n// :show start\n\n// ReadLines reads all lines from a file\nfunc ReadLines(filePath string) ([]string, error) {\n\tfile, err := os.OpenFile(filePath, os.O_RDONLY, 0666)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\tdefer file.Close()\n\tscanner := bufio.NewScanner(file)\n\tres := make([]string, 0)\n\tfor scanner.Scan() {\n\t\tline := scanner.Bytes()\n\t\tres = append(res, string(line))\n\t}\n\tif err = scanner.Err(); err != nil {\n\t\treturn nil, err\n\t}\n\treturn res, nil\n}\n\nfunc main() {\n\tpath := \"main.go\"\n\tlines, err := ReadLines(path)\n\tif err != nil {\n\t\tlog.Fatalf(\"ReadLines failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"File %s has %d lines\\n\", path, len(lines))\n}\n\n// :show end",
+        "code_language": "Go"
       },
       {
         "alive": true,

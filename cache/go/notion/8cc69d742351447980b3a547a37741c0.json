@@ -11,7 +11,7 @@
       "bf910367-bef9-47d8-ad04-b4a83560455c",
       "e8e8b553-882b-4886-870e-1017d935eaf3",
       "acac12fc-6f94-471e-afdc-4e7216c6f1bc",
-      "7f1d3266-a451-434d-b80e-a7e13a992d7b",
+      "be0ef834-a383-4c61-acb6-a2a5f22e618e",
       "b3cc303e-b498-4529-a9f7-14dce176968c",
       "a857b288-a11e-4f85-843b-b37f309e823c",
       "a22ca4c1-1c9e-47a1-8964-8a2ecfb331e7",
@@ -28,7 +28,7 @@
     "id": "8cc69d74-2351-4479-80b3-a547a37741c0",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539852113762,
+    "last_edited_time": 1552286040000,
     "parent_id": "b58d1314-5f92-4c11-afcf-00aa10d71364",
     "parent_table": "block",
     "properties": {
@@ -39,7 +39,7 @@
       ]
     },
     "type": "page",
-    "version": 35,
+    "version": 41,
     "content_resolved": [
       {
         "alive": true,
@@ -283,37 +283,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539852107401,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-context-cancellable-function?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "7f1d3266-a451-434d-b80e-a7e13a992d7b",
+        "created_time": 1552286032762,
+        "id": "be0ef834-a383-4c61-acb6-a2a5f22e618e",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539852110162,
+        "last_edited_time": 1552285980000,
         "parent_id": "8cc69d74-2351-4479-80b3-a547a37741c0",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-context-cancellable-function"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\t\"time\"\n)\n\n// :show start\nfunc longMathOp(ctx context.Context, n int) (int, error) {\n\tres := n\n\tfor i := 0; i \u003c 100; i++ {\n\t\tselect {\n\t\tcase \u003c-ctx.Done():\n\t\t\treturn 0, ctx.Err()\n\t\tdefault:\n\t\t\tres += i\n\t\t\t// simulate long operation by sleeping\n\t\t\ttime.Sleep(time.Millisecond)\n\t\t}\n\t}\n\treturn res, nil\n}\n\nfunc main() {\n\tctx, _ := context.WithTimeout(context.Background(), time.Millisecond*200)\n\tres, err := longMathOp(ctx, 5)\n\tfmt.Printf(\"Called longMathOp() with 200ms timeout. res; %d, err: %v\\n\", res, err)\n\n\tctx, _ = context.WithTimeout(context.Background(), time.Millisecond*10)\n\tres, err = longMathOp(ctx, 5)\n\tfmt.Printf(\"Called longMathOp() with 10ms timeout. res: %d, err: %v\\n\", res, err)\n}\n\n// :show end"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-context-cancellable-function",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-context-cancellable-function?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\t\"time\"\n)\n\n// :show start\nfunc longMathOp(ctx context.Context, n int) (int, error) {\n\tres := n\n\tfor i := 0; i \u003c 100; i++ {\n\t\tselect {\n\t\tcase \u003c-ctx.Done():\n\t\t\treturn 0, ctx.Err()\n\t\tdefault:\n\t\t\tres += i\n\t\t\t// simulate long operation by sleeping\n\t\t\ttime.Sleep(time.Millisecond)\n\t\t}\n\t}\n\treturn res, nil\n}\n\nfunc main() {\n\tctx, _ := context.WithTimeout(context.Background(), time.Millisecond*200)\n\tres, err := longMathOp(ctx, 5)\n\tfmt.Printf(\"Called longMathOp() with 200ms timeout. res; %d, err: %v\\n\", res, err)\n\n\tctx, _ = context.WithTimeout(context.Background(), time.Millisecond*10)\n\tres, err = longMathOp(ctx, 5)\n\tfmt.Printf(\"Called longMathOp() with 10ms timeout. res: %d, err: %v\\n\", res, err)\n}\n\n// :show end",
+        "code_language": "Go"
       },
       {
         "alive": true,

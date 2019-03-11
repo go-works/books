@@ -8,10 +8,10 @@
       "7f1a8769-a042-4636-8bdb-63cb16f878aa",
       "22402514-a891-4743-98f4-f35251f03bd0",
       "6f3683f5-712e-4115-ba42-d84a60ce22c8",
-      "3a2889ae-73f3-482d-9cff-faeec30951a1",
+      "5edc7a82-d4f8-4735-8049-9db686161110",
       "e36e5a19-a06a-4885-8eb9-62afaa64f22b",
       "0f50e814-5dae-4973-a1b7-48b2f735249f",
-      "1ab38751-8245-4f65-ad70-bbd445bc3d2a",
+      "578261bf-485e-45bc-b5cc-87688a64f43d",
       "165ddf62-f164-4417-a82b-eac6a346fbc9",
       "c6fb900c-fd84-4db6-945f-50f2d56cc5da",
       "b9d86632-e820-40bf-807d-b37d88922b00",
@@ -24,7 +24,7 @@
       "6cff090a-e857-4efb-82d6-8c66a7d37bec",
       "b3500df5-a4df-440f-a2b2-e7d44624e4e8",
       "0fb3bb13-4870-4d79-aa7c-34109f9795e1",
-      "262a777d-d232-4816-86cc-72100be698d7",
+      "222bf80d-f8fb-4ee6-9083-027477e1fb4e",
       "6bff7b9f-b6cc-4cfd-af6e-606d64d478f5",
       "f339585d-2151-409e-8a08-b3a8e3a11bc0",
       "d5be8f1c-e0d3-4867-9deb-5aea52eafd99",
@@ -46,7 +46,7 @@
     "id": "fb02383e-7719-45cf-a227-c82fa10d799b",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539851964493,
+    "last_edited_time": 1552277040000,
     "parent_id": "c7fea6b1-76b7-4c54-ab35-f2d8fdd56f13",
     "parent_table": "block",
     "properties": {
@@ -57,7 +57,7 @@
       ]
     },
     "type": "page",
-    "version": 63,
+    "version": 77,
     "content_resolved": [
       {
         "alive": true,
@@ -208,37 +208,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539851848532,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-reflection-get-type?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "3a2889ae-73f3-482d-9cff-faeec30951a1",
+        "created_time": 1552277011625,
+        "id": "5edc7a82-d4f8-4735-8049-9db686161110",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539851850064,
+        "last_edited_time": 1552276980000,
         "parent_id": "fb02383e-7719-45cf-a227-c82fa10d799b",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-reflection-get-type"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"reflect\"\n)\n\n// :show start\n\nfunc printType(v interface{}) {\n\trv := reflect.ValueOf(v)\n\ttyp := rv.Type()\n\ttypeName := \"\"\n\tswitch rv.Kind() {\n\tcase reflect.Ptr:\n\t\ttypeName = \"pointer\"\n\tcase reflect.Int:\n\t\ttypeName = \"int\"\n\tcase reflect.Int32:\n\t\ttypeName = \"int32\"\n\tcase reflect.String:\n\t\ttypeName = \"string\"\n\t// ... handle more cases\n\tdefault:\n\t\ttypeName = \"unrecognized type\"\n\t}\n\tfmt.Printf(\"v is of type '%s'. Size: %d bytes\\n\", typeName, typ.Size())\n}\n\n// :show end\n\nfunc main() {\n\t// :show start\n\tprintType(int32(3))\n\tprintType(\"\")\n\ti := 3\n\tprintType(\u0026i) // *int i.e. pointer to int\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-reflection-get-type",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-reflection-get-type?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"reflect\"\n)\n\n// :show start\n\nfunc printType(v interface{}) {\n\trv := reflect.ValueOf(v)\n\ttyp := rv.Type()\n\ttypeName := \"\"\n\tswitch rv.Kind() {\n\tcase reflect.Ptr:\n\t\ttypeName = \"pointer\"\n\tcase reflect.Int:\n\t\ttypeName = \"int\"\n\tcase reflect.Int32:\n\t\ttypeName = \"int32\"\n\tcase reflect.String:\n\t\ttypeName = \"string\"\n\t// ... handle more cases\n\tdefault:\n\t\ttypeName = \"unrecognized type\"\n\t}\n\tfmt.Printf(\"v is of type '%s'. Size: %d bytes\\n\", typeName, typ.Size())\n}\n\n// :show end\n\nfunc main() {\n\t// :show start\n\tprintType(int32(3))\n\tprintType(\"\")\n\ti := 3\n\tprintType(\u0026i) // *int i.e. pointer to int\n\t// :show end\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,
@@ -312,37 +303,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539851890477,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-reflection-get-value?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "1ab38751-8245-4f65-ad70-bbd445bc3d2a",
+        "created_time": 1552277023995,
+        "id": "578261bf-485e-45bc-b5cc-87688a64f43d",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539851892434,
+        "last_edited_time": 1552276980000,
         "parent_id": "fb02383e-7719-45cf-a227-c82fa10d799b",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-reflection-get-value"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\n// allow error\npackage main\n\nimport (\n\t\"fmt\"\n\t\"reflect\"\n)\n\n// :show start\n\nfunc getIntValue(v interface{}) {\n\tvar reflectValue = reflect.ValueOf(v)\n\tn := reflectValue.Int()\n\tfmt.Printf(\"Int value is: %d\\n\", n)\n}\n\n// :show end\n\nfunc main() {\n\t// :show start\n\tgetIntValue(3)\n\tgetIntValue(int8(4))\n\tgetIntValue(\"\")\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-reflection-get-value",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-reflection-get-value?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\n// allow error\npackage main\n\nimport (\n\t\"fmt\"\n\t\"reflect\"\n)\n\n// :show start\n\nfunc getIntValue(v interface{}) {\n\tvar reflectValue = reflect.ValueOf(v)\n\tn := reflectValue.Int()\n\tfmt.Printf(\"Int value is: %d\\n\", n)\n}\n\n// :show end\n\nfunc main() {\n\t// :show start\n\tgetIntValue(3)\n\tgetIntValue(int8(4))\n\tgetIntValue(\"\")\n\t// :show end\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,
@@ -929,37 +911,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539851959546,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-reflection-set-value?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "262a777d-d232-4816-86cc-72100be698d7",
+        "created_time": 1552277047430,
+        "id": "222bf80d-f8fb-4ee6-9083-027477e1fb4e",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539851961269,
+        "last_edited_time": 1552277040000,
         "parent_id": "fb02383e-7719-45cf-a227-c82fa10d799b",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-reflection-set-value"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"reflect\"\n)\n\n// :show start\ntype S struct {\n\tN int\n}\n\nfunc setIntPtr() {\n\tvar n int = 2\n\treflect.ValueOf(\u0026n).Elem().SetInt(4)\n\tfmt.Printf(\"setIntPtr: n=%d\\n\", n)\n}\n\nfunc setStructFieldDirect() {\n\tvar s S\n\treflect.ValueOf(\u0026s.N).Elem().SetInt(5)\n\tfmt.Printf(\"setStructFieldDirect: n=%d\\n\", s.N)\n}\n\nfunc setStructPtrField() {\n\tvar s S\n\treflect.ValueOf(\u0026s).Elem().Field(0).SetInt(6)\n\tfmt.Printf(\"setStructPtrField: s.N: %d\\n\", s.N)\n}\n\nfunc handlePanic(funcName string) {\n\tif msg := recover(); msg != nil {\n\t\tfmt.Printf(\"%s panicked with '%s'\\n\", funcName, msg)\n\t}\n}\n\nfunc setStructField() {\n\tdefer handlePanic(\"setStructField\")\n\tvar s S\n\treflect.ValueOf(s).Elem().Field(0).SetInt(4)\n\tfmt.Printf(\"s.N: %d\\n\", s.N)\n}\n\nfunc setInt() {\n\tdefer handlePanic(\"setInt\")\n\tvar n int = 2\n\trv := reflect.ValueOf(n)\n\trv.Elem().SetInt(4)\n}\n\nfunc setIntPtrWithString() {\n\tdefer handlePanic(\"setIntPtrWithString\")\n\tvar n int = 2\n\treflect.ValueOf(\u0026n).Elem().SetString(\"8\")\n}\n\n// :show end\n\nfunc main() {\n\tsetIntPtr()\n\tsetStructFieldDirect()\n\tsetStructPtrField()\n\n\tsetInt()\n\tsetStructField()\n\n\tsetIntPtrWithString()\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-reflection-set-value",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-reflection-set-value?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"reflect\"\n)\n\n// :show start\ntype S struct {\n\tN int\n}\n\nfunc setIntPtr() {\n\tvar n int = 2\n\treflect.ValueOf(\u0026n).Elem().SetInt(4)\n\tfmt.Printf(\"setIntPtr: n=%d\\n\", n)\n}\n\nfunc setStructFieldDirect() {\n\tvar s S\n\treflect.ValueOf(\u0026s.N).Elem().SetInt(5)\n\tfmt.Printf(\"setStructFieldDirect: n=%d\\n\", s.N)\n}\n\nfunc setStructPtrField() {\n\tvar s S\n\treflect.ValueOf(\u0026s).Elem().Field(0).SetInt(6)\n\tfmt.Printf(\"setStructPtrField: s.N: %d\\n\", s.N)\n}\n\nfunc handlePanic(funcName string) {\n\tif msg := recover(); msg != nil {\n\t\tfmt.Printf(\"%s panicked with '%s'\\n\", funcName, msg)\n\t}\n}\n\nfunc setStructField() {\n\tdefer handlePanic(\"setStructField\")\n\tvar s S\n\treflect.ValueOf(s).Elem().Field(0).SetInt(4)\n\tfmt.Printf(\"s.N: %d\\n\", s.N)\n}\n\nfunc setInt() {\n\tdefer handlePanic(\"setInt\")\n\tvar n int = 2\n\trv := reflect.ValueOf(n)\n\trv.Elem().SetInt(4)\n}\n\nfunc setIntPtrWithString() {\n\tdefer handlePanic(\"setIntPtrWithString\")\n\tvar n int = 2\n\treflect.ValueOf(\u0026n).Elem().SetString(\"8\")\n}\n\n// :show end\n\nfunc main() {\n\tsetIntPtr()\n\tsetStructFieldDirect()\n\tsetStructPtrField()\n\n\tsetInt()\n\tsetStructField()\n\n\tsetIntPtrWithString()\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,

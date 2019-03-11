@@ -11,7 +11,7 @@
       "2517df36-968d-4cba-b8b4-68a68bcd84b1",
       "9790f4a0-6fd1-48f5-86f7-ebbc54f1426a",
       "14a4f1b7-29ad-47ba-bb05-d10c6213be85",
-      "e7e9eaf8-4b77-4aec-a366-8fcb9cdf469d"
+      "99670b5a-e33f-409c-b552-e49fa9a09a13"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1532156075140,
@@ -22,7 +22,7 @@
     "id": "8ed13400-9e37-49bf-b907-582446cb6ca2",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539839942609,
+    "last_edited_time": 1552278720000,
     "parent_id": "41f795bf-701d-4784-b319-7349cdb8f2de",
     "parent_table": "block",
     "properties": {
@@ -33,7 +33,7 @@
       ]
     },
     "type": "page",
-    "version": 40,
+    "version": 47,
     "content_resolved": [
       {
         "alive": true,
@@ -276,37 +276,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539839937184,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-rwmutex?lite=true",
-          "block_full_width": false,
-          "block_page_width": true,
-          "block_preserve_scale": false
-        },
-        "id": "e7e9eaf8-4b77-4aec-a366-8fcb9cdf469d",
+        "created_time": 1552278747950,
+        "id": "99670b5a-e33f-409c-b552-e49fa9a09a13",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539839939186,
+        "last_edited_time": 1552278720000,
         "parent_id": "8ed13400-9e37-49bf-b907-582446cb6ca2",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-rwmutex"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"sync\"\n\t\"time\"\n)\n\n// :show start\nvar cache map[int]int\nvar mu sync.RWMutex\n\nfunc expensiveOperation(n int) int {\n\t// in real code this operation would be very expensive\n\treturn n * n\n}\n\nfunc getCached(n int) int {\n\tmu.RLock()\n\tv, isCached := cache[n]\n\tmu.RUnlock()\n\tif isCached {\n\t\treturn v\n\t}\n\n\tv = expensiveOperation(n)\n\n\tmu.Lock()\n\tcache[n] = v\n\tmu.Unlock()\n\treturn v\n}\n\nfunc accessCache() {\n\ttotal := 0\n\tfor i := 0; i \u003c 5; i++ {\n\t\tn := getCached(i)\n\t\ttotal += n\n\t}\n\tfmt.Printf(\"total: %d\\n\", total)\n}\n\n// :show end\n\nfunc main() {\n\t// :show start\n\tcache = make(map[int]int)\n\tgo accessCache()\n\taccessCache()\n\t// :show end\n\n\t// for simplicity of the example\n\t// don't use time.Sleep() to coordinate goroutines\n\t// in production code\n\ttime.Sleep(100 * time.Millisecond)\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-rwmutex",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": true,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-rwmutex?lite=true"
-        }
+        "type": "code",
+        "version": 17,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"sync\"\n\t\"time\"\n)\n\n// :show start\nvar cache map[int]int\nvar mu sync.RWMutex\n\nfunc expensiveOperation(n int) int {\n\t// in real code this operation would be very expensive\n\treturn n * n\n}\n\nfunc getCached(n int) int {\n\tmu.RLock()\n\tv, isCached := cache[n]\n\tmu.RUnlock()\n\tif isCached {\n\t\treturn v\n\t}\n\n\tv = expensiveOperation(n)\n\n\tmu.Lock()\n\tcache[n] = v\n\tmu.Unlock()\n\treturn v\n}\n\nfunc accessCache() {\n\ttotal := 0\n\tfor i := 0; i \u003c 5; i++ {\n\t\tn := getCached(i)\n\t\ttotal += n\n\t}\n\tfmt.Printf(\"total: %d\\n\", total)\n}\n\n// :show end\n\nfunc main() {\n\t// :show start\n\tcache = make(map[int]int)\n\tgo accessCache()\n\taccessCache()\n\t// :show end\n\n\t// for simplicity of the example\n\t// don't use time.Sleep() to coordinate goroutines\n\t// in production code\n\ttime.Sleep(100 * time.Millisecond)\n}",
+        "code_language": "Go"
       }
     ],
     "title": "Read-Write mutes (RWMutex)",

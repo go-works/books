@@ -9,7 +9,7 @@
       "01b2d035-480f-449d-9b27-0f062e718500",
       "3aa7004a-5fee-4660-9455-3bf3c3b7e677",
       "e4f8bf77-6d33-4a12-9aab-5d83d2f76753",
-      "5772c48d-43e6-459a-9df9-820a57f8f811",
+      "79fab0fe-9579-4379-b84d-9984dd52d963",
       "3bb4da9e-5a26-4a30-96ef-16ca38532be0",
       "1a11cae7-36ed-424e-ab50-0e98bfe57ab9"
     ],
@@ -22,7 +22,7 @@
     "id": "b27d6090-8694-4d93-afea-ae189107edcc",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539837092853,
+    "last_edited_time": 1552287720000,
     "parent_id": "39927eb1-3c11-4194-92e6-7e9fd5328d8b",
     "parent_table": "block",
     "properties": {
@@ -33,7 +33,7 @@
       ]
     },
     "type": "page",
-    "version": 37,
+    "version": 44,
     "content_resolved": [
       {
         "alive": true,
@@ -192,37 +192,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539837087557,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-error-handling-add-callstack?lite=true",
-          "block_full_width": false,
-          "block_page_width": true,
-          "block_preserve_scale": false
-        },
-        "id": "5772c48d-43e6-459a-9df9-820a57f8f811",
+        "created_time": 1552277723699,
+        "id": "79fab0fe-9579-4379-b84d-9984dd52d963",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539837089005,
+        "last_edited_time": 1552287720000,
         "parent_id": "b27d6090-8694-4d93-afea-ae189107edcc",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-error-handling-add-callstack"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "package main\n\nimport (\n\t\"errors\"\n\t\"fmt\"\n\n\tpkgerrors \"github.com/pkg/errors\"\n)\n\n// :show start\n\nfunc wrappedError() error {\n\terr := errors.New(\"Original error\")\n\t// create a new error value which wraps original err and\n\t// adds calls tack\n\treturn pkgerrors.WithStack(err)\n}\n\nfunc main() {\n\t// %+v prints original error add callstack\n\tfmt.Printf(\"err: %+v\\n\\n\", wrappedError())\n\n\t// errors created with pkg/errors include callstack by default\n\tfmt.Printf(\"err: %+v\\n\", pkgerrors.New(\"error created with pkg/errors\"))\n}\n\n// :show end"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-error-handling-add-callstack",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": true,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-error-handling-add-callstack?lite=true"
-        }
+        "type": "code",
+        "version": 30,
+        "code": "package main\n\nimport (\n\t\"errors\"\n\t\"fmt\"\n\n\tpkgerrors \"github.com/pkg/errors\"\n)\n\n// :show start\n\nfunc wrappedError() error {\n\terr := errors.New(\"Original error\")\n\t// create a new error value which wraps original err and\n\t// adds calls tack\n\treturn pkgerrors.WithStack(err)\n}\n\nfunc main() {\n\t// %+v prints original error add callstack\n\tfmt.Printf(\"err: %+v\\n\\n\", wrappedError())\n\n\t// errors created with pkg/errors include callstack by default\n\tfmt.Printf(\"err: %+v\\n\", pkgerrors.New(\"error created with pkg/errors\"))\n}\n\n// :show end",
+        "code_language": "Go"
       },
       {
         "alive": true,

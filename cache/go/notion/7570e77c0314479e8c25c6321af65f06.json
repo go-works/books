@@ -9,10 +9,10 @@
       "0960d2f3-0375-41d6-bda1-f48ad44b88b2",
       "640a182e-03a4-438a-91f6-5c402371242d",
       "a4615da9-3944-497d-93eb-8ebdeee12202",
-      "1b5bd157-ff3e-490a-ba38-677d0e234422",
+      "bce50717-e236-43a3-a2b6-f918c47ae37f",
       "76792273-2a47-442a-97f2-6e24ded2bcad",
       "a1eb5cc3-ad19-4295-ab03-8705d03d4096",
-      "ebd0b351-efbb-49af-8e54-1ef1663cc865",
+      "c2ca23b1-c1fe-4944-924d-b4fe17b2860f",
       "dad61abb-9c8c-49eb-89d8-f8f68feae645",
       "cf988550-a6b2-4cea-9ef3-989ffd64227b"
     ],
@@ -25,7 +25,7 @@
     "id": "7570e77c-0314-479e-8c25-c6321af65f06",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539850577997,
+    "last_edited_time": 1552285740000,
     "parent_id": "cabbd741-52a7-4e29-8be4-afcd41ed10b2",
     "parent_table": "block",
     "properties": {
@@ -36,7 +36,7 @@
       ]
     },
     "type": "page",
-    "version": 51,
+    "version": 60,
     "content_resolved": [
       {
         "alive": true,
@@ -230,37 +230,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539850569306,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-template-html?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "1b5bd157-ff3e-490a-ba38-677d0e234422",
+        "created_time": 1552285752550,
+        "id": "bce50717-e236-43a3-a2b6-f918c47ae37f",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539850571276,
+        "last_edited_time": 1552285740000,
         "parent_id": "7570e77c-0314-479e-8c25-c6321af65f06",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-template-html"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\thtml_template \"html/template\"\n\t\"log\"\n\t\"os\"\n\ttext_template \"text/template\"\n)\n\n// :show start\nconst tmplStr = `\u003cdiv onlick=\"{{ .JS }}\"\u003e{{ .HTML }}\u003c/div\u003e\n`\n\n// :show end\n\nfunc main() {\n\t// :show start\n\ttxt := text_template.Must(text_template.New(\"text\").Parse(tmplStr))\n\n\thtml := html_template.Must(html_template.New(\"html\").Parse(tmplStr))\n\n\tdata := struct {\n\t\tJS   string\n\t\tHTML string\n\t\tURL  string\n\t}{\n\t\tJS:   `foo`,\n\t\tHTML: `\u003cspan\u003etext\u003c/span\u003e`,\n\t\tURL:  `http://www.programming-books.io`,\n\t}\n\n\terr := txt.Execute(os.Stdout, data)\n\tif err != nil {\n\t\tlog.Fatalf(\"t.Execute() failed with '%s'\\n\", err)\n\t}\n\n\tfmt.Println()\n\n\terr = html.Execute(os.Stdout, data)\n\tif err != nil {\n\t\tlog.Fatalf(\"t.Execute() failed with '%s'\\n\", err)\n\t}\n\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-template-html",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-template-html?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\thtml_template \"html/template\"\n\t\"log\"\n\t\"os\"\n\ttext_template \"text/template\"\n)\n\n// :show start\nconst tmplStr = `\u003cdiv onlick=\"{{ .JS }}\"\u003e{{ .HTML }}\u003c/div\u003e\n`\n\n// :show end\n\nfunc main() {\n\t// :show start\n\ttxt := text_template.Must(text_template.New(\"text\").Parse(tmplStr))\n\n\thtml := html_template.Must(html_template.New(\"html\").Parse(tmplStr))\n\n\tdata := struct {\n\t\tJS   string\n\t\tHTML string\n\t\tURL  string\n\t}{\n\t\tJS:   `foo`,\n\t\tHTML: `\u003cspan\u003etext\u003c/span\u003e`,\n\t\tURL:  `http://www.programming-books.io`,\n\t}\n\n\terr := txt.Execute(os.Stdout, data)\n\tif err != nil {\n\t\tlog.Fatalf(\"t.Execute() failed with '%s'\\n\", err)\n\t}\n\n\tfmt.Println()\n\n\terr = html.Execute(os.Stdout, data)\n\tif err != nil {\n\t\tlog.Fatalf(\"t.Execute() failed with '%s'\\n\", err)\n\t}\n\n\t// :show end\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,
@@ -315,37 +306,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539850521456,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-template-html-raw?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "ebd0b351-efbb-49af-8e54-1ef1663cc865",
+        "created_time": 1552285765193,
+        "id": "c2ca23b1-c1fe-4944-924d-b4fe17b2860f",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539850524108,
+        "last_edited_time": 1552285740000,
         "parent_id": "7570e77c-0314-479e-8c25-c6321af65f06",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-template-html-raw"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"html/template\"\n\t\"log\"\n\t\"os\"\n)\n\n// :show start\nconst tmplStr = `\u003cdiv onlick=\"{{ .JS }}\"\u003e{{ .HTML }}\u003c/div\u003e\n`\n\n// :show end\n\nfunc main() {\n\t// :show start\n\n\thtml := template.Must(template.New(\"html\").Parse(tmplStr))\n\n\tdata := struct {\n\t\tJS   string\n\t\tHTML string\n\t}{\n\t\tJS:   `foo`,\n\t\tHTML: `\u003cspan\u003etext\u003c/span\u003e`,\n\t}\n\n\tfmt.Printf(\"Escaped:\\n\")\n\terr := html.Execute(os.Stdout, data)\n\tif err != nil {\n\t\tlog.Fatalf(\"t.Execute() failed with '%s'\\n\", err)\n\t}\n\n\tfmt.Printf(\"\\nUnescaped:\\n\")\n\tdata2 := struct {\n\t\tJS   template.JS\n\t\tHTML template.HTML\n\t}{\n\t\tJS:   `foo`,\n\t\tHTML: `\u003cspan\u003etext\u003c/span\u003e`,\n\t}\n\terr = html.Execute(os.Stdout, data2)\n\tif err != nil {\n\t\tlog.Fatalf(\"t.Execute() failed with '%s'\\n\", err)\n\t}\n\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-template-html-raw",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-template-html-raw?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"html/template\"\n\t\"log\"\n\t\"os\"\n)\n\n// :show start\nconst tmplStr = `\u003cdiv onlick=\"{{ .JS }}\"\u003e{{ .HTML }}\u003c/div\u003e\n`\n\n// :show end\n\nfunc main() {\n\t// :show start\n\n\thtml := template.Must(template.New(\"html\").Parse(tmplStr))\n\n\tdata := struct {\n\t\tJS   string\n\t\tHTML string\n\t}{\n\t\tJS:   `foo`,\n\t\tHTML: `\u003cspan\u003etext\u003c/span\u003e`,\n\t}\n\n\tfmt.Printf(\"Escaped:\\n\")\n\terr := html.Execute(os.Stdout, data)\n\tif err != nil {\n\t\tlog.Fatalf(\"t.Execute() failed with '%s'\\n\", err)\n\t}\n\n\tfmt.Printf(\"\\nUnescaped:\\n\")\n\tdata2 := struct {\n\t\tJS   template.JS\n\t\tHTML template.HTML\n\t}{\n\t\tJS:   `foo`,\n\t\tHTML: `\u003cspan\u003etext\u003c/span\u003e`,\n\t}\n\terr = html.Execute(os.Stdout, data2)\n\tif err != nil {\n\t\tlog.Fatalf(\"t.Execute() failed with '%s'\\n\", err)\n\t}\n\n\t// :show end\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,

@@ -13,7 +13,7 @@
       "744f6373-207c-4fa3-92f6-f02d105f62fe",
       "c211a055-f13c-4abc-b4ed-73606cf8c62d",
       "c4fa5570-4754-4c75-bfbe-c3fe69e7192e",
-      "f14a2d60-a319-4a6e-8b55-9dbaebed3c39",
+      "1e0ce710-4029-4687-8483-fcb169833d13",
       "53d6c309-025d-4028-b1e1-8e3e2b4c58e8"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -25,7 +25,7 @@
     "id": "f9c634d2-6c56-4aac-9b9f-f65f2ce4eeca",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539837189014,
+    "last_edited_time": 1552277700000,
     "parent_id": "39927eb1-3c11-4194-92e6-7e9fd5328d8b",
     "parent_table": "block",
     "properties": {
@@ -36,7 +36,7 @@
       ]
     },
     "type": "page",
-    "version": 35,
+    "version": 40,
     "content_resolved": [
       {
         "alive": true,
@@ -297,37 +297,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539837183586,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-error-handling-errors-in-short-programs?lite=true",
-          "block_full_width": false,
-          "block_page_width": true,
-          "block_preserve_scale": false
-        },
-        "id": "f14a2d60-a319-4a6e-8b55-9dbaebed3c39",
+        "created_time": 1552277702228,
+        "id": "1e0ce710-4029-4687-8483-fcb169833d13",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539837185346,
+        "last_edited_time": 1552277700000,
         "parent_id": "f9c634d2-6c56-4aac-9b9f-f65f2ce4eeca",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-error-handling-errors-in-short-programs"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\n// allow error\npackage main\n\nimport (\n\t\"errors\"\n\t\"fmt\"\n)\n\n// :show start\n// FmtArgs formats args as a string. First argument should be format string\n// and the rest are arguments to the format\nfunc FmtArgs(args ...interface{}) string {\n\tif len(args) == 0 {\n\t\treturn \"\"\n\t}\n\tformat := args[0].(string)\n\tif len(args) == 1 {\n\t\treturn format\n\t}\n\treturn fmt.Sprintf(format, args[1:]...)\n}\n\nfunc panicWithMsg(defaultMsg string, args ...interface{}) {\n\ts := FmtArgs(args...)\n\tif s == \"\" {\n\t\ts = defaultMsg\n\t}\n\tfmt.Printf(\"%s\\n\", s)\n\tpanic(s)\n}\n\n// PanicIf panics if cond is true\nfunc PanicIf(cond bool, args ...interface{}) {\n\tif !cond {\n\t\treturn\n\t}\n\tpanicWithMsg(\"PanicIf: condition failed\", args...)\n}\n\n// PanicIfErr panics if err is not nil\nfunc PanicIfErr(err error, args ...interface{}) {\n\tif err == nil {\n\t\treturn\n\t}\n\tpanicWithMsg(err.Error(), args...)\n}\n\nfunc main() {\n\tPanicIfErr(nil)                              // nothing happens\n\tPanicIfErr(errors.New(\"there was an error\")) // will panic\n}\n\n// :show end"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-error-handling-errors-in-short-programs",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": true,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-error-handling-errors-in-short-programs?lite=true"
-        }
+        "type": "code",
+        "version": 23,
+        "code": "// :glot\n// allow error\npackage main\n\nimport (\n\t\"errors\"\n\t\"fmt\"\n)\n\n// :show start\n// FmtArgs formats args as a string. First argument should be format string\n// and the rest are arguments to the format\nfunc FmtArgs(args ...interface{}) string {\n\tif len(args) == 0 {\n\t\treturn \"\"\n\t}\n\tformat := args[0].(string)\n\tif len(args) == 1 {\n\t\treturn format\n\t}\n\treturn fmt.Sprintf(format, args[1:]...)\n}\n\nfunc panicWithMsg(defaultMsg string, args ...interface{}) {\n\ts := FmtArgs(args...)\n\tif s == \"\" {\n\t\ts = defaultMsg\n\t}\n\tfmt.Printf(\"%s\\n\", s)\n\tpanic(s)\n}\n\n// PanicIf panics if cond is true\nfunc PanicIf(cond bool, args ...interface{}) {\n\tif !cond {\n\t\treturn\n\t}\n\tpanicWithMsg(\"PanicIf: condition failed\", args...)\n}\n\n// PanicIfErr panics if err is not nil\nfunc PanicIfErr(err error, args ...interface{}) {\n\tif err == nil {\n\t\treturn\n\t}\n\tpanicWithMsg(err.Error(), args...)\n}\n\nfunc main() {\n\tPanicIfErr(nil)                              // nothing happens\n\tPanicIfErr(errors.New(\"there was an error\")) // will panic\n}\n\n// :show end",
+        "code_language": "Go"
       },
       {
         "alive": true,

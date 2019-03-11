@@ -9,7 +9,7 @@
       "b3fe7683-d542-4427-9b55-d625876a6921",
       "d99ea201-6029-4e21-be3d-f5c604ab43f2",
       "e4bd1ba4-e567-4e62-b281-0f0016f7ec7c",
-      "642b7ad8-8518-4463-88d5-729ba2b4d94d"
+      "2d3801fa-be0d-49a3-9940-76729f70cdbf"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1532156068190,
@@ -20,7 +20,7 @@
     "id": "0739fee2-c89f-4867-9858-e43b098d0a9d",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539839450703,
+    "last_edited_time": 1552278360000,
     "parent_id": "4fac57c0-9168-477a-a120-69484979f419",
     "parent_table": "block",
     "properties": {
@@ -31,7 +31,7 @@
       ]
     },
     "type": "page",
-    "version": 37,
+    "version": 43,
     "content_resolved": [
       {
         "alive": true,
@@ -224,37 +224,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539839443715,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-channels-timeout?lite=true",
-          "block_full_width": false,
-          "block_page_width": true,
-          "block_preserve_scale": false
-        },
-        "id": "642b7ad8-8518-4463-88d5-729ba2b4d94d",
+        "created_time": 1552278360670,
+        "id": "2d3801fa-be0d-49a3-9940-76729f70cdbf",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539839445613,
+        "last_edited_time": 1552278360000,
         "parent_id": "0739fee2-c89f-4867-9858-e43b098d0a9d",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-channels-timeout"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"time\"\n)\n\n// :show start\n\nfunc main() {\n\tchResult := make(chan int, 1)\n\n\tgo func() {\n\t\ttime.Sleep(1 * time.Second)\n\t\tchResult \u003c- 5\n\t\tfmt.Printf(\"Worker finished\")\n\t}()\n\n\tselect {\n\tcase res := \u003c-chResult:\n\t\tfmt.Printf(\"Got %d from worker\\n\", res)\n\tcase \u003c-time.After(100 * time.Millisecond):\n\t\tfmt.Printf(\"Timed out before worker finished\\n\")\n\t}\n}\n\n// :show end"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-channels-timeout",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": true,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-channels-timeout?lite=true"
-        }
+        "type": "code",
+        "version": 17,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"time\"\n)\n\n// :show start\n\nfunc main() {\n\tchResult := make(chan int, 1)\n\n\tgo func() {\n\t\ttime.Sleep(1 * time.Second)\n\t\tchResult \u003c- 5\n\t\tfmt.Printf(\"Worker finished\")\n\t}()\n\n\tselect {\n\tcase res := \u003c-chResult:\n\t\tfmt.Printf(\"Got %d from worker\\n\", res)\n\tcase \u003c-time.After(100 * time.Millisecond):\n\t\tfmt.Printf(\"Timed out before worker finished\\n\")\n\t}\n}\n\n// :show end",
+        "code_language": "Go"
       }
     ],
     "title": "Timeout reading from channel with select",

@@ -10,7 +10,7 @@
       "20deabf9-8fbc-4b4c-b1be-bb6dcb509307",
       "5697a8e6-7f6d-4084-adba-0e479aa2903b",
       "a8e81228-2acf-4649-8ab2-a7e4d5b9382c",
-      "4945603b-be70-4a97-becf-8782479ac074",
+      "e9cb53cc-ad0c-41ec-9f8c-0ae710b15aa6",
       "5d07ffdd-3413-4674-b73e-a07b39285fd4",
       "4699e70a-c8e6-4903-a0c2-cac069f0f795",
       "65b6a74e-2c46-4fe6-822f-ea3a97784717",
@@ -32,7 +32,7 @@
     "id": "62c2445b-cc02-47b9-b742-9ff7495a7d26",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539852167813,
+    "last_edited_time": 1552285920000,
     "parent_id": "b58d1314-5f92-4c11-afcf-00aa10d71364",
     "parent_table": "block",
     "properties": {
@@ -43,7 +43,7 @@
       ]
     },
     "type": "page",
-    "version": 42,
+    "version": 47,
     "content_resolved": [
       {
         "alive": true,
@@ -208,37 +208,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539852162327,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-context-with-value?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "4945603b-be70-4a97-becf-8782479ac074",
+        "created_time": 1552285967192,
+        "id": "e9cb53cc-ad0c-41ec-9f8c-0ae710b15aa6",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539852164724,
+        "last_edited_time": 1552285920000,
         "parent_id": "62c2445b-cc02-47b9-b742-9ff7495a7d26",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-context-with-value"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n)\n\n// :show start\ntype User struct {\n\tName       string\n\tIsLoggedIn bool\n}\n\ntype userKeyType int\n\nvar userKey userKeyType\n\nfunc contextWithUser(ctx context.Context, user *User) context.Context {\n\treturn context.WithValue(ctx, userKey, user)\n}\n\n// returns nil if not set\nfunc getUserFromContext(ctx context.Context) *User {\n\tuser, ok := ctx.Value(userKey).(*User)\n\tif !ok {\n\t\treturn nil\n\t}\n\treturn user\n}\n\n// will panic if not set\nfunc mustGetUserFromContext(ctx context.Context) *User {\n\treturn ctx.Value(userKey).(*User)\n}\n\nfunc printUser(ctx context.Context) {\n\tuser := getUserFromContext(ctx)\n\tfmt.Printf(\"User: %#v\\n\", user)\n}\n\nfunc main() {\n\tctx := context.Background()\n\tuser := \u0026User{\n\t\tName:       \"John\",\n\t\tIsLoggedIn: false,\n\t}\n\tctx = contextWithUser(ctx, user)\n\n\tprintUser(ctx)\n}\n\n// :show end"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-context-with-value",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-context-with-value?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"context\"\n\t\"fmt\"\n)\n\n// :show start\ntype User struct {\n\tName       string\n\tIsLoggedIn bool\n}\n\ntype userKeyType int\n\nvar userKey userKeyType\n\nfunc contextWithUser(ctx context.Context, user *User) context.Context {\n\treturn context.WithValue(ctx, userKey, user)\n}\n\n// returns nil if not set\nfunc getUserFromContext(ctx context.Context) *User {\n\tuser, ok := ctx.Value(userKey).(*User)\n\tif !ok {\n\t\treturn nil\n\t}\n\treturn user\n}\n\n// will panic if not set\nfunc mustGetUserFromContext(ctx context.Context) *User {\n\treturn ctx.Value(userKey).(*User)\n}\n\nfunc printUser(ctx context.Context) {\n\tuser := getUserFromContext(ctx)\n\tfmt.Printf(\"User: %#v\\n\", user)\n}\n\nfunc main() {\n\tctx := context.Background()\n\tuser := \u0026User{\n\t\tName:       \"John\",\n\t\tIsLoggedIn: false,\n\t}\n\tctx = contextWithUser(ctx, user)\n\n\tprintUser(ctx)\n}\n\n// :show end",
+        "code_language": "Go"
       },
       {
         "alive": true,

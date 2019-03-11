@@ -8,7 +8,7 @@
       "6b796187-dbbd-43d5-aa73-13793ed2b3fc",
       "613ca276-0f27-4b1c-8689-92f9324bd466",
       "6f0c0062-d1a3-4497-8185-3ab56dc1741f",
-      "b946b67d-6832-42eb-94b6-a05679e32780",
+      "e1b80ed4-680d-4139-b16d-95da5c4ee81b",
       "cf43ecf4-b56d-426c-82f2-1c317bba6260",
       "2a9fdaa5-4d98-484d-ae42-6ccd2011b988",
       "5390af0b-aa7a-492e-8c17-fc37a2a87706",
@@ -26,7 +26,7 @@
     "id": "7a55634f-b819-4a85-bcc6-036eeba61b39",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539840900164,
+    "last_edited_time": 1552283340000,
     "parent_id": "2cab1ed2-b7a4-4584-b56b-0d3ca9b80185",
     "parent_table": "block",
     "properties": {
@@ -37,7 +37,7 @@
       ]
     },
     "type": "page",
-    "version": 104,
+    "version": 115,
     "content_resolved": [
       {
         "alive": true,
@@ -105,21 +105,21 @@
         "created_time": 1532206411469,
         "id": "613ca276-0f27-4b1c-8689-92f9324bd466",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1532206412846,
+        "last_edited_time": 1552281720000,
         "parent_id": "7a55634f-b819-4a85-bcc6-036eeba61b39",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "Go has a very robust support for file system handling."
+              "Go has a very robust support for working with file."
             ]
           ]
         },
         "type": "text",
-        "version": 12,
+        "version": 28,
         "inline_content": [
           {
-            "Text": "Go has a very robust support for file system handling."
+            "Text": "Go has a very robust support for working with file."
           }
         ]
       },
@@ -130,58 +130,49 @@
         "id": "6f0c0062-d1a3-4497-8185-3ab56dc1741f",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1538787306014,
+        "last_edited_time": 1552281720000,
         "parent_id": "7a55634f-b819-4a85-bcc6-036eeba61b39",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "A program that opens a file, reads the whole content and closes the file:"
+              "Here's a program that opens a file, reads the whole content and closes the file:"
             ]
           ]
         },
         "type": "text",
-        "version": 3,
+        "version": 13,
         "inline_content": [
           {
-            "Text": "A program that opens a file, reads the whole content and closes the file:"
+            "Text": "Here's a program that opens a file, reads the whole content and closes the file:"
           }
         ]
       },
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539840895556,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-file-basics?lite=true",
-          "block_full_width": false,
-          "block_page_width": true,
-          "block_preserve_scale": false
-        },
-        "id": "b946b67d-6832-42eb-94b6-a05679e32780",
+        "created_time": 1552281695223,
+        "id": "e1b80ed4-680d-4139-b16d-95da5c4ee81b",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539840897226,
+        "last_edited_time": 1552281840000,
         "parent_id": "7a55634f-b819-4a85-bcc6-036eeba61b39",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-file-basics"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot, :name main.go\npackage main\n\nimport (\n\t\"bytes\"\n\t\"fmt\"\n\t\"io/ioutil\"\n\t\"log\"\n\t\"os\"\n)\n\nfunc main() {\n\t// :show start\n\tpath := \"main.go\"\n\tf, err := os.Open(path)\n\tif err != nil {\n\t\tlog.Fatalf(\"os.Open() failed with '%s'\\n\", err)\n\t}\n\tdefer f.Close()\n\n\td, err := ioutil.ReadAll(f)\n\tif err != nil {\n\t\tlog.Fatalf(\"ioutil.ReadAll() failed with '%s'\\n\", err)\n\t}\n\n\tlines := bytes.Split(d, []byte{'\\n'})\n\tfmt.Printf(\"File %s has %d lines\\n\", path, len(lines))\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-file-basics",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": true,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-file-basics?lite=true"
-        }
+        "type": "code",
+        "version": 194,
+        "code": "// :glot, :name main.go\npackage main\n\nimport (\n\t\"bytes\"\n\t\"fmt\"\n\t\"io/ioutil\"\n\t\"log\"\n\t\"os\"\n)\n\nfunc main() {\n\t// :show start\n\tpath := \"main.go\"\n\tf, err := os.Open(path)\n\tif err != nil {\n\t\tlog.Fatalf(\"os.Open() failed with '%s'\\n\", err)\n\t}\n\tdefer f.Close()\n\n\td, err := ioutil.ReadAll(f)\n\tif err != nil {\n\t\tlog.Fatalf(\"ioutil.ReadAll() failed with '%s'\\n\", err)\n\t}\n\n\tlines := bytes.Split(d, []byte{'\\n'})\n\tfmt.Printf(\"File %s has %d lines\\n\", path, len(lines))\n\t// :show end\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,
@@ -206,7 +197,7 @@
         "id": "2a9fdaa5-4d98-484d-ae42-6ccd2011b988",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539840841846,
+        "last_edited_time": 1552281900000,
         "parent_id": "7a55634f-b819-4a85-bcc6-036eeba61b39",
         "parent_table": "block",
         "properties": {
@@ -217,7 +208,7 @@
           ]
         },
         "type": "page",
-        "version": 40,
+        "version": 45,
         "title": "Reading files",
         "format_page": {
           "page_cover": "",
@@ -272,7 +263,7 @@
         "id": "2db8f87e-b508-4bfb-a59f-46deb2f51159",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539840764076,
+        "last_edited_time": 1552282200000,
         "parent_id": "7a55634f-b819-4a85-bcc6-036eeba61b39",
         "parent_table": "block",
         "properties": {
@@ -283,7 +274,7 @@
           ]
         },
         "type": "page",
-        "version": 89,
+        "version": 178,
         "title": "File operations",
         "format_page": {
           "page_cover": "",
@@ -305,7 +296,7 @@
         "id": "ef49276e-dcaf-4a41-8bb0-22de73c87638",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539840285683,
+        "last_edited_time": 1552282260000,
         "parent_id": "7a55634f-b819-4a85-bcc6-036eeba61b39",
         "parent_table": "block",
         "properties": {
@@ -316,7 +307,7 @@
           ]
         },
         "type": "page",
-        "version": 57,
+        "version": 66,
         "title": "Directory operations",
         "format_page": {
           "page_cover": "",
@@ -338,7 +329,7 @@
         "id": "88d65c3f-c0c1-4a4e-90bf-a98ba3feb231",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550534940000,
+        "last_edited_time": 1552282920000,
         "parent_id": "7a55634f-b819-4a85-bcc6-036eeba61b39",
         "parent_table": "block",
         "properties": {
@@ -349,7 +340,7 @@
           ]
         },
         "type": "page",
-        "version": 31,
+        "version": 37,
         "title": " File path operations",
         "format_page": {
           "page_cover": "",

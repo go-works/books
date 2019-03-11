@@ -7,7 +7,7 @@
       "fd3e4692-ef4d-4efd-b7a6-83aebee4f6a4",
       "cdd48169-4022-4d87-9953-dd542b9d33d8",
       "e09115e5-ba45-4892-ac58-735b01a1c961",
-      "f55a98a8-563f-4273-beee-ac20a809635f",
+      "25716267-3a2d-403a-9cea-02f8e4ba87ba",
       "c77d776d-1072-4339-8e17-44569eaa069c"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -19,7 +19,7 @@
     "id": "4ef2f951-df5f-4c2f-a229-ddb74e372823",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539844054595,
+    "last_edited_time": 1552284600000,
     "parent_id": "1479bc5a-08b6-4dbb-8aa0-e2f5ed17782f",
     "parent_table": "block",
     "properties": {
@@ -30,7 +30,7 @@
       ]
     },
     "type": "page",
-    "version": 37,
+    "version": 42,
     "content_resolved": [
       {
         "alive": true,
@@ -120,37 +120,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539844047397,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-json-anon-structs?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "f55a98a8-563f-4273-beee-ac20a809635f",
+        "created_time": 1552284649314,
+        "id": "25716267-3a2d-403a-9cea-02f8e4ba87ba",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539844049568,
+        "last_edited_time": 1552284600000,
         "parent_id": "4ef2f951-df5f-4c2f-a229-ddb74e372823",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-json-anon-structs"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n)\n\n// :show start\nvar jsonBlob = []byte(`\n{\n  \"_total\": 1,\n  \"_links\": {\n\t\"self\": \"https://api.twitch.tv/kraken/channels/foo/subscriptions?direction=ASC\u0026limit=25\u0026offset=0\",\n\t\"next\": \"https://api.twitch.tv/kraken/channels/foo/subscriptions?direction=ASC\u0026limit=25\u0026offset=25\"\n  },\n  \"subscriptions\": [\n\t{\n\t  \"created_at\": \"2011-11-23T02:53:17Z\",\n\t  \"_id\": \"abcdef0000000000000000000000000000000000\",\n\t  \"_links\": {\n\t\t\"self\": \"https://api.twitch.tv/kraken/channels/foo/subscriptions/bar\"\n\t  },\n\t  \"user\": {\n\t\t\"display_name\": \"bar\",\n\t\t\"_id\": 123456,\n\t\t\"name\": \"bar\",\n\t\t\"created_at\": \"2011-06-16T18:23:11Z\",\n\t\t\"updated_at\": \"2014-10-23T02:20:51Z\",\n\t\t\"_links\": {\n\t\t  \"self\": \"https://api.twitch.tv/kraken/users/bar\"\n\t\t}\n\t  }\n\t}\n  ]\n}\n`)\n\n// :show end\n\nfunc main() {\n\t// :show start\n\tvar js struct {\n\t\tTotal int `json:\"_total\"`\n\t\tLinks struct {\n\t\t\tNext string `json:\"next\"`\n\t\t} `json:\"_links\"`\n\t\tSubs []struct {\n\t\t\tCreated string `json:\"created_at\"`\n\t\t\tUser    struct {\n\t\t\t\tName string `json:\"name\"`\n\t\t\t\tID   int    `json:\"_id\"`\n\t\t\t} `json:\"user\"`\n\t\t} `json:\"subscriptions\"`\n\t}\n\n\terr := json.Unmarshal(jsonBlob, \u0026js)\n\tif err != nil {\n\t\tfmt.Println(\"error:\", err)\n\t}\n\tfmt.Printf(\"%+v\", js)\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-json-anon-structs",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-json-anon-structs?lite=true"
-        }
+        "type": "code",
+        "version": 14,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n)\n\n// :show start\nvar jsonBlob = []byte(`\n{\n  \"_total\": 1,\n  \"_links\": {\n\t\"self\": \"https://api.twitch.tv/kraken/channels/foo/subscriptions?direction=ASC\u0026limit=25\u0026offset=0\",\n\t\"next\": \"https://api.twitch.tv/kraken/channels/foo/subscriptions?direction=ASC\u0026limit=25\u0026offset=25\"\n  },\n  \"subscriptions\": [\n\t{\n\t  \"created_at\": \"2011-11-23T02:53:17Z\",\n\t  \"_id\": \"abcdef0000000000000000000000000000000000\",\n\t  \"_links\": {\n\t\t\"self\": \"https://api.twitch.tv/kraken/channels/foo/subscriptions/bar\"\n\t  },\n\t  \"user\": {\n\t\t\"display_name\": \"bar\",\n\t\t\"_id\": 123456,\n\t\t\"name\": \"bar\",\n\t\t\"created_at\": \"2011-06-16T18:23:11Z\",\n\t\t\"updated_at\": \"2014-10-23T02:20:51Z\",\n\t\t\"_links\": {\n\t\t  \"self\": \"https://api.twitch.tv/kraken/users/bar\"\n\t\t}\n\t  }\n\t}\n  ]\n}\n`)\n\n// :show end\n\nfunc main() {\n\t// :show start\n\tvar js struct {\n\t\tTotal int `json:\"_total\"`\n\t\tLinks struct {\n\t\t\tNext string `json:\"next\"`\n\t\t} `json:\"_links\"`\n\t\tSubs []struct {\n\t\t\tCreated string `json:\"created_at\"`\n\t\t\tUser    struct {\n\t\t\t\tName string `json:\"name\"`\n\t\t\t\tID   int    `json:\"_id\"`\n\t\t\t} `json:\"user\"`\n\t\t} `json:\"subscriptions\"`\n\t}\n\n\terr := json.Unmarshal(jsonBlob, \u0026js)\n\tif err != nil {\n\t\tfmt.Println(\"error:\", err)\n\t}\n\tfmt.Printf(\"%+v\", js)\n\t// :show end\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,

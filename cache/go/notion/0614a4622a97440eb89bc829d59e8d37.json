@@ -7,7 +7,7 @@
       "e581a4a2-c7b6-4eb4-897b-630599daf5fb",
       "c83e645a-f96b-4b68-8081-eba972860dd0",
       "e4f508f5-5f1e-4041-a857-67f9d32524bd",
-      "f156ad12-de38-432e-8a02-803f8d48f5ef",
+      "14fc0c77-9b6b-41f6-a5ed-3430df8046b1",
       "fc362528-004a-4c7e-9f31-0e40de6c9a41",
       "edb922b7-234b-4c80-863e-0171d6dad3a9",
       "26bf7630-cf50-4a7e-8aa6-8fcf1e6037ff",
@@ -25,7 +25,7 @@
     "id": "0614a462-2a97-440e-b89b-c829d59e8d37",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539842909279,
+    "last_edited_time": 1552284060000,
     "parent_id": "c290f056-6c80-467a-9005-ab3a4024ec1d",
     "parent_table": "block",
     "properties": {
@@ -36,7 +36,7 @@
       ]
     },
     "type": "page",
-    "version": 35,
+    "version": 41,
     "content_resolved": [
       {
         "alive": true,
@@ -126,37 +126,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539842904352,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-exec-timeout?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "f156ad12-de38-432e-8a02-803f8d48f5ef",
+        "created_time": 1552284058199,
+        "id": "14fc0c77-9b6b-41f6-a5ed-3430df8046b1",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539842905891,
+        "last_edited_time": 1552284060000,
         "parent_id": "0614a462-2a97-440e-b89b-c829d59e8d37",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-exec-timeout"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"log\"\n\t\"os/exec\"\n\t\"sync/atomic\"\n\t\"time\"\n)\n\nfunc main() {\n\t// :show start\n\tcmd := exec.Command(\"go\", \"version\")\n\n\terr := cmd.Start()\n\tif err != nil {\n\t\tlog.Fatalf(\"cmd.Start() failed with '%s'\\n\", err)\n\t}\n\n\tvar timedOut int32\n\ttimeout := 1 * time.Millisecond\n\tstopTimer := time.AfterFunc(timeout, func() {\n\t\tcmd.Process.Kill()\n\t\tatomic.StoreInt32(\u0026timedOut, 1)\n\t})\n\n\terr = cmd.Wait()\n\tstopTimer.Stop()\n\tdidTimeout := atomic.LoadInt32(\u0026timedOut) != 0\n\tfmt.Printf(\"didTimeout: %v, err: %v\\n\", didTimeout, err)\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-exec-timeout",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-exec-timeout?lite=true"
-        }
+        "type": "code",
+        "version": 18,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"log\"\n\t\"os/exec\"\n\t\"sync/atomic\"\n\t\"time\"\n)\n\nfunc main() {\n\t// :show start\n\tcmd := exec.Command(\"go\", \"version\")\n\n\terr := cmd.Start()\n\tif err != nil {\n\t\tlog.Fatalf(\"cmd.Start() failed with '%s'\\n\", err)\n\t}\n\n\tvar timedOut int32\n\ttimeout := 1 * time.Millisecond\n\tstopTimer := time.AfterFunc(timeout, func() {\n\t\tcmd.Process.Kill()\n\t\tatomic.StoreInt32(\u0026timedOut, 1)\n\t})\n\n\terr = cmd.Wait()\n\tstopTimer.Stop()\n\tdidTimeout := atomic.LoadInt32(\u0026timedOut) != 0\n\tfmt.Printf(\"didTimeout: %v, err: %v\\n\", didTimeout, err)\n\t// :show end\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,

@@ -7,7 +7,7 @@
       "363d749a-e78b-4ac3-9049-f70d409d33ba",
       "b6255382-32ae-4a1d-a5b9-adc4c8ffe5e5",
       "54e53739-f18f-43c8-80ac-5b444d92069f",
-      "339023e2-6f59-4337-93c6-50d03051fa16",
+      "dc4528d0-906e-474e-844b-23662800142b",
       "93b6667a-a7b9-4adf-965b-0dcbf3847e49",
       "e79abd4a-15a5-4e60-8053-ad190e1046b8",
       "23b0b340-eb3d-4848-8f51-1307cf787dfc",
@@ -15,8 +15,7 @@
       "36028d52-0216-4b31-ad07-a9166bf7c722",
       "3d6a095e-1029-4be3-af3c-fe535fbc0d03",
       "2d6b2b42-8f59-44a7-baf9-0fd55cf2932a",
-      "b27d75a6-f53a-4009-a3e6-71e388ceddb4",
-      "3d51ed7d-daa9-415c-86c4-5410bcfbf61a"
+      "7afcca54-851a-4e9c-a450-6adf9b53f594"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1532156163325,
@@ -27,7 +26,7 @@
     "id": "7a0afb44-b154-4a41-9f35-1a0d3c0ba719",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539851710119,
+    "last_edited_time": 1552277100000,
     "parent_id": "c7fea6b1-76b7-4c54-ab35-f2d8fdd56f13",
     "parent_table": "block",
     "properties": {
@@ -38,7 +37,7 @@
       ]
     },
     "type": "page",
-    "version": 47,
+    "version": 58,
     "content_resolved": [
       {
         "alive": true,
@@ -141,37 +140,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539851650851,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-reflection-enum-struct-fields-simple?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "339023e2-6f59-4337-93c6-50d03051fa16",
+        "created_time": 1552277097364,
+        "id": "dc4528d0-906e-474e-844b-23662800142b",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539851652631,
+        "last_edited_time": 1552277100000,
         "parent_id": "7a0afb44-b154-4a41-9f35-1a0d3c0ba719",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-reflection-enum-struct-fields-simple"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"reflect\"\n)\n\n// :show start\n\ntype S struct {\n\tFirstName string `my_tag:\"first-name\"`\n\tlastName  string\n\tAge       int `json:\"age\",xml:\"AgeXml`\n}\n\nfunc describeStructSimple(rv reflect.Value) {\n\tstructType := rv.Type()\n\tfor i := 0; i \u003c rv.NumField(); i++ {\n\t\tv := rv.Field(i)\n\t\tstructField := structType.Field(i)\n\t\tname := structField.Name\n\t\ttyp := structField.Type\n\t\ttag := structField.Tag\n\t\tjsonTag := tag.Get(\"json\")\n\t\tisExported := structField.PkgPath == \"\"\n\t\tif isExported {\n\t\t\tfmt.Printf(\"name: '%s',\\ttype: '%s', value: %v,\\ttag: '%s',\\tjson tag: '%s'\\n\", name, typ, v.Interface(), tag, jsonTag)\n\t\t} else {\n\t\t\tfmt.Printf(\"name: '%s',\\ttype: '%s',\\tvalue: not accessible\\n\", name, v.Type().Name())\n\t\t}\n\t}\n}\n\nfunc main() {\n\ts := S{\n\t\tFirstName: \"John\",\n\t\tlastName:  \"Doe\",\n\t\tAge:       27,\n\t}\n\tdescribeStructSimple(reflect.ValueOf(s))\n}\n\n// :show end"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-reflection-enum-struct-fields-simple",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-reflection-enum-struct-fields-simple?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"reflect\"\n)\n\n// :show start\n\ntype S struct {\n\tFirstName string `my_tag:\"first-name\"`\n\tlastName  string\n\tAge       int `json:\"age\",xml:\"AgeXml`\n}\n\nfunc describeStructSimple(rv reflect.Value) {\n\tstructType := rv.Type()\n\tfor i := 0; i \u003c rv.NumField(); i++ {\n\t\tv := rv.Field(i)\n\t\tstructField := structType.Field(i)\n\t\tname := structField.Name\n\t\ttyp := structField.Type\n\t\ttag := structField.Tag\n\t\tjsonTag := tag.Get(\"json\")\n\t\tisExported := structField.PkgPath == \"\"\n\t\tif isExported {\n\t\t\tfmt.Printf(\"name: '%s',\\ttype: '%s', value: %v,\\ttag: '%s',\\tjson tag: '%s'\\n\", name, typ, v.Interface(), tag, jsonTag)\n\t\t} else {\n\t\t\tfmt.Printf(\"name: '%s',\\ttype: '%s',\\tvalue: not accessible\\n\", name, v.Type().Name())\n\t\t}\n\t}\n}\n\nfunc main() {\n\ts := S{\n\t\tFirstName: \"John\",\n\t\tlastName:  \"Doe\",\n\t\tAge:       27,\n\t}\n\tdescribeStructSimple(reflect.ValueOf(s))\n}\n\n// :show end",
+        "code_language": "Go"
       },
       {
         "alive": true,
@@ -441,50 +431,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539851705616,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-reflection-enum-struct-fields?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "b27d75a6-f53a-4009-a3e6-71e388ceddb4",
+        "created_time": 1552277110044,
+        "id": "7afcca54-851a-4e9c-a450-6adf9b53f594",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539851707316,
+        "last_edited_time": 1552277100000,
         "parent_id": "7a0afb44-b154-4a41-9f35-1a0d3c0ba719",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-reflection-enum-struct-fields"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"reflect\"\n\t\"strings\"\n)\n\n// :show start\ntype Inner struct {\n\tN int\n}\n\ntype S struct {\n\tInner\n\tNamedInner Inner\n\tPtrInner   *Inner\n\tunexported int\n\tN          int8\n}\n\nfunc indentStr(level int) string {\n\treturn strings.Repeat(\"  \", level)\n}\n\n// if sf is not nil, this is a field of a struct\nfunc describeStruct(level int, rv reflect.Value, sf *reflect.StructField) {\n\tstructType := rv.Type()\n\tnFields := rv.NumField()\n\ttyp := rv.Type()\n\tif sf == nil {\n\t\tfmt.Printf(\"%sstruct %s, %d field(s), size: %d bytes\\n\", indentStr(level), structType.Name(), nFields, typ.Size())\n\t} else {\n\t\tfmt.Printf(\"%sname: '%s' type: 'struct %s', offset: %d, %d field(s), size: %d bytes, embedded: %v\\n\", indentStr(level), sf.Name, structType.Name(), sf.Offset, nFields, typ.Size(), sf.Anonymous)\n\t}\n\n\tfor i := 0; i \u003c nFields; i++ {\n\t\tfv := rv.Field(i)\n\t\tsf := structType.Field(i)\n\t\tdescribeType(level+1, fv, \u0026sf)\n\t}\n}\n\n// if sf is not nil, this is a field of a struct\nfunc describeType(level int, rv reflect.Value, sf *reflect.StructField) {\n\tswitch rv.Kind() {\n\n\tcase reflect.Int, reflect.Int8:\n\t\t// in real code we would handle more primitive types\n\t\ti := rv.Int()\n\t\ttyp := rv.Type()\n\t\tif sf == nil {\n\t\t\tfmt.Printf(\"%stype: '%s', value: '%d'\\n\", indentStr(level), typ.Name(), i)\n\t\t} else {\n\t\t\tfmt.Printf(\"%s name: '%s' type: '%s', value: '%d', offset: %d, size: %d\\n\", indentStr(level), sf.Name, typ.Name(), i, sf.Offset, typ.Size())\n\t\t}\n\n\tcase reflect.Ptr:\n\t\tfmt.Printf(\"%spointer\\n\", indentStr(level))\n\t\tdescribeType(level+1, rv.Elem(), nil)\n\n\tcase reflect.Struct:\n\t\tdescribeStruct(level, rv, sf)\n\t}\n}\n\nfunc main() {\n\tvar s S\n\tdescribeType(0, reflect.ValueOf(s), nil)\n}\n\n// :show end"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-reflection-enum-struct-fields",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-reflection-enum-struct-fields?lite=true"
-        }
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1532156163325,
-        "id": "3d51ed7d-daa9-415c-86c4-5410bcfbf61a",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539851731590,
-        "parent_id": "7a0afb44-b154-4a41-9f35-1a0d3c0ba719",
-        "parent_table": "block",
-        "type": "text",
-        "version": 3
+        "type": "code",
+        "version": 16,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"reflect\"\n\t\"strings\"\n)\n\n// :show start\ntype Inner struct {\n\tN int\n}\n\ntype S struct {\n\tInner\n\tNamedInner Inner\n\tPtrInner   *Inner\n\tunexported int\n\tN          int8\n}\n\nfunc indentStr(level int) string {\n\treturn strings.Repeat(\"  \", level)\n}\n\n// if sf is not nil, this is a field of a struct\nfunc describeStruct(level int, rv reflect.Value, sf *reflect.StructField) {\n\tstructType := rv.Type()\n\tnFields := rv.NumField()\n\ttyp := rv.Type()\n\tif sf == nil {\n\t\tfmt.Printf(\"%sstruct %s, %d field(s), size: %d bytes\\n\", indentStr(level), structType.Name(), nFields, typ.Size())\n\t} else {\n\t\tfmt.Printf(\"%sname: '%s' type: 'struct %s', offset: %d, %d field(s), size: %d bytes, embedded: %v\\n\", indentStr(level), sf.Name, structType.Name(), sf.Offset, nFields, typ.Size(), sf.Anonymous)\n\t}\n\n\tfor i := 0; i \u003c nFields; i++ {\n\t\tfv := rv.Field(i)\n\t\tsf := structType.Field(i)\n\t\tdescribeType(level+1, fv, \u0026sf)\n\t}\n}\n\n// if sf is not nil, this is a field of a struct\nfunc describeType(level int, rv reflect.Value, sf *reflect.StructField) {\n\tswitch rv.Kind() {\n\n\tcase reflect.Int, reflect.Int8:\n\t\t// in real code we would handle more primitive types\n\t\ti := rv.Int()\n\t\ttyp := rv.Type()\n\t\tif sf == nil {\n\t\t\tfmt.Printf(\"%stype: '%s', value: '%d'\\n\", indentStr(level), typ.Name(), i)\n\t\t} else {\n\t\t\tfmt.Printf(\"%s name: '%s' type: '%s', value: '%d', offset: %d, size: %d\\n\", indentStr(level), sf.Name, typ.Name(), i, sf.Offset, typ.Size())\n\t\t}\n\n\tcase reflect.Ptr:\n\t\tfmt.Printf(\"%spointer\\n\", indentStr(level))\n\t\tdescribeType(level+1, rv.Elem(), nil)\n\n\tcase reflect.Struct:\n\t\tdescribeStruct(level, rv, sf)\n\t}\n}\n\nfunc main() {\n\tvar s S\n\tdescribeType(0, reflect.ValueOf(s), nil)\n}\n\n// :show end",
+        "code_language": "Go"
       }
     ],
     "title": "Structs",

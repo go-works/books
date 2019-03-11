@@ -10,15 +10,15 @@
       "c1c933c2-e740-49f6-a610-dfca6ad4b47c",
       "747e8fc4-c758-47e1-bcd6-d1ba3b0de90b",
       "36f87b48-13ce-416c-9074-9a7594b4297c",
-      "8b15fb98-65ed-42ad-a4ed-8b5b3292d002",
+      "944f5e90-b24f-4c3f-b92d-e44238907e32",
       "8388b87a-6588-4900-9a9c-1c11a9606598",
-      "1ede18dd-7ebc-44df-9490-bb0da4d41ae8",
+      "64eaf2be-b87b-422a-956b-173f93ec29d0",
       "ba32fbf6-d3ae-4e1f-9b82-d6c69ade9aef",
-      "4f767081-28c6-49d5-b23a-7390a1e51a3b",
+      "1ee93cd2-f973-4b68-a2c0-7000c04d66c0",
       "b6b27341-040f-409d-93c3-be81a06bfcf6",
-      "273ba169-bc0f-4828-8809-755812a665c2",
-      "b4a1c3cc-b0d5-4add-bc9c-fe4518ef2030",
-      "72cfd7b6-669b-426b-b01f-711e45d47e14"
+      "8d6af57c-30b5-44c3-8deb-876aea208a50",
+      "8aacdd50-15bb-4361-b2bc-0cc53fba3368",
+      "4468ed2e-f963-42d5-a250-bb635db17eb5"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1532156069202,
@@ -29,7 +29,7 @@
     "id": "3be419da-2b0b-4ab5-ba91-93605de1bad3",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539839387703,
+    "last_edited_time": 1552278480000,
     "parent_id": "4fac57c0-9168-477a-a120-69484979f419",
     "parent_table": "block",
     "properties": {
@@ -40,7 +40,7 @@
       ]
     },
     "type": "page",
-    "version": 93,
+    "version": 120,
     "content_resolved": [
       {
         "alive": true,
@@ -255,37 +255,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539839120348,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-channels-close?lite=true",
-          "block_full_width": false,
-          "block_page_width": true,
-          "block_preserve_scale": false
-        },
-        "id": "8b15fb98-65ed-42ad-a4ed-8b5b3292d002",
+        "created_time": 1552278392000,
+        "id": "944f5e90-b24f-4c3f-b92d-e44238907e32",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539839122680,
+        "last_edited_time": 1552278360000,
         "parent_id": "3be419da-2b0b-4ab5-ba91-93605de1bad3",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-channels-close"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"time\"\n)\n\nfunc main() {\n\t// :show start\n\tch := make(chan string)\n\n\tgo func() {\n\t\tfor s := range ch {\n\t\t\tfmt.Printf(\"received from channel: %s\\n\", s)\n\t\t}\n\t\tfmt.Print(\"range loop finished because ch was closed\\n\")\n\t}()\n\n\tch \u003c- \"foo\"\n\tclose(ch)\n\t// :show end\n\n\t// only to simplify example, don't sleep to coordinate\n\t// goroutines in real code\n\ttime.Sleep(100 * time.Millisecond)\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-channels-close",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": true,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-channels-close?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"time\"\n)\n\nfunc main() {\n\t// :show start\n\tch := make(chan string)\n\n\tgo func() {\n\t\tfor s := range ch {\n\t\t\tfmt.Printf(\"received from channel: %s\\n\", s)\n\t\t}\n\t\tfmt.Print(\"range loop finished because ch was closed\\n\")\n\t}()\n\n\tch \u003c- \"foo\"\n\tclose(ch)\n\t// :show end\n\n\t// only to simplify example, don't sleep to coordinate\n\t// goroutines in real code\n\ttime.Sleep(100 * time.Millisecond)\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,
@@ -321,37 +312,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539839166431,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-channels-close-2?lite=true",
-          "block_full_width": false,
-          "block_page_width": true,
-          "block_preserve_scale": false
-        },
-        "id": "1ede18dd-7ebc-44df-9490-bb0da4d41ae8",
+        "created_time": 1552278431751,
+        "id": "64eaf2be-b87b-422a-956b-173f93ec29d0",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539839167920,
+        "last_edited_time": 1552278420000,
         "parent_id": "3be419da-2b0b-4ab5-ba91-93605de1bad3",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-channels-close-2"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n)\n\nfunc main() {\n\t// :show start\n\tch := make(chan string)\n\tclose(ch)\n\tv := \u003c-ch\n\tfmt.Printf(\"Receive from closed channel immediately returns zero value of the type: %#v\\n\", v)\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-channels-close-2",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": true,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-channels-close-2?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n)\n\nfunc main() {\n\t// :show start\n\tch := make(chan string)\n\tclose(ch)\n\tv := \u003c-ch\n\tfmt.Printf(\"Receive from closed channel immediately returns zero value of the type: %#v\\n\", v)\n\t// :show end\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,
@@ -387,37 +369,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539839234054,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-channels-close-3?lite=true",
-          "block_full_width": false,
-          "block_page_width": true,
-          "block_preserve_scale": false
-        },
-        "id": "4f767081-28c6-49d5-b23a-7390a1e51a3b",
+        "created_time": 1552278445420,
+        "id": "1ee93cd2-f973-4b68-a2c0-7000c04d66c0",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539839238069,
+        "last_edited_time": 1552278420000,
         "parent_id": "3be419da-2b0b-4ab5-ba91-93605de1bad3",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-channels-close-3"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n)\n\nfunc main() {\n\t// :show start\n\tch := make(chan int)\n\tgo func() {\n\t\tch \u003c- 1\n\t\tclose(ch)\n\t}()\n\tv, isClosed := \u003c-ch\n\tfmt.Printf(\"received %d, is channel closed: %v\\n\", v, isClosed)\n\tv, isClosed = \u003c-ch\n\tfmt.Printf(\"received %d, is channel closed: %v\\n\", v, isClosed)\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-channels-close-3",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": true,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-channels-close-3?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n)\n\nfunc main() {\n\t// :show start\n\tch := make(chan int)\n\tgo func() {\n\t\tch \u003c- 1\n\t\tclose(ch)\n\t}()\n\tv, isClosed := \u003c-ch\n\tfmt.Printf(\"received %d, is channel closed: %v\\n\", v, isClosed)\n\tv, isClosed = \u003c-ch\n\tfmt.Printf(\"received %d, is channel closed: %v\\n\", v, isClosed)\n\t// :show end\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,
@@ -426,33 +399,13 @@
         "id": "b6b27341-040f-409d-93c3-be81a06bfcf6",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1538786577650,
+        "last_edited_time": 1552278480000,
         "parent_id": "3be419da-2b0b-4ab5-ba91-93605de1bad3",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "Closing channel twice ",
-              [
-                [
-                  "b"
-                ]
-              ]
-            ],
-            [
-              "panics",
-              [
-                [
-                  "b"
-                ],
-                [
-                  "a",
-                  "https://www.notion.so/kjkpublic/Panic-and-recover-dda02e368b3048a5a69b81c56bfa6dbb"
-                ]
-              ]
-            ],
-            [
-              ":",
+              "Closing channel twice panics:",
               [
                 [
                   "b"
@@ -462,19 +415,10 @@
           ]
         },
         "type": "text",
-        "version": 6,
+        "version": 8,
         "inline_content": [
           {
-            "Text": "Closing channel twice ",
-            "AttrFlags": 1
-          },
-          {
-            "Text": "panics",
-            "AttrFlags": 1,
-            "Link": "https://www.notion.so/kjkpublic/Panic-and-recover-dda02e368b3048a5a69b81c56bfa6dbb"
-          },
-          {
-            "Text": ":",
+            "Text": "Closing channel twice panics:",
             "AttrFlags": 1
           }
         ]
@@ -482,72 +426,42 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539839302684,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-channels-close-4?lite=true",
-          "block_full_width": false,
-          "block_page_width": true,
-          "block_preserve_scale": false
-        },
-        "id": "273ba169-bc0f-4828-8809-755812a665c2",
+        "created_time": 1552278457155,
+        "id": "8d6af57c-30b5-44c3-8deb-876aea208a50",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539839304312,
+        "last_edited_time": 1552278480000,
         "parent_id": "3be419da-2b0b-4ab5-ba91-93605de1bad3",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-channels-close-4"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\n// allow error\npackage main\n\nfunc main() {\n\t// :show start\n\tch := make(chan string)\n\tclose(ch)\n\tclose(ch)\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-channels-close-4",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": true,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-channels-close-4?lite=true"
-        }
+        "type": "code",
+        "version": 17,
+        "code": "// :glot\n// allow error\npackage main\n\nfunc main() {\n\t// :show start\n\tch := make(chan string)\n\tclose(ch)\n\tclose(ch)\n\t// :show end\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
         "created_time": 1532156069201,
-        "id": "b4a1c3cc-b0d5-4add-bc9c-fe4518ef2030",
-        "ignore_block_count": true,
+        "id": "8aacdd50-15bb-4361-b2bc-0cc53fba3368",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1538786605112,
+        "last_edited_time": 1552278480000,
         "parent_id": "3be419da-2b0b-4ab5-ba91-93605de1bad3",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "Sending to closed channel ",
-              [
-                [
-                  "b"
-                ]
-              ]
-            ],
-            [
-              "panics",
-              [
-                [
-                  "b"
-                ],
-                [
-                  "a",
-                  "https://www.notion.so/kjkpublic/Panic-and-recover-dda02e368b3048a5a69b81c56bfa6dbb"
-                ]
-              ]
-            ],
-            [
-              ".",
+              "Sending to closed channel panics:",
               [
                 [
                   "b"
@@ -557,19 +471,10 @@
           ]
         },
         "type": "text",
-        "version": 6,
+        "version": 7,
         "inline_content": [
           {
-            "Text": "Sending to closed channel ",
-            "AttrFlags": 1
-          },
-          {
-            "Text": "panics",
-            "AttrFlags": 1,
-            "Link": "https://www.notion.so/kjkpublic/Panic-and-recover-dda02e368b3048a5a69b81c56bfa6dbb"
-          },
-          {
-            "Text": ".",
+            "Text": "Sending to closed channel panics:",
             "AttrFlags": 1
           }
         ]
@@ -577,37 +482,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539839380092,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-channels-close-5?lite=true",
-          "block_full_width": false,
-          "block_page_width": true,
-          "block_preserve_scale": false
-        },
-        "id": "72cfd7b6-669b-426b-b01f-711e45d47e14",
+        "created_time": 1552278476086,
+        "id": "4468ed2e-f963-42d5-a250-bb635db17eb5",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539839382297,
+        "last_edited_time": 1552278420000,
         "parent_id": "3be419da-2b0b-4ab5-ba91-93605de1bad3",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-channels-close-5"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\n// allow error\npackage main\n\nfunc main() {\n\t// :show start\n\tch := make(chan int)\n\tclose(ch)\n\tch \u003c- 5 // panics\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-channels-close-5",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": true,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-channels-close-5?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\n// allow error\npackage main\n\nfunc main() {\n\t// :show start\n\tch := make(chan int)\n\tclose(ch)\n\tch \u003c- 5 // panics\n\t// :show end\n}",
+        "code_language": "Go"
       }
     ],
     "title": "Closing channels",

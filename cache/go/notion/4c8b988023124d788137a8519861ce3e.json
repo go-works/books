@@ -7,7 +7,7 @@
       "d875f26c-b1f7-43a1-b8cc-d41ad6da0e87",
       "a21f18bf-ae96-4d18-8181-8fb00eda6084",
       "51dd30e4-d891-4c8d-9210-a2789489dfad",
-      "a7b0e254-8122-4e25-8c9c-ef0d6618c00c"
+      "da05ba89-b880-49b0-84b2-2f1bab1bfc50"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1532156105215,
@@ -18,18 +18,18 @@
     "id": "4c8b9880-2312-4d78-8137-a8519861ce3e",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539842859437,
+    "last_edited_time": 1552284060000,
     "parent_id": "c290f056-6c80-467a-9005-ab3a4024ec1d",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "os.Exec gotchas"
+          "os.Exec pitfalls"
         ]
       ]
     },
     "type": "page",
-    "version": 37,
+    "version": 51,
     "content_resolved": [
       {
         "alive": true,
@@ -216,40 +216,31 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539842854857,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-exec-reuse-cmd?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "a7b0e254-8122-4e25-8c9c-ef0d6618c00c",
+        "created_time": 1552284089199,
+        "id": "da05ba89-b880-49b0-84b2-2f1bab1bfc50",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539842856630,
+        "last_edited_time": 1552284060000,
         "parent_id": "4c8b9880-2312-4d78-8137-a8519861ce3e",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-exec-reuse-cmd"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot, :allow error\npackage main\n\nimport (\n\t\"log\"\n\t\"os/exec\"\n)\n\nfunc main() {\n\t// :show start\n\tcmd := exec.Command(\"go\", \"version\")\n\t_, err := cmd.CombinedOutput()\n\tif err != nil {\n\t\tlog.Fatalf(\"first cmd.CombintedOutput() failed with '%s'\\n\", err)\n\t}\n\n\t_, err = cmd.CombinedOutput()\n\tif err != nil {\n\t\tlog.Fatalf(\"second cmd.CombintedOutput() failed with '%s'\\n\", err)\n\t}\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-exec-reuse-cmd",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-exec-reuse-cmd?lite=true"
-        }
+        "type": "code",
+        "version": 36,
+        "code": "// :glot, :allow error\npackage main\n\nimport (\n\t\"log\"\n\t\"os/exec\"\n)\n\nfunc main() {\n\t// :show start\n\tcmd := exec.Command(\"go\", \"version\")\n\t_, err := cmd.CombinedOutput()\n\tif err != nil {\n\t\tlog.Fatalf(\"first cmd.CombintedOutput() failed with '%s'\\n\", err)\n\t}\n\n\t_, err = cmd.CombinedOutput()\n\tif err != nil {\n\t\tlog.Fatalf(\"second cmd.CombintedOutput() failed with '%s'\\n\", err)\n\t}\n\t// :show end\n}",
+        "code_language": "Go"
       }
     ],
-    "title": "os.Exec gotchas",
+    "title": "os.Exec pitfalls",
     "format_page": {
       "page_cover": "",
       "page_cover_position": 0,

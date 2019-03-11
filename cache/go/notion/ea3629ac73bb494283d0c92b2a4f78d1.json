@@ -8,7 +8,7 @@
       "1ce2a023-5e9c-4023-becd-082ec524972c",
       "ba2a1595-f1d7-4790-abbd-186a42f63a50",
       "0e9f10fb-0aae-47c4-8ed6-ced9c40ea868",
-      "40fa3399-4642-4ab7-9707-0a6ebe8e5d6f",
+      "ecc9c711-ae24-4a68-b229-48c0519435a5",
       "91617071-e664-403d-a2a7-e762b0d3a464",
       "a6c73005-440c-4dee-9bf2-1b8414dea84e",
       "7d2c90f0-c334-4ff4-9f75-fb4a5a1b9657",
@@ -27,7 +27,7 @@
     "id": "ea3629ac-73bb-4942-83d0-c92b2a4f78d1",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539838632347,
+    "last_edited_time": 1552278240000,
     "parent_id": "16e8d8c3-d77e-44fa-af68-57a1df368ce8",
     "parent_table": "block",
     "properties": {
@@ -38,7 +38,7 @@
       ]
     },
     "type": "page",
-    "version": 37,
+    "version": 42,
     "content_resolved": [
       {
         "alive": true,
@@ -215,37 +215,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539838626249,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-concurrency-wait-goroutine-finish?lite=true",
-          "block_full_width": false,
-          "block_page_width": true,
-          "block_preserve_scale": false
-        },
-        "id": "40fa3399-4642-4ab7-9707-0a6ebe8e5d6f",
+        "created_time": 1552278271341,
+        "id": "ecc9c711-ae24-4a68-b229-48c0519435a5",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539838627930,
+        "last_edited_time": 1552278240000,
         "parent_id": "ea3629ac-73bb-4942-83d0-c92b2a4f78d1",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-concurrency-wait-goroutine-finish"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"sync\"\n)\n\n// :show start\nvar wg sync.WaitGroup // 1\n\nfunc routine(i int) {\n\tdefer wg.Done() // 3\n\tfmt.Printf(\"routine %v finished\\n\", i)\n}\n\nfunc main() {\n\twg.Add(10) // 2\n\tfor i := 0; i \u003c 10; i++ {\n\t\tgo routine(i) // *\n\t}\n\twg.Wait() // 4\n\tfmt.Println(\"main finished\")\n}\n\n// :show end"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-concurrency-wait-goroutine-finish",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": true,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-concurrency-wait-goroutine-finish?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"sync\"\n)\n\n// :show start\nvar wg sync.WaitGroup // 1\n\nfunc routine(i int) {\n\tdefer wg.Done() // 3\n\tfmt.Printf(\"routine %v finished\\n\", i)\n}\n\nfunc main() {\n\twg.Add(10) // 2\n\tfor i := 0; i \u003c 10; i++ {\n\t\tgo routine(i) // *\n\t}\n\twg.Wait() // 4\n\tfmt.Println(\"main finished\")\n}\n\n// :show end",
+        "code_language": "Go"
       },
       {
         "alive": true,

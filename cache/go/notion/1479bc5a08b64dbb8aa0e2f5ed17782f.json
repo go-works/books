@@ -8,7 +8,7 @@
       "4786c006-7300-415e-8659-6314f72cdf00",
       "21166513-159c-4e1f-8eb6-c67d759dbba8",
       "d55cebc4-29c4-469c-a27f-3bb4ece1aba1",
-      "cf986a44-e982-4bb8-933e-8c26717af363",
+      "279fa044-8e9c-4058-b66b-1dc25b8c44c8",
       "574bc974-ad70-4f66-8daf-e7bb17821903",
       "886429f5-90f8-4754-bc4e-abfd392c8ecb",
       "be3865ae-1133-4559-b130-d5efe343f29b",
@@ -22,7 +22,7 @@
       "8856257a-8034-4905-9950-3995b37e5dd3",
       "9fb86f62-b5b3-4231-affc-b3758987428f",
       "98780d83-71d2-4258-9534-32fc0c535603",
-      "c7d30ed8-aaa0-4ef2-9a31-73e1e260e6d1",
+      "38969e8a-eb65-4559-8312-35e9b7a65b9f",
       "355831c1-2cdb-4dab-97f5-d5627a0a0398",
       "fd2d1252-6cf3-467c-8843-2235c072061e",
       "8c8ecf7d-fceb-48e8-be51-470cb119126a",
@@ -32,7 +32,7 @@
       "45c1061c-2e23-45bc-9b15-cc287d2d51d0",
       "57b3cd2b-d3ae-45f2-9fda-806c7b13d3bc",
       "a9f59ef2-8e5e-4a6c-8461-181871b0c3de",
-      "e9130998-17ad-41dc-a018-4b03c454246a",
+      "da849050-c981-468f-98b1-13c9a172831f",
       "6423a628-7609-42e0-a74c-ccb540ba1240",
       "cf32c942-abcd-4685-a32b-a1ae16dd0b66",
       "cc86ac32-2701-4af0-acd1-e44f6546c43c",
@@ -52,7 +52,7 @@
     "id": "1479bc5a-08b6-4dbb-8aa0-e2f5ed17782f",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539844216629,
+    "last_edited_time": 1552284720000,
     "parent_id": "2cab1ed2-b7a4-4584-b56b-0d3ca9b80185",
     "parent_table": "block",
     "properties": {
@@ -63,7 +63,7 @@
       ]
     },
     "type": "page",
-    "version": 56,
+    "version": 90,
     "content_resolved": [
       {
         "alive": true,
@@ -201,37 +201,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539844156733,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-json-serialize?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "cf986a44-e982-4bb8-933e-8c26717af363",
+        "created_time": 1552284451467,
+        "id": "279fa044-8e9c-4058-b66b-1dc25b8c44c8",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539844158274,
+        "last_edited_time": 1552284420000,
         "parent_id": "1479bc5a-08b6-4dbb-8aa0-e2f5ed17782f",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-json-serialize"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n)\n\n// :show start\ntype Person struct {\n\tfullName string\n\tName     string\n\tAge      int    `json:\"age\"`\n\tCity     string `json:\"city\"`\n}\n\n// :show end\n\nfunc main() {\n\t// :show start\n\tp := Person{\n\t\tName: \"John\",\n\t\tAge:  37,\n\t\tCity: \"SF\",\n\t}\n\td, err := json.Marshal(\u0026p)\n\tif err != nil {\n\t\tlog.Fatalf(\"json.MarshalIndent failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"Person in compact JSON: %s\\n\", string(d))\n\n\td, err = json.MarshalIndent(p, \"\", \"  \")\n\tif err != nil {\n\t\tlog.Fatalf(\"json.MarshalIndent failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"Person in pretty-printed JSON:\\n%s\\n\", string(d))\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-json-serialize",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-json-serialize?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n)\n\n// :show start\ntype Person struct {\n\tfullName string\n\tName     string\n\tAge      int    `json:\"age\"`\n\tCity     string `json:\"city\"`\n}\n\n// :show end\n\nfunc main() {\n\t// :show start\n\tp := Person{\n\t\tName: \"John\",\n\t\tAge:  37,\n\t\tCity: \"SF\",\n\t}\n\td, err := json.Marshal(\u0026p)\n\tif err != nil {\n\t\tlog.Fatalf(\"json.MarshalIndent failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"Person in compact JSON: %s\\n\", string(d))\n\n\td, err = json.MarshalIndent(p, \"\", \"  \")\n\tif err != nil {\n\t\tlog.Fatalf(\"json.MarshalIndent failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"Person in pretty-printed JSON:\\n%s\\n\", string(d))\n\t// :show end\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,
@@ -752,37 +743,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539844208153,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-json-deserialize?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "c7d30ed8-aaa0-4ef2-9a31-73e1e260e6d1",
+        "created_time": 1552284468474,
+        "id": "38969e8a-eb65-4559-8312-35e9b7a65b9f",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539844209900,
+        "last_edited_time": 1552284420000,
         "parent_id": "1479bc5a-08b6-4dbb-8aa0-e2f5ed17782f",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-json-deserialize"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n)\n\n// :show start\ntype Person struct {\n\tName       *string `json:\"name\"`\n\tAge        int     `json:\"age\"`\n\tCity       string\n\tOccupation string\n}\n\nvar jsonStr = `{\n\t\"name\": \"Jane\",\n\t\"age\": 24,\n\t\"city\": \"ny\"\n}`\n\n// :show end\n\nfunc main() {\n\t// :show start\n\tvar p Person\n\terr := json.Unmarshal([]byte(jsonStr), \u0026p)\n\tif err != nil {\n\t\tlog.Fatalf(\"json.Unmarshal failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"Person struct parsed from JSON: %#v\\n\", p)\n\tfmt.Printf(\"Name: %#v\\n\", *p.Name)\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-json-deserialize",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-json-deserialize?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n)\n\n// :show start\ntype Person struct {\n\tName       *string `json:\"name\"`\n\tAge        int     `json:\"age\"`\n\tCity       string\n\tOccupation string\n}\n\nvar jsonStr = `{\n\t\"name\": \"Jane\",\n\t\"age\": 24,\n\t\"city\": \"ny\"\n}`\n\n// :show end\n\nfunc main() {\n\t// :show start\n\tvar p Person\n\terr := json.Unmarshal([]byte(jsonStr), \u0026p)\n\tif err != nil {\n\t\tlog.Fatalf(\"json.Unmarshal failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"Person struct parsed from JSON: %#v\\n\", p)\n\tfmt.Printf(\"Name: %#v\\n\", *p.Name)\n\t// :show end\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,
@@ -1171,7 +1153,7 @@
         "id": "a9f59ef2-8e5e-4a6c-8461-181871b0c3de",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1532156109180,
+        "last_edited_time": 1552284540000,
         "parent_id": "1479bc5a-08b6-4dbb-8aa0-e2f5ed17782f",
         "parent_table": "block",
         "properties": {
@@ -1182,7 +1164,7 @@
           ]
         },
         "type": "sub_header",
-        "version": 1,
+        "version": 3,
         "inline_content": [
           {
             "Text": "Go to JSON type mapping"
@@ -1191,104 +1173,236 @@
       },
       {
         "alive": true,
+        "copied_from": "3957f560-f61e-4f81-8f81-aef546a871d2",
+        "collection_id": "83f74128-1ca7-444a-b974-7cbbc925e77a",
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1532156109181,
-        "id": "e9130998-17ad-41dc-a018-4b03c454246a",
-        "ignore_block_count": true,
+        "created_time": 1552284548481,
+        "id": "da849050-c981-468f-98b1-13c9a172831f",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1532156109181,
+        "last_edited_time": 1552284540000,
         "parent_id": "1479bc5a-08b6-4dbb-8aa0-e2f5ed17782f",
         "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "JSON Type"
-            ],
-            [
-              "Go Concrete Type"
-            ],
-            [
-              "boolean"
-            ],
-            [
-              "bool"
-            ],
-            [
-              "numbers"
-            ],
-            [
-              "float64 or int"
-            ],
-            [
-              "string"
-            ],
-            [
-              "string"
-            ],
-            [
-              "array"
-            ],
-            [
-              "slice"
-            ],
-            [
-              "dictionary"
-            ],
-            [
-              "struct"
-            ],
-            [
-              "null"
-            ],
-            [
-              "nil"
+        "type": "collection_view",
+        "version": 5,
+        "view_ids": [
+          "f1f71948-0fe1-4b44-b8b6-3bf544d996a9"
+        ],
+        "collection_views": [
+          {
+            "CollectionView": {
+              "id": "f1f71948-0fe1-4b44-b8b6-3bf544d996a9",
+              "alive": true,
+              "format": {
+                "table_properties": [
+                  {
+                    "width": 276,
+                    "visible": true,
+                    "property": "title"
+                  },
+                  {
+                    "width": 370,
+                    "visible": true,
+                    "property": "X}lo"
+                  }
+                ],
+                "table_wrap": true
+              },
+              "name": "Default View",
+              "page_sort": [
+                "47396a42-3db5-4938-ba86-24761e972c5c",
+                "a2a8e1b3-ff73-452f-9495-58f8f3a5592b",
+                "06c944ef-837a-4ade-ab38-b66e8319d2d4",
+                "d2f548d8-e821-4ca2-bb85-065ad1abe133",
+                "c3a1fc18-217c-4a92-9f03-0b019987f4b5",
+                "84092782-5e3a-4c0a-ada7-3067339fe75c",
+                "0ef47c30-8214-424e-9f3e-968cfbdeaa44"
+              ],
+              "parent_id": "da849050-c981-468f-98b1-13c9a172831f",
+              "parent_table": "block",
+              "query": {
+                "aggregate": null
+              },
+              "type": "table",
+              "version": 1
+            },
+            "Collection": {
+              "alive": true,
+              "format": {
+                "collection_page_properties": [
+                  {
+                    "property": "X}lo",
+                    "visible": true
+                  },
+                  {
+                    "property": "Hw_\"",
+                    "visible": true
+                  }
+                ]
+              },
+              "id": "83f74128-1ca7-444a-b974-7cbbc925e77a",
+              "name": null,
+              "parent_id": "da849050-c981-468f-98b1-13c9a172831f",
+              "parent_table": "block",
+              "schema": {
+                "X}lo": {
+                  "name": "Go Concrete Type",
+                  "options": null,
+                  "type": "text"
+                },
+                "title": {
+                  "name": "JSON Type",
+                  "options": null,
+                  "type": "title"
+                }
+              },
+              "version": 11
+            },
+            "CollectionRows": [
+              {
+                "alive": true,
+                "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+                "created_time": 1552284548482,
+                "id": "47396a42-3db5-4938-ba86-24761e972c5c",
+                "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+                "last_edited_time": 1552284548482,
+                "parent_id": "83f74128-1ca7-444a-b974-7cbbc925e77a",
+                "parent_table": "collection",
+                "properties": {
+                  "X}lo": [
+                    [
+                      "bool"
+                    ]
+                  ],
+                  "title": [
+                    [
+                      "boolean"
+                    ]
+                  ]
+                },
+                "type": "page",
+                "version": 1
+              },
+              {
+                "alive": true,
+                "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+                "created_time": 1552284548482,
+                "id": "a2a8e1b3-ff73-452f-9495-58f8f3a5592b",
+                "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+                "last_edited_time": 1552284548482,
+                "parent_id": "83f74128-1ca7-444a-b974-7cbbc925e77a",
+                "parent_table": "collection",
+                "properties": {
+                  "X}lo": [
+                    [
+                      "float64 or int"
+                    ]
+                  ],
+                  "title": [
+                    [
+                      "number"
+                    ]
+                  ]
+                },
+                "type": "page",
+                "version": 1
+              },
+              {
+                "alive": true,
+                "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+                "created_time": 1552284548482,
+                "id": "06c944ef-837a-4ade-ab38-b66e8319d2d4",
+                "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+                "last_edited_time": 1552284548482,
+                "parent_id": "83f74128-1ca7-444a-b974-7cbbc925e77a",
+                "parent_table": "collection",
+                "properties": {
+                  "X}lo": [
+                    [
+                      "string"
+                    ]
+                  ],
+                  "title": [
+                    [
+                      "string"
+                    ]
+                  ]
+                },
+                "type": "page",
+                "version": 1
+              },
+              {
+                "alive": true,
+                "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+                "created_time": 1552284548482,
+                "id": "d2f548d8-e821-4ca2-bb85-065ad1abe133",
+                "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+                "last_edited_time": 1552284548482,
+                "parent_id": "83f74128-1ca7-444a-b974-7cbbc925e77a",
+                "parent_table": "collection",
+                "properties": {
+                  "X}lo": [
+                    [
+                      "slice"
+                    ]
+                  ],
+                  "title": [
+                    [
+                      "array"
+                    ]
+                  ]
+                },
+                "type": "page",
+                "version": 1
+              },
+              {
+                "alive": true,
+                "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+                "created_time": 1552284548482,
+                "id": "c3a1fc18-217c-4a92-9f03-0b019987f4b5",
+                "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+                "last_edited_time": 1552284548482,
+                "parent_id": "83f74128-1ca7-444a-b974-7cbbc925e77a",
+                "parent_table": "collection",
+                "properties": {
+                  "X}lo": [
+                    [
+                      "map[struct]interface{} or struct"
+                    ]
+                  ],
+                  "title": [
+                    [
+                      "dictionary"
+                    ]
+                  ]
+                },
+                "type": "page",
+                "version": 1
+              },
+              {
+                "alive": true,
+                "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+                "created_time": 1552284548482,
+                "id": "84092782-5e3a-4c0a-ada7-3067339fe75c",
+                "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+                "last_edited_time": 1552284548482,
+                "parent_id": "83f74128-1ca7-444a-b974-7cbbc925e77a",
+                "parent_table": "collection",
+                "properties": {
+                  "X}lo": [
+                    [
+                      "nil"
+                    ]
+                  ],
+                  "title": [
+                    [
+                      "null"
+                    ]
+                  ]
+                },
+                "type": "page",
+                "version": 1
+              }
             ]
-          ]
-        },
-        "type": "text",
-        "version": 1,
-        "inline_content": [
-          {
-            "Text": "JSON Type"
-          },
-          {
-            "Text": "Go Concrete Type"
-          },
-          {
-            "Text": "boolean"
-          },
-          {
-            "Text": "bool"
-          },
-          {
-            "Text": "numbers"
-          },
-          {
-            "Text": "float64 or int"
-          },
-          {
-            "Text": "string"
-          },
-          {
-            "Text": "string"
-          },
-          {
-            "Text": "array"
-          },
-          {
-            "Text": "slice"
-          },
-          {
-            "Text": "dictionary"
-          },
-          {
-            "Text": "struct"
-          },
-          {
-            "Text": "null"
-          },
-          {
-            "Text": "nil"
           }
         ]
       },
@@ -1359,7 +1473,7 @@
         "id": "cc86ac32-2701-4af0-acd1-e44f6546c43c",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539844111853,
+        "last_edited_time": 1552284600000,
         "parent_id": "1479bc5a-08b6-4dbb-8aa0-e2f5ed17782f",
         "parent_table": "block",
         "properties": {
@@ -1370,7 +1484,7 @@
           ]
         },
         "type": "page",
-        "version": 35,
+        "version": 40,
         "title": "Parsing arbitrary JSON documents",
         "format_page": {
           "page_cover": "",
@@ -1392,7 +1506,7 @@
         "id": "4ef2f951-df5f-4c2f-a229-ddb74e372823",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539844054595,
+        "last_edited_time": 1552284600000,
         "parent_id": "1479bc5a-08b6-4dbb-8aa0-e2f5ed17782f",
         "parent_table": "block",
         "properties": {
@@ -1403,7 +1517,7 @@
           ]
         },
         "type": "page",
-        "version": 37,
+        "version": 42,
         "title": "Decoding into anonymous structs",
         "format_page": {
           "page_cover": "",
@@ -1425,7 +1539,7 @@
         "id": "d349946b-5cb6-42b5-800b-7c75fe3ac9d0",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539843994740,
+        "last_edited_time": 1552284660000,
         "parent_id": "1479bc5a-08b6-4dbb-8aa0-e2f5ed17782f",
         "parent_table": "block",
         "properties": {
@@ -1436,7 +1550,7 @@
           ]
         },
         "type": "page",
-        "version": 46,
+        "version": 51,
         "title": "Decoding JSON from a file",
         "format_page": {
           "page_cover": "",
@@ -1491,7 +1605,7 @@
         "id": "468765d1-44a3-4e87-b913-c7674e66c3a4",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539843862172,
+        "last_edited_time": 1552284720000,
         "parent_id": "1479bc5a-08b6-4dbb-8aa0-e2f5ed17782f",
         "parent_table": "block",
         "properties": {
@@ -1502,7 +1616,7 @@
           ]
         },
         "type": "page",
-        "version": 49,
+        "version": 59,
         "title": "Custom JSON marshaling",
         "format_page": {
           "page_cover": "",
@@ -1524,7 +1638,7 @@
         "id": "408ca6ba-b89f-4e46-8d58-b26a951c12d7",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539843710496,
+        "last_edited_time": 1552284540000,
         "parent_id": "1479bc5a-08b6-4dbb-8aa0-e2f5ed17782f",
         "parent_table": "block",
         "properties": {
@@ -1535,7 +1649,7 @@
           ]
         },
         "type": "page",
-        "version": 44,
+        "version": 52,
         "title": "Go to JSON type mappings",
         "format_page": {
           "page_cover": "",

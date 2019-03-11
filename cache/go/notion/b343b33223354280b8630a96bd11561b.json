@@ -7,7 +7,7 @@
       "3a0502a9-d909-438e-bf48-f50d61ac48b3",
       "7b6ca1bd-ab05-4de4-8262-83e267b43d40",
       "c2ad95a7-3beb-4761-a7f0-5d69459015db",
-      "c2aeeb23-f41c-4b4d-a27d-a9cbc512dc9d",
+      "80e7cb83-63c8-4aeb-b9e2-c488f5ef49e5",
       "ea679a6b-7f16-4d3f-977c-d8e1e97b2d02"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -19,7 +19,7 @@
     "id": "b343b332-2335-4280-b863-0a96bd11561b",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539845193223,
+    "last_edited_time": 1552284840000,
     "parent_id": "6744c6d0-d620-448d-be66-e224f64b6f8b",
     "parent_table": "block",
     "properties": {
@@ -30,7 +30,7 @@
       ]
     },
     "type": "page",
-    "version": 100,
+    "version": 105,
     "content_resolved": [
       {
         "alive": true,
@@ -134,37 +134,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539845188560,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-xml-hybrid-parsing?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "c2aeeb23-f41c-4b4d-a27d-a9cbc512dc9d",
+        "created_time": 1552284849664,
+        "id": "80e7cb83-63c8-4aeb-b9e2-c488f5ef49e5",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539845190422,
+        "last_edited_time": 1552284840000,
         "parent_id": "b343b332-2335-4280-b863-0a96bd11561b",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-xml-hybrid-parsing"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"bytes\"\n\t\"encoding/xml\"\n\t\"fmt\"\n\t\"io\"\n)\n\n// :show start\nvar xmlStr = `\n\u003cpeople\u003e\n\t\u003cperson age=\"34\"\u003e\n\t\t\u003cfirst-name\u003eJohn\u003c/first-name\u003e\n\t\t\u003caddress\u003e\n\t\t\t\u003ccity\u003eSan Francisco\u003c/city\u003e\n\t\t\t\u003cstate\u003eCA\u003c/state\u003e\n\t\t\u003c/address\u003e\n\t\u003c/person\u003e\n\t\u003cperson age=\"23\"\u003e\n\t\t\u003caddress\u003e\n\t\t\t\u003ccity\u003eAustin\u003c/city\u003e\n\t\t\t\u003cstate\u003eTX\u003c/state\u003e\n\t\t\u003c/address\u003e\n\t\u003c/person\u003e\n\u003c/people\u003e`\n\ntype Address struct {\n\tCity  string `xml:\"city\"`\n\tState string `xml:\"state\"`\n}\n\n// :show end\n\nfunc main() {\n\t// :show start\n\tr := bytes.NewBufferString(xmlStr)\n\tdecoder := xml.NewDecoder(r)\n\tfor {\n\t\tt, err := decoder.Token()\n\t\tif err == io.EOF {\n\t\t\t// io.EOF is a successful end\n\t\t\tbreak\n\t\t}\n\t\tif err != nil {\n\t\t\tfmt.Printf(\"decoder.Token() failed with '%s'\\n\", err)\n\t\t\tbreak\n\t\t}\n\n\t\tswitch v := t.(type) {\n\n\t\tcase xml.StartElement:\n\t\t\tif v.Name.Local == \"address\" {\n\t\t\t\tvar address Address\n\t\t\t\terr = decoder.DecodeElement(\u0026address, \u0026v)\n\t\t\t\tif err != nil {\n\t\t\t\t\tfmt.Printf(\"decoder.DecodeElement() failed with '%s'\\n\", err)\n\t\t\t\t\tbreak\n\t\t\t\t}\n\t\t\t\tfmt.Printf(\"%+#v\\n\", address)\n\t\t\t}\n\t\t}\n\t}\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-xml-hybrid-parsing",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-xml-hybrid-parsing?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"bytes\"\n\t\"encoding/xml\"\n\t\"fmt\"\n\t\"io\"\n)\n\n// :show start\nvar xmlStr = `\n\u003cpeople\u003e\n\t\u003cperson age=\"34\"\u003e\n\t\t\u003cfirst-name\u003eJohn\u003c/first-name\u003e\n\t\t\u003caddress\u003e\n\t\t\t\u003ccity\u003eSan Francisco\u003c/city\u003e\n\t\t\t\u003cstate\u003eCA\u003c/state\u003e\n\t\t\u003c/address\u003e\n\t\u003c/person\u003e\n\t\u003cperson age=\"23\"\u003e\n\t\t\u003caddress\u003e\n\t\t\t\u003ccity\u003eAustin\u003c/city\u003e\n\t\t\t\u003cstate\u003eTX\u003c/state\u003e\n\t\t\u003c/address\u003e\n\t\u003c/person\u003e\n\u003c/people\u003e`\n\ntype Address struct {\n\tCity  string `xml:\"city\"`\n\tState string `xml:\"state\"`\n}\n\n// :show end\n\nfunc main() {\n\t// :show start\n\tr := bytes.NewBufferString(xmlStr)\n\tdecoder := xml.NewDecoder(r)\n\tfor {\n\t\tt, err := decoder.Token()\n\t\tif err == io.EOF {\n\t\t\t// io.EOF is a successful end\n\t\t\tbreak\n\t\t}\n\t\tif err != nil {\n\t\t\tfmt.Printf(\"decoder.Token() failed with '%s'\\n\", err)\n\t\t\tbreak\n\t\t}\n\n\t\tswitch v := t.(type) {\n\n\t\tcase xml.StartElement:\n\t\t\tif v.Name.Local == \"address\" {\n\t\t\t\tvar address Address\n\t\t\t\terr = decoder.DecodeElement(\u0026address, \u0026v)\n\t\t\t\tif err != nil {\n\t\t\t\t\tfmt.Printf(\"decoder.DecodeElement() failed with '%s'\\n\", err)\n\t\t\t\t\tbreak\n\t\t\t\t}\n\t\t\t\tfmt.Printf(\"%+#v\\n\", address)\n\t\t\t}\n\t\t}\n\t}\n\t// :show end\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,

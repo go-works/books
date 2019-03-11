@@ -9,7 +9,7 @@
       "e15021dc-75fd-4445-995d-3e5d77be4125",
       "0ac3162d-0ea5-4bd8-9c9a-68e7e65a44fc",
       "a9d6c84a-2d93-4694-81d0-66861a4fa91f",
-      "0d5ab31d-0116-44e0-965e-e8fc0e8e43bf",
+      "21e06e0f-0392-42d9-9bf1-481f617e0020",
       "7e24f813-a0c3-4c83-9e09-6ec5922eb18e",
       "751b898a-d210-42b5-89eb-687116c4ef88"
     ],
@@ -22,7 +22,7 @@
     "id": "b1c01148-435b-4774-850c-16e17a2784ab",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539838335418,
+    "last_edited_time": 1552278060000,
     "parent_id": "dda02e36-8b30-48a5-a69b-81c56bfa6dbb",
     "parent_table": "block",
     "properties": {
@@ -33,7 +33,7 @@
       ]
     },
     "type": "page",
-    "version": 39,
+    "version": 45,
     "content_resolved": [
       {
         "alive": true,
@@ -172,37 +172,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539838328447,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-recover-from-panic?lite=true",
-          "block_full_width": false,
-          "block_page_width": true,
-          "block_preserve_scale": false
-        },
-        "id": "0d5ab31d-0116-44e0-965e-e8fc0e8e43bf",
+        "created_time": 1552278052356,
+        "id": "21e06e0f-0392-42d9-9bf1-481f617e0020",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539838330140,
+        "last_edited_time": 1552278000000,
         "parent_id": "b1c01148-435b-4774-850c-16e17a2784ab",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-recover-from-panic"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"runtime\"\n)\n\n// :show start\ntype Foo struct {\n\tIs []int\n}\n\nfunc (fp *Foo) Panic() (err error) {\n\tdefer PanicRecovery(\u0026err)\n\tfp.Is[0] = 5\n\treturn nil\n}\n\nfunc PanicRecovery(err *error) {\n\n\tif r := recover(); r != nil {\n\t\tif _, ok := r.(runtime.Error); ok {\n\t\t\t//fmt.Println(\"Panicing\")\n\t\t\t//panic(r)\n\t\t\t*err = r.(error)\n\t\t} else {\n\t\t\t*err = r.(error)\n\t\t}\n\t}\n}\n\nfunc main() {\n\tfp := \u0026Foo{}\n\tif err := fp.Panic(); err != nil {\n\t\tfmt.Printf(\"Error: %v\\n\", err)\n\t}\n\tfmt.Println(\"ok\")\n}\n\n// :show end"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-recover-from-panic",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": true,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-recover-from-panic?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"runtime\"\n)\n\n// :show start\ntype Foo struct {\n\tIs []int\n}\n\nfunc (fp *Foo) Panic() (err error) {\n\tdefer PanicRecovery(\u0026err)\n\tfp.Is[0] = 5\n\treturn nil\n}\n\nfunc PanicRecovery(err *error) {\n\n\tif r := recover(); r != nil {\n\t\tif _, ok := r.(runtime.Error); ok {\n\t\t\t//fmt.Println(\"Panicing\")\n\t\t\t//panic(r)\n\t\t\t*err = r.(error)\n\t\t} else {\n\t\t\t*err = r.(error)\n\t\t}\n\t}\n}\n\nfunc main() {\n\tfp := \u0026Foo{}\n\tif err := fp.Panic(); err != nil {\n\t\tfmt.Printf(\"Error: %v\\n\", err)\n\t}\n\tfmt.Println(\"ok\")\n}\n\n// :show end",
+        "code_language": "Go"
       },
       {
         "alive": true,

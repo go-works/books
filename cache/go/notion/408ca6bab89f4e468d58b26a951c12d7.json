@@ -9,7 +9,7 @@
       "5c35d902-026b-456c-acd1-9e7722f92132",
       "092066b8-e861-4446-b100-03255b71d431",
       "27641976-7d2a-474f-8330-4e10247d4ade",
-      "a501e091-3384-42e5-a1e8-57ba0f358afc",
+      "b01dae0e-f8ee-4a45-96c7-fe7e2319b710",
       "57edf98c-f8a9-4884-b9d7-643190c6c7d8"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -21,7 +21,7 @@
     "id": "408ca6ba-b89f-4e46-8d58-b26a951c12d7",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539843710496,
+    "last_edited_time": 1552284540000,
     "parent_id": "1479bc5a-08b6-4dbb-8aa0-e2f5ed17782f",
     "parent_table": "block",
     "properties": {
@@ -32,7 +32,7 @@
       ]
     },
     "type": "page",
-    "version": 44,
+    "version": 52,
     "content_resolved": [
       {
         "alive": true,
@@ -126,11 +126,11 @@
         "created_time": 1538795303225,
         "id": "092066b8-e861-4446-b100-03255b71d431",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1538795303225,
+        "last_edited_time": 1552284480000,
         "parent_id": "408ca6ba-b89f-4e46-8d58-b26a951c12d7",
         "parent_table": "block",
         "type": "collection_view",
-        "version": 4,
+        "version": 7,
         "view_ids": [
           "32a1892c-d7a4-4af3-8cba-b026dc6e0ca4"
         ],
@@ -170,7 +170,7 @@
                 "aggregate": null
               },
               "type": "table",
-              "version": 25
+              "version": 39
             },
             "Collection": {
               "alive": true,
@@ -381,37 +381,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539843704206,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-json-type-mappings?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "a501e091-3384-42e5-a1e8-57ba0f358afc",
+        "created_time": 1552284568206,
+        "id": "b01dae0e-f8ee-4a45-96c7-fe7e2319b710",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539843705885,
+        "last_edited_time": 1552284540000,
         "parent_id": "408ca6ba-b89f-4e46-8d58-b26a951c12d7",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-json-type-mappings"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n)\n\n// :show start\nfunc printSerialized(v interface{}) {\n\td, err := json.Marshal(v)\n\tif err != nil {\n\t\tlog.Fatalf(\"json.Marshal failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"%T: %s\\n\", v, string(d))\n}\n\n// :show end\n\nfunc main() {\n\t// :show start\n\tprintSerialized(nil)\n\tprintSerialized(5)\n\tprintSerialized(8.23)\n\tprintSerialized(\"john\")\n\tai := []int{5, 4, 18}\n\tprintSerialized(ai)\n\ta := []interface{}{4, \"string\"}\n\tprintSerialized(a)\n\td := map[string]interface{}{\n\t\t\"i\": 5,\n\t\t\"s\": \"foo\",\n\t}\n\tprintSerialized(d)\n\ts := struct {\n\t\tName string\n\t\tAge  int\n\t}{\n\t\tName: \"John\",\n\t\tAge:  37,\n\t}\n\tprintSerialized(s)\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-json-type-mappings",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-json-type-mappings?lite=true"
-        }
+        "type": "code",
+        "version": 14,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"log\"\n)\n\n// :show start\nfunc printSerialized(v interface{}) {\n\td, err := json.Marshal(v)\n\tif err != nil {\n\t\tlog.Fatalf(\"json.Marshal failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"%T: %s\\n\", v, string(d))\n}\n\n// :show end\n\nfunc main() {\n\t// :show start\n\tprintSerialized(nil)\n\tprintSerialized(5)\n\tprintSerialized(8.23)\n\tprintSerialized(\"john\")\n\tai := []int{5, 4, 18}\n\tprintSerialized(ai)\n\ta := []interface{}{4, \"string\"}\n\tprintSerialized(a)\n\td := map[string]interface{}{\n\t\t\"i\": 5,\n\t\t\"s\": \"foo\",\n\t}\n\tprintSerialized(d)\n\ts := struct {\n\t\tName string\n\t\tAge  int\n\t}{\n\t\tName: \"John\",\n\t\tAge:  37,\n\t}\n\tprintSerialized(s)\n\t// :show end\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,

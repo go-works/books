@@ -7,7 +7,7 @@
       "c90eba5f-9cb8-4a2c-ba53-42cb98e4d731",
       "08d46c5d-3b52-4787-aca1-1a8126edf2bc",
       "55e8c416-6477-4a4d-bce0-0df904868554",
-      "5b24d472-8e1c-42ec-af96-9dde74ca6844"
+      "b69ff5a1-af67-4fe1-b4b9-5f702471ebcd"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1532156155118,
@@ -18,7 +18,7 @@
     "id": "0f5276a7-333b-442f-a05d-d9ec15eb55ea",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539850637642,
+    "last_edited_time": 1552285680000,
     "parent_id": "cabbd741-52a7-4e29-8be4-afcd41ed10b2",
     "parent_table": "block",
     "properties": {
@@ -29,7 +29,7 @@
       ]
     },
     "type": "page",
-    "version": 35,
+    "version": 40,
     "content_resolved": [
       {
         "alive": true,
@@ -119,37 +119,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539850632770,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-template-custom-function?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "5b24d472-8e1c-42ec-af96-9dde74ca6844",
+        "created_time": 1552285720762,
+        "id": "b69ff5a1-af67-4fe1-b4b9-5f702471ebcd",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539850634517,
+        "last_edited_time": 1552285680000,
         "parent_id": "0f5276a7-333b-442f-a05d-d9ec15eb55ea",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-template-custom-function"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"log\"\n\t\"os\"\n\t\"text/template\"\n)\n\n// :show start\nconst tmplStr = `5 + 5 = {{ sum 5 .Arg }}\n`\n\n// :show end\n\nfunc sum(x, y int) int {\n\treturn x + y\n}\n\nfunc main() {\n\t// :show start\n\tcustomFunctions := template.FuncMap{\n\t\t\"sum\": sum,\n\t}\n\n\tt := template.Must(template.New(\"func\").Funcs(customFunctions).Parse(tmplStr))\n\n\tdata := struct {\n\t\tArg int\n\t}{\n\t\tArg: 5,\n\t}\n\terr := t.Execute(os.Stdout, data)\n\tif err != nil {\n\t\tlog.Fatalf(\"t.Execute() failed with '%s'\\n\", err)\n\t}\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-template-custom-function",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-template-custom-function?lite=true"
-        }
+        "type": "code",
+        "version": 17,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"log\"\n\t\"os\"\n\t\"text/template\"\n)\n\n// :show start\nconst tmplStr = `5 + 5 = {{ sum 5 .Arg }}\n`\n\n// :show end\n\nfunc sum(x, y int) int {\n\treturn x + y\n}\n\nfunc main() {\n\t// :show start\n\tcustomFunctions := template.FuncMap{\n\t\t\"sum\": sum,\n\t}\n\n\tt := template.Must(template.New(\"func\").Funcs(customFunctions).Parse(tmplStr))\n\n\tdata := struct {\n\t\tArg int\n\t}{\n\t\tArg: 5,\n\t}\n\terr := t.Execute(os.Stdout, data)\n\tif err != nil {\n\t\tlog.Fatalf(\"t.Execute() failed with '%s'\\n\", err)\n\t}\n\t// :show end\n}",
+        "code_language": "Go"
       }
     ],
     "title": "Custom functions",

@@ -11,7 +11,7 @@
       "1d623619-a48f-4061-9b49-de3c70899a15",
       "b8e4e074-cfe4-48cc-9032-80f44eca96f1",
       "3f2ee4c4-6a5a-4c12-adf0-99d287576740",
-      "2dc3d0da-5d55-4eb8-be88-0737c1fe4903",
+      "2b8768e5-4639-4ee8-9c91-4510d4d86f14",
       "038aabcf-01b6-476a-bb7e-f908dfab5a26",
       "826f45e7-b574-492d-8b67-9ef5612b2bc9",
       "f83208a0-c766-4da8-8787-d9c75d249ae6",
@@ -49,7 +49,7 @@
     "id": "16e8d8c3-d77e-44fa-af68-57a1df368ce8",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539852772968,
+    "last_edited_time": 1552278300000,
     "parent_id": "2cab1ed2-b7a4-4584-b56b-0d3ca9b80185",
     "parent_table": "block",
     "properties": {
@@ -60,7 +60,7 @@
       ]
     },
     "type": "page",
-    "version": 44,
+    "version": 52,
     "content_resolved": [
       {
         "alive": true,
@@ -250,37 +250,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539852768242,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-concurrency-basics?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "2dc3d0da-5d55-4eb8-be88-0737c1fe4903",
+        "created_time": 1552278189964,
+        "id": "2b8768e5-4639-4ee8-9c91-4510d4d86f14",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539852769567,
+        "last_edited_time": 1552278180000,
         "parent_id": "16e8d8c3-d77e-44fa-af68-57a1df368ce8",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-concurrency-basics"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"sync\"\n)\n\n// :show start\nvar wg sync.WaitGroup\n\nfunc pow2Worker(chIn chan int, chOut chan int) {\n\tfmt.Printf(\"sqrtWorker started\\n\")\n\tfor i := range chIn {\n\t\tsqrt := i * i\n\t\tchOut \u003c- sqrt\n\t}\n\tfmt.Printf(\"sqrtWorker finished\\n\")\n\twg.Done()\n}\n\nfunc main() {\n\tchIn := make(chan int)\n\tchOut := make(chan int)\n\tfor i := 0; i \u003c 2; i++ {\n\t\twg.Add(1)\n\t\tgo pow2Worker(chIn, chOut)\n\t}\n\n\tgo func() {\n\t\tchIn \u003c- 2\n\t\tchIn \u003c- 4\n\t\tclose(chIn)\n\t}()\n\n\tgo func() {\n\t\twg.Wait()\n\t\tclose(chOut)\n\t}()\n\n\tfor sqrt := range chOut {\n\t\tfmt.Printf(\"Got sqrt: %d\\n\", sqrt)\n\t}\n}\n\n// :show end"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-concurrency-basics",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-concurrency-basics?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"sync\"\n)\n\n// :show start\nvar wg sync.WaitGroup\n\nfunc pow2Worker(chIn chan int, chOut chan int) {\n\tfmt.Printf(\"sqrtWorker started\\n\")\n\tfor i := range chIn {\n\t\tsqrt := i * i\n\t\tchOut \u003c- sqrt\n\t}\n\tfmt.Printf(\"sqrtWorker finished\\n\")\n\twg.Done()\n}\n\nfunc main() {\n\tchIn := make(chan int)\n\tchOut := make(chan int)\n\tfor i := 0; i \u003c 2; i++ {\n\t\twg.Add(1)\n\t\tgo pow2Worker(chIn, chOut)\n\t}\n\n\tgo func() {\n\t\tchIn \u003c- 2\n\t\tchIn \u003c- 4\n\t\tclose(chIn)\n\t}()\n\n\tgo func() {\n\t\twg.Wait()\n\t\tclose(chOut)\n\t}()\n\n\tfor sqrt := range chOut {\n\t\tfmt.Printf(\"Got sqrt: %d\\n\", sqrt)\n\t}\n}\n\n// :show end",
+        "code_language": "Go"
       },
       {
         "alive": true,
@@ -1246,7 +1237,7 @@
         "id": "cf850520-3a65-4dce-af24-371d978fbed5",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539838731230,
+        "last_edited_time": 1552278180000,
         "parent_id": "16e8d8c3-d77e-44fa-af68-57a1df368ce8",
         "parent_table": "block",
         "properties": {
@@ -1257,7 +1248,7 @@
           ]
         },
         "type": "page",
-        "version": 39,
+        "version": 44,
         "title": "Hello World goroutine",
         "format_page": {
           "page_cover": "",
@@ -1279,7 +1270,7 @@
         "id": "1bd528bb-f5dc-4155-9460-b2f9a11d6164",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539838686410,
+        "last_edited_time": 1552278240000,
         "parent_id": "16e8d8c3-d77e-44fa-af68-57a1df368ce8",
         "parent_table": "block",
         "properties": {
@@ -1290,7 +1281,7 @@
           ]
         },
         "type": "page",
-        "version": 39,
+        "version": 45,
         "title": "Create goroutines",
         "format_page": {
           "page_cover": "",
@@ -1312,7 +1303,7 @@
         "id": "ea3629ac-73bb-4942-83d0-c92b2a4f78d1",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539838632347,
+        "last_edited_time": 1552278240000,
         "parent_id": "16e8d8c3-d77e-44fa-af68-57a1df368ce8",
         "parent_table": "block",
         "properties": {
@@ -1323,7 +1314,7 @@
           ]
         },
         "type": "page",
-        "version": 37,
+        "version": 42,
         "title": "Wait for goroutines to finish",
         "format_page": {
           "page_cover": "",
@@ -1345,7 +1336,7 @@
         "id": "26ac6084-d740-4f73-85e4-eccaa3fd20de",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539838585141,
+        "last_edited_time": 1552278240000,
         "parent_id": "16e8d8c3-d77e-44fa-af68-57a1df368ce8",
         "parent_table": "block",
         "properties": {
@@ -1356,7 +1347,7 @@
           ]
         },
         "type": "page",
-        "version": 43,
+        "version": 48,
         "title": "Limiting concurrency with a semaphore",
         "format_page": {
           "page_cover": "",
