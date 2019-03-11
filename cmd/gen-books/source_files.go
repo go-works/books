@@ -135,6 +135,13 @@ func parseFileDirective(res *FileDirective, line string) (bool, error) {
 			res.NoPlayground = true
 		} else if s == "allow error" || s == "allow_error" {
 			res.AllowError = true
+		} else if strings.HasPrefix(s, "name ") {
+			// expect: name foo.txt
+			rest := strings.TrimSpace(strings.TrimPrefix(s, "name "))
+			if len(rest) == 0 {
+				return false, fmt.Errorf("parseFileDirective: invalid line '%s'", line)
+			}
+			res.FileName = rest
 		} else if strings.HasPrefix(s, "file ") {
 			// expect: file foo.txt
 			rest := strings.TrimSpace(strings.TrimPrefix(s, "file "))
@@ -152,6 +159,7 @@ func parseFileDirective(res *FileDirective, line string) (bool, error) {
 		} else if strings.HasPrefix(s, "run ") {
 			rest := strings.TrimSpace(strings.TrimPrefix(s, "run "))
 			res.RunCmd = rest
+			// fmt.Printf("  run:: '%s'\n", res.RunCmd)
 		} else {
 			// if started with ":" we assume it was meant to be a directive
 			// but there was a typo

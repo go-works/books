@@ -294,7 +294,11 @@ func getOutputCached(b *Book, sf *SourceFile) error {
 			Name:    sf.Directive.FileName,
 			Content: string(code),
 		}
+		if sf.Directive.RunCmd != "" {
+			fmt.Printf("  run command: %s\n", sf.Directive.RunCmd)
+		}
 		req := &glotRunRequest{
+			Command:  sf.Directive.RunCmd,
 			language: sf.Lang,
 			Files:    []*glotFile{f},
 		}
@@ -314,7 +318,7 @@ func getOutputCached(b *Book, sf *SourceFile) error {
 			}
 		}
 		sf.Output = s
-		fmt.Printf("Got output (%d bytes) for '%s' by running on glot\n", len(sf.Output), sf.Directive.FileName)
+		fmt.Printf("Got glot output (%d bytes) for %s from %s\n", len(sf.Output), sf.SnippetName, sf.NotionOriginURL)
 	} else {
 		path := sf.Path
 		ext := strings.ToLower(filepath.Ext(path))

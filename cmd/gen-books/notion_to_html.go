@@ -665,6 +665,8 @@ func setDefaultFileNameFromLanguage(sf *SourceFile) error {
 	switch lang {
 	case "go":
 		ext = ".go"
+	case "javascript":
+		ext = ".js"
 	default:
 		fmt.Printf("detectFileNameFromLanguage: lang '%s' is not supported\n", sf.Lang)
 		fmt.Printf("Notion page: %s\n", sf.NotionOriginURL)
@@ -740,11 +742,18 @@ func notionToHTML(page *Page, book *Book) []byte {
 	if page.NotionPage == nil {
 		return []byte(page.BodyHTML)
 	}
-	fmt.Printf("Generating HTML for %s\n", page.NotionURL())
+
+	dbg("Generating HTML for %s\n", page.NotionURL())
 	gen := HTMLGenerator{
 		f:    &bytes.Buffer{},
 		book: book,
 		page: page,
 	}
 	return gen.Gen()
+}
+
+func dbg(format string, args ...interface{}) {
+	if flgVerbose {
+		fmt.Printf(format, args...)
+	}
 }

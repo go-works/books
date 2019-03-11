@@ -12,7 +12,7 @@
       "dc3e4797-a6cd-459e-9952-9f28871ce3bb",
       "ed2f365b-6d01-43c2-bb36-f1df61c47355",
       "44613cb0-dbdc-47e9-90d2-50730662546a",
-      "afb5da88-72d7-45cd-8094-618062938dbe",
+      "31a345f7-6396-4308-8694-3a3a865cab29",
       "2e7bb967-7a04-4be2-83ec-3fac1acac7ac",
       "faa2516d-80c3-4f7d-9c7f-a90b3fd09827",
       "0dbf234b-e2b3-4a82-9fb1-fa807c57ff67",
@@ -28,7 +28,7 @@
     "id": "a4c08cfa-b103-4332-b167-94d8eac489ea",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539839786597,
+    "last_edited_time": 1552281300000,
     "parent_id": "41f795bf-701d-4784-b319-7349cdb8f2de",
     "parent_table": "block",
     "properties": {
@@ -39,7 +39,7 @@
       ]
     },
     "type": "page",
-    "version": 37,
+    "version": 113,
     "content_resolved": [
       {
         "alive": true,
@@ -343,37 +343,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539839772612,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-mutex-data-race?lite=true",
-          "block_full_width": false,
-          "block_page_width": true,
-          "block_preserve_scale": false
-        },
-        "id": "afb5da88-72d7-45cd-8094-618062938dbe",
+        "created_time": 1552278955987,
+        "id": "31a345f7-6396-4308-8694-3a3a865cab29",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539839774271,
+        "last_edited_time": 1552281300000,
         "parent_id": "a4c08cfa-b103-4332-b167-94d8eac489ea",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-mutex-data-race"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot, :name main.go, :run go run -race main.go, :allow error\npackage main\n\nimport (\n\t\"fmt\"\n\t\"runtime\"\n\t\"sync\"\n\t\"time\"\n)\n\n// :show start\nvar (\n\tn int\n)\n\nfunc main() {\n\tvar wg sync.WaitGroup\n\tnCPU := runtime.NumCPU()\n\tnIter := 10\n\tfor i := 0; i \u003c nCPU; i++ {\n\t\twg.Add(1)\n\t\tgo func() {\n\t\t\tdefer wg.Done()\n\t\t\tfor j := 0; j \u003c nIter; j++ {\n\t\t\t\tn++\n\t\t\t\ttime.Sleep(time.Microsecond * 10)\n\t\t\t}\n\t\t}()\n\t}\n\twg.Wait()\n\tfmt.Printf(\"n is: %d, expected: %d\\n\", n, nCPU*nIter)\n}\n\n// :show end"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-mutex-data-race",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": true,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-mutex-data-race?lite=true"
-        }
+        "type": "code",
+        "version": 35,
+        "code": "// :glot, :name main.go, :run go run -race main.go, :allow error\npackage main\n\nimport (\n\t\"fmt\"\n\t\"runtime\"\n\t\"sync\"\n\t\"time\"\n)\n\n// :show start\nvar (\n\tn int\n)\n\nfunc main() {\n\tvar wg sync.WaitGroup\n\tnCPU := runtime.NumCPU()\n\tnIter := 10\n\tfor i := 0; i \u003c nCPU; i++ {\n\t\twg.Add(1)\n\t\tgo func() {\n\t\t\tdefer wg.Done()\n\t\t\tfor j := 0; j \u003c nIter; j++ {\n\t\t\t\tn++\n\t\t\t\ttime.Sleep(time.Microsecond * 10)\n\t\t\t}\n\t\t}()\n\t}\n\twg.Wait()\n\tfmt.Printf(\"n is: %d, expected: %d\\n\", n, nCPU*nIter)\n}\n\n// :show end",
+        "code_language": "Go"
       },
       {
         "alive": true,

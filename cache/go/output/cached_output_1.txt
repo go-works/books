@@ -307,6 +307,10 @@ Size of a1: 2.
 Size of a2: 3
 
 |======|
+103968abf9f7d4c1c4618f40341253f2084572f5:
+n is: 200, expected: 200
+
+|======|
 103bc756ef6bba6be9cfab216017ae450df2197e:
 total: 30
 total: 30
@@ -1797,6 +1801,30 @@ strconv.ParseFloat('-3.234', 64): -3.234
 fmt.Sscanf(): -3.234
 
 |======|
+6b77e2f1f7244d9b3f64237833f3023aadf1ea5d:
+n is: 20, expected: 20
+==================
+WARNING: DATA RACE
+Read at 0x0000005ba3c0 by goroutine 7:
+  main.main.func1()
+      /tmp/197028910/main.go:23 +0x6d
+
+Previous write at 0x0000005ba3c0 by goroutine 6:
+  main.main.func1()
+      /tmp/197028910/main.go:23 +0x89
+
+Goroutine 7 (running) created at:
+  main.main()
+      /tmp/197028910/main.go:20 +0xcf
+
+Goroutine 6 (running) created at:
+  main.main()
+      /tmp/197028910/main.go:20 +0xcf
+==================
+Found 1 data race(s)
+exit status 66
+
+|======|
 6b83876610c972e6d26ef5ed265e804e5f90e729:
 s1 is not equal to s2
 s1 is equal to s1
@@ -2807,6 +2835,10 @@ ad96a578afb9747ce4ee49b5e4cc3a8e6d23fc69:
 a is 1 or 3
 
 |======|
+adce7617693a45b3e4377191c9f6f1d4edf11228:
+There are 28 lines in 'main.go'
+
+|======|
 aee080990dce122a8dc598e3bc2839ba247f6b6d:
 zeroBool: false
 zeroInt: 0
@@ -3119,6 +3151,10 @@ n: 2
 c2e309fb19cfee8d9ae94c885b5fee058cae7c16:
 Elements of arrays or slice: 3 8 
 Elements of arrays or slice: 12 5 
+
+|======|
+c3d7b5c6ca8cba6aa4699284f6cda8f013f95c6e:
+n is: 220, expected: 220
 
 |======|
 c464fb885cc904149fb326766435f8b110516ffc:

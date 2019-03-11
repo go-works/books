@@ -33,6 +33,7 @@ var (
 	flgRedownloadOne       string
 	flgRedownloadBook      string
 	flgRedownloadOneReplit string
+	flgVerbose             bool
 
 	soUserIDToNameMap map[int]string
 	googleAnalytics   template.HTML
@@ -67,6 +68,7 @@ func parseFlags() {
 	flag.BoolVar(&flgAllBooks, "all-books", false, "if true will do all books")
 	flag.BoolVar(&flgUpdateOutput, "update-output", false, "if true, will update ouput files in cache")
 	flag.BoolVar(&flgNoCache, "no-cache", false, "if true, disables cache for notion")
+	flag.BoolVar(&flgVerbose, "verbose", false, "if true will log more verbosely")
 	flag.StringVar(&flgRedownloadOne, "redownload-one", "", "notion id of a page to re-download")
 	flag.StringVar(&flgRebuildOnePage, "rebuild-one", "", "notion id of a page to re-build")
 	flag.BoolVar(&flgRedownloadReplit, "redownload-replit", false, "if true, redownloads replits")
