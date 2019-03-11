@@ -18,18 +18,18 @@
     "id": "5ee199fc-91ba-4bec-9e4f-b009a8833e2e",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550709600000,
+    "last_edited_time": 1552301040000,
     "parent_id": "5a1044bb-eec6-47e0-932c-1a000fc67e20",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "ethrow propagate exception"
+          "Rethrow propagate exception"
         ]
       ]
     },
     "type": "page",
-    "version": 9,
+    "version": 12,
     "content_resolved": [
       {
         "alive": true,
@@ -63,13 +63,13 @@
         "id": "d69a12da-2193-42ef-b871-7c3055955158",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522335908,
+        "last_edited_time": 1552300980000,
         "parent_id": "5ee199fc-91ba-4bec-9e4f-b009a8833e2e",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -79,9 +79,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "try {\n    ... // some code here\n} catch (const SomeException\u0026 e) {\n    std::cout \u003c\u003c \"caught an exception\";\n    throw;\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -212,28 +212,28 @@
         "id": "4099b334-35c0-402e-a90d-f554f95cba5b",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522335910,
+        "last_edited_time": 1552301040000,
         "parent_id": "5ee199fc-91ba-4bec-9e4f-b009a8833e2e",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
             [
-              "#include \u003ciostream\u003e\n#include \u003cstring\u003e\n#include \u003cexception\u003e\n#include \u003cstdexcept\u003e\n \nvoid handle_eptr(std::exception_ptr eptr) // passing by value is ok\n{\n    try {\n        if (eptr) {\n            std::rethrow_exception(eptr);\n        }\n    } catch(const std::exception\u0026 e) {\n        std::cout \u003c\u003c \"Caught exception \\\"\" \u003c\u003c e.what() \u003c\u003c \"\\\"\\n\";\n    }\n}\n \nint main()\n{\n    std::exception_ptr eptr;\n    try {\n        std::string().at(1); // this generates an std::out_of_range\n    } catch(...) {\n        eptr = std::current_exception(); // capture\n    }\n    handle_eptr(eptr);\n} // destructor for std::out_of_range called here, when the eptr is destructed"
+              "// :glot\n#include \u003ciostream\u003e\n#include \u003cstring\u003e\n#include \u003cexception\u003e\n#include \u003cstdexcept\u003e\n \nvoid handle_eptr(std::exception_ptr eptr) // passing by value is ok\n{\n    try {\n        if (eptr) {\n            std::rethrow_exception(eptr);\n        }\n    } catch(const std::exception\u0026 e) {\n        std::cout \u003c\u003c \"Caught exception \\\"\" \u003c\u003c e.what() \u003c\u003c \"\\\"\\n\";\n    }\n}\n \nint main()\n{\n    std::exception_ptr eptr;\n    try {\n        std::string().at(1); // this generates an std::out_of_range\n    } catch(...) {\n        eptr = std::current_exception(); // capture\n    }\n    handle_eptr(eptr);\n} // destructor for std::out_of_range called here, when the eptr is destructed"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "#include \u003ciostream\u003e\n#include \u003cstring\u003e\n#include \u003cexception\u003e\n#include \u003cstdexcept\u003e\n \nvoid handle_eptr(std::exception_ptr eptr) // passing by value is ok\n{\n    try {\n        if (eptr) {\n            std::rethrow_exception(eptr);\n        }\n    } catch(const std::exception\u0026 e) {\n        std::cout \u003c\u003c \"Caught exception \\\"\" \u003c\u003c e.what() \u003c\u003c \"\\\"\\n\";\n    }\n}\n \nint main()\n{\n    std::exception_ptr eptr;\n    try {\n        std::string().at(1); // this generates an std::out_of_range\n    } catch(...) {\n        eptr = std::current_exception(); // capture\n    }\n    handle_eptr(eptr);\n} // destructor for std::out_of_range called here, when the eptr is destructed",
-        "code_language": "Plain Text"
+        "version": 6,
+        "code": "// :glot\n#include \u003ciostream\u003e\n#include \u003cstring\u003e\n#include \u003cexception\u003e\n#include \u003cstdexcept\u003e\n \nvoid handle_eptr(std::exception_ptr eptr) // passing by value is ok\n{\n    try {\n        if (eptr) {\n            std::rethrow_exception(eptr);\n        }\n    } catch(const std::exception\u0026 e) {\n        std::cout \u003c\u003c \"Caught exception \\\"\" \u003c\u003c e.what() \u003c\u003c \"\\\"\\n\";\n    }\n}\n \nint main()\n{\n    std::exception_ptr eptr;\n    try {\n        std::string().at(1); // this generates an std::out_of_range\n    } catch(...) {\n        eptr = std::current_exception(); // capture\n    }\n    handle_eptr(eptr);\n} // destructor for std::out_of_range called here, when the eptr is destructed",
+        "code_language": "C++"
       }
     ],
-    "title": "ethrow propagate exception",
+    "title": "Rethrow propagate exception",
     "format_page": {
       "page_cover": "",
       "page_cover_position": 0,
@@ -254,7 +254,7 @@
       "onboarding_completed": true,
       "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
       "time_zone": "America/Los_Angeles",
-      "version": 18
+      "version": 19
     }
   ],
   "Tables": null

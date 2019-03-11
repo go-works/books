@@ -6,8 +6,7 @@
       "af4f582b-656a-4be5-b528-c9b60762564b",
       "182e7a02-0a98-42fb-932f-adf1ed7885bd",
       "eeaeb5af-1aaf-4ed4-8ef8-44411b44e69a",
-      "e6a515af-cc42-4d00-8d4f-e0f89acfd0a9",
-      "64201eca-4580-43cf-90eb-3834a9660913"
+      "e6a515af-cc42-4d00-8d4f-e0f89acfd0a9"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550521988420,
@@ -18,7 +17,7 @@
     "id": "a14a39ae-97ac-43bd-9b2c-b99c57e161d4",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550656380000,
+    "last_edited_time": 1552303920000,
     "parent_id": "b886ff5d-614b-4aa9-9e99-851b7998439b",
     "parent_table": "block",
     "properties": {
@@ -29,7 +28,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 10,
     "content_resolved": [
       {
         "alive": true,
@@ -365,52 +364,25 @@
         "id": "e6a515af-cc42-4d00-8d4f-e0f89acfd0a9",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521988420,
+        "last_edited_time": 1552303920000,
         "parent_id": "a14a39ae-97ac-43bd-9b2c-b99c57e161d4",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
             [
-              "std::string str(\"This is a string.\");\nconst char* cstr = str.c_str(); // cstr points to: \"This is a string.\\0\"\nconst char* data = str.data();  // data points to: \"This is a string.\\0\""
+              "std::string str(\"This is a string.\");\nconst char* cstr = str.c_str(); // cstr points to: \"This is a string.\\0\"\nconst char* data = str.data();  // data points to: \"This is a string.\\0\"\n\nstd::string str(\"This is a string.\");\n\n// Copy the contents of str to untie lifetime from the std::string object\nstd::unique_ptr\u003cchar []\u003e cstr = std::make_unique\u003cchar[]\u003e(str.size() + 1);\n\n// Alternative to the line above (no exception safety):\n// char* cstr_unsafe = new char[str.size() + 1];\n\nstd::copy(str.data(), str.data() + str.size(), cstr);\ncstr[str.size()] = '\\0'; // A null-terminator needs to be added\n\n// delete[] cstr_unsafe;\nstd::cout \u003c\u003c cstr.get();"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "std::string str(\"This is a string.\");\nconst char* cstr = str.c_str(); // cstr points to: \"This is a string.\\0\"\nconst char* data = str.data();  // data points to: \"This is a string.\\0\"",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550521988420,
-        "id": "64201eca-4580-43cf-90eb-3834a9660913",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521988420,
-        "parent_id": "a14a39ae-97ac-43bd-9b2c-b99c57e161d4",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "std::string str(\"This is a string.\");\n\n// Copy the contents of str to untie lifetime from the std::string object\nstd::unique_ptr\u003cchar []\u003e cstr = std::make_unique\u003cchar[]\u003e(str.size() + 1);\n\n// Alternative to the line above (no exception safety):\n// char* cstr_unsafe = new char[str.size() + 1];\n\nstd::copy(str.data(), str.data() + str.size(), cstr);\ncstr[str.size()] = '\\0'; // A null-terminator needs to be added\n\n// delete[] cstr_unsafe;\nstd::cout \u003c\u003c cstr.get();"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "std::string str(\"This is a string.\");\n\n// Copy the contents of str to untie lifetime from the std::string object\nstd::unique_ptr\u003cchar []\u003e cstr = std::make_unique\u003cchar[]\u003e(str.size() + 1);\n\n// Alternative to the line above (no exception safety):\n// char* cstr_unsafe = new char[str.size() + 1];\n\nstd::copy(str.data(), str.data() + str.size(), cstr);\ncstr[str.size()] = '\\0'; // A null-terminator needs to be added\n\n// delete[] cstr_unsafe;\nstd::cout \u003c\u003c cstr.get();",
-        "code_language": "Plain Text"
+        "version": 6,
+        "code": "std::string str(\"This is a string.\");\nconst char* cstr = str.c_str(); // cstr points to: \"This is a string.\\0\"\nconst char* data = str.data();  // data points to: \"This is a string.\\0\"\n\nstd::string str(\"This is a string.\");\n\n// Copy the contents of str to untie lifetime from the std::string object\nstd::unique_ptr\u003cchar []\u003e cstr = std::make_unique\u003cchar[]\u003e(str.size() + 1);\n\n// Alternative to the line above (no exception safety):\n// char* cstr_unsafe = new char[str.size() + 1];\n\nstd::copy(str.data(), str.data() + str.size(), cstr);\ncstr[str.size()] = '\\0'; // A null-terminator needs to be added\n\n// delete[] cstr_unsafe;\nstd::cout \u003c\u003c cstr.get();",
+        "code_language": "C++"
       }
     ],
     "title": "Conversion to const char",
@@ -434,7 +406,7 @@
       "onboarding_completed": true,
       "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
       "time_zone": "America/Los_Angeles",
-      "version": 18
+      "version": 19
     }
   ],
   "Tables": null

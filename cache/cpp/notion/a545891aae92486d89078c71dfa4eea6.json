@@ -9,8 +9,6 @@
       "a2b5e704-d41c-4249-9b9a-b02b5c94cadf",
       "d185468e-4096-4b0f-9309-2784aa0989db",
       "b949498c-1085-4b54-9648-8a67a286e340",
-      "e76ceaf1-e674-4077-9aaa-313cbd9e43df",
-      "3222d837-ffee-4202-87eb-4d0667bf81d1",
       "b239223e-5a74-4861-a5ed-d46ec57280ba",
       "d3e2bbab-33de-4bfe-8684-d60071e4bcec"
     ],
@@ -23,7 +21,7 @@
     "id": "a545891a-ae92-486d-8907-8c71dfa4eea6",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550778600000,
+    "last_edited_time": 1552297080000,
     "parent_id": "3724ad56-a879-48bf-847e-5adcfcb60c18",
     "parent_table": "block",
     "properties": {
@@ -34,7 +32,7 @@
       ]
     },
     "type": "page",
-    "version": 16,
+    "version": 21,
     "content_resolved": [
       {
         "alive": true,
@@ -314,7 +312,7 @@
         "id": "b949498c-1085-4b54-9648-8a67a286e340",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550778600000,
+        "last_edited_time": 1552297080000,
         "parent_id": "a545891a-ae92-486d-8907-8c71dfa4eea6",
         "parent_table": "block",
         "properties": {
@@ -325,66 +323,14 @@
           ],
           "title": [
             [
-              "// A dynamic size matrix using std::vector for storage.\n\n//--------------------------------------------- Machinery:\n#include \u003calgorithm\u003e        // std::copy\n#include \u003cassert.h\u003e         // assert\n#include \u003cinitializer_list\u003e // std::initializer_list\n#include \u003cvector\u003e           // std::vector\n#include \u003cstddef.h\u003e         // ptrdiff_t\n\nnamespace my {\n    using Size = ptrdiff_t;\n    using std::initializer_list;\n    using std::vector;\n\n    template\u003c class Item \u003e\n    class Matrix\n    {\n    private:\n        vector\u003cItem\u003e    items_;\n        Size            n_cols_;\n        \n        auto index_for( Size const x, Size const y ) const\n            -\u003e Size\n        { return y*n_cols_ + x; }\n\n    public:\n        auto n_rows() const -\u003e Size { return items_.size()/n_cols_; }\n        auto n_cols() const -\u003e Size { return n_cols_; }\n\n        auto item( Size const x, Size const y )\n            -\u003e Item\u0026\n        { return items_[index_for(x, y)]; }\n        \n        auto item( Size const x, Size const y ) const\n            -\u003e Item const\u0026\n        { return items_[index_for(x, y)]; }\n\n        Matrix(): n_cols_( 0 ) {}\n\n        Matrix( Size const n_cols, Size const n_rows )\n            : items_( n_cols*n_rows )\n            , n_cols_( n_cols )\n        {}\n        \n        Matrix( initializer_list\u003c initializer_list\u003cItem\u003e \u003e const\u0026 values )\n            : items_()\n            , n_cols_( values.size() == 0? 0 : values.begin()-\u003esize() )\n        {\n            for( auto const\u0026 row : values )\n            {\n                assert( Size( row.size() ) == n_cols_ );\n                items_.insert( items_.end(), row.begin(), row.end() );\n            }\n        }\n    };\n}  // namespace my\n\n//--------------------------------------------- Usage:\nusing my::Matrix;\n\nauto some_matrix()\n    -\u003e Matrix\u003cint\u003e\n{\n    return\n    {\n        {  1,  2,  3,  4,  5,  6,  7 },\n        {  8,  9, 10, 11, 12, 13, 14 },\n        { 15, 16, 17, 18, 19, 20, 21 }\n    };\n}\n\n#include \u003ciostream\u003e\n#include \u003ciomanip\u003e\nusing namespace std;\nauto main() -\u003e int\n{\n    Matrix\u003cint\u003e const m = some_matrix();\n    assert( m.n_cols() == 7 );\n    assert( m.n_rows() == 3 );\n    for( int y = 0, y_end = m.n_rows(); y \u003c y_end; ++y )\n    {\n        for( int x = 0, x_end = m.n_cols(); x \u003c x_end; ++x )\n        {\n            cout \u003c\u003c setw( 4 ) \u003c\u003c m.item( x, y );        // ← Note: not `m[y][x]`!\n        }\n        cout \u003c\u003c '\\n';\n    }\n}"
+              "// :glot\n#include \u003calgorithm\u003e        // std::copy\n#include \u003ccassert\u003e          // assert\n#include \u003cinitializer_list\u003e // std::initializer_list\n#include \u003cvector\u003e           // std::vector\n#include \u003ccstddef\u003e          // ptrdiff_t\n\n// A dynamic size matrix using std::vector for storage.\n\nnamespace my {\n    using Size = ptrdiff_t;\n    using std::initializer_list;\n    using std::vector;\n\n    template\u003c class Item \u003e\n    class Matrix\n    {\n    private:\n        vector\u003cItem\u003e    items_;\n        Size            n_cols_;\n        \n        auto index_for( Size const x, Size const y ) const\n            -\u003e Size\n        { return y*n_cols_ + x; }\n\n    public:\n        auto n_rows() const -\u003e Size { return items_.size()/n_cols_; }\n        auto n_cols() const -\u003e Size { return n_cols_; }\n\n        auto item( Size const x, Size const y )\n            -\u003e Item\u0026\n        { return items_[index_for(x, y)]; }\n        \n        auto item( Size const x, Size const y ) const\n            -\u003e Item const\u0026\n        { return items_[index_for(x, y)]; }\n\n        Matrix(): n_cols_( 0 ) {}\n\n        Matrix( Size const n_cols, Size const n_rows )\n            : items_( n_cols*n_rows )\n            , n_cols_( n_cols )\n        {}\n        \n        Matrix( initializer_list\u003c initializer_list\u003cItem\u003e \u003e const\u0026 values )\n            : items_()\n            , n_cols_( values.size() == 0? 0 : values.begin()-\u003esize() )\n        {\n            for( auto const\u0026 row : values )\n            {\n                assert( Size( row.size() ) == n_cols_ );\n                items_.insert( items_.end(), row.begin(), row.end() );\n            }\n        }\n    };\n}  // namespace my\n\n//--------------------------------------------- Usage:\nusing my::Matrix;\n\nauto some_matrix()\n    -\u003e Matrix\u003cint\u003e\n{\n    return\n    {\n        {  1,  2,  3,  4,  5,  6,  7 },\n        {  8,  9, 10, 11, 12, 13, 14 },\n        { 15, 16, 17, 18, 19, 20, 21 }\n    };\n}\n\n#include \u003ciostream\u003e\n#include \u003ciomanip\u003e\nusing namespace std;\nauto main() -\u003e int\n{\n    Matrix\u003cint\u003e const m = some_matrix();\n    assert( m.n_cols() == 7 );\n    assert( m.n_rows() == 3 );\n    for( int y = 0, y_end = m.n_rows(); y \u003c y_end; ++y )\n    {\n        for( int x = 0, x_end = m.n_cols(); x \u003c x_end; ++x )\n        {\n            cout \u003c\u003c setw( 4 ) \u003c\u003c m.item( x, y );        // ← Note: not `m[y][x]`!\n        }\n        cout \u003c\u003c '\\n';\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 3,
-        "code": "// A dynamic size matrix using std::vector for storage.\n\n//--------------------------------------------- Machinery:\n#include \u003calgorithm\u003e        // std::copy\n#include \u003cassert.h\u003e         // assert\n#include \u003cinitializer_list\u003e // std::initializer_list\n#include \u003cvector\u003e           // std::vector\n#include \u003cstddef.h\u003e         // ptrdiff_t\n\nnamespace my {\n    using Size = ptrdiff_t;\n    using std::initializer_list;\n    using std::vector;\n\n    template\u003c class Item \u003e\n    class Matrix\n    {\n    private:\n        vector\u003cItem\u003e    items_;\n        Size            n_cols_;\n        \n        auto index_for( Size const x, Size const y ) const\n            -\u003e Size\n        { return y*n_cols_ + x; }\n\n    public:\n        auto n_rows() const -\u003e Size { return items_.size()/n_cols_; }\n        auto n_cols() const -\u003e Size { return n_cols_; }\n\n        auto item( Size const x, Size const y )\n            -\u003e Item\u0026\n        { return items_[index_for(x, y)]; }\n        \n        auto item( Size const x, Size const y ) const\n            -\u003e Item const\u0026\n        { return items_[index_for(x, y)]; }\n\n        Matrix(): n_cols_( 0 ) {}\n\n        Matrix( Size const n_cols, Size const n_rows )\n            : items_( n_cols*n_rows )\n            , n_cols_( n_cols )\n        {}\n        \n        Matrix( initializer_list\u003c initializer_list\u003cItem\u003e \u003e const\u0026 values )\n            : items_()\n            , n_cols_( values.size() == 0? 0 : values.begin()-\u003esize() )\n        {\n            for( auto const\u0026 row : values )\n            {\n                assert( Size( row.size() ) == n_cols_ );\n                items_.insert( items_.end(), row.begin(), row.end() );\n            }\n        }\n    };\n}  // namespace my\n\n//--------------------------------------------- Usage:\nusing my::Matrix;\n\nauto some_matrix()\n    -\u003e Matrix\u003cint\u003e\n{\n    return\n    {\n        {  1,  2,  3,  4,  5,  6,  7 },\n        {  8,  9, 10, 11, 12, 13, 14 },\n        { 15, 16, 17, 18, 19, 20, 21 }\n    };\n}\n\n#include \u003ciostream\u003e\n#include \u003ciomanip\u003e\nusing namespace std;\nauto main() -\u003e int\n{\n    Matrix\u003cint\u003e const m = some_matrix();\n    assert( m.n_cols() == 7 );\n    assert( m.n_rows() == 3 );\n    for( int y = 0, y_end = m.n_rows(); y \u003c y_end; ++y )\n    {\n        for( int x = 0, x_end = m.n_cols(); x \u003c x_end; ++x )\n        {\n            cout \u003c\u003c setw( 4 ) \u003c\u003c m.item( x, y );        // ← Note: not `m[y][x]`!\n        }\n        cout \u003c\u003c '\\n';\n    }\n}",
+        "version": 33,
+        "code": "// :glot\n#include \u003calgorithm\u003e        // std::copy\n#include \u003ccassert\u003e          // assert\n#include \u003cinitializer_list\u003e // std::initializer_list\n#include \u003cvector\u003e           // std::vector\n#include \u003ccstddef\u003e          // ptrdiff_t\n\n// A dynamic size matrix using std::vector for storage.\n\nnamespace my {\n    using Size = ptrdiff_t;\n    using std::initializer_list;\n    using std::vector;\n\n    template\u003c class Item \u003e\n    class Matrix\n    {\n    private:\n        vector\u003cItem\u003e    items_;\n        Size            n_cols_;\n        \n        auto index_for( Size const x, Size const y ) const\n            -\u003e Size\n        { return y*n_cols_ + x; }\n\n    public:\n        auto n_rows() const -\u003e Size { return items_.size()/n_cols_; }\n        auto n_cols() const -\u003e Size { return n_cols_; }\n\n        auto item( Size const x, Size const y )\n            -\u003e Item\u0026\n        { return items_[index_for(x, y)]; }\n        \n        auto item( Size const x, Size const y ) const\n            -\u003e Item const\u0026\n        { return items_[index_for(x, y)]; }\n\n        Matrix(): n_cols_( 0 ) {}\n\n        Matrix( Size const n_cols, Size const n_rows )\n            : items_( n_cols*n_rows )\n            , n_cols_( n_cols )\n        {}\n        \n        Matrix( initializer_list\u003c initializer_list\u003cItem\u003e \u003e const\u0026 values )\n            : items_()\n            , n_cols_( values.size() == 0? 0 : values.begin()-\u003esize() )\n        {\n            for( auto const\u0026 row : values )\n            {\n                assert( Size( row.size() ) == n_cols_ );\n                items_.insert( items_.end(), row.begin(), row.end() );\n            }\n        }\n    };\n}  // namespace my\n\n//--------------------------------------------- Usage:\nusing my::Matrix;\n\nauto some_matrix()\n    -\u003e Matrix\u003cint\u003e\n{\n    return\n    {\n        {  1,  2,  3,  4,  5,  6,  7 },\n        {  8,  9, 10, 11, 12, 13, 14 },\n        { 15, 16, 17, 18, 19, 20, 21 }\n    };\n}\n\n#include \u003ciostream\u003e\n#include \u003ciomanip\u003e\nusing namespace std;\nauto main() -\u003e int\n{\n    Matrix\u003cint\u003e const m = some_matrix();\n    assert( m.n_cols() == 7 );\n    assert( m.n_rows() == 3 );\n    for( int y = 0, y_end = m.n_rows(); y \u003c y_end; ++y )\n    {\n        for( int x = 0, x_end = m.n_cols(); x \u003c x_end; ++x )\n        {\n            cout \u003c\u003c setw( 4 ) \u003c\u003c m.item( x, y );        // ← Note: not `m[y][x]`!\n        }\n        cout \u003c\u003c '\\n';\n    }\n}",
         "code_language": "C++"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550523073869,
-        "id": "e76ceaf1-e674-4077-9aaa-313cbd9e43df",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550523073869,
-        "parent_id": "a545891a-ae92-486d-8907-8c71dfa4eea6",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "Output:"
-            ]
-          ]
-        },
-        "type": "text",
-        "version": 1,
-        "inline_content": [
-          {
-            "Text": "Output:"
-          }
-        ]
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550523073869,
-        "id": "3222d837-ffee-4202-87eb-4d0667bf81d1",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550523073869,
-        "parent_id": "a545891a-ae92-486d-8907-8c71dfa4eea6",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "1   2   3   4   5   6   7\n   8   9  10  11  12  13  14\n  15  16  17  18  19  20  21"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "1   2   3   4   5   6   7\n   8   9  10  11  12  13  14\n  15  16  17  18  19  20  21",
-        "code_language": "Plain Text"
       },
       {
         "alive": true,
@@ -476,7 +422,7 @@
       "onboarding_completed": true,
       "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
       "time_zone": "America/Los_Angeles",
-      "version": 18
+      "version": 19
     }
   ],
   "Tables": null

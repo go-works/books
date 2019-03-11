@@ -22,7 +22,7 @@
     "id": "626d3e4e-79cc-4fa7-9192-99bca61868e1",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550778540000,
+    "last_edited_time": 1552297320000,
     "parent_id": "3724ad56-a879-48bf-847e-5adcfcb60c18",
     "parent_table": "block",
     "properties": {
@@ -33,7 +33,7 @@
       ]
     },
     "type": "page",
-    "version": 9,
+    "version": 11,
     "content_resolved": [
       {
         "alive": true,
@@ -42,7 +42,7 @@
         "id": "8df8f778-8d61-40f0-b655-b288a9f8cbd9",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550778540000,
+        "last_edited_time": 1552297140000,
         "parent_id": "626d3e4e-79cc-4fa7-9192-99bca61868e1",
         "parent_table": "block",
         "properties": {
@@ -53,13 +53,13 @@
           ],
           "title": [
             [
-              "#include \u003cstddef.h\u003e     // size_t, ptrdiff_t\n\n//----------------------------------- Machinery:\n\nusing Size = ptrdiff_t;\n\ntemplate\u003c class Item, size_t n \u003e\nconstexpr auto n_items( Item (\u0026)[n] ) noexcept\n    -\u003e Size\n{ return n; }\n\n\n//----------------------------------- Usage:\n\n#include \u003ciostream\u003e\nusing namespace std;\nauto main()\n    -\u003e int\n{\n    int const   a[]     = {3, 1, 4, 1, 5, 9, 2, 6, 5, 4};\n    Size const  n       = n_items( a );\n    int         b[n]    = {};       // An array of the same size as a.\n    \n    (void) b;\n    cout \u003c\u003c \"Size = \" \u003c\u003c n \u003c\u003c \"\\n\";\n}"
+              "// :glot\n#include \u003ccstddef\u003e     // size_t, ptrdiff_t\n\nusing Size = ptrdiff_t;\n\ntemplate\u003c class Item, size_t n \u003e\nconstexpr auto n_items( Item (\u0026)[n] ) noexcept\n    -\u003e Size\n{ return n; }\n\n\n#include \u003ciostream\u003e\nusing namespace std;\nauto main()\n    -\u003e int\n{\n    int const   a[]     = {3, 1, 4, 1, 5, 9, 2, 6, 5, 4};\n    Size const  n       = n_items( a );\n    int         b[n]    = {};       // An array of the same size as a.\n    \n    (void) b;\n    cout \u003c\u003c \"Size = \" \u003c\u003c n \u003c\u003c \"\\n\";\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 3,
-        "code": "#include \u003cstddef.h\u003e     // size_t, ptrdiff_t\n\n//----------------------------------- Machinery:\n\nusing Size = ptrdiff_t;\n\ntemplate\u003c class Item, size_t n \u003e\nconstexpr auto n_items( Item (\u0026)[n] ) noexcept\n    -\u003e Size\n{ return n; }\n\n\n//----------------------------------- Usage:\n\n#include \u003ciostream\u003e\nusing namespace std;\nauto main()\n    -\u003e int\n{\n    int const   a[]     = {3, 1, 4, 1, 5, 9, 2, 6, 5, 4};\n    Size const  n       = n_items( a );\n    int         b[n]    = {};       // An array of the same size as a.\n    \n    (void) b;\n    cout \u003c\u003c \"Size = \" \u003c\u003c n \u003c\u003c \"\\n\";\n}",
+        "version": 6,
+        "code": "// :glot\n#include \u003ccstddef\u003e     // size_t, ptrdiff_t\n\nusing Size = ptrdiff_t;\n\ntemplate\u003c class Item, size_t n \u003e\nconstexpr auto n_items( Item (\u0026)[n] ) noexcept\n    -\u003e Size\n{ return n; }\n\n\n#include \u003ciostream\u003e\nusing namespace std;\nauto main()\n    -\u003e int\n{\n    int const   a[]     = {3, 1, 4, 1, 5, 9, 2, 6, 5, 4};\n    Size const  n       = n_items( a );\n    int         b[n]    = {};       // An array of the same size as a.\n    \n    (void) b;\n    cout \u003c\u003c \"Size = \" \u003c\u003c n \u003c\u003c \"\\n\";\n}",
         "code_language": "C++"
       },
       {
@@ -214,7 +214,7 @@
         "id": "3cd9ba6b-9bcc-4815-b55b-e81871d51924",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550778540000,
+        "last_edited_time": 1552297320000,
         "parent_id": "626d3e4e-79cc-4fa7-9192-99bca61868e1",
         "parent_table": "block",
         "properties": {
@@ -225,13 +225,13 @@
           ],
           "title": [
             [
-              "char MyArray[] = { 'X','o','c','e' };\nconst auto n = std::extent\u003cdecltype(MyArray)\u003e::value;\nstd::cout \u003c\u003c n \u003c\u003c \"\\n\"; // Prints 4"
+              "// :glot\n#include \u003ciostream\u003e\n\nint main(int argc, char **argv)\n{\n    char MyArray[] = { 'X','o','c','e' };\n    const auto n = std::extent\u003cdecltype(MyArray)\u003e::value;\n    std::cout \u003c\u003c n \u003c\u003c \"\\n\";\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 3,
-        "code": "char MyArray[] = { 'X','o','c','e' };\nconst auto n = std::extent\u003cdecltype(MyArray)\u003e::value;\nstd::cout \u003c\u003c n \u003c\u003c \"\\n\"; // Prints 4",
+        "version": 6,
+        "code": "// :glot\n#include \u003ciostream\u003e\n\nint main(int argc, char **argv)\n{\n    char MyArray[] = { 'X','o','c','e' };\n    const auto n = std::extent\u003cdecltype(MyArray)\u003e::value;\n    std::cout \u003c\u003c n \u003c\u003c \"\\n\";\n}",
         "code_language": "C++"
       },
       {
@@ -401,7 +401,7 @@
       "onboarding_completed": true,
       "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
       "time_zone": "America/Los_Angeles",
-      "version": 18
+      "version": 19
     }
   ],
   "Tables": null

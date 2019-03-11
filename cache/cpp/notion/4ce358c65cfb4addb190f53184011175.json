@@ -23,7 +23,7 @@
     "id": "4ce358c6-5cfb-4add-b190-f53184011175",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1551687110768,
+    "last_edited_time": 1552302120000,
     "parent_id": "89d591b2-5143-487b-8a09-144b6b266e4c",
     "parent_table": "block",
     "properties": {
@@ -34,7 +34,7 @@
       ]
     },
     "type": "page",
-    "version": 4,
+    "version": 5,
     "content_resolved": [
       {
         "alive": true,
@@ -136,13 +136,13 @@
         "id": "6361efba-6548-4fc9-b1c1-8ad7601e9452",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550523031467,
+        "last_edited_time": 1552302120000,
         "parent_id": "4ce358c6-5cfb-4add-b190-f53184011175",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -152,9 +152,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "enum E {\n    Begin,\n    E1 = Begin,\n    E2,\n    // ..\n    En,\n    End\n};\n\nfor (E e = E::Begin; e != E::End; ++e) {\n    // Do job with e\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -224,13 +224,13 @@
         "id": "41d2c383-bd59-4f16-a1f7-7a336e32c6af",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550523031467,
+        "last_edited_time": 1552302120000,
         "parent_id": "4ce358c6-5cfb-4add-b190-f53184011175",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -240,9 +240,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "E\u0026 operator ++ (E\u0026 e)\n{\n    if (e == E::End) {\n        throw std::out_of_range(\"for E\u0026 operator ++ (E\u0026)\");\n    }\n    e = E(static_cast\u003cstd::underlying_type\u003cE\u003e::type\u003e(e) + 1);\n    return e;\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -288,13 +288,13 @@
         "id": "df01f4a8-9e4c-4c08-b977-231348795c16",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550523031468,
+        "last_edited_time": 1552302120000,
         "parent_id": "4ce358c6-5cfb-4add-b190-f53184011175",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -304,9 +304,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "enum E {\n    E1 = 4,\n    E2 = 8,\n    // ..\n    En\n};\n\nstd::vector\u003cE\u003e build_all_E()\n{\n    const E all[] = {E1, E2, /*..*/ En};\n    \n    return std::vector\u003cE\u003e(all, all + sizeof(all) / sizeof(E));\n}\n\nstd::vector\u003cE\u003e all_E = build_all_E();\n\nand then\n\nfor (std::vector\u003cE\u003e::const_iterator it = all_E.begin(); it != all_E.end(); ++it) {\n    E e = *it;\n    // Do job with e;\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -358,13 +358,13 @@
         "id": "ebc309b7-3322-450e-9b64-a2e09954398d",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550523031468,
+        "last_edited_time": 1552302120000,
         "parent_id": "4ce358c6-5cfb-4add-b190-f53184011175",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -374,9 +374,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "enum E {\n    E1 = 4,\n    E2 = 8,\n    // ..\n    En\n};\n\nconstexpr std::initializer_list\u003cE\u003e all_E = {E1, E2, /*..*/ En};\n\nand then\n\nfor (auto e : all_E) {\n    // Do job with e\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       }
     ],
     "title": "Iteration over an enum",
@@ -400,7 +400,7 @@
       "onboarding_completed": true,
       "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
       "time_zone": "America/Los_Angeles",
-      "version": 18
+      "version": 19
     }
   ],
   "Tables": null

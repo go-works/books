@@ -14,7 +14,8 @@
       "05ee79c1-7832-436f-8e77-6e50f695cb52",
       "3e06169c-6262-4b89-a123-ff7e34a95f91",
       "ca524ef9-92f6-4728-9a26-a1726d4d7247",
-      "39025b7f-00e8-4ff5-bd7a-a6730471b41b"
+      "39025b7f-00e8-4ff5-bd7a-a6730471b41b",
+      "3affa963-21e9-452f-82d8-7514196363df"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550521991540,
@@ -25,7 +26,7 @@
     "id": "d1ff54b5-9bcb-4f11-b011-62f030f6aff9",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550656440000,
+    "last_edited_time": 1552304460000,
     "parent_id": "b886ff5d-614b-4aa9-9e99-851b7998439b",
     "parent_table": "block",
     "properties": {
@@ -36,7 +37,7 @@
       ]
     },
     "type": "page",
-    "version": 13,
+    "version": 15,
     "content_resolved": [
       {
         "alive": true,
@@ -272,13 +273,13 @@
         "id": "91af3530-e160-4655-95e7-b198bb5ea300",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521991535,
+        "last_edited_time": 1552304460000,
         "parent_id": "d1ff54b5-9bcb-4f11-b011-62f030f6aff9",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -288,9 +289,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "template \u003ctypename Sequence, // any basic_string, vector, list etc.\n          typename Pred\u003e     // a predicate on the element (character) type\nSequence\u0026 trim(Sequence\u0026 seq, Pred pred) {\n    return trim_start(trim_end(seq, pred), pred);\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -342,13 +343,13 @@
         "id": "ff604ebe-54a1-44fa-8934-c0732cec5d32",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521991535,
+        "last_edited_time": 1552304460000,
         "parent_id": "d1ff54b5-9bcb-4f11-b011-62f030f6aff9",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -358,9 +359,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "template \u003ctypename Sequence, typename Pred\u003e\nSequence\u0026 trim_end(Sequence\u0026 seq, Pred pred) {\n    auto last = std::find_if_not(seq.rbegin(),\n                                 seq.rend(),\n                                 pred);\n    seq.erase(last.base(), seq.end());\n    return seq;\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -412,13 +413,13 @@
         "id": "c1a4e435-b79f-485b-9a40-758bcd6bfe05",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521991535,
+        "last_edited_time": 1552304460000,
         "parent_id": "d1ff54b5-9bcb-4f11-b011-62f030f6aff9",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -428,9 +429,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "template \u003ctypename Sequence, typename Pred\u003e\nSequence\u0026 trim_start(Sequence\u0026 seq, Pred pred) {\n    auto first = std::find_if_not(seq.begin(),\n                                  seq.end(),\n                                  pred);\n    seq.erase(seq.begin(), first);\n    return seq;\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -505,13 +506,13 @@
         "id": "05ee79c1-7832-436f-8e77-6e50f695cb52",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521991536,
+        "last_edited_time": 1552304460000,
         "parent_id": "d1ff54b5-9bcb-4f11-b011-62f030f6aff9",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -521,9 +522,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "std::string\u0026 trim(std::string\u0026 str, const std::locale\u0026 loc = std::locale()) {\n    return trim(str, [\u0026loc](const char c){ return std::isspace(c, loc); });\n}\n\nstd::string\u0026 trim_start(std::string\u0026 str, const std::locale\u0026 loc = std::locale()) {\n    return trim_start(str, [\u0026loc](const char c){ return std::isspace(c, loc); });\n}\n\nstd::string\u0026 trim_end(std::string\u0026 str, const std::locale\u0026 loc = std::locale()) {\n    return trim_end(str, [\u0026loc](const char c){ return std::isspace(c, loc); });\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -641,13 +642,13 @@
         "id": "39025b7f-00e8-4ff5-bd7a-a6730471b41b",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521991540,
+        "last_edited_time": 1552304460000,
         "parent_id": "d1ff54b5-9bcb-4f11-b011-62f030f6aff9",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -657,9 +658,21 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "template \u003ctypename Sequence, typename Pred\u003e\nSequence trim_copy(Sequence seq, Pred pred) { // NOTE: passing seq by value\n    trim(seq, pred);\n    return seq;\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552304460000,
+        "id": "3affa963-21e9-452f-82d8-7514196363df",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552304460000,
+        "parent_id": "d1ff54b5-9bcb-4f11-b011-62f030f6aff9",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "Trimming characters at start / end",
@@ -683,7 +696,7 @@
       "onboarding_completed": true,
       "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
       "time_zone": "America/Los_Angeles",
-      "version": 18
+      "version": 19
     }
   ],
   "Tables": null

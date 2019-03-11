@@ -4,9 +4,7 @@
     "alive": true,
     "content": [
       "35509f66-55a4-4052-924a-5d90a707f289",
-      "f000df27-441f-4518-9bf1-af9730424280",
-      "2091cdb8-5718-4873-a810-4dc3cb0621f1",
-      "69a7d6eb-52d9-4422-a781-d654d1429028"
+      "f000df27-441f-4518-9bf1-af9730424280"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550522019627,
@@ -17,7 +15,7 @@
     "id": "bf41a8bc-2aac-4d0e-8aa2-44b121d4a68c",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550801460000,
+    "last_edited_time": 1552302900000,
     "parent_id": "40e8450d-4736-4ad0-be7d-a2d9307ddf4f",
     "parent_table": "block",
     "properties": {
@@ -28,7 +26,7 @@
       ]
     },
     "type": "page",
-    "version": 16,
+    "version": 20,
     "content_resolved": [
       {
         "alive": true,
@@ -37,7 +35,7 @@
         "id": "35509f66-55a4-4052-924a-5d90a707f289",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522019626,
+        "last_edited_time": 1552302720000,
         "parent_id": "bf41a8bc-2aac-4d0e-8aa2-44b121d4a68c",
         "parent_table": "block",
         "properties": {
@@ -61,7 +59,7 @@
               [
                 [
                   "a",
-                  "http://stackoverflow.com/documentation/c%2B%2B/4891/keyword"
+                  "https://www.notion.so/kjkpublic/keywords-193b149e733b4344889829dc4a2ef0b0"
                 ]
               ]
             ],
@@ -71,7 +69,7 @@
           ]
         },
         "type": "text",
-        "version": 1,
+        "version": 4,
         "inline_content": [
           {
             "Text": "The "
@@ -85,7 +83,7 @@
           },
           {
             "Text": "keyword",
-            "Link": "http://stackoverflow.com/documentation/c%2B%2B/4891/keyword"
+            "Link": "https://www.notion.so/kjkpublic/keywords-193b149e733b4344889829dc4a2ef0b0"
           },
           {
             "Text": " is used to give other classes and functions access to private and protected members of the class, even through they are defined outside the class`s scope."
@@ -99,7 +97,7 @@
         "id": "f000df27-441f-4518-9bf1-af9730424280",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550801460000,
+        "last_edited_time": 1552302900000,
         "parent_id": "bf41a8bc-2aac-4d0e-8aa2-44b121d4a68c",
         "parent_table": "block",
         "properties": {
@@ -110,64 +108,14 @@
           ],
           "title": [
             [
-              "class Animal{\nprivate:\n    double weight;\n    double height;\npublic:\n    friend void printWeight(Animal animal);\n    friend class AnimalPrinter;\n    // A common use for a friend function is to overload the operator\u003c\u003c for streaming. \n    friend std::ostream\u0026 operator\u003c\u003c(std::ostream\u0026 os, Animal animal);\n};\n\nvoid printWeight(Animal animal)\n{\n    std::cout \u003c\u003c animal.weight \u003c\u003c \"\\n\";\n}\n\nclass AnimalPrinter\n{\npublic:\n    void print(const Animal\u0026 animal)\n    {\n        // Because of the `friend class AnimalPrinter;\" declaration, we are\n        // allowed to access private members here.\n        std::cout \u003c\u003c animal.weight \u003c\u003c \", \" \u003c\u003c animal.height \u003c\u003c std::endl;\n    }\n}\n\nstd::ostream\u0026 operator\u003c\u003c(std::ostream\u0026 os, Animal animal)\n{\n    os \u003c\u003c \"Animal height: \" \u003c\u003c animal.height \u003c\u003c \"\\n\";\n    return os;\n}\n\nint main() {\n    Animal animal = {10, 5};\n    printWeight(animal);\n\n    AnimalPrinter aPrinter;\n    aPrinter.print(animal);\n\n    std::cout \u003c\u003c animal;\n}"
+              "// :glot\n#include \u003ciostream\u003e\n\nclass Animal {\nprivate:\n    double weight;\n    double height;\npublic:\n    Animal(double w, double h) : weight(w), height(h) { }\n    friend void printWeight(Animal animal);\n    friend class AnimalPrinter;\n    // A common use for a friend function is to overload the operator\u003c\u003c for streaming. \n    friend std::ostream\u0026 operator\u003c\u003c(std::ostream\u0026 os, Animal animal);\n};\n\nvoid printWeight(Animal animal)\n{\n    std::cout \u003c\u003c animal.weight \u003c\u003c \"\\n\";\n}\n\nclass AnimalPrinter\n{\npublic:\n    void print(const Animal\u0026 animal)\n    {\n        // Because of the `friend class AnimalPrinter;\" declaration, we are\n        // allowed to access private members here.\n        std::cout \u003c\u003c animal.weight \u003c\u003c \", \" \u003c\u003c animal.height \u003c\u003c std::endl;\n    }\n};\n\nstd::ostream\u0026 operator\u003c\u003c(std::ostream\u0026 os, Animal animal)\n{\n    os \u003c\u003c \"Animal height: \" \u003c\u003c animal.height \u003c\u003c \"\\n\";\n    return os;\n}\n\nint main() {\n    Animal animal = {10, 5};\n    printWeight(animal);\n\n    AnimalPrinter aPrinter;\n    aPrinter.print(animal);\n\n    std::cout \u003c\u003c animal;\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 5,
-        "code": "class Animal{\nprivate:\n    double weight;\n    double height;\npublic:\n    friend void printWeight(Animal animal);\n    friend class AnimalPrinter;\n    // A common use for a friend function is to overload the operator\u003c\u003c for streaming. \n    friend std::ostream\u0026 operator\u003c\u003c(std::ostream\u0026 os, Animal animal);\n};\n\nvoid printWeight(Animal animal)\n{\n    std::cout \u003c\u003c animal.weight \u003c\u003c \"\\n\";\n}\n\nclass AnimalPrinter\n{\npublic:\n    void print(const Animal\u0026 animal)\n    {\n        // Because of the `friend class AnimalPrinter;\" declaration, we are\n        // allowed to access private members here.\n        std::cout \u003c\u003c animal.weight \u003c\u003c \", \" \u003c\u003c animal.height \u003c\u003c std::endl;\n    }\n}\n\nstd::ostream\u0026 operator\u003c\u003c(std::ostream\u0026 os, Animal animal)\n{\n    os \u003c\u003c \"Animal height: \" \u003c\u003c animal.height \u003c\u003c \"\\n\";\n    return os;\n}\n\nint main() {\n    Animal animal = {10, 5};\n    printWeight(animal);\n\n    AnimalPrinter aPrinter;\n    aPrinter.print(animal);\n\n    std::cout \u003c\u003c animal;\n}",
+        "version": 8,
+        "code": "// :glot\n#include \u003ciostream\u003e\n\nclass Animal {\nprivate:\n    double weight;\n    double height;\npublic:\n    Animal(double w, double h) : weight(w), height(h) { }\n    friend void printWeight(Animal animal);\n    friend class AnimalPrinter;\n    // A common use for a friend function is to overload the operator\u003c\u003c for streaming. \n    friend std::ostream\u0026 operator\u003c\u003c(std::ostream\u0026 os, Animal animal);\n};\n\nvoid printWeight(Animal animal)\n{\n    std::cout \u003c\u003c animal.weight \u003c\u003c \"\\n\";\n}\n\nclass AnimalPrinter\n{\npublic:\n    void print(const Animal\u0026 animal)\n    {\n        // Because of the `friend class AnimalPrinter;\" declaration, we are\n        // allowed to access private members here.\n        std::cout \u003c\u003c animal.weight \u003c\u003c \", \" \u003c\u003c animal.height \u003c\u003c std::endl;\n    }\n};\n\nstd::ostream\u0026 operator\u003c\u003c(std::ostream\u0026 os, Animal animal)\n{\n    os \u003c\u003c \"Animal height: \" \u003c\u003c animal.height \u003c\u003c \"\\n\";\n    return os;\n}\n\nint main() {\n    Animal animal = {10, 5};\n    printWeight(animal);\n\n    AnimalPrinter aPrinter;\n    aPrinter.print(animal);\n\n    std::cout \u003c\u003c animal;\n}",
         "code_language": "C++"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550801460000,
-        "id": "2091cdb8-5718-4873-a810-4dc3cb0621f1",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550801460000,
-        "parent_id": "bf41a8bc-2aac-4d0e-8aa2-44b121d4a68c",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "Output:"
-            ]
-          ]
-        },
-        "type": "text",
-        "version": 22,
-        "inline_content": [
-          {
-            "Text": "Output:"
-          }
-        ]
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550801483869,
-        "id": "69a7d6eb-52d9-4422-a781-d654d1429028",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550801460000,
-        "parent_id": "bf41a8bc-2aac-4d0e-8aa2-44b121d4a68c",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "TypeScript"
-            ]
-          ],
-          "title": [
-            [
-              "10\n10, 5\nAnimal height: 5"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 9,
-        "code": "10\n10, 5\nAnimal height: 5",
-        "code_language": "TypeScript"
       }
     ],
     "title": "Friendship",
@@ -191,7 +139,7 @@
       "onboarding_completed": true,
       "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
       "time_zone": "America/Los_Angeles",
-      "version": 18
+      "version": 19
     }
   ],
   "Tables": null

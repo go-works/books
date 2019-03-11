@@ -17,7 +17,7 @@
     "id": "69a243d8-bb87-43fd-b747-128152b3d8df",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1551685771660,
+    "last_edited_time": 1552304100000,
     "parent_id": "b886ff5d-614b-4aa9-9e99-851b7998439b",
     "parent_table": "block",
     "properties": {
@@ -28,7 +28,7 @@
       ]
     },
     "type": "page",
-    "version": 4,
+    "version": 5,
     "content_resolved": [
       {
         "alive": true,
@@ -98,13 +98,13 @@
         "id": "de8223fe-1bd7-4950-87d7-b15520dc6dec",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522001482,
+        "last_edited_time": 1552304100000,
         "parent_id": "69a243d8-bb87-43fd-b747-128152b3d8df",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -114,9 +114,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "#include \u003ciostream\u003e\n#include \u003ccodecvt\u003e\n#include \u003clocale\u003e\n#include \u003cstring\u003e\nusing namespace std;\n\nint main() {\n    // converts between wstring and utf8 string\n    wstring_convert\u003ccodecvt_utf8_utf16\u003cwchar_t\u003e\u003e wchar_to_utf8;\n    // converts between u16string and utf8 string\n    wstring_convert\u003ccodecvt_utf8_utf16\u003cchar16_t\u003e, char16_t\u003e utf16_to_utf8;\n    \n    wstring wstr = L\"foobar\";\n    string utf8str = wchar_to_utf8.to_bytes(wstr);\n    wstring wstr2 = wchar_to_utf8.from_bytes(utf8str);\n    \n    wcout \u003c\u003c wstr \u003c\u003c endl;\n    cout \u003c\u003c utf8str \u003c\u003c endl;\n    wcout \u003c\u003c wstr2 \u003c\u003c endl;\n    \n    u16string u16str = u\"foobar\";\n    string utf8str2 = utf16_to_utf8.to_bytes(u16str);\n    u16string u16str2 = utf16_to_utf8.from_bytes(utf8str2);\n    \n    return 0;\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -205,13 +205,13 @@
         "id": "9c7db991-bca8-4d9a-b46e-38f4b2310e41",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522001484,
+        "last_edited_time": 1552304100000,
         "parent_id": "69a243d8-bb87-43fd-b747-128152b3d8df",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -221,9 +221,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "using utf16_char = unsigned short;\nwstring_convert\u003ccodecvt_utf8_utf16\u003cutf16_char\u003e, utf16_char\u003e conv_utf8_utf16;\n\nvoid strings::utf16_to_utf8(const std::u16string\u0026 utf16, std::string\u0026 utf8)\n{\n  std::basic_string\u003cutf16_char\u003e tmp;\n  tmp.resize(utf16.length());\n  std::copy(utf16.begin(), utf16.end(), tmp.begin());\n  utf8 = conv_utf8_utf16.to_bytes(tmp);\n}\nvoid strings::utf8_to_utf16(const std::string\u0026 utf8, std::u16string\u0026 utf16)\n{ \n  std::basic_string\u003cutf16_char\u003e tmp = conv_utf8_utf16.from_bytes(utf8);\n  utf16.clear();\n  utf16.resize(tmp.length());\n  std::copy(tmp.begin(), tmp.end(), utf16.begin());\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       }
     ],
     "title": "Converting between character encodings",
@@ -247,7 +247,7 @@
       "onboarding_completed": true,
       "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
       "time_zone": "America/Los_Angeles",
-      "version": 18
+      "version": 19
     }
   ],
   "Tables": null

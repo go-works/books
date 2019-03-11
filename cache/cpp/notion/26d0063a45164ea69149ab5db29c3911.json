@@ -13,7 +13,6 @@
       "61868a59-3061-4bad-8bde-c102a714b8ba",
       "c0b254d7-04c7-47cd-aa07-1925df18a201",
       "d3d2e279-d459-4720-a9f7-9c769135432a",
-      "4d5ad0db-719b-43f4-acfd-d4537b5aa057",
       "5a693cf0-0478-4eda-a9c1-b6107ee05660"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -25,18 +24,18 @@
     "id": "26d0063a-4516-4ea6-9149-ab5db29c3911",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550656440000,
+    "last_edited_time": 1552304520000,
     "parent_id": "b886ff5d-614b-4aa9-9e99-851b7998439b",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "Conversion to std wstring"
+          "Conversion to std::wstring"
         ]
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 14,
     "content_resolved": [
       {
         "alive": true,
@@ -265,13 +264,13 @@
         "id": "f8861bab-d78f-4bfe-8452-15468cf0365a",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521990629,
+        "last_edited_time": 1552304460000,
         "parent_id": "26d0063a-4516-4ea6-9149-ab5db29c3911",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -281,9 +280,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "#include \u003cstring\u003e\n#include \u003ccodecvt\u003e\n#include \u003clocale\u003e\n\nstd::string input_str = \"this is a -string-, which is a sequence based on the -char- type.\";\nstd::wstring input_wstr = L\"this is a -wide- string, which is based on the -wchar_t- type.\";\n\n// conversion\nstd::wstring str_turned_to_wstr = std::wstring_convert\u003cstd::codecvt_utf8\u003cwchar_t\u003e\u003e().from_bytes(input_str);\n\nstd::string wstr_turned_to_str = std::wstring_convert\u003cstd::codecvt_utf8\u003cwchar_t\u003e\u003e().to_bytes(input_wstr);",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -317,13 +316,13 @@
         "id": "b743e690-a8c9-483d-ac21-8861af1d8fa4",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521990629,
+        "last_edited_time": 1552304520000,
         "parent_id": "26d0063a-4516-4ea6-9149-ab5db29c3911",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -333,9 +332,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "#include \u003cstring\u003e\n#include \u003ccodecvt\u003e\n#include \u003clocale\u003e\n\nusing convert_t = std::codecvt_utf8\u003cwchar_t\u003e;\nstd::wstring_convert\u003cconvert_t, wchar_t\u003e strconverter;\n\nstd::string to_string(std::wstring wstr)\n{\n    return strconverter.to_bytes(wstr);\n}\n\nstd::wstring to_wstring(std::string str)\n{\n    return strconverter.from_bytes(str);\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -369,13 +368,13 @@
         "id": "c0b254d7-04c7-47cd-aa07-1925df18a201",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521990629,
+        "last_edited_time": 1552304520000,
         "parent_id": "26d0063a-4516-4ea6-9149-ab5db29c3911",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -385,9 +384,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "std::wstring a_wide_string = to_wstring(\"Hello World!\");",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -431,19 +430,6 @@
             "Text": "."
           }
         ]
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550521990630,
-        "id": "4d5ad0db-719b-43f4-acfd-d4537b5aa057",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521990630,
-        "parent_id": "26d0063a-4516-4ea6-9149-ab5db29c3911",
-        "parent_table": "block",
-        "type": "divider",
-        "version": 1
       },
       {
         "alive": true,
@@ -579,7 +565,7 @@
         ]
       }
     ],
-    "title": "Conversion to std wstring",
+    "title": "Conversion to std::wstring",
     "format_page": {
       "page_cover": "",
       "page_cover_position": 0,
@@ -600,7 +586,7 @@
       "onboarding_completed": true,
       "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
       "time_zone": "America/Los_Angeles",
-      "version": 18
+      "version": 19
     }
   ],
   "Tables": null

@@ -667,6 +667,8 @@ func setDefaultFileNameFromLanguage(sf *SourceFile) error {
 		ext = ".go"
 	case "javascript":
 		ext = ".js"
+	case "cpp", "cplusplus":
+		ext = ".cpp"
 	default:
 		fmt.Printf("detectFileNameFromLanguage: lang '%s' is not supported\n", sf.Lang)
 		fmt.Printf("Notion page: %s\n", sf.NotionOriginURL)
