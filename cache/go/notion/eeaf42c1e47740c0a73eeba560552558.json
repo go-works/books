@@ -10,7 +10,7 @@
       "805105b6-b038-4bab-a2fe-58b6edb129a2",
       "f77fdb75-4367-4724-aa97-02ed3038fcda",
       "5e514eb4-6acf-4574-af03-749be32533ba",
-      "6bc89009-5547-496a-b386-854c785da80c",
+      "e8d3f108-e110-4749-ac9e-0aaffc7b2f57",
       "845ba4e6-eb66-4c51-8a93-430acfd5b28c",
       "9d637efc-8192-4688-9896-fdcfaddf7558",
       "dfc5d335-4db8-421e-8ea0-5d659a94e454",
@@ -29,18 +29,18 @@
     "id": "eeaf42c1-e477-40c0-a73e-eba560552558",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539764745086,
+    "last_edited_time": 1552265400000,
     "parent_id": "4f5f2959-e72c-431e-9955-27b51ad7fd8e",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "Testing Interface Implementation"
+          "Ensure type implements interface"
         ]
       ]
     },
     "type": "page",
-    "version": 37,
+    "version": 79,
     "content_resolved": [
       {
         "alive": true,
@@ -132,21 +132,21 @@
         "created_time": 1532197300329,
         "id": "805105b6-b038-4bab-a2fe-58b6edb129a2",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1532197301234,
+        "last_edited_time": 1552265400000,
         "parent_id": "eeaf42c1-e477-40c0-a73e-eba560552558",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "In Go interfaces are satisfied implicitly. You don’t have to declare that a type is supposed to implement a given interface."
+              "In Go interfaces are satisfied implicitly. You don’t have to declare that a type is meant to implement a given interface."
             ]
           ]
         },
         "type": "text",
-        "version": 12,
+        "version": 20,
         "inline_content": [
           {
-            "Text": "In Go interfaces are satisfied implicitly. You don’t have to declare that a type is supposed to implement a given interface."
+            "Text": "In Go interfaces are satisfied implicitly. You don’t have to declare that a type is meant to implement a given interface."
           }
         ]
       },
@@ -203,37 +203,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539764739003,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-interface-verify-implements?lite=true",
-          "block_full_width": false,
-          "block_page_width": true,
-          "block_preserve_scale": false
-        },
-        "id": "6bc89009-5547-496a-b386-854c785da80c",
+        "created_time": 1552265371795,
+        "id": "e8d3f108-e110-4749-ac9e-0aaffc7b2f57",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539764740932,
+        "last_edited_time": 1552265340000,
         "parent_id": "eeaf42c1-e477-40c0-a73e-eba560552558",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-interface-verify-implements"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\n// allow error\npackage main\n\nimport \"io\"\n\n// :show start\ntype MyReadCloser struct {\n}\n\nfunc (rc *MyReadCloser) Read(d []byte) (int, error) {\n\treturn 0, nil\n}\n\nvar _ io.ReadCloser = \u0026MyReadCloser{}\n\n// :show end\n\nfunc main() {\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-interface-verify-implements",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": true,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-interface-verify-implements?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\n// allow error\npackage main\n\nimport \"io\"\n\n// :show start\ntype MyReadCloser struct {\n}\n\nfunc (rc *MyReadCloser) Read(d []byte) (int, error) {\n\treturn 0, nil\n}\n\nvar _ io.ReadCloser = \u0026MyReadCloser{}\n\n// :show end\n\nfunc main() {\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,
@@ -589,7 +580,7 @@
         ]
       }
     ],
-    "title": "Testing Interface Implementation",
+    "title": "Ensure type implements interface",
     "format_page": {
       "page_cover": "",
       "page_cover_position": 0,

@@ -7,13 +7,12 @@
       "0e419bdf-fbc2-4a56-b949-d322b60d5840",
       "90e6a102-de23-4eef-8250-49333b0872ed",
       "a7e1d6e7-2645-496a-817d-06298fbbd6a6",
-      "db12dbdb-a602-4d1b-9019-1e14611c005e",
       "c60fed46-e8bf-452b-92e0-a14d86933c92",
       "bffea219-53b5-47d2-8dab-38086713c38e",
       "3e41b436-e275-4cf3-99b9-6a3b71b5cd52",
       "588591d3-eaeb-447c-be4a-3c97ed7e26eb",
       "1c2ec132-ca3a-4e45-8235-b51e2f025747",
-      "e5aed0bd-d5a2-4eea-8e73-b36dd64f3adf",
+      "35ad3c2f-5066-416b-9d08-f272ef10b350",
       "e950cc3a-fcdc-425c-8a86-243a13d3346c",
       "27bdfa3c-3842-4979-9949-af7b3a3b7be6",
       "fc1ca26b-233b-4f49-b4f6-4384c6b855df",
@@ -33,7 +32,7 @@
     "id": "4f5f2959-e72c-431e-9955-27b51ad7fd8e",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539764823334,
+    "last_edited_time": 1552265820000,
     "parent_id": "2cab1ed2-b7a4-4584-b56b-0d3ca9b80185",
     "parent_table": "block",
     "properties": {
@@ -44,7 +43,7 @@
       ]
     },
     "type": "page",
-    "version": 38,
+    "version": 48,
     "content_resolved": [
       {
         "alive": true,
@@ -127,49 +126,6 @@
         "inline_content": [
           {
             "Text": "An interface describes a set of methods on a type."
-          }
-        ]
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1532156014153,
-        "id": "db12dbdb-a602-4d1b-9019-1e14611c005e",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1532156014153,
-        "parent_id": "4f5f2959-e72c-431e-9955-27b51ad7fd8e",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "It’s similar to "
-            ],
-            [
-              "interface",
-              [
-                [
-                  "c"
-                ]
-              ]
-            ],
-            [
-              " type in C#."
-            ]
-          ]
-        },
-        "type": "text",
-        "version": 1,
-        "inline_content": [
-          {
-            "Text": "It’s similar to "
-          },
-          {
-            "Text": "interface",
-            "AttrFlags": 2
-          },
-          {
-            "Text": " type in C#."
           }
         ]
       },
@@ -375,37 +331,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539764817152,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-interface-basics?lite=true",
-          "block_full_width": false,
-          "block_page_width": true,
-          "block_preserve_scale": false
-        },
-        "id": "e5aed0bd-d5a2-4eea-8e73-b36dd64f3adf",
+        "created_time": 1552265345102,
+        "id": "35ad3c2f-5066-416b-9d08-f272ef10b350",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539764818912,
+        "last_edited_time": 1552265340000,
         "parent_id": "4f5f2959-e72c-431e-9955-27b51ad7fd8e",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-interface-basics"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"strconv\"\n)\n\n// :show start\n// Stringer is an interface with a single method\ntype Stringer interface {\n\tString() string\n}\n\n// User struct that implements Stringer interface\ntype User struct {\n\tName string\n}\n\nfunc (u *User) String() string {\n\treturn u.Name\n}\n\n// Any type can implement an interface. Here we create\n// an alias of int type an implement Stringer interface\n\ntype MyInt int\n\nfunc (mi MyInt) String() string {\n\treturn strconv.Itoa(int(mi))\n}\n\n// printTypeAndString accepts an interface. 's' can be any value\n// that implements Stringer interface\nfunc printTypeAndString(s Stringer) {\n\tfmt.Printf(\"%T: %s\\n\", s, s)\n}\n\nfunc main() {\n\tu := \u0026User{Name: \"John\"}\n\tprintTypeAndString(u)\n\n\tn := MyInt(5)\n\tprintTypeAndString(n)\n}\n\n// :show end"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-interface-basics",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": true,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-interface-basics?lite=true"
-        }
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"strconv\"\n)\n\n// :show start\n// Stringer is an interface with a single method\ntype Stringer interface {\n\tString() string\n}\n\n// User struct that implements Stringer interface\ntype User struct {\n\tName string\n}\n\nfunc (u *User) String() string {\n\treturn u.Name\n}\n\n// Any type can implement an interface. Here we create\n// an alias of int type an implement Stringer interface\n\ntype MyInt int\n\nfunc (mi MyInt) String() string {\n\treturn strconv.Itoa(int(mi))\n}\n\n// printTypeAndString accepts an interface. 's' can be any value\n// that implements Stringer interface\nfunc printTypeAndString(s Stringer) {\n\tfmt.Printf(\"%T: %s\\n\", s, s)\n}\n\nfunc main() {\n\tu := \u0026User{Name: \"John\"}\n\tprintTypeAndString(u)\n\n\tn := MyInt(5)\n\tprintTypeAndString(n)\n}\n\n// :show end",
+        "code_language": "Go"
       },
       {
         "alive": true,
@@ -700,19 +647,19 @@
         "id": "eeaf42c1-e477-40c0-a73e-eba560552558",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539764745086,
+        "last_edited_time": 1552265400000,
         "parent_id": "4f5f2959-e72c-431e-9955-27b51ad7fd8e",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "Testing Interface Implementation"
+              "Ensure type implements interface"
             ]
           ]
         },
         "type": "page",
-        "version": 37,
-        "title": "Testing Interface Implementation",
+        "version": 79,
+        "title": "Ensure type implements interface",
         "format_page": {
           "page_cover": "",
           "page_cover_position": 0,

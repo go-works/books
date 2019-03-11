@@ -111,13 +111,12 @@ func stripComment(line string) (string, bool) {
 /* Parses a line like:
 // no output, no playground, line ${n}, allow error
 */
-func parseFileDirective(line string) (*FileDirective, error) {
+func parseFileDirective(res *FileDirective, line string) (bool, error) {
 	s, ok := stripComment(line)
 	if !ok {
 		// doesn't start with a comment, so is not a file directive
-		return nil, nil
+		return false, nil
 	}
-	res := &FileDirective{}
 	parts := strings.Split(s, ",")
 	for _, s := range parts {
 		s = strings.TrimSpace(s)
@@ -140,14 +139,14 @@ func parseFileDirective(line string) (*FileDirective, error) {
 			// expect: file foo.txt
 			rest := strings.TrimSpace(strings.TrimPrefix(s, "file "))
 			if len(rest) == 0 {
-				return nil, fmt.Errorf("parseFileDirective: invalid line '%s'", line)
+				return false, fmt.Errorf("parseFileDirective: invalid line '%s'", line)
 			}
 			res.FileName = rest
 		} else if strings.HasPrefix(s, "line ") {
 			rest := strings.TrimSpace(strings.TrimPrefix(s, "line "))
 			n, err := strconv.Atoi(rest)
 			if err != nil {
-				return nil, fmt.Errorf("parseFileDirective: invalid line '%s'", line)
+				return false, fmt.Errorf("parseFileDirective: invalid line '%s'", line)
 			}
 			res.LineLimit = n
 		} else if strings.HasPrefix(s, "run ") {
@@ -157,21 +156,28 @@ func parseFileDirective(line string) (*FileDirective, error) {
 			// if started with ":" we assume it was meant to be a directive
 			// but there was a typo
 			if startsWithColon {
-				return nil, fmt.Errorf("parseFileDirective: invalid line '%s'", line)
+				return false, fmt.Errorf("parseFileDirective: invalid line '%s'", line)
 			}
 			// otherwise we assume this is just a comment
-			return nil, nil
+			return false, nil
 		}
 	}
-	return res, nil
+	return true, nil
 }
 
-func extractFileDirective(lines []string) (*FileDirective, []string, error) {
-	directive, err := parseFileDirective(lines[0])
-	if err != nil || directive == nil {
-		return &FileDirective{}, lines, err
+func extractFileDirectives(lines []string) (*FileDirective, []string, error) {
+	directive := &FileDirective{}
+	for len(lines) > 0 {
+		isDirectiveLine, err := parseFileDirective(directive, lines[0])
+		if err != nil {
+			return directive, lines, err
+		}
+		if !isDirectiveLine {
+			return directive, lines, nil
+		}
+		lines = lines[1:]
 	}
-	return directive, lines[1:], nil
+	return directive, lines, nil
 }
 
 // https://www.onlinetool.io/gitoembed/widget?url=https%3A%2F%2Fgithub.com%2Fessentialbooks%2Fbooks%2Fblob%2Fmaster%2Fbooks%2Fgo%2F0020-basic-types%2Fbooleans.go
@@ -284,7 +290,7 @@ func setSourceFileData(sf *SourceFile, data []byte) error {
 	sf.CodeSnippet = data
 	sf.LinesRaw = dataToLines(sf.CodeSnippet)
 	lines := sf.LinesRaw
-	directive, lines, err := extractFileDirective(lines)
+	directive, lines, err := extractFileDirectives(lines)
 	sf.Directive = directive
 	sf.LinesToRun = removeAnnotationLines(lines)
 	sf.LinesCode, err = extractCodeSnippets(lines)

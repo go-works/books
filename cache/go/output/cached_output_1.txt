@@ -1,3 +1,10 @@
+00a37aad44c34ffe4eb46db4eaf3b729b8e81adf:
+n is 3, divisible by 3
+n is 4 (>= 4)
+n is 6, divisible by 3
+default: n is 1
+
+|======|
 00f43c9ab9f344df9daf1a81dcc6bfe1a3ed9d54:
 v: 3
 v: 4
@@ -266,6 +273,11 @@ Person struct parsed from JSON: main.Person{Name:(*string)(0xc42008a230), Age:24
 Name: "Jane"
 
 |======|
+0ef84cbff606f6d4ce229e73e8145a0730a984a4:
+# command-line-arguments
+./main.go:6:7: goto end jumps over declaration of a at ./main.go:7:4
+
+|======|
 0f045979b35b7f07677173506a4e8c905592adc4:
 Exiting foo
 Exiting main
@@ -288,6 +300,11 @@ Hello, 世界
 4 of type int converted to 4
 Failed to convert 8 to int
 Failed to convert "not valid int" to int
+
+|======|
+102e7605b9218e9541413266a63d8abdd0010f8d:
+Size of a1: 2.
+Size of a2: 3
 
 |======|
 103bc756ef6bba6be9cfab216017ae450df2197e:
@@ -435,6 +452,11 @@ struct S, 5 field(s), size: 40 bytes
   pointer
    name: 'unexported' type: 'int', value: '0', offset: 24, size: 8
    name: 'N' type: 'int8', value: '0', offset: 32, size: 1
+
+|======|
+16ae0c9fb60620e1816d935bf1e62a4cd1869a53:
+map[john:30 jane:29]
+map[jane:29]
 
 |======|
 176fdfcdad35e87ba5c5d9212e299f1701faf122:
@@ -622,6 +644,20 @@ total: 30
 My name is Slim Shady
 
 |======|
+21caf147a27327c05aba587bb88707b6c575e69a:
+Key 'four' exists and maps to 4
+Key 'five' doesn't exists
+
+Value for non-existing key: 0
+
+All keys and their values:
+three => 3
+four => 4
+
+Before deletion: len(m)=2
+After deletion: len(m)=1
+
+|======|
 222951dfcd630ed214dafb48301b6ea736f09961:
 [[1 2 3] [4 5 6]]
 [1 2 3]
@@ -689,6 +725,10 @@ Month: Sep '9', '09',  4
 main.MyInt: 5
 
 |======|
+25922c856d324cff6cf95c61027670d443bc3f46:
+Var :  101
+
+|======|
 25927c339acb04af9d614dac64ea009bd2b5e872:
 didTimeout: true, err: signal: killed
 
@@ -706,6 +746,12 @@ Status code: 404
 
 http.Get() failed with: 'Get http://website.not-exists.as/index.html: dial tcp: lookup website.not-exists.as: no such host'
 resp: <nil>
+
+|======|
+26ad9eb282841852d79ae877524ee6043499e2d2:
+i: 0
+i: 2
+i: 4
 
 |======|
 26d3b14e64d541fd523eed8f7c46f802626d2573:
@@ -782,6 +828,12 @@ n is 6, divisible by 3
 default: n is 1
 
 |======|
+2b1d403b7c4bc1abd03272c2b16b8add7f09ecdf:
+i: 0
+i: 2
+i: 4
+
+|======|
 2b462d2501ab90929a0fc5fa5379040efce8b5cc:
 'this is string' ends with 'string'
 
@@ -805,6 +857,17 @@ intOp(2, 3) = 6
 2cc2f8238bc7f32b3c710548bd4629edf9db8707:
 XML: <ShowCharData>str</ShowCharData>
 
+
+|======|
+2d8235d8cd3d91d89154ad68dc59f8084c02dcce:
+m["foo"] = 
+ok: false
+panic: assignment to entry in nil map
+
+goroutine 1 [running]:
+main.main()
+	/tmp/177271945/main.go:14 +0x189
+exit status 2
 
 |======|
 31590acc21855e9bdf07f6110e7530335b61e349:
@@ -1016,11 +1079,22 @@ XML: <ShowComment><!--comment--></ShowComment>
 
 
 |======|
+4211ae2b94a999a48fd954197938d1b8dec96086:
+*main.User: John
+main.MyInt: 5
+
+|======|
 42f374083367e302c7e2dd19f40a1468489c35ce:
 print:   str8
 println: str 8
 
 printf:  str "str" 8
+
+|======|
+437a14102beea2369dbd25daf8becce3acf8cf40:
+key: john, value: 30
+key: jane, value: 29
+key: mark, value: 11
 
 |======|
 43b387373ab6ff447882bdc5cc6d11509d2a109d:
@@ -1103,6 +1177,13 @@ First main statement
 Num 4
 Num 2
 Num 1
+
+|======|
+477084d8a8f9a7dd0f66e2502b3dc79a812f795a:
+i: 0
+i: 2
+i: 4
+i: 6
 
 |======|
 4840535a78e212bda6a399abb5dd89f5cc94f237:
@@ -1224,6 +1305,14 @@ Score Link
 1 https://stackoverflow.com/a/52675872
 
 |======|
+4ecaedf9b0c9c347afebac3d046cee4d9b4bfee6:
+u: main.User{FirstName:"", LastName:"", Email:"", Age:0, userID:0}
+
+*pu: main.User{FirstName:"", LastName:"", Email:"", Age:33, userID:0}
+*pu: main.User{FirstName:"", LastName:"", Email:"", Age:18, userID:0}
+pu.FullName(): Jane Doe
+
+|======|
 4ed15f14f67d77fdb53b5e75b4fc1f48417ac863:
 a: []string{"hello", "world", "now"}
 
@@ -1233,6 +1322,14 @@ Path: dir_list_files.go, is dir: false, size: 394 bytes
 Path: dir_remove.go, is dir: false, size: 1255 bytes
 Path: file_copy.go, is dir: false, size: 685 bytes
 Path: file_exists.go, is dir: false, size: 775 bytes
+
+|======|
+4f935603160fd5594858f571b2de909755a17012:
+Non-existing key returns zero value of []int, i.e. nil: []int(nil)
+
+After appending to slice: []int{8, 3}
+
+delete() sets back to nil slice: []int(nil)
 
 |======|
 4fa53a3288ae45d449cca99c0b36d8c0e68d0347:
@@ -1301,6 +1398,13 @@ a: []string{"this", " is", " a", " string"}
 554c3ccd332e9fc3f56ae1e916790872f8fb8aa5:
 1 * 2 = 2
 3 * 4 = 12
+
+|======|
+55f65221cf9af78b811fdbba4a8398c52c35b992:
+"5" of type string converted to 5
+4 of type int converted to 4
+Failed to convert 8 to int
+Failed to convert "not valid int" to int
 
 |======|
 565ba928a584f306e8bc4055874413307e087230:
@@ -1548,6 +1652,12 @@ element: 15
 element: 8
 
 |======|
+65211d32bd8252e5c8f82d6e6f806d5acc93a153:
+'5' is of type string
+'4' is of type int
+We don't support type 'bool'
+
+|======|
 653502983590e418296a1e65bf02c043000000cb:
 Record: []string{"date", "open", "high", "low", "close", "volume", "Name"}
 Record: []string{"2013-02-08", "15.07", "15.12", "14.63", "14.75", "8407500", "AAL"}
@@ -1718,6 +1828,12 @@ XML: <data><n>5</n></data>
 
 
 |======|
+6d6753f133620b7c1241fb720115615ff208066c:
+# command-line-arguments
+./main.go:12:5: cannot use MyReadCloser literal (type *MyReadCloser) as type io.ReadCloser in assignment:
+	*MyReadCloser does not implement io.ReadCloser (missing Close method)
+
+|======|
 6da3cb8e5513aa6e9333c629c65e9d170aa6e61f:
 "new\nline"
 
@@ -1832,6 +1948,15 @@ runtime.goexit
 	/usr/local/Cellar/go/1.11.1/libexec/src/runtime/asm_amd64.s:1333
 
 |======|
+77267f3845efe56ad165235936748593fc7c76e2:
+map[john:30 jane:29]
+map[john:30 jane:29]
+
+|======|
+777f3114b795d707ab72a0932544cdc7605412a3:
+a is 1 or 3
+
+|======|
 78a9003232b9e43bf3d2c86bb2a067d0eb4f2de5:
 i: 0
 i: 2
@@ -1841,6 +1966,10 @@ i: 4
 78bd8dc4e110f917fb5f44f1c4010ea63b3d3c0c:
 Person struct parsed from JSON: main.Person{Name:(*string)(0xc00000e270), Age:24, City:"ny", Occupation:""}
 Name: "Jane"
+
+|======|
+79010927d5ae445bd2726ff8215d67a9de3349a5:
+case 1, 2, 3: n is 1
 
 |======|
 7934f1adf4c4c3690e9e24863c8541243e20413c:
@@ -1900,6 +2029,12 @@ i2: 148
 Index of non-existent substring is: -1
 
 |======|
+7fe564bdeb85c091d76cbcd562b9ae7ec06052d5:
+i: 0
+i: 2
+i: 4
+
+|======|
 8019d996c61b6e2cfdfb45b97d81d2af3b204238:
 1 * 2 = 2
 3 * 4 = 12
@@ -1955,6 +2090,12 @@ XML: <ShowNesting><a><b><str>str</str></b></a></ShowNesting>
 found 'is' at position 6
 found 'is' at position 17
 found 'is' at position 27
+
+|======|
+8268abc5ec7731d8e2f9c4cafce32cc5769e0c04:
+value: 30
+value: 29
+value: 11
 
 |======|
 82cd47cdf96e2bef6caeae292d3396d6ecddaa9a:
@@ -2205,6 +2346,10 @@ size of array a: 3
 size of array a2: 3
 
 |======|
+90b8fb64efda2922233fafa89653d350f43dcbcb:
+s is 'foo'
+
+|======|
 915503fac213a9fbedf3a1ef0f498e8218d946f3:
 i: 4, i2: 0, s: , err: <nil>
 
@@ -2367,12 +2512,21 @@ exit status 1
 size of bool is: 1
 
 |======|
+990dd6b9914d893c3be05e65f8955e98cc58a386:
+i: 0
+i: 2
+
+|======|
 99228bab7d3fedad7e9ac5e40eb73b9c126414da:
 File file_size.go is 500 bytes in size
 
 |======|
 993f5eb31d58abb4bbc252455546651db1bab070:
 []int{2, 4}
+
+|======|
+99dd9035b4c4a7a3a9e3e207e53dd79cd4d562c3:
+stmt ('if') is either 'if' or 'for'
 
 |======|
 9aa4063b3a8b3f6a3e766a53479039f9ea373319:
@@ -2537,6 +2691,12 @@ Person in pretty-printed JSON:
 }
 
 |======|
+a646eea843803133b3307350babcb4da8aa99b91:
+key: jane
+key: mark
+key: john
+
+|======|
 a6d8a885ec9ec06754e0a4e7db4a8d36d319c897:
 src: []int{1, 2, 3}
 dst: []int{1, 2, 3}
@@ -2670,8 +2830,18 @@ af5de6d523704102550fcfde69e0f908cacdd7ab:
 size of bool is: 1
 
 |======|
+afc5862286242ad04082ae5feffb237ebcf0c2b1:
+i: 0
+i: 2
+i: 4
+
+|======|
 afcdf655d1377a9f1dca045fba6c1a9987bada66:
 a: []string{"!", "Hello", "world"}
+
+|======|
+aff9579292ce1e92613e9fd085e90f71e6278acc:
+My name is Slim Shady
 
 |======|
 b037835061f4ad66b60a1f9fb92647922ff86d45:
@@ -2843,6 +3013,16 @@ b8ae995dc86d69cf3e306896be5387ae1610b236:
 PostForm() sent 'email=john%40gmail.com&name=John'. Response status code: 200
 
 |======|
+b8b364880f321eb6488e215e02d152e4ba02bf71:
+map[john:30 jane:29]
+map[jane:29]
+
+|======|
+b944340404c91c39fe2c923de900d6e617045653:
+a is equal to b
+ok is true, n: %d
+5
+|======|
 b979bb93bc2a211bbd0b3dacc3cd1a510ca05e99:
 panic: close of closed channel
 
@@ -2930,6 +3110,12 @@ v: 4
 pv: 0xc420016090, pv2: 0xc420016090
 
 |======|
+c2bbf99c8b757d184f4eaef04df44c36efbec300:
+n: 0
+n: 1
+n: 2
+
+|======|
 c2e309fb19cfee8d9ae94c885b5fee058cae7c16:
 Elements of arrays or slice: 3 8 
 Elements of arrays or slice: 12 5 
@@ -3004,6 +3190,14 @@ city: SF
 
 
 |======|
+c886c9f347e340614c5a903c68b3a586d0f448df:
+p: { }
+
+p: {John Doe}
+
+p.FullName(): John Doe
+
+|======|
 c8cdb20d284eeff7fd7640c385c073946d125c62:
 Address of a variable in memory is 0xc42006c010. Its value is: 4
 
@@ -3015,6 +3209,20 @@ Size of a2: 3
 |======|
 c93241c36a27a41b14acc3e905ceb2c438950d09:
 'is hello there?' contains 'hello'
+
+|======|
+c97c73fb1d526862c1cda162f8df757ca6ba1a5e:
+iv is of type string and has value 'string'
+iv is of type int and has value '5'
+iv is of type *int and has value '%!s(*int=0xc42006c010)'
+panic: interface conversion: interface {} is string, not int
+
+goroutine 1 [running]:
+main.panicOnInvalidConversion()
+	/tmp/733635860/main.go:25 +0x45
+main.main()
+	/tmp/733635860/main.go:38 +0xb8
+exit status 2
 
 |======|
 c982fc56f0745970abed7565d62fd23d13aaf497:
@@ -3128,13 +3336,27 @@ cf4f46072cd56bd306d366e9e28d1f88e03a64b4:
 a: 0, b: 2
 
 |======|
+d02daa52511c8615e4e05fd4ddb7babaa14ebb55:
+Final value is: 2
+
+|======|
 d0d17cc900d88b5cb8f1b9132133dca41a089f9f:
 Admin ==> Run()
 User ==> Run()
 
 |======|
+d0df50dae2e229e7436bc7bfb0d158624fc1830b:
+v is of type 'string'
+v is of type 'int'
+v is of type 'int32'
+
+|======|
 d126733259bde546087a67d1dcdf1380f619b288:
 s2: 'replaced string replaced'
+
+|======|
+d1657ad20d87dd1070ea15cbf4241d07ffc23896:
+f64: 1.234100
 
 |======|
 d1ad05c00be5d6c01bda013ec1731c6ca4a6aae2:
@@ -3220,6 +3442,11 @@ d861c4f870f7d202579fb8366ecdd32f4624bfbe:
 |======|
 d93c22a1f1e346f58e1b660dd5f4d0e433e2e8c2:
 Hex: 01ff3acd
+
+|======|
+d97a9d8711a85952f53937bfeccac08b87b47292:
+map[john:30 jane:29]
+map[jane:29 john:30]
 
 |======|
 da6b9306f059bb8aa5a0adc0ac4d0ef6a90f02e9:
@@ -3355,6 +3582,14 @@ e155a706f0bf576986b55892c8cccc684e98892c:
 65550 + 10000 =  9984, overflowed: true
 
 |======|
+e1ad807d4567620b0f289dbc3d9196752ef14c94:
+Original set: []string{"hi", "hello"}
+After delete: []string{"hello"}
+After add   : []string{"hey", "hello"}
+'hello' exists in set
+'ola' doesn't exist in set
+
+|======|
 e1dff2b1dcb3fd24209e2bd43464615065bb637b:
 Output:
 go version go1.11.1 darwin/amd64
@@ -3418,6 +3653,10 @@ e41dd3b40028f2d4316c3ffe1ad10892bcb54b51:
 
 
 |======|
+e425791f3ab0fed4e5b51c9f8f1b6eead8d1b938:
+a is not equal to b
+
+|======|
 e4855a0e8046791c41a3236aaa9c42160e59e6b8:
 Timed out before worker finished
 
@@ -3429,6 +3668,17 @@ e485e6ecf4e220b2d1edf5c41509697e2624983d:
 |======|
 e4d595e1c7302148a26d66d5a230894e91864122:
 File main.go has 41 lines
+
+|======|
+e56c2798f794acc37ea8fccd08bc294b8abfebbc:
+panic: interface conversion: interface {} is string, not int
+
+goroutine 1 [running]:
+main.panicOnInvalidConversion(0x493920, 0x4c4410)
+	/tmp/060111519/main.go:8 +0xc7
+main.main()
+	/tmp/060111519/main.go:13 +0x39
+exit status 2
 
 |======|
 e5710a828850894e96c58365695212bdc5b2390e:
@@ -3454,6 +3704,15 @@ Arg 0, value: '-echo'
 Arg 1, value: 'echo-arg'
 Arg 2, value: 'additional'
 Arg 3, value: 'arg'
+
+|======|
+e663576a07371f17d7a52c86c60e2d8ccdd9fd6e:
+m == nil ? true
+len(m) = 0
+
+|======|
+e668ad2acfb00274f5e6eaa58e0a2c91710c81b6:
+There are 29 lines in 'main.go'
 
 |======|
 e69d89ad8446c078e29bad4f208d89d84244ebb4:
@@ -3482,6 +3741,20 @@ e9af610a28ccbf0627fbbc2cb25098bda9fe4f20:
 flag -echo: 'echo-arg'
 Remainig arg: 'additional'
 Remainig arg: 'arg'
+
+|======|
+ebaa8bedf4668f2a688f518913f35e3852c23454:
+Key 'four' exists and maps to 4
+Key 'five' doesn't exists
+
+Value for non-existing key: 0
+
+All keys and their values:
+three => 3
+four => 4
+
+Before deletion: len(m)=2
+After deletion : len(m)=1
 
 |======|
 ebe9a378c0398e3a8f082c27a1ae1406196f8ec3:
@@ -3544,10 +3817,20 @@ ec9ca7723ab1302134a6d700927688fa44020d21:
 Address of a variable in memory is 0xc420016090. Its value is: 4
 
 |======|
+ed59e79059c6e1108e625429ffd62ce71bb609f6:
+i: 1
+i: 2
+
+|======|
 ede1a4b573e85e4fd8365fcf5aafb3646e6f8709:
 1
 2
 channel is now closed
+
+|======|
+ee254630565da5494d63b07e375d7ac77457d5ae:
+case 1
+caes 2
 
 |======|
 ee3536cef85bc3b434f8f42aa77c473a51199dbf:
@@ -3560,6 +3843,12 @@ Month: Sep '9', '09',  4
 |======|
 eeb5f0aa5105c68cb1e3a43ecde16e9f01804162:
 base64: Af86zQ==
+
+|======|
+eeea6a2f91fffef89362bb5782d133de471e5840:
+idx: 0, value: 1
+idx: 1, value: 3
+idx: 2, value: 5
 
 |======|
 efe7294d463cedf2d6104e4ba38c4fe72fca7603:
@@ -3736,6 +4025,11 @@ fa1d134788406e223925632843459dac66305b8b:
 6+12=18
 
 |======|
+fa704bd3bdcad7824738a5947984a766d787e99a:
+5 is odd
+18 is even
+
+|======|
 fb61c1ff13d40b6bf99e74cb25d0623fe3d4737e:
 XML: <ShowAttr n="true"></ShowAttr>
 
@@ -3750,6 +4044,10 @@ printf:  str "str" 8
 |======|
 fd3f29f8fbad04761c5e772209d01e5280acde64:
 base64: Af86zQ==
+
+|======|
+fda801dd775b2e4b56144dcae4689a8a373fcce8:
+data: {Number:42 Text:Hello world!}
 
 |======|
 fdafd46a2373b972239407f27a04e70b7a5360fe:

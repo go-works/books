@@ -722,10 +722,6 @@ func (g *HTMLGenerator) genContent(parent *notionapi.Block) {
 
 // Gen returns generated HTML
 func (g *HTMLGenerator) Gen() []byte {
-	// This is artificially generated page (e.g. contributors page)
-	if g.page.NotionPage == nil {
-		return []byte(g.page.BodyHTML)
-	}
 	rootPage := g.page.NotionPage.Root
 	f := rootPage.FormatPage
 	g.writeString(`<p></p>`)
@@ -740,6 +736,11 @@ func (g *HTMLGenerator) Gen() []byte {
 }
 
 func notionToHTML(page *Page, book *Book) []byte {
+	// This is artificially generated page (e.g. contributors page)
+	if page.NotionPage == nil {
+		return []byte(page.BodyHTML)
+	}
+	fmt.Printf("Generating HTML for %s\n", page.NotionURL())
 	gen := HTMLGenerator{
 		f:    &bytes.Buffer{},
 		book: book,

@@ -12,19 +12,19 @@
       "9d14a5a5-b997-43b1-8f56-7e4ba56d5fe2",
       "45eb3d50-1f9f-4ca6-8b1e-08ac9f0ec06a",
       "6a7ae1b2-fbdf-453b-9e76-b5d6fa83dfff",
-      "3cc06a12-f43f-4229-98de-38b5ee2c5a95",
+      "8820bdd7-7b51-415a-9c17-8fa33ed97175",
       "caf809ad-083c-4202-861d-a215926168cb",
       "30e84bdd-61fd-4732-8453-350e58025ccb",
       "2b831bac-5afc-4144-93cf-f5e06e8e4460",
       "a3477b9e-d9ed-4351-a19e-a0a191e2d01d",
       "e177cb31-9729-4817-8031-4bfc62f7f565",
-      "f7fd36d6-2c1b-4438-84f8-3b73c72fc5ac",
       "d072e2f5-e118-4b51-88cc-80aeed96f150",
       "c0554d1e-1b31-464a-9b5c-8463bd3c1095",
       "6543212d-8e7d-4467-9711-d688dc00eb6a",
       "90b9baa6-982e-4dc1-a8ea-21976757cae5",
       "89c4539a-f43f-422c-8ccb-b720f9cfdaea",
       "ef0d76af-9188-4e07-a1c5-a606f17a341c",
+      "f7fd36d6-2c1b-4438-84f8-3b73c72fc5ac",
       "3d93460b-d45a-43c8-9135-8ca7a264bd8a"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -36,7 +36,7 @@
     "id": "80fb91dd-63d4-45e2-8010-b9f5e261da81",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539764153339,
+    "last_edited_time": 1552264920000,
     "parent_id": "2cab1ed2-b7a4-4584-b56b-0d3ca9b80185",
     "parent_table": "block",
     "properties": {
@@ -47,7 +47,7 @@
       ]
     },
     "type": "page",
-    "version": 77,
+    "version": 90,
     "content_resolved": [
       {
         "alive": true,
@@ -244,21 +244,21 @@
         "created_time": 1532234883807,
         "id": "45eb3d50-1f9f-4ca6-8b1e-08ac9f0ec06a",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1532234946354,
+        "last_edited_time": 1552264860000,
         "parent_id": "80fb91dd-63d4-45e2-8010-b9f5e261da81",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "Unlike most other languages, iteration over a map has a random order."
+              "Iteration over a map has a random order. Many languages are different in that respect."
             ]
           ]
         },
         "type": "text",
-        "version": 180,
+        "version": 260,
         "inline_content": [
           {
-            "Text": "Unlike most other languages, iteration over a map has a random order."
+            "Text": "Iteration over a map has a random order. Many languages are different in that respect."
           }
         ]
       },
@@ -289,37 +289,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539764146014,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-map-basics?lite=true",
-          "block_full_width": false,
-          "block_page_width": true,
-          "block_preserve_scale": false
-        },
-        "id": "3cc06a12-f43f-4229-98de-38b5ee2c5a95",
+        "created_time": 1552261016291,
+        "id": "8820bdd7-7b51-415a-9c17-8fa33ed97175",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539764148274,
+        "last_edited_time": 1552264920000,
         "parent_id": "80fb91dd-63d4-45e2-8010-b9f5e261da81",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-map-basics"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport \"fmt\"\n\nfunc main() {\n\t// :show start\n\tm := make(map[string]int)\n\n\t// set the value\n\tm[\"three\"] = 3\n\tm[\"four\"] = 4\n\n\t// get the value and see if the value exists\n\tkey := \"four\"\n\tif value, ok := m[key]; ok {\n\t\tfmt.Printf(\"Key '%s' exists and maps to %d\\n\", key, value)\n\t} else {\n\t\tfmt.Printf(\"Key '%s' doesn't exists\\n\", key)\n\t}\n\n\tkey = \"five\"\n\tif value, ok := m[key]; ok {\n\t\tfmt.Printf(\"Key '%s' exists and maps to %d\\n\", key, value)\n\t} else {\n\t\tfmt.Printf(\"Key '%s' doesn't exists\\n\", key)\n\t}\n\n\t// if value doesn't exist, the result of lookup is zero value. In this case zero value of int is 0\n\tfmt.Printf(\"\\nValue for non-existing key: %d\\n\\n\", m[\"not-exists\"])\n\n\t// iterating over keys and values\n\tfmt.Printf(\"All keys and their values:\\n\")\n\tfor key, value := range m {\n\t\tfmt.Printf(\"%s =\u003e %d\\n\", key, value)\n\t}\n\n\tfmt.Printf(\"\\nBefore deletion: len(m)=%d\\n\", len(m))\n\tdelete(m, \"four\")\n\tfmt.Printf(\"After deletion : len(m)=%d\\n\", len(m))\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-map-basics",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": true,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-map-basics?lite=true"
-        }
+        "type": "code",
+        "version": 21,
+        "code": "// :glot\npackage main\n\nimport \"fmt\"\n\nfunc main() {\n\t// :show start\n\tm := make(map[string]int)\n\n\t// set the value\n\tm[\"three\"] = 3\n\tm[\"four\"] = 4\n\n\t// get the value and see if the value exists\n\tkey := \"four\"\n\tif value, ok := m[key]; ok {\n\t\tfmt.Printf(\"Key '%s' exists and maps to %d\\n\", key, value)\n\t} else {\n\t\tfmt.Printf(\"Key '%s' doesn't exists\\n\", key)\n\t}\n\n\tkey = \"five\"\n\tif value, ok := m[key]; ok {\n\t\tfmt.Printf(\"Key '%s' exists and maps to %d\\n\", key, value)\n\t} else {\n\t\tfmt.Printf(\"Key '%s' doesn't exists\\n\", key)\n\t}\n\n\t// if value doesn't exist, the result of lookup is zero value. In this case zero value of int is 0\n\tfmt.Printf(\"\\nValue for non-existing key: %d\\n\\n\", m[\"not-exists\"])\n\n\t// iterating over keys and values\n\tfmt.Printf(\"All keys and their values:\\n\")\n\tfor key, value := range m {\n\t\tfmt.Printf(\"%s =\u003e %d\\n\", key, value)\n\t}\n\n\tfmt.Printf(\"\\nBefore deletion: len(m)=%d\\n\", len(m))\n\tdelete(m, \"four\")\n\tfmt.Printf(\"After deletion : len(m)=%d\\n\", len(m))\n\t// :show end\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,
@@ -468,39 +459,6 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1532155995912,
-        "format": {
-          "page_full_width": true,
-          "page_small_text": true
-        },
-        "id": "f7fd36d6-2c1b-4438-84f8-3b73c72fc5ac",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539764072364,
-        "parent_id": "80fb91dd-63d4-45e2-8010-b9f5e261da81",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "Zero value of a map"
-            ]
-          ]
-        },
-        "type": "page",
-        "version": 51,
-        "title": "Zero value of a map",
-        "format_page": {
-          "page_cover": "",
-          "page_cover_position": 0,
-          "page_font": "",
-          "page_full_width": true,
-          "page_icon": "",
-          "page_small_text": true
-        }
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
         "created_time": 1532155997125,
         "format": {
           "page_full_width": true,
@@ -509,7 +467,7 @@
         "id": "d072e2f5-e118-4b51-88cc-80aeed96f150",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539763943997,
+        "last_edited_time": 1552261080000,
         "parent_id": "80fb91dd-63d4-45e2-8010-b9f5e261da81",
         "parent_table": "block",
         "properties": {
@@ -520,7 +478,7 @@
           ]
         },
         "type": "page",
-        "version": 39,
+        "version": 44,
         "title": "Copy a map",
         "format_page": {
           "page_cover": "",
@@ -542,19 +500,19 @@
         "id": "c0554d1e-1b31-464a-9b5c-8463bd3c1095",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539763858821,
+        "last_edited_time": 1552264980000,
         "parent_id": "80fb91dd-63d4-45e2-8010-b9f5e261da81",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "Iterate over a map with range"
+              "Iterate a map with range"
             ]
           ]
         },
         "type": "page",
-        "version": 120,
-        "title": "Iterate over a map with range",
+        "version": 139,
+        "title": "Iterate a map with range",
         "format_page": {
           "page_cover": "",
           "page_cover_position": 0,
@@ -575,7 +533,7 @@
         "id": "6543212d-8e7d-4467-9711-d688dc00eb6a",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1538809000915,
+        "last_edited_time": 1552264800000,
         "parent_id": "80fb91dd-63d4-45e2-8010-b9f5e261da81",
         "parent_table": "block",
         "properties": {
@@ -586,7 +544,7 @@
           ]
         },
         "type": "page",
-        "version": 61,
+        "version": 65,
         "title": "Delete from a map",
         "format_page": {
           "page_cover": "",
@@ -608,7 +566,7 @@
         "id": "90b9baa6-982e-4dc1-a8ea-21976757cae5",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539763657672,
+        "last_edited_time": 1552264620000,
         "parent_id": "80fb91dd-63d4-45e2-8010-b9f5e261da81",
         "parent_table": "block",
         "properties": {
@@ -619,7 +577,7 @@
           ]
         },
         "type": "page",
-        "version": 35,
+        "version": 47,
         "title": "Use map as a set",
         "format_page": {
           "page_cover": "",
@@ -641,7 +599,7 @@
         "id": "89c4539a-f43f-422c-8ccb-b720f9cfdaea",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1532235257284,
+        "last_edited_time": 1552262760000,
         "parent_id": "80fb91dd-63d4-45e2-8010-b9f5e261da81",
         "parent_table": "block",
         "properties": {
@@ -652,7 +610,7 @@
           ]
         },
         "type": "page",
-        "version": 27,
+        "version": 47,
         "title": "Maps with slices as values",
         "format_page": {
           "page_cover": "",
@@ -674,7 +632,7 @@
         "id": "ef0d76af-9188-4e07-a1c5-a606f17a341c",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539763586980,
+        "last_edited_time": 1552263540000,
         "parent_id": "80fb91dd-63d4-45e2-8010-b9f5e261da81",
         "parent_table": "block",
         "properties": {
@@ -685,8 +643,41 @@
           ]
         },
         "type": "page",
-        "version": 37,
+        "version": 69,
         "title": "Concurrent access of maps",
+        "format_page": {
+          "page_cover": "",
+          "page_cover_position": 0,
+          "page_font": "",
+          "page_full_width": true,
+          "page_icon": "",
+          "page_small_text": true
+        }
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1532155995912,
+        "format": {
+          "page_full_width": true,
+          "page_small_text": true
+        },
+        "id": "f7fd36d6-2c1b-4438-84f8-3b73c72fc5ac",
+        "ignore_block_count": true,
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552261080000,
+        "parent_id": "80fb91dd-63d4-45e2-8010-b9f5e261da81",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Zero value of a map"
+            ]
+          ]
+        },
+        "type": "page",
+        "version": 64,
+        "title": "Zero value of a map",
         "format_page": {
           "page_cover": "",
           "page_cover_position": 0,
