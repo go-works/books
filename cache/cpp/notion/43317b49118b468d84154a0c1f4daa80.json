@@ -23,18 +23,18 @@
     "id": "43317b49-118b-468d-8415-4a0c1f4daa80",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550655900000,
+    "last_edited_time": 1552344060000,
     "parent_id": "8655f492-9c51-4f68-ad52-8b6c1e02a277",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "IteratorPointer Invalidation"
+          "Iterator / pointer invalidation"
         ]
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 16,
     "content_resolved": [
       {
         "alive": true,
@@ -190,13 +190,13 @@
         "id": "3ac3f4f1-f503-4846-9eaa-176f89ce903a",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522057738,
+        "last_edited_time": 1552344060000,
         "parent_id": "43317b49-118b-468d-8415-4a0c1f4daa80",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -206,9 +206,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "vector\u003cint\u003e v(5); // Vector has a size of 5; capacity is unknown.\nint *p1 = \u0026v[0];\nv.push_back(2);   // p1 may have been invalidated, since the capacity was unknown.\n\nv.reserve(20);    // Capacity is now at least 20.\nint *p2 = \u0026v[0];\nv.push_back(4);   // p2 is *not* invalidated, since the size of `v` is now 7.\nv.insert(v.end(), 30, 9); // Inserts 30 elements at the end. The size exceeds the\n                          // requested capacity of 20, so `p2` is (probably) invalidated.\nint *p3 = \u0026v[0];\nv.reserve(v.capacity() + 20); // Capacity exceeded, thus `p3` is invalid.",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -217,25 +217,25 @@
         "id": "a3221a31-017b-429b-a619-c7b16211e3f6",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522057738,
+        "last_edited_time": 1552344060000,
         "parent_id": "43317b49-118b-468d-8415-4a0c1f4daa80",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
             [
-              "auto old_cap = v.capacity();\nv.shrink_to_fit();\nif(old_cap != v.capacity())\n    // Iterators were invalidated."
+              "auto old_cap = v.capacity();\nv.shrink_to_fit();\nif (old_cap != v.capacity()) {\n    // Iterators were invalidated.\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "auto old_cap = v.capacity();\nv.shrink_to_fit();\nif(old_cap != v.capacity())\n    // Iterators were invalidated.",
-        "code_language": "Plain Text"
+        "version": 8,
+        "code": "auto old_cap = v.capacity();\nv.shrink_to_fit();\nif (old_cap != v.capacity()) {\n    // Iterators were invalidated.\n}",
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -287,13 +287,13 @@
         "id": "5ce0f09f-f3ed-4c7e-9534-11aa02242495",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522057738,
+        "last_edited_time": 1552344060000,
         "parent_id": "43317b49-118b-468d-8415-4a0c1f4daa80",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -303,9 +303,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "vector\u003cint\u003e v(5);\nv.reserve(20);                 // Capacity is at least 20.\nint *p1 = \u0026v[0];\nint *p2 = \u0026v[3];\nv.insert(v.begin() + 2, 5, 0); // `p2` is invalidated, but since the capacity\n                               // did not change, `p1` remains valid.\nint *p3 = \u0026v[v.size() - 1];\nv.push_back(10); // The capacity did not change, so `p3` and `p1` remain valid.",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -357,13 +357,13 @@
         "id": "29bda842-5a22-4d4a-9b43-4621b2197de0",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522057739,
+        "last_edited_time": 1552344060000,
         "parent_id": "43317b49-118b-468d-8415-4a0c1f4daa80",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -373,9 +373,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "vector\u003cint\u003e v(10);\nint *p1 = \u0026v[0];\nint *p2 = \u0026v[5];\nv.erase(v.begin() + 3, v.end()); // `p2` is invalid, but `p1` remains valid.",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -433,7 +433,7 @@
         ]
       }
     ],
-    "title": "IteratorPointer Invalidation",
+    "title": "Iterator / pointer invalidation",
     "format_page": {
       "page_cover": "",
       "page_cover_position": 0,

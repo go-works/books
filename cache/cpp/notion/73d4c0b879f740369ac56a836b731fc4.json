@@ -35,7 +35,7 @@
     "id": "73d4c0b8-79f7-4036-9ac5-6a836b731fc4",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1551688830248,
+    "last_edited_time": 1552344540000,
     "parent_id": "0789dc55-0210-4292-957d-ed83df8e73af",
     "parent_table": "block",
     "properties": {
@@ -46,7 +46,7 @@
       ]
     },
     "type": "page",
-    "version": 4,
+    "version": 5,
     "content_resolved": [
       {
         "alive": true,
@@ -153,13 +153,13 @@
         "id": "37da44ad-6701-4830-abf2-95c6e7c89e15",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550525089118,
+        "last_edited_time": 1552344540000,
         "parent_id": "73d4c0b8-79f7-4036-9ac5-6a836b731fc4",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -169,9 +169,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "#include \u003ciostream\u003e\n#include \u003cset\u003e\n#include \u003cstdlib.h\u003e \n\nstruct custom_compare final\n{\n    bool operator() (const std::string\u0026 left, const std::string\u0026 right) const\n    {\n        int nLeft = atoi(left.c_str());\n        int nRight = atoi(right.c_str());\n        return nLeft \u003c nRight;\n    }\n};\n\nint main ()\n{\n    std::set\u003cstd::string\u003e sut({\"1\", \"2\", \"5\", \"23\", \"6\", \"290\"});\n  \n    std::cout \u003c\u003c \"### Default sort on std::set\u003cstd::string\u003e :\" \u003c\u003c std::endl;\n    for (auto \u0026\u0026data: sut)\n        std::cout \u003c\u003c data \u003c\u003c std::endl;\n  \n    std::set\u003cstd::string, custom_compare\u003e sut_custom({\"1\", \"2\", \"5\", \"23\", \"6\", \"290\"},\n                                                     custom_compare{}); //\u003c Compare object optional as its default constructible.\n  \n    std::cout \u003c\u003c std::endl \u003c\u003c \"### Custom sort on set :\" \u003c\u003c std::endl;\n    for (auto \u0026\u0026data : sut_custom)\n        std::cout \u003c\u003c data \u003c\u003c std::endl;\n  \n    auto compare_via_lambda = [](auto \u0026\u0026lhs, auto \u0026\u0026rhs){ return lhs \u003e rhs; };\n    using set_via_lambda = std::set\u003cstd::string, decltype(compare_via_lambda)\u003e;\n    set_via_lambda sut_reverse_via_lambda({\"1\", \"2\", \"5\", \"23\", \"6\", \"290\"},\n                                          compare_via_lambda);\n  \n    std::cout \u003c\u003c std::endl \u003c\u003c \"### Lambda sort on set :\" \u003c\u003c std::endl;\n    for (auto \u0026\u0026data : sut_reverse_via_lambda)\n        std::cout \u003c\u003c data \u003c\u003c std::endl;\n\n    return 0;\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,

@@ -19,18 +19,18 @@
     "id": "a60f1938-229a-4634-95e0-953aff48a53e",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550656320000,
+    "last_edited_time": 1552348080000,
     "parent_id": "8a295383-3e95-42dc-b126-f5d5d4d9927a",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "Argument Dependent Lookup"
+          "Argument dependent lookup (ADL)"
         ]
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 21,
     "content_resolved": [
       {
         "alive": true,
@@ -64,13 +64,13 @@
         "id": "884eebed-1662-499e-8578-eec432542026",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521997504,
+        "last_edited_time": 1552348080000,
         "parent_id": "a60f1938-229a-4634-95e0-953aff48a53e",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -80,9 +80,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "namespace Test\n{\n  int call(int i);\n\n  class SomeClass {...};\n\n  int call_too(const SomeClass \u0026data);\n}\n\ncall(5); //Fails. Not a qualified function name.\n\nTest::SomeClass data;\n\ncall_too(data); //Succeeds",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -250,13 +250,13 @@
         "id": "ce61998e-c610-47cb-8ffb-c863b9a613ba",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521997505,
+        "last_edited_time": 1552348080000,
         "parent_id": "a60f1938-229a-4634-95e0-953aff48a53e",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -266,12 +266,12 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "void foo();\nnamespace N {\n    struct X {};\n    void foo(X ) { std::cout \u003c\u003c '1'; }\n    void qux(X ) { std::cout \u003c\u003c '2'; }\n}\n\nstruct C {\n    void foo() {}\n    void bar() {\n        foo(N::X{}); // error: ADL is disabled and C::foo() takes no arguments\n    }\n};\n\nvoid bar() {\n    extern void foo(); // redeclares ::foo\n    foo(N::X{});       // error: ADL is disabled and ::foo() doesn't take any arguments\n}\n\nint qux;\n\nvoid baz() {\n    qux(N::X{}); // error: variable declaration disables ADL for \"qux\"\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       }
     ],
-    "title": "Argument Dependent Lookup",
+    "title": "Argument dependent lookup (ADL)",
     "format_page": {
       "page_cover": "",
       "page_cover_position": 0,

@@ -11,7 +11,8 @@
       "52b1049d-32b0-4837-bbeb-3383870081ed",
       "97d934ec-3884-418b-9319-5f827a389dbf",
       "444e6b8d-26e7-49a0-acf3-ef8aab0a33b3",
-      "66bce53d-32ad-4c00-958d-f912c67c83aa"
+      "66bce53d-32ad-4c00-958d-f912c67c83aa",
+      "47d618a7-842b-4d45-8288-a2c60c043a56"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1550522739859,
@@ -22,7 +23,7 @@
     "id": "f025db22-eb6b-4c52-befd-f68d0de7b56d",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1551686823344,
+    "last_edited_time": 1552345320000,
     "parent_id": "de2aa703-c2f6-4f94-bc50-eb5201c26ac3",
     "parent_table": "block",
     "properties": {
@@ -33,7 +34,7 @@
       ]
     },
     "type": "page",
-    "version": 4,
+    "version": 7,
     "content_resolved": [
       {
         "alive": true,
@@ -92,13 +93,13 @@
         "id": "3ce9808f-268c-4979-a639-84accfa10d97",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522739857,
+        "last_edited_time": 1552345260000,
         "parent_id": "f025db22-eb6b-4c52-befd-f68d0de7b56d",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -108,9 +109,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "* e.g. Calling a function `Delegate *App::get_delegate()` on an `App` instance that did not have a delegate would return `nullptr`.\n* This is a good solution for objects that have been dynamically allocated or are large and managed by pointers, but isn't a good solution for small objects that are typically stack-allocated and passed by copying.",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -388,25 +389,37 @@
         "id": "66bce53d-32ad-4c00-958d-f912c67c83aa",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522739859,
+        "last_edited_time": 1552345260000,
         "parent_id": "f025db22-eb6b-4c52-befd-f68d0de7b56d",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
             [
-              "#include \u003ciostream\u003e\n#include \u003coptional\u003e\n#include \u003cstring\u003e\n#include \u003cvector\u003e\n\nstruct Animal {\n    std::string name;\n};\n\nstruct Person {\n    std::string name;\n    std::vector\u003cAnimal\u003e pets;\n    \n    std::optional\u003cAnimal\u003e pet_with_name(const std::string \u0026name) {\n        for (const Animal \u0026pet : pets) {\n            if (pet.name == name) {\n                return pet;\n            }\n        }\n        return std::nullopt;\n    }\n};\n\nint main() {\n    Person john;\n    john.name = \"John\";\n    \n    Animal fluffy;\n    fluffy.name = \"Fluffy\";\n    john.pets.push_back(fluffy);\n    \n    Animal furball;\n    furball.name = \"Furball\";\n    john.pets.push_back(furball);\n    \n    std::optional\u003cAnimal\u003e whiskers = john.pet_with_name(\"Whiskers\");\n    if (whiskers) {\n        std::cout \u003c\u003c \"John has a pet named Whiskers.\" \u003c\u003c std::endl;\n    }\n    else {\n        std::cout \u003c\u003c \"Whiskers must not belong to John.\" \u003c\u003c std::endl;\n    }\n}"
+              "#include \u003ciostream\u003e\n#include \u003coptional\u003e\n#include \u003cstring\u003e\n#include \u003cvector\u003e\n\nstruct Animal {\n    std::string name;\n};\n\nstruct Person {\n    std::string name;\n    std::vector\u003cAnimal\u003e pets;\n    \n    std::optional\u003cAnimal\u003e pet_with_name(const std::string \u0026name) {\n        for (const Animal \u0026pet : pets) {\n            if (pet.name == name) {\n                return pet;\n            }\n        }\n        return std::nullopt;\n    }\n};\n\nint main() {\n    Person john;\n    john.name = \"John\";\n    \n    Animal fluffy;\n    fluffy.name = \"Fluffy\";\n    john.pets.push_back(fluffy);\n    \n    Animal furball;\n    furball.name = \"Furball\";\n    john.pets.push_back(furball);\n    \n    std::optional\u003cAnimal\u003e whiskers = john.pet_with_name(\"Whiskers\");\n    if (whiskers) {\n        std::cout \u003c\u003c \"John has a pet named Whiskers.\" \u003c\u003c std::endl;\n    } else {\n        std::cout \u003c\u003c \"Whiskers must not belong to John.\" \u003c\u003c std::endl;\n    }\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "#include \u003ciostream\u003e\n#include \u003coptional\u003e\n#include \u003cstring\u003e\n#include \u003cvector\u003e\n\nstruct Animal {\n    std::string name;\n};\n\nstruct Person {\n    std::string name;\n    std::vector\u003cAnimal\u003e pets;\n    \n    std::optional\u003cAnimal\u003e pet_with_name(const std::string \u0026name) {\n        for (const Animal \u0026pet : pets) {\n            if (pet.name == name) {\n                return pet;\n            }\n        }\n        return std::nullopt;\n    }\n};\n\nint main() {\n    Person john;\n    john.name = \"John\";\n    \n    Animal fluffy;\n    fluffy.name = \"Fluffy\";\n    john.pets.push_back(fluffy);\n    \n    Animal furball;\n    furball.name = \"Furball\";\n    john.pets.push_back(furball);\n    \n    std::optional\u003cAnimal\u003e whiskers = john.pet_with_name(\"Whiskers\");\n    if (whiskers) {\n        std::cout \u003c\u003c \"John has a pet named Whiskers.\" \u003c\u003c std::endl;\n    }\n    else {\n        std::cout \u003c\u003c \"Whiskers must not belong to John.\" \u003c\u003c std::endl;\n    }\n}",
-        "code_language": "Plain Text"
+        "version": 9,
+        "code": "#include \u003ciostream\u003e\n#include \u003coptional\u003e\n#include \u003cstring\u003e\n#include \u003cvector\u003e\n\nstruct Animal {\n    std::string name;\n};\n\nstruct Person {\n    std::string name;\n    std::vector\u003cAnimal\u003e pets;\n    \n    std::optional\u003cAnimal\u003e pet_with_name(const std::string \u0026name) {\n        for (const Animal \u0026pet : pets) {\n            if (pet.name == name) {\n                return pet;\n            }\n        }\n        return std::nullopt;\n    }\n};\n\nint main() {\n    Person john;\n    john.name = \"John\";\n    \n    Animal fluffy;\n    fluffy.name = \"Fluffy\";\n    john.pets.push_back(fluffy);\n    \n    Animal furball;\n    furball.name = \"Furball\";\n    john.pets.push_back(furball);\n    \n    std::optional\u003cAnimal\u003e whiskers = john.pet_with_name(\"Whiskers\");\n    if (whiskers) {\n        std::cout \u003c\u003c \"John has a pet named Whiskers.\" \u003c\u003c std::endl;\n    } else {\n        std::cout \u003c\u003c \"Whiskers must not belong to John.\" \u003c\u003c std::endl;\n    }\n}",
+        "code_language": "C++"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1552345320000,
+        "id": "47d618a7-842b-4d45-8288-a2c60c043a56",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1552345320000,
+        "parent_id": "f025db22-eb6b-4c52-befd-f68d0de7b56d",
+        "parent_table": "block",
+        "type": "text",
+        "version": 3
       }
     ],
     "title": "Using optionals to represent the failure of a function",

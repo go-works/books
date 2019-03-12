@@ -6,7 +6,6 @@
       "79b06282-8777-4f96-943e-1a5aa7a1b337",
       "42eeca50-206d-4f3f-9ade-7536d646ddc1",
       "8744ea0a-5741-428d-b0ab-3a2abb1221c0",
-      "bf15b8d7-3212-4fa7-bb04-5232479500a9",
       "9c7054d9-e55c-41a3-9ae2-2a4dc1d80690",
       "132435da-b6ed-47ea-b5d6-4f3b67d22ac7",
       "77b5d05e-0786-4d11-a468-c9a64354eb42"
@@ -20,18 +19,18 @@
     "id": "ce885ffe-ce1b-4adb-b1f9-c6fe88b04fa2",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1551686922216,
+    "last_edited_time": 1552344240000,
     "parent_id": "f2a0f008-68d4-4ef0-b159-b4601056dc66",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "Initializing an std array"
+          "Initializing an std::array"
         ]
       ]
     },
     "type": "page",
-    "version": 4,
+    "version": 9,
     "content_resolved": [
       {
         "alive": true,
@@ -228,13 +227,13 @@
         "id": "8744ea0a-5741-428d-b0ab-3a2abb1221c0",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522994132,
+        "last_edited_time": 1552344240000,
         "parent_id": "ce885ffe-ce1b-4adb-b1f9-c6fe88b04fa2",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -244,22 +243,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "// 1) Using aggregate-initialization\nstd::array\u003cint, 3\u003e a{ 0, 1, 2 };\n// or equivalently\nstd::array\u003cint, 3\u003e a = { 0, 1, 2 };\n\n// 2) Using the copy constructor\nstd::array\u003cint, 3\u003e a{ 0, 1, 2 };\nstd::array\u003cint, 3\u003e a2(a);\n// or equivalently\nstd::array\u003cint, 3\u003e a2 = a;\n\n// 3) Using the move constructor\nstd::array\u003cint, 3\u003e a = std::array\u003cint, 3\u003e{ 0, 1, 2 };",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550522994132,
-        "id": "bf15b8d7-3212-4fa7-bb04-5232479500a9",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522994132,
-        "parent_id": "ce885ffe-ce1b-4adb-b1f9-c6fe88b04fa2",
-        "parent_table": "block",
-        "type": "divider",
-        "version": 1
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -456,13 +442,13 @@
         "id": "77b5d05e-0786-4d11-a468-c9a64354eb42",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522994133,
+        "last_edited_time": 1552344240000,
         "parent_id": "ce885ffe-ce1b-4adb-b1f9-c6fe88b04fa2",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -472,12 +458,12 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "struct A { int values[3]; }; // An aggregate type\n\n// 1) Using aggregate initialization with brace elision\n// It works only if T is an aggregate type!\nstd::array\u003cA, 2\u003e a{ 0, 1, 2, 3, 4, 5 };\n// or equivalently\nstd::array\u003cA, 2\u003e a = { 0, 1, 2, 3, 4, 5 };\n\n// 2) Using aggregate initialization with brace initialization of sub-elements\nstd::array\u003cA, 2\u003e a{ A{ 0, 1, 2 }, A{ 3, 4, 5 } };\n// or equivalently\nstd::array\u003cA, 2\u003e a = { A{ 0, 1, 2 }, A{ 3, 4, 5 } };\n\n// 3)\nstd::array\u003cA, 2\u003e a{{ { 0, 1, 2 }, { 3, 4, 5 } }};\n// or equivalently\nstd::array\u003cA, 2\u003e a = {{ { 0, 1, 2 }, { 3, 4, 5 } }};\n\n// 4) Using the copy constructor\nstd::array\u003cA, 2\u003e a{ 1, 2, 3 };\nstd::array\u003cA, 2\u003e a2(a);\n// or equivalently\nstd::array\u003cA, 2\u003e a2 = a;\n\n// 5) Using the move constructor\nstd::array\u003cA, 2\u003e a = std::array\u003cA, 2\u003e{ 0, 1, 2, 3, 4, 5 };",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       }
     ],
-    "title": "Initializing an std array",
+    "title": "Initializing an std::array",
     "format_page": {
       "page_cover": "",
       "page_cover_position": 0,

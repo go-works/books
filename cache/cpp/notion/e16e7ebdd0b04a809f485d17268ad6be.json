@@ -26,18 +26,18 @@
     "id": "e16e7ebd-d0b0-4a80-9f48-5d17268ad6be",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550656800000,
+    "last_edited_time": 1552347720000,
     "parent_id": "94bfa868-4e02-4b90-841b-817c34132524",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "The Curiously Recurring Template Pattern CRTP"
+          "Curiously recurring template pattern (CRTP)"
         ]
       ]
     },
     "type": "page",
-    "version": 9,
+    "version": 26,
     "content_resolved": [
       {
         "alive": true,
@@ -247,13 +247,13 @@
         "id": "103b9503-7eea-4c02-b4ad-214d45ceef6e",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521948554,
+        "last_edited_time": 1552347720000,
         "parent_id": "e16e7ebd-d0b0-4a80-9f48-5d17268ad6be",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -263,9 +263,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "#include \u003citerator\u003e\ntemplate \u003ctypename Sub\u003e\nclass Container {\n  private:\n    // self() yields a reference to the derived type\n    Sub\u0026 self() { return *static_cast\u003cSub*\u003e(this); }\n    Sub const\u0026 self() const { return *static_cast\u003cSub const*\u003e(this); }\n\n  public:\n    decltype(auto) front() {\n      return *self().begin();\n    }\n\n    decltype(auto) back() {\n      return *std::prev(self().end());\n    }\n\n    decltype(auto) size() const {\n      return std::distance(self().begin(), self().end());\n    }\n\n    decltype(auto) operator[](std::size_t i) {\n      return *std::next(self().begin(), i);\n    }\n};",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -407,13 +407,13 @@
         "id": "114b0ef3-50b9-4bca-8f0a-cc5cb7990aec",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521948555,
+        "last_edited_time": 1552347720000,
         "parent_id": "e16e7ebd-d0b0-4a80-9f48-5d17268ad6be",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -423,9 +423,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "#include \u003cmemory\u003e\n// A dynamically allocated array\ntemplate \u003ctypename T\u003e\nclass DynArray : public Container\u003cDynArray\u003cT\u003e\u003e {\n  public:\n    using Base = Container\u003cDynArray\u003cT\u003e\u003e;\n\n    DynArray(std::size_t size)\n      : size_{size},\n      data_{std::make_unique\u003cT[]\u003e(size_)}\n    { }\n\n    T* begin() { return data_.get(); }\n    const T* begin() const { return data_.get(); }\n    T* end() { return data_.get() + size_; }\n    const T* end() const { return data_.get() + size_; }\n\n  private:\n    std::size_t size_;\n    std::unique_ptr\u003cT[]\u003e data_;\n};",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -477,13 +477,13 @@
         "id": "0deae1c4-f54d-4651-8599-d4d5265b9ccf",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521948555,
+        "last_edited_time": 1552347720000,
         "parent_id": "e16e7ebd-d0b0-4a80-9f48-5d17268ad6be",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -493,9 +493,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "DynArray\u003cint\u003e arr(10);\narr.front() = 2;\narr[2] = 5;\nassert(arr.size() == 10);",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -541,13 +541,13 @@
         "id": "85c597d8-e9be-425f-80b4-dbde05f96653",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521948555,
+        "last_edited_time": 1552347720000,
         "parent_id": "e16e7ebd-d0b0-4a80-9f48-5d17268ad6be",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -557,9 +557,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "DynArray\u003cint\u003e arr(10);\nDynArray\u003cint\u003e::Base \u0026 base = arr;\nbase.begin(); // no virtual calls",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -684,13 +684,13 @@
         "id": "d722fc1d-8d63-47ea-92e7-60cc8e9d5ef3",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521948556,
+        "last_edited_time": 1552347720000,
         "parent_id": "e16e7ebd-d0b0-4a80-9f48-5d17268ad6be",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -700,12 +700,12 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "class A {};\nclass B: public A{};\n\nA* a = new B;",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       }
     ],
-    "title": "The Curiously Recurring Template Pattern CRTP",
+    "title": "Curiously recurring template pattern (CRTP)",
     "format_page": {
       "page_cover": "",
       "page_cover_position": 0,

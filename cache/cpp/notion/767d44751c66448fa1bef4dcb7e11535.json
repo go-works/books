@@ -24,18 +24,18 @@
     "id": "767d4475-1c66-448f-a1be-f4dcb7e11535",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1551686804906,
+    "last_edited_time": 1552345380000,
     "parent_id": "de2aa703-c2f6-4f94-bc50-eb5201c26ac3",
     "parent_table": "block",
     "properties": {
       "title": [
         [
-          "optional as return value"
+          "std::optional as return value"
         ]
       ]
     },
     "type": "page",
-    "version": 4,
+    "version": 11,
     "content_resolved": [
       {
         "alive": true,
@@ -44,13 +44,13 @@
         "id": "40750fae-66f7-4df3-81fd-7579d99cecae",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522736598,
+        "last_edited_time": 1552345320000,
         "parent_id": "767d4475-1c66-448f-a1be-f4dcb7e11535",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -60,9 +60,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "std::optional\u003cfloat\u003e divide(float a, float b) {\n  if (b!=0.f) return a/b;\n  return {};\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -139,13 +139,13 @@
         "id": "8d839991-0414-45bd-9070-39ac753247f5",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522736600,
+        "last_edited_time": 1552345320000,
         "parent_id": "767d4475-1c66-448f-a1be-f4dcb7e11535",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -155,9 +155,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "template\u003cclass Range, class Pred\u003e\nauto find_if( Range\u0026\u0026 r, Pred\u0026\u0026 p ) {\n  using std::begin; using std::end;\n  auto b = begin(r), e = end(r);\n  auto r = std::find_if(b, e , p );\n  using iterator = decltype(r);\n  if (r==e)\n    return std::optional\u003citerator\u003e();\n  return std::optional\u003citerator\u003e(r);\n}\ntemplate\u003cclass Range, class T\u003e\nauto find( Range\u0026\u0026 r, T const\u0026 t ) {\n  return find_if( std::forward\u003cRange\u003e(r), [\u0026t](auto\u0026\u0026 x){return x==t;} );\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -307,13 +307,13 @@
         "id": "7e33c595-73db-43a8-85e5-b8e0c8cca3b1",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522736601,
+        "last_edited_time": 1552345380000,
         "parent_id": "767d4475-1c66-448f-a1be-f4dcb7e11535",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -323,9 +323,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "if (find( vec, 7 )) {\n  // code\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -359,13 +359,13 @@
         "id": "3bf9ea73-7834-4696-be5d-c93d898d0e76",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550522736601,
+        "last_edited_time": 1552345380000,
         "parent_id": "767d4475-1c66-448f-a1be-f4dcb7e11535",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -375,9 +375,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "if (auto oit = find( vec, 7 )) {\n  vec.erase(*oit);\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -405,7 +405,7 @@
         ]
       }
     ],
-    "title": "optional as return value",
+    "title": "std::optional as return value",
     "format_page": {
       "page_cover": "",
       "page_cover_position": 0,

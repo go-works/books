@@ -4,8 +4,6 @@
     "alive": true,
     "content": [
       "bae5140f-8646-4ae6-bb8e-122cab29d210",
-      "365e4d67-1425-4255-93b1-7d1a2269d660",
-      "a0768124-3c85-452d-bde3-eced0fa06aeb",
       "6d3165e1-a33b-428e-a249-e52fa7d7a2ef",
       "5e6df799-c527-448d-8bae-7ad611706153"
     ],
@@ -18,7 +16,7 @@
     "id": "9fc80f74-14b1-4cb8-8d70-7d671916671b",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1551689040089,
+    "last_edited_time": 1552345800000,
     "parent_id": "9a81e0e2-994e-41b0-aa0f-0bb41311ad7d",
     "parent_table": "block",
     "properties": {
@@ -29,7 +27,7 @@
       ]
     },
     "type": "page",
-    "version": 4,
+    "version": 7,
     "content_resolved": [
       {
         "alive": true,
@@ -38,79 +36,25 @@
         "id": "bae5140f-8646-4ae6-bb8e-122cab29d210",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550525179472,
+        "last_edited_time": 1552345800000,
         "parent_id": "9fc80f74-14b1-4cb8-8d70-7d671916671b",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
             [
-              "#include \u003cforward_list\u003e\n#include \u003cstring\u003e\n#include \u003ciostream\u003e"
+              "#include \u003cforward_list\u003e\n#include \u003cstring\u003e\n#include \u003ciostream\u003e\n\ntemplate\u003ctypename T\u003e\nstd::ostream\u0026 operator\u003c\u003c(std::ostream\u0026 s, const std::forward_list\u003cT\u003e\u0026 v) {\n    s.put('[');\n    char comma[3] = {'\\0', ' ', '\\0'};\n    for (const auto\u0026 e : v) {\n        s \u003c\u003c comma \u003c\u003c e;\n        comma[0] = ',';\n    }\n    return s \u003c\u003c ']';\n}\n\nint main() \n{\n    // c++11 initializer list syntax:\n    std::forward_list\u003cstd::string\u003e words1 {\"the\", \"frogurt\", \"is\", \"also\", \"cursed\"};\n    std::cout \u003c\u003c \"words1: \" \u003c\u003c words1 \u003c\u003c '\\n';\n \n    // words2 == words1\n    std::forward_list\u003cstd::string\u003e words2(words1.begin(), words1.end());\n    std::cout \u003c\u003c \"words2: \" \u003c\u003c words2 \u003c\u003c '\\n';\n \n    // words3 == words1\n    std::forward_list\u003cstd::string\u003e words3(words1);\n    std::cout \u003c\u003c \"words3: \" \u003c\u003c words3 \u003c\u003c '\\n';\n \n    // words4 is {\"Mo\", \"Mo\", \"Mo\", \"Mo\", \"Mo\"}\n    std::forward_list\u003cstd::string\u003e words4(5, \"Mo\");\n    std::cout \u003c\u003c \"words4: \" \u003c\u003c words4 \u003c\u003c '\\n';\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 1,
-        "code": "#include \u003cforward_list\u003e\n#include \u003cstring\u003e\n#include \u003ciostream\u003e",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550525179473,
-        "id": "365e4d67-1425-4255-93b1-7d1a2269d660",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550525179473,
-        "parent_id": "9fc80f74-14b1-4cb8-8d70-7d671916671b",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "template\u003ctypename T\u003e\nstd::ostream\u0026 operator\u003c\u003c(std::ostream\u0026 s, const std::forward_list\u003cT\u003e\u0026 v) {\n    s.put('[');\n    char comma[3] = {'\\0', ' ', '\\0'};\n    for (const auto\u0026 e : v) {\n        s \u003c\u003c comma \u003c\u003c e;\n        comma[0] = ',';\n    }\n    return s \u003c\u003c ']';\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "template\u003ctypename T\u003e\nstd::ostream\u0026 operator\u003c\u003c(std::ostream\u0026 s, const std::forward_list\u003cT\u003e\u0026 v) {\n    s.put('[');\n    char comma[3] = {'\\0', ' ', '\\0'};\n    for (const auto\u0026 e : v) {\n        s \u003c\u003c comma \u003c\u003c e;\n        comma[0] = ',';\n    }\n    return s \u003c\u003c ']';\n}",
-        "code_language": "Plain Text"
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1550525179473,
-        "id": "a0768124-3c85-452d-bde3-eced0fa06aeb",
-        "ignore_block_count": true,
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550525179473,
-        "parent_id": "9fc80f74-14b1-4cb8-8d70-7d671916671b",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "int main() \n{\n    // c++11 initializer list syntax:\n    std::forward_list\u003cstd::string\u003e words1 {\"the\", \"frogurt\", \"is\", \"also\", \"cursed\"};\n    std::cout \u003c\u003c \"words1: \" \u003c\u003c words1 \u003c\u003c '\\n';\n \n    // words2 == words1\n    std::forward_list\u003cstd::string\u003e words2(words1.begin(), words1.end());\n    std::cout \u003c\u003c \"words2: \" \u003c\u003c words2 \u003c\u003c '\\n';\n \n    // words3 == words1\n    std::forward_list\u003cstd::string\u003e words3(words1);\n    std::cout \u003c\u003c \"words3: \" \u003c\u003c words3 \u003c\u003c '\\n';\n \n    // words4 is {\"Mo\", \"Mo\", \"Mo\", \"Mo\", \"Mo\"}\n    std::forward_list\u003cstd::string\u003e words4(5, \"Mo\");\n    std::cout \u003c\u003c \"words4: \" \u003c\u003c words4 \u003c\u003c '\\n';\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 1,
-        "code": "int main() \n{\n    // c++11 initializer list syntax:\n    std::forward_list\u003cstd::string\u003e words1 {\"the\", \"frogurt\", \"is\", \"also\", \"cursed\"};\n    std::cout \u003c\u003c \"words1: \" \u003c\u003c words1 \u003c\u003c '\\n';\n \n    // words2 == words1\n    std::forward_list\u003cstd::string\u003e words2(words1.begin(), words1.end());\n    std::cout \u003c\u003c \"words2: \" \u003c\u003c words2 \u003c\u003c '\\n';\n \n    // words3 == words1\n    std::forward_list\u003cstd::string\u003e words3(words1);\n    std::cout \u003c\u003c \"words3: \" \u003c\u003c words3 \u003c\u003c '\\n';\n \n    // words4 is {\"Mo\", \"Mo\", \"Mo\", \"Mo\", \"Mo\"}\n    std::forward_list\u003cstd::string\u003e words4(5, \"Mo\");\n    std::cout \u003c\u003c \"words4: \" \u003c\u003c words4 \u003c\u003c '\\n';\n}",
-        "code_language": "Plain Text"
+        "version": 9,
+        "code": "#include \u003cforward_list\u003e\n#include \u003cstring\u003e\n#include \u003ciostream\u003e\n\ntemplate\u003ctypename T\u003e\nstd::ostream\u0026 operator\u003c\u003c(std::ostream\u0026 s, const std::forward_list\u003cT\u003e\u0026 v) {\n    s.put('[');\n    char comma[3] = {'\\0', ' ', '\\0'};\n    for (const auto\u0026 e : v) {\n        s \u003c\u003c comma \u003c\u003c e;\n        comma[0] = ',';\n    }\n    return s \u003c\u003c ']';\n}\n\nint main() \n{\n    // c++11 initializer list syntax:\n    std::forward_list\u003cstd::string\u003e words1 {\"the\", \"frogurt\", \"is\", \"also\", \"cursed\"};\n    std::cout \u003c\u003c \"words1: \" \u003c\u003c words1 \u003c\u003c '\\n';\n \n    // words2 == words1\n    std::forward_list\u003cstd::string\u003e words2(words1.begin(), words1.end());\n    std::cout \u003c\u003c \"words2: \" \u003c\u003c words2 \u003c\u003c '\\n';\n \n    // words3 == words1\n    std::forward_list\u003cstd::string\u003e words3(words1);\n    std::cout \u003c\u003c \"words3: \" \u003c\u003c words3 \u003c\u003c '\\n';\n \n    // words4 is {\"Mo\", \"Mo\", \"Mo\", \"Mo\", \"Mo\"}\n    std::forward_list\u003cstd::string\u003e words4(5, \"Mo\");\n    std::cout \u003c\u003c \"words4: \" \u003c\u003c words4 \u003c\u003c '\\n';\n}",
+        "code_language": "C++"
       },
       {
         "alive": true,

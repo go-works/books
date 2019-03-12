@@ -24,7 +24,7 @@
     "id": "429615c6-583b-480a-8eb2-6f0413b0a1ff",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550656800000,
+    "last_edited_time": 1552347780000,
     "parent_id": "94bfa868-4e02-4b90-841b-817c34132524",
     "parent_table": "block",
     "properties": {
@@ -35,7 +35,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 9,
     "content_resolved": [
       {
         "alive": true,
@@ -69,13 +69,13 @@
         "id": "b9ad9f50-fe13-4256-b9da-ae2146795d5b",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521953603,
+        "last_edited_time": 1552347780000,
         "parent_id": "429615c6-583b-480a-8eb2-6f0413b0a1ff",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -85,9 +85,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "// Common case:\ntemplate\u003ctypename T, typename U\u003e\nstruct S {\n    T t_val;\n    U u_val;\n};\n\n// Special case when the first template argument is fixed to int\ntemplate\u003ctypename V\u003e\nstruct S\u003cint, V\u003e {\n    double another_value;\n    int foo(double arg) {// Do something}\n};",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -146,13 +146,13 @@
         "id": "ff71f8c4-5963-44a6-8038-f3818bda70d4",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521953603,
+        "last_edited_time": 1552347780000,
         "parent_id": "429615c6-583b-480a-8eb2-6f0413b0a1ff",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -162,9 +162,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "template\u003ctypename T, typename U, typename V\u003e\nstruct S {\n    static void foo() {\n        std::cout \u003c\u003c \"General case\\n\";\n    }\n};\n\ntemplate\u003ctypename U, typename V\u003e\nstruct S\u003cint, U, V\u003e {\n    static void foo() {\n        std::cout \u003c\u003c \"T = int\\n\";\n    }\n};\n\ntemplate\u003ctypename V\u003e\nstruct S\u003cint, double, V\u003e {\n    static void foo() {\n        std::cout \u003c\u003c \"T = int, U = double\\n\";\n    }\n};",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -198,13 +198,13 @@
         "id": "03921ab4-8aff-4afc-a6c8-9a81dafcc834",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521953603,
+        "last_edited_time": 1552347780000,
         "parent_id": "429615c6-583b-480a-8eb2-6f0413b0a1ff",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -214,9 +214,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "S\u003cstd::string, int, double\u003e::foo();\nS\u003cint, float, std::string\u003e::foo();\nS\u003cint, double, std::string\u003e::foo();",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -302,13 +302,13 @@
         "id": "9d8d2282-2a14-402e-9105-978b68f42b1c",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521953604,
+        "last_edited_time": 1552347780000,
         "parent_id": "429615c6-583b-480a-8eb2-6f0413b0a1ff",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -318,9 +318,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "template\u003ctypename T, typename U\u003e\nvoid foo(T t, U u) {\n    std::cout \u003c\u003c \"General case: \" \u003c\u003c t \u003c\u003c \" \" \u003c\u003c u \u003c\u003c std::endl;\n}\n\n// OK.\ntemplate\u003c\u003e\nvoid foo\u003cint, int\u003e(int a1, int a2) {\n    std::cout \u003c\u003c \"Two ints: \" \u003c\u003c a1 \u003c\u003c \" \" \u003c\u003c a2 \u003c\u003c std::endl;\n}\n\nvoid invoke_foo() {\n    foo(1, 2.1); // Prints \"General case: 1 2.1\"\n    foo(1,2);    // Prints \"Two ints: 1 2\"\n}\n\n// Compilation error: partial function specialization is not allowed.\ntemplate\u003ctypename U\u003e\nvoid foo\u003cstd::string, U\u003e(std::string t, U u) {\n    std::cout \u003c\u003c \"General case: \" \u003c\u003c t \u003c\u003c \" \" \u003c\u003c u \u003c\u003c std::endl;\n}",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       }
     ],
     "title": "Partial template specialization",

@@ -20,7 +20,7 @@
     "id": "ad7c6ad8-6911-402f-a4fa-faba0944f7ab",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1550656800000,
+    "last_edited_time": 1552347780000,
     "parent_id": "94bfa868-4e02-4b90-841b-817c34132524",
     "parent_table": "block",
     "properties": {
@@ -31,7 +31,7 @@
       ]
     },
     "type": "page",
-    "version": 8,
+    "version": 9,
     "content_resolved": [
       {
         "alive": true,
@@ -84,13 +84,13 @@
         "id": "578cd261-4eec-407d-b26d-31eb22830458",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521951433,
+        "last_edited_time": 1552347780000,
         "parent_id": "ad7c6ad8-6911-402f-a4fa-faba0944f7ab",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -100,9 +100,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "struct IShape\n{\n    virtual ~IShape() = default;\n\n    virtual void accept(IShapeVisitor\u0026) const = 0;\n};\n\nstruct Circle : IShape\n{\n    // ...        \n    // Each shape has to implement this method the same way\n    void accept(IShapeVisitor\u0026 visitor) const override { visitor.visit(*this); }\n    // ...\n};\n\nstruct Square : IShape\n{\n    // ...    \n    // Each shape has to implement this method the same way\n    void accept(IShapeVisitor\u0026 visitor) const override { visitor.visit(*this); }\n    // ...\n};",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -154,13 +154,13 @@
         "id": "4d45609e-1b09-4bbc-b547-c7de854dccf0",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521951434,
+        "last_edited_time": 1552347780000,
         "parent_id": "ad7c6ad8-6911-402f-a4fa-faba0944f7ab",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -170,9 +170,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "template \u003cclass Derived\u003e\nstruct IShapeAcceptor : IShape {\n    void accept(IShapeVisitor\u0026 visitor) const override {\n        // visit with our exact type\n        visitor.visit(*static_cast\u003cDerived const*\u003e(this));\n    }\n};",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
@@ -206,13 +206,13 @@
         "id": "37f1c351-3dce-4704-9a18-4a994c5954e7",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1550521951434,
+        "last_edited_time": 1552347780000,
         "parent_id": "ad7c6ad8-6911-402f-a4fa-faba0944f7ab",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "C++"
             ]
           ],
           "title": [
@@ -222,9 +222,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "struct Circle : IShapeAcceptor\u003cCircle\u003e\n{\n    Circle(const Point\u0026 center, double radius) : center(center), radius(radius) {}\n    Point center;\n    double radius;\n};\n\nstruct Square : IShapeAcceptor\u003cSquare\u003e\n{\n    Square(const Point\u0026 topLeft, double sideLength) : topLeft(topLeft), sideLength(sideLength) {}    \n    Point topLeft;\n    double sideLength;\n};",
-        "code_language": "Plain Text"
+        "code_language": "C++"
       },
       {
         "alive": true,
