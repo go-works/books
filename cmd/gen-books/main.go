@@ -45,19 +45,39 @@ var (
 
 var (
 	booksMain = []*Book{
-		bookGo, bookCpp,
-		bookJavaScript, bookCSS, bookHTML, bookHTMLCanvas,
+		bookGo,
+		bookCpp,
+		bookJavaScript,
+		bookCSS,
+		bookHTML,
+		bookHTMLCanvas,
 		bookJava,
-		bookCsharp, bookPython,
-		bookPostgresql, bookMysql,
-		bookIOS, bookAndroid,
+		bookKotlin,
+		bookCsharp,
+		bookPython,
+		bookPostgresql,
+		bookMysql,
+		bookIOS,
+		bookAndroid,
+		bookPowershell,
+		bookBash,
+		bookGit,
+		bookPHP,
+		bookRuby,
+		bookNode,
+		bookDart,
+		bookTypeScript,
+		bookSwift,
 	}
 	booksUnpublished = []*Book{
-		bookSql, bookAlgorithm, bookBash, bookC, bookGit,
-		bookNETFramework, bookNode, bookObjectiveC, bookPHP,
-		bookPowershell, bookReact, bookReactNative, bookRuby,
-		bookRubyOnRails, bookSwift, bookTypeScript,
-		bookDart, bookKotlin,
+		bookNETFramework,
+		bookAlgorithm,
+		bookC,
+		bookObjectiveC,
+		bookReact,
+		bookReactNative,
+		bookRubyOnRails,
+		bookSql,
 	}
 	allBooks = append(booksMain, booksUnpublished...)
 )
@@ -68,7 +88,7 @@ func parseFlags() {
 	flag.BoolVar(&flgAllBooks, "all-books", false, "if true will do all books")
 	flag.BoolVar(&flgUpdateOutput, "update-output", false, "if true, will update ouput files in cache")
 	flag.BoolVar(&flgNoCache, "no-cache", false, "if true, disables cache for notion")
-	flag.BoolVar(&flgVerbose, "verbose", false, "if true will log more verbosely")
+	flag.BoolVar(&flgVerbose, "verbose", false, "if true will log more")
 	flag.StringVar(&flgRedownloadOne, "redownload-one", "", "notion id of a page to re-download")
 	flag.StringVar(&flgRebuildOnePage, "rebuild-one", "", "notion id of a page to re-build")
 	flag.BoolVar(&flgRedownloadReplit, "redownload-replit", false, "if true, redownloads replits")
