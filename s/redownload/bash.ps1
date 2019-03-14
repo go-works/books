@@ -5,7 +5,7 @@ function exitIfFailed { if ($LASTEXITCODE -ne 0) { exit } }
 
 Remove-Item -Force -ErrorAction SilentlyContinue ./gen.exe
 
-go build -o ./gen.exe ./cmd/gen-books
+go build -o ./gen.exe
 exitIfFailed
 
 ./gen.exe -redownload-book 77d28932012b489db9a6d0b349cea865

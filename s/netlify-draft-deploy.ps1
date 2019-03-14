@@ -6,7 +6,7 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 function exitIfFailed { if ($LASTEXITCODE -ne 0) { exit } }
 
-go build -o ./gen.exe ./cmd/gen-books
+go build -o ./gen.exe
 exitIfFailed
 
 ./gen.exe -all-books -update-output -analytics UA-113489735-1 $args
