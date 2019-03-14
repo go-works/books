@@ -175,9 +175,15 @@ func genIndexGrid(books []*Book) {
 }
 
 func genFeedback() {
-	d := getPageCommon()
 	fmt.Printf("writing feedback.html\n")
 	path := filepath.Join(destDir, "feedback.html")
+	d := struct {
+		PageCommon
+		ForumLink string
+	}{
+		PageCommon: getPageCommon(),
+		ForumLink:  gForumLink,
+	}
 	execTemplateToFileMaybeMust("feedback.tmpl.html", d, path)
 }
 
@@ -197,11 +203,15 @@ func genArticle(book *Book, page *Page, currChapNo int, currArticleNo int) {
 		*Page
 		CurrentChapterNo int
 		CurrentArticleNo int
+		ShowForum        bool
+		ForumLink        string
 	}{
 		PageCommon:       getPageCommon(),
 		Page:             page,
 		CurrentChapterNo: currChapNo,
 		CurrentArticleNo: currArticleNo,
+		ShowForum:        gShowForum,
+		ForumLink:        gForumLink,
 	}
 
 	path := page.destFilePath()
@@ -222,10 +232,14 @@ func genChapter(book *Book, page *Page, currNo int) {
 		PageCommon
 		*Page
 		CurrentChapterNo int
+		ShowForum        bool
+		ForumLink        string
 	}{
 		PageCommon:       getPageCommon(),
 		Page:             page,
 		CurrentChapterNo: currNo,
+		ShowForum:        gShowForum,
+		ForumLink:        gForumLink,
 	}
 	execTemplateToFileSilentMaybeMust("chapter.tmpl.html", d, path)
 
@@ -290,10 +304,14 @@ func genOnePage(book *Book, id string) {
 				PageCommon
 				*Page
 				CurrentChapterNo int
+				ShowForum        bool
+				ForumLink        string
 			}{
 				PageCommon:       getPageCommon(),
 				Page:             page,
 				CurrentChapterNo: currNo,
+				ShowForum:        gShowForum,
+				ForumLink:        gForumLink,
 			}
 			execTemplateToFileSilentMaybeMust("chapter.tmpl.html", d, path)
 

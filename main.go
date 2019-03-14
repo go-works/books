@@ -35,6 +35,10 @@ var (
 	flgRedownloadOneReplit string
 	flgVerbose             bool
 
+	gShowForum = true
+	//gForumLink = "https://spectrum.chat/programming-books"
+	gForumLink = "https://www.reddit.com/r/essentialbooks/"
+
 	soUserIDToNameMap map[int]string
 	googleAnalytics   template.HTML
 	doMinify          bool

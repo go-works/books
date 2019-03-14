@@ -84,7 +84,7 @@
 
         <span class="article-contribute">
           <a class="edit-link" href="{{.NotionURL}}" rel="nofollow" target="_blank">edit</a>
-          <a href="https://spectrum.chat/programming-books" target="_blank">
+          <a href="{{.ForumLink}}" target="_blank">
             forum</a>
         </span>
       </div>
@@ -92,6 +92,14 @@
       <h1 class="title">{{.Title}}</h1>
 
       {{.HTML}}
+
+      {{if .ShowForum }}
+      <div class="forum-link">
+        Found a mistake? Have a question or improvement idea? Discuss in <a href="{{.ForumLink}}" target="_blank">forum</a>.
+      </div>
+      {{end}}
+
+      <div class="article-bottom-sep"></div>
 
       <div class="chapter-toc">
         {{if .Pages}}
