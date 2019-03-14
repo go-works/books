@@ -14,6 +14,3 @@ exitIfFailed
 
 Remove-Item -Force -ErrorAction SilentlyContinue ./gen.exe
 netlify deploy --dir=www --site=7df32685-1421-41cf-937a-a92fde6725f4 --open
-
-#./netlifyctl -A $NETLIFY_TOKEN deploy || true
-#    cat netlifyctl-debug.log || true
