@@ -249,4 +249,12 @@ var (
 		// https://www.notion.so/kjkpublic/Essential-TypeScript-9f3a0df9855747b1ab85b76637971d62
 		NotionStartPageID: "9f3a0df9855747b1ab85b76637971d62",
 	}
+	bookBatch = &Book{
+		Title:          "Batch",
+		TitleLong:      "Essential Batch",
+		Dir:            "batch",
+		CoverImageName: "Batch.png",
+		// https://www.notion.so/kjkpublic/Essential-Batch-cmd-exe-ea84bde7ed4e4353bdc6ae44125abc08
+		NotionStartPageID: "ea84bde7ed4e4353bdc6ae44125abc08",
+	}
 )
