@@ -288,6 +288,9 @@ func getOutputCached(b *Book, sf *SourceFile) error {
 		sf.Output = findOutputBySha1(cof, sha1Hex)
 		return nil
 	}
+	if !flgUpdateOutput {
+		return nil
+	}
 
 	if sf.Directive.Glot {
 		f := &glotFile{

@@ -343,8 +343,6 @@ func findBook(id string) *Book {
 }
 
 func redownloadBook(id string) {
-	// when redownloading we also want to update ouput
-	flgUpdateOutput = true
 	book := findBook(id)
 	if book == nil {
 		fmt.Printf("Didn't find a book with id '%s'\n", id)

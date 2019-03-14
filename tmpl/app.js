@@ -573,11 +573,14 @@ function getItemsIdxForParent(parentIdx) {
   return res;
 }
 
-function expandedSvg() {
+function emptyArrow() {
+  return '<div class="toc-nav-empty-arrow"></div>';
+}
+function expandedSvgArrow() {
   return '<svg class="arrow"><use xlink:href="#arrow-expanded"></use></svg>';
 }
 
-function notExpandedSvg() {
+function notExpandedSvgArrow() {
   return '<svg class="arrow"><use xlink:href="#arrow-not-expanded"></use></svg>';
 }
 
@@ -589,7 +592,7 @@ var aOpt = {
 function genTocExpanded(tocItem, tocItemIdx, level, isCurrent) {
   var titleHTML = escapeHTML(tocItemTitle(tocItem));
   var uri = tocItemURL(tocItem);
-  var divInner = expandedSvg() + a(uri, titleHTML, aOpt);
+  var divInner = expandedSvgArrow() + a(uri, titleHTML, aOpt);
   var opt = {
     classes: ["toc-item", "lvl" + level],
     id: "ti-" + tocItemIdx
@@ -604,7 +607,7 @@ function genTocExpanded(tocItem, tocItemIdx, level, isCurrent) {
 function genTocNotExpanded(tocItem, tocItemIdx, level) {
   var titleHTML = escapeHTML(tocItemTitle(tocItem));
   var uri = tocItemURL(tocItem);
-  var divInner = notExpandedSvg() + a(uri, titleHTML, aOpt);
+  var divInner = notExpandedSvgArrow() + a(uri, titleHTML, aOpt);
   var opt = {
     classes: ["toc-item", "lvl" + level],
     id: "ti-" + tocItemIdx
@@ -631,10 +634,14 @@ function genTocNoChildren(tocItem, tocItemIdx, level, isCurrent) {
   };
   var titleHTML = escapeHTML(tocItemTitle(tocItem));
   if (isCurrent) {
+    var divInner = emptyArrow() + div(titleHTML);
+    // div(emptyArrow() + emptyArrow()
     opt.classes.push("bold");
-    return div(titleHTML, opt);
+    var html = div(divInner, opt);
+    console.log("html:", html);
+    return html;
   }
-  var divInner = a(uri, titleHTML, aOpt);
+  var divInner = emptyArrow() + a(uri, titleHTML, aOpt);
   var html = div(divInner, opt);
   return html;
 }

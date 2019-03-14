@@ -11,5 +11,6 @@ Remove-Item -Force -ErrorAction SilentlyContinue ./gen.exe
 go build -o ./gen.exe
 exitIfFailed
 
-./gen.exe -update-output -preview -analytics UA-113489735-1 $args
+# -update-output
+./gen.exe -preview -analytics UA-113489735-1 $args
 Remove-Item -Force -ErrorAction SilentlyContinue ./gen.exe
