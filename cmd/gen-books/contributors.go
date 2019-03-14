@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"html/template"
 	"net/url"
+	"os"
 	"path/filepath"
 	"sort"
 	"strconv"
@@ -27,6 +28,15 @@ func soContributorURL(userID int, userName string) string {
 
 func loadSoContributorsMust(book *Book) {
 	path := filepath.Join("books", book.Dir+"_so_contributors.txt")
+
+	// it's ok if the file doesn't exist
+	_, err := os.Stat(path)
+	if os.IsNotExist(err) {
+		fmt.Printf("No contributors for book %s\n", book.Title)
+		book.SoContributors = []SoContributor{}
+		return
+	}
+
 	fmt.Printf("loadSoContributorsMust: book.Dir: %s, path: %s\n", book.Dir, path)
 	lines, err := common.ReadFileAsLines(path)
 	panicIfErr(err)
