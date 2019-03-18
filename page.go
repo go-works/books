@@ -113,7 +113,7 @@ func (p *Page) getSearch() []string {
 }
 
 func (p *Page) isDraft() bool {
-	return p.hasMeta("draft") || p.hasMeta("todo")
+	return p.hasMeta("draft")
 }
 
 // Siblings returns siblings of the page, to easily generate toc
@@ -219,7 +219,7 @@ func getSubPages(page *notionapi.Page, pageIDToPage map[string]*notionapi.Page) 
 // or:
 // @key value
 // e.g. `$Id: 59` or `@Draft`
-// We strip the '$' or '@'
+// We strip the '$' or '@' or '%'
 func extractMetaValueFromBlock(block *notionapi.Block) *MetaValue {
 	if block.Type != notionapi.BlockText {
 		return nil
@@ -238,11 +238,11 @@ func extractMetaValueFromBlock(block *notionapi.Block) *MetaValue {
 	if len(s) < 4 {
 		return nil
 	}
-	isMeta := s[0] == '$' || s[0] == '@' || s[0] == '#'
+	isMeta := s[0] == '$' || s[0] == '@' || s[0] == '#' || s[0] == '%'
 	if !isMeta {
 		return nil
 	}
-	s = s[1:]
+	s = strings.TrimSpace(s[1:])
 	keyEnd := strings.Index(s, ":")
 	if keyEnd == -1 {
 		keyEnd = strings.Index(s, " ")

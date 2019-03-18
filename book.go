@@ -12,8 +12,6 @@ import (
 
 // Book represents a book
 type Book struct {
-	//FileNameBase string // TODO: possibly not needed
-
 	Title     string // "Go", "jQuery" etcc
 	TitleLong string // "Essential Go", "Essential jQuery" etc.
 
