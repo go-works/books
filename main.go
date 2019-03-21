@@ -45,6 +45,11 @@ var (
 	minifier          *minify.M
 
 	notionAuthToken string
+
+	// when downloading pages from the server, count total number of
+	// downloaded and those from cache
+	nDownloaded int
+	nFromCache  int
 )
 
 var (

@@ -294,15 +294,15 @@ func getVersionsForPages(c *notionapi.Client, ids []string) ([]int64, error) {
 	var versions []int64
 	for i, res := range results {
 
-		// this might happen e.g. when a page is not publicly visible
-		if res.Value == nil {
-			return nil, fmt.Errorf("Couldn't retrieve page with id %s", ids[i])
-		}
-		id, ok := notionapi.NormalizeID(res.Value.ID)
-		panicIf(!ok)
-		ver := res.Value.Version
-		if ids[i] == id {
-			panic("got result in the wrong order")
+		var ver int64
+		// res.Value might be nil when a page is not publicly visible or was deleted
+		if res.Value != nil {
+			id, ok := notionapi.NormalizeID(res.Value.ID)
+			panicIf(!ok)
+			ver = res.Value.Version
+			if ids[i] == id {
+				panic("got result in the wrong order")
+			}
 		}
 		versions = append(versions, ver)
 	}
