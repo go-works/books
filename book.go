@@ -44,6 +44,12 @@ type Book struct {
 	sha1ToGlotPlaygroundCache *Sha1ToGlotPlaygroundCache
 	replitCache               *ReplitCache
 
+	// pages loaded from cache/${book}/notion/${pageid}.json
+	cachedPagesFromDisk map[string]*notionapi.Page
+	// if true, page loaded from disk is outdated because
+	// version is older than the version we got from the server
+	isCachedPageNotOutdated map[string]bool
+
 	// for concurrency
 	sem chan bool
 	wg  sync.WaitGroup

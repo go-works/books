@@ -131,9 +131,8 @@ func parseFlags() {
 
 func downloadBook(c *notionapi.Client, book *Book) {
 	notionStartPageID := book.NotionStartPageID
-	book.pageIDToPage = map[string]*notionapi.Page{}
 	fmt.Printf("Loading %s...", book.Title)
-	loadNotionPages(book, c, notionStartPageID, book.pageIDToPage, !flgNoCache)
+	loadNotionPages(c, book, notionStartPageID, book.pageIDToPage, !flgNoCache)
 	fmt.Printf(" got %d pages\n", len(book.pageIDToPage))
 	bookFromPages(book)
 }
@@ -361,6 +360,12 @@ func redownloadBook(id string) {
 }
 
 func main() {
+	for _, b := range allBooks {
+		b.cachedPagesFromDisk = map[string]*notionapi.Page{}
+		b.isCachedPageNotOutdated = map[string]bool{}
+		b.pageIDToPage = map[string]*notionapi.Page{}
+	}
+
 	if false {
 		glotRunTestAndExit()
 	}
@@ -425,7 +430,7 @@ func main() {
 		}
 		fmt.Printf("Downloading %s for book %s\n", flgRedownloadOne, book.Dir)
 		// download a single page from notion and re-generate content
-		page, err := downloadAndCachePage(book, client, flgRedownloadOne)
+		page, err := downloadAndCachePage(client, book, flgRedownloadOne)
 		if err != nil {
 			fmt.Printf("downloadAndCachePage of '%s' failed with %s\n", flgRedownloadOne, err)
 			os.Exit(1)
