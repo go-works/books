@@ -146,6 +146,7 @@ var (
 func loadNotionPage(c *notionapi.Client, b *Book, pageID string, getFromCache bool, n int) (*notionapi.Page, error) {
 	if b.isCachedPageNotOutdated[pageID] {
 		page := b.cachedPagesFromDisk[pageID]
+		nTotalFromCache++
 		fmt.Printf("Skipping %d %s %s (cached is current)\n", n, page.ID, page.Root.Title)
 		return page, nil
 	}
@@ -159,6 +160,7 @@ func loadNotionPage(c *notionapi.Client, b *Book, pageID string, getFromCache bo
 		}
 	}
 
+	nTotalDownloaded++
 	page, err := downloadAndCachePage(c, b, pageID)
 	if err == nil {
 		fmt.Printf("Downloaded %d %s %s\n", n, page.ID, page.Root.Title)

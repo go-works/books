@@ -53,10 +53,13 @@ func serve404(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNotFound)
 	w.Write(d)
 }
+
 func handleIndex(w http.ResponseWriter, r *http.Request) {
 	uri := r.URL.Path
 	uriLocal := filepath.FromSlash(uri)
-	fmt.Printf("uri: '%s'\n", uri)
+	if !strings.HasSuffix(uri, ".png") {
+		fmt.Printf("uri: '%s'\n", uri)
+	}
 	path := fileForURI(uriLocal)
 	if path == "" {
 		serve404(w, r)

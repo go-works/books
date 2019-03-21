@@ -48,8 +48,8 @@ var (
 
 	// when downloading pages from the server, count total number of
 	// downloaded and those from cache
-	nDownloaded int
-	nFromCache  int
+	nTotalDownloaded int
+	nTotalFromCache  int
 )
 
 var (
@@ -478,6 +478,7 @@ func main() {
 	genNetlifyRedirects(books)
 	printAndClearErrors()
 
+	fmt.Printf("Downloaded %d pages, got %d from cache\n", nTotalDownloaded, nTotalFromCache)
 	if flgPreview {
 		startPreview()
 	}
