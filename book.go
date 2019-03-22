@@ -113,7 +113,7 @@ func (b *Book) CanonnicalURL() string {
 
 // ShareOnTwitterText returns text for sharing on twitter
 func (b *Book) ShareOnTwitterText() string {
-	return fmt.Sprintf(`"Essential %s" - a free programming book`, b.Title)
+	return fmt.Sprintf(`"%s" - a free programming book`, b.TitleLong)
 }
 
 // CoverURL returns url to cover image
