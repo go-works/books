@@ -367,7 +367,6 @@ func redownloadBook(id string) {
 func main() {
 	for _, b := range allBooks {
 		b.cachedPagesFromDisk = map[string]*notionapi.Page{}
-		b.isCachedPageNotOutdated = map[string]bool{}
 		b.pageIDToPage = map[string]*notionapi.Page{}
 	}
 
@@ -413,7 +412,7 @@ func main() {
 			os.Exit(1)
 		}
 		fmt.Printf("Rebuilding %s for book %s\n", flgRebuildOnePage, book.Dir)
-		page := loadPageFromCache(book, flgRebuildOnePage)
+		page := loadPageFromCache(book.NotionCacheDir(), flgRebuildOnePage)
 		flgNoCache = false
 		initBook(book)
 		downloadBook(client, book)
