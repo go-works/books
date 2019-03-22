@@ -23,8 +23,8 @@ var (
 )
 
 // convert 2131b10c-ebf6-4938-a127-7089ff02dbe4 to 2131b10cebf64938a1277089ff02dbe4
-func normalizeID(s string) string {
-	return strings.Replace(s, "-", "", -1)
+func normalizeID(id string) string {
+	return notionapi.ToNoDashID(id)
 }
 
 func openLogFileForPageID(pageID string) (io.WriteCloser, error) {
@@ -261,31 +261,13 @@ func loadPagesFromDisk(b *Book) {
 	fmt.Printf("loadPagesFromDisk: loaded %d cached pages from %s\n", len(b.cachedPagesFromDisk), dir)
 }
 
-// convert:
-// bb760e2dd6794b64b2a903005b21870a
-// to:
-// bb760e2d-d679-4b64-b2a9-03005b21870a
-func toRequestID(id string) string {
-	if len(id) == len("bb760e2d-d679-4b64-b2a9-03005b21870a") {
-		return id
-	}
-	panicIf(len(id) != len("bb760e2dd6794b64b2a903005b21870a"), "invalid id '%s'", id)
-	res := id[:8] + "-" + id[8:12] + "-" + id[12:16] + "-" + id[16:20] + "-" + id[20:]
-	return res
-}
-
-func toRequestIDs(ids []string) []string {
-	var res []string
-	for _, id := range ids {
-		res = append(res, toRequestID(id))
-	}
-	return res
+func isIDEqual(id1, id2 string) bool {
+	return notionapi.ToNoDashID(id1) == notionapi.ToNoDashID(id2)
 }
 
 func getVersionsForPages(c *notionapi.Client, ids []string) ([]int64, error) {
 	// c.Logger = os.Stdout
-	reqIDs := toRequestIDs(ids)
-	recVals, err := c.GetRecordValues(reqIDs)
+	recVals, err := c.GetRecordValues(ids)
 	if err != nil {
 		return nil, err
 	}
@@ -295,18 +277,14 @@ func getVersionsForPages(c *notionapi.Client, ids []string) ([]int64, error) {
 	}
 	var versions []int64
 	for i, res := range results {
-
-		var ver int64
 		// res.Value might be nil when a page is not publicly visible or was deleted
-		if res.Value != nil {
-			id, ok := notionapi.NormalizeID(res.Value.ID)
-			panicIf(!ok)
-			ver = res.Value.Version
-			if ids[i] == id {
-				panic("got result in the wrong order")
-			}
+		if res.Value == nil {
+			versions = append(versions, 0)
+			continue
 		}
-		versions = append(versions, ver)
+		id := res.Value.ID
+		panicIf(!isIDEqual(ids[i], id), "got result in the wrong order, ids[i]: %s, id: %s", ids[0], id)
+		versions = append(versions, res.Value.Version)
 	}
 	return versions, nil
 }
