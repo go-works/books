@@ -19,6 +19,21 @@ import (
 	"github.com/kjk/u"
 )
 
+func must(err error, args ...interface{}) {
+	if err == nil {
+		return
+	}
+	if len(args) == 0 {
+		panic(err)
+	}
+	s := args[0].(string)
+	if len(args) > 1 {
+		args = args[1:]
+		s = fmt.Sprintf(s, args)
+	}
+	panic(s + " err: " + err.Error())
+}
+
 func panicIfErr(err error) {
 	if err != nil {
 		panic(err.Error())
@@ -403,9 +418,15 @@ func cleanTitle(s string) string {
 	return strings.TrimSpace(rest)
 }
 
+func openForAppend(path string) *os.File {
+	f, err := os.OpenFile(path, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	must(err)
+	return f
+}
+
 // appends a line to a file
 func appendToFile(path string, s string) error {
-	f, err := os.OpenFile(path, os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0666)
+	f, err := os.OpenFile(path, os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0644)
 	if err != nil {
 		return err
 	}

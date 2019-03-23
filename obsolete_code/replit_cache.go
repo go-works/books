@@ -202,3 +202,24 @@ func zipExtractReplit(d []byte) ([]*ReplitFile, error) {
 	}
 	return res, nil
 }
+
+/*
+func redownloadOneReplit() {
+	if len(flag.Args()) != 1 {
+		fmt.Printf("-redownload-one-replit expects 2 arguments: book and replit url\n")
+		os.Exit(1)
+	}
+	uri := flgRedownloadOneReplit
+	bookName := flag.Args()[0]
+	if !isReplitURL(uri) {
+		panicIf(!isReplitURL(bookName), "neither '%s' nor '%s' look like repl.it url", uri, bookName)
+		uri, bookName = bookName, uri
+	}
+	book := findBook(bookName)
+	panicIf(book == nil, "'%s' is not a valid book name", bookName)
+	initBook(book)
+	_, isNew, err := downloadAndCacheReplit(book.replitCache, uri)
+	panicIfErr(err)
+	fmt.Printf("genReplitEmbed: downloaded %s,  isNew: %v\n", uri+".zip", isNew)
+}
+*/

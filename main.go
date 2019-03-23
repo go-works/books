@@ -303,26 +303,19 @@ func isReplitURL(uri string) bool {
 	return strings.Contains(uri, "repl.it/")
 }
 
-/*
-func redownloadOneReplit() {
-	if len(flag.Args()) != 1 {
-		fmt.Printf("-redownload-one-replit expects 2 arguments: book and replit url\n")
-		os.Exit(1)
+func convertGlotToCache(book *Book) {
+	fmt.Printf("convertGlotToCach: %s\n", book.Title)
+	path := filepath.Join(book.OutputCacheDir(), "sha1_to_glot_playground_id.txt")
+	if !pathExists(path) {
+		return
 	}
-	uri := flgRedownloadOneReplit
-	bookName := flag.Args()[0]
-	if !isReplitURL(uri) {
-		panicIf(!isReplitURL(bookName), "neither '%s' nor '%s' look like repl.it url", uri, bookName)
-		uri, bookName = bookName, uri
+	sha1ToGlotPlayground := readSha1ToGlotPlaygroundCache(path)
+	for sha1, id := range sha1ToGlotPlayground.sha1ToID {
+		book.cache.addGlotSha1ToID(sha1, id)
 	}
-	book := findBook(bookName)
-	panicIf(book == nil, "'%s' is not a valid book name", bookName)
-	initBook(book)
-	_, isNew, err := downloadAndCacheReplit(book.replitCache, uri)
-	panicIfErr(err)
-	fmt.Printf("genReplitEmbed: downloaded %s,  isNew: %v\n", uri+".zip", isNew)
+	err := os.Remove(path)
+	must(err)
 }
-*/
 
 func initBook(book *Book) {
 	var err error
@@ -333,8 +326,9 @@ func initBook(book *Book) {
 	reloadCachedOutputFilesMust(book)
 	path := filepath.Join(book.OutputCacheDir(), "sha1_to_go_playground_id.txt")
 	book.sha1ToGoPlaygroundCache = readSha1ToGoPlaygroundCache(path)
-	path = filepath.Join(book.OutputCacheDir(), "sha1_to_glot_playground_id.txt")
-	book.sha1ToGlotPlaygroundCache = readSha1ToGlotPlaygroundCache(path)
+	book.cache = loadCache(book.CachePath())
+	convertGlotToCache(book)
+	//book.sha1ToGlotPlaygroundCache = readSha1ToGlotPlaygroundCache(path)
 	//book.replitCache, err = LoadReplitCache(book.ReplitCachePath())
 	panicIfErr(err)
 }

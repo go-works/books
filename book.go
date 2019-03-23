@@ -38,10 +38,11 @@ type Book struct {
 	CoverImageName string
 
 	// cache related
-	cachedOutputFiles         []*cachedOutputFile
-	sha1ToCachedOutputFile    map[string]*cachedOutputFile
-	sha1ToGoPlaygroundCache   *Sha1ToGoPlaygroundCache
-	sha1ToGlotPlaygroundCache *Sha1ToGlotPlaygroundCache
+	cachedOutputFiles       []*cachedOutputFile
+	sha1ToCachedOutputFile  map[string]*cachedOutputFile
+	sha1ToGoPlaygroundCache *Sha1ToGoPlaygroundCache
+	cache                   *Cache
+	//sha1ToGlotPlaygroundCache *Sha1ToGlotPlaygroundCache
 	//replitCache               *ReplitCache
 
 	// pages loaded from cache/${book}/notion/${pageid}.json
@@ -74,6 +75,10 @@ func (b *Book) NotionCacheDir() string {
 // ReplitCachePath returns path of the cache file for replits
 func (b *Book) ReplitCachePath() string {
 	return filepath.Join(b.CacheDir(), "replit_cache.txt")
+}
+
+func (b *Book) CachePath() string {
+	return filepath.Join(b.CacheDir(), "cache.txt")
 }
 
 // SourceDir is where source files for a given book are

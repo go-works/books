@@ -47,33 +47,29 @@ func readSha1ToGlotPlaygroundCache(path string) *Sha1ToGlotPlaygroundCache {
 }
 
 // GetPlaygroundID gets go playground id from content
-func (c *Sha1ToGlotPlaygroundCache) GetPlaygroundID(d []byte, snippetName string, fileName string, lang string) (string, error) {
+func GetPlaygroundID(b *Book, d []byte, snippetName string, fileName string, lang string) (string, bool, error) {
 	sha1 := u.Sha1HexOfBytes(d)
-	id, ok := c.sha1ToID[sha1]
+	id, ok := b.cache.sha1ToGlotID[sha1]
 	if ok {
-		return id, nil
+		return id, true, nil
 	}
 	rsp, err := glotGetSnippedID(d, snippetName, fileName, lang)
 	if err != nil {
-		return "", err
+		return "", true, err
 	}
-	id = rsp.ID
-	s := fmt.Sprintf("%s %s\n", sha1, id)
-	err = appendToFile(c.cachePath, s)
+	err = b.cache.addGlotSha1ToID(sha1, rsp.ID)
 	if err != nil {
-		return "", err
+		return "", true, err
 	}
-	c.nUpdates++
-	return id, nil
+	return id, false, nil
 }
 
 func getSha1ToGlotPlaygroundIDCached(b *Book, d []byte, snippetName string, fileName string, lang string) (string, error) {
-	nUpdates := b.sha1ToGlotPlaygroundCache.nUpdates
-	id, err := b.sha1ToGlotPlaygroundCache.GetPlaygroundID(d, snippetName, fileName, lang)
+	id, fromCache, err := GetPlaygroundID(b, d, snippetName, fileName, lang)
 	if err != nil {
 		return "", err
 	}
-	if nUpdates != b.sha1ToGlotPlaygroundCache.nUpdates {
+	if !fromCache {
 		sha1 := u.Sha1HexOfBytes(d)
 		uri := "https://glot.io/snippets/" + id
 		fmt.Printf("getSha1ToGlotPlaygroundIDCached: %s => %s, %s\n", sha1, id, uri)
