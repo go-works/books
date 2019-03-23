@@ -643,7 +643,12 @@ func (g *HTMLGenerator) genBlock(block *notionapi.Block) {
 		g.writeString(s)
 	case notionapi.BlockImage:
 		link := block.ImageURL
-		fmt.Fprintf(g.f, `<img class="%s" style="width: 100%%" src="%s" />`+"\n", levelCls, link)
+		cls := levelCls
+		if len(cls) > 0 {
+			cls += " "
+		}
+		cls += "img"
+		fmt.Fprintf(g.f, `<img class="%s" src="%s" />`+"\n", cls, link)
 	case notionapi.BlockColumnList:
 		g.genColumnList(block)
 	case notionapi.BlockCollectionView:
