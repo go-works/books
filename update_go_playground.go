@@ -13,42 +13,6 @@ import (
 	"github.com/essentialbooks/books/pkg/common"
 )
 
-// Sha1ToGoPlaygroundCache maintains sha1 of content to go playground id cache
-type Sha1ToGoPlaygroundCache struct {
-	cachePath string
-	sha1ToID  map[string]string
-	nUpdates  int
-}
-
-func readSha1ToGoPlaygroundCache(path string) *Sha1ToGoPlaygroundCache {
-	res := &Sha1ToGoPlaygroundCache{
-		cachePath: path,
-		sha1ToID:  map[string]string{},
-	}
-	lines, err := common.ReadFileAsLines(path)
-	if err != nil {
-		if os.IsNotExist(err) {
-			// early detection of "can't create a file" condition
-			f, err := os.Create(path)
-			panicIfErr(err)
-			f.Close()
-		}
-	}
-	for i, s := range lines {
-		s = strings.TrimSpace(s)
-		if len(s) == 0 {
-			continue
-		}
-		parts := strings.Split(s, " ")
-		panicIf(len(parts) != 2, "unexpected line '%s'", lines[i])
-		sha1 := parts[0]
-		id := parts[1]
-		res.sha1ToID[sha1] = id
-	}
-	fmt.Printf("Loaded '%s' with %d entries\n", path, len(res.sha1ToID))
-	return res
-}
-
 // submit the data to Go playground and get share id
 func getGoPlaygroundShareID(d []byte) (string, error) {
 	uri := "https://play.golang.org/share"

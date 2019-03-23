@@ -303,20 +303,6 @@ func isReplitURL(uri string) bool {
 	return strings.Contains(uri, "repl.it/")
 }
 
-func convertGoPlaygroundToCache(book *Book) {
-	path := filepath.Join(book.OutputCacheDir(), "sha1_to_go_playground_id.txt")
-	if !pathExists(path) {
-		return
-	}
-	fmt.Printf("convertGoPlaygroundToCache: %s %s\n", book.Title, path)
-	sha1ToID := readSha1ToGoPlaygroundCache(path)
-	for sha1, id := range sha1ToID.sha1ToID {
-		book.cache.addGoPlaySha1ToID(sha1, id)
-	}
-	err := os.Remove(path)
-	must(err)
-}
-
 func initBook(book *Book) {
 	var err error
 
@@ -330,7 +316,6 @@ func initBook(book *Book) {
 
 	reloadCachedOutputFilesMust(book)
 	book.cache = loadCache(book.CachePath())
-	convertGoPlaygroundToCache(book)
 	panicIfErr(err)
 }
 
