@@ -4,7 +4,6 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
-	"os"
 	"os/exec"
 	"path/filepath"
 	"sort"
@@ -215,6 +214,7 @@ func getOutput(path string, runCmd string) (string, error) {
 	return "", fmt.Errorf("getOutput(%s): files with extension '%s' are not supported", path, ext)
 }
 
+/*
 func getOutputCachedForReplit(b *Book, replit *Replit, sf *SourceFile) error {
 	if sf.Directive.NoOutput {
 		return nil
@@ -262,6 +262,7 @@ func getOutputCachedForReplit(b *Book, replit *Replit, sf *SourceFile) error {
 	panicIf(sf.Path == "", "no main file")
 	return getOutputCached(b, sf)
 }
+*/
 
 // for a given file, get output of executing this command
 // We cache this as it is the most expensive part of rebuilding books

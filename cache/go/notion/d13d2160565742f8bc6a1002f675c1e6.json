@@ -7,7 +7,7 @@
       "a95cc681-e98f-4ae6-ae70-bc783053f1cb",
       "5df3ff1d-9ee1-4558-bc33-2ea72a90ba12",
       "1bc0fa18-a2df-4c78-b37b-fb90237a7bb1",
-      "45ec02ff-3037-44fd-be60-2cb79830666a"
+      "7396876c-0968-4ac3-a17d-e27453b88640"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1532156136163,
@@ -18,7 +18,7 @@
     "id": "d13d2160-5657-42f8-bc6a-1002f675c1e6",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539848695734,
+    "last_edited_time": 1553321460000,
     "parent_id": "710edf91-b0f1-4662-9abb-fcd96aba4d80",
     "parent_table": "block",
     "properties": {
@@ -29,7 +29,7 @@
       ]
     },
     "type": "page",
-    "version": 37,
+    "version": 43,
     "content_resolved": [
       {
         "alive": true,
@@ -118,37 +118,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539848690023,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-http-client-get-json?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "45ec02ff-3037-44fd-be60-2cb79830666a",
+        "created_time": 1553321457381,
+        "id": "7396876c-0968-4ac3-a17d-e27453b88640",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539848691952,
+        "last_edited_time": 1553321400000,
         "parent_id": "d13d2160-5657-42f8-bc6a-1002f675c1e6",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-http-client-get-json"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// no playground\npackage main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"io/ioutil\"\n\t\"log\"\n\t\"net/http\"\n\t\"net/url\"\n\t\"time\"\n)\n\n// :show start\ntype postItem struct {\n\tScore int    `json:\"score\"`\n\tLink  string `json:\"link\"`\n}\n\ntype postsType struct {\n\tItems []postItem `json:\"items\"`\n}\n\n// :show end\nfunc main() {\n\t// :show start\n\tvalues := url.Values{\n\t\t\"order\": []string{\"desc\"},\n\t\t\"sort\":  []string{\"activity\"},\n\t\t\"site\":  []string{\"stackoverflow\"},\n\t}\n\n\t// URL parameters can also be programmatically set\n\tvalues.Set(\"page\", \"1\")\n\tvalues.Set(\"pagesize\", \"10\")\n\n\turi := \"https://api.stackexchange.com/2.2/posts?\"\n\tclient := \u0026http.Client{\n\t\tTimeout: 15 * time.Second,\n\t}\n\tresp, err := client.Get(uri + values.Encode())\n\tif err != nil {\n\t\tlog.Fatalf(\"http.Get() failed with '%s'\\n\", err)\n\t}\n\tdefer resp.Body.Close()\n\n\tif resp.StatusCode != http.StatusOK {\n\t\td, _ := ioutil.ReadAll(resp.Body)\n\t\tlog.Fatalf(\"Request was '%s' (%d) and not OK (200). Body:\\n%s\\n\", resp.Status, resp.StatusCode, string(d))\n\t}\n\n\tdec := json.NewDecoder(resp.Body)\n\tvar p postsType\n\terr = dec.Decode(\u0026p)\n\tif err != nil {\n\t\tlog.Fatalf(\"dec.Decode() failed with '%s'\\n\", err)\n\t}\n\n\tfmt.Println(\"Top 10 most recently active StackOverflow posts:\")\n\tfmt.Println(\"Score\", \"Link\")\n\tfor _, post := range p.Items {\n\t\tfmt.Println(post.Score, post.Link)\n\t}\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-http-client-get-json",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-http-client-get-json?lite=true"
-        }
+        "type": "code",
+        "version": 6,
+        "code": "// no playground\npackage main\n\nimport (\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"io/ioutil\"\n\t\"log\"\n\t\"net/http\"\n\t\"net/url\"\n\t\"time\"\n)\n\n// :show start\ntype postItem struct {\n\tScore int    `json:\"score\"`\n\tLink  string `json:\"link\"`\n}\n\ntype postsType struct {\n\tItems []postItem `json:\"items\"`\n}\n\n// :show end\nfunc main() {\n\t// :show start\n\tvalues := url.Values{\n\t\t\"order\": []string{\"desc\"},\n\t\t\"sort\":  []string{\"activity\"},\n\t\t\"site\":  []string{\"stackoverflow\"},\n\t}\n\n\t// URL parameters can also be programmatically set\n\tvalues.Set(\"page\", \"1\")\n\tvalues.Set(\"pagesize\", \"10\")\n\n\turi := \"https://api.stackexchange.com/2.2/posts?\"\n\tclient := \u0026http.Client{\n\t\tTimeout: 15 * time.Second,\n\t}\n\tresp, err := client.Get(uri + values.Encode())\n\tif err != nil {\n\t\tlog.Fatalf(\"http.Get() failed with '%s'\\n\", err)\n\t}\n\tdefer resp.Body.Close()\n\n\tif resp.StatusCode != http.StatusOK {\n\t\td, _ := ioutil.ReadAll(resp.Body)\n\t\tlog.Fatalf(\"Request was '%s' (%d) and not OK (200). Body:\\n%s\\n\", resp.Status, resp.StatusCode, string(d))\n\t}\n\n\tdec := json.NewDecoder(resp.Body)\n\tvar p postsType\n\terr = dec.Decode(\u0026p)\n\tif err != nil {\n\t\tlog.Fatalf(\"dec.Decode() failed with '%s'\\n\", err)\n\t}\n\n\tfmt.Println(\"Top 10 most recently active StackOverflow posts:\")\n\tfmt.Println(\"Score\", \"Link\")\n\tfor _, post := range p.Items {\n\t\tfmt.Println(post.Score, post.Link)\n\t}\n\t// :show end\n}",
+        "code_language": "Go"
       }
     ],
     "title": "GET with URL parameters and a JSON response",
@@ -167,12 +158,12 @@
       "family_name": "Kowalczyk",
       "given_name": "Krzysztof",
       "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-      "locale": "en",
+      "locale": "",
       "mobile_onboarding_completed": true,
       "onboarding_completed": true,
       "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-      "time_zone": "America/Los_Angeles",
-      "version": 29
+      "time_zone": "",
+      "version": 43
     }
   ],
   "Tables": null

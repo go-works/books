@@ -10,12 +10,12 @@ require (
 	github.com/dlclark/regexp2 v1.1.6 // indirect
 	github.com/google/shlex v0.0.0-20150127133951-6f45313302b9
 	github.com/kjk/notionapi v0.0.0-20190322075546-7fc31d25aeb2
-	github.com/kjk/siser v0.0.0-20170927035209-f1af2d1a21bb
+	github.com/kjk/siser v0.0.0-20190320210621-46b3c1e863b3
 	github.com/kjk/u v0.0.0-20170711051841-93181be023c9
 	github.com/kylelemons/godebug v0.0.0-20170820004349-d65d576e9348
 	github.com/mattn/go-isatty v0.0.4 // indirect
 	github.com/sergi/go-diff v1.0.0 // indirect
-	github.com/stretchr/testify v1.2.2
+	github.com/stretchr/testify v1.3.0
 	github.com/tdewolff/minify v2.3.5+incompatible
 	github.com/tdewolff/parse v2.3.3+incompatible // indirect
 	github.com/tdewolff/test v0.0.0-20171106182207-265427085153 // indirect

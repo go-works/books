@@ -10,7 +10,7 @@
       "59886de0-5a9c-4963-9eca-787719e07831",
       "112eb7d2-4cca-49d8-89e6-94f3d3cc12eb",
       "c346c82b-821f-4f10-b25d-e9084474af45",
-      "a0223e6f-5552-4cd4-a8cf-e0ce7902d835"
+      "7572d3c8-0475-45bb-af03-03e7361e3c70"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1532156137135,
@@ -21,7 +21,7 @@
     "id": "91454eda-84c1-48f9-b2a5-4af72fca172f",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539848625599,
+    "last_edited_time": 1553321460000,
     "parent_id": "710edf91-b0f1-4662-9abb-fcd96aba4d80",
     "parent_table": "block",
     "properties": {
@@ -32,7 +32,7 @@
       ]
     },
     "type": "page",
-    "version": 37,
+    "version": 42,
     "content_resolved": [
       {
         "alive": true,
@@ -214,37 +214,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539848619867,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-http-client-user-agent?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "a0223e6f-5552-4cd4-a8cf-e0ce7902d835",
+        "created_time": 1553321478488,
+        "id": "7572d3c8-0475-45bb-af03-03e7361e3c70",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539848621745,
+        "last_edited_time": 1553321460000,
         "parent_id": "91454eda-84c1-48f9-b2a5-4af72fca172f",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-http-client-user-agent"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// no playground\npackage main\n\nimport (\n\t\"fmt\"\n\t\"io/ioutil\"\n\t\"log\"\n\t\"net/http\"\n\t\"time\"\n)\n\nfunc main() {\n\t// :show start\n\tuserAgent := \"Special Agent v 1.0.16\"\n\n\tclient := \u0026http.Client{}\n\tclient.Timeout = time.Second * 15\n\n\turi := \"https://httpbin.org/user-agent\"\n\treq, err := http.NewRequest(http.MethodGet, uri, nil)\n\tif err != nil {\n\t\tlog.Fatalf(\"http.NewRequest() failed with '%s'\\n\", err)\n\t}\n\treq.Header.Set(\"User-Agent\", userAgent)\n\tresp, err := client.Do(req)\n\tif err != nil {\n\t\tlog.Fatalf(\"client.Do() failed with '%s'\\n\", err)\n\t}\n\n\tdefer resp.Body.Close()\n\td, err := ioutil.ReadAll(resp.Body)\n\tif err != nil {\n\t\tlog.Fatalf(\"ioutil.ReadAll() failed with '%s'\\n\", err)\n\t}\n\n\tfmt.Printf(\"Response status code: %d, text:\\n%s\\n\", resp.StatusCode, string(d))\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-http-client-user-agent",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-http-client-user-agent?lite=true"
-        }
+        "type": "code",
+        "version": 6,
+        "code": "// no playground\npackage main\n\nimport (\n\t\"fmt\"\n\t\"io/ioutil\"\n\t\"log\"\n\t\"net/http\"\n\t\"time\"\n)\n\nfunc main() {\n\t// :show start\n\tuserAgent := \"Special Agent v 1.0.16\"\n\n\tclient := \u0026http.Client{}\n\tclient.Timeout = time.Second * 15\n\n\turi := \"https://httpbin.org/user-agent\"\n\treq, err := http.NewRequest(http.MethodGet, uri, nil)\n\tif err != nil {\n\t\tlog.Fatalf(\"http.NewRequest() failed with '%s'\\n\", err)\n\t}\n\treq.Header.Set(\"User-Agent\", userAgent)\n\tresp, err := client.Do(req)\n\tif err != nil {\n\t\tlog.Fatalf(\"client.Do() failed with '%s'\\n\", err)\n\t}\n\n\tdefer resp.Body.Close()\n\td, err := ioutil.ReadAll(resp.Body)\n\tif err != nil {\n\t\tlog.Fatalf(\"ioutil.ReadAll() failed with '%s'\\n\", err)\n\t}\n\n\tfmt.Printf(\"Response status code: %d, text:\\n%s\\n\", resp.StatusCode, string(d))\n\t// :show end\n}",
+        "code_language": "Go"
       }
     ],
     "title": "Set User-Agent",
@@ -263,12 +254,12 @@
       "family_name": "Kowalczyk",
       "given_name": "Krzysztof",
       "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-      "locale": "en",
+      "locale": "",
       "mobile_onboarding_completed": true,
       "onboarding_completed": true,
       "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-      "time_zone": "America/Los_Angeles",
-      "version": 29
+      "time_zone": "",
+      "version": 43
     }
   ],
   "Tables": null

@@ -42,7 +42,7 @@ type Book struct {
 	sha1ToCachedOutputFile    map[string]*cachedOutputFile
 	sha1ToGoPlaygroundCache   *Sha1ToGoPlaygroundCache
 	sha1ToGlotPlaygroundCache *Sha1ToGlotPlaygroundCache
-	replitCache               *ReplitCache
+	//replitCache               *ReplitCache
 
 	// pages loaded from cache/${book}/notion/${pageid}.json
 	cachedPagesFromDisk map[string]*notionapi.Page

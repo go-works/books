@@ -4,12 +4,8 @@ import (
 	"archive/zip"
 	"bytes"
 	"fmt"
-	"io"
-	"io/ioutil"
-	"net/http"
 	"os"
 	"sort"
-	"time"
 
 	"github.com/kjk/siser"
 )
@@ -164,43 +160,25 @@ func (c *ReplitCache) Close() error {
 	return nil
 }
 
-func httpGet(uri string) ([]byte, error) {
-	hc := &http.Client{
-		Timeout: 15 * time.Second,
-	}
-	resp, err := hc.Get(uri)
+func downloadAndCacheReplit(c *ReplitCache, uri string) (*Replit, bool, error) {
+	fullURL := uri + ".zip"
+	d, err := httpGet(fullURL)
 	if err != nil {
-		return nil, err
+		return nil, false, err
 	}
-	defer resp.Body.Close()
-
-	if resp.StatusCode != http.StatusOK {
-		d, _ := ioutil.ReadAll(resp.Body)
-		return nil, fmt.Errorf("Request was '%s' (%d) and not OK (200). Body:\n%s\nurl: %s", resp.Status, resp.StatusCode, string(d), uri)
-	}
-	d, err := ioutil.ReadAll(resp.Body)
+	files, err := zipExtractReplit(d)
 	if err != nil {
-		return nil, err
+		return nil, false, err
 	}
-	return d, nil
+	r := &Replit{
+		url:   uri,
+		files: files,
+	}
+	isNew, err := c.Add(r)
+	return r, isNew, err
 }
 
-func unzipFileAsData(f *zip.File) ([]byte, error) {
-	r, err := f.Open()
-	if err != nil {
-		return nil, err
-	}
-	defer r.Close()
-
-	var buf bytes.Buffer
-	_, err = io.Copy(&buf, r)
-	if err != nil {
-		return nil, err
-	}
-	return buf.Bytes(), nil
-}
-
-func zipExtract(d []byte) ([]*ReplitFile, error) {
+func zipExtractReplit(d []byte) ([]*ReplitFile, error) {
 	var res []*ReplitFile
 	f := bytes.NewReader(d)
 	fsize := int64(len(d))
@@ -223,22 +201,4 @@ func zipExtract(d []byte) ([]*ReplitFile, error) {
 		res = append(res, rf)
 	}
 	return res, nil
-}
-
-func downloadAndCacheReplit(c *ReplitCache, uri string) (*Replit, bool, error) {
-	fullURL := uri + ".zip"
-	d, err := httpGet(fullURL)
-	if err != nil {
-		return nil, false, err
-	}
-	files, err := zipExtract(d)
-	if err != nil {
-		return nil, false, err
-	}
-	r := &Replit{
-		url:   uri,
-		files: files,
-	}
-	isNew, err := c.Add(r)
-	return r, isNew, err
 }

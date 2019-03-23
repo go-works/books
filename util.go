@@ -1,16 +1,20 @@
 package main
 
 import (
+	"archive/zip"
+	"bytes"
 	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
+	"net/http"
 	"os"
 	"os/exec"
 	"path/filepath"
 	"runtime"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/kjk/u"
 )
@@ -411,4 +415,40 @@ func appendToFile(path string, s string) error {
 		return err
 	}
 	return f.Close()
+}
+
+func httpGet(uri string) ([]byte, error) {
+	hc := &http.Client{
+		Timeout: 15 * time.Second,
+	}
+	resp, err := hc.Get(uri)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		d, _ := ioutil.ReadAll(resp.Body)
+		return nil, fmt.Errorf("Request was '%s' (%d) and not OK (200). Body:\n%s\nurl: %s", resp.Status, resp.StatusCode, string(d), uri)
+	}
+	d, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
+	return d, nil
+}
+
+func unzipFileAsData(f *zip.File) ([]byte, error) {
+	r, err := f.Open()
+	if err != nil {
+		return nil, err
+	}
+	defer r.Close()
+
+	var buf bytes.Buffer
+	_, err = io.Copy(&buf, r)
+	if err != nil {
+		return nil, err
+	}
+	return buf.Bytes(), nil
 }

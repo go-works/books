@@ -7,7 +7,7 @@
       "8a485eaf-695e-416a-aa0f-bc6619ec53e6",
       "073af4ec-b787-489d-8304-785dc1cf8f9b",
       "4b1ac156-45dd-420e-a7ac-6a4aacc2cfec",
-      "73923605-9c0c-4057-9d1b-5382428f6548",
+      "ebd2f6c7-06d4-4644-95ae-726db4fb10fb",
       "f63abe96-7330-4b31-ac3d-1fef7ae1bfc5"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -19,7 +19,7 @@
     "id": "65fe1f20-ed45-4f0c-8a2d-b99f7c2882a9",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539848839201,
+    "last_edited_time": 1553321400000,
     "parent_id": "710edf91-b0f1-4662-9abb-fcd96aba4d80",
     "parent_table": "block",
     "properties": {
@@ -30,7 +30,7 @@
       ]
     },
     "type": "page",
-    "version": 51,
+    "version": 56,
     "content_resolved": [
       {
         "alive": true,
@@ -167,37 +167,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539848825335,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-http-client-put-json?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "73923605-9c0c-4057-9d1b-5382428f6548",
+        "created_time": 1553321406495,
+        "id": "ebd2f6c7-06d4-4644-95ae-726db4fb10fb",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539848826939,
+        "last_edited_time": 1553321400000,
         "parent_id": "65fe1f20-ed45-4f0c-8a2d-b99f7c2882a9",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-http-client-put-json"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// no playground\npackage main\n\nimport (\n\t\"bytes\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"io/ioutil\"\n\t\"log\"\n\t\"net/http\"\n\t\"time\"\n)\n\ntype User struct {\n\tName  string\n\tEmail string\n}\n\nfunc main() {\n\t// :show start\n\tuser := User{\n\t\tName:  \"John Doe\",\n\t\tEmail: \"johndoe@example.com\",\n\t}\n\n\td, err := json.Marshal(user)\n\tif err != nil {\n\t\tlog.Fatalf(\"json.Marshal() failed with '%s'\\n\", err)\n\t}\n\n\tclient := \u0026http.Client{}\n\tclient.Timeout = time.Second * 15\n\n\turi := \"https://httpbin.org/put\"\n\tbody := bytes.NewBuffer(d)\n\treq, err := http.NewRequest(http.MethodPut, uri, body)\n\tif err != nil {\n\t\tlog.Fatalf(\"http.NewRequest() failed with '%s'\\n\", err)\n\t}\n\n\treq.Header.Set(\"Content-Type\", \"application/json; charset=utf-8\")\n\tresp, err := client.Do(req)\n\tif err != nil {\n\t\tlog.Fatalf(\"client.Do() failed with '%s'\\n\", err)\n\t}\n\n\tdefer resp.Body.Close()\n\td, err = ioutil.ReadAll(resp.Body)\n\tif err != nil {\n\t\tlog.Fatalf(\"ioutil.ReadAll() failed with '%s'\\n\", err)\n\t}\n\n\tfmt.Printf(\"Response status code: %d, text:\\n%s\\n\", resp.StatusCode, string(d))\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-http-client-put-json",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-http-client-put-json?lite=true"
-        }
+        "type": "code",
+        "version": 6,
+        "code": "// no playground\npackage main\n\nimport (\n\t\"bytes\"\n\t\"encoding/json\"\n\t\"fmt\"\n\t\"io/ioutil\"\n\t\"log\"\n\t\"net/http\"\n\t\"time\"\n)\n\ntype User struct {\n\tName  string\n\tEmail string\n}\n\nfunc main() {\n\t// :show start\n\tuser := User{\n\t\tName:  \"John Doe\",\n\t\tEmail: \"johndoe@example.com\",\n\t}\n\n\td, err := json.Marshal(user)\n\tif err != nil {\n\t\tlog.Fatalf(\"json.Marshal() failed with '%s'\\n\", err)\n\t}\n\n\tclient := \u0026http.Client{}\n\tclient.Timeout = time.Second * 15\n\n\turi := \"https://httpbin.org/put\"\n\tbody := bytes.NewBuffer(d)\n\treq, err := http.NewRequest(http.MethodPut, uri, body)\n\tif err != nil {\n\t\tlog.Fatalf(\"http.NewRequest() failed with '%s'\\n\", err)\n\t}\n\n\treq.Header.Set(\"Content-Type\", \"application/json; charset=utf-8\")\n\tresp, err := client.Do(req)\n\tif err != nil {\n\t\tlog.Fatalf(\"client.Do() failed with '%s'\\n\", err)\n\t}\n\n\tdefer resp.Body.Close()\n\td, err = ioutil.ReadAll(resp.Body)\n\tif err != nil {\n\t\tlog.Fatalf(\"ioutil.ReadAll() failed with '%s'\\n\", err)\n\t}\n\n\tfmt.Printf(\"Response status code: %d, text:\\n%s\\n\", resp.StatusCode, string(d))\n\t// :show end\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,
@@ -228,12 +219,12 @@
       "family_name": "Kowalczyk",
       "given_name": "Krzysztof",
       "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-      "locale": "en",
+      "locale": "",
       "mobile_onboarding_completed": true,
       "onboarding_completed": true,
       "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-      "time_zone": "America/Los_Angeles",
-      "version": 29
+      "time_zone": "",
+      "version": 43
     }
   ],
   "Tables": null

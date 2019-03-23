@@ -274,27 +274,33 @@ func (g *HTMLGenerator) genEmbed(block *notionapi.Block) {
 func (g *HTMLGenerator) genReplitEmbed(block *notionapi.Block) {
 	uri := block.FormatEmbed.DisplaySource
 	uri = strings.Replace(uri, "?lite=true", "", -1)
+	fmt.Printf("Page: https://notion.so/%s\n", g.page.NotionID)
+	fmt.Printf("  Replit: %s\n", uri)
+	panic("we no longer use replit")
 
-	replit := g.book.replitCache.replits[uri]
-	if replit == nil || flgRedownloadReplit {
-		var isNew bool
-		var err error
-		replit, isNew, err = downloadAndCacheReplit(g.book.replitCache, uri)
-		panicIfErr(err)
-		fmt.Printf("genReplitEmbed: downloaded %s,  isNew: %v\n", uri+".zip", isNew)
-	}
-	f, err := getSourceFileFromReplit(g.book, replit)
-	if err != nil {
-		file := replit.files[0]
-		fmt.Printf("genReplitEmbed: getSourceFileFromReplit (name: '%s', uri: '%s') failed with '%s'\n", file.name, uri, err)
-		fmt.Printf("file '%s':\n%s\n", file.name, file.data)
-		panicIfErr(err)
-	}
-	f.EmbedURL = uri
-	f.PlaygroundURI = uri
-	g.genSourceFile(f)
+	/*
+		replit := g.book.replitCache.replits[uri]
+		if replit == nil || flgRedownloadReplit {
+			var isNew bool
+			var err error
+			replit, isNew, err = downloadAndCacheReplit(g.book.replitCache, uri)
+			panicIfErr(err)
+			fmt.Printf("genReplitEmbed: downloaded %s,  isNew: %v\n", uri+".zip", isNew)
+		}
+		f, err := getSourceFileFromReplit(g.book, replit)
+		if err != nil {
+			file := replit.files[0]
+			fmt.Printf("genReplitEmbed: getSourceFileFromReplit (name: '%s', uri: '%s') failed with '%s'\n", file.name, uri, err)
+			fmt.Printf("file '%s':\n%s\n", file.name, file.data)
+			panicIfErr(err)
+		}
+		f.EmbedURL = uri
+		f.PlaygroundURI = uri
+		g.genSourceFile(f)
+	*/
 }
 
+/*
 func pickReplitFile(files []*ReplitFile) *ReplitFile {
 	if len(files) == 1 {
 		return files[0]
@@ -316,6 +322,7 @@ func getSourceFileFromReplit(b *Book, replit *Replit) (*SourceFile, error) {
 	err = getOutputCachedForReplit(b, replit, f)
 	return f, err
 }
+*/
 
 func (g *HTMLGenerator) genSourceFile(f *SourceFile) {
 	{

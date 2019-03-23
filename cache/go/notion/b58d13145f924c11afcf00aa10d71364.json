@@ -21,7 +21,7 @@
       "205cf4cf-f601-4b33-ac3c-e64633150fe0",
       "eed0712f-590c-4e88-a96d-7cfb0a3f9515",
       "73a37dd5-b336-4c68-a079-238c073f37f6",
-      "f07d2c83-375d-429d-9870-08936d9ba6a8",
+      "b1cca2c4-7dd3-4edc-9d70-a90c297801df",
       "efee8e82-c675-4b68-8e0d-24cecc306064",
       "d71c0aad-d448-4df9-9e7b-3a1e5c83d5bb",
       "62c2445b-cc02-47b9-b742-9ff7495a7d26",
@@ -38,7 +38,7 @@
     "id": "b58d1314-5f92-4c11-afcf-00aa10d71364",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1552286100000,
+    "last_edited_time": 1553321220000,
     "parent_id": "2cab1ed2-b7a4-4584-b56b-0d3ca9b80185",
     "parent_table": "block",
     "properties": {
@@ -49,7 +49,7 @@
       ]
     },
     "type": "page",
-    "version": 47,
+    "version": 52,
     "content_resolved": [
       {
         "alive": true,
@@ -749,37 +749,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539852212471,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-http-client-timeout?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "f07d2c83-375d-429d-9870-08936d9ba6a8",
+        "created_time": 1553321271211,
+        "id": "b1cca2c4-7dd3-4edc-9d70-a90c297801df",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539852213793,
+        "last_edited_time": 1553321220000,
         "parent_id": "b58d1314-5f92-4c11-afcf-00aa10d71364",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-http-client-timeout"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// allow error, no playground\npackage main\n\nimport (\n\t\"context\"\n\t\"log\"\n\t\"net/http\"\n\t\"time\"\n)\n\nfunc main() {\n\t// :show start\n\n\t// httpbin.org is a service for testing HTTP client\n\t// this URL waits 3 seconds before returning a response\n\turi := \"https://httpbin.org/delay/3\"\n\treq, err := http.NewRequest(\"GET\", uri, nil)\n\tif err != nil {\n\t\tlog.Fatalf(\"http.NewRequest() failed with '%s'\\n\", err)\n\t}\n\n\t// create a context indicating 100 ms timeout\n\tctx, _ := context.WithTimeout(context.Background(), time.Millisecond*100)\n\t// get a new request based on original request but with the context\n\treq = req.WithContext(ctx)\n\n\tresp, err := http.DefaultClient.Do(req)\n\tif err != nil {\n\t\t// the request should timeout because we want to wait max 100 ms\n\t\t// but the server doesn't return response for 3 seconds\n\t\tlog.Fatalf(\"http.DefaultClient.Do() failed with:\\n'%s'\\n\", err)\n\t}\n\tdefer resp.Body.Close()\n\t// :show end\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-http-client-timeout",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-http-client-timeout?lite=true"
-        }
+        "type": "code",
+        "version": 6,
+        "code": "// allow error, no playground\npackage main\n\nimport (\n\t\"context\"\n\t\"log\"\n\t\"net/http\"\n\t\"time\"\n)\n\nfunc main() {\n\t// :show start\n\n\t// httpbin.org is a service for testing HTTP client\n\t// this URL waits 3 seconds before returning a response\n\turi := \"https://httpbin.org/delay/3\"\n\treq, err := http.NewRequest(\"GET\", uri, nil)\n\tif err != nil {\n\t\tlog.Fatalf(\"http.NewRequest() failed with '%s'\\n\", err)\n\t}\n\n\t// create a context indicating 100 ms timeout\n\tctx, _ := context.WithTimeout(context.Background(), time.Millisecond*100)\n\t// get a new request based on original request but with the context\n\treq = req.WithContext(ctx)\n\n\tresp, err := http.DefaultClient.Do(req)\n\tif err != nil {\n\t\t// the request should timeout because we want to wait max 100 ms\n\t\t// but the server doesn't return response for 3 seconds\n\t\tlog.Fatalf(\"http.DefaultClient.Do() failed with:\\n'%s'\\n\", err)\n\t}\n\tdefer resp.Body.Close()\n\t// :show end\n}",
+        "code_language": "Go"
       },
       {
         "alive": true,
@@ -967,12 +958,12 @@
       "family_name": "Kowalczyk",
       "given_name": "Krzysztof",
       "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-      "locale": "en",
+      "locale": "",
       "mobile_onboarding_completed": true,
       "onboarding_completed": true,
       "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-      "time_zone": "America/Los_Angeles",
-      "version": 29
+      "time_zone": "",
+      "version": 43
     }
   ],
   "Tables": null

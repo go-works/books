@@ -11,8 +11,7 @@
       "30ba593a-b1d1-4ac1-958f-bcc51e705371",
       "ff29d8e6-da42-4aad-899b-7339cde54122",
       "10d68653-d22b-450e-a3bd-9e8c379064a8",
-      "63df712f-4ac1-4703-b35f-69094b084f1c",
-      "a09caee7-930a-4676-b6ae-2d5264ac9167"
+      "83b04215-f0e6-448b-a7a9-8c3216d6b902"
     ],
     "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
     "created_time": 1532156234149,
@@ -23,7 +22,7 @@
     "id": "698adf30-b5e5-4d2d-8e28-2053c556682a",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1539852453618,
+    "last_edited_time": 1553321520000,
     "parent_id": "7ccfe169-7c31-49c3-83b6-8894ede37d84",
     "parent_table": "block",
     "properties": {
@@ -34,7 +33,7 @@
       ]
     },
     "type": "page",
-    "version": 92,
+    "version": 99,
     "content_resolved": [
       {
         "alive": true,
@@ -219,49 +218,28 @@
       {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539852426966,
-        "format": {
-          "block_width": 800,
-          "block_height": 600,
-          "display_source": "https://repl.it/@kjk1/gobook-oo-interface-polymorhism?lite=true",
-          "block_full_width": false,
-          "block_page_width": false,
-          "block_preserve_scale": false
-        },
-        "id": "63df712f-4ac1-4703-b35f-69094b084f1c",
+        "created_time": 1553321520085,
+        "id": "83b04215-f0e6-448b-a7a9-8c3216d6b902",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539852428534,
+        "last_edited_time": 1553321520000,
         "parent_id": "698adf30-b5e5-4d2d-8e28-2053c556682a",
         "parent_table": "block",
         "properties": {
-          "source": [
+          "language": [
             [
-              "https://repl.it/@kjk1/gobook-oo-interface-polymorhism"
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n)\n\ntype Runner interface {\n\tRun()\n}\n\ntype Admin struct {\n\tUsername, Password string\n}\n\nfunc (admin Admin) Run() {\n\tfmt.Println(\"Admin ==\u003e Run()\")\n}\n\ntype User struct {\n\tID              uint64\n\tFullName, Email string\n}\n\nfunc (user User) Run() {\n\tfmt.Println(\"User ==\u003e Run()\")\n}\n\n// RunnerExample takes any type that fullfils the Runner interface\nfunc RunnerExample(r Runner) {\n\tr.Run()\n}\n\nfunc main() {\n\tadmin := Admin{\n\t\t\"zola\",\n\t\t\"supersecretpassword\",\n\t}\n\n\tuser := User{\n\t\t1,\n\t\t\"Zelalem Mekonen\",\n\t\t\"zola.mk.27@gmail.com\",\n\t}\n\n\tRunnerExample(admin)\n\n\tRunnerExample(user)\n}"
             ]
           ]
         },
-        "type": "embed",
-        "version": 8,
-        "source": "https://repl.it/@kjk1/gobook-oo-interface-polymorhism",
-        "format_embed": {
-          "block_full_width": false,
-          "block_height": 600,
-          "block_page_width": false,
-          "block_preserve_scale": false,
-          "display_source": "https://repl.it/@kjk1/gobook-oo-interface-polymorhism?lite=true"
-        }
-      },
-      {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1539454679676,
-        "id": "a09caee7-930a-4676-b6ae-2d5264ac9167",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1539454679702,
-        "parent_id": "698adf30-b5e5-4d2d-8e28-2053c556682a",
-        "parent_table": "block",
-        "type": "text",
-        "version": 6
+        "type": "code",
+        "version": 15,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n)\n\ntype Runner interface {\n\tRun()\n}\n\ntype Admin struct {\n\tUsername, Password string\n}\n\nfunc (admin Admin) Run() {\n\tfmt.Println(\"Admin ==\u003e Run()\")\n}\n\ntype User struct {\n\tID              uint64\n\tFullName, Email string\n}\n\nfunc (user User) Run() {\n\tfmt.Println(\"User ==\u003e Run()\")\n}\n\n// RunnerExample takes any type that fullfils the Runner interface\nfunc RunnerExample(r Runner) {\n\tr.Run()\n}\n\nfunc main() {\n\tadmin := Admin{\n\t\t\"zola\",\n\t\t\"supersecretpassword\",\n\t}\n\n\tuser := User{\n\t\t1,\n\t\t\"Zelalem Mekonen\",\n\t\t\"zola.mk.27@gmail.com\",\n\t}\n\n\tRunnerExample(admin)\n\n\tRunnerExample(user)\n}",
+        "code_language": "Go"
       }
     ],
     "title": "Interface \u0026 polymorphism",
@@ -280,12 +258,12 @@
       "family_name": "Kowalczyk",
       "given_name": "Krzysztof",
       "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-      "locale": "en",
+      "locale": "",
       "mobile_onboarding_completed": true,
       "onboarding_completed": true,
       "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-      "time_zone": "America/Los_Angeles",
-      "version": 29
+      "time_zone": "",
+      "version": 43
     }
   ],
   "Tables": null

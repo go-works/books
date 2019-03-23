@@ -303,6 +303,7 @@ func isReplitURL(uri string) bool {
 	return strings.Contains(uri, "repl.it/")
 }
 
+/*
 func redownloadOneReplit() {
 	if len(flag.Args()) != 1 {
 		fmt.Printf("-redownload-one-replit expects 2 arguments: book and replit url\n")
@@ -321,6 +322,7 @@ func redownloadOneReplit() {
 	panicIfErr(err)
 	fmt.Printf("genReplitEmbed: downloaded %s,  isNew: %v\n", uri+".zip", isNew)
 }
+*/
 
 func initBook(book *Book) {
 	var err error
@@ -333,7 +335,7 @@ func initBook(book *Book) {
 	book.sha1ToGoPlaygroundCache = readSha1ToGoPlaygroundCache(path)
 	path = filepath.Join(book.OutputCacheDir(), "sha1_to_glot_playground_id.txt")
 	book.sha1ToGlotPlaygroundCache = readSha1ToGlotPlaygroundCache(path)
-	book.replitCache, err = LoadReplitCache(book.ReplitCachePath())
+	//book.replitCache, err = LoadReplitCache(book.ReplitCachePath())
 	panicIfErr(err)
 }
 
@@ -379,10 +381,12 @@ func main() {
 
 	parseFlags()
 
-	if flgRedownloadOneReplit != "" {
-		redownloadOneReplit()
-		os.Exit(0)
-	}
+	/*
+		if flgRedownloadOneReplit != "" {
+			redownloadOneReplit()
+			os.Exit(0)
+		}
+	*/
 
 	if false {
 		// only needs to be run when we add new covers
