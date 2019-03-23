@@ -18,7 +18,7 @@ type Cache struct {
 }
 
 func (c *Cache) addGlotSha1ToID(sha1 string, id string) error {
-	fmt.Printf("addGlotSha1ToID: %s => %ss\n", sha1, id)
+	fmt.Printf("addGlotSha1ToID: %s => %s\n", sha1, id)
 	// TODO: maybe silently skip?
 	v, ok := c.sha1ToGlotID[sha1]
 	panicIf(ok, "record already exists for sha1 '%s', value: '%s', new value: '%s'", sha1, v, id)
@@ -37,6 +37,7 @@ func (c *Cache) addGlotSha1ToID(sha1 string, id string) error {
 }
 
 func loadCache(path string) *Cache {
+	fmt.Printf("loadCache: %s\n", path)
 	dir := filepath.Dir(path)
 	// the directory must exist
 	_, err := os.Stat(dir)
@@ -50,6 +51,7 @@ func loadCache(path string) *Cache {
 	f, err := os.Open(path)
 	if err != nil {
 		// it's ok if file doesn't exist
+		fmt.Printf("Cache file %s doesn't exist\n", path)
 		return cache
 	}
 	defer f.Close()
@@ -64,10 +66,15 @@ func loadCache(path string) *Cache {
 			id, ok := rec.Get("id")
 			panicIf(!ok, "didn't find 'id' key in record named '%s'", rec.Name)
 			cache.sha1ToGlotID[sha1] = id
+			fmt.Printf("%s => %s\n", sha1, id)
+			if id == "fa8n2rey8r" {
+				fmt.Printf("Found id %s\n", id)
+			}
 		} else {
 			panic(fmt.Errorf("unknown record: '%s'", rec.Name))
 		}
 	}
 	must(r.Err())
+	fmt.Printf("loadCache: len(cache.sha1ToGlotID): %d\n", len(cache.sha1ToGlotID))
 	return cache
 }
