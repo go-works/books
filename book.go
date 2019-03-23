@@ -38,12 +38,9 @@ type Book struct {
 	CoverImageName string
 
 	// cache related
-	cachedOutputFiles       []*cachedOutputFile
-	sha1ToCachedOutputFile  map[string]*cachedOutputFile
-	sha1ToGoPlaygroundCache *Sha1ToGoPlaygroundCache
-	cache                   *Cache
-	//sha1ToGlotPlaygroundCache *Sha1ToGlotPlaygroundCache
-	//replitCache               *ReplitCache
+	cachedOutputFiles      []*cachedOutputFile
+	sha1ToCachedOutputFile map[string]*cachedOutputFile
+	cache                  *Cache
 
 	// pages loaded from cache/${book}/notion/${pageid}.json
 	cachedPagesFromDisk map[string]*notionapi.Page

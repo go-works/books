@@ -2,49 +2,9 @@ package main
 
 import (
 	"fmt"
-	"os"
-	"strings"
 
 	"github.com/kjk/u"
-
-	"github.com/essentialbooks/books/pkg/common"
 )
-
-// Sha1ToGlotPlaygroundCache maintains sha1 of content to go playground id cache
-type Sha1ToGlotPlaygroundCache struct {
-	cachePath string
-	sha1ToID  map[string]string
-	nUpdates  int
-}
-
-func readSha1ToGlotPlaygroundCache(path string) *Sha1ToGlotPlaygroundCache {
-	res := &Sha1ToGlotPlaygroundCache{
-		cachePath: path,
-		sha1ToID:  map[string]string{},
-	}
-	lines, err := common.ReadFileAsLines(path)
-	if err != nil {
-		if os.IsNotExist(err) {
-			// early detection of "can't create a file" condition
-			f, err := os.Create(path)
-			panicIfErr(err)
-			f.Close()
-		}
-	}
-	for i, s := range lines {
-		s = strings.TrimSpace(s)
-		if len(s) == 0 {
-			continue
-		}
-		parts := strings.Split(s, " ")
-		panicIf(len(parts) != 2, "unexpected line '%s'", lines[i])
-		sha1 := parts[0]
-		id := parts[1]
-		res.sha1ToID[sha1] = id
-	}
-	fmt.Printf("Loaded '%s' with %d glot sha1 => id entries\n", path, len(res.sha1ToID))
-	return res
-}
 
 // GetGlotPlaygroundID gets go playground id from content
 func GetGlotPlaygroundID(b *Book, d []byte, snippetName string, fileName string, lang string) (string, bool, error) {

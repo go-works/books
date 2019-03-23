@@ -303,15 +303,15 @@ func isReplitURL(uri string) bool {
 	return strings.Contains(uri, "repl.it/")
 }
 
-func convertGlotToCache(book *Book) {
-	path := filepath.Join(book.OutputCacheDir(), "sha1_to_glot_playground_id.txt")
+func convertGoPlaygroundToCache(book *Book) {
+	path := filepath.Join(book.OutputCacheDir(), "sha1_to_go_playground_id.txt")
 	if !pathExists(path) {
 		return
 	}
-	fmt.Printf("convertGlotToCache: %s\n", book.Title)
-	sha1ToGlotPlayground := readSha1ToGlotPlaygroundCache(path)
-	for sha1, id := range sha1ToGlotPlayground.sha1ToID {
-		book.cache.addGlotSha1ToID(sha1, id)
+	fmt.Printf("convertGoPlaygroundToCache: %s %s\n", book.Title, path)
+	sha1ToID := readSha1ToGoPlaygroundCache(path)
+	for sha1, id := range sha1ToID.sha1ToID {
+		book.cache.addGoPlaySha1ToID(sha1, id)
 	}
 	err := os.Remove(path)
 	must(err)
@@ -329,13 +329,8 @@ func initBook(book *Book) {
 	}
 
 	reloadCachedOutputFilesMust(book)
-	path := filepath.Join(book.OutputCacheDir(), "sha1_to_go_playground_id.txt")
-	book.sha1ToGoPlaygroundCache = readSha1ToGoPlaygroundCache(path)
 	book.cache = loadCache(book.CachePath())
-	fmt.Printf("initBook: len(book.cache.sha1ToGlotID): %d\n", len(book.cache.sha1ToGlotID))
-	convertGlotToCache(book)
-	//book.sha1ToGlotPlaygroundCache = readSha1ToGlotPlaygroundCache(path)
-	//book.replitCache, err = LoadReplitCache(book.ReplitCachePath())
+	convertGoPlaygroundToCache(book)
 	panicIfErr(err)
 }
 

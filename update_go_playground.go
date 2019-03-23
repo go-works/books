@@ -78,30 +78,27 @@ func testGetGoPlaygroundShareIDAndExit() {
 	os.Exit(0)
 }
 
-// GetPlaygroundID gets go playground id from content
-func (c *Sha1ToGoPlaygroundCache) GetPlaygroundID(d []byte) (string, error) {
+// GetGoPlaygroundID gets go playground id from content
+func GetGoPlaygroundID(c *Cache, d []byte) (string, bool, error) {
 	sha1 := u.Sha1HexOfBytes(d)
-	id, ok := c.sha1ToID[sha1]
+	id, ok := c.sha1ToGoPlayID[sha1]
 	if ok {
-		return id, nil
+		return id, true, nil
 	}
 	id, err := getGoPlaygroundShareID(d)
 	if err != nil {
-		return "", err
+		return "", false, err
 	}
-	s := fmt.Sprintf("%s %s\n", sha1, id)
-	err = appendToFile(c.cachePath, s)
+	err = c.addGoPlaySha1ToID(sha1, id)
 	if err != nil {
-		return "", err
+		return "", false, err
 	}
-	c.nUpdates++
-	return id, nil
+	return id, false, nil
 }
 
 func getSha1ToGoPlaygroundIDCached(b *Book, d []byte) (string, error) {
-	nUpdates := b.sha1ToGoPlaygroundCache.nUpdates
-	id, err := b.sha1ToGoPlaygroundCache.GetPlaygroundID(d)
-	if err == nil && nUpdates != b.sha1ToGoPlaygroundCache.nUpdates {
+	id, fromCache, err := GetGoPlaygroundID(b.cache, d)
+	if err == nil && !fromCache {
 		sha1 := u.Sha1HexOfBytes(d)
 		fmt.Printf("getSha1ToGoPlaygroundIDCached: %s => %s\n", sha1, id)
 	}
