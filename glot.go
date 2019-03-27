@@ -252,7 +252,7 @@ func glotHTTPPostJSON(uri string, reqIn interface{}, rspOut interface{}) error {
 		return err
 	}
 	hc := &http.Client{
-		Timeout: 5 * time.Second,
+		Timeout: 60 * time.Second,
 	}
 	body := bytes.NewBuffer(js)
 	req, err := http.NewRequest("POST", uri, body)
