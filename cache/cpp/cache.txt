@@ -658,3 +658,724 @@ Output:+2
 66 1553669309713 glotid
 Sha1: b7656e12c69e43e2353db8ba91fc184ec644d1ab
 GlotID: faq9tse6hg
+4836 1553669594697 glotoutput
+Sha1: 09f2aeabdc7d743cc765d6ad05e2b8512f0c114b
+Lang: C++
+FileName: main.cpp
+CodeFull:+2319
+// :glot
+#include <algorithm>        // std::copy
+#include <cassert>          // assert
+#include <initializer_list> // std::initializer_list
+#include <vector>           // std::vector
+#include <cstddef>          // ptrdiff_t
+
+// A dynamic size matrix using std::vector for storage.
+
+namespace my {
+    using Size = ptrdiff_t;
+    using std::initializer_list;
+    using std::vector;
+
+    template< class Item >
+    class Matrix
+    {
+    private:
+        vector<Item>    items_;
+        Size            n_cols_;
+        
+        auto index_for( Size const x, Size const y ) const
+            -> Size
+        { return y*n_cols_ + x; }
+
+    public:
+        auto n_rows() const -> Size { return items_.size()/n_cols_; }
+        auto n_cols() const -> Size { return n_cols_; }
+
+        auto item( Size const x, Size const y )
+            -> Item&
+        { return items_[index_for(x, y)]; }
+        
+        auto item( Size const x, Size const y ) const
+            -> Item const&
+        { return items_[index_for(x, y)]; }
+
+        Matrix(): n_cols_( 0 ) {}
+
+        Matrix( Size const n_cols, Size const n_rows )
+            : items_( n_cols*n_rows )
+            , n_cols_( n_cols )
+        {}
+        
+        Matrix( initializer_list< initializer_list<Item> > const& values )
+            : items_()
+            , n_cols_( values.size() == 0? 0 : values.begin()->size() )
+        {
+            for( auto const& row : values )
+            {
+                assert( Size( row.size() ) == n_cols_ );
+                items_.insert( items_.end(), row.begin(), row.end() );
+            }
+        }
+    };
+}  // namespace my
+
+//--------------------------------------------- Usage:
+using my::Matrix;
+
+auto some_matrix()
+    -> Matrix<int>
+{
+    return
+    {
+        {  1,  2,  3,  4,  5,  6,  7 },
+        {  8,  9, 10, 11, 12, 13, 14 },
+        { 15, 16, 17, 18, 19, 20, 21 }
+    };
+}
+
+#include <iostream>
+#include <iomanip>
+using namespace std;
+auto main() -> int
+{
+    Matrix<int> const m = some_matrix();
+    assert( m.n_cols() == 7 );
+    assert( m.n_rows() == 3 );
+    for( int y = 0, y_end = m.n_rows(); y < y_end; ++y )
+    {
+        for( int x = 0, x_end = m.n_cols(); x < x_end; ++x )
+        {
+            cout << setw( 4 ) << m.item( x, y );        // ← Note: not `m[y][x]`!
+        }
+        cout << '\n';
+    }
+}
+CodeToRun:+2310
+#include <algorithm>        // std::copy
+#include <cassert>          // assert
+#include <initializer_list> // std::initializer_list
+#include <vector>           // std::vector
+#include <cstddef>          // ptrdiff_t
+
+// A dynamic size matrix using std::vector for storage.
+
+namespace my {
+    using Size = ptrdiff_t;
+    using std::initializer_list;
+    using std::vector;
+
+    template< class Item >
+    class Matrix
+    {
+    private:
+        vector<Item>    items_;
+        Size            n_cols_;
+        
+        auto index_for( Size const x, Size const y ) const
+            -> Size
+        { return y*n_cols_ + x; }
+
+    public:
+        auto n_rows() const -> Size { return items_.size()/n_cols_; }
+        auto n_cols() const -> Size { return n_cols_; }
+
+        auto item( Size const x, Size const y )
+            -> Item&
+        { return items_[index_for(x, y)]; }
+        
+        auto item( Size const x, Size const y ) const
+            -> Item const&
+        { return items_[index_for(x, y)]; }
+
+        Matrix(): n_cols_( 0 ) {}
+
+        Matrix( Size const n_cols, Size const n_rows )
+            : items_( n_cols*n_rows )
+            , n_cols_( n_cols )
+        {}
+        
+        Matrix( initializer_list< initializer_list<Item> > const& values )
+            : items_()
+            , n_cols_( values.size() == 0? 0 : values.begin()->size() )
+        {
+            for( auto const& row : values )
+            {
+                assert( Size( row.size() ) == n_cols_ );
+                items_.insert( items_.end(), row.begin(), row.end() );
+            }
+        }
+    };
+}  // namespace my
+
+//--------------------------------------------- Usage:
+using my::Matrix;
+
+auto some_matrix()
+    -> Matrix<int>
+{
+    return
+    {
+        {  1,  2,  3,  4,  5,  6,  7 },
+        {  8,  9, 10, 11, 12, 13, 14 },
+        { 15, 16, 17, 18, 19, 20, 21 }
+    };
+}
+
+#include <iostream>
+#include <iomanip>
+using namespace std;
+auto main() -> int
+{
+    Matrix<int> const m = some_matrix();
+    assert( m.n_cols() == 7 );
+    assert( m.n_rows() == 3 );
+    for( int y = 0, y_end = m.n_rows(); y < y_end; ++y )
+    {
+        for( int x = 0, x_end = m.n_cols(); x < x_end; ++x )
+        {
+            cout << setw( 4 ) << m.item( x, y );        // ← Note: not `m[y][x]`!
+        }
+        cout << '\n';
+    }
+}
+Output:+87
+   1   2   3   4   5   6   7
+   8   9  10  11  12  13  14
+  15  16  17  18  19  20  21
+66 1553669595659 glotid
+Sha1: 09f2aeabdc7d743cc765d6ad05e2b8512f0c114b
+GlotID: faq9yimxes
+480 1553669607087 glotoutput
+Sha1: a8308c83591abe5b3fa9d0765dfef79248fb7a71
+Lang: C++
+FileName: main.cpp
+CodeFull:+175
+// :glot
+#include <iostream>
+using namespace std;
+
+auto main() -> int
+{
+    for (int i=0; i<10; i++){
+    	if (i%2 == 0) {
+    		continue;
+    	}
+    	cout<<"\n @"<<i;
+    }
+}
+CodeToRun:+166
+#include <iostream>
+using namespace std;
+
+auto main() -> int
+{
+    for (int i=0; i<10; i++){
+    	if (i%2 == 0) {
+    		continue;
+    	}
+    	cout<<"\n @"<<i;
+    }
+}
+Output:+20
+
+ @1
+ @3
+ @5
+ @7
+ @9
+66 1553669607258 glotid
+Sha1: a8308c83591abe5b3fa9d0765dfef79248fb7a71
+GlotID: faq9ypjiyz
+808 1553669635760 glotoutput
+Sha1: 658f15a10eda12945d793c31caf92fcc6e526478
+Lang: C++
+FileName: main.cpp
+CodeFull:+307
+// :glot
+#include <iostream>
+using namespace std;
+
+auto main() -> int
+{
+    int num = 1;
+    STEP:
+    do {
+        if (num % 2 == 0)
+        {
+            num = num + 1;
+            goto STEP;
+         }
+    
+       cout << "value of num : " << num << endl;
+       num = num + 1;
+    } while( num < 10 );
+}
+CodeToRun:+298
+#include <iostream>
+using namespace std;
+
+auto main() -> int
+{
+    int num = 1;
+    STEP:
+    do {
+        if (num % 2 == 0)
+        {
+            num = num + 1;
+            goto STEP;
+         }
+    
+       cout << "value of num : " << num << endl;
+       num = num + 1;
+    } while( num < 10 );
+}
+Output:+85
+value of num : 1
+value of num : 3
+value of num : 5
+value of num : 7
+value of num : 9
+66 1553669636427 glotid
+Sha1: 658f15a10eda12945d793c31caf92fcc6e526478
+GlotID: faq9z6wpsr
+512 1553669646614 glotoutput
+Sha1: b00352200ab054630d6e21c26db7011f5c45ef96
+Lang: C++
+FileName: main.cpp
+CodeFull:+191
+// :glot
+#include <iostream>
+using namespace std;
+
+auto main() -> int
+{
+    int i = 0;
+    while (i < 10)
+    {
+        std::cout << i << " ";
+        ++i;
+    }
+    std::cout << std::endl;
+}
+CodeToRun:+182
+#include <iostream>
+using namespace std;
+
+auto main() -> int
+{
+    int i = 0;
+    while (i < 10)
+    {
+        std::cout << i << " ";
+        ++i;
+    }
+    std::cout << std::endl;
+}
+Output:+21
+0 1 2 3 4 5 6 7 8 9 
+66 1553669646786 glotid
+Sha1: b00352200ab054630d6e21c26db7011f5c45ef96
+GlotID: faq9zd2qoo
+482 1553669652349 glotoutput
+Sha1: 89a5caf674884583a86344d2cc318185f774fa5b
+Lang: C++
+FileName: main.cpp
+CodeFull:+186
+// :glot
+#include <iostream>
+using namespace std;
+
+auto main() -> int
+{
+    int i =0;
+    do
+    {
+        std::cout << i;
+        ++i;
+    } while (i < 0);
+    std::cout << std::endl;
+}
+CodeToRun:+177
+#include <iostream>
+using namespace std;
+
+auto main() -> int
+{
+    int i =0;
+    do
+    {
+        std::cout << i;
+        ++i;
+    } while (i < 0);
+    std::cout << std::endl;
+}
+Output:+2
+0
+66 1553669652657 glotid
+Sha1: 89a5caf674884583a86344d2cc318185f774fa5b
+GlotID: faq9zgiinp
+595 1553669655578 glotoutput
+Sha1: bb21b6dc66ff798514bce6b109412ce46f2bf1c8
+Lang: C++
+FileName: main.cpp
+CodeFull:+240
+// :glot
+#include <iostream>
+using namespace std;
+
+auto main() -> int
+{
+    int i = 0;
+    do
+    {
+        std::cout << i;
+        ++i;
+        if (i > 5) {
+            break;
+        }
+    }
+    while (true);
+    std::cout << std::endl;
+}
+CodeToRun:+231
+#include <iostream>
+using namespace std;
+
+auto main() -> int
+{
+    int i = 0;
+    do
+    {
+        std::cout << i;
+        ++i;
+        if (i > 5) {
+            break;
+        }
+    }
+    while (true);
+    std::cout << std::endl;
+}
+Output:+7
+012345
+66 1553669655753 glotid
+Sha1: bb21b6dc66ff798514bce6b109412ce46f2bf1c8
+GlotID: faq9ziewev
+572 1553669659824 glotoutput
+Sha1: b141afbc2c5365bd792d833c5f0d0b949640e5c3
+Lang: C++
+FileName: main.cpp
+CodeFull:+228
+// :glot
+#include <iostream>
+using namespace std;
+
+auto main() -> int
+{
+    for (int i = 0; i < 10; i++)
+    {
+        if (i == 4)
+            break; // this will immediately exit our loop
+        std::cout << i << '\n';
+    }
+}
+CodeToRun:+219
+#include <iostream>
+using namespace std;
+
+auto main() -> int
+{
+    for (int i = 0; i < 10; i++)
+    {
+        if (i == 4)
+            break; // this will immediately exit our loop
+        std::cout << i << '\n';
+    }
+}
+Output:+8
+0
+1
+2
+3
+66 1553669660030 glotid
+Sha1: b141afbc2c5365bd792d833c5f0d0b949640e5c3
+GlotID: faq9zkxwhq
+1000 1553669664110 glotoutput
+Sha1: 663bc9d85178828448969fc9151c4f126a4382f1
+Lang: C++
+FileName: main.cpp
+CodeFull:+417
+// :glot
+#include <iostream>
+using namespace std;
+
+auto main() -> int
+{
+    for (int i = 0; i < 6; i++)
+    {
+        if (i % 2 == 0) // evaluates to true if i is even
+            continue; // this will immediately go back to the start of the loop
+        /* the next line will only be reached if the above "continue" statement 
+           does not execute  */
+        std::cout << i << " is an odd number\n";
+    }
+}
+CodeToRun:+408
+#include <iostream>
+using namespace std;
+
+auto main() -> int
+{
+    for (int i = 0; i < 6; i++)
+    {
+        if (i % 2 == 0) // evaluates to true if i is even
+            continue; // this will immediately go back to the start of the loop
+        /* the next line will only be reached if the above "continue" statement 
+           does not execute  */
+        std::cout << i << " is an odd number\n";
+    }
+}
+Output:+57
+1 is an odd number
+3 is an odd number
+5 is an odd number
+66 1553669664282 glotid
+Sha1: 663bc9d85178828448969fc9151c4f126a4382f1
+GlotID: faq9znhq37
+2217 1553669668631 glotoutput
+Sha1: fd0be7374bb7084ee9225b82b2badf038295db5a
+Lang: C++
+FileName: main.cpp
+CodeFull:+1040
+// :glot
+#include <iostream>
+
+class Animal {
+private:
+    double weight;
+    double height;
+public:
+    Animal(double w, double h) : weight(w), height(h) { }
+    friend void printWeight(Animal animal);
+    friend class AnimalPrinter;
+    // A common use for a friend function is to overload the operator<< for streaming. 
+    friend std::ostream& operator<<(std::ostream& os, Animal animal);
+};
+
+void printWeight(Animal animal)
+{
+    std::cout << animal.weight << "\n";
+}
+
+class AnimalPrinter
+{
+public:
+    void print(const Animal& animal)
+    {
+        // Because of the `friend class AnimalPrinter;" declaration, we are
+        // allowed to access private members here.
+        std::cout << animal.weight << ", " << animal.height << std::endl;
+    }
+};
+
+std::ostream& operator<<(std::ostream& os, Animal animal)
+{
+    os << "Animal height: " << animal.height << "\n";
+    return os;
+}
+
+int main() {
+    Animal animal = {10, 5};
+    printWeight(animal);
+
+    AnimalPrinter aPrinter;
+    aPrinter.print(animal);
+
+    std::cout << animal;
+}
+CodeToRun:+1031
+#include <iostream>
+
+class Animal {
+private:
+    double weight;
+    double height;
+public:
+    Animal(double w, double h) : weight(w), height(h) { }
+    friend void printWeight(Animal animal);
+    friend class AnimalPrinter;
+    // A common use for a friend function is to overload the operator<< for streaming. 
+    friend std::ostream& operator<<(std::ostream& os, Animal animal);
+};
+
+void printWeight(Animal animal)
+{
+    std::cout << animal.weight << "\n";
+}
+
+class AnimalPrinter
+{
+public:
+    void print(const Animal& animal)
+    {
+        // Because of the `friend class AnimalPrinter;" declaration, we are
+        // allowed to access private members here.
+        std::cout << animal.weight << ", " << animal.height << std::endl;
+    }
+};
+
+std::ostream& operator<<(std::ostream& os, Animal animal)
+{
+    os << "Animal height: " << animal.height << "\n";
+    return os;
+}
+
+int main() {
+    Animal animal = {10, 5};
+    printWeight(animal);
+
+    AnimalPrinter aPrinter;
+    aPrinter.print(animal);
+
+    std::cout << animal;
+}
+Output:+26
+10
+10, 5
+Animal height: 5
+66 1553669668804 glotid
+Sha1: fd0be7374bb7084ee9225b82b2badf038295db5a
+GlotID: faq9zq6nnu
+747 1553669679896 glotoutput
+Sha1: 19357eb1c250c1e350cf02870aff264cd4d1274e
+Lang: C++
+FileName: main.cpp
+CodeFull:+308
+// :glot
+#include <iostream>
+#include <string>
+
+using namespace std;
+ 
+int main() {
+    std::string str = "Curiosity killed the cat";
+    auto it = str.find("cat");
+    
+    if (it != std::string::npos)
+        std::cout << "Found at position: " << it << '\n';
+    else
+        std::cout << "Not found!\n";
+}
+CodeToRun:+299
+#include <iostream>
+#include <string>
+
+using namespace std;
+ 
+int main() {
+    std::string str = "Curiosity killed the cat";
+    auto it = str.find("cat");
+    
+    if (it != std::string::npos)
+        std::cout << "Found at position: " << it << '\n';
+    else
+        std::cout << "Not found!\n";
+}
+Output:+22
+Found at position: 21
+66 1553669680070 glotid
+Sha1: 19357eb1c250c1e350cf02870aff264cd4d1274e
+GlotID: faq9zww340
+510 1553669686551 glotoutput
+Sha1: b7c2301c07baf25d7c0684ff49d51e9b0cb35386
+Lang: C++
+FileName: main.cpp
+CodeFull:+201
+// :glot
+#include <iostream>
+#include <string>
+
+using namespace std;
+ 
+int main() {
+    std::string str = "dog dog cat cat";
+    std::cout << "Found at position: " << str.find_last_of("gzx") << '\n';
+}
+CodeToRun:+192
+#include <iostream>
+#include <string>
+
+using namespace std;
+ 
+int main() {
+    std::string str = "dog dog cat cat";
+    std::cout << "Found at position: " << str.find_last_of("gzx") << '\n';
+}
+Output:+0
+66 1553669686728 glotid
+Sha1: b7c2301c07baf25d7c0684ff49d51e9b0cb35386
+GlotID: faqa00uul6
+1504 1553669701696 glotoutput
+Sha1: faaa450bed93d80fa1ad8807a2ff44a1f16b4c57
+Lang: C++
+FileName: main.cpp
+CodeFull:+656
+// :glot
+#include <iostream>
+#include <string>
+#include <exception>
+#include <stdexcept>
+ 
+void handle_eptr(std::exception_ptr eptr) // passing by value is ok
+{
+    try {
+        if (eptr) {
+            std::rethrow_exception(eptr);
+        }
+    } catch(const std::exception& e) {
+        std::cout << "Caught exception \"" << e.what() << "\"\n";
+    }
+}
+ 
+int main()
+{
+    std::exception_ptr eptr;
+    try {
+        std::string().at(1); // this generates an std::out_of_range
+    } catch(...) {
+        eptr = std::current_exception(); // capture
+    }
+    handle_eptr(eptr);
+} // destructor for std::out_of_range called here, when the eptr is destructed
+CodeToRun:+647
+#include <iostream>
+#include <string>
+#include <exception>
+#include <stdexcept>
+ 
+void handle_eptr(std::exception_ptr eptr) // passing by value is ok
+{
+    try {
+        if (eptr) {
+            std::rethrow_exception(eptr);
+        }
+    } catch(const std::exception& e) {
+        std::cout << "Caught exception \"" << e.what() << "\"\n";
+    }
+}
+ 
+int main()
+{
+    std::exception_ptr eptr;
+    try {
+        std::string().at(1); // this generates an std::out_of_range
+    } catch(...) {
+        eptr = std::current_exception(); // capture
+    }
+    handle_eptr(eptr);
+} // destructor for std::out_of_range called here, when the eptr is destructed
+Output:+83
+Caught exception "basic_string::at: __n (which is 1) >= this->size() (which is 0)"
+66 1553669701870 glotid
+Sha1: faaa450bed93d80fa1ad8807a2ff44a1f16b4c57
+GlotID: faqa09vlji

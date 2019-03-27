@@ -150,7 +150,10 @@ func updateGlotOutput(cache *Cache, sf *SourceFile) error {
 		Files:    []*glotFile{f},
 	}
 	rsp, err := glotRun(req)
-	panicIfErr(err)
+	if err != nil {
+		lg("glotRun() failed. Page: %s\n", sf.NotionOriginURL)
+		panicIfErr(err)
+	}
 	s := rsp.Stdout + rsp.Stderr
 	if rsp.Error != "" {
 		if !sf.Directive.AllowError {
