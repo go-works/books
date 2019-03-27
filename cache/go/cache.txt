@@ -16931,3 +16931,233 @@ User ==> Run()
 66 1553595428299 glotid
 Sha1: 4165c6d7d92f9116b6745daa8cd6757680ff56af
 GlotID: fapbvxb8d6
+2374 1553667929932 glotoutput
+Sha1: 1904f4e0cfbe6624eb5c7ecf0d7b486323c1ee32
+Lang: Go
+FileName: main.go
+CodeFull:+1134
+// :glot
+package main
+
+import (
+	"bytes"
+	"fmt"
+	"io"
+)
+
+// :show start
+// declaration of a single top-level variable
+var topLevel int64 = 5
+
+// grouping of multiple top-level declarations
+var (
+	intVal int            // value is initialized with zero-value
+	str    string = "str" // assigning
+
+	// functions are first-class values so can be assigned to variables
+	// fn is variable of type func(a int) string
+	// it's uninitialized so is nil (zero-value for function variables)
+	fn func(a int) string
+)
+
+func f() {
+	// shorthand using local type inference
+	// type of `i` is int and is inferred from the value
+	// note: this is not allowed at top-level
+	i := 4
+
+	// grouping inside a function
+	var (
+		i2 int
+		s  string
+	)
+
+	// _ is like a variable whose value is discarded. It's called blank identifier.
+	// Useful when we don't care about one of the values returned by a function
+	_, err := io.Copy(dst, src) // don't care how many bytes were written
+	// ...
+
+	fmt.Printf(`i: %d
+i2: %d
+s: %s
+err: %v
+`, i, i2, s, err)
+}
+
+// :show end
+
+var (
+	dst io.Writer = &bytes.Buffer{}
+	src io.Reader = &bytes.Buffer{}
+)
+
+func main() {
+	f()
+}
+CodeToRun:+1096
+package main
+
+import (
+	"bytes"
+	"fmt"
+	"io"
+)
+
+// declaration of a single top-level variable
+var topLevel int64 = 5
+
+// grouping of multiple top-level declarations
+var (
+	intVal int            // value is initialized with zero-value
+	str    string = "str" // assigning
+
+	// functions are first-class values so can be assigned to variables
+	// fn is variable of type func(a int) string
+	// it's uninitialized so is nil (zero-value for function variables)
+	fn func(a int) string
+)
+
+func f() {
+	// shorthand using local type inference
+	// type of `i` is int and is inferred from the value
+	// note: this is not allowed at top-level
+	i := 4
+
+	// grouping inside a function
+	var (
+		i2 int
+		s  string
+	)
+
+	// _ is like a variable whose value is discarded. It's called blank identifier.
+	// Useful when we don't care about one of the values returned by a function
+	_, err := io.Copy(dst, src) // don't care how many bytes were written
+	// ...
+
+	fmt.Printf(`i: %d
+i2: %d
+s: %s
+err: %v
+`, i, i2, s, err)
+}
+
+var (
+	dst io.Writer = &bytes.Buffer{}
+	src io.Reader = &bytes.Buffer{}
+)
+
+func main() {
+	f()
+}
+Output:+26
+i: 4
+i2: 0
+s: 
+err: <nil>
+66 1553667930755 glotid
+Sha1: 1904f4e0cfbe6624eb5c7ecf0d7b486323c1ee32
+GlotID: faq96ze9q3
+1998 1553667932392 glotoutput
+Sha1: bc4afda39ff4ba78003f0ca4a00f32b604f2b4dc
+Lang: Go
+FileName: main.go
+CodeFull:+788
+// :glot
+package main
+
+import (
+    "bytes"
+	"encoding/csv"
+	"fmt"
+	"io"
+	"log"
+)
+
+var (
+    csvData = `date,open,high,low,close,volume,Name
+2013-02-08,15.07,15.12,14.63,14.75,8407500,AAL
+2013-02-11,14.89,15.01,14.26,14.46,8882000,AAL
+2013-02-12,14.45,14.51,14.1,14.27,8126000,AAL
+2013-02-13,14.3,14.94,14.25,14.66,10259500,AAL
+`)
+
+func main() {
+	// :show start
+	buf := bytes.NewBufferString(csvData)
+
+	r := csv.NewReader(buf)
+	var record []string
+	nRecords := 0
+	var err error
+	for {
+		record, err = r.Read()
+		if err != nil {
+			if err == io.EOF {
+				err = nil
+			}
+			break
+		}
+		nRecords++
+		if nRecords < 5 {
+			fmt.Printf("Record: %#v\n", record)
+		}
+	}
+	if err != nil {
+		log.Fatalf("r.Read() failed with '%s'\n", err)
+	}
+	fmt.Printf("Read %d records\n", nRecords)
+	// :show end
+}
+CodeToRun:+749
+package main
+
+import (
+    "bytes"
+	"encoding/csv"
+	"fmt"
+	"io"
+	"log"
+)
+
+var (
+    csvData = `date,open,high,low,close,volume,Name
+2013-02-08,15.07,15.12,14.63,14.75,8407500,AAL
+2013-02-11,14.89,15.01,14.26,14.46,8882000,AAL
+2013-02-12,14.45,14.51,14.1,14.27,8126000,AAL
+2013-02-13,14.3,14.94,14.25,14.66,10259500,AAL
+`)
+
+func main() {
+	buf := bytes.NewBufferString(csvData)
+
+	r := csv.NewReader(buf)
+	var record []string
+	nRecords := 0
+	var err error
+	for {
+		record, err = r.Read()
+		if err != nil {
+			if err == io.EOF {
+				err = nil
+			}
+			break
+		}
+		nRecords++
+		if nRecords < 5 {
+			fmt.Printf("Record: %#v\n", record)
+		}
+	}
+	if err != nil {
+		log.Fatalf("r.Read() failed with '%s'\n", err)
+	}
+	fmt.Printf("Read %d records\n", nRecords)
+}
+Output:+344
+Record: []string{"date", "open", "high", "low", "close", "volume", "Name"}
+Record: []string{"2013-02-08", "15.07", "15.12", "14.63", "14.75", "8407500", "AAL"}
+Record: []string{"2013-02-11", "14.89", "15.01", "14.26", "14.46", "8882000", "AAL"}
+Record: []string{"2013-02-12", "14.45", "14.51", "14.1", "14.27", "8126000", "AAL"}
+Read 5 records
+66 1553667932562 glotid
+Sha1: bc4afda39ff4ba78003f0ca4a00f32b604f2b4dc
+GlotID: faq970h5h6

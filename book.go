@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"html/template"
 	"io/ioutil"
 	"path/filepath"
 	"sync"
@@ -13,6 +14,9 @@ import (
 type Book struct {
 	Title     string // "Go", "jQuery" etcc
 	TitleLong string // "Essential Go", "Essential jQuery" etc.
+
+	// used by page index. defaults to: "<b>${TitleLong}</b> is a free book about ${Title} programming langauge."
+	summary string
 
 	NotionStartPageID string
 	RootPage          *Page   // a tree of pages
@@ -88,14 +92,16 @@ func (b *Book) ContributorsURL() string {
 	return b.URL() + "/9999-contributors"
 }
 
-// GitHubURL returns link to GitHub for this book
-func (b *Book) GitHubURL() string {
-	return gitHubBaseURL + "/tree/master/books/" + filepath.Base(b.destDir())
-}
-
 // URL returns url of the book, used in index.tmpl.html
 func (b *Book) URL() string {
 	return fmt.Sprintf("/essential/%s/", b.Dir)
+}
+
+func (b *Book) Summary() template.HTML {
+	if b.summary == "" {
+		b.summary = fmt.Sprintf("<b>%s</b> is a free book about %s programming langauge.", b.TitleLong, b.Title)
+	}
+	return template.HTML(b.summary)
 }
 
 // CanonnicalURL returns full url including host

@@ -42,7 +42,7 @@
     "id": "abb984fe-c0d0-4d74-b2d4-94ed3206d1bc",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1553594160000,
+    "last_edited_time": 1553658180000,
     "parent_id": "2cab1ed2-b7a4-4584-b56b-0d3ca9b80185",
     "parent_table": "block",
     "properties": {
@@ -53,7 +53,7 @@
       ]
     },
     "type": "page",
-    "version": 71,
+    "version": 72,
     "content_resolved": [
       {
         "alive": true,
@@ -245,7 +245,7 @@
         "created_time": 1552285319981,
         "id": "18114098-3d55-4345-a79f-2a51dad6f7d1",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1552285320000,
+        "last_edited_time": 1553658180000,
         "parent_id": "abb984fe-c0d0-4d74-b2d4-94ed3206d1bc",
         "parent_table": "block",
         "properties": {
@@ -256,13 +256,13 @@
           ],
           "title": [
             [
-              "// no playground\npackage main\n\nimport (\n\t\"encoding/csv\"\n\t\"fmt\"\n\t\"io\"\n\t\"log\"\n\t\"os\"\n)\n\nfunc main() {\n\t// :show start\n\tf, err := os.Open(\"stocks.csv\")\n\tif err != nil {\n\t\tlog.Fatalf(\"os.Open() failed with '%s'\\n\", err)\n\t}\n\tdefer f.Close()\n\n\tr := csv.NewReader(f)\n\tvar record []string\n\tnRecords := 0\n\tfor {\n\t\trecord, err = r.Read()\n\t\tif err != nil {\n\t\t\tif err == io.EOF {\n\t\t\t\terr = nil\n\t\t\t}\n\t\t\tbreak\n\t\t}\n\t\tnRecords++\n\t\tif nRecords \u003c 5 {\n\t\t\tfmt.Printf(\"Record: %#v\\n\", record)\n\t\t}\n\t}\n\tif err != nil {\n\t\tlog.Fatalf(\"r.Read() failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"Read %d records\\n\", nRecords)\n\t// :show end\n}"
+              "// :glot\npackage main\n\nimport (\n    \"bytes\"\n\t\"encoding/csv\"\n\t\"fmt\"\n\t\"io\"\n\t\"log\"\n)\n\nvar (\n    csvData = `date,open,high,low,close,volume,Name\n2013-02-08,15.07,15.12,14.63,14.75,8407500,AAL\n2013-02-11,14.89,15.01,14.26,14.46,8882000,AAL\n2013-02-12,14.45,14.51,14.1,14.27,8126000,AAL\n2013-02-13,14.3,14.94,14.25,14.66,10259500,AAL\n`)\n\nfunc main() {\n\t// :show start\n\tbuf := bytes.NewBufferString(csvData)\n\n\tr := csv.NewReader(buf)\n\tvar record []string\n\tnRecords := 0\n\tvar err error\n\tfor {\n\t\trecord, err = r.Read()\n\t\tif err != nil {\n\t\t\tif err == io.EOF {\n\t\t\t\terr = nil\n\t\t\t}\n\t\t\tbreak\n\t\t}\n\t\tnRecords++\n\t\tif nRecords \u003c 5 {\n\t\t\tfmt.Printf(\"Record: %#v\\n\", record)\n\t\t}\n\t}\n\tif err != nil {\n\t\tlog.Fatalf(\"r.Read() failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"Read %d records\\n\", nRecords)\n\t// :show end\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 13,
-        "code": "// no playground\npackage main\n\nimport (\n\t\"encoding/csv\"\n\t\"fmt\"\n\t\"io\"\n\t\"log\"\n\t\"os\"\n)\n\nfunc main() {\n\t// :show start\n\tf, err := os.Open(\"stocks.csv\")\n\tif err != nil {\n\t\tlog.Fatalf(\"os.Open() failed with '%s'\\n\", err)\n\t}\n\tdefer f.Close()\n\n\tr := csv.NewReader(f)\n\tvar record []string\n\tnRecords := 0\n\tfor {\n\t\trecord, err = r.Read()\n\t\tif err != nil {\n\t\t\tif err == io.EOF {\n\t\t\t\terr = nil\n\t\t\t}\n\t\t\tbreak\n\t\t}\n\t\tnRecords++\n\t\tif nRecords \u003c 5 {\n\t\t\tfmt.Printf(\"Record: %#v\\n\", record)\n\t\t}\n\t}\n\tif err != nil {\n\t\tlog.Fatalf(\"r.Read() failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"Read %d records\\n\", nRecords)\n\t// :show end\n}",
+        "version": 16,
+        "code": "// :glot\npackage main\n\nimport (\n    \"bytes\"\n\t\"encoding/csv\"\n\t\"fmt\"\n\t\"io\"\n\t\"log\"\n)\n\nvar (\n    csvData = `date,open,high,low,close,volume,Name\n2013-02-08,15.07,15.12,14.63,14.75,8407500,AAL\n2013-02-11,14.89,15.01,14.26,14.46,8882000,AAL\n2013-02-12,14.45,14.51,14.1,14.27,8126000,AAL\n2013-02-13,14.3,14.94,14.25,14.66,10259500,AAL\n`)\n\nfunc main() {\n\t// :show start\n\tbuf := bytes.NewBufferString(csvData)\n\n\tr := csv.NewReader(buf)\n\tvar record []string\n\tnRecords := 0\n\tvar err error\n\tfor {\n\t\trecord, err = r.Read()\n\t\tif err != nil {\n\t\t\tif err == io.EOF {\n\t\t\t\terr = nil\n\t\t\t}\n\t\t\tbreak\n\t\t}\n\t\tnRecords++\n\t\tif nRecords \u003c 5 {\n\t\t\tfmt.Printf(\"Record: %#v\\n\", record)\n\t\t}\n\t}\n\tif err != nil {\n\t\tlog.Fatalf(\"r.Read() failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"Read %d records\\n\", nRecords)\n\t// :show end\n}",
         "code_language": "Go"
       },
       {
@@ -1058,7 +1058,7 @@
       "onboarding_completed": true,
       "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
       "time_zone": "",
-      "version": 51
+      "version": 56
     }
   ],
   "Tables": null

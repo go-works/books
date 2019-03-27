@@ -1,22 +1,140 @@
-body {
-  /* github font see http://markdotto.com/2018/02/07/github-system-fonts/ */
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
-    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  font-size: 16px;
-  color: rgb(35, 35, 35);
-  margin: 0;
-  padding: 0;
-}
-
 /* prevent overscroll https://stackoverflow.com/questions/12046315/prevent-overscrolling-of-web-page */
 html {
   overflow: hidden;
   height: 100%;
 }
 
+
 body {
   height: 100%;
-  overflow: auto;
+  overflow: hidden;
+
+  margin: 0;
+  padding: 0;
+
+  /* github font see http://markdotto.com/2018/02/07/github-system-fonts/ */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
+  color: rgb(35, 35, 35);
+}
+
+.body-book-index {
+  display: flex;
+  flex-direction: column;
+}
+
+/* this is cover on the left and book summary on the right */
+#book-cover-summary {
+  display: flex;
+  flex-direction: row;
+
+  margin-top: 8px;
+}
+
+#book-cover-image {
+  margin-left: 16px;
+}
+
+#book-cover-description {
+  margin-left: 16px;
+  margin-top: -8px; /* don't get why I need this */
+}
+
+#book-index-toc-header {
+  margin-top: 16px;
+  padding-bottom: 8px;
+  font-size: 1em;
+  font-weight: 700;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: fit-content;
+}
+
+#book-index-toc-chapters-short {
+  font-size: 0.9em;
+  columns: 3;
+
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+@media (min-width: 1601px) {
+  #book-index-toc-chapters-short {
+    columns: 6;
+  }
+}
+
+@media (max-width: 1600px) {
+  #book-index-toc-chapters-short {
+    columns: 5;
+  }
+}
+
+@media (max-width: 1280px) {
+  #book-index-toc-chapters-short {
+    columns: 4;
+  }
+}
+
+@media (max-width: 960px) {
+  #book-index-toc-chapters-short {
+    columns: 3;
+  }
+}
+
+@media (max-width: 640px) {
+  #book-index-toc-chapters-short {
+    columns: 2;
+  }
+}
+
+@media (max-width: 320px) {
+  #book-index-toc-chapters-short {
+    columns: 1;
+  }
+}
+
+#header,
+#footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 8px 16px;
+  background-color: #f5f5f5;
+}
+
+#footer {
+  font-size: 0.8em;
+  padding: 4px 16px;
+}
+
+#header-left,
+#footer-left {
+  min-width: 180px;
+}
+
+#header-center {
+  width: 50vw;
+}
+
+#footer-center {
+  min-width: 180px;
+}
+
+#header-right,
+#footer-right {
+  min-width: 180px;
+  text-align: right;
+}
+
+#content-book-index {
+  background-color: white;
+
+  height: 100%;
+  flex: 1 1 auto;
+  position: relative;
+  overflow-y: auto;
 }
 
 .page {

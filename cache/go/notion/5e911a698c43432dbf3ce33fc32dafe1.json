@@ -22,7 +22,7 @@
     "id": "5e911a69-8c43-432d-bf3c-e33fc32dafe1",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1552256700000,
+    "last_edited_time": 1553657940000,
     "parent_id": "2cab1ed2-b7a4-4584-b56b-0d3ca9b80185",
     "parent_table": "block",
     "properties": {
@@ -33,7 +33,7 @@
       ]
     },
     "type": "page",
-    "version": 67,
+    "version": 69,
     "content_resolved": [
       {
         "alive": true,
@@ -126,7 +126,7 @@
         "created_time": 1552217683842,
         "id": "86796b1f-cdcf-4389-9094-3443b5dc5d6a",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1552256700000,
+        "last_edited_time": 1553657940000,
         "parent_id": "5e911a69-8c43-432d-bf3c-e33fc32dafe1",
         "parent_table": "block",
         "properties": {
@@ -137,13 +137,13 @@
           ],
           "title": [
             [
-              "// :glot\npackage main\n\nimport (\n\t\"bytes\"\n\t\"fmt\"\n\t\"io\"\n)\n\n// :show start\n// declaration of a single top-level variable\nvar topLevel int64 = 5\n\n// grouping of multiple top-level declarations\nvar (\n\tintVal int            // value is initialized with zero-value\n\tstr    string = \"str\" // assigning\n\n\t// functions are first-class values so can be assigned to variables\n\t// fn is variable of type func(a int) string\n\t// it's uninitialized so is nil (zero-value for function variables)\n\tfn func(a int) string\n)\n\nfunc f() {\n\t// shorthand using local type inference\n\t// type of `i` is int and is inferred from the value\n\t// note: this is not allowed at top-level\n\ti := 4\n\n\t// grouping inside a function\n\tvar (\n\t\ti2 int\n\t\ts  string\n\t)\n\n\t// _ is like a variable whose value is discarded. It's called blank identifier.\n\t// Useful when we don't care about one of the values returned by a function\n\t_, err := io.Copy(dst, src) // don't care how many bytes were written\n\t// ...\n\n\tfmt.Printf(\"i: %d, i2: %d, s: %s, err: %v\\n\", i, i2, s, err)\n}\n\n// :show end\n\nvar (\n\tdst io.Writer = \u0026bytes.Buffer{}\n\tsrc io.Reader = \u0026bytes.Buffer{}\n)\n\nfunc main() {\n\tf()\n}"
+              "// :glot\npackage main\n\nimport (\n\t\"bytes\"\n\t\"fmt\"\n\t\"io\"\n)\n\n// :show start\n// declaration of a single top-level variable\nvar topLevel int64 = 5\n\n// grouping of multiple top-level declarations\nvar (\n\tintVal int            // value is initialized with zero-value\n\tstr    string = \"str\" // assigning\n\n\t// functions are first-class values so can be assigned to variables\n\t// fn is variable of type func(a int) string\n\t// it's uninitialized so is nil (zero-value for function variables)\n\tfn func(a int) string\n)\n\nfunc f() {\n\t// shorthand using local type inference\n\t// type of `i` is int and is inferred from the value\n\t// note: this is not allowed at top-level\n\ti := 4\n\n\t// grouping inside a function\n\tvar (\n\t\ti2 int\n\t\ts  string\n\t)\n\n\t// _ is like a variable whose value is discarded. It's called blank identifier.\n\t// Useful when we don't care about one of the values returned by a function\n\t_, err := io.Copy(dst, src) // don't care how many bytes were written\n\t// ...\n\n\tfmt.Printf(`i: %d\ni2: %d\ns: %s\nerr: %v\n`, i, i2, s, err)\n}\n\n// :show end\n\nvar (\n\tdst io.Writer = \u0026bytes.Buffer{}\n\tsrc io.Reader = \u0026bytes.Buffer{}\n)\n\nfunc main() {\n\tf()\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 35,
-        "code": "// :glot\npackage main\n\nimport (\n\t\"bytes\"\n\t\"fmt\"\n\t\"io\"\n)\n\n// :show start\n// declaration of a single top-level variable\nvar topLevel int64 = 5\n\n// grouping of multiple top-level declarations\nvar (\n\tintVal int            // value is initialized with zero-value\n\tstr    string = \"str\" // assigning\n\n\t// functions are first-class values so can be assigned to variables\n\t// fn is variable of type func(a int) string\n\t// it's uninitialized so is nil (zero-value for function variables)\n\tfn func(a int) string\n)\n\nfunc f() {\n\t// shorthand using local type inference\n\t// type of `i` is int and is inferred from the value\n\t// note: this is not allowed at top-level\n\ti := 4\n\n\t// grouping inside a function\n\tvar (\n\t\ti2 int\n\t\ts  string\n\t)\n\n\t// _ is like a variable whose value is discarded. It's called blank identifier.\n\t// Useful when we don't care about one of the values returned by a function\n\t_, err := io.Copy(dst, src) // don't care how many bytes were written\n\t// ...\n\n\tfmt.Printf(\"i: %d, i2: %d, s: %s, err: %v\\n\", i, i2, s, err)\n}\n\n// :show end\n\nvar (\n\tdst io.Writer = \u0026bytes.Buffer{}\n\tsrc io.Reader = \u0026bytes.Buffer{}\n)\n\nfunc main() {\n\tf()\n}",
+        "version": 69,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"bytes\"\n\t\"fmt\"\n\t\"io\"\n)\n\n// :show start\n// declaration of a single top-level variable\nvar topLevel int64 = 5\n\n// grouping of multiple top-level declarations\nvar (\n\tintVal int            // value is initialized with zero-value\n\tstr    string = \"str\" // assigning\n\n\t// functions are first-class values so can be assigned to variables\n\t// fn is variable of type func(a int) string\n\t// it's uninitialized so is nil (zero-value for function variables)\n\tfn func(a int) string\n)\n\nfunc f() {\n\t// shorthand using local type inference\n\t// type of `i` is int and is inferred from the value\n\t// note: this is not allowed at top-level\n\ti := 4\n\n\t// grouping inside a function\n\tvar (\n\t\ti2 int\n\t\ts  string\n\t)\n\n\t// _ is like a variable whose value is discarded. It's called blank identifier.\n\t// Useful when we don't care about one of the values returned by a function\n\t_, err := io.Copy(dst, src) // don't care how many bytes were written\n\t// ...\n\n\tfmt.Printf(`i: %d\ni2: %d\ns: %s\nerr: %v\n`, i, i2, s, err)\n}\n\n// :show end\n\nvar (\n\tdst io.Writer = \u0026bytes.Buffer{}\n\tsrc io.Reader = \u0026bytes.Buffer{}\n)\n\nfunc main() {\n\tf()\n}",
         "code_language": "Go"
       },
       {
@@ -274,12 +274,12 @@
       "family_name": "Kowalczyk",
       "given_name": "Krzysztof",
       "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-      "locale": "en",
+      "locale": "",
       "mobile_onboarding_completed": true,
       "onboarding_completed": true,
       "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-      "time_zone": "America/Los_Angeles",
-      "version": 29
+      "time_zone": "",
+      "version": 56
     }
   ],
   "Tables": null

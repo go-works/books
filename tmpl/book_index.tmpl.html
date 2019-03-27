@@ -29,7 +29,7 @@
   <script src="{{.Book.AppJSURL}}" defer></script>
 </head>
 
-<body class="page">
+<body class="body-book-index">
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
     <symbol id="icon-github" viewbox="0 0 496 512">
       <path
@@ -45,80 +45,82 @@
     </symbol>
   </svg>
 
-  <header class="page__header">
-    <div class="page__header__left">
+  <header id="header">
+    <div id="header-left">
       <a id="link-home" href="/">
         <svg class="icon-home">
           <use xlink:href="#icon-home"></use>
-        </svg>
-        &nbsp;Essential Books</a>
+        </svg>&nbsp;Essential Books</a>
     </div>
-    <div class="page__header__center">
-      <input id="search-input" placeholder="Search {{.Book.TitleLong}}. Tip: press '/'.">
+
+    <div id="header-center">
+      <input id="search-input" placeholder="Search {{.Book.TitleLong}}. Tip: press '/'." />
     </div>
-    <div class="page__header__right">
-      <!-- Right Side-->
-    </div>
+    <div id="header-right"></div>
   </header>
 
-  <div id="toc" style="display:none">
-  </div>
-
-  <div class="content">
-    <div class="book-body">
-      <div class="toc-header">Chapters</div>
-      <div class="chapters-toc">
-        {{range $pageNo, $page := .Book.RootPage.Pages}}
-        <div class="chapters-toc-item">
-          <span class="chap-no">{{inc $pageNo}}</span>
-          <a href="{{$page.URL}}">{{$page.Title}}</a>
-        </div>
-        {{end}}
+  <div id="content-book-index">
+    <div id="book-cover-summary">
+      <div id="book-cover-image">
+        <img width="180px" src="{{.Book.CoverURL}}">
       </div>
 
-      <div class="toc-header">Table Of Contents</div>
-
-      <div>
-        <div class="book-img-cover-wrapper">
-          <img class="book-img-cover" src="{{.Book.CoverURL}}">
-        </div>
-
-        <div>
-          {{range $idx, $page := .Book.RootPage.Pages}}
-          <div id="chap-{{$idx}}">
-            <!-- <span class="chap-no">{{inc $idx}}.</span> -->
-            <a href="{{$page.URL}}">{{$page.Title}}</a>
-          </div>
-          <div>
-            {{range $page.Pages}}
-            <div class="toc-article">
-              <!-- <span class="chap-no">{{inc $idx}}</span> -->
-              <a href="{{.URL}}">{{.Title}}</a>
-            </div>
-            {{end}}
-          </div>
-          {{end}}
-        </div>
+      <div id="book-cover-description">
+        <p>
+          {{.Book.Summary}}
+        </p>
+        <p>
+          It's written to provide clear and consice explanation of topics
+          for programmers both starting to learn the langauge as well
+          as those diving in more complex topics.
+        </p>
+        <p>
+          Most examples are linked to online playground that allows you to
+          change the code and re-run it.
+        </p>
+        <p>
+          You can also quickly navigate to desired content using table of content
+          on the left and search at the top (tip: you can navigate search using only
+          a keyboard with '/' shortcut to start a search).
+        </p>
+        <p>
+          The content is based on now abandoned <a href=" https://stackoverflow.com/documentation">StackOverflow
+            Documentation</a> project. It has been heavily edited and improved. </p>
+        <p>
+          Content is licensed under Creative Commons <a href="https://creativecommons.org/licenses/by-sa/3.0">
+            Attribution-ShareAlike 3.0</a>.
+        </p>
       </div>
+    </div>
+
+    <div id="book-index-toc-header">
+      Chapters
+    </div>
+
+    <div id="book-index-toc-chapters-short">
+      {{range $pageNo, $page := .Book.RootPage.Pages}}
+      <div class="chapters-toc-item">
+        <span class="chap-no">{{inc $pageNo}}</span>
+        <a href="{{$page.URL}}">{{$page.Title}}</a>
+      </div>
+      {{end}}
     </div>
   </div>
 
-  <footer class="page__footer">
-    <div class="page__footer__left">
+  <footer id="footer">
+    <div id="footer-left">
       Maintained by
       <a href="https://blog.kowalczyk.info" target="_blank">Krzysztof Kowalczyk</a>
     </div>
-
-    <div class="share-me">
+    <div id="footer-center">
       <a href="https://twitter.com/intent/tweet?text={{.Book.ShareOnTwitterText}}&url={{.Book.CanonnicalURL}}&via=kjk">Share
-        <b>{{.Book.TitleLong}}</b> on&nbsp;
+        <b>{{.Book.TitleLong}}</b> on &nbsp;
         <svg class="icon-twitter">
           <use xlink:href="#icon-twitter"></use>
         </svg>
       </a>
     </div>
-
-    <div class="page__footer__right">
+    <div id="footer-right">
     </div>
   </footer>
 
