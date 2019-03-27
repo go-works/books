@@ -31,47 +31,69 @@
   </svg>
 
   <div class="content">
-    <div class="book-body">
-      <h1 class="hcenter">Essential Programming Books</h1>
-      <div class="hcenter smaller">
-        <a href="/about">about this project</a>
-        &middot;
-        <a href="/feedback">feedback</a>
-      </div>
-      <div class="view-switch hcenter">
-        <a href="/index-grid" onclick="rv('grid')">switch to cover view</a>
-      </div>
 
-      <table class="book-list">
-        <thead>
-          <tr class="header">
-            <th class="book-name">Book</th>
-            <th>Chapters</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{range .Books}}
-          <tr>
-            <td class="book-name">
-              <a href="{{.URL}}">{{.TitleLong}}</a>
-            </td>
-            <td class="light">{{ .PagesCount}}</td>
-          </tr>
-          {{end}}
-        </tbody>
-      </table>
+    <table style="width: 100%">
+      <tbody>
+        <tr>
+          <td valign=top>
+            {{range .LeftBooks}}
+            <div class="img-cover-small-wrapper">
+              <a href="{{.URL}}">
+                <img class="img-cover-small" src="{{.CoverURL}}">
+              </a>
+            </div>
+            {{end}}
+          </td>
 
-      <div class="covers" style="margin-top:32px;">
-        {{range .Books}}
-        <div class="cover-img-small-wrapper">
-          <a href="{{.URL}}">
-            <img class="img-cover" src="{{.CoverURL}}">
-          </a>
-        </div>
-        {{end}}
-      </div>
+          <td valign=top>
+            <div class="book-body">
+              <h1 class="hcenter">Essential Programming Books</h1>
+              <div class="hcenter smaller">
+                <a href="/about">about this project</a>
+                &middot;
+                <a href="/feedback">feedback</a>
+              </div>
+              <div class="view-switch hcenter">
+                <a href="/index-grid" onclick="rv('grid')">switch to cover view</a>
+              </div>
 
-    </div>
+              <table class="book-list">
+                <thead>
+                  <tr class="header">
+                    <th class="book-name">Book</th>
+                    <th>Chapters</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {{range .Books}}
+                  <tr>
+                    <td class="book-name">
+                      <a href="{{.URL}}">{{.TitleLong}}</a>
+                    </td>
+                    <td class="light">{{ .PagesCount}}</td>
+                  </tr>
+                  {{end}}
+                </tbody>
+              </table>
+          </td>
+
+          <td>
+            {{range .RightBooks}}
+            <div class="img-cover-small-wrapper">
+              <a href="{{.URL}}">
+                <img class="img-cover-small" src="{{.CoverURL}}">
+              </a>
+            </div>
+            {{end}}
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+
   </div>
 
   <footer class="page__footer">

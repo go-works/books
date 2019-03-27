@@ -148,14 +148,24 @@ func gen404TopLevel() {
 	execTemplateToFileMaybeMust("404.tmpl.html", d, path)
 }
 
+func splitBooks(books []*Book) ([]*Book, []*Book) {
+	n := len(books) / 2
+	return books[:n], books[n:]
+}
+
 func genIndex(books []*Book) {
+	leftBooks, rightBooks := splitBooks(books)
 	d := struct {
 		PageCommon
-		Books     []*Book
-		NotionURL string
+		Books      []*Book
+		LeftBooks  []*Book
+		RightBooks []*Book
+		NotionURL  string
 	}{
 		PageCommon: getPageCommon(),
 		Books:      books,
+		LeftBooks:  leftBooks,
+		RightBooks: rightBooks,
 		NotionURL:  gitHubBaseURL,
 	}
 	path := filepath.Join(destDir, "index.html")
