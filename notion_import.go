@@ -311,7 +311,7 @@ func checkIfPagesAreOutdated(c *notionapi.Client, pages map[string]*Page) {
 		page := pages[id]
 		page.IsPageOutdated = ver > page.NotionPage.Root.Version
 		if page.IsPageOutdated {
-			fmt.Printf("page https://notion.so/%s %s outdated\n", id, page.NotionPage.Root.Title)
+			verbose("page https://notion.so/%s %s outdated\n", id, page.NotionPage.Root.Title)
 			nOutdated++
 		}
 	}

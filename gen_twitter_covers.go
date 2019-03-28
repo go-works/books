@@ -11,6 +11,7 @@ import (
 	"strings"
 
 	"github.com/kjk/u"
+	"golang.org/x/image/draw"
 )
 
 func loadImageMust(path string) image.Image {
@@ -22,7 +23,7 @@ func loadImageMust(path string) image.Image {
 	return img
 }
 
-func saveImageMust(path string, img image.Image) {
+func saveImageAsPNGMust(path string, img image.Image) {
 	w, err := os.Create(path)
 	u.PanicIfErr(err)
 	defer func() {
@@ -39,8 +40,8 @@ func optiImageMust(path string) {
 	u.PanicIfErr(err)
 }
 
-func saveTwitterImage(path string, img image.Image) {
-	saveImageMust(path, img)
+func saveImageAsPNGAndOptimize(path string, img image.Image) {
+	saveImageAsPNGMust(path, img)
 	optiImageMust(path)
 	fmt.Printf("Saved and optimized '%s'\n", path)
 }
@@ -71,7 +72,7 @@ func printImageInfo(path string, img image.Image) {
 	fmt.Printf("%s: %v %T\n", path, r, img)
 }
 
-func getExistingTwitterImagesMust(dir string) map[string]bool {
+func getExistingImagesMust(dir string) map[string]bool {
 	m := make(map[string]bool)
 	fileInfos, err := ioutil.ReadDir(dir)
 	u.PanicIfErr(err)
@@ -85,6 +86,7 @@ func getExistingTwitterImagesMust(dir string) map[string]bool {
 	return m
 }
 
+// returns a list of cover images (.png files that are not @2x versions)
 func getCoversListMust(dir string) []string {
 	var res []string
 	fileInfos, err := ioutil.ReadDir(dir)
@@ -108,11 +110,11 @@ func genTwitterImagesAndExit() {
 	dstDir := filepath.Join(srcDir, "twitter")
 	createDirMust(dstDir)
 	covers := getCoversListMust(srcDir)
-	existingTwitter := getExistingTwitterImagesMust(dstDir)
+	existingImages := getExistingImagesMust(dstDir)
 	// fmt.Printf("covers: %v\n", covers)
 	for _, coverName := range covers {
 		dstPath := filepath.Join(dstDir, coverName)
-		if _, ok := existingTwitter[coverName]; false && ok {
+		if _, ok := existingImages[coverName]; false && ok {
 			fmt.Printf("%s already exists as %s\n", coverName, dstPath)
 			continue
 		}
@@ -120,7 +122,55 @@ func genTwitterImagesAndExit() {
 		img := loadImageMust(path)
 		printImageInfo(path, img)
 		sub := genTwitterImage(img)
-		saveTwitterImage(dstPath, sub)
+		saveImageAsPNGAndOptimize(dstPath, sub)
 	}
 	os.Exit(0)
+}
+
+func resize(src image.Image, dstSize image.Point) *image.RGBA {
+	srcRect := src.Bounds()
+	dstRect := image.Rectangle{
+		Min: image.Point{0, 0},
+		Max: dstSize,
+	}
+	dst := image.NewRGBA(dstRect)
+	draw.CatmullRom.Scale(dst, dstRect, src, srcRect, draw.Over, nil)
+	return dst
+}
+
+func getProportionalY(p image.Point, x int) int {
+	res := (int64(p.Y) * int64(x)) / int64(p.X)
+	return int(res)
+}
+
+func genSmallCoverImage(img image.Image) *image.RGBA {
+	size := img.Bounds().Size()
+	x := 140
+	y := getProportionalY(size, x)
+	return resize(img, image.Point{x, y})
+}
+
+// this is one-time code to generate 140 x 198 small images from 595 x 842
+// source images. Small images are used in
+func genSmallCoversAndExit() {
+	srcDir := "covers"
+	dstDir := filepath.Join(srcDir, "covers_small")
+	createDirMust(dstDir)
+	covers := getCoversListMust(srcDir)
+	existingImages := getExistingImagesMust(dstDir)
+	// fmt.Printf("covers: %v\n", covers)
+	for _, coverName := range covers {
+		dstPath := filepath.Join(dstDir, coverName)
+		if _, ok := existingImages[coverName]; false && ok {
+			fmt.Printf("%s already exists as %s\n", coverName, dstPath)
+			continue
+		}
+		path := filepath.Join(srcDir, coverName)
+		img := loadImageMust(path)
+		printImageInfo(path, img)
+		sub := genSmallCoverImage(img)
+		saveImageAsPNGAndOptimize(dstPath, sub)
+	}
+	os.Exit(0)
+
 }

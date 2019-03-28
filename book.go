@@ -63,12 +63,7 @@ func (b *Book) NotionCacheDir() string {
 	return filepath.Join(b.CacheDir(), "notion")
 }
 
-// ReplitCachePath returns path of the cache file for replits
-func (b *Book) ReplitCachePath() string {
-	return filepath.Join(b.CacheDir(), "replit_cache.txt")
-}
-
-func (b *Book) CachePath() string {
+func (b *Book) cachePath() string {
 	return filepath.Join(b.CacheDir(), "cache.txt")
 }
 
@@ -118,6 +113,12 @@ func (b *Book) ShareOnTwitterText() string {
 func (b *Book) CoverURL() string {
 	panicIf(b.CoverImageName == "")
 	return fmt.Sprintf("/covers/%s", b.CoverImageName)
+}
+
+// CoverSmallURL returns url to small cover image
+func (b *Book) CoverSmallURL() string {
+	panicIf(b.CoverImageName == "")
+	return fmt.Sprintf("/covers_small/%s", b.CoverImageName)
 }
 
 // CoverFullURL returns a URL for the cover including host

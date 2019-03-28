@@ -16,7 +16,7 @@
     "id": "bdac9060-0904-4f2e-9b99-ba5f62a036af",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1552099666062,
+    "last_edited_time": 1552794480000,
     "parent_id": "fad4b6aa-3fe0-4b67-8e0d-0f884a4a93b0",
     "parent_table": "block",
     "properties": {
@@ -27,7 +27,7 @@
       ]
     },
     "type": "page",
-    "version": 3,
+    "version": 4,
     "content_resolved": [
       {
         "alive": true,
@@ -86,13 +86,13 @@
         "id": "50d6be72-6f2f-4fa3-8ff4-a9257b2f0ba6",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1552099666062,
+        "last_edited_time": 1552794480000,
         "parent_id": "bdac9060-0904-4f2e-9b99-ba5f62a036af",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Plain Text"
+              "PowerShell"
             ]
           ],
           "title": [
@@ -102,9 +102,9 @@
           ]
         },
         "type": "code",
-        "version": 1,
+        "version": 3,
         "code": "$process = New-Object System.Diagnostics.Process\n$process.StartInfo.FileName = \".\\ConsoleApp1.exe\"\n$process.StartInfo.UseShellExecute = $false\n$process.StartInfo.RedirectStandardOutput = $true\n$process.StartInfo.RedirectStandardInput = $true\nif ( $process.Start() ) {\n    # input\n    $process.StandardInput.WriteLine(\"1\");\n    $process.StandardInput.WriteLine(\"2\");\n    $process.StandardInput.WriteLine(\"3\");\n    $process.StandardInput.WriteLine();\n    $process.StandardInput.WriteLine();\n    # output check\n    $output = $process.StandardOutput.ReadToEnd()\n    if ( $output ) {\n        if ( $output.Contains(\"sum 6\") ) {\n            Write \"pass\"\n        }\n        else {\n            Write-Error $output\n        }\n    }\n    $process.WaitForExit()\n}",
-        "code_language": "Plain Text"
+        "code_language": "PowerShell"
       }
     ],
     "title": "Simple script for black-box integration test of console applications",
@@ -123,12 +123,12 @@
       "family_name": "Kowalczyk",
       "given_name": "Krzysztof",
       "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-      "locale": "en",
+      "locale": "",
       "mobile_onboarding_completed": true,
       "onboarding_completed": true,
       "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-      "time_zone": "America/Los_Angeles",
-      "version": 19
+      "time_zone": "",
+      "version": 59
     }
   ],
   "Tables": null

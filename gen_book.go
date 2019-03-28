@@ -21,12 +21,14 @@ var ( // directory where generated .html files for books are
 	destEssentialDir = filepath.Join(destDir, "essential")
 	pathAppJS        = "/s/app.js"
 	pathMainCSS      = "/s/main.css"
+	pathIndexCSS     = "/s/index.css"
 	pathFaviconICO   = "/s/favicon.ico"
 )
 
 var (
 	templateNames = []string{
 		"index.tmpl.html",
+		"index2.tmpl.html",
 		"index-grid.tmpl.html",
 		"book_index.tmpl.html",
 		"chapter.tmpl.html",
@@ -125,6 +127,7 @@ type PageCommon struct {
 	Analytics      template.HTML
 	PathAppJS      string
 	PathMainCSS    string
+	PathIndexCSS   string
 	PathFaviconICO string
 }
 
@@ -133,6 +136,7 @@ func getPageCommon() PageCommon {
 		Analytics:      googleAnalytics,
 		PathAppJS:      pathAppJS,
 		PathMainCSS:    pathMainCSS,
+		PathIndexCSS:   pathIndexCSS,
 		PathFaviconICO: pathFaviconICO,
 	}
 }
@@ -149,8 +153,16 @@ func gen404TopLevel() {
 }
 
 func splitBooks(books []*Book) ([]*Book, []*Book) {
-	n := len(books) / 2
-	return books[:n], books[n:]
+	var left []*Book
+	var right []*Book
+	for i, book := range books {
+		if i%2 == 0 {
+			left = append(left, book)
+		} else {
+			right = append(right, book)
+		}
+	}
+	return left, right
 }
 
 func genIndex(books []*Book) {
@@ -169,7 +181,7 @@ func genIndex(books []*Book) {
 		NotionURL:  gitHubBaseURL,
 	}
 	path := filepath.Join(destDir, "index.html")
-	execTemplateToFileMaybeMust("index.tmpl.html", d, path)
+	execTemplateToFileMaybeMust("index2.tmpl.html", d, path)
 }
 
 func genIndexGrid(books []*Book) {

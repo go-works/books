@@ -150,7 +150,12 @@ func shouldCopyImage(path string) bool {
 }
 
 func copyCoversMust() {
-	copyFilesRecur(filepath.Join("www", "covers"), "covers", shouldCopyImage)
+	srcDir := "covers"
+	dstDir := filepath.Join("www", "covers")
+	copyFilesRecur(dstDir, srcDir, shouldCopyImage)
+	dstDir = filepath.Join("www", "covers_small")
+	srcDir = filepath.Join("covers", "covers_small")
+	copyFilesRecur(dstDir, srcDir, shouldCopyImage)
 }
 
 func getAlmostMaxProcs() int {
@@ -170,6 +175,9 @@ func copyToWwwAsSha1MaybeMust(srcName string) {
 	switch srcName {
 	case "main.css":
 		dstPtr = &pathMainCSS
+		minifyType = "text/css"
+	case "index.css":
+		dstPtr = &pathIndexCSS
 		minifyType = "text/css"
 	case "app.js":
 		dstPtr = &pathAppJS
@@ -202,13 +210,12 @@ func copyToWwwAsSha1MaybeMust(srcName string) {
 }
 
 func genBooks(books []*Book) {
-	nProcs := getAlmostMaxProcs()
-
 	timeStart := time.Now()
 	clearSitemapURLS()
 	copyCoversMust()
 
 	copyToWwwAsSha1MaybeMust("main.css")
+	copyToWwwAsSha1MaybeMust("index.css")
 	copyToWwwAsSha1MaybeMust("app.js")
 	copyToWwwAsSha1MaybeMust("favicon.ico")
 	genIndex(books)
@@ -221,7 +228,7 @@ func genBooks(books []*Book) {
 		genBook(book)
 	}
 	writeSitemap()
-	fmt.Printf("Used %d procs, finished generating all books in %s\n", nProcs, time.Since(timeStart))
+	fmt.Printf("Finished generating all books in %s\n", time.Since(timeStart))
 }
 
 func initMinify() {
@@ -290,7 +297,7 @@ func initBook(book *Book) {
 	}
 
 	book.idToPage = map[string]*Page{}
-	book.cache = loadCache(book.CachePath())
+	book.cache = loadCache(book.cachePath())
 	must(err)
 }
 
@@ -307,17 +314,35 @@ func findBook(id string) *Book {
 	return nil
 }
 
+func genIndexPageAndExit() {
+	books := booksMain
+	for _, book := range books {
+		initBook(book)
+	}
+
+	createDirMust(filepath.Join("www", "s"))
+
+	copyCoversMust()
+
+	copyToWwwAsSha1MaybeMust("main.css")
+	copyToWwwAsSha1MaybeMust("index.css")
+	copyToWwwAsSha1MaybeMust("app.js")
+	copyToWwwAsSha1MaybeMust("favicon.ico")
+
+	genIndex(books)
+	startPreview()
+	os.Exit(0)
+}
+
 func adHoc() {
-	if false {
-		glotRunTestAndExit()
-	}
-	if false {
-		glotGetSnippedIDTestAndExit()
-	}
-	if false {
-		// only needs to be run when we add new covers
-		genTwitterImagesAndExit()
-	}
+	// genIndexPageAndExit()
+
+	// glotRunTestAndExit()
+	// glotGetSnippedIDTestAndExit()
+
+	// only needs to be run when we add new covers
+	// genTwitterImagesAndExit()
+	// genSmallCoversAndExit()
 }
 
 func main() {

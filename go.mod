@@ -9,7 +9,7 @@ require (
 	github.com/danwakefield/fnmatch v0.0.0-20160403171240-cbb64ac3d964 // indirect
 	github.com/dlclark/regexp2 v1.1.6 // indirect
 	github.com/google/shlex v0.0.0-20150127133951-6f45313302b9
-	github.com/kjk/notionapi v0.0.0-20190322075546-7fc31d25aeb2
+	github.com/kjk/notionapi v0.0.0-20190324094712-848667137479
 	github.com/kjk/siser v0.0.0-20190326100825-7db886e875f8
 	github.com/kjk/u v0.0.0-20170711051841-93181be023c9
 	github.com/kylelemons/godebug v0.0.0-20170820004349-d65d576e9348
@@ -19,5 +19,6 @@ require (
 	github.com/tdewolff/minify v2.3.5+incompatible
 	github.com/tdewolff/parse v2.3.3+incompatible // indirect
 	github.com/tdewolff/test v0.0.0-20171106182207-265427085153 // indirect
+	golang.org/x/image v0.0.0-20190321063152-3fc05d484e9f
 	golang.org/x/sys v0.0.0-20181218192612-074acd46bca6 // indirect
 )

@@ -1,0 +1,603 @@
+{
+  "ID": "37c5b377-b369-4fb5-8495-114c58824c80",
+  "Root": {
+    "alive": true,
+    "content": [
+      "05e16922-6c9e-41b7-8f35-a87caa26b0a8",
+      "86f5f3b6-bdf9-4841-8915-25114b1e22c5",
+      "d4984b64-c58f-45cb-9376-d3d591408caa",
+      "2d6462ba-7071-45fe-8093-803ac55cd256",
+      "413be0fa-fb83-4370-8b94-6e477fa978a6",
+      "1f578905-9a10-4131-bc9f-4f94d2da0205",
+      "d5912fcf-3fbc-4b98-a038-7d1b2199cf5a",
+      "a4d5598a-d109-4152-9b12-ccc561ebb767",
+      "bcf6cb9f-b6d1-41a0-807a-0dc1a494eb30",
+      "909d87b1-4700-493b-bdc3-4e2ebe90c912"
+    ],
+    "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "created_time": 1553742633315,
+    "format": {
+      "page_full_width": true,
+      "page_small_text": true
+    },
+    "id": "37c5b377-b369-4fb5-8495-114c58824c80",
+    "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+    "last_edited_time": 1553744040000,
+    "parent_id": "c84a4530-4ec3-4980-81c6-7aa1ea0d9c49",
+    "parent_table": "block",
+    "properties": {
+      "title": [
+        [
+          "Resizing images"
+        ]
+      ]
+    },
+    "type": "page",
+    "version": 59,
+    "content_resolved": [
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1553742780000,
+        "id": "05e16922-6c9e-41b7-8f35-a87caa26b0a8",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1553742840000,
+        "parent_id": "37c5b377-b369-4fb5-8495-114c58824c80",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "There are several libraries for resizing images in Go. Package "
+            ],
+            [
+              "golang.org/x/image/draw",
+              [
+                [
+                  "a",
+                  "https://godoc.org/golang.org/x/image/draw"
+                ]
+              ]
+            ],
+            [
+              " is one of the options:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 149,
+        "inline_content": [
+          {
+            "Text": "There are several libraries for resizing images in Go. Package "
+          },
+          {
+            "Text": "golang.org/x/image/draw",
+            "Link": "https://godoc.org/golang.org/x/image/draw"
+          },
+          {
+            "Text": " is one of the options:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1553742648305,
+        "id": "86f5f3b6-bdf9-4841-8915-25114b1e22c5",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1553742660000,
+        "parent_id": "37c5b377-b369-4fb5-8495-114c58824c80",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "package main\n\nimport (\n\t\"bytes\"\n\t\"fmt\"\n\t\"image\"\n\t\"image/jpeg\"\n\t\"image/png\"\n\t\"io/ioutil\"\n\t\"log\"\n\t\"net/http\"\n\t\"os\"\n\t\"path/filepath\"\n\t\"strings\"\n\n\t\"golang.org/x/image/draw\"\n)\n\nfunc maybeIsPNG(uri string, d []byte) bool {\n\text := strings.ToLower(filepath.Ext(uri))\n\tif ext == \".png\" {\n\t\treturn true\n\t}\n\t// TODO: sniff png header in d\n\treturn false\n}\n\nfunc maybeIsJPEG(uri string, d []byte) bool {\n\text := strings.ToLower(filepath.Ext(uri))\n\tif ext == \".jpeg\" || ext == \".jpg\" {\n\t\treturn true\n\t}\n\t// TODO: sniff png header in d\n\treturn false\n}\n\nfunc downloadImage(uri string) (image.Image, error) {\n\tresp, err := http.Get(uri)\n\tif err != nil {\n\t\treturn nil, fmt.Errorf(\"http.Get('%s') failed with %s\", uri, err)\n\t}\n\tdefer resp.Body.Close()\n\tif resp.StatusCode \u003e= 400 {\n\t\treturn nil, fmt.Errorf(\"http.Get() failed with status '%s'\", resp.Status)\n\t}\n\td, err := ioutil.ReadAll(resp.Body)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\ttriedPNG := false\n\ttriedJPEG := false\n\tif maybeIsPNG(uri, d) {\n\t\timg, err := png.Decode(bytes.NewBuffer(d))\n\t\tif err == nil {\n\t\t\treturn img, nil\n\t\t}\n\t\ttriedPNG = true\n\t}\n\tif maybeIsJPEG(uri, d) {\n\t\timg, err := jpeg.Decode(bytes.NewBuffer(d))\n\t\tif err == nil {\n\t\t\treturn img, nil\n\t\t}\n\t\ttriedJPEG = true\n\t}\n\tif !triedPNG {\n\t\timg, err := png.Decode(bytes.NewBuffer(d))\n\t\tif err == nil {\n\t\t\treturn img, nil\n\t\t}\n\t}\n\tif !triedJPEG {\n\t\timg, err := jpeg.Decode(bytes.NewBuffer(d))\n\t\tif err == nil {\n\t\t\treturn img, nil\n\t\t}\n\t}\n\treturn nil, fmt.Errorf(\"'%s' is not a valid PNG or JPEG image\", uri)\n}\n\nfunc saveImageAsPNG(dst string, img image.Image) error {\n\tf, err := os.Create(dst)\n\tif err != nil {\n\t\treturn err\n\t}\n\terr = png.Encode(f, img)\n\t// an error during Close is very unlikely but not impossible\n\terr2 := f.Close()\n\tif err == nil \u0026\u0026 err2 == nil {\n\t\treturn nil\n\t}\n\n\t// in case of failure, don't leave invalid file on disk\n\tos.Remove(dst)\n\tif err != nil {\n\t\treturn err\n\t}\n\treturn err2\n}\n\n// :show start\nfunc resize(src image.Image, dstSize image.Point) *image.RGBA {\n\tsrcRect := src.Bounds()\n\tdstRect := image.Rectangle{\n\t\tMin: image.Point{0, 0},\n\t\tMax: dstSize,\n\t}\n\tdst := image.NewRGBA(dstRect)\n\tdraw.CatmullRom.Scale(dst, dstRect, src, srcRect, draw.Over, nil)\n\treturn dst\n}\n\n// :show end\n\nfunc getProportionalY(p image.Point, x int) int {\n\tres := (int64(p.Y) * int64(x)) / int64(p.X)\n\treturn int(res)\n}\n\nfunc main() {\n\timg, err := downloadImage(\"https://www.programming-books.io/covers/Go.png\")\n\tif err != nil {\n\t\tlog.Fatalf(\"downloadImage() failed with '%s'\\n\", err)\n\t}\n\tsize := img.Bounds().Size()\n\tx := 140\n\ty := getProportionalY(size, x)\n\tfmt.Printf(\"resizing %d x %d =\u003e %d x %d\\n\", size.X, size.Y, x, y)\n\tresizedImg := resize(img, image.Point{x, y})\n\terr = saveImageAsPNG(\"go-resized.png\", resizedImg)\n\tif err != nil {\n\t\tlog.Fatalf(\"saveImageAsPNG() failed with '%s'\\n\", err)\n\t}\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 10,
+        "code": "package main\n\nimport (\n\t\"bytes\"\n\t\"fmt\"\n\t\"image\"\n\t\"image/jpeg\"\n\t\"image/png\"\n\t\"io/ioutil\"\n\t\"log\"\n\t\"net/http\"\n\t\"os\"\n\t\"path/filepath\"\n\t\"strings\"\n\n\t\"golang.org/x/image/draw\"\n)\n\nfunc maybeIsPNG(uri string, d []byte) bool {\n\text := strings.ToLower(filepath.Ext(uri))\n\tif ext == \".png\" {\n\t\treturn true\n\t}\n\t// TODO: sniff png header in d\n\treturn false\n}\n\nfunc maybeIsJPEG(uri string, d []byte) bool {\n\text := strings.ToLower(filepath.Ext(uri))\n\tif ext == \".jpeg\" || ext == \".jpg\" {\n\t\treturn true\n\t}\n\t// TODO: sniff png header in d\n\treturn false\n}\n\nfunc downloadImage(uri string) (image.Image, error) {\n\tresp, err := http.Get(uri)\n\tif err != nil {\n\t\treturn nil, fmt.Errorf(\"http.Get('%s') failed with %s\", uri, err)\n\t}\n\tdefer resp.Body.Close()\n\tif resp.StatusCode \u003e= 400 {\n\t\treturn nil, fmt.Errorf(\"http.Get() failed with status '%s'\", resp.Status)\n\t}\n\td, err := ioutil.ReadAll(resp.Body)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\ttriedPNG := false\n\ttriedJPEG := false\n\tif maybeIsPNG(uri, d) {\n\t\timg, err := png.Decode(bytes.NewBuffer(d))\n\t\tif err == nil {\n\t\t\treturn img, nil\n\t\t}\n\t\ttriedPNG = true\n\t}\n\tif maybeIsJPEG(uri, d) {\n\t\timg, err := jpeg.Decode(bytes.NewBuffer(d))\n\t\tif err == nil {\n\t\t\treturn img, nil\n\t\t}\n\t\ttriedJPEG = true\n\t}\n\tif !triedPNG {\n\t\timg, err := png.Decode(bytes.NewBuffer(d))\n\t\tif err == nil {\n\t\t\treturn img, nil\n\t\t}\n\t}\n\tif !triedJPEG {\n\t\timg, err := jpeg.Decode(bytes.NewBuffer(d))\n\t\tif err == nil {\n\t\t\treturn img, nil\n\t\t}\n\t}\n\treturn nil, fmt.Errorf(\"'%s' is not a valid PNG or JPEG image\", uri)\n}\n\nfunc saveImageAsPNG(dst string, img image.Image) error {\n\tf, err := os.Create(dst)\n\tif err != nil {\n\t\treturn err\n\t}\n\terr = png.Encode(f, img)\n\t// an error during Close is very unlikely but not impossible\n\terr2 := f.Close()\n\tif err == nil \u0026\u0026 err2 == nil {\n\t\treturn nil\n\t}\n\n\t// in case of failure, don't leave invalid file on disk\n\tos.Remove(dst)\n\tif err != nil {\n\t\treturn err\n\t}\n\treturn err2\n}\n\n// :show start\nfunc resize(src image.Image, dstSize image.Point) *image.RGBA {\n\tsrcRect := src.Bounds()\n\tdstRect := image.Rectangle{\n\t\tMin: image.Point{0, 0},\n\t\tMax: dstSize,\n\t}\n\tdst := image.NewRGBA(dstRect)\n\tdraw.CatmullRom.Scale(dst, dstRect, src, srcRect, draw.Over, nil)\n\treturn dst\n}\n\n// :show end\n\nfunc getProportionalY(p image.Point, x int) int {\n\tres := (int64(p.Y) * int64(x)) / int64(p.X)\n\treturn int(res)\n}\n\nfunc main() {\n\timg, err := downloadImage(\"https://www.programming-books.io/covers/Go.png\")\n\tif err != nil {\n\t\tlog.Fatalf(\"downloadImage() failed with '%s'\\n\", err)\n\t}\n\tsize := img.Bounds().Size()\n\tx := 140\n\ty := getProportionalY(size, x)\n\tfmt.Printf(\"resizing %d x %d =\u003e %d x %d\\n\", size.X, size.Y, x, y)\n\tresizedImg := resize(img, image.Point{x, y})\n\terr = saveImageAsPNG(\"go-resized.png\", resizedImg)\n\tif err != nil {\n\t\tlog.Fatalf(\"saveImageAsPNG() failed with '%s'\\n\", err)\n\t}\n}",
+        "code_language": "Go"
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1553742840000,
+        "id": "d4984b64-c58f-45cb-9376-d3d591408caa",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1553742900000,
+        "parent_id": "37c5b377-b369-4fb5-8495-114c58824c80",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Notable points:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 32,
+        "inline_content": [
+          {
+            "Text": "Notable points:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1553742900000,
+        "id": "2d6462ba-7071-45fe-8093-803ac55cd256",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1553742960000,
+        "parent_id": "37c5b377-b369-4fb5-8495-114c58824c80",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "we return "
+            ],
+            [
+              "image.RGBA",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", not "
+            ],
+            [
+              "image.Image",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " because Go's best practice is to accept interface as arguments to functions, but return concrete types"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 223,
+        "inline_content": [
+          {
+            "Text": "we return "
+          },
+          {
+            "Text": "image.RGBA",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", not "
+          },
+          {
+            "Text": "image.Image",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " because Go's best practice is to accept interface as arguments to functions, but return concrete types"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1553742960000,
+        "id": "413be0fa-fb83-4370-8b94-6e477fa978a6",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1553743200000,
+        "parent_id": "37c5b377-b369-4fb5-8495-114c58824c80",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "image bounds don't have to start at (0,0) so for the source image we ask for bounding rectangle. We create destination image ourselves so we create bounds that start at (0,0)"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 363,
+        "inline_content": [
+          {
+            "Text": "image bounds don't have to start at (0,0) so for the source image we ask for bounding rectangle. We create destination image ourselves so we create bounds that start at (0,0)"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1553743260000,
+        "id": "1f578905-9a10-4131-bc9f-4f94d2da0205",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1553743440000,
+        "parent_id": "37c5b377-b369-4fb5-8495-114c58824c80",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "scaling interface is very generic and as a result somewhat complicated. Package "
+            ],
+            [
+              "draw",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is, at its core, a compositing engine which allows compositing (drawing) bitmap images with a specific operation. "
+            ],
+            [
+              "draw.Over",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is an operation that draws one image over another, optionally using a mask."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 449,
+        "inline_content": [
+          {
+            "Text": "scaling interface is very generic and as a result somewhat complicated. Package "
+          },
+          {
+            "Text": "draw",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is, at its core, a compositing engine which allows compositing (drawing) bitmap images with a specific operation. "
+          },
+          {
+            "Text": "draw.Over",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is an operation that draws one image over another, optionally using a mask."
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1553743440000,
+        "id": "d5912fcf-3fbc-4b98-a038-7d1b2199cf5a",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1553743680000,
+        "parent_id": "37c5b377-b369-4fb5-8495-114c58824c80",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "resizing is implementing as "
+            ],
+            [
+              "Scaler",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " interface which takes destination image, a rectangle within destination image, source image, a rectangle within source images and paints source rectangle into destination rectangle. Resizing happens when destination rectangle has different dimension that source rectangle"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 405,
+        "inline_content": [
+          {
+            "Text": "resizing is implementing as "
+          },
+          {
+            "Text": "Scaler",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " interface which takes destination image, a rectangle within destination image, source image, a rectangle within source images and paints source rectangle into destination rectangle. Resizing happens when destination rectangle has different dimension that source rectangle"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "content": [
+          "5ad463be-df1f-44d2-a2ba-f48632ac424f",
+          "c8e6de97-82d8-404b-aec7-0f550cacee80",
+          "a53d6c3f-6922-455e-aee9-8b3d2ac405a4",
+          "7334cf26-bda6-4faa-b59d-7f69a21da892"
+        ],
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1553743680000,
+        "id": "a4d5598a-d109-4152-9b12-ccc561ebb767",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1553743800000,
+        "parent_id": "37c5b377-b369-4fb5-8495-114c58824c80",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "the package implements 4 different scaling algorithms:"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 122,
+        "content_resolved": [
+          {
+            "alive": true,
+            "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+            "created_time": 1553743740000,
+            "id": "5ad463be-df1f-44d2-a2ba-f48632ac424f",
+            "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+            "last_edited_time": 1553743800000,
+            "parent_id": "a4d5598a-d109-4152-9b12-ccc561ebb767",
+            "parent_table": "block",
+            "properties": {
+              "title": [
+                [
+                  "nearest neighbor - fast, low quality"
+                ]
+              ]
+            },
+            "type": "bulleted_list",
+            "version": 43,
+            "inline_content": [
+              {
+                "Text": "nearest neighbor - fast, low quality"
+              }
+            ]
+          },
+          {
+            "alive": true,
+            "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+            "created_time": 1553743740000,
+            "id": "c8e6de97-82d8-404b-aec7-0f550cacee80",
+            "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+            "last_edited_time": 1553743800000,
+            "parent_id": "a4d5598a-d109-4152-9b12-ccc561ebb767",
+            "parent_table": "block",
+            "properties": {
+              "title": [
+                [
+                  "approximate bi-linear - slower, better quality"
+                ]
+              ]
+            },
+            "type": "bulleted_list",
+            "version": 59,
+            "inline_content": [
+              {
+                "Text": "approximate bi-linear - slower, better quality"
+              }
+            ]
+          },
+          {
+            "alive": true,
+            "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+            "created_time": 1553743740000,
+            "id": "a53d6c3f-6922-455e-aee9-8b3d2ac405a4",
+            "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+            "last_edited_time": 1553743800000,
+            "parent_id": "a4d5598a-d109-4152-9b12-ccc561ebb767",
+            "parent_table": "block",
+            "properties": {
+              "title": [
+                [
+                  "bi-linear - even slower, high quality"
+                ]
+              ]
+            },
+            "type": "bulleted_list",
+            "version": 50,
+            "inline_content": [
+              {
+                "Text": "bi-linear - even slower, high quality"
+              }
+            ]
+          },
+          {
+            "alive": true,
+            "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+            "created_time": 1553743800000,
+            "id": "7334cf26-bda6-4faa-b59d-7f69a21da892",
+            "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+            "last_edited_time": 1553743800000,
+            "parent_id": "a4d5598a-d109-4152-9b12-ccc561ebb767",
+            "parent_table": "block",
+            "properties": {
+              "title": [
+                [
+                  "catmull-rom - slowest, highest qulity"
+                ]
+              ]
+            },
+            "type": "bulleted_list",
+            "version": 67,
+            "inline_content": [
+              {
+                "Text": "catmull-rom - slowest, highest qulity"
+              }
+            ]
+          }
+        ],
+        "inline_content": [
+          {
+            "Text": "the package implements 4 different scaling algorithms:"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1553743200000,
+        "id": "bcf6cb9f-b6d1-41a0-807a-0dc1a494eb30",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1553743920000,
+        "parent_id": "37c5b377-b369-4fb5-8495-114c58824c80",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "draw.CatmullRom",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " is a global variable for an instance implementing catmull-rom algorithm. Other algorithms are available as "
+            ],
+            [
+              "draw.NearestNeighbor",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", "
+            ],
+            [
+              "draw.ApproxBiLinear",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " and "
+            ],
+            [
+              "draw.BiLinear",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " package global variables"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 394,
+        "inline_content": [
+          {
+            "Text": "draw.CatmullRom",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " is a global variable for an instance implementing catmull-rom algorithm. Other algorithms are available as "
+          },
+          {
+            "Text": "draw.NearestNeighbor",
+            "AttrFlags": 2
+          },
+          {
+            "Text": ", "
+          },
+          {
+            "Text": "draw.ApproxBiLinear",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " and "
+          },
+          {
+            "Text": "draw.BiLinear",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " package global variables"
+          }
+        ]
+      },
+      {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1553743920000,
+        "id": "909d87b1-4700-493b-bdc3-4e2ebe90c912",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1553744040000,
+        "parent_id": "37c5b377-b369-4fb5-8495-114c58824c80",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "putting it all together: to resize a source image to a given size, we create a destination image of desired size and use "
+            ],
+            [
+              "Scale",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " method of one of the global scalers to paint source image into a destination, with resizing being a side effect of using a scaler."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 310,
+        "inline_content": [
+          {
+            "Text": "putting it all together: to resize a source image to a given size, we create a destination image of desired size and use "
+          },
+          {
+            "Text": "Scale",
+            "AttrFlags": 2
+          },
+          {
+            "Text": " method of one of the global scalers to paint source image into a destination, with resizing being a side effect of using a scaler."
+          }
+        ]
+      }
+    ],
+    "title": "Resizing images",
+    "format_page": {
+      "page_cover": "",
+      "page_cover_position": 0,
+      "page_font": "",
+      "page_full_width": true,
+      "page_icon": "",
+      "page_small_text": true
+    }
+  },
+  "Users": [
+    {
+      "email": "kkowalczyk@gmail.com",
+      "family_name": "Kowalczyk",
+      "given_name": "Krzysztof",
+      "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+      "locale": "",
+      "mobile_onboarding_completed": true,
+      "onboarding_completed": true,
+      "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
+      "time_zone": "",
+      "version": 59
+    }
+  ],
+  "Tables": null
+}

@@ -17161,3 +17161,107 @@ Read 5 records
 66 1553667932562 glotid
 Sha1: bc4afda39ff4ba78003f0ca4a00f32b604f2b4dc
 GlotID: faq970h5h6
+1384 1553755362463 glotoutput
+Sha1: ff51f50deb25cc9ccb78d7b767b9f55fb9fb1cf3
+Lang: Go
+FileName: main.go
+CodeFull:+601
+// :glot
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+// :show start
+var wg sync.WaitGroup
+
+func sqrtWorker(chIn chan int, chOut chan int) {
+	fmt.Printf("sqrtWorker started\n")
+	for i := range chIn {
+		sqrt := i * i
+		chOut <- sqrt
+	}
+	fmt.Printf("sqrtWorker finished\n")
+	wg.Done()
+}
+
+func main() {
+	chIn := make(chan int)
+	chOut := make(chan int)
+	for i := 0; i < 2; i++ {
+		wg.Add(1)
+		go sqrtWorker(chIn, chOut)
+	}
+
+	go func() {
+		chIn <- 2
+		chIn <- 4
+		close(chIn)
+	}()
+
+	go func() {
+		wg.Wait()
+		close(chOut)
+	}()
+
+	for sqrt := range chOut {
+		fmt.Printf("Got sqrt: %d\n", sqrt)
+	}
+}
+
+// :show end
+CodeToRun:+564
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+var wg sync.WaitGroup
+
+func sqrtWorker(chIn chan int, chOut chan int) {
+	fmt.Printf("sqrtWorker started\n")
+	for i := range chIn {
+		sqrt := i * i
+		chOut <- sqrt
+	}
+	fmt.Printf("sqrtWorker finished\n")
+	wg.Done()
+}
+
+func main() {
+	chIn := make(chan int)
+	chOut := make(chan int)
+	for i := 0; i < 2; i++ {
+		wg.Add(1)
+		go sqrtWorker(chIn, chOut)
+	}
+
+	go func() {
+		chIn <- 2
+		chIn <- 4
+		close(chIn)
+	}()
+
+	go func() {
+		wg.Wait()
+		close(chOut)
+	}()
+
+	for sqrt := range chOut {
+		fmt.Printf("Got sqrt: %d\n", sqrt)
+	}
+}
+Output:+103
+sqrtWorker started
+sqrtWorker started
+sqrtWorker finished
+Got sqrt: 16
+sqrtWorker finished
+Got sqrt: 4
+66 1553755363270 glotid
+Sha1: ff51f50deb25cc9ccb78d7b767b9f55fb9fb1cf3
+GlotID: fardcxoshf

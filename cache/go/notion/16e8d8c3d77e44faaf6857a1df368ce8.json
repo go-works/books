@@ -49,7 +49,7 @@
     "id": "16e8d8c3-d77e-44fa-af68-57a1df368ce8",
     "ignore_block_count": true,
     "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-    "last_edited_time": 1552278300000,
+    "last_edited_time": 1553711940000,
     "parent_id": "2cab1ed2-b7a4-4584-b56b-0d3ca9b80185",
     "parent_table": "block",
     "properties": {
@@ -60,7 +60,7 @@
       ]
     },
     "type": "page",
-    "version": 52,
+    "version": 53,
     "content_resolved": [
       {
         "alive": true,
@@ -253,7 +253,7 @@
         "created_time": 1552278189964,
         "id": "2b8768e5-4639-4ee8-9c91-4510d4d86f14",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1552278180000,
+        "last_edited_time": 1553711940000,
         "parent_id": "16e8d8c3-d77e-44fa-af68-57a1df368ce8",
         "parent_table": "block",
         "properties": {
@@ -264,13 +264,13 @@
           ],
           "title": [
             [
-              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"sync\"\n)\n\n// :show start\nvar wg sync.WaitGroup\n\nfunc pow2Worker(chIn chan int, chOut chan int) {\n\tfmt.Printf(\"sqrtWorker started\\n\")\n\tfor i := range chIn {\n\t\tsqrt := i * i\n\t\tchOut \u003c- sqrt\n\t}\n\tfmt.Printf(\"sqrtWorker finished\\n\")\n\twg.Done()\n}\n\nfunc main() {\n\tchIn := make(chan int)\n\tchOut := make(chan int)\n\tfor i := 0; i \u003c 2; i++ {\n\t\twg.Add(1)\n\t\tgo pow2Worker(chIn, chOut)\n\t}\n\n\tgo func() {\n\t\tchIn \u003c- 2\n\t\tchIn \u003c- 4\n\t\tclose(chIn)\n\t}()\n\n\tgo func() {\n\t\twg.Wait()\n\t\tclose(chOut)\n\t}()\n\n\tfor sqrt := range chOut {\n\t\tfmt.Printf(\"Got sqrt: %d\\n\", sqrt)\n\t}\n}\n\n// :show end"
+              "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"sync\"\n)\n\n// :show start\nvar wg sync.WaitGroup\n\nfunc sqrtWorker(chIn chan int, chOut chan int) {\n\tfmt.Printf(\"sqrtWorker started\\n\")\n\tfor i := range chIn {\n\t\tsqrt := i * i\n\t\tchOut \u003c- sqrt\n\t}\n\tfmt.Printf(\"sqrtWorker finished\\n\")\n\twg.Done()\n}\n\nfunc main() {\n\tchIn := make(chan int)\n\tchOut := make(chan int)\n\tfor i := 0; i \u003c 2; i++ {\n\t\twg.Add(1)\n\t\tgo sqrtWorker(chIn, chOut)\n\t}\n\n\tgo func() {\n\t\tchIn \u003c- 2\n\t\tchIn \u003c- 4\n\t\tclose(chIn)\n\t}()\n\n\tgo func() {\n\t\twg.Wait()\n\t\tclose(chOut)\n\t}()\n\n\tfor sqrt := range chOut {\n\t\tfmt.Printf(\"Got sqrt: %d\\n\", sqrt)\n\t}\n}\n\n// :show end"
             ]
           ]
         },
         "type": "code",
-        "version": 15,
-        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"sync\"\n)\n\n// :show start\nvar wg sync.WaitGroup\n\nfunc pow2Worker(chIn chan int, chOut chan int) {\n\tfmt.Printf(\"sqrtWorker started\\n\")\n\tfor i := range chIn {\n\t\tsqrt := i * i\n\t\tchOut \u003c- sqrt\n\t}\n\tfmt.Printf(\"sqrtWorker finished\\n\")\n\twg.Done()\n}\n\nfunc main() {\n\tchIn := make(chan int)\n\tchOut := make(chan int)\n\tfor i := 0; i \u003c 2; i++ {\n\t\twg.Add(1)\n\t\tgo pow2Worker(chIn, chOut)\n\t}\n\n\tgo func() {\n\t\tchIn \u003c- 2\n\t\tchIn \u003c- 4\n\t\tclose(chIn)\n\t}()\n\n\tgo func() {\n\t\twg.Wait()\n\t\tclose(chOut)\n\t}()\n\n\tfor sqrt := range chOut {\n\t\tfmt.Printf(\"Got sqrt: %d\\n\", sqrt)\n\t}\n}\n\n// :show end",
+        "version": 20,
+        "code": "// :glot\npackage main\n\nimport (\n\t\"fmt\"\n\t\"sync\"\n)\n\n// :show start\nvar wg sync.WaitGroup\n\nfunc sqrtWorker(chIn chan int, chOut chan int) {\n\tfmt.Printf(\"sqrtWorker started\\n\")\n\tfor i := range chIn {\n\t\tsqrt := i * i\n\t\tchOut \u003c- sqrt\n\t}\n\tfmt.Printf(\"sqrtWorker finished\\n\")\n\twg.Done()\n}\n\nfunc main() {\n\tchIn := make(chan int)\n\tchOut := make(chan int)\n\tfor i := 0; i \u003c 2; i++ {\n\t\twg.Add(1)\n\t\tgo sqrtWorker(chIn, chOut)\n\t}\n\n\tgo func() {\n\t\tchIn \u003c- 2\n\t\tchIn \u003c- 4\n\t\tclose(chIn)\n\t}()\n\n\tgo func() {\n\t\twg.Wait()\n\t\tclose(chOut)\n\t}()\n\n\tfor sqrt := range chOut {\n\t\tfmt.Printf(\"Got sqrt: %d\\n\", sqrt)\n\t}\n}\n\n// :show end",
         "code_language": "Go"
       },
       {
@@ -1375,12 +1375,12 @@
       "family_name": "Kowalczyk",
       "given_name": "Krzysztof",
       "id": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-      "locale": "en",
+      "locale": "",
       "mobile_onboarding_completed": true,
       "onboarding_completed": true,
       "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-      "time_zone": "America/Los_Angeles",
-      "version": 29
+      "time_zone": "",
+      "version": 59
     }
   ],
   "Tables": null
