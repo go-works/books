@@ -1195,12 +1195,15 @@ function start() {
   window.requestAnimationFrame(makeTocVisible);
 }
 
-function findURLWithPrefix(prefix) {
+// pageId looks like "5ab3b56329c44058b5b24d3f364183ce"
+// find full url of the page matching this pageId
+function findURLWithPageId(pageId) {
   var n = gBookToc.length;
   for (var i = 0; i < n; i++) {
     var tocItem = gBookToc[i];
     var uri = tocItemURL(tocItem);
-    if (uri.startsWith(prefix)) {
+    // uri looks like "go-get-5ab3b56329c44058b5b24d3f364183ce"
+    if (uri.endsWith(pageId)) {
       return uri;
     }
   }
@@ -1233,10 +1236,10 @@ function do404() {
   var locParts = loc.split("/");
   var lastIdx = locParts.length - 1;
   var uri = locParts[lastIdx];
-  // redirect 376-${garbage} => 376-${correct url}
+  // redirect ${garbage}-${id} => ${correct url}-${id}
   var parts = uri.split("-");
-  var prefix = parts[0] + "-";
-  var fullURL = findURLWithPrefix(prefix);
+  var pageId = parts[parts.length - 1];
+  var fullURL = findURLWithPageId(pageId);
   if (fullURL != "") {
     locParts[lastIdx] = fullURL
     var loc = locParts.join("/");

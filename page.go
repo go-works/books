@@ -140,7 +140,7 @@ func (p *Page) HTML() template.HTML {
 func (p *Page) URLLastPath() string {
 	id := p.NotionID
 	title := urlify(p.Title)
-	return id + "-" + title
+	return title + "-" + id
 }
 
 // URL returns url of the page
@@ -148,8 +148,8 @@ func (p *Page) URL() string {
 	book := p.Book
 	id := p.NotionID
 	title := urlify(p.Title)
-	// /essentail/go/${id}-title
-	return fmt.Sprintf("/essential/%s/%s-%s", book.Dir, id, title)
+	// /essentail/go/${title}-${id}
+	return fmt.Sprintf("/essential/%s/%s-%s", book.Dir, title, id)
 }
 
 // CanonnicalURL returns full url including host
@@ -164,7 +164,7 @@ func (p *Page) NotionURL() string {
 
 func (p *Page) destFilePath() string {
 	title := urlify(p.Title)
-	fileName := p.NotionID + "-" + title + ".html"
+	fileName := title + "-" + p.NotionID + ".html"
 	return filepath.Join(destEssentialDir, p.Book.Dir, fileName)
 }
 

@@ -83,10 +83,7 @@ func validateRune(c rune) byte {
 	if c >= '0' && c <= '9' {
 		return byte(c)
 	}
-	if c == '-' || c == '_' || c == '.' {
-		return byte(c)
-	}
-	if c == ' ' {
+	if c == '-' || c == '_' || c == '.' || c == ' ' {
 		return '-'
 	}
 	return 0
@@ -126,6 +123,8 @@ func urlify(title string) string {
 	if len(s) > 128 {
 		s = s[:128]
 	}
+	s = strings.TrimLeft(s, "-")
+	s = strings.TrimRight(s, "-")
 	return s
 }
 
