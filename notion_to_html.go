@@ -8,12 +8,20 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/alecthomas/template"
+	"html/template"
+
 	"github.com/kjk/notionapi"
+	"github.com/kjk/notionapi/tohtml"
 )
 
-// HTMLGenerator is for notion -> HTML generation
-type HTMLGenerator struct {
+/*
+Todo:
+
+
+*/
+
+// HTMLRenderer is for notion -> HTML generation
+type HTMLRenderer struct {
 	f            *bytes.Buffer
 	page         *Page
 	level        int
@@ -21,6 +29,9 @@ type HTMLGenerator struct {
 	err          error
 	book         *Book
 	currHeaderID int
+
+	notionClient *notionapi.Client
+	r            *tohtml.HTMLRenderer
 }
 
 // only hex chars seem to be valid
@@ -79,23 +90,23 @@ func extractNotionIDFromURL(uri string) string {
 // change https://www.notion.so/Advanced-web-spidering-with-Puppeteer-ea07db1b9bff415ab180b0525f3898f6
 // =>
 // /article/${id}
-func (g *HTMLGenerator) maybeReplaceNotionLink(uri string) string {
+func (r *HTMLRenderer) maybeReplaceNotionLink(uri string) string {
 	id := extractNotionIDFromURL(uri)
 	if id == "" {
 		return uri
 	}
-	page := g.book.idToPage[id]
+	page := r.book.idToPage[id]
 	if page == nil {
 		lg("Didn't find page with id '%s' extracted from url %s\n", id, uri)
 		return uri
 	}
-	page.Book = g.book
+	page.Book = r.book
 	return page.URL()
 }
 
-func (g *HTMLGenerator) getURLAndTitleForBlock(block *notionapi.Block) (string, string) {
+func (r *HTMLRenderer) getURLAndTitleForBlock(block *notionapi.Block) (string, string) {
 	id := normalizeID(block.ID)
-	page := g.book.idToPage[id]
+	page := r.book.idToPage[id]
 	if page == nil {
 		title := cleanTitle(block.Title)
 		lg("No article for id %s %s\n", id, title)
@@ -116,17 +127,17 @@ func findPageByID(book *Book, id string) *Page {
 	return nil
 }
 
-func (g *HTMLGenerator) reportIfInvalidLink(uri string) {
-	link := g.maybeReplaceNotionLink(uri)
+func (r *HTMLRenderer) reportIfInvalidLink(uri string) {
+	link := r.maybeReplaceNotionLink(uri)
 	if link != uri {
 		return
 	}
 	if strings.HasPrefix(uri, "http") {
 		return
 	}
-	pageID := normalizeID(g.page.getID())
+	pageID := normalizeID(r.page.getID())
 	lg("Found invalid link '%s' in page https://notion.so/%s", uri, pageID)
-	destPage := findPageByID(g.book, uri)
+	destPage := findPageByID(r.book, uri)
 	if destPage != nil {
 		lg(" most likely pointing to https://notion.so/%s\n", normalizeID(destPage.NotionPage.ID))
 	} else {
@@ -134,7 +145,7 @@ func (g *HTMLGenerator) reportIfInvalidLink(uri string) {
 	}
 }
 
-func (g *HTMLGenerator) genInlineBlock(b *notionapi.InlineBlock) {
+func (r *HTMLRenderer) genInlineBlock(b *notionapi.InlineBlock) {
 	var start, close string
 	if b.AttrFlags&notionapi.AttrBold != 0 {
 		start += "<b>"
@@ -154,8 +165,8 @@ func (g *HTMLGenerator) genInlineBlock(b *notionapi.InlineBlock) {
 	}
 	skipText := false
 	if b.Link != "" {
-		g.reportIfInvalidLink(b.Link)
-		link := g.maybeReplaceNotionLink(b.Link)
+		r.reportIfInvalidLink(b.Link)
+		link := r.maybeReplaceNotionLink(b.Link)
 		start += fmt.Sprintf(`<a href="%s">%s</a>`, link, b.Text)
 		skipText = true
 	}
@@ -171,18 +182,18 @@ func (g *HTMLGenerator) genInlineBlock(b *notionapi.InlineBlock) {
 	if !skipText {
 		start += b.Text
 	}
-	g.writeString(start + close)
+	r.writeString(start + close)
 }
 
-func (g *HTMLGenerator) getInline(blocks []*notionapi.InlineBlock) []byte {
-	b := g.newBuffer()
-	g.genInlineBlocks(blocks)
-	return g.restoreBuffer(b)
+func (r *HTMLRenderer) getInline(blocks []*notionapi.InlineBlock) []byte {
+	b := r.newBuffer()
+	r.genInlineBlocks(blocks)
+	return r.restoreBuffer(b)
 }
 
-func (g *HTMLGenerator) genInlineBlocks(blocks []*notionapi.InlineBlock) {
+func (r *HTMLRenderer) genInlineBlocks(blocks []*notionapi.InlineBlock) {
 	for _, block := range blocks {
-		g.genInlineBlock(block)
+		r.genInlineBlock(block)
 	}
 }
 
@@ -208,13 +219,13 @@ func isTodoBlock(block *notionapi.Block) bool {
 	return false
 }
 
-func (g *HTMLGenerator) genBlockSurrouded(block *notionapi.Block, start, close string) {
-	g.writeString(start + "\n")
-	g.genInlineBlocks(block.InlineContent)
-	g.level++
-	g.genContent(block)
-	g.level--
-	g.writeString(close + "\n")
+func (r *HTMLRenderer) genBlockSurrouded(block *notionapi.Block, start, close string) {
+	r.writeString(start + "\n")
+	r.genInlineBlocks(block.InlineContent)
+	r.level++
+	r.genContent(block)
+	r.level--
+	r.writeString(close + "\n")
 }
 
 /*
@@ -259,28 +270,28 @@ func propsValueToText(v interface{}) string {
 	return str
 }
 
-func (g *HTMLGenerator) genEmbed(block *notionapi.Block) {
+func (r *HTMLRenderer) genEmbed(block *notionapi.Block) {
 	uri := block.FormatEmbed.DisplaySource
 	if strings.Contains(uri, "onlinetool.io/") {
-		g.genGitEmbed(block)
+		r.genGitEmbed(block)
 		return
 	}
 	if strings.Contains(uri, "repl.it/") {
-		g.genReplitEmbed(block)
+		r.genReplitEmbed(block)
 		return
 	}
 	panicIf(true, "unsupported embed %s", uri)
 }
 
-func (g *HTMLGenerator) genReplitEmbed(block *notionapi.Block) {
+func (r *HTMLRenderer) genReplitEmbed(block *notionapi.Block) {
 	uri := block.FormatEmbed.DisplaySource
 	uri = strings.Replace(uri, "?lite=true", "", -1)
-	lg("Page: https://notion.so/%s\n", g.page.NotionID)
+	lg("Page: https://notion.so/%s\n", r.page.NotionID)
 	lg("  Replit: %s\n", uri)
 	panic("we no longer use replit")
 }
 
-func (g *HTMLGenerator) genSourceFile(sf *SourceFile) {
+func (r *HTMLRenderer) genSourceFile(sf *SourceFile) {
 	{
 		var tmp bytes.Buffer
 		code := sf.CodeToShow()
@@ -293,7 +304,7 @@ func (g *HTMLGenerator) genSourceFile(sf *SourceFile) {
 		}
 		info.PlaygroundURI = sf.PlaygroundURI
 		s := fixupHTMLCodeBlock(string(d), &info)
-		g.f.WriteString(s)
+		r.f.WriteString(s)
 	}
 
 	output := sf.Output()
@@ -305,13 +316,13 @@ func (g *HTMLGenerator) genSourceFile(sf *SourceFile) {
 			Lang: "output",
 		}
 		s := fixupHTMLCodeBlock(string(d), &info)
-		g.f.WriteString(s)
+		r.f.WriteString(s)
 	}
 }
 
-func (g *HTMLGenerator) genGitEmbed(block *notionapi.Block) {
+func (r *HTMLRenderer) genGitEmbed(block *notionapi.Block) {
 	uri := block.FormatEmbed.DisplaySource
-	f := findSourceFileForEmbedURL(g.page, uri)
+	f := findSourceFileForEmbedURL(r.page, uri)
 	// currently we only handle source code file embeds but might handle
 	// others (graphs etc.)
 	if f == nil {
@@ -319,10 +330,10 @@ func (g *HTMLGenerator) genGitEmbed(block *notionapi.Block) {
 		return
 	}
 
-	g.genSourceFile(f)
+	r.genSourceFile(f)
 }
 
-func (g *HTMLGenerator) genCollectionView(block *notionapi.Block) {
+func (r *HTMLRenderer) genCollectionView(block *notionapi.Block) {
 	viewInfo := block.CollectionViews[0]
 	view := viewInfo.CollectionView
 	if view.Format == nil {
@@ -341,7 +352,7 @@ func (g *HTMLGenerator) genCollectionView(block *notionapi.Block) {
 		if colInfo != nil {
 			name = colInfo.Name
 		} else {
-			lg("Missing colInfo in block ID '%s', page: %s\n", block.ID, g.page.NotionID)
+			lg("Missing colInfo in block ID '%s', page: %s\n", block.ID, r.page.NotionID)
 		}
 		s += `<th>` + html.EscapeString(name) + `</th>`
 	}
@@ -369,52 +380,52 @@ func (g *HTMLGenerator) genCollectionView(block *notionapi.Block) {
 	}
 	s += `</tbody>`
 	s += `</table>`
-	g.writeString(s)
+	r.writeString(s)
 }
 
 // Children of BlockColumnList are BlockColumn blocks
-func (g *HTMLGenerator) genColumnList(block *notionapi.Block) {
+func (r *HTMLRenderer) genColumnList(block *notionapi.Block) {
 	panicIf(block.Type != notionapi.BlockColumnList, "unexpected block type '%s'", block.Type)
 	nColumns := len(block.Content)
 	panicIf(nColumns == 0, "has no columns")
 	// TODO: for now equal width columns
 	s := `<div class="column-list">`
-	g.writeString(s)
+	r.writeString(s)
 
 	for _, col := range block.Content {
 		// TODO: get column ration from col.FormatColumn.ColumnRation, which is float 0...1
 		panicIf(col.Type != notionapi.BlockColumn, "unexpected block type '%s'", col.Type)
-		g.writeString(`<div>`)
-		g.genBlocks(col.Content)
-		g.writeString(`</div>`)
+		r.writeString(`<div>`)
+		r.genBlocks(col.Content)
+		r.writeString(`</div>`)
 	}
 
 	s = `</div>`
-	g.writeString(s)
+	r.writeString(s)
 }
 
-func (g *HTMLGenerator) newBuffer() *bytes.Buffer {
-	curr := g.f
-	g.f = &bytes.Buffer{}
+func (r *HTMLRenderer) newBuffer() *bytes.Buffer {
+	curr := r.f
+	r.f = &bytes.Buffer{}
 	return curr
 }
 
-func (g *HTMLGenerator) restoreBuffer(b *bytes.Buffer) []byte {
-	d := g.f.Bytes()
-	g.f = b
+func (r *HTMLRenderer) restoreBuffer(b *bytes.Buffer) []byte {
+	d := r.f.Bytes()
+	r.f = b
 	return d
 }
 
-func (g *HTMLGenerator) genToggle(block *notionapi.Block) {
+func (r *HTMLRenderer) genToggle(block *notionapi.Block) {
 	panicIf(block.Type != notionapi.BlockToggle, "unexpected block type '%s'", block.Type)
-	g.nToggle++
-	id := strconv.Itoa(g.nToggle)
+	r.nToggle++
+	id := strconv.Itoa(r.nToggle)
 
-	inline := g.getInline(block.InlineContent)
+	inline := r.getInline(block.InlineContent)
 
-	b := g.newBuffer()
-	g.genBlocks(block.Content)
-	inner := g.restoreBuffer(b)
+	b := r.newBuffer()
+	r.genBlocks(block.Content)
+	inner := r.restoreBuffer(b)
 
 	s := fmt.Sprintf(`<div style="width: 100%%; margin-top: 2px; margin-bottom: 1px;">
     <div style="display: flex; align-items: flex-start; width: 100%%; padding-left: 2px; color: rgb(66, 66, 65);">
@@ -453,17 +464,17 @@ func (g *HTMLGenerator) genToggle(block *notionapi.Block) {
     </div>
 </div>
 `, id, id, id, string(inline), id, string(inner))
-	g.writeString(s)
+	r.writeString(s)
 }
 
-func (g *HTMLGenerator) writeString(s string) {
-	io.WriteString(g.f, s)
+func (r *HTMLRenderer) writeString(s string) {
+	io.WriteString(r.f, s)
 }
 
-func (g *HTMLGenerator) genBlock(block *notionapi.Block) {
+func (r *HTMLRenderer) genBlock(block *notionapi.Block) {
 	levelCls := ""
-	if g.level > 0 {
-		levelCls = fmt.Sprintf(" lvl%d", g.level)
+	if r.level > 0 {
+		levelCls = fmt.Sprintf(" lvl%d", r.level)
 	}
 
 	switch block.Type {
@@ -473,40 +484,40 @@ func (g *HTMLGenerator) genBlock(block *notionapi.Block) {
 		}
 		start := `<p>`
 		close := `</p>`
-		g.genBlockSurrouded(block, start, close)
+		r.genBlockSurrouded(block, start, close)
 	case notionapi.BlockHeader:
-		g.currHeaderID++
+		r.currHeaderID++
 		h := HeadingInfo{
 			Text: genInlineBlocksText(block.InlineContent),
 			// TODO: ID should be url-ified text
-			ID: strconv.Itoa(g.currHeaderID),
+			ID: strconv.Itoa(r.currHeaderID),
 		}
-		g.page.Headings = append(g.page.Headings, h)
+		r.page.Headings = append(r.page.Headings, h)
 		start := fmt.Sprintf(`<h1 class="hdr%s" id="%s">`, levelCls, h.ID)
 		close := `</h1>`
-		g.genBlockSurrouded(block, start, close)
+		r.genBlockSurrouded(block, start, close)
 	case notionapi.BlockSubHeader:
-		g.currHeaderID++
+		r.currHeaderID++
 		h := HeadingInfo{
 			Text: genInlineBlocksText(block.InlineContent),
 			// TODO: ID should be url-ified text
-			ID: strconv.Itoa(g.currHeaderID),
+			ID: strconv.Itoa(r.currHeaderID),
 		}
-		g.page.Headings = append(g.page.Headings, h)
+		r.page.Headings = append(r.page.Headings, h)
 		start := fmt.Sprintf(`<h2 class="hdr%s" id="%s">`, levelCls, h.ID)
 		close := `</h2>`
-		g.genBlockSurrouded(block, start, close)
+		r.genBlockSurrouded(block, start, close)
 	case notionapi.BlockSubSubHeader:
-		g.currHeaderID++
+		r.currHeaderID++
 		h := HeadingInfo{
 			Text: genInlineBlocksText(block.InlineContent),
 			// TODO: ID should be url-ified text
-			ID: strconv.Itoa(g.currHeaderID),
+			ID: strconv.Itoa(r.currHeaderID),
 		}
-		g.page.Headings = append(g.page.Headings, h)
+		r.page.Headings = append(r.page.Headings, h)
 		start := fmt.Sprintf(`<h3 class="hdr%s" id="%s">`, levelCls, h.ID)
 		close := `</h3>`
-		g.genBlockSurrouded(block, start, close)
+		r.genBlockSurrouded(block, start, close)
 	case notionapi.BlockTodo:
 		clsChecked := ""
 		if block.IsChecked {
@@ -514,36 +525,36 @@ func (g *HTMLGenerator) genBlock(block *notionapi.Block) {
 		}
 		start := fmt.Sprintf(`<div class="todo%s%s">`, levelCls, clsChecked)
 		close := `</div>`
-		g.genBlockSurrouded(block, start, close)
+		r.genBlockSurrouded(block, start, close)
 	case notionapi.BlockToggle:
-		g.genToggle(block)
+		r.genToggle(block)
 	case notionapi.BlockQuote:
 		start := fmt.Sprintf(`<blockquote class="%s">`, levelCls)
 		close := `</blockquote>`
-		g.genBlockSurrouded(block, start, close)
+		r.genBlockSurrouded(block, start, close)
 	case notionapi.BlockDivider:
-		fmt.Fprintf(g.f, `<hr class="%s"/>`+"\n", levelCls)
+		fmt.Fprintf(r.f, `<hr class="%s"/>`+"\n", levelCls)
 	case notionapi.BlockPage:
 		cls := "page"
 		if block.IsLinkToPage() {
 			cls = "page-link"
 		}
-		url, title := g.getURLAndTitleForBlock(block)
+		url, title := r.getURLAndTitleForBlock(block)
 		title = template.HTMLEscapeString(title)
 		html := fmt.Sprintf(`<div class="%s%s"><a href="%s">%s</a></div>`, cls, levelCls, url, title)
-		fmt.Fprintf(g.f, "%s\n", html)
+		fmt.Fprintf(r.f, "%s\n", html)
 	case notionapi.BlockCode:
 		//lang := getLangFromFileExt(filepath.Ext(path))
 		//gitHubURL := getGitHubPathForFile(path)
 		lang := block.CodeLanguage
 		sf := &SourceFile{
-			NotionOriginURL: fmt.Sprintf("https://notion.so/%s", normalizeID(g.page.NotionID)),
+			NotionOriginURL: fmt.Sprintf("https://notion.so/%s", normalizeID(r.page.NotionID)),
 			//Path:      path,
 			//FileName:  name,
 			//GitHubURL: gitHubURL,
 		}
 		sf.Lang = lang
-		sf.SnippetName = g.page.PageTitle()
+		sf.SnippetName = r.page.PageTitle()
 		if sf.SnippetName == "" {
 			sf.SnippetName = "untitled"
 		}
@@ -565,12 +576,12 @@ func (g *HTMLGenerator) genBlock(block *notionapi.Block) {
 			sf.Directive.NoOutput = true
 		}
 		setDefaultFileNameFromLanguage(sf)
-		err = getOutputCached(g.book.cache, sf)
+		err = getOutputCached(r.book.cache, sf)
 		if err != nil {
 			lg("getOutputCached() failed.\nsf.CodeToRun():\n%s\n", sf.CodeToRun)
 			panicIfErr(err)
 		}
-		g.genSourceFile(sf)
+		r.genSourceFile(sf)
 
 		if false {
 			/*
@@ -586,13 +597,13 @@ func (g *HTMLGenerator) genBlock(block *notionapi.Block) {
 			var info CodeBlockInfo
 			// TODO: set Lang, GitHubURI and PlaygroundURI
 			s := fixupHTMLCodeBlock(string(d), &info)
-			g.f.WriteString(s)
+			r.f.WriteString(s)
 		}
 	case notionapi.BlockBookmark:
-		fmt.Fprintf(g.f, `<div class="bookmark %s">Bookmark to %s</div>`+"\n", levelCls, block.Link)
+		fmt.Fprintf(r.f, `<div class="bookmark %s">Bookmark to %s</div>`+"\n", levelCls, block.Link)
 	case notionapi.BlockGist:
 		s := fmt.Sprintf(`<script src="%s.js"></script>`, block.Source)
-		g.writeString(s)
+		r.writeString(s)
 	case notionapi.BlockImage:
 		link := block.ImageURL
 		cls := levelCls
@@ -600,15 +611,15 @@ func (g *HTMLGenerator) genBlock(block *notionapi.Block) {
 			cls += " "
 		}
 		cls += "img"
-		fmt.Fprintf(g.f, `<img class="%s" src="%s" />`+"\n", cls, link)
+		fmt.Fprintf(r.f, `<img class="%s" src="%s" />`+"\n", cls, link)
 	case notionapi.BlockColumnList:
-		g.genColumnList(block)
+		r.genColumnList(block)
 	case notionapi.BlockCollectionView:
-		g.genCollectionView(block)
+		r.genCollectionView(block)
 	case notionapi.BlockEmbed:
-		g.genEmbed(block)
+		r.genEmbed(block)
 	default:
-		uri := "https://notion.so/" + normalizeID(g.page.NotionID)
+		uri := "https://notion.so/" + normalizeID(r.page.NotionID)
 		fmt.Printf("Unsupported block type '%s', id: %s in page %s\n", block.Type, block.ID, uri)
 		panic(fmt.Sprintf("Unsupported block type '%s'", block.Type))
 	}
@@ -646,7 +657,7 @@ func setDefaultFileNameFromLanguage(sf *SourceFile) error {
 	return nil
 }
 
-func (g *HTMLGenerator) genBlocks(blocks []*notionapi.Block) {
+func (r *HTMLRenderer) genBlocks(blocks []*notionapi.Block) {
 	for len(blocks) > 0 {
 		block := blocks[0]
 		if block == nil {
@@ -656,51 +667,51 @@ func (g *HTMLGenerator) genBlocks(blocks []*notionapi.Block) {
 		}
 
 		if block.Type == notionapi.BlockNumberedList {
-			fmt.Fprintf(g.f, `<ol>`)
+			fmt.Fprintf(r.f, `<ol>`)
 			for len(blocks) > 0 {
 				block := blocks[0]
 				if block.Type != notionapi.BlockNumberedList {
 					break
 				}
-				g.genBlockSurrouded(block, `<li>`, `</li>`)
+				r.genBlockSurrouded(block, `<li>`, `</li>`)
 				blocks = blocks[1:]
 			}
-			fmt.Fprintf(g.f, `</ol>`)
+			fmt.Fprintf(r.f, `</ol>`)
 		} else if block.Type == notionapi.BlockBulletedList {
-			fmt.Fprintf(g.f, `<ul>`)
+			fmt.Fprintf(r.f, `<ul>`)
 			for len(blocks) > 0 {
 				block := blocks[0]
 				if block.Type != notionapi.BlockBulletedList {
 					break
 				}
-				g.genBlockSurrouded(block, `<li>`, `</li>`)
+				r.genBlockSurrouded(block, `<li>`, `</li>`)
 				blocks = blocks[1:]
 			}
-			fmt.Fprintf(g.f, `</ul>`)
+			fmt.Fprintf(r.f, `</ul>`)
 		} else {
-			g.genBlock(block)
+			r.genBlock(block)
 			blocks = blocks[1:]
 		}
 	}
 }
 
-func (g *HTMLGenerator) genContent(parent *notionapi.Block) {
-	g.genBlocks(parent.Content)
+func (r *HTMLRenderer) genContent(parent *notionapi.Block) {
+	r.genBlocks(parent.Content)
 }
 
 // Gen returns generated HTML
-func (g *HTMLGenerator) Gen() []byte {
-	rootPage := g.page.NotionPage.Root
+func (r *HTMLRenderer) Gen() []byte {
+	rootPage := r.page.NotionPage.Root
 	f := rootPage.FormatPage
-	g.writeString(`<p></p>`)
+	r.writeString(`<p></p>`)
 	if f != nil && f.PageFont == "mono" {
-		g.writeString(`<div style="font-family: monospace">`)
+		r.writeString(`<div style="font-family: monospace">`)
 	}
-	g.genContent(rootPage)
+	r.genContent(rootPage)
 	if f != nil && f.PageFont == "mono" {
-		g.writeString(`</div>`)
+		r.writeString(`</div>`)
 	}
-	return g.f.Bytes()
+	return r.f.Bytes()
 }
 
 func notionToHTML(page *Page, book *Book) []byte {
@@ -710,7 +721,7 @@ func notionToHTML(page *Page, book *Book) []byte {
 	}
 
 	verbose("Generating HTML for %s\n", page.NotionURL())
-	gen := HTMLGenerator{
+	gen := HTMLRenderer{
 		f:    &bytes.Buffer{},
 		book: book,
 		page: page,
