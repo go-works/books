@@ -266,16 +266,6 @@ func (r *HTMLRenderer) RenderImage(block *notionapi.Block, entering bool) bool {
 
 // RenderPage renders BlockPage
 func (r *HTMLRenderer) RenderPage(block *notionapi.Block, entering bool) bool {
-	/*
-		cls := "page"
-		if block.IsLinkToPage() {
-			cls = "page-link"
-		}
-		url, title := r.getURLAndTitleForBlock(block)
-		title = template.HTMLEscapeString(title)
-		html := fmt.Sprintf(`<div class="%s%s"><a href="%s">%s</a></div>`, cls, levelCls, url, title)
-		fmt.Fprintf(r.f, "%s\n", html)
-	*/
 	tp := block.GetPageType()
 	if tp == notionapi.BlockPageTopLevel {
 		// skips top-level as it's rendered somewhere else
@@ -463,7 +453,7 @@ func notionToHTML(page *Page, book *Book) []byte {
 	}
 
 	r := tohtml.NewHTMLRenderer(page.NotionPage)
-	r.PanicOnFailures = true
+	notionapi.PanicOnFailures = true
 	r.AddIDAttribute = true
 	r.Data = res
 	r.RenderBlockOverride = res.blockRenderOverride
