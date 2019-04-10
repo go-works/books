@@ -54,8 +54,8 @@ type Page struct {
 	// each page can contain sub-pages
 	Pages []*Page
 
-	// filled during html generation
-	Headings []HeadingInfo
+	// for generatic a toc, gathers text and id of every h1, h2, h3
+	Headings []*HeadingInfo
 
 	// TODO: those should come from notion_cache and downloaded during download
 	// step to notion_cache
