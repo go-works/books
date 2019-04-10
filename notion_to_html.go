@@ -505,8 +505,34 @@ func notionToHTML(page *Page, book *Book) []byte {
 	r.Data = res
 	r.RenderBlockOverride = res.blockRenderOverride
 	r.RenderInlineLinkOverride = res.renderInlineLink
-
 	res.r = r
 
-	return res.Gen()
+	/*
+		var headings []*HeadingInfo
+		cb := func(block *notionapi.Block) {
+			isHeader := false
+			switch block.Type {
+			case notionapi.BlockHeader, notionapi.BlockSubHeader, notionapi.BlockSubSubHeader:
+				isHeader = true
+			}
+			if !isHeader {
+				return
+			}
+			id := notionapi.ToNoDashID(block.ID)
+			h := &HeadingInfo{
+				// TODO: this includes formatting as HTML
+				// need a function that only gets text data
+				Text: r.GetInlineContent(block.InlineContent),
+				ID:   id,
+			}
+			headings = append(headings, h)
+		}
+		blocks := []*notionapi.Block{page.NotionPage.Root}
+		notionapi.ForEachBlock(blocks, cb)
+	*/
+
+	html := res.Gen()
+	//panicIf(len(headings) != len(page.Headings))
+
+	return html
 }
