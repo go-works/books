@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"fmt"
 	"html"
-	"html/template"
 	"strings"
 
 	"github.com/kjk/notionapi"
@@ -13,10 +12,8 @@ import (
 
 /*
 Todo:
-- move extractNotionIDFromURL to notionapi so that I can re-use it
 - improve style of .img class (take from notionapi)
 - set the right margin-bottom to .title
-- notionapi: fix rendering of lists like in 9e2a7d8c43bb46f29962b0d2f195e19c
 */
 
 // HTMLRenderer is for notion -> HTML generation
@@ -28,17 +25,34 @@ type HTMLRenderer struct {
 	r            *tohtml.HTMLRenderer
 }
 
+func (r *HTMLRenderer) reportIfInvalidLink(uri string) {
+	pageID := normalizeID(r.page.getID())
+	lg("Found invalid link '%s' in page https://notion.so/%s", uri, pageID)
+	destPage := findPageByID(r.book, uri)
+	if destPage != nil {
+		lg(" most likely pointing to https://notion.so/%s\n", normalizeID(destPage.NotionPage.ID))
+	} else {
+		lg("\n")
+	}
+}
+
 // change https://www.notion.so/Advanced-web-spidering-with-Puppeteer-ea07db1b9bff415ab180b0525f3898f6
 // =>
 // url within the book
-func (r *HTMLRenderer) maybeReplaceNotionLink(uri string) string {
+func (r *HTMLRenderer) rewriteURL(uri string) string {
+	if !strings.HasPrefix(uri, "https://notion.so") {
+		return uri
+	}
+
 	id := notionapi.ExtractNoDashIDFromNotionURL(uri)
 	if id == "" {
+		r.reportIfInvalidLink(uri)
 		return uri
 	}
 	page := r.book.idToPage[id]
 	if page == nil {
 		lg("Didn't find page with id '%s' extracted from url %s\n", id, uri)
+		r.reportIfInvalidLink(uri)
 		return uri
 	}
 	page.Book = r.book
@@ -66,34 +80,6 @@ func findPageByID(book *Book, id string) *Page {
 		}
 	}
 	return nil
-}
-
-func (r *HTMLRenderer) reportIfInvalidLink(uri string) {
-	link := r.maybeReplaceNotionLink(uri)
-	if link != uri {
-		return
-	}
-	if strings.HasPrefix(uri, "http") {
-		return
-	}
-	pageID := normalizeID(r.page.getID())
-	lg("Found invalid link '%s' in page https://notion.so/%s", uri, pageID)
-	destPage := findPageByID(r.book, uri)
-	if destPage != nil {
-		lg(" most likely pointing to https://notion.so/%s\n", normalizeID(destPage.NotionPage.ID))
-	} else {
-		lg("\n")
-	}
-}
-
-// renderInlineLink renders a link in inline block
-// we replace inter-notion urls to inter-blog urls
-func (r *HTMLRenderer) renderInlineLink(b *notionapi.InlineBlock) (string, bool) {
-	r.reportIfInvalidLink(b.Link)
-	link := r.maybeReplaceNotionLink(b.Link)
-	text := html.EscapeString(b.Text)
-	s := fmt.Sprintf(`<a href="%s">%s</a>`, link, text)
-	return s, true
 }
 
 // RenderEmbed renders BlockEmbed
@@ -206,7 +192,7 @@ func (r *HTMLRenderer) RenderCode(block *notionapi.Block, entering bool) bool {
 	r.genSourceFile(sf)
 
 	if false {
-		// code := template.HTMLEscapeString(block.Code)
+		// code := html.EscapeString(block.Code)
 		//fmt.Fprintf(g.f, `<div class="%s">Lang for code: %s</div>
 		//<pre class="%s">
 		//%s
@@ -285,7 +271,7 @@ func (r *HTMLRenderer) RenderPage(block *notionapi.Block, entering bool) bool {
 	title = html.EscapeString(title)
 	content := fmt.Sprintf(`<a href="%s">%s</a>`, url, title)
 	attrs := []string{"class", cls}
-	title = template.HTMLEscapeString(title)
+	title = html.EscapeString(title)
 	r.r.WriteElement(block, "div", attrs, content, entering)
 	return true
 }
@@ -457,7 +443,7 @@ func notionToHTML(page *Page, book *Book) []byte {
 	r.AddIDAttribute = true
 	r.Data = res
 	r.RenderBlockOverride = res.blockRenderOverride
-	r.RenderInlineLinkOverride = res.renderInlineLink
+	r.RewriteURL = res.rewriteURL
 	res.r = r
 
 	var headings []*HeadingInfo
