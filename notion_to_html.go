@@ -161,41 +161,6 @@ func (r *HTMLRenderer) genGitEmbed(block *notionapi.Block) {
 	r.genSourceFile(f)
 }
 
-// RenderHeaders renders headers
-// TODO: re-use code from notionapi. We could build r.page.Headings
-// information ina separate pass
-func (r *HTMLRenderer) RenderHeaders(block *notionapi.Block, entering bool) bool {
-	tag := ""
-	switch block.Type {
-	case notionapi.BlockHeader:
-		tag = "h1"
-	case notionapi.BlockSubHeader:
-		tag = "h2"
-	case notionapi.BlockSubSubHeader:
-		tag = "h3"
-	default:
-		panic("unsupported block type")
-	}
-
-	// avoid expensive work when exiting
-	if !entering {
-		r.r.WriteElement(block, tag, nil, "", entering)
-		return true
-	}
-
-	id := notionapi.ToNoDashID(block.ID)
-	h := HeadingInfo{
-		// TODO: this includes formatting as HTML
-		// need a function that only gets text data
-		Text: r.r.GetInlineContent(block.InlineContent),
-		ID:   id,
-	}
-	r.page.Headings = append(r.page.Headings, h)
-	attrs := []string{"class", "hdr"}
-	r.r.WriteElement(block, tag, attrs, "", entering)
-	return true
-}
-
 // RenderCode renders BlockCode
 func (r *HTMLRenderer) RenderCode(block *notionapi.Block, entering bool) bool {
 	if !entering {
@@ -462,8 +427,6 @@ func (r *HTMLRenderer) blockRenderOverride(block *notionapi.Block, entering bool
 		return r.RenderText(block, entering)
 	case notionapi.BlockEmbed:
 		return r.RenderEmbed(block, entering)
-	case notionapi.BlockHeader, notionapi.BlockSubHeader, notionapi.BlockSubSubHeader:
-		return r.RenderHeaders(block, entering)
 	}
 	return false
 }
@@ -507,32 +470,34 @@ func notionToHTML(page *Page, book *Book) []byte {
 	r.RenderInlineLinkOverride = res.renderInlineLink
 	res.r = r
 
-	/*
-		var headings []*HeadingInfo
-		cb := func(block *notionapi.Block) {
-			isHeader := false
-			switch block.Type {
-			case notionapi.BlockHeader, notionapi.BlockSubHeader, notionapi.BlockSubSubHeader:
-				isHeader = true
-			}
-			if !isHeader {
-				return
-			}
-			id := notionapi.ToNoDashID(block.ID)
-			h := &HeadingInfo{
-				// TODO: this includes formatting as HTML
-				// need a function that only gets text data
-				Text: r.GetInlineContent(block.InlineContent),
-				ID:   id,
-			}
-			headings = append(headings, h)
+	var headings []*HeadingInfo
+	cb := func(block *notionapi.Block) {
+		isHeader := false
+		switch block.Type {
+		case notionapi.BlockHeader, notionapi.BlockSubHeader, notionapi.BlockSubSubHeader:
+			isHeader = true
 		}
-		blocks := []*notionapi.Block{page.NotionPage.Root}
-		notionapi.ForEachBlock(blocks, cb)
-	*/
+		if !isHeader {
+			return
+		}
+		id := notionapi.ToNoDashID(block.ID)
+		s := r.GetInlineContent(block.InlineContent)
+		// TODO: temporary
+		s = strings.Replace(s, "<b>", "", -1)
+		s = strings.Replace(s, "</b>", "", -1)
+		h := &HeadingInfo{
+			// TODO: this includes formatting as HTML
+			// need a function that only gets text data
+			Text: s,
+			ID:   id,
+		}
+		headings = append(headings, h)
+	}
+	blocks := []*notionapi.Block{page.NotionPage.Root}
+	notionapi.ForEachBlock(blocks, cb)
+	page.Headings = headings
 
 	html := res.Gen()
-	//panicIf(len(headings) != len(page.Headings))
 
 	return html
 }
