@@ -159,94 +159,11 @@ func (r *HTMLRenderer) genGitEmbed(block *notionapi.Block) {
 	}
 
 	r.genSourceFile(f)
-
-}
-
-// TODO: compare this with notionapi
-/*
-func (r *HTMLRenderer) genCollectionView(block *notionapi.Block) {
-	viewInfo := block.CollectionViews[0]
-	view := viewInfo.CollectionView
-	if view.Format == nil {
-		lg("genCollectionView: missing view.Format block id: %s\n", block.ID)
-		return
-	}
-
-	s := `<table class="notion-table">`
-
-	columns := view.Format.TableProperties
-	s += `<thead><tr>`
-	for _, col := range columns {
-		colName := col.Property
-		colInfo := viewInfo.Collection.CollectionSchema[colName]
-		name := ""
-		if colInfo != nil {
-			name = colInfo.Name
-		} else {
-			lg("Missing colInfo in block ID '%s', page: %s\n", block.ID, r.page.NotionID)
-		}
-		s += `<th>` + html.EscapeString(name) + `</th>`
-	}
-	s += `</tr></thead>`
-
-	s += `<tbody>`
-	for _, row := range viewInfo.CollectionRows {
-		s += `<tr>`
-		props := row.Properties
-		for _, col := range columns {
-			colName := col.Property
-			v := props[colName]
-			colVal := propsValueToText(v)
-			if colVal == "" {
-				// use &nbsp; so that empty row still shows up
-				// could also set a min-height to 1em or sth. like that
-				s += `<td>&nbsp;</td>`
-			} else {
-				//colInfo := viewInfo.Collection.CollectionSchema[colName]
-				// TODO: format colVal according to colInfo
-				s += `<td>` + html.EscapeString(colVal) + `</td>`
-			}
-		}
-		s += `</tr>`
-	}
-	s += `</tbody>`
-	s += `</table>`
-	r.writeString(s)
-}
-*/
-
-// TODO: compare this with notionapi
-/*
-// Children of BlockColumnList are BlockColumn blocks
-func (r *HTMLRenderer) genColumnList(block *notionapi.Block) {
-	panicIf(block.Type != notionapi.BlockColumnList, "unexpected block type '%s'", block.Type)
-	nColumns := len(block.Content)
-	panicIf(nColumns == 0, "has no columns")
-	// TODO: for now equal width columns
-	s := `<div class="column-list">`
-	r.writeString(s)
-
-	for _, col := range block.Content {
-		// TODO: get column ration from col.FormatColumn.ColumnRation, which is float 0...1
-		panicIf(col.Type != notionapi.BlockColumn, "unexpected block type '%s'", col.Type)
-		r.writeString(`<div>`)
-		r.genBlocks(col.Content)
-		r.writeString(`</div>`)
-	}
-
-	s = `</div>`
-	r.writeString(s)
-}
-*/
-
-func (r *HTMLRenderer) getInlineContent(block *notionapi.Block) string {
-	r.r.PushNewBuffer()
-	r.r.RenderInlines(block.InlineContent)
-	return r.r.PopBuffer().String()
 }
 
 // RenderHeaders renders headers
-// TODO: re-use code from notionapi
+// TODO: re-use code from notionapi. We could build r.page.Headings
+// information ina separate pass
 func (r *HTMLRenderer) RenderHeaders(block *notionapi.Block, entering bool) bool {
 	tag := ""
 	switch block.Type {
@@ -268,7 +185,9 @@ func (r *HTMLRenderer) RenderHeaders(block *notionapi.Block, entering bool) bool
 
 	id := notionapi.ToNoDashID(block.ID)
 	h := HeadingInfo{
-		Text: r.getInlineContent(block),
+		// TODO: this includes formatting as HTML
+		// need a function that only gets text data
+		Text: r.r.GetInlineContent(block.InlineContent),
 		ID:   id,
 	}
 	r.page.Headings = append(r.page.Headings, h)
