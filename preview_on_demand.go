@@ -64,6 +64,29 @@ func writeHTMLHeaders(w http.ResponseWriter) {
 	w.WriteHeader(http.StatusOK)
 }
 
+func findPreviewBook(name string) *Book {
+	for _, book := range gPreviewBooks {
+		if book.Dir == name {
+			return book
+		}
+	}
+	return nil
+}
+
+func handleBook(w http.ResponseWriter, r *http.Request) {
+	uri := r.URL.Path
+	uri = strings.TrimPrefix(uri, "/essential/")
+	parts := strings.SplitN(uri, "/", 2)
+	bookName := parts[0]
+	book := findPreviewBook(bookName)
+	if book == nil {
+		fmt.Printf("handleBook: didn't find book for '%s'\n", r.URL.Path)
+		serve404(w, r)
+		return
+	}
+	// TODO: more
+}
+
 func handleIndexOnDemand(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("uri: %s\n", r.URL.Path)
 	uri := r.URL.Path
@@ -96,6 +119,11 @@ func handleIndexOnDemand(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if strings.HasPrefix(uri, "/essential/") {
+		handleBook(w, r)
+		return
+	}
+
 	if serveFileFromTmpl(w, r) {
 		return
 	}
@@ -118,6 +146,18 @@ func makeHTTPServerOnDemand() *http.Server {
 }
 
 func startPreviewOnDemand(books []*Book) {
+
+	// because of genBookTOCSearchMust()
+	os.RemoveAll("www")
+	os.MkdirAll(filepath.Join("www", "s"), 0755)
+
+	for _, book := range books {
+		buildIDToPage(book)
+		genContributorsPage(book)
+
+		// TODO: this generates js files in /www/s/app-${book.Dir}-${sha1}.js
+		genBookTOCSearchMust(book)
+	}
 	gPreviewBooks = books
 
 	httpSrv := makeHTTPServerOnDemand()

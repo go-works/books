@@ -299,7 +299,7 @@ func genChapter(book *Book, page *Page, currNo int) {
 func buildIDToPage(book *Book) {
 	pages := book.GetAllPages()
 	for _, page := range pages {
-		id := normalizeID(page.NotionPage.ID)
+		id := toNoDashID(page.NotionPage.ID)
 		book.idToPage[id] = page
 		page.Book = book
 	}

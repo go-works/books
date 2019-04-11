@@ -159,7 +159,7 @@ func (p *Page) CanonnicalURL() string {
 
 // NotionURL returns url to edit 000-index.md document
 func (p *Page) NotionURL() string {
-	return notionBaseURL + normalizeID(p.NotionID)
+	return notionBaseURL + toNoDashID(p.NotionID)
 }
 
 func (p *Page) destFilePath() string {
@@ -206,7 +206,7 @@ func getSubPages(page *notionapi.Page, pageIDToPage map[string]*Page) []*notiona
 			continue
 		}
 		toRemove[idx] = true
-		id := normalizeID(block.ID)
+		id := toNoDashID(block.ID)
 		subPage := pageIDToPage[id]
 		panicIf(subPage == nil, "no sub page for id %s", id)
 		res = append(res, subPage.NotionPage)
@@ -300,7 +300,7 @@ func extractMeta(p *Page) {
 		page.Root.Content[idx] = nil
 		toRemove[idx] = true
 		if !isKnownMeta(mv.Key) {
-			uri := "https://notion.so/" + normalizeID(page.ID)
+			uri := "https://notion.so/" + toNoDashID(page.ID)
 			fmt.Printf("Unknown meta value '%s' = '%s' in page %s\n", mv.Key, mv.Value, uri)
 		}
 		p.Metadata = append(p.Metadata, mv)
@@ -311,7 +311,7 @@ func extractMeta(p *Page) {
 // recursively build a Page for each notionapi.Page by extracting
 // information from notionapi.Page
 func bookPageFromNotionPage(book *Book, page *notionapi.Page) *Page {
-	id := normalizeID(page.ID)
+	id := toNoDashID(page.ID)
 	res := book.idToPage[id]
 	if res == nil {
 		res = &Page{
@@ -327,7 +327,7 @@ func bookPageFromNotionPage(book *Book, page *notionapi.Page) *Page {
 
 	subPages := getSubPages(page, book.idToPage)
 
-	// fmt.Printf("bookPageFromNotionPage: %s %s\n", normalizeID(page.ID), res.Meta.ID)
+	// fmt.Printf("bookPageFromNotionPage: %s %s\n", toNoDashID(page.ID), res.Meta.ID)
 
 	for _, subPage := range subPages {
 		bookPage := bookPageFromNotionPage(book, subPage)
