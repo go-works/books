@@ -24,7 +24,7 @@ var (
 
 // convert 2131b10c-ebf6-4938-a127-7089ff02dbe4 to 2131b10cebf64938a1277089ff02dbe4
 // TODO: replace with direct use of notionapi.ToNoDashID
-func normalizeID(id string) string {
+func toNoDashID(id string) string {
 	return notionapi.ToNoDashID(id)
 }
 
@@ -50,7 +50,7 @@ func findSubPageIDs(blocks []*notionapi.Block) []string {
 	for len(toVisit) > 0 {
 		block := toVisit[0]
 		toVisit = toVisit[1:]
-		id := normalizeID(block.ID)
+		id := toNoDashID(block.ID)
 		if block.Type == notionapi.BlockPage {
 			pageIDs[id] = struct{}{}
 			seen[id] = struct{}{}
@@ -59,7 +59,7 @@ func findSubPageIDs(blocks []*notionapi.Block) []string {
 			if b == nil {
 				continue
 			}
-			id := normalizeID(block.ID)
+			id := toNoDashID(block.ID)
 			if _, ok := seen[id]; ok {
 				continue
 			}
@@ -113,7 +113,7 @@ func downloadPageRetry(c *notionapi.Client, pageID string) (res *notionapi.Page,
 
 func downloadAndCachePage(c *notionapi.Client, b *Book, pageID string) (*notionapi.Page, error) {
 	lg("downloading page with id %s\n", pageID)
-	pageID = normalizeID(pageID)
+	pageID = toNoDashID(pageID)
 	c.Logger, _ = openLogFileForPageID(pageID)
 	if c.Logger != nil {
 		defer func() {
@@ -324,7 +324,7 @@ func loadNotionPages(c *notionapi.Client, b *Book) {
 
 	nDownloadedPage = 1
 	for len(toVisit) > 0 {
-		pageID := normalizeID(toVisit[0])
+		pageID := toNoDashID(toVisit[0])
 		toVisit = toVisit[1:]
 
 		/*

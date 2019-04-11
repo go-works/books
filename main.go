@@ -126,7 +126,7 @@ func downloadBook(c *notionapi.Client, book *Book) {
 	lg("Loading %s...", book.Title)
 	pages := loadPagesFromDisk(book.NotionCacheDir())
 	for _, notionPage := range pages {
-		id := normalizeID(notionPage.ID)
+		id := toNoDashID(notionPage.ID)
 		page := book.idToPage[id]
 		if page == nil {
 			page = &Page{
@@ -248,7 +248,7 @@ func initMinify() {
 }
 
 func isNotionCachedInDir(dir string, id string) bool {
-	id = normalizeID(id)
+	id = toNoDashID(id)
 	files, err := ioutil.ReadDir(dir)
 	panicIfErr(err)
 	for _, fi := range files {

@@ -26,11 +26,11 @@ type HTMLRenderer struct {
 }
 
 func (r *HTMLRenderer) reportIfInvalidLink(uri string) {
-	pageID := normalizeID(r.page.getID())
+	pageID := toNoDashID(r.page.getID())
 	lg("Found invalid link '%s' in page https://notion.so/%s", uri, pageID)
 	destPage := findPageByID(r.book, uri)
 	if destPage != nil {
-		lg(" most likely pointing to https://notion.so/%s\n", normalizeID(destPage.NotionPage.ID))
+		lg(" most likely pointing to https://notion.so/%s\n", toNoDashID(destPage.NotionPage.ID))
 	} else {
 		lg("\n")
 	}
@@ -60,7 +60,7 @@ func (r *HTMLRenderer) rewriteURL(uri string) string {
 }
 
 func (r *HTMLRenderer) getURLAndTitleForBlock(block *notionapi.Block) (string, string) {
-	id := normalizeID(block.ID)
+	id := toNoDashID(block.ID)
 	page := r.book.idToPage[id]
 	if page == nil {
 		title := cleanTitle(block.Title)
@@ -156,7 +156,7 @@ func (r *HTMLRenderer) RenderCode(block *notionapi.Block, entering bool) bool {
 	//gitHubURL := getGitHubPathForFile(path)
 	lang := block.CodeLanguage
 	sf := &SourceFile{
-		NotionOriginURL: fmt.Sprintf("https://notion.so/%s", normalizeID(r.page.NotionID)),
+		NotionOriginURL: fmt.Sprintf("https://notion.so/%s", toNoDashID(r.page.NotionID)),
 		//Path:      path,
 		//FileName:  name,
 		//GitHubURL: gitHubURL,
