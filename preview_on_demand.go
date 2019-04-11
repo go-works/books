@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"html/template"
 	"net/http"
 	"os"
 	"os/signal"
@@ -9,6 +10,8 @@ import (
 	"strings"
 	"syscall"
 	"time"
+
+	"github.com/kjk/notionapi"
 )
 
 var (
@@ -25,7 +28,7 @@ func tryPrefixInDir(uri string, prefix string, dir string) string {
 	if fileExists(path) {
 		return path
 	}
-	fmt.Printf("tried path: '%s', name: '%s', uri: '%s'\n", path, name, uri)
+	//fmt.Printf("tried path: '%s', name: '%s', uri: '%s'\n", path, name, uri)
 	return ""
 }
 
@@ -37,8 +40,21 @@ func getFileForURL(uri string) string {
 		}
 	}
 	{
-		coversDir := filepath.Join("covers", "covers_small")
-		path := tryPrefixInDir(uri, "/covers_small/", coversDir)
+		dir := filepath.Join("www", "s")
+		path := tryPrefixInDir(uri, "/s/", dir)
+		if path != "" {
+			return path
+		}
+	}
+	{
+		dir := filepath.Join("covers", "covers_small")
+		path := tryPrefixInDir(uri, "/covers_small/", dir)
+		if path != "" {
+			return path
+		}
+	}
+	{
+		path := tryPrefixInDir(uri, "/covers/", "covers")
 		if path != "" {
 			return path
 		}
@@ -73,18 +89,66 @@ func findPreviewBook(name string) *Book {
 	return nil
 }
 
+func extractIDFromURL(s string) string {
+	parts := strings.Split(s, "-")
+	lastIdx := len(parts) - 1
+	id := parts[lastIdx]
+	if notionapi.IsValidNoDashID(id) {
+		return id
+	}
+	return ""
+}
+
+func maybeGenBookChapter(w http.ResponseWriter, r *http.Request, book *Book, id string) bool {
+	for i, chapter := range book.Chapters() {
+		chapID := toNoDashID(chapter.NotionID)
+		if chapID == id {
+			page := chapter
+			html := notionToHTML(page, book)
+			page.BodyHTML = template.HTML(string(html))
+			err := genChapter(book, chapter, i, w)
+			logIfError(err)
+			return true
+		}
+		for j, article := range chapter.Pages {
+			pageID := toNoDashID(article.NotionID)
+			if id == pageID {
+				page := article
+				html := notionToHTML(page, book)
+				page.BodyHTML = template.HTML(string(html))
+				currNo := i
+				err := genArticle(book, article, currNo, j, w)
+				logIfError(err)
+				return true
+			}
+		}
+	}
+	return false
+}
+
 func handleBook(w http.ResponseWriter, r *http.Request) {
 	uri := r.URL.Path
 	uri = strings.TrimPrefix(uri, "/essential/")
 	parts := strings.SplitN(uri, "/", 2)
 	bookName := parts[0]
+	rest := parts[1]
 	book := findPreviewBook(bookName)
 	if book == nil {
 		fmt.Printf("handleBook: didn't find book for '%s'\n", r.URL.Path)
 		serve404(w, r)
 		return
 	}
+	if len(rest) == 0 {
+		genBookIndex(book, w)
+		return
+	}
+	pageID := extractIDFromURL(rest)
+	if maybeGenBookChapter(w, r, book, pageID) {
+		return
+	}
+	fmt.Printf("handleBook: not yet implemted ur: '%s', rest: '%s', pageID: '%s'\n", r.URL.Path, rest, pageID)
 	// TODO: more
+	serve404(w, r)
 }
 
 func handleIndexOnDemand(w http.ResponseWriter, r *http.Request) {
@@ -119,14 +183,15 @@ func handleIndexOnDemand(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if serveFileFromTmpl(w, r) {
+		return
+	}
+
 	if strings.HasPrefix(uri, "/essential/") {
 		handleBook(w, r)
 		return
 	}
 
-	if serveFileFromTmpl(w, r) {
-		return
-	}
 	serve404(w, r)
 }
 

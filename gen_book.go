@@ -241,8 +241,10 @@ func genAbout(w io.Writer) error {
 }
 
 // TODO: consolidate chapter/article html
-func genArticle(book *Book, page *Page, currChapNo int, currArticleNo int) {
-	addSitemapURL(page.CanonnicalURL())
+func genArticle(book *Book, page *Page, currChapNo int, currArticleNo int, w io.Writer) error {
+	if w == nil {
+		addSitemapURL(page.CanonnicalURL())
+	}
 
 	d := struct {
 		PageCommon
@@ -261,16 +263,19 @@ func genArticle(book *Book, page *Page, currChapNo int, currArticleNo int) {
 	}
 
 	path := page.destFilePath()
-	err := execTemplateToFileSilentMaybeMust("article.tmpl.html", d, path)
+	err := execTemplate("article.tmpl.html", d, path, w)
 	if err != nil {
 		fmt.Printf("Failed to minify page %s in book %s\n", page.NotionID, book.Title)
 	}
+	return err
 }
 
-func genChapter(book *Book, page *Page, currNo int) {
-	addSitemapURL(page.CanonnicalURL())
-	for i, article := range page.Pages {
-		genArticle(book, article, currNo, i)
+func genChapter(book *Book, page *Page, currNo int, w io.Writer) error {
+	if w == nil {
+		addSitemapURL(page.CanonnicalURL())
+		for i, article := range page.Pages {
+			genArticle(book, article, currNo, i, nil)
+		}
 	}
 
 	path := page.destFilePath()
@@ -287,13 +292,17 @@ func genChapter(book *Book, page *Page, currNo int) {
 		ShowForum:        gShowForum,
 		ForumLink:        gForumLink,
 	}
-	execTemplateToFileSilentMaybeMust("chapter.tmpl.html", d, path)
+	err := execTemplate("chapter.tmpl.html", d, path, w)
+	if err != nil {
+		return err
+	}
 
 	for _, imagePath := range page.images {
 		imageName := filepath.Base(imagePath)
 		dst := page.destImagePath(imageName)
 		copyFileMaybeMust(dst, imagePath)
 	}
+	return nil
 }
 
 func buildIDToPage(book *Book) {
@@ -329,6 +338,32 @@ func bookPageToHTML(book *Book, id string) {
 	fmt.Printf("bookPageToHTML: didn't find page '%s' for book %s\n", id, book.TitleLong)
 }
 
+func genBookIndex(book *Book, w io.Writer) error {
+	data := struct {
+		PageCommon
+		Book *Book
+	}{
+		PageCommon: getPageCommon(),
+		Book:       book,
+	}
+
+	path := filepath.Join(book.destDir(), "index.html")
+	return execTemplate("book_index.tmpl.html", data, path, w)
+}
+
+func genBook404(book *Book, w io.Writer) error {
+	data := struct {
+		PageCommon
+		Book *Book
+	}{
+		PageCommon: getPageCommon(),
+		Book:       book,
+	}
+
+	path := filepath.Join(book.destDir(), "404.html")
+	return execTemplate("404.tmpl.html", data, path, nil)
+}
+
 func genBook(book *Book) {
 	lg("Started genering book %s\n", book.Title)
 	timeStart := time.Now()
@@ -346,24 +381,15 @@ func genBook(book *Book) {
 		return
 	}
 
-	data := struct {
-		PageCommon
-		Book *Book
-	}{
-		PageCommon: getPageCommon(),
-		Book:       book,
-	}
-
-	path := filepath.Join(book.destDir(), "index.html")
-	execTemplateToFileSilentMaybeMust("book_index.tmpl.html", data, path)
+	genBookIndex(book, nil)
 
 	// TODO: per-book 404 should link to top of book, not top of website
-	path = filepath.Join(book.destDir(), "404.html")
-	execTemplateToFileSilentMaybeMust("404.tmpl.html", data, path)
+	genBook404(book, nil)
+
 	addSitemapURL(book.CanonnicalURL())
 
 	for i, chapter := range book.Chapters() {
-		genChapter(book, chapter, i)
+		genChapter(book, chapter, i, nil)
 	}
 
 	fmt.Printf("Generated book '%s' in %s\n", book.Title, time.Since(timeStart))
