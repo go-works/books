@@ -12,11 +12,6 @@ import (
 	"time"
 )
 
-func fileExists(path string) bool {
-	_, err := os.Stat(path)
-	return err == nil
-}
-
 func fileForURI(uri string) string {
 	path := filepath.Join("www", uri)
 	if fileExists(path) {
@@ -82,6 +77,7 @@ func makeHTTPServer() *http.Server {
 	}
 	return srv
 }
+
 func startPreview() {
 	httpSrv := makeHTTPServer()
 	httpSrv.Addr = "127.0.0.1:8173"
