@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"html/template"
+	"io"
 	"io/ioutil"
 	"log"
 	"os"
@@ -122,6 +123,19 @@ func execTemplateToFileMaybeMust(name string, data interface{}, path string) err
 	return execTemplateToFileSilentMaybeMust(name, data, path)
 }
 
+func loadTemplate(name string) (*template.Template, error) {
+	path := tmplPath(name)
+	return template.New(name).Funcs(funcMap).ParseFiles(path)
+}
+
+func execTemplateToWriter(name string, data interface{}, w io.Writer) error {
+	tmpl, err := loadTemplate(name)
+	if err != nil {
+		return err
+	}
+	return tmpl.Execute(w, data)
+}
+
 // PageCommon is a common information for most pages
 type PageCommon struct {
 	Analytics      template.HTML
@@ -165,7 +179,18 @@ func splitBooks(books []*Book) ([]*Book, []*Book) {
 	return left, right
 }
 
-func genIndex(books []*Book) {
+func execTemplate(tmplName string, d interface{}, path string, w io.Writer) error {
+	// this code path is for the preview on demand server
+	if w != nil {
+		return execTemplateToWriter(tmplName, d, w)
+	}
+
+	// this code path is for generating static files
+	execTemplateToFileMaybeMust(tmplName, d, path)
+	return nil
+}
+
+func genIndex(books []*Book, w io.Writer) error {
 	leftBooks, rightBooks := splitBooks(books)
 	d := struct {
 		PageCommon
@@ -180,11 +205,12 @@ func genIndex(books []*Book) {
 		RightBooks: rightBooks,
 		NotionURL:  gitHubBaseURL,
 	}
+
 	path := filepath.Join(destDir, "index.html")
-	execTemplateToFileMaybeMust("index2.tmpl.html", d, path)
+	return execTemplate("index2.tmpl.html", d, path, w)
 }
 
-func genIndexGrid(books []*Book) {
+func genIndexGrid(books []*Book, w io.Writer) error {
 	d := struct {
 		PageCommon
 		Books []*Book
@@ -193,11 +219,10 @@ func genIndexGrid(books []*Book) {
 		Books:      books,
 	}
 	path := filepath.Join(destDir, "index-grid.html")
-	execTemplateToFileMaybeMust("index-grid.tmpl.html", d, path)
+	return execTemplate("index-grid.tmpl.html", d, path, w)
 }
 
-func genFeedback() {
-	fmt.Printf("writing feedback.html\n")
+func genFeedback(w io.Writer) error {
 	path := filepath.Join(destDir, "feedback.html")
 	d := struct {
 		PageCommon
@@ -206,14 +231,13 @@ func genFeedback() {
 		PageCommon: getPageCommon(),
 		ForumLink:  gForumLink,
 	}
-	execTemplateToFileMaybeMust("feedback.tmpl.html", d, path)
+	return execTemplate("feedback.tmpl.html", d, path, w)
 }
 
-func genAbout() {
+func genAbout(w io.Writer) error {
 	d := getPageCommon()
-	fmt.Printf("writing about.html\n")
 	path := filepath.Join(destDir, "about.html")
-	execTemplateToFileMaybeMust("about.tmpl.html", d, path)
+	return execTemplate("about.tmpl.html", d, path, w)
 }
 
 // TODO: consolidate chapter/article html

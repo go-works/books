@@ -22,9 +22,10 @@ import (
 )
 
 var (
-	flgAnalytics string
-	flgPreview   bool
-	flgAllBooks  bool
+	flgAnalytics       string
+	flgPreview         bool
+	flgPreviewOnDemand bool
+	flgAllBooks        bool
 	// if true, disables downloading pages
 	flgNoDownload bool
 	// if true, disables notion cache, forcing re-download of notion page
@@ -92,7 +93,8 @@ var (
 
 func parseFlags() {
 	flag.StringVar(&flgAnalytics, "analytics", "", "google analytics code")
-	flag.BoolVar(&flgPreview, "preview", false, "if true will start watching for file changes and re-build everything")
+	flag.BoolVar(&flgPreview, "preview", false, "if true starts web server for previewing locally generated static html")
+	flag.BoolVar(&flgPreviewOnDemand, "preview-on-demand", false, "if true will start web server for previewing the book locally")
 	flag.BoolVar(&flgAllBooks, "all-books", false, "if true will do all books")
 	flag.BoolVar(&flgNoUpdateOutput, "no-update-output", false, "if true, will disable updating ouput files in cache")
 	flag.BoolVar(&flgDisableNotionCache, "no-cache", false, "if true, disables cache for notion")
@@ -218,11 +220,11 @@ func genBooks(books []*Book) {
 	copyToWwwAsSha1MaybeMust("index.css")
 	copyToWwwAsSha1MaybeMust("app.js")
 	copyToWwwAsSha1MaybeMust("favicon.ico")
-	genIndex(books)
-	genIndexGrid(books)
+	genIndex(books, nil)
+	genIndexGrid(books, nil)
 	gen404TopLevel()
-	genAbout()
-	genFeedback()
+	genAbout(nil)
+	genFeedback(nil)
 
 	for _, book := range books {
 		genBook(book)
@@ -314,29 +316,7 @@ func findBook(id string) *Book {
 	return nil
 }
 
-func genIndexPageAndExit() {
-	books := booksMain
-	for _, book := range books {
-		initBook(book)
-	}
-
-	createDirMust(filepath.Join("www", "s"))
-
-	copyCoversMust()
-
-	copyToWwwAsSha1MaybeMust("main.css")
-	copyToWwwAsSha1MaybeMust("index.css")
-	copyToWwwAsSha1MaybeMust("app.js")
-	copyToWwwAsSha1MaybeMust("favicon.ico")
-
-	genIndex(books)
-	startPreview()
-	os.Exit(0)
-}
-
 func adHoc() {
-	// genIndexPageAndExit()
-
 	// glotRunTestAndExit()
 	// glotGetSnippedIDTestAndExit()
 
@@ -392,12 +372,18 @@ func main() {
 		loadSoContributorsMust(book)
 	}
 
+	lg("Downloaded %d pages, got %d from cache\n", nTotalDownloaded, nTotalFromCache)
+
+	if flgPreviewOnDemand {
+		startPreviewOnDemand(books)
+		return
+	}
+
 	genBooks(books)
 	genNetlifyHeaders()
 	genNetlifyRedirects(books)
 	printAndClearErrors()
 
-	lg("Downloaded %d pages, got %d from cache\n", nTotalDownloaded, nTotalFromCache)
 	if flgPreview {
 		startPreview()
 	}

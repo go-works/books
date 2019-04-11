@@ -75,6 +75,12 @@ func panicIf(cond bool, args ...interface{}) {
 	panicWithMsg("PanicIf: condition failed", args...)
 }
 
+func logIfError(err error) {
+	if err != nil {
+		fmt.Printf("Error: %s\n", err)
+	}
+}
+
 // whitelisted characters valid in url
 func validateRune(c rune) byte {
 	if c >= 'a' && c <= 'z' {
@@ -198,6 +204,14 @@ func openBrowser(url string) {
 	if err != nil {
 		log.Fatal(err)
 	}
+}
+
+func fileExists(path string) bool {
+	st, err := os.Stat(path)
+	if err != nil {
+		return false
+	}
+	return st.Mode().IsRegular()
 }
 
 func pathExists(path string) bool {
