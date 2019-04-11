@@ -4,7 +4,6 @@ import (
 	"flag"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"os"
 	"path"
 	"path/filepath"
@@ -159,7 +158,7 @@ func findDocTagByTitleMust(docTags []DocTag, title string) DocTag {
 			return dc
 		}
 	}
-	log.Fatalf("Didn't find DocTag with title '%s'\n", title)
+	logFatalf("Didn't find DocTag with title '%s'\n", title)
 	return DocTag{}
 }
 

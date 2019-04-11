@@ -23,7 +23,7 @@ func closeLog() {
 	logFile = nil
 }
 
-func lg(format string, args ...interface{}) {
+func log(format string, args ...interface{}) {
 	s := fmt.Sprintf(format, args...)
 	if logFile != nil {
 		fmt.Fprint(logFile, s)
@@ -31,9 +31,18 @@ func lg(format string, args ...interface{}) {
 	fmt.Print(s)
 }
 
-func verbose(format string, args ...interface{}) {
+func logVerbose(format string, args ...interface{}) {
 	s := fmt.Sprintf(format, args...)
 	if logFile != nil {
 		fmt.Fprint(logFile, s)
 	}
+}
+
+func logFatal(format string, args ...interface{}) {
+	s := fmt.Sprintf(format, args...)
+	if logFile != nil {
+		fmt.Fprint(logFile, s)
+	}
+	fmt.Print(s)
+	os.Exit(1)
 }

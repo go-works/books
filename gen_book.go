@@ -6,7 +6,6 @@ import (
 	"html/template"
 	"io"
 	"io/ioutil"
-	"log"
 	"os"
 	"path/filepath"
 	"time"
@@ -87,7 +86,7 @@ func loadTemplateMaybeMust(name string) *template.Template {
 		}
 	}
 	if ref == nil {
-		log.Fatalf("unknown template '%s'\n", name)
+		logFatal("unknown template '%s'\n", name)
 	}
 	return loadTemplateHelperMaybeMust(name, ref)
 }
@@ -365,7 +364,7 @@ func genBook404(book *Book, w io.Writer) error {
 }
 
 func genBook(book *Book) {
-	lg("Started genering book %s\n", book.Title)
+	log("Started genering book %s\n", book.Title)
 	timeStart := time.Now()
 
 	buildIDToPage(book)

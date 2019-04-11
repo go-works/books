@@ -123,7 +123,7 @@ func parseFlags() {
 }
 
 func downloadBook(c *notionapi.Client, book *Book) {
-	lg("Loading %s...", book.Title)
+	log("Loading %s...", book.Title)
 	pages := loadPagesFromDisk(book.NotionCacheDir())
 	for _, notionPage := range pages {
 		id := toNoDashID(notionPage.ID)
@@ -137,7 +137,7 @@ func downloadBook(c *notionapi.Client, book *Book) {
 	}
 	checkIfPagesAreOutdated(c, book.idToPage)
 	loadNotionPages(c, book)
-	lg("Got %d pages for %s\n", len(book.idToPage), book.Title)
+	log("Got %d pages for %s\n", len(book.idToPage), book.Title)
 	bookFromPages(book)
 }
 
@@ -347,21 +347,21 @@ func main() {
 	books := booksMain
 	if flgAllBooks {
 		books = allBooks
-		lg("Downloading all books\n")
+		log("Downloading all books\n")
 	} else {
 		if len(flag.Args()) > 0 {
 			var newBooks []*Book
 			for _, name := range flag.Args() {
 				book := findBook(name)
 				if book == nil {
-					lg("Didn't find book named '%s'\n", name)
+					log("Didn't find book named '%s'\n", name)
 					continue
 				}
 				newBooks = append(newBooks, book)
 			}
 			if len(newBooks) > 0 {
 				books = newBooks
-				lg("Downloading %d books %#v\n", len(books), books)
+				log("Downloading %d books %#v\n", len(books), books)
 			}
 		}
 	}
@@ -372,7 +372,7 @@ func main() {
 		loadSoContributorsMust(book)
 	}
 
-	lg("Downloaded %d pages, got %d from cache\n", nTotalDownloaded, nTotalFromCache)
+	log("Downloaded %d pages, got %d from cache\n", nTotalDownloaded, nTotalFromCache)
 
 	if flgPreviewOnDemand {
 		startPreviewOnDemand(books)
