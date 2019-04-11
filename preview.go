@@ -51,6 +51,9 @@ func serve404(w http.ResponseWriter, r *http.Request) {
 
 func handleIndex(w http.ResponseWriter, r *http.Request) {
 	uri := r.URL.Path
+	if uri == "/" {
+		uri = "/index.html"
+	}
 	uriLocal := filepath.FromSlash(uri)
 	if !strings.HasSuffix(uri, ".png") {
 		fmt.Printf("uri: '%s'\n", uri)
@@ -78,7 +81,8 @@ func makeHTTPServer() *http.Server {
 	return srv
 }
 
-func startPreview() {
+func startPreviewStatic() {
+	fmt.Printf("startPreviewStatic()\n")
 	httpSrv := makeHTTPServer()
 	httpSrv.Addr = "127.0.0.1:8173"
 

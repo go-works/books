@@ -23,7 +23,7 @@ import (
 
 var (
 	flgAnalytics       string
-	flgPreview         bool
+	flgPreviewStatic   bool
 	flgPreviewOnDemand bool
 	flgAllBooks        bool
 	// if true, disables downloading pages
@@ -93,7 +93,7 @@ var (
 
 func parseFlags() {
 	flag.StringVar(&flgAnalytics, "analytics", "", "google analytics code")
-	flag.BoolVar(&flgPreview, "preview", false, "if true starts web server for previewing locally generated static html")
+	flag.BoolVar(&flgPreviewStatic, "preview-static", false, "if true starts web server for previewing locally generated static html")
 	flag.BoolVar(&flgPreviewOnDemand, "preview-on-demand", false, "if true will start web server for previewing the book locally")
 	flag.BoolVar(&flgAllBooks, "all-books", false, "if true will do all books")
 	flag.BoolVar(&flgNoUpdateOutput, "no-update-output", false, "if true, will disable updating ouput files in cache")
@@ -244,7 +244,7 @@ func initMinify() {
 		KeepDocumentTags: true,
 		KeepEndTags:      true,
 	})
-	doMinify = !flgPreview
+	doMinify = !flgPreviewStatic
 }
 
 func isNotionCachedInDir(dir string, id string) bool {
@@ -325,6 +325,10 @@ func adHoc() {
 	// genSmallCoversAndExit()
 }
 
+func isPreview() bool {
+	return flgPreviewStatic || flgPreviewOnDemand
+}
+
 func main() {
 	openLog()
 	defer closeLog()
@@ -332,6 +336,8 @@ func main() {
 	parseFlags()
 
 	adHoc()
+
+	notionapi.LogFunc = log
 
 	os.RemoveAll("www")
 	createDirMust(filepath.Join("www", "s"))
@@ -384,7 +390,7 @@ func main() {
 	genNetlifyRedirects(books)
 	printAndClearErrors()
 
-	if flgPreview {
-		startPreview()
+	if flgPreviewStatic {
+		startPreviewStatic()
 	}
 }
