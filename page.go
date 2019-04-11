@@ -331,7 +331,7 @@ func bookPageFromNotionPage(book *Book, page *notionapi.Page) *Page {
 
 	for _, subPage := range subPages {
 		bookPage := bookPageFromNotionPage(book, subPage)
-		if !flgPreview && bookPage.isDraft() {
+		if !isPreview() && bookPage.isDraft() {
 			logVerbose("skipping draft page %s '%s'\n", bookPage.NotionID, bookPage.Title)
 			continue
 		}
