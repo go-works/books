@@ -187,7 +187,7 @@ func updateBookAppJS(book *Book) {
 		d2, err := minifier.Bytes("text/javascript", d)
 		maybePanicIfErr(err)
 		if err == nil {
-			lg("Minified %s from %d => %d (saved %d)\n", srcName, len(d), len(d2), len(d)-len(d2))
+			log("Minified %s from %d => %d (saved %d)\n", srcName, len(d), len(d2), len(d)-len(d2))
 			d = d2
 		}
 	}
@@ -202,5 +202,5 @@ func updateBookAppJS(book *Book) {
 		return
 	}
 	book.AppJSURL = "/s/" + name
-	lg("Created %s\n", dst)
+	log("Created %s\n", dst)
 }

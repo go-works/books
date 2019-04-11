@@ -27,12 +27,12 @@ type HTMLRenderer struct {
 
 func (r *HTMLRenderer) reportIfInvalidLink(uri string) {
 	pageID := toNoDashID(r.page.getID())
-	lg("Found invalid link '%s' in page https://notion.so/%s", uri, pageID)
+	log("Found invalid link '%s' in page https://notion.so/%s", uri, pageID)
 	destPage := findPageByID(r.book, uri)
 	if destPage != nil {
-		lg(" most likely pointing to https://notion.so/%s\n", toNoDashID(destPage.NotionPage.ID))
+		log(" most likely pointing to https://notion.so/%s\n", toNoDashID(destPage.NotionPage.ID))
 	} else {
-		lg("\n")
+		log("\n")
 	}
 }
 
@@ -51,7 +51,7 @@ func (r *HTMLRenderer) rewriteURL(uri string) string {
 	}
 	page := r.book.idToPage[id]
 	if page == nil {
-		lg("Didn't find page with id '%s' extracted from url %s\n", id, uri)
+		log("Didn't find page with id '%s' extracted from url %s\n", id, uri)
 		r.reportIfInvalidLink(uri)
 		return uri
 	}
@@ -64,7 +64,7 @@ func (r *HTMLRenderer) getURLAndTitleForBlock(block *notionapi.Block) (string, s
 	page := r.book.idToPage[id]
 	if page == nil {
 		title := cleanTitle(block.Title)
-		lg("No article for id %s %s\n", id, title)
+		log("No article for id %s %s\n", id, title)
 		url := "/article/" + id + "/" + urlify(title)
 		return url, title
 	}
@@ -100,8 +100,8 @@ func (r *HTMLRenderer) RenderEmbed(block *notionapi.Block, entering bool) bool {
 func (r *HTMLRenderer) genReplitEmbed(block *notionapi.Block) {
 	uri := block.FormatEmbed.DisplaySource
 	uri = strings.Replace(uri, "?lite=true", "", -1)
-	lg("Page: https://notion.so/%s\n", r.page.NotionID)
-	lg("  Replit: %s\n", uri)
+	log("Page: https://notion.so/%s\n", r.page.NotionID)
+	log("  Replit: %s\n", uri)
 	panic("we no longer use replit")
 }
 
@@ -140,7 +140,7 @@ func (r *HTMLRenderer) genGitEmbed(block *notionapi.Block) {
 	// currently we only handle source code file embeds but might handle
 	// others (graphs etc.)
 	if f == nil {
-		lg("genEmbed: didn't find source file for url %s\n", uri)
+		log("genEmbed: didn't find source file for url %s\n", uri)
 		return
 	}
 
@@ -170,8 +170,8 @@ func (r *HTMLRenderer) RenderCode(block *notionapi.Block, entering bool) bool {
 	data := []byte(block.Code)
 	err := setSourceFileData(sf, data)
 	if err != nil {
-		lg("genBlock: setSourceFileData() failed with '%s'\n", err)
-		lg("page: %s\n", sf.NotionOriginURL)
+		log("genBlock: setSourceFileData() failed with '%s'\n", err)
+		log("page: %s\n", sf.NotionOriginURL)
 		//panicIfErr(err)
 	}
 
@@ -186,7 +186,7 @@ func (r *HTMLRenderer) RenderCode(block *notionapi.Block, entering bool) bool {
 	setDefaultFileNameFromLanguage(sf)
 	err = getOutputCached(r.book.cache, sf)
 	if err != nil {
-		lg("getOutputCached() failed.\nsf.CodeToRun():\n%s\n", sf.CodeToRun)
+		log("getOutputCached() failed.\nsf.CodeToRun():\n%s\n", sf.CodeToRun)
 		panicIfErr(err)
 	}
 	r.genSourceFile(sf)
@@ -432,7 +432,7 @@ func notionToHTML(page *Page, book *Book) []byte {
 		return []byte(page.BodyHTML)
 	}
 
-	verbose("Generating HTML for %s\n", page.NotionURL())
+	logVerbose("Generating HTML for %s\n", page.NotionURL())
 	res := HTMLRenderer{
 		book: book,
 		page: page,
