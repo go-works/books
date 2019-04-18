@@ -17265,3 +17265,822 @@ Got sqrt: 4
 66 1553755363270 glotid
 Sha1: ff51f50deb25cc9ccb78d7b767b9f55fb9fb1cf3
 GlotID: fardcxoshf
+465 1555607413696 glotoutput
+Sha1: 187adf86a8822871fb1d04e345d21002b6729515
+Lang: Go
+FileName: main.go
+CodeFull:+183
+// :glot
+package main
+
+import "fmt"
+
+func main() {
+	// :show start
+	var s = make([]int, 3, 5)
+	fmt.Printf("Length: %d\n", len(s))
+	fmt.Printf("Capacity: %d\n", cap(s))
+	// :show end
+}
+CodeToRun:+144
+package main
+
+import "fmt"
+
+func main() {
+	var s = make([]int, 3, 5)
+	fmt.Printf("Length: %d\n", len(s))
+	fmt.Printf("Capacity: %d\n", cap(s))
+}
+Output:+22
+Length: 3
+Capacity: 5
+66 1555607414584 glotid
+Sha1: 187adf86a8822871fb1d04e345d21002b6729515
+GlotID: fbf06hrkcq
+459 1555607415548 glotoutput
+Sha1: e5b5ab7d0150f4a9f4fd6b3a9c817894a91bd23d
+Lang: Go
+FileName: main.go
+CodeFull:+180
+// :glot
+package main
+
+import "fmt"
+
+func main() {
+	// :show start
+	var s = make([]int, 4)
+	fmt.Printf("Length: %d\n", len(s))
+	fmt.Printf("Capacity: %d\n", cap(s))
+	// :show end
+}
+CodeToRun:+141
+package main
+
+import "fmt"
+
+func main() {
+	var s = make([]int, 4)
+	fmt.Printf("Length: %d\n", len(s))
+	fmt.Printf("Capacity: %d\n", cap(s))
+}
+Output:+22
+Length: 4
+Capacity: 4
+66 1555607415721 glotid
+Sha1: e5b5ab7d0150f4a9f4fd6b3a9c817894a91bd23d
+GlotID: fbf06ify2i
+409 1555607416638 glotoutput
+Sha1: e5cea28d704b78badc9c22eb5f3510051d61222a
+Lang: Go
+FileName: main.go
+CodeFull:+160
+// :glot
+package main
+
+import "fmt"
+
+func main() {
+	// :show start
+	var s = make([]int, 3)
+	for idx, val := range s {
+		fmt.Println(idx, val)
+	}
+	// :show end
+}
+CodeToRun:+121
+package main
+
+import "fmt"
+
+func main() {
+	var s = make([]int, 3)
+	for idx, val := range s {
+		fmt.Println(idx, val)
+	}
+}
+Output:+12
+0 0
+1 0
+2 0
+66 1555607416813 glotid
+Sha1: e5cea28d704b78badc9c22eb5f3510051d61222a
+GlotID: fbf06j3bs2
+457 1555607417733 glotoutput
+Sha1: 5eed8db7efd570b686a928d6df1c00a37d57863b
+Lang: Go
+FileName: main.go
+CodeFull:+135
+// :glot, allow error
+package main
+
+import "fmt"
+
+func main() {
+	// :show start
+	s := make([]int, 3)
+	fmt.Println(s[5])
+	// :show end
+}
+CodeToRun:+83
+package main
+
+import "fmt"
+
+func main() {
+	s := make([]int, 3)
+	fmt.Println(s[5])
+}
+Output:+123
+panic: runtime error: index out of range
+
+goroutine 1 [running]:
+main.main()
+	/tmp/595702968/main.go:7 +0x11
+exit status 2
+66 1555607417910 glotid
+Sha1: 5eed8db7efd570b686a928d6df1c00a37d57863b
+GlotID: fbf06jqu8k
+495 1555607479524 glotoutput
+Sha1: f1da7f978bf3ce7c4b8de0d16a3d7be9a8f7279a
+Lang: Go
+FileName: main.go
+CodeFull:+204
+// :glot, no output
+package main
+
+import "fmt"
+
+func main() {
+	// :show start
+	s := []int{10, 11, 12, 13}
+
+	i := 2 // index of 12
+	s = append(s[:i], s[i+1:]...)
+
+	fmt.Printf("s: %#v\n", s)
+	// :show end
+}
+CodeToRun:+154
+package main
+
+import "fmt"
+
+func main() {
+	s := []int{10, 11, 12, 13}
+
+	i := 2 // index of 12
+	s = append(s[:i], s[i+1:]...)
+
+	fmt.Printf("s: %#v\n", s)
+}
+Output:+21
+s: []int{10, 11, 13}
+66 1555607479699 glotid
+Sha1: f1da7f978bf3ce7c4b8de0d16a3d7be9a8f7279a
+GlotID: fbf07kj89k
+551 1555607480498 glotoutput
+Sha1: f264f761f9335af3198a88d4c9ba8c3d98ec0cce
+Lang: Go
+FileName: main.go
+CodeFull:+234
+// :glot, no output
+package main
+
+import "fmt"
+
+func main() {
+	// :show start
+	s := []int{10, 11, 12, 13}
+
+	i := 1 // index of 11
+	n := 2 // remove 2 elements
+
+	s = append(s[:i], s[i+n:]...)
+
+	fmt.Printf("s: %#v\n", s)
+	// :show end
+}
+CodeToRun:+184
+package main
+
+import "fmt"
+
+func main() {
+	s := []int{10, 11, 12, 13}
+
+	i := 1 // index of 11
+	n := 2 // remove 2 elements
+
+	s = append(s[:i], s[i+n:]...)
+
+	fmt.Printf("s: %#v\n", s)
+}
+Output:+17
+s: []int{10, 13}
+66 1555607480675 glotid
+Sha1: f264f761f9335af3198a88d4c9ba8c3d98ec0cce
+GlotID: fbf07l43n1
+1439 1555607481601 glotoutput
+Sha1: 7af9eac56aebfc7ffd8adbcd0957e5721ec9b835
+Lang: Go
+FileName: main.go
+CodeFull:+574
+// :glot, no output
+package main
+
+import "fmt"
+
+func main() {
+	// :show start
+	s := []int{10, 11, 12, 13}
+	fmt.Printf("&s[0]: %p, cap(s): %d\n", &s[0], cap(s))
+	fmt.Printf("s: %#v\n", s)
+
+	i := 1 // index of 11
+	n := 2 // remove 2 elements
+
+	s = append(s[:i], s[i+n:]...)
+
+	fmt.Print("\nAfter removal:\n")
+	fmt.Printf("&s[0]: %p, cap(s): %d\n", &s[0], cap(s))
+	fmt.Printf("s: %#v\n", s)
+
+	s = append(s, 1, 2, 3, 4)
+	fmt.Printf("\nAfter appending beyond remaining capacity:\n")
+	fmt.Printf("&s[0]: %p, cap(s): %d\n", &s[0], cap(s))
+	fmt.Printf("s: %#v\n", s)
+
+	// :show end
+}
+CodeToRun:+524
+package main
+
+import "fmt"
+
+func main() {
+	s := []int{10, 11, 12, 13}
+	fmt.Printf("&s[0]: %p, cap(s): %d\n", &s[0], cap(s))
+	fmt.Printf("s: %#v\n", s)
+
+	i := 1 // index of 11
+	n := 2 // remove 2 elements
+
+	s = append(s[:i], s[i+n:]...)
+
+	fmt.Print("\nAfter removal:\n")
+	fmt.Printf("&s[0]: %p, cap(s): %d\n", &s[0], cap(s))
+	fmt.Printf("s: %#v\n", s)
+
+	s = append(s, 1, 2, 3, 4)
+	fmt.Printf("\nAfter appending beyond remaining capacity:\n")
+	fmt.Printf("&s[0]: %p, cap(s): %d\n", &s[0], cap(s))
+	fmt.Printf("s: %#v\n", s)
+
+}
+Output:+224
+&s[0]: 0xc42007a000, cap(s): 4
+s: []int{10, 11, 12, 13}
+
+After removal:
+&s[0]: 0xc42007a000, cap(s): 4
+s: []int{10, 13}
+
+After appending beyond remaining capacity:
+&s[0]: 0xc420082000, cap(s): 8
+s: []int{10, 13, 1, 2, 3, 4}
+66 1555607481775 glotid
+Sha1: 7af9eac56aebfc7ffd8adbcd0957e5721ec9b835
+GlotID: fbf07lrqoj
+553 1555607482658 glotoutput
+Sha1: e5fa55da696b55ff8820a24e043d35d77e67de5f
+Lang: Go
+FileName: main.go
+CodeFull:+233
+// :glot, no output
+package main
+
+import "fmt"
+
+func main() {
+	// :show start
+	s := []int{10, 11, 12, 13}
+
+	i := 1 // index of 11
+	lastIdx := len(s) - 1
+
+	s[i] = s[lastIdx]
+	s = s[:lastIdx]
+
+	fmt.Printf("s: %#v\n", s)
+	// :show end
+}
+CodeToRun:+183
+package main
+
+import "fmt"
+
+func main() {
+	s := []int{10, 11, 12, 13}
+
+	i := 1 // index of 11
+	lastIdx := len(s) - 1
+
+	s[i] = s[lastIdx]
+	s = s[:lastIdx]
+
+	fmt.Printf("s: %#v\n", s)
+}
+Output:+21
+s: []int{10, 13, 12}
+66 1555607482833 glotid
+Sha1: e5fa55da696b55ff8820a24e043d35d77e67de5f
+GlotID: fbf07meeme
+521 1555607522733 glotoutput
+Sha1: ae0364f65e8ca0150ccb218a3983ff361031c746
+Lang: Go
+FileName: main.go
+CodeFull:+202
+// :glot
+package main
+
+import "fmt"
+
+func main() {
+	// :show start
+	src := []int{1, 2, 3}
+	dst := append([]int(nil), src...)
+	fmt.Printf("src: %#v\n", src)
+	fmt.Printf("dst: %#v\n", dst)
+	// :show end
+}
+CodeToRun:+163
+package main
+
+import "fmt"
+
+func main() {
+	src := []int{1, 2, 3}
+	dst := append([]int(nil), src...)
+	fmt.Printf("src: %#v\n", src)
+	fmt.Printf("dst: %#v\n", dst)
+}
+Output:+40
+src: []int{1, 2, 3}
+dst: []int{1, 2, 3}
+66 1555607522910 glotid
+Sha1: ae0364f65e8ca0150ccb218a3983ff361031c746
+GlotID: fbf08a9dvu
+353 1555607605455 glotoutput
+Sha1: d3de2b4a89e48cccd15226de35b0d4c0d9c2e9b3
+Lang: Go
+FileName: main.go
+CodeFull:+137
+// :glot, no output
+package main
+
+import "fmt"
+
+func main() {
+	// :show start
+	s := []int(nil)
+	fmt.Printf("s: %#v\n", s)
+	// :show end
+}
+CodeToRun:+87
+package main
+
+import "fmt"
+
+func main() {
+	s := []int(nil)
+	fmt.Printf("s: %#v\n", s)
+}
+Output:+14
+s: []int(nil)
+66 1555607606302 glotid
+Sha1: d3de2b4a89e48cccd15226de35b0d4c0d9c2e9b3
+GlotID: fbf09nwnd0
+795 1555607607577 glotoutput
+Sha1: 5c54e19c705a8b2a6a1338c476c2afc011bd3c0b
+Lang: Go
+FileName: main.go
+CodeFull:+330
+// :glot, no output
+package main
+
+import "fmt"
+
+func main() {
+	// :show start
+	s := []int(nil)
+	if len(s) == 0 {
+		fmt.Printf("s  is empty: %#v\n", s)
+	}
+
+	var s2 []int
+	if len(s2) == 0 {
+		fmt.Printf("s2 is empty: %#v\n", s2)
+	}
+
+	s3 := make([]int, 0)
+	if len(s2) == 0 {
+		fmt.Printf("s3 is empty: %#v\n", s3)
+	}
+
+	// :show end
+}
+CodeToRun:+280
+package main
+
+import "fmt"
+
+func main() {
+	s := []int(nil)
+	if len(s) == 0 {
+		fmt.Printf("s  is empty: %#v\n", s)
+	}
+
+	var s2 []int
+	if len(s2) == 0 {
+		fmt.Printf("s2 is empty: %#v\n", s2)
+	}
+
+	s3 := make([]int, 0)
+	if len(s2) == 0 {
+		fmt.Printf("s3 is empty: %#v\n", s3)
+	}
+
+}
+Output:+69
+s  is empty: []int(nil)
+s2 is empty: []int(nil)
+s3 is empty: []int{}
+66 1555607607756 glotid
+Sha1: 5c54e19c705a8b2a6a1338c476c2afc011bd3c0b
+GlotID: fbf09orwnr
+543 1555607689432 glotoutput
+Sha1: 9664db1c22b54297cb59530d4e29b2acdcab1106
+Lang: Go
+FileName: main.go
+CodeFull:+213
+// :glot
+package main
+
+import "fmt"
+
+func main() {
+	// :show start
+	src := []int{1, 2, 3}
+	dst := make([]int, len(src))
+	copy(dst, src)
+	// :show end
+	fmt.Printf("src: %#v\n", src)
+	fmt.Printf("dst: %#v\n", dst)
+}
+CodeToRun:+174
+package main
+
+import "fmt"
+
+func main() {
+	src := []int{1, 2, 3}
+	dst := make([]int, len(src))
+	copy(dst, src)
+	fmt.Printf("src: %#v\n", src)
+	fmt.Printf("dst: %#v\n", dst)
+}
+Output:+40
+src: []int{1, 2, 3}
+dst: []int{1, 2, 3}
+66 1555607690102 glotid
+Sha1: 9664db1c22b54297cb59530d4e29b2acdcab1106
+GlotID: fbf0b1swnh
+521 1555607690960 glotoutput
+Sha1: 8c2134c4ccb3524cbc8e91e05ea47d0ce86e8b73
+Lang: Go
+FileName: main.go
+CodeFull:+202
+// :glot
+package main
+
+import "fmt"
+
+func main() {
+	// :show start
+	src := []int{1, 2, 3}
+	dst := append([]int(nil), src...)
+	// :show end
+	fmt.Printf("src: %#v\n", src)
+	fmt.Printf("dst: %#v\n", dst)
+}
+CodeToRun:+163
+package main
+
+import "fmt"
+
+func main() {
+	src := []int{1, 2, 3}
+	dst := append([]int(nil), src...)
+	fmt.Printf("src: %#v\n", src)
+	fmt.Printf("dst: %#v\n", dst)
+}
+Output:+40
+src: []int{1, 2, 3}
+dst: []int{1, 2, 3}
+66 1555607691131 glotid
+Sha1: 8c2134c4ccb3524cbc8e91e05ea47d0ce86e8b73
+GlotID: fbf0b2eyoy
+471 1555607715565 glotoutput
+Sha1: bb9a9f5e083dbe070658bebdbbc36453d097bca6
+Lang: Go
+FileName: main.go
+CodeFull:+185
+// :glot
+package main
+
+import "fmt"
+
+func main() {
+	// :show start
+	var s = make([]int, 3, 5)
+	fmt.Printf("Length:   %d\n", len(s))
+	fmt.Printf("Capacity: %d\n", cap(s))
+	// :show end
+}
+CodeToRun:+146
+package main
+
+import "fmt"
+
+func main() {
+	var s = make([]int, 3, 5)
+	fmt.Printf("Length:   %d\n", len(s))
+	fmt.Printf("Capacity: %d\n", cap(s))
+}
+Output:+24
+Length:   3
+Capacity: 5
+66 1555607715737 glotid
+Sha1: bb9a9f5e083dbe070658bebdbbc36453d097bca6
+GlotID: fbf0bh2dam
+465 1555607719031 glotoutput
+Sha1: c22a48ceaac3b6bc379c978c27542558166b80c5
+Lang: Go
+FileName: main.go
+CodeFull:+182
+// :glot
+package main
+
+import "fmt"
+
+func main() {
+	// :show start
+	var s = make([]int, 4)
+	fmt.Printf("Length:   %d\n", len(s))
+	fmt.Printf("Capacity: %d\n", cap(s))
+	// :show end
+}
+CodeToRun:+143
+package main
+
+import "fmt"
+
+func main() {
+	var s = make([]int, 4)
+	fmt.Printf("Length:   %d\n", len(s))
+	fmt.Printf("Capacity: %d\n", cap(s))
+}
+Output:+24
+Length:   4
+Capacity: 4
+66 1555607719207 glotid
+Sha1: c22a48ceaac3b6bc379c978c27542558166b80c5
+GlotID: fbf0bj4pqx
+340 1555607720895 glotoutput
+Sha1: 9721f5d5d6341e9f363c1ba8c4586089457d6172
+Lang: Go
+FileName: main.go
+CodeFull:+139
+// :glot, allow error
+package main
+
+import "fmt"
+
+func main() {
+	// :show start
+	s := make([]int, 3, 20)
+	fmt.Println(s[5])
+	// :show end
+}
+CodeToRun:+87
+package main
+
+import "fmt"
+
+func main() {
+	s := make([]int, 3, 20)
+	fmt.Println(s[5])
+}
+Output:+0
+66 1555607721073 glotid
+Sha1: 9721f5d5d6341e9f363c1ba8c4586089457d6172
+GlotID: fbf0bk8kvp
+459 1555607724834 glotoutput
+Sha1: 7931f8e6b9e339080e282b0aba59bc298b5fc971
+Lang: Go
+FileName: main.go
+CodeFull:+176
+// :glot
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	// :show start
+	var a []int
+	fmt.Printf("a is %#v\n", a)
+	a = append(a, 3)
+	fmt.Printf("a is %#v\n", a)
+	// :show end
+}
+CodeToRun:+137
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var a []int
+	fmt.Printf("a is %#v\n", a)
+	a = append(a, 3)
+	fmt.Printf("a is %#v\n", a)
+}
+Output:+30
+a is []int(nil)
+a is []int{3}
+66 1555607725005 glotid
+Sha1: 7931f8e6b9e339080e282b0aba59bc298b5fc971
+GlotID: fbf0bml084
+779 1555607726116 glotoutput
+Sha1: 4f8d5595148f89b0d4865010151d87f269de326a
+Lang: Go
+FileName: main.go
+CodeFull:+320
+// :glot
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	// :show start
+	var nilSlice []bool
+	empty1 := []bool{}
+	empty2 := make([]bool, 0)
+	fmt.Printf("nilSlice is %#v\n", nilSlice)
+	// empty slice is different than nil slice
+	fmt.Printf("empty1 is %#v\n", empty1)
+	fmt.Printf("empty2 is %#v\n", empty2)
+	// :show end
+}
+CodeToRun:+281
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	var nilSlice []bool
+	empty1 := []bool{}
+	empty2 := make([]bool, 0)
+	fmt.Printf("nilSlice is %#v\n", nilSlice)
+	// empty slice is different than nil slice
+	fmt.Printf("empty1 is %#v\n", empty1)
+	fmt.Printf("empty2 is %#v\n", empty2)
+}
+Output:+62
+nilSlice is []bool(nil)
+empty1 is []bool{}
+empty2 is []bool{}
+66 1555607726285 glotid
+Sha1: 4f8d5595148f89b0d4865010151d87f269de326a
+GlotID: fbf0bncfcc
+404 1555607727349 glotoutput
+Sha1: 758bc2a2a26b2d6989b3fa627629cbd0ef676342
+Lang: Go
+FileName: main.go
+CodeFull:+155
+// :glot
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	// :show start
+	a := []int{3, 1, 4, 1}
+	fmt.Printf("a has %d elements\n", len(a))
+
+	// :show end
+}
+CodeToRun:+116
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	a := []int{3, 1, 4, 1}
+	fmt.Printf("a has %d elements\n", len(a))
+
+}
+Output:+17
+a has 4 elements
+66 1555607727557 glotid
+Sha1: 758bc2a2a26b2d6989b3fa627629cbd0ef676342
+GlotID: fbf0bo3q5j
+402 1555607728487 glotoutput
+Sha1: 9c30497d268b899dad299067f5a827de22046e92
+Lang: Go
+FileName: main.go
+CodeFull:+154
+// :glot
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	// :show start
+	a := make([]string, 4)
+	fmt.Printf("a has %d elements\n", len(a))
+	// :show end
+}
+CodeToRun:+115
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	a := make([]string, 4)
+	fmt.Printf("a has %d elements\n", len(a))
+}
+Output:+17
+a has 4 elements
+66 1555607728655 glotid
+Sha1: 9c30497d268b899dad299067f5a827de22046e92
+GlotID: fbf0bor9l1
+638 1555607729491 glotoutput
+Sha1: 0954cb9772e8fb74c689614798351c59737f8d48
+Lang: Go
+FileName: main.go
+CodeFull:+297
+// :glot
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	// :show start
+	n := 30
+	a := make([]int, 0, n)
+	fmt.Printf("a has lenght %d and capacity %d\n", len(a), cap(a))
+	for i := 0; i < n; i++ {
+		a = append(a, i)
+	}
+	fmt.Printf("a has lenght %d and capacity %d\n", len(a), cap(a)) // :show end
+}
+CodeToRun:+194
+package main
+
+import (
+	"fmt"
+)
+
+func main() {
+	n := 30
+	a := make([]int, 0, n)
+	fmt.Printf("a has lenght %d and capacity %d\n", len(a), cap(a))
+	for i := 0; i < n; i++ {
+		a = append(a, i)
+	}
+}
+Output:+31
+a has lenght 0 and capacity 30
+66 1555607729661 glotid
+Sha1: 0954cb9772e8fb74c689614798351c59737f8d48
+GlotID: fbf0bpcscr

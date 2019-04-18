@@ -40,9 +40,10 @@ func (r *HTMLRenderer) reportIfInvalidLink(uri string) {
 // =>
 // url within the book
 func (r *HTMLRenderer) rewriteURL(uri string) string {
-	if !strings.HasPrefix(uri, "https://notion.so") {
+	if !strings.Contains(uri, "notion.so/") {
 		return uri
 	}
+	fmt.Printf("Rewrite URL for: %s\n", uri)
 
 	id := notionapi.ExtractNoDashIDFromNotionURL(uri)
 	if id == "" {
