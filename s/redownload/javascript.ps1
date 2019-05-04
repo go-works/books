@@ -8,5 +8,5 @@ Remove-Item -Force -ErrorAction SilentlyContinue ./gen.exe
 go build -o ./gen.exe
 exitIfFailed
 
-./gen.exe -redownload-book 0b121710a160402fa9fd4646b87bed99
+./gen.exe 0b121710a160402fa9fd4646b87bed99
 Remove-Item -Force -ErrorAction SilentlyContinue ./gen.exe
