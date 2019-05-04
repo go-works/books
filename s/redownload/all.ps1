@@ -8,5 +8,5 @@ Remove-Item -Force -ErrorAction SilentlyContinue ./gen.exe
 go build -o ./gen.exe
 exitIfFailed
 
-./gen.exe -no-cache -preview
+./gen.exe -all-books
 Remove-Item -Force -ErrorAction SilentlyContinue ./gen.exe
