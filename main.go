@@ -34,10 +34,6 @@ var (
 	// url or id of the page to rebuild
 	flgNoUpdateOutput bool
 
-	gShowForum = true
-	//gForumLink = "https://spectrum.chat/programming-books"
-	gForumLink = "https://www.reddit.com/r/essentialbooks/"
-
 	soUserIDToNameMap map[int]string
 	googleAnalytics   template.HTML
 	doMinify          bool

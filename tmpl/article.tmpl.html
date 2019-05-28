@@ -93,11 +93,34 @@
       <h1 class="title">{{.Title}}</h1>
       {{ .HTML }}
 
-      {{if .ShowForum }}
       <div class="forum-link">
-        Found a mistake? Have a question or improvement idea? Discuss in <a href="{{.ForumLink}}" target="_blank">forum</a>.
+        Found a mistake? Have a question or improvement idea?
+        <a href="#" onclick="showcontact(); return false;">Let me know</a>.
       </div>
-      {{end}}
+
+      <form name="essentialbooks-feedback" netlify id="contact-form">
+        <p>
+          <div class="contact-light">Feedback about page:</div>
+          <input type="text" name="page-url" id="contact-page-url" readonly />
+        </p>
+        <p>
+          <div class="contact-light">Feedback:</div>
+          <textarea name="message" id="msg-for-chris"></textarea>
+          <div class="contact-light">Optional: your email if you want me to get back to you: </div>
+          <input type="email" name="email" />
+        </p>
+        <p>
+          <button type="submit" class="contact-btn">
+            Send Feedback
+          </button>
+          <button class="contact-btn" style="float: right;" onclick="hidecontact(); return false;">
+            Cancel
+          </button>
+        </p>
+        <p>
+          <div data-netlify-recaptcha></div>
+        </p>
+      </form>
 
       <div class="article-bottom-sep"></div>
 
@@ -114,13 +137,13 @@
             <span class="is-current">{{$page.Title}}</span>
           </div>
           {{else}}
-          <div>
-            <!--
+            <div>
+              <!--
                <span class="chap-no">{{inc $idx}}</span>
             -->
-            <a href="{{$page.URL}}">{{$page.Title}}</a>
-          </div>
-          {{end}} {{end}}
+              <a href="{{$page.URL}}">{{$page.Title}}</a>
+            </div>
+            {{end}} {{end}}
         </div>
       </div>
 
@@ -139,11 +162,11 @@
             <span class="is-current">{{$page.Title}}</span>
           </div>
           {{else}}
-          <div class="chapters-toc-item">
-            <span class="chap-no">{{inc $idx}}</span>
-            <a href="{{.URL}}">{{$page.Title}}</a>
-          </div>
-          {{end}} {{end}}
+            <div class="chapters-toc-item">
+              <span class="chap-no">{{inc $idx}}</span>
+              <a href="{{.URL}}">{{$page.Title}}</a>
+            </div>
+            {{end}} {{end}}
         </div>
       </div>
 

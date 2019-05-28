@@ -11,7 +11,7 @@ var currentSearchTerm = "";
 // polyfil for Object.is
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
 if (!Object.is) {
-  Object.is = function (x, y) {
+  Object.is = function(x, y) {
     // SameValue algorithm
     if (x === y) {
       // Steps 1-5, 7-10
@@ -433,8 +433,8 @@ function getArticlePath(tocItem, term) {
 }
 
 var searchInOpt = {
-  cls: "in",
-}
+  cls: "in"
+};
 
 /* results is array of items:
 {
@@ -586,7 +586,7 @@ function notExpandedSvgArrow() {
 
 var aOpt = {
   cls: "toc-link",
-  onclick: "navigateToURL(this)",
+  onclick: "navigateToURL(this)"
 };
 
 function genTocExpanded(tocItem, tocItemIdx, level, isCurrent) {
@@ -924,7 +924,7 @@ function doSearch(searchTerm) {
 // debouncer(fn)
 function makeDebouncer(timeInMs) {
   let interval;
-  return function (f) {
+  return function(f) {
     clearTimeout(interval);
     interval = setTimeout(() => {
       interval = null;
@@ -999,7 +999,22 @@ function tryToggleTocItem(el) {
     }
     el = el.parentNode;
   }
-  return false
+  return false;
+}
+
+function showcontact() {
+  var el = document.getElementById("contact-form");
+  el.style.display = "block";
+  el = document.getElementById("contact-page-url");
+  var uri = window.location.href;
+  uri = uri.replace("#", "");
+  el.value = uri;
+  el = document.getElementById("msg-for-chris");
+  el.focus();
+}
+function hidecontact() {
+  var el = document.getElementById("contact-form");
+  el.style.display = "none";
 }
 
 // have to do navigation in onMouseDown because when done in onClick,
@@ -1158,7 +1173,6 @@ function start() {
   document.addEventListener("mousedown", onMouseDown);
   document.addEventListener("click", onClick);
 
-
   var uri = getLocationLastElement();
   if (!isChapterOrArticleURL(uri)) {
     return;
@@ -1187,8 +1201,8 @@ function start() {
     } else {
       console.log(
         "tried to scroll toc item to non-existent element with id: '" +
-        tocItemElementID +
-        "'"
+          tocItemElementID +
+          "'"
       );
     }
   }
@@ -1241,7 +1255,7 @@ function do404() {
   var pageId = parts[parts.length - 1];
   var fullURL = findURLWithPageId(pageId);
   if (fullURL != "") {
-    locParts[lastIdx] = fullURL
+    locParts[lastIdx] = fullURL;
     var loc = locParts.join("/");
     window.location.pathname = loc;
   }
@@ -1275,7 +1289,7 @@ function doIndexPage() {
 // we don't want to run javascript on about etc. pages
 var loc = window.location.pathname;
 var isAppPage = loc.indexOf("essential/") != -1;
-var isIndexPage = (loc === "/") || (loc === "/index-grid");
+var isIndexPage = loc === "/" || loc === "/index-grid";
 
 function httpsRedirect() {
   if (window.location.protocol !== "http:") {

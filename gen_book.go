@@ -225,10 +225,8 @@ func genFeedback(w io.Writer) error {
 	path := filepath.Join(destDir, "feedback.html")
 	d := struct {
 		PageCommon
-		ForumLink string
 	}{
 		PageCommon: getPageCommon(),
-		ForumLink:  gForumLink,
 	}
 	return execTemplate("feedback.tmpl.html", d, path, w)
 }
@@ -250,15 +248,11 @@ func genArticle(book *Book, page *Page, currChapNo int, currArticleNo int, w io.
 		*Page
 		CurrentChapterNo int
 		CurrentArticleNo int
-		ShowForum        bool
-		ForumLink        string
 	}{
 		PageCommon:       getPageCommon(),
 		Page:             page,
 		CurrentChapterNo: currChapNo,
 		CurrentArticleNo: currArticleNo,
-		ShowForum:        gShowForum,
-		ForumLink:        gForumLink,
 	}
 
 	path := page.destFilePath()
@@ -282,14 +276,10 @@ func genChapter(book *Book, page *Page, currNo int, w io.Writer) error {
 		PageCommon
 		*Page
 		CurrentChapterNo int
-		ShowForum        bool
-		ForumLink        string
 	}{
 		PageCommon:       getPageCommon(),
 		Page:             page,
 		CurrentChapterNo: currNo,
-		ShowForum:        gShowForum,
-		ForumLink:        gForumLink,
 	}
 	err := execTemplate("chapter.tmpl.html", d, path, w)
 	if err != nil {
