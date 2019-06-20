@@ -76,10 +76,15 @@ type SourceFile struct {
 	GlotOutput string
 }
 
+// Output returns the output of the execution of the code snippet
 func (f *SourceFile) Output() string {
+	if f.Directive.NoOutput {
+		return ""
+	}
 	return f.GlotOutput
 }
 
+// Sha1 returns sha1 (in hex) of the code snippet
 func (f *SourceFile) Sha1() string {
 	return u.Sha1HexOfBytes([]byte(f.CodeFull))
 }
