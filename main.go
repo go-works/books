@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 	"runtime"
 	"strings"
+	"sync"
 	"time"
 
 	"html/template"
@@ -222,8 +223,25 @@ func genBooks(books []*Book) {
 	genAbout(nil)
 	genFeedback(nil)
 
-	for _, book := range books {
-		genBook(book)
+	if true {
+		// parallel
+		n := runtime.NumCPU()
+		sem := make(chan bool, n)
+		var wd sync.WaitGroup
+		for _, book := range books {
+			wd.Add(1)
+			go func(b *Book) {
+				sem <- true
+				genBook(b)
+				<-sem
+				wd.Done()
+			}(book)
+		}
+		wd.Wait()
+	} else {
+		for _, book := range books {
+			genBook(book)
+		}
 	}
 	writeSitemap()
 	fmt.Printf("Finished generating all books in %s\n", time.Since(timeStart))
@@ -339,6 +357,8 @@ func main() {
 	createDirMust(filepath.Join("www", "s"))
 	createDirMust("log")
 
+	timeStart := time.Now()
+
 	initMinify()
 	loadSOUserMappingsMust()
 
@@ -375,16 +395,20 @@ func main() {
 	}
 
 	log("Downloaded %d pages, got %d from cache\n", nTotalDownloaded, nTotalFromCache)
+	log("Download time: %s\n", time.Since(timeStart))
 
 	if flgPreviewOnDemand {
+		log("Time: %s\n", time.Since(timeStart))
 		startPreviewOnDemand(books)
 		return
 	}
 
+	genStartTime := time.Now()
 	genBooks(books)
 	genNetlifyHeaders()
 	genNetlifyRedirects(books)
 	printAndClearErrors()
+	log("Gen time: %s, total time: %s\n", time.Since(genStartTime), time.Since(timeStart))
 
 	if flgPreviewStatic {
 		startPreviewStatic()
