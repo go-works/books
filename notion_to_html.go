@@ -83,7 +83,7 @@ func findPageByID(book *Book, id string) *Page {
 }
 
 // RenderEmbed renders BlockEmbed
-func (r *HTMLRenderer) RenderEmbed(block *notionapi.Block, entering bool) bool {
+func (r *HTMLRenderer) RenderEmbed(block *notionapi.Block) bool {
 	uri := block.FormatEmbed.DisplaySource
 	if strings.Contains(uri, "onlinetool.io/") {
 		r.genGitEmbed(block)
@@ -148,10 +148,7 @@ func (r *HTMLRenderer) genGitEmbed(block *notionapi.Block) {
 }
 
 // RenderCode renders BlockCode
-func (r *HTMLRenderer) RenderCode(block *notionapi.Block, entering bool) bool {
-	if !entering {
-		return true
-	}
+func (r *HTMLRenderer) RenderCode(block *notionapi.Block) bool {
 	//lang := getLangFromFileExt(filepath.Ext(path))
 	//gitHubURL := getGitHubPathForFile(path)
 	lang := block.CodeLanguage
@@ -242,19 +239,21 @@ func setDefaultFileNameFromLanguage(sf *SourceFile) error {
 
 // RenderImage renders BlockImage
 // TODO: download images locally like blog
-func (r *HTMLRenderer) RenderImage(block *notionapi.Block, entering bool) bool {
+func (r *HTMLRenderer) RenderImage(block *notionapi.Block) bool {
 	link := block.ImageURL
 	cls := "img"
 	attrs := []string{"class", cls, "src", link}
-	r.r.WriteElement(block, "img", attrs, "", entering)
+	r.r.WriteElement(block, "img", attrs, "", true)
+	r.r.WriteElement(block, "img", attrs, "", false)
 	return true
 }
 
 // RenderPage renders BlockPage
-func (r *HTMLRenderer) RenderPage(block *notionapi.Block, entering bool) bool {
+func (r *HTMLRenderer) RenderPage(block *notionapi.Block) bool {
 	tp := block.GetPageType()
 	if tp == notionapi.BlockPageTopLevel {
 		// skips top-level as it's rendered somewhere else
+		r.r.RenderChildren(block)
 		return true
 	}
 
@@ -272,7 +271,8 @@ func (r *HTMLRenderer) RenderPage(block *notionapi.Block, entering bool) bool {
 	content := fmt.Sprintf(`<a href="%s">%s</a>`, url, title)
 	attrs := []string{"class", cls}
 	title = html.EscapeString(title)
-	r.r.WriteElement(block, "div", attrs, content, entering)
+	r.r.WriteElement(block, "div", attrs, content, true)
+	r.r.WriteElement(block, "div", attrs, content, false)
 	return true
 }
 
@@ -309,7 +309,7 @@ func (r *HTMLRenderer) isFirstBlock() bool {
 }
 
 // RenderText renders BlockText
-func (r *HTMLRenderer) RenderText(block *notionapi.Block, entering bool) bool {
+func (r *HTMLRenderer) RenderText(block *notionapi.Block) bool {
 	if isBlockTextTodo(block) {
 		return true
 	}
@@ -323,22 +323,24 @@ func (r *HTMLRenderer) RenderText(block *notionapi.Block, entering bool) bool {
 	}
 
 	// TODO: convert to div
-	r.r.WriteElement(block, "p", nil, "", entering)
+	r.r.WriteElement(block, "p", nil, "", true)
+	r.r.RenderChildren(block)
+	r.r.WriteElement(block, "p", nil, "", false)
 	return true
 }
 
-func (r *HTMLRenderer) blockRenderOverride(block *notionapi.Block, entering bool) bool {
+func (r *HTMLRenderer) blockRenderOverride(block *notionapi.Block) bool {
 	switch block.Type {
 	case notionapi.BlockPage:
-		return r.RenderPage(block, entering)
+		return r.RenderPage(block)
 	case notionapi.BlockCode:
-		return r.RenderCode(block, entering)
+		return r.RenderCode(block)
 	case notionapi.BlockImage:
-		return r.RenderImage(block, entering)
+		return r.RenderImage(block)
 	case notionapi.BlockText:
-		return r.RenderText(block, entering)
+		return r.RenderText(block)
 	case notionapi.BlockEmbed:
-		return r.RenderEmbed(block, entering)
+		return r.RenderEmbed(block)
 	}
 	return false
 }

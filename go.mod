@@ -2,22 +2,25 @@ module github.com/essentialbooks/books
 
 require (
 	github.com/alecthomas/assert v0.0.0-20170929043011-405dbfeb8e38
-	github.com/alecthomas/chroma v0.5.0
-	github.com/alecthomas/colour v0.0.0-20160524082231-60882d9e2721 // indirect
-	github.com/alecthomas/repr v0.0.0-20180920225502-7ed41413b477 // indirect
-	github.com/danwakefield/fnmatch v0.0.0-20160403171240-cbb64ac3d964 // indirect
-	github.com/dlclark/regexp2 v1.1.6 // indirect
-	github.com/google/shlex v0.0.0-20150127133951-6f45313302b9
-	github.com/kjk/notionapi v0.0.0-20190504213955-d22d50ceb8be
-	github.com/kjk/siser v0.0.0-20190326100825-7db886e875f8
+	github.com/alecthomas/chroma v0.6.6
+	github.com/daaku/go.zipexe v1.0.1 // indirect
+	github.com/dlclark/regexp2 v1.1.8 // indirect
+	github.com/google/shlex v0.0.0-20181106134648-c34317bd91bf
+	github.com/gorilla/handlers v1.4.2 // indirect
+	github.com/kjk/notionapi v0.0.0-20190801061857-91379efc609d
+	github.com/kjk/siser v0.0.0-20190801014033-b3367920d7f2
 	github.com/kjk/u v0.0.0-20170711051841-93181be023c9
-	github.com/kylelemons/godebug v0.0.0-20170820004349-d65d576e9348
-	github.com/mattn/go-isatty v0.0.4 // indirect
-	github.com/sergi/go-diff v1.0.0 // indirect
+	github.com/kylelemons/godebug v1.1.0
+	github.com/mattn/go-colorable v0.1.2 // indirect
+	github.com/nkovacs/streamquote v1.0.0 // indirect
 	github.com/stretchr/testify v1.3.0
-	github.com/tdewolff/minify v2.3.5+incompatible
-	github.com/tdewolff/parse v2.3.3+incompatible // indirect
-	github.com/tdewolff/test v0.0.0-20171106182207-265427085153 // indirect
-	golang.org/x/image v0.0.0-20190321063152-3fc05d484e9f
-	golang.org/x/sys v0.0.0-20181218192612-074acd46bca6 // indirect
+	github.com/tdewolff/minify v2.3.6+incompatible
+	github.com/tdewolff/parse v2.3.4+incompatible // indirect
+	github.com/tdewolff/test v1.0.3 // indirect
+	golang.org/x/crypto v0.0.0-20190701094942-4def268fd1a4 // indirect
+	golang.org/x/image v0.0.0-20190729225735-1bd0cf576493
+	golang.org/x/net v0.0.0-20190724013045-ca1201d0de80 // indirect
+	golang.org/x/sys v0.0.0-20190801041406-cbf593c0f2f3 // indirect
+	golang.org/x/text v0.3.2 // indirect
+	golang.org/x/tools v0.0.0-20190731214159-1e85ed8060aa // indirect
 )
