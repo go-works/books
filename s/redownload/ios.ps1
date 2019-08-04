@@ -8,5 +8,5 @@ Remove-Item -Force -ErrorAction SilentlyContinue ./gen.exe
 go build -o ./gen.exe
 exitIfFailed
 
-./gen.exe 3626edc1bd044431afddc89648a7050f
+./gen.exe $args 3626edc1bd044431afddc89648a7050f
 Remove-Item -Force -ErrorAction SilentlyContinue ./gen.exe

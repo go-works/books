@@ -208,6 +208,9 @@ func pageIDFromFileName(name string) string {
 }
 
 func loadPagesFromDisk(dir string) []*notionapi.Page {
+	if flgDisableNotionCache {
+		return nil
+	}
 	var pages []*notionapi.Page
 	files, err := ioutil.ReadDir(dir)
 	if err != nil {
