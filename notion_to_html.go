@@ -364,6 +364,14 @@ func (r *HTMLRenderer) Gen() []byte {
 	return []byte(s)
 }
 
+func getInlinesPlain(a []*notionapi.InlineBlock) string {
+	s := ""
+	for _, b := range a {
+		s += b.Text
+	}
+	return s
+}
+
 func notionToHTML(page *Page, book *Book) []byte {
 	// This is artificially generated page (e.g. contributors page)
 	if page.NotionPage == nil {
@@ -394,13 +402,8 @@ func notionToHTML(page *Page, book *Book) []byte {
 			return
 		}
 		id := notionapi.ToNoDashID(block.ID)
-		s := r.GetInlineContent(block.InlineContent)
-		// TODO: temporary
-		s = strings.Replace(s, "<b>", "", -1)
-		s = strings.Replace(s, "</b>", "", -1)
+		s := getInlinesPlain(block.InlineContent)
 		h := &HeadingInfo{
-			// TODO: this includes formatting as HTML
-			// need a function that only gets text data
 			Text: s,
 			ID:   id,
 		}
