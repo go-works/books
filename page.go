@@ -28,8 +28,7 @@ type MetaValue struct {
 
 // Page represents a single page in a book
 type Page struct {
-	NotionPage     *notionapi.Page
-	IsPageOutdated bool
+	NotionPage *notionapi.Page
 
 	Title string
 	// reference to parent page, nil if top-level page

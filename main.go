@@ -15,6 +15,7 @@ import (
 
 	"github.com/essentialbooks/books/pkg/common"
 	"github.com/kjk/notionapi"
+	"github.com/kjk/notionapi/caching_downloader"
 	"github.com/kjk/u"
 	"github.com/tdewolff/minify"
 	"github.com/tdewolff/minify/css"
@@ -120,20 +121,24 @@ func parseFlags() {
 }
 
 func downloadBook(c *notionapi.Client, book *Book) {
-	log("Loading %s...", book.Title)
-	pages := loadPagesFromDisk(book.NotionCacheDir())
-	for _, notionPage := range pages {
-		id := toNoDashID(notionPage.ID)
-		page := book.idToPage[id]
-		if page == nil {
-			page = &Page{
-				NotionPage: notionPage,
-			}
-			book.idToPage[id] = page
+	log("Loading %s...\n", book.Title)
+	cacheDir := book.NotionCacheDir()
+	d, err := caching_downloader.New(cacheDir, c)
+	d.NoReadCache = flgDisableNotionCache
+	d.RedownloadNewerVersions = true
+	d.Logger = os.Stdout
+	must(err)
+	startPageID := book.NotionStartPageID
+
+	pages, err := d.DownloadPagesRecursively(startPageID)
+	must(err)
+	for _, page := range pages {
+		id := toNoDashID(page.ID)
+		page := &Page{
+			NotionPage: page,
 		}
+		book.idToPage[id] = page
 	}
-	checkIfPagesAreOutdated(c, book.idToPage)
-	loadNotionPages(c, book)
 	log("Got %d pages for %s\n", len(book.idToPage), book.Title)
 	bookFromPages(book)
 }
