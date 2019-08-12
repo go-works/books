@@ -201,7 +201,7 @@ func findSourceFileForEmbedURL(page *Page, uri string) *SourceFile {
 func getSubPages(page *notionapi.Page, pageIDToPage map[string]*Page) []*notionapi.Page {
 	var res []*notionapi.Page
 	toRemove := map[int]bool{}
-	for idx, block := range page.Root.Content {
+	for idx, block := range page.Root().Content {
 		if block.Type != notionapi.BlockPage {
 			continue
 		}
@@ -264,7 +264,7 @@ func removeBlocks(page *notionapi.Page, toRemove map[int]bool) {
 		return
 	}
 
-	blocks := page.Root.Content
+	blocks := page.Root().Content
 	n := 0
 	for i, el := range blocks {
 		if toRemove[i] {
@@ -273,9 +273,9 @@ func removeBlocks(page *notionapi.Page, toRemove map[int]bool) {
 		blocks[n] = el
 		n++
 	}
-	page.Root.Content = blocks[:n]
+	page.Root().Content = blocks[:n]
 
-	ids := page.Root.ContentIDs
+	ids := page.Root().ContentIDs
 	n = 0
 	for i, el := range ids {
 		if toRemove[i] {
@@ -284,7 +284,7 @@ func removeBlocks(page *notionapi.Page, toRemove map[int]bool) {
 		ids[n] = el
 		n++
 	}
-	page.Root.ContentIDs = ids
+	page.Root().ContentIDs = ids
 }
 
 // extracts PageMeta and updates Block.Content to remove the blocks that
@@ -292,12 +292,12 @@ func removeBlocks(page *notionapi.Page, toRemove map[int]bool) {
 func extractMeta(p *Page) {
 	page := p.NotionPage
 	toRemove := map[int]bool{}
-	for idx, block := range page.Root.Content {
+	for idx, block := range page.Root().Content {
 		mv := extractMetaValueFromBlock(block)
 		if mv == nil {
 			break
 		}
-		page.Root.Content[idx] = nil
+		page.Root().Content[idx] = nil
 		toRemove[idx] = true
 		if !isKnownMeta(mv.Key) {
 			uri := "https://notion.so/" + toNoDashID(page.ID)
@@ -321,7 +321,7 @@ func bookPageFromNotionPage(book *Book, page *notionapi.Page) *Page {
 	}
 	res.NotionPage = page
 	res.NotionID = id
-	res.Title = cleanTitle(page.Root.Title)
+	res.Title = cleanTitle(page.Root().Title)
 
 	extractMeta(res)
 
@@ -344,7 +344,7 @@ func bookPageFromNotionPage(book *Book, page *notionapi.Page) *Page {
 func bookFromPages(book *Book) {
 	startPageID := book.NotionStartPageID
 	page := book.idToPage[startPageID].NotionPage
-	panicIf(page.Root.Type != notionapi.BlockPage, "start block is of type '%s' and not '%s'", page.Root.Type, notionapi.BlockPage)
-	book.TitleLong = page.Root.Title
+	panicIf(page.Root().Type != notionapi.BlockPage, "start block is of type '%s' and not '%s'", page.Root().Type, notionapi.BlockPage)
+	book.TitleLong = page.Root().Title
 	book.RootPage = bookPageFromNotionPage(book, page)
 }

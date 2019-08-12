@@ -22,7 +22,7 @@ type HTMLRenderer struct {
 	book *Book
 
 	notionClient *notionapi.Client
-	r            *tohtml.HTMLRenderer
+	r            *tohtml.Converter
 }
 
 func (r *HTMLRenderer) reportIfInvalidLink(uri string) {
@@ -84,7 +84,7 @@ func findPageByID(book *Book, id string) *Page {
 
 // RenderEmbed renders BlockEmbed
 func (r *HTMLRenderer) RenderEmbed(block *notionapi.Block) bool {
-	uri := block.FormatEmbed.DisplaySource
+	uri := block.FormatEmbed().DisplaySource
 	if strings.Contains(uri, "onlinetool.io/") {
 		r.genGitEmbed(block)
 		return true
@@ -98,7 +98,7 @@ func (r *HTMLRenderer) RenderEmbed(block *notionapi.Block) bool {
 }
 
 func (r *HTMLRenderer) genReplitEmbed(block *notionapi.Block) {
-	uri := block.FormatEmbed.DisplaySource
+	uri := block.FormatEmbed().DisplaySource
 	uri = strings.Replace(uri, "?lite=true", "", -1)
 	log("Page: https://notion.so/%s\n", r.page.NotionID)
 	log("  Replit: %s\n", uri)
@@ -135,7 +135,7 @@ func (r *HTMLRenderer) genSourceFile(sf *SourceFile) {
 }
 
 func (r *HTMLRenderer) genGitEmbed(block *notionapi.Block) {
-	uri := block.FormatEmbed.DisplaySource
+	uri := block.FormatEmbed().DisplaySource
 	f := findSourceFileForEmbedURL(r.page, uri)
 	// currently we only handle source code file embeds but might handle
 	// others (graphs etc.)
@@ -349,8 +349,8 @@ func (r *HTMLRenderer) blockRenderOverride(block *notionapi.Block) bool {
 func (r *HTMLRenderer) Gen() []byte {
 	inner := string(r.r.ToHTML())
 
-	rootPage := r.page.NotionPage.Root
-	f := rootPage.FormatPage
+	rootPage := r.page.NotionPage.Root()
+	f := rootPage.FormatPage()
 	isMono := f != nil && f.PageFont == "mono"
 
 	s := ``
@@ -364,7 +364,7 @@ func (r *HTMLRenderer) Gen() []byte {
 	return []byte(s)
 }
 
-func getInlinesPlain(a []*notionapi.InlineBlock) string {
+func getInlinesPlain(a []*notionapi.TextSpan) string {
 	s := ""
 	for _, b := range a {
 		s += b.Text
@@ -384,7 +384,7 @@ func notionToHTML(page *Page, book *Book) []byte {
 		page: page,
 	}
 
-	r := tohtml.NewHTMLRenderer(page.NotionPage)
+	r := tohtml.NewConverter(page.NotionPage)
 	notionapi.PanicOnFailures = true
 	r.AddIDAttribute = true
 	r.RenderBlockOverride = res.blockRenderOverride
@@ -409,7 +409,7 @@ func notionToHTML(page *Page, book *Book) []byte {
 		}
 		headings = append(headings, h)
 	}
-	blocks := []*notionapi.Block{page.NotionPage.Root}
+	blocks := []*notionapi.Block{page.NotionPage.Root()}
 	notionapi.ForEachBlock(blocks, cb)
 	page.Headings = headings
 

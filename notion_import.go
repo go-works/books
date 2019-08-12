@@ -109,7 +109,7 @@ func downloadAndCachePage(c *notionapi.Client, b *Book, pageID string) (*notiona
 	err = ioutil.WriteFile(cachedPath, d, 0644)
 	panicIfErr(err)
 
-	log(" %d %s in %s\n", nDownloadedPage-1, page.Root.Title, time.Since(timeStart))
+	log(" %d %s in %s\n", nDownloadedPage-1, page.Root().Title, time.Since(timeStart))
 	return page, nil
 }
 
@@ -124,7 +124,7 @@ func loadNotionPage(c *notionapi.Client, b *Book, pageID string) error {
 	page := b.idToPage[pageID]
 	if page != nil && !page.IsPageOutdated {
 		nTotalFromCache++
-		logVerbose("Skipping %d %s %s (cached is current)\n", n, page.NotionPage.ID, page.NotionPage.Root.Title)
+		logVerbose("Skipping %d %s %s (cached is current)\n", n, page.NotionPage.ID, page.NotionPage.Root().Title)
 		return nil
 	}
 	if flgNoDownload {
@@ -154,7 +154,7 @@ func updateFormatIfNeeded(page *notionapi.Page) bool {
 		return false
 	}
 	args := map[string]interface{}{}
-	format := page.Root.FormatPage
+	format := page.Root().FormatPage()
 	if format == nil || !format.PageSmallText {
 		args["page_small_text"] = true
 	}
@@ -177,8 +177,8 @@ func updateTitleIfNeeded(page *notionapi.Page) bool {
 	if notionAuthToken == "" {
 		return false
 	}
-	newTitle := cleanTitle(page.Root.Title)
-	if newTitle == page.Root.Title {
+	newTitle := cleanTitle(page.Root().Title)
+	if newTitle == page.Root().Title {
 		return false
 	}
 	fmt.Printf("  updating title to '%s'\n", newTitle)
@@ -284,9 +284,9 @@ func checkIfPagesAreOutdated(c *notionapi.Client, pages map[string]*Page) {
 	for i, ver := range versions {
 		id := ids[i]
 		page := pages[id]
-		page.IsPageOutdated = ver > page.NotionPage.Root.Version
+		page.IsPageOutdated = ver > page.NotionPage.Root().Version
 		if page.IsPageOutdated {
-			logVerbose("page https://notion.so/%s %s outdated\n", id, page.NotionPage.Root.Title)
+			logVerbose("page https://notion.so/%s %s outdated\n", id, page.NotionPage.Root().Title)
 			nOutdated++
 		}
 	}
@@ -310,7 +310,7 @@ func loadNotionPages(c *notionapi.Client, b *Book) {
 		err := loadNotionPage(c, b, pageID)
 		panicIfErr(err)
 		page := b.idToPage[pageID]
-		subPages := notionapi.GetSubPages(page.NotionPage.Root.Content)
+		subPages := notionapi.GetSubPages(page.NotionPage.Root().Content)
 		toVisit = append(toVisit, subPages...)
 	}
 }
