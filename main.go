@@ -139,7 +139,7 @@ func downloadBook(c *notionapi.Client, book *Book) {
 		}
 		book.idToPage[id] = page
 	}
-	log("Got %d pages for %s\n", len(book.idToPage), book.Title)
+	log("Got %d pages for %s, %d from cache\n", len(book.idToPage), book.Title, d.FromCacheCount)
 	bookFromPages(book)
 }
 
