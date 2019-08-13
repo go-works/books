@@ -16,8 +16,8 @@ Todo:
 - set the right margin-bottom to .title
 */
 
-// HTMLRenderer is for notion -> HTML generation
-type HTMLRenderer struct {
+// Converter is for notion -> HTML generation
+type Converter struct {
 	page *Page
 	book *Book
 
@@ -25,7 +25,7 @@ type HTMLRenderer struct {
 	r            *tohtml.Converter
 }
 
-func (r *HTMLRenderer) reportIfInvalidLink(uri string) {
+func (r *Converter) reportIfInvalidLink(uri string) {
 	pageID := toNoDashID(r.page.getID())
 	log("Found invalid link '%s' in page https://notion.so/%s", uri, pageID)
 	destPage := findPageByID(r.book, uri)
@@ -39,7 +39,7 @@ func (r *HTMLRenderer) reportIfInvalidLink(uri string) {
 // change https://www.notion.so/Advanced-web-spidering-with-Puppeteer-ea07db1b9bff415ab180b0525f3898f6
 // =>
 // url within the book
-func (r *HTMLRenderer) rewriteURL(uri string) string {
+func (r *Converter) rewriteURL(uri string) string {
 	if !strings.Contains(uri, "notion.so/") {
 		return uri
 	}
@@ -59,7 +59,7 @@ func (r *HTMLRenderer) rewriteURL(uri string) string {
 	return page.URL()
 }
 
-func (r *HTMLRenderer) getURLAndTitleForBlock(block *notionapi.Block) (string, string) {
+func (r *Converter) getURLAndTitleForBlock(block *notionapi.Block) (string, string) {
 	id := toNoDashID(block.ID)
 	page := r.book.idToPage[id]
 	if page == nil {
@@ -83,7 +83,7 @@ func findPageByID(book *Book, id string) *Page {
 }
 
 // RenderEmbed renders BlockEmbed
-func (r *HTMLRenderer) RenderEmbed(block *notionapi.Block) bool {
+func (r *Converter) RenderEmbed(block *notionapi.Block) bool {
 	uri := block.FormatEmbed().DisplaySource
 	if strings.Contains(uri, "onlinetool.io/") {
 		r.genGitEmbed(block)
@@ -97,7 +97,7 @@ func (r *HTMLRenderer) RenderEmbed(block *notionapi.Block) bool {
 	return false
 }
 
-func (r *HTMLRenderer) genReplitEmbed(block *notionapi.Block) {
+func (r *Converter) genReplitEmbed(block *notionapi.Block) {
 	uri := block.FormatEmbed().DisplaySource
 	uri = strings.Replace(uri, "?lite=true", "", -1)
 	log("Page: https://notion.so/%s\n", r.page.NotionID)
@@ -105,7 +105,7 @@ func (r *HTMLRenderer) genReplitEmbed(block *notionapi.Block) {
 	panic("we no longer use replit")
 }
 
-func (r *HTMLRenderer) genSourceFile(sf *SourceFile) {
+func (r *Converter) genSourceFile(sf *SourceFile) {
 	{
 		var tmp bytes.Buffer
 		code := sf.CodeToShow()
@@ -134,7 +134,7 @@ func (r *HTMLRenderer) genSourceFile(sf *SourceFile) {
 	}
 }
 
-func (r *HTMLRenderer) genGitEmbed(block *notionapi.Block) {
+func (r *Converter) genGitEmbed(block *notionapi.Block) {
 	uri := block.FormatEmbed().DisplaySource
 	f := findSourceFileForEmbedURL(r.page, uri)
 	// currently we only handle source code file embeds but might handle
@@ -148,7 +148,7 @@ func (r *HTMLRenderer) genGitEmbed(block *notionapi.Block) {
 }
 
 // RenderCode renders BlockCode
-func (r *HTMLRenderer) RenderCode(block *notionapi.Block) bool {
+func (r *Converter) RenderCode(block *notionapi.Block) bool {
 	//lang := getLangFromFileExt(filepath.Ext(path))
 	//gitHubURL := getGitHubPathForFile(path)
 	lang := block.CodeLanguage
@@ -239,7 +239,7 @@ func setDefaultFileNameFromLanguage(sf *SourceFile) error {
 
 // RenderImage renders BlockImage
 // TODO: download images locally like blog
-func (r *HTMLRenderer) RenderImage(block *notionapi.Block) bool {
+func (r *Converter) RenderImage(block *notionapi.Block) bool {
 	link := block.ImageURL
 	cls := "img"
 	attrs := []string{"class", cls, "src", link}
@@ -249,7 +249,7 @@ func (r *HTMLRenderer) RenderImage(block *notionapi.Block) bool {
 }
 
 // RenderPage renders BlockPage
-func (r *HTMLRenderer) RenderPage(block *notionapi.Block) bool {
+func (r *Converter) RenderPage(block *notionapi.Block) bool {
 	tp := block.GetPageType()
 	if tp == notionapi.BlockPageTopLevel {
 		// skips top-level as it's rendered somewhere else
@@ -299,17 +299,17 @@ func isBlockTextEmpty(block *notionapi.Block) bool {
 	return false
 }
 
-func (r *HTMLRenderer) isLastBlock() bool {
+func (r *Converter) isLastBlock() bool {
 	lastIdx := len(r.r.CurrBlocks) - 1
 	return r.r.CurrBlockIdx == lastIdx
 }
 
-func (r *HTMLRenderer) isFirstBlock() bool {
+func (r *Converter) isFirstBlock() bool {
 	return r.r.CurrBlockIdx == 0
 }
 
 // RenderText renders BlockText
-func (r *HTMLRenderer) RenderText(block *notionapi.Block) bool {
+func (r *Converter) RenderText(block *notionapi.Block) bool {
 	if isBlockTextTodo(block) {
 		return true
 	}
@@ -329,7 +329,7 @@ func (r *HTMLRenderer) RenderText(block *notionapi.Block) bool {
 	return true
 }
 
-func (r *HTMLRenderer) blockRenderOverride(block *notionapi.Block) bool {
+func (r *Converter) blockRenderOverride(block *notionapi.Block) bool {
 	switch block.Type {
 	case notionapi.BlockPage:
 		return r.RenderPage(block)
@@ -346,7 +346,7 @@ func (r *HTMLRenderer) blockRenderOverride(block *notionapi.Block) bool {
 }
 
 // Gen returns generated HTML
-func (r *HTMLRenderer) Gen() []byte {
+func (r *Converter) Gen() []byte {
 	inner := string(r.r.ToHTML())
 
 	rootPage := r.page.NotionPage.Root()
@@ -379,7 +379,7 @@ func notionToHTML(page *Page, book *Book) []byte {
 	}
 
 	logVerbose("Generating HTML for %s\n", page.NotionURL())
-	res := HTMLRenderer{
+	res := Converter{
 		book: book,
 		page: page,
 	}
