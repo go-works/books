@@ -120,16 +120,37 @@ func parseFlags() {
 	}
 }
 
+var (
+	nDownloadedPage = 0
+)
+
+func eventObserver(ev interface{}) {
+	switch v := ev.(type) {
+	case *caching_downloader.EventError:
+		log(v.Error)
+	case *caching_downloader.EventDidDownload:
+		nDownloadedPage++
+		log("%03d '%s' : downloaded in %s\n", nDownloadedPage, v.PageID, v.Duration)
+	case *caching_downloader.EventDidReadFromCache:
+		// TODO: only verbose
+		nDownloadedPage++
+		log("%03d '%s' : read from cache in %s\n", nDownloadedPage, v.PageID, v.Duration)
+	case *caching_downloader.EventGotVersions:
+		log("downloaded info about %d versions in %s\n", v.Count, v.Duration)
+	}
+}
+
 func downloadBook(c *notionapi.Client, book *Book) {
 	log("Loading %s...\n", book.Title)
 	cacheDir := book.NotionCacheDir()
 	dirCache, err := caching_downloader.NewDirectoryCache(cacheDir)
 	must(err)
 	d := caching_downloader.New(dirCache, c)
-	d.NoReadCache = flgDisableNotionCache
+	d.EventObserver = eventObserver
 	d.RedownloadNewerVersions = true
-	startPageID := book.NotionStartPageID
+	d.NoReadCache = flgDisableNotionCache
 
+	startPageID := book.NotionStartPageID
 	pages, err := d.DownloadPagesRecursively(startPageID)
 	must(err)
 	for _, page := range pages {
