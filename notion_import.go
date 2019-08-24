@@ -12,11 +12,6 @@ func toNoDashID(id string) string {
 	return notionapi.ToNoDashID(id)
 }
 
-var (
-	nNotionPagesFromCache int
-	nDownloadedPage       int
-)
-
 func updateFormatIfNeeded(page *notionapi.Page) bool {
 	// can't write back without a token
 	if notionAuthToken == "" {

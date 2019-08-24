@@ -121,7 +121,9 @@ func parseFlags() {
 }
 
 var (
-	nDownloadedPage = 0
+	nProcessed            = 0
+	nNotionPagesFromCache = 0
+	nDownloadedPages      = 0
 )
 
 func eventObserver(ev interface{}) {
@@ -129,12 +131,14 @@ func eventObserver(ev interface{}) {
 	case *caching_downloader.EventError:
 		log(v.Error)
 	case *caching_downloader.EventDidDownload:
-		nDownloadedPage++
-		log("%03d '%s' : downloaded in %s\n", nDownloadedPage, v.PageID, v.Duration)
+		nProcessed++
+		nDownloadedPages++
+		log("%03d '%s' : downloaded in %s\n", nProcessed, v.PageID, v.Duration)
 	case *caching_downloader.EventDidReadFromCache:
 		// TODO: only verbose
-		nDownloadedPage++
-		log("%03d '%s' : read from cache in %s\n", nDownloadedPage, v.PageID, v.Duration)
+		nProcessed++
+		nNotionPagesFromCache++
+		log("%03d '%s' : read from cache in %s\n", nProcessed, v.PageID, v.Duration)
 	case *caching_downloader.EventGotVersions:
 		log("downloaded info about %d versions in %s\n", v.Count, v.Duration)
 	}
@@ -142,6 +146,10 @@ func eventObserver(ev interface{}) {
 
 func downloadBook(c *notionapi.Client, book *Book) {
 	log("Loading %s...\n", book.Title)
+	nProcessed = 0
+	nNotionPagesFromCache = 0
+	nDownloadedPages = 0
+
 	cacheDir := book.NotionCacheDir()
 	dirCache, err := caching_downloader.NewDirectoryCache(cacheDir)
 	must(err)
@@ -160,7 +168,8 @@ func downloadBook(c *notionapi.Client, book *Book) {
 		}
 		book.idToPage[id] = page
 	}
-	log("Got %d pages for %s, %d from cache\n", len(book.idToPage), book.Title, d.FromCacheCount)
+
+	log("Got %d pages for %s, downloaded: %d, from cache: %d\n", len(book.idToPage), book.Title, nDownloadedPages, nNotionPagesFromCache)
 	bookFromPages(book)
 }
 
