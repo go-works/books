@@ -123,11 +123,11 @@ func parseFlags() {
 func downloadBook(c *notionapi.Client, book *Book) {
 	log("Loading %s...\n", book.Title)
 	cacheDir := book.NotionCacheDir()
-	d, err := caching_downloader.New(cacheDir, c)
+	dirCache, err := caching_downloader.NewDirectoryCache(cacheDir)
+	must(err)
+	d := caching_downloader.New(dirCache, c)
 	d.NoReadCache = flgDisableNotionCache
 	d.RedownloadNewerVersions = true
-	d.Logger = os.Stdout
-	must(err)
 	startPageID := book.NotionStartPageID
 
 	pages, err := d.DownloadPagesRecursively(startPageID)
@@ -388,7 +388,11 @@ func main() {
 			}
 			if len(newBooks) > 0 {
 				books = newBooks
-				log("Downloading %d books %#v\n", len(books), books)
+				log("Downloading %d books", len(books))
+				for _, b := range books {
+					log(" %s", b.Title)
+				}
+				log("\n")
 			}
 		}
 	}

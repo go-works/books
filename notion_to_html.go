@@ -250,20 +250,15 @@ func (r *Converter) RenderImage(block *notionapi.Block) bool {
 
 // RenderPage renders BlockPage
 func (r *Converter) RenderPage(block *notionapi.Block) bool {
-	tp := block.GetPageType()
-	if tp == notionapi.BlockPageTopLevel {
+	if r.r.Page.IsRoot(block) {
 		// skips top-level as it's rendered somewhere else
 		r.r.RenderChildren(block)
 		return true
 	}
 
-	var cls string
-	if tp == notionapi.BlockPageSubPage {
+	cls := "page-link"
+	if block.IsSubPage() {
 		cls = "page"
-	} else if tp == notionapi.BlockPageLink {
-		cls = "page-link"
-	} else {
-		panic("unexpected page type")
 	}
 
 	url, title := r.getURLAndTitleForBlock(block)
@@ -386,7 +381,6 @@ func notionToHTML(page *Page, book *Book) []byte {
 
 	r := tohtml.NewConverter(page.NotionPage)
 	notionapi.PanicOnFailures = true
-	r.AddIDAttribute = true
 	r.RenderBlockOverride = res.blockRenderOverride
 	r.RewriteURL = res.rewriteURL
 	res.r = r
