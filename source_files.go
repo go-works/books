@@ -135,7 +135,7 @@ func parseFileDirective(res *FileDirective, line string) (bool, error) {
 			res.NoOutput = true
 		} else if s == "no playground" || s == "noplayground" {
 			res.NoPlayground = true
-		} else if s == "allow error" || s == "allow_error" {
+		} else if s == "allow error" || s == "allow_error" || s == "allowerror" {
 			res.AllowError = true
 		} else if strings.HasPrefix(s, "name ") {
 			// expect: name foo.txt

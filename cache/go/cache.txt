@@ -18351,3 +18351,428 @@ Output:+0
 66 1561010788413 glotid
 Sha1: 4c3c0f0aa936fc4c6221ca23372b76c2ced43315
 GlotID: fdbygfk18i
+466 1566580960489 glotoutput
+Sha1: 14a513e3476830756c4cea316632399fd18dd19e
+Lang: Go
+FileName: main.go
+CodeFull:+179
+// :glot
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	// :show start
+	s := "  str\n "
+	fmt.Printf("TrimSpace: %#v => %#v\n", s, strings.TrimSpace(s))
+	// :show end
+}
+CodeToRun:+140
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	s := "  str\n "
+	fmt.Printf("TrimSpace: %#v => %#v\n", s, strings.TrimSpace(s))
+}
+Output:+31
+TrimSpace: "  str\n " => "str"
+66 1566580961417 glotid
+Sha1: 14a513e3476830756c4cea316632399fd18dd19e
+GlotID: ffb1cwg8j6
+1019 1566580962647 glotoutput
+Sha1: 0f12b1145b821389957468c21ce1592d57f12408
+Lang: Go
+FileName: main.go
+CodeFull:+434
+// :glot
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+    	// :show start
+    	prefix := "aba"
+    	s1 := "abacdda"
+    	trimmed1 := strings.TrimPrefix(s1, prefix)
+    	fmt.Printf("TrimPrefix %#v of %#v => %#v\n\n", prefix, s1, trimmed1)
+
+    	s2 := "abacdda"
+    	suffix := "da"
+    	trimmed2 := strings.TrimSuffix(s2, suffix)
+    	fmt.Printf("TrimSuffix %#v of %#v => %#v\n\n", suffix, s2, trimmed2)
+    	// :show end
+}
+CodeToRun:+387
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+    	prefix := "aba"
+    	s1 := "abacdda"
+    	trimmed1 := strings.TrimPrefix(s1, prefix)
+    	fmt.Printf("TrimPrefix %#v of %#v => %#v\n\n", prefix, s1, trimmed1)
+
+    	s2 := "abacdda"
+    	suffix := "da"
+    	trimmed2 := strings.TrimSuffix(s2, suffix)
+    	fmt.Printf("TrimSuffix %#v of %#v => %#v\n\n", suffix, s2, trimmed2)
+}
+Output:+82
+TrimPrefix "aba" of "abacdda" => "cdda"
+
+TrimSuffix "da" of "abacdda" => "abacd"
+
+66 1566580962823 glotid
+Sha1: 0f12b1145b821389957468c21ce1592d57f12408
+GlotID: ffb1cxajkz
+1153 1566580964042 glotoutput
+Sha1: 6387c36dfc89a8e9a7ec112a1fbbfc7f5621d124
+Lang: Go
+FileName: main.go
+CodeFull:+468
+// :glot
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	// :show start
+	s := "abacdda"
+	cutset := "zab"
+
+	trimmed := strings.Trim(s, cutset)
+	fmt.Printf("Trim chars %#v from %#v => %#v\n\n", cutset, s, trimmed)
+
+	trimmed = strings.TrimLeft(s, cutset)
+	fmt.Printf("TrimLeft chars %#v from %#v => %#v\n\n", cutset, s, trimmed)
+
+	trimmed = strings.TrimRight(s, cutset)
+	fmt.Printf("TrimRight chars %#v from %#v => %#v\n\n", cutset, s, trimmed)
+	// :show end
+}
+CodeToRun:+429
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	s := "abacdda"
+	cutset := "zab"
+
+	trimmed := strings.Trim(s, cutset)
+	fmt.Printf("Trim chars %#v from %#v => %#v\n\n", cutset, s, trimmed)
+
+	trimmed = strings.TrimLeft(s, cutset)
+	fmt.Printf("TrimLeft chars %#v from %#v => %#v\n\n", cutset, s, trimmed)
+
+	trimmed = strings.TrimRight(s, cutset)
+	fmt.Printf("TrimRight chars %#v from %#v => %#v\n\n", cutset, s, trimmed)
+}
+Output:+139
+Trim chars "zab" from "abacdda" => "cdd"
+
+TrimLeft chars "zab" from "abacdda" => "cdda"
+
+TrimRight chars "zab" from "abacdda" => "abacdd"
+
+66 1566580964218 glotid
+Sha1: 6387c36dfc89a8e9a7ec112a1fbbfc7f5621d124
+GlotID: ffb1cy4fn1
+655 1566580965401 glotoutput
+Sha1: 37e8cc94a1b898b32db8d4919e883c80e66feed9
+Lang: Go
+FileName: main.go
+CodeFull:+262
+// :glot
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	// :show start
+	s := "this is string"
+	toRemove := " is"
+
+    after := strings.Replace(s, toRemove, "", -1)    
+	fmt.Printf("Removed %#v from %#v => %#v\n\n", toRemove, s, after)
+	// :show end
+}
+CodeToRun:+223
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	s := "this is string"
+	toRemove := " is"
+
+    after := strings.Replace(s, toRemove, "", -1)    
+	fmt.Printf("Removed %#v from %#v => %#v\n\n", toRemove, s, after)
+}
+Output:+54
+Removed " is" from "this is string" => "this string"
+
+66 1566580965592 glotid
+Sha1: 37e8cc94a1b898b32db8d4919e883c80e66feed9
+GlotID: ffb1cyxqkf
+651 1566581053371 glotoutput
+Sha1: dd0a206f33198fe5557530b6a8c1cb6675da959b
+Lang: Go
+FileName: main.go
+CodeFull:+260
+// :glot
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	// :show start
+	s := "this is string"
+	toRemove := " is"
+
+  after := strings.Replace(s, toRemove, "", -1)    
+	fmt.Printf("Removed %#v from %#v => %#v\n\n", toRemove, s, after)
+	// :show end
+}
+CodeToRun:+221
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+func main() {
+	s := "this is string"
+	toRemove := " is"
+
+  after := strings.Replace(s, toRemove, "", -1)    
+	fmt.Printf("Removed %#v from %#v => %#v\n\n", toRemove, s, after)
+}
+Output:+54
+Removed " is" from "this is string" => "this string"
+
+66 1566581054062 glotid
+Sha1: dd0a206f33198fe5557530b6a8c1cb6675da959b
+GlotID: ffb1efm0kr
+645 1566661580962 glotoutput
+Sha1: 0ce68903aecb80c42ce9c9c2fe06f8893970fcee
+Lang: Go
+FileName: main.go
+CodeFull:+268
+// :glot
+package main
+
+import "fmt"
+
+func main() {
+    // :show start
+    m := map[string]int{}
+    size := len(m)
+    fmt.Printf("Size of empty map: %d\n\n", size)
+
+    
+    m["foo"] = 1
+    size = len(m)
+    fmt.Printf("Size of map: %d\n\n", size)
+    // :show end
+}
+CodeToRun:+223
+package main
+
+import "fmt"
+
+func main() {
+    m := map[string]int{}
+    size := len(m)
+    fmt.Printf("Size of empty map: %d\n\n", size)
+
+    
+    m["foo"] = 1
+    size = len(m)
+    fmt.Printf("Size of map: %d\n\n", size)
+}
+Output:+38
+Size of empty map: 0
+
+Size of map: 1
+
+66 1566661582356 glotid
+Sha1: 0ce68903aecb80c42ce9c9c2fe06f8893970fcee
+GlotID: ffc2e7ssee
+451 1566661583554 glotoutput
+Sha1: 2cbba444ee324f7d549665330c4e3933076603e0
+Lang: Go
+FileName: main.go
+CodeFull:+180
+// :glot
+package main
+
+import "fmt"
+
+func main() {
+    // :show start
+    var m map[string]int
+    size := len(m)
+    fmt.Printf("Size of nil map: %d\n\n", size)
+    // :show end
+}
+CodeToRun:+135
+package main
+
+import "fmt"
+
+func main() {
+    var m map[string]int
+    size := len(m)
+    fmt.Printf("Size of nil map: %d\n\n", size)
+}
+Output:+20
+Size of nil map: 0
+
+66 1566661583736 glotid
+Sha1: 2cbba444ee324f7d549665330c4e3933076603e0
+GlotID: ffc2e8wbgs
+873 1566661585091 glotoutput
+Sha1: 6a3848c9aabc51a3c00484fd40eeffee4ccc7f28
+Lang: Go
+FileName: main.go
+CodeFull:+379
+// :glot
+package main
+
+import "fmt"
+
+// :show start
+func returnValues(ok bool) (int, bool) {
+	return 5, ok
+}
+
+func main() {
+	a := 5
+	b := 5
+	if a == b {
+		fmt.Print("a is equal to b\n")
+	} else {
+		fmt.Print("a is not equal to b\n")
+	}
+
+	if n, ok := returnValues(true); ok {
+		fmt.Print("ok is true, n: %d\n", n)
+	} else {
+		fmt.Print("ok is false, n: %d\n", n)
+	}
+}
+// :show end
+CodeToRun:+342
+package main
+
+import "fmt"
+
+func returnValues(ok bool) (int, bool) {
+	return 5, ok
+}
+
+func main() {
+	a := 5
+	b := 5
+	if a == b {
+		fmt.Print("a is equal to b\n")
+	} else {
+		fmt.Print("a is not equal to b\n")
+	}
+
+	if n, ok := returnValues(true); ok {
+		fmt.Print("ok is true, n: %d\n", n)
+	} else {
+		fmt.Print("ok is false, n: %d\n", n)
+	}
+}
+Output:+35
+a is equal to b
+ok is true, n: %d
+5
+66 1566661585275 glotid
+Sha1: 6a3848c9aabc51a3c00484fd40eeffee4ccc7f28
+GlotID: ffc2e9t87h
+870 1566662473625 glotoutput
+Sha1: d92c8ce43d1d058bb788c1949f317afb4f6d86ef
+Lang: Go
+FileName: main.go
+CodeFull:+374
+// :glot, allowerror
+package main
+
+import "fmt"
+
+// :show start
+func returnValues(ok bool) (int, bool) {
+	return 5, ok
+}
+
+func main() {
+	if n, ok := returnValues(true); ok {
+		fmt.Print("ok is true, n: %d\n", n)
+	} else {
+		fmt.Print("ok is false, n: %d\n", n)
+	}
+
+	// n is only visible within if statement, so this fails compilation
+	fmt.Printf("n: %d\n", n)
+}
+// :show end
+CodeToRun:+325
+package main
+
+import "fmt"
+
+func returnValues(ok bool) (int, bool) {
+	return 5, ok
+}
+
+func main() {
+	if n, ok := returnValues(true); ok {
+		fmt.Print("ok is true, n: %d\n", n)
+	} else {
+		fmt.Print("ok is false, n: %d\n", n)
+	}
+
+	// n is only visible within if statement, so this fails compilation
+	fmt.Printf("n: %d\n", n)
+}
+Output:+55
+# command-line-arguments
+./main.go:17:24: undefined: n
+66 1566662474496 glotid
+Sha1: d92c8ce43d1d058bb788c1949f317afb4f6d86ef
+GlotID: ffc2sz7kqc

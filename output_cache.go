@@ -157,7 +157,7 @@ func updateGlotOutput(cache *Cache, sf *SourceFile) error {
 	s := rsp.Stdout + rsp.Stderr
 	if rsp.Error != "" {
 		if !sf.Directive.AllowError {
-			//fmt.Printf("getOutput('%s'), output is:\n%s\n", path, s)
+			log("glotRun() %s from %s failed with '%s' and sf.Directive.AllowError is false\n", sf.SnippetName, sf.NotionOriginURL, rsp.Error)
 			return errors.New(rsp.Stderr)
 		}
 	}
@@ -188,7 +188,7 @@ func getOutputCached(cache *Cache, sf *SourceFile) error {
 	// even better
 	if sf.Directive.NoOutput {
 		if sf.Directive.Glot {
-			// if running on glot, we want to execute even if
+			// if running on , we want to execute even if
 			// we don't show the output (to check syntax errors)
 		} else {
 			return nil
