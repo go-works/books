@@ -18875,3 +18875,62 @@ n: 2
 66 1566683373825 glotid
 Sha1: 660dc1f6d4af386fd933ca21e031fd5d88503c40
 GlotID: ffccem5gz1
+1169 1566770952567 glotoutput
+Sha1: f6663bf9fc63e86bd7d8289dbfb20a16a063848b
+Lang: Go
+FileName: main.go
+CodeFull:+551
+// :glot, no output
+package main
+
+// :show start
+var isUserAdminFn func(string) bool
+
+func isUserAdminProduction(userName string) bool {
+    // an real implementation that talks to database
+    return false
+}
+
+func isUserAdminMock(userName string) bool {
+    // a fake implementation used for tests
+    return userName == "admin"
+}
+
+func isUserAdmin(userName string) bool {
+    return isUserAdminFn(userName)
+}
+
+func main() {
+    isUserAdminFn = isUserAdminProduction
+    // in test you would use:
+    // isUserAdminFn = isUserAdminMock
+}
+// :show end
+CodeToRun:+503
+package main
+
+var isUserAdminFn func(string) bool
+
+func isUserAdminProduction(userName string) bool {
+    // an real implementation that talks to database
+    return false
+}
+
+func isUserAdminMock(userName string) bool {
+    // a fake implementation used for tests
+    return userName == "admin"
+}
+
+func isUserAdmin(userName string) bool {
+    return isUserAdminFn(userName)
+}
+
+func main() {
+    isUserAdminFn = isUserAdminProduction
+    // in test you would use:
+    // isUserAdminFn = isUserAdminMock
+}
+Output:+0
+66 1566770953986 glotid
+Sha1: f6663bf9fc63e86bd7d8289dbfb20a16a063848b
+GlotID: ffdgn14ln7

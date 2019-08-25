@@ -135,10 +135,10 @@ func eventObserver(ev interface{}) {
 		nDownloadedPages++
 		log("%03d '%s' : downloaded in %s\n", nProcessed, v.PageID, v.Duration)
 	case *caching_downloader.EventDidReadFromCache:
-		// TODO: only verbose
 		nProcessed++
 		nNotionPagesFromCache++
-		log("%03d '%s' : read from cache in %s\n", nProcessed, v.PageID, v.Duration)
+		// TODO: only verbose
+		//log("%03d '%s' : read from cache in %s\n", nProcessed, v.PageID, v.Duration)
 	case *caching_downloader.EventGotVersions:
 		log("downloaded info about %d versions in %s\n", v.Count, v.Duration)
 	}
