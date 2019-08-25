@@ -192,15 +192,6 @@ func copyCoversMust() {
 	copyFilesRecur(dstDir, srcDir, shouldCopyImage)
 }
 
-func getAlmostMaxProcs() int {
-	// leave some juice for other programs
-	nProcs := runtime.NumCPU() - 2
-	if nProcs < 1 {
-		return 1
-	}
-	return nProcs
-}
-
 // copy from tmpl to www, optimize if possible, add
 // sha1 of the content as part of the name
 func copyToWwwAsSha1MaybeMust(srcName string) {
@@ -296,46 +287,6 @@ func initMinify() {
 	doMinify = !flgPreviewStatic
 }
 
-func isNotionCachedInDir(dir string, id string) bool {
-	id = toNoDashID(id)
-	files, err := ioutil.ReadDir(dir)
-	panicIfErr(err)
-	for _, fi := range files {
-		name := fi.Name()
-		if strings.HasPrefix(name, id) {
-			return true
-		}
-	}
-	return false
-}
-
-func findBookFromCachedPageID(id string) *Book {
-	files, err := ioutil.ReadDir("cache")
-	panicIfErr(err)
-	for _, book := range allBooks {
-		if book.NotionStartPageID == id {
-			return book
-		}
-	}
-
-	for _, fi := range files {
-		if !fi.IsDir() {
-			continue
-		}
-		dir := fi.Name()
-		book := findBook(dir)
-		panicIf(book == nil, "didn't find book for dir '%s'", dir)
-		if isNotionCachedInDir(filepath.Join("cache", dir, "notion"), id) {
-			return book
-		}
-	}
-	return nil
-}
-
-func isReplitURL(uri string) bool {
-	return strings.Contains(uri, "repl.it/")
-}
-
 func initBook(book *Book) {
 	var err error
 
@@ -366,12 +317,20 @@ func findBook(id string) *Book {
 }
 
 func adHoc() {
-	// glotRunTestAndExit()
-	// glotGetSnippedIDTestAndExit()
+	if false {
+		glotRunTestAndExit()
+	}
+	if false {
+		glotGetSnippedIDTestAndExit()
+	}
 
 	// only needs to be run when we add new covers
-	// genTwitterImagesAndExit()
-	// genSmallCoversAndExit()
+	if false {
+		genTwitterImagesAndExit()
+	}
+	if false {
+		genSmallCoversAndExit()
+	}
 }
 
 func isPreview() bool {
@@ -388,7 +347,7 @@ func main() {
 
 	notionapi.LogFunc = log
 
-	os.RemoveAll("www")
+	_ = os.RemoveAll("www")
 	createDirMust(filepath.Join("www", "s"))
 	createDirMust("log")
 

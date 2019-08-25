@@ -2,12 +2,10 @@ package main
 
 import (
 	"fmt"
+	"github.com/kjk/u"
 	"html/template"
 	"io/ioutil"
 	"path/filepath"
-	"sync"
-
-	"github.com/kjk/u"
 )
 
 // Book represents a book
@@ -27,9 +25,6 @@ type Book struct {
 	Dir            string // directory name for the book e.g. "go"
 	SoContributors []SoContributor
 
-	defaultLang string // default programming language for programming examples
-	knownUrls   []string
-
 	// generated toc javascript data
 	tocData []byte
 	// url of combined tocData and app.js
@@ -41,10 +36,6 @@ type Book struct {
 
 	// cache related
 	cache *Cache
-
-	// for concurrency
-	sem chan bool
-	wg  sync.WaitGroup
 }
 
 // CacheDir returns a cache dir for this book

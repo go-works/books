@@ -279,7 +279,10 @@ func isBlockTextTodo(block *notionapi.Block) bool {
 		return false
 	}
 	b := blocks[0]
-	if strings.HasPrefix(b.Text, "@TODO") {
+	switch {
+	case strings.HasPrefix(b.Text, "@TODO"):
+		return true
+	case strings.HasPrefix(b.Text, "#TODO"):
 		return true
 	}
 	return false

@@ -37,7 +37,7 @@ func NewCache(path string) *Cache {
 
 func (c *Cache) saveRecord(rec *siser.Record) error {
 	f := openForAppend(c.path)
-	defer f.Close()
+	defer fileClose(f)
 	w := siser.NewWriter(f)
 	_, err := w.WriteRecord(rec)
 	return err
@@ -145,7 +145,7 @@ func loadCache(path string) *Cache {
 		log("  cache file %s doesn't exist\n", path)
 		return c
 	}
-	defer f.Close()
+	defer fileClose(f)
 
 	nRecords := 0
 	r := siser.NewReader(bufio.NewReader(f))

@@ -44,10 +44,6 @@ var (
 	siteBaseURL   = "https://www.programming-books.io"
 )
 
-func unloadTemplates() {
-	templates = make([]*template.Template, len(templateNames))
-}
-
 func tmplPath(name string) string {
 	return filepath.Join(tmplDir, name)
 }
@@ -312,19 +308,6 @@ func bookPagesToHTML(book *Book) {
 		nProcessed++
 	}
 	fmt.Printf("bookPagesToHTML: processed %d pages for book %s\n", nProcessed, book.TitleLong)
-}
-
-func bookPageToHTML(book *Book, id string) {
-	pages := book.GetAllPages()
-	for _, page := range pages {
-		if page.NotionID == id {
-			fmt.Printf("bookPageToHTML: processed page %s for book %s\n", id, book.TitleLong)
-			html := notionToHTML(page, book)
-			page.BodyHTML = template.HTML(string(html))
-			return
-		}
-	}
-	fmt.Printf("bookPageToHTML: didn't find page '%s' for book %s\n", id, book.TitleLong)
 }
 
 func genBookIndex(book *Book, w io.Writer) error {

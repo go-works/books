@@ -485,3 +485,9 @@ func unzipFileAsData(f *zip.File) ([]byte, error) {
 	}
 	return buf.Bytes(), nil
 }
+
+// fileClose() is like .Close() but ignores error,
+// for use in defer
+func fileClose(c io.Closer) {
+	_ = c.Close()
+}
