@@ -8,7 +8,7 @@ require (
 	github.com/dlclark/regexp2 v1.1.8 // indirect
 	github.com/google/shlex v0.0.0-20181106134648-c34317bd91bf
 	github.com/gorilla/handlers v1.4.2 // indirect
-	github.com/kjk/notionapi v0.0.0-20190822232004-f2ff216d9253
+	github.com/kjk/notionapi v0.0.0-20190825071246-67286a607cdf
 	github.com/kjk/siser v0.0.0-20190801014033-b3367920d7f2
 	github.com/kjk/u v0.0.0-20170711051841-93181be023c9
 	github.com/kylelemons/godebug v1.1.0
