@@ -37,7 +37,7 @@ type Page struct {
 	Book *Book
 
 	// meta information extracted from page blocks
-	NotionID string
+	NotionID string // notion id in no-dash format
 
 	// for legacy pages this is an id. Might be used for redirects
 	//ID              string
@@ -319,7 +319,7 @@ func bookPageFromNotionPage(book *Book, page *notionapi.Page) *Page {
 		book.idToPage[id] = res
 	}
 	res.NotionPage = page
-	res.NotionID = id
+	res.NotionID = notionapi.ToNoDashID(id)
 	res.Title = cleanTitle(page.Root().Title)
 
 	extractMeta(res)

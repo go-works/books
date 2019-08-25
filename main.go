@@ -395,12 +395,6 @@ func main() {
 	log("Downloaded %d pages, got %d from cache\n", nTotalDownloaded, nTotalFromCache)
 	log("Download time: %s\n", time.Since(timeStart))
 
-	if flgPreviewOnDemand {
-		log("Time: %s\n", time.Since(timeStart))
-		startPreviewOnDemand(books)
-		return
-	}
-
 	genStartTime := time.Now()
 	genBooks(books)
 	genNetlifyHeaders()
@@ -408,6 +402,12 @@ func main() {
 	printAndClearErrors()
 	log("Gen time: %s, total time: %s\n", time.Since(genStartTime), time.Since(timeStart))
 
+	if flgPreviewOnDemand {
+		log("Time: %s\n", time.Since(timeStart))
+		startPreviewOnDemand(books)
+		return
+	}
+	
 	if flgPreviewStatic {
 		startPreviewStatic()
 	}

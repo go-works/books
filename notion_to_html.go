@@ -25,14 +25,15 @@ type Converter struct {
 	converter    *tohtml.Converter
 }
 
-func (c *Converter) reportIfInvalidLink(uri string) {
-	pageID := toNoDashID(c.page.getID())
-	log("Found invalid link '%s' in page https://notion.so/%s", uri, pageID)
-	destPage := findPageByID(c.book, uri)
-	if destPage != nil {
-		log(" most likely pointing to https://notion.so/%s\n", toNoDashID(destPage.NotionPage.ID))
-	} else {
-		log("\n")
+func (c *Converter) reportIfInvalidLink(uri string, extractedID string) {
+	pageID := c.page.getID()
+	log("Found invalid link '%s' (id: '%s') in page https://notion.so/%s\n", uri, extractedID, pageID)
+	if extractedID == "" {
+		return
+	}
+	page := findPageByID(c.book, extractedID)
+	if page != nil {
+		log(" strange, we actually found it via findPageByID()\n")
 	}
 }
 
@@ -46,13 +47,13 @@ func (c *Converter) rewriteURL(uri string) string {
 
 	id := notionapi.ExtractNoDashIDFromNotionURL(uri)
 	if id == "" {
-		c.reportIfInvalidLink(uri)
+		c.reportIfInvalidLink(uri, id)
 		return uri
 	}
 	page := c.book.idToPage[id]
 	if page == nil {
 		log("Didn't find page with id '%s' extracted from url %s\n", id, uri)
-		c.reportIfInvalidLink(uri)
+		c.reportIfInvalidLink(uri, id)
 		return uri
 	}
 	page.Book = c.book
