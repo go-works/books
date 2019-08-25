@@ -22,13 +22,13 @@ type Converter struct {
 	book *Book
 
 	notionClient *notionapi.Client
-	r            *tohtml.Converter
+	converter    *tohtml.Converter
 }
 
-func (r *Converter) reportIfInvalidLink(uri string) {
-	pageID := toNoDashID(r.page.getID())
+func (c *Converter) reportIfInvalidLink(uri string) {
+	pageID := toNoDashID(c.page.getID())
 	log("Found invalid link '%s' in page https://notion.so/%s", uri, pageID)
-	destPage := findPageByID(r.book, uri)
+	destPage := findPageByID(c.book, uri)
 	if destPage != nil {
 		log(" most likely pointing to https://notion.so/%s\n", toNoDashID(destPage.NotionPage.ID))
 	} else {
@@ -39,29 +39,29 @@ func (r *Converter) reportIfInvalidLink(uri string) {
 // change https://www.notion.so/Advanced-web-spidering-with-Puppeteer-ea07db1b9bff415ab180b0525f3898f6
 // =>
 // url within the book
-func (r *Converter) rewriteURL(uri string) string {
+func (c *Converter) rewriteURL(uri string) string {
 	if !strings.Contains(uri, "notion.so/") {
 		return uri
 	}
 
 	id := notionapi.ExtractNoDashIDFromNotionURL(uri)
 	if id == "" {
-		r.reportIfInvalidLink(uri)
+		c.reportIfInvalidLink(uri)
 		return uri
 	}
-	page := r.book.idToPage[id]
+	page := c.book.idToPage[id]
 	if page == nil {
 		log("Didn't find page with id '%s' extracted from url %s\n", id, uri)
-		r.reportIfInvalidLink(uri)
+		c.reportIfInvalidLink(uri)
 		return uri
 	}
-	page.Book = r.book
+	page.Book = c.book
 	return page.URL()
 }
 
-func (r *Converter) getURLAndTitleForBlock(block *notionapi.Block) (string, string) {
+func (c *Converter) getURLAndTitleForBlock(block *notionapi.Block) (string, string) {
 	id := toNoDashID(block.ID)
-	page := r.book.idToPage[id]
+	page := c.book.idToPage[id]
 	if page == nil {
 		title := cleanTitle(block.Title)
 		log("No article for id %s %s\n", id, title)
@@ -83,29 +83,29 @@ func findPageByID(book *Book, id string) *Page {
 }
 
 // RenderEmbed renders BlockEmbed
-func (r *Converter) RenderEmbed(block *notionapi.Block) bool {
+func (c *Converter) RenderEmbed(block *notionapi.Block) bool {
 	uri := block.FormatEmbed().DisplaySource
 	if strings.Contains(uri, "onlinetool.io/") {
-		r.genGitEmbed(block)
+		c.genGitEmbed(block)
 		return true
 	}
 	if strings.Contains(uri, "repl.it/") {
-		r.genReplitEmbed(block)
+		c.genReplitEmbed(block)
 		return true
 	}
 	panicIf(true, "unsupported embed %s", uri)
 	return false
 }
 
-func (r *Converter) genReplitEmbed(block *notionapi.Block) {
+func (c *Converter) genReplitEmbed(block *notionapi.Block) {
 	uri := block.FormatEmbed().DisplaySource
 	uri = strings.Replace(uri, "?lite=true", "", -1)
-	log("Page: https://notion.so/%s\n", r.page.NotionID)
+	log("Page: https://notion.so/%s\n", c.page.NotionID)
 	log("  Replit: %s\n", uri)
 	panic("we no longer use replit")
 }
 
-func (r *Converter) genSourceFile(sf *SourceFile) {
+func (c *Converter) genSourceFile(sf *SourceFile) {
 	{
 		var tmp bytes.Buffer
 		code := sf.CodeToShow()
@@ -118,7 +118,7 @@ func (r *Converter) genSourceFile(sf *SourceFile) {
 		}
 		info.PlaygroundURI = sf.PlaygroundURI
 		s := fixupHTMLCodeBlock(string(d), &info)
-		r.r.WriteString(s)
+		c.converter.WriteString(s)
 	}
 
 	output := sf.Output()
@@ -130,13 +130,13 @@ func (r *Converter) genSourceFile(sf *SourceFile) {
 			Lang: "output",
 		}
 		s := fixupHTMLCodeBlock(string(d), &info)
-		r.r.WriteString(s)
+		c.converter.WriteString(s)
 	}
 }
 
-func (r *Converter) genGitEmbed(block *notionapi.Block) {
+func (c *Converter) genGitEmbed(block *notionapi.Block) {
 	uri := block.FormatEmbed().DisplaySource
-	f := findSourceFileForEmbedURL(r.page, uri)
+	f := findSourceFileForEmbedURL(c.page, uri)
 	// currently we only handle source code file embeds but might handle
 	// others (graphs etc.)
 	if f == nil {
@@ -144,22 +144,22 @@ func (r *Converter) genGitEmbed(block *notionapi.Block) {
 		return
 	}
 
-	r.genSourceFile(f)
+	c.genSourceFile(f)
 }
 
 // RenderCode renders BlockCode
-func (r *Converter) RenderCode(block *notionapi.Block) bool {
+func (c *Converter) RenderCode(block *notionapi.Block) bool {
 	//lang := getLangFromFileExt(filepath.Ext(path))
 	//gitHubURL := getGitHubPathForFile(path)
 	lang := block.CodeLanguage
 	sf := &SourceFile{
-		NotionOriginURL: fmt.Sprintf("https://notion.so/%s", toNoDashID(r.page.NotionID)),
+		NotionOriginURL: fmt.Sprintf("https://notion.so/%s", toNoDashID(c.page.NotionID)),
 		//Path:      path,
 		//FileName:  name,
 		//GitHubURL: gitHubURL,
 	}
 	sf.Lang = lang
-	sf.SnippetName = r.page.PageTitle()
+	sf.SnippetName = c.page.PageTitle()
 	if sf.SnippetName == "" {
 		sf.SnippetName = "untitled"
 	}
@@ -181,12 +181,12 @@ func (r *Converter) RenderCode(block *notionapi.Block) bool {
 		sf.Directive.NoOutput = true
 	}
 	setDefaultFileNameFromLanguage(sf)
-	err = getOutputCached(r.book.cache, sf)
+	err = getOutputCached(c.book.cache, sf)
 	if err != nil {
 		log("getOutputCached() failed.\nsf.CodeToRun():\n%s\n", sf.CodeToRun)
 		panicIfErr(err)
 	}
-	r.genSourceFile(sf)
+	c.genSourceFile(sf)
 
 	if false {
 		// code := html.EscapeString(block.Code)
@@ -200,7 +200,7 @@ func (r *Converter) RenderCode(block *notionapi.Block) bool {
 		var info CodeBlockInfo
 		// TODO: set Lang, GitHubURI and PlaygroundURI
 		s := fixupHTMLCodeBlock(string(d), &info)
-		r.r.WriteString(s)
+		c.converter.WriteString(s)
 	}
 	return true
 }
@@ -239,20 +239,20 @@ func setDefaultFileNameFromLanguage(sf *SourceFile) error {
 
 // RenderImage renders BlockImage
 // TODO: download images locally like blog
-func (r *Converter) RenderImage(block *notionapi.Block) bool {
+func (c *Converter) RenderImage(block *notionapi.Block) bool {
 	link := block.ImageURL
 	cls := "img"
 	attrs := []string{"class", cls, "src", link}
-	r.r.WriteElement(block, "img", attrs, "", true)
-	r.r.WriteElement(block, "img", attrs, "", false)
+	c.converter.WriteElement(block, "img", attrs, "", true)
+	c.converter.WriteElement(block, "img", attrs, "", false)
 	return true
 }
 
 // RenderPage renders BlockPage
-func (r *Converter) RenderPage(block *notionapi.Block) bool {
-	if r.r.Page.IsRoot(block) {
+func (c *Converter) RenderPage(block *notionapi.Block) bool {
+	if c.converter.Page.IsRoot(block) {
 		// skips top-level as it's rendered somewhere else
-		r.r.RenderChildren(block)
+		c.converter.RenderChildren(block)
 		return true
 	}
 
@@ -261,13 +261,13 @@ func (r *Converter) RenderPage(block *notionapi.Block) bool {
 		cls = "page"
 	}
 
-	url, title := r.getURLAndTitleForBlock(block)
+	url, title := c.getURLAndTitleForBlock(block)
 	title = html.EscapeString(title)
 	content := fmt.Sprintf(`<a href="%s">%s</a>`, url, title)
 	attrs := []string{"class", cls}
 	title = html.EscapeString(title)
-	r.r.WriteElement(block, "div", attrs, content, true)
-	r.r.WriteElement(block, "div", attrs, content, false)
+	c.converter.WriteElement(block, "div", attrs, content, true)
+	c.converter.WriteElement(block, "div", attrs, content, false)
 	return true
 }
 
@@ -294,17 +294,17 @@ func isBlockTextEmpty(block *notionapi.Block) bool {
 	return false
 }
 
-func (r *Converter) isLastBlock() bool {
-	lastIdx := len(r.r.CurrBlocks) - 1
-	return r.r.CurrBlockIdx == lastIdx
+func (c *Converter) isLastBlock() bool {
+	lastIdx := len(c.converter.CurrBlocks) - 1
+	return c.converter.CurrBlockIdx == lastIdx
 }
 
-func (r *Converter) isFirstBlock() bool {
-	return r.r.CurrBlockIdx == 0
+func (c *Converter) isFirstBlock() bool {
+	return c.converter.CurrBlockIdx == 0
 }
 
 // RenderText renders BlockText
-func (r *Converter) RenderText(block *notionapi.Block) bool {
+func (c *Converter) RenderText(block *notionapi.Block) bool {
 	if isBlockTextTodo(block) {
 		return true
 	}
@@ -312,39 +312,39 @@ func (r *Converter) RenderText(block *notionapi.Block) bool {
 	// notionapi/tohtml renders empty blocks as visible, so skip empty text
 	// blocks if they are the first or last. Assumption is that it's careless
 	// editing
-	skipIfEmpty := r.isLastBlock() || r.isFirstBlock()
+	skipIfEmpty := c.isLastBlock() || c.isFirstBlock()
 	if skipIfEmpty && isBlockTextEmpty(block) {
 		return true
 	}
 
 	// TODO: convert to div
-	r.r.WriteElement(block, "p", nil, "", true)
-	r.r.RenderChildren(block)
-	r.r.WriteElement(block, "p", nil, "", false)
+	c.converter.WriteElement(block, "p", nil, "", true)
+	c.converter.RenderChildren(block)
+	c.converter.WriteElement(block, "p", nil, "", false)
 	return true
 }
 
-func (r *Converter) blockRenderOverride(block *notionapi.Block) bool {
+func (c *Converter) blockRenderOverride(block *notionapi.Block) bool {
 	switch block.Type {
 	case notionapi.BlockPage:
-		return r.RenderPage(block)
+		return c.RenderPage(block)
 	case notionapi.BlockCode:
-		return r.RenderCode(block)
+		return c.RenderCode(block)
 	case notionapi.BlockImage:
-		return r.RenderImage(block)
+		return c.RenderImage(block)
 	case notionapi.BlockText:
-		return r.RenderText(block)
+		return c.RenderText(block)
 	case notionapi.BlockEmbed:
-		return r.RenderEmbed(block)
+		return c.RenderEmbed(block)
 	}
 	return false
 }
 
 // Gen returns generated HTML
-func (r *Converter) Gen() []byte {
-	inner := string(r.r.ToHTML())
+func (c *Converter) Gen() []byte {
+	inner := string(c.converter.ToHTML())
 
-	rootPage := r.page.NotionPage.Root()
+	rootPage := c.page.NotionPage.Root()
 	f := rootPage.FormatPage()
 	isMono := f != nil && f.PageFont == "mono"
 
@@ -383,7 +383,7 @@ func notionToHTML(page *Page, book *Book) []byte {
 	notionapi.PanicOnFailures = true
 	r.RenderBlockOverride = res.blockRenderOverride
 	r.RewriteURL = res.rewriteURL
-	res.r = r
+	res.converter = r
 
 	var headings []*HeadingInfo
 	cb := func(block *notionapi.Block) {

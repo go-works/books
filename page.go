@@ -98,7 +98,7 @@ func (p *Page) hasMeta(key string) bool {
 }
 
 func (p *Page) getID() string {
-	return p.findMeta("id")
+	return p.NotionID
 }
 
 func (p *Page) getSearch() []string {
