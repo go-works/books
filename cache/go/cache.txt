@@ -18934,3 +18934,68 @@ Output:+0
 66 1566770953986 glotid
 Sha1: f6663bf9fc63e86bd7d8289dbfb20a16a063848b
 GlotID: ffdgn14ln7
+992 1566838281622 glotoutput
+Sha1: 496a6c861e662aae32448a51afd441bca25f9de3
+Lang: Go
+FileName: main.go
+CodeFull:+392
+// :glot
+// allow error
+package main
+
+import "fmt"
+
+// :show start
+func logNum(i int) {
+	fmt.Printf("Num %d\n", i)
+}
+
+func main() {
+	defer logNum(1)
+	fmt.Println("First main statement")
+	defer logNum(2)
+	defer logNum(3)
+	panic("panic occurred")
+
+	fmt.Println("Last main statement") // not printed
+
+	// not deferred since execution flow never reaches this line
+	defer logNum(4)
+}
+
+// :show end
+CodeToRun:+340
+package main
+
+import "fmt"
+
+func logNum(i int) {
+	fmt.Printf("Num %d\n", i)
+}
+
+func main() {
+	defer logNum(1)
+	fmt.Println("First main statement")
+	defer logNum(2)
+	defer logNum(3)
+	panic("panic occurred")
+
+	fmt.Println("Last main statement") // not printed
+
+	// not deferred since execution flow never reaches this line
+	defer logNum(4)
+}
+Output:+144
+First main statement
+Num 3
+Num 2
+Num 1
+panic: panic occurred
+
+goroutine 1 [running]:
+main.main()
+	/tmp/791288832/main.go:14 +0xf0
+exit status 2
+66 1566838282448 glotid
+Sha1: 496a6c861e662aae32448a51afd441bca25f9de3
+GlotID: ffebkir13n
