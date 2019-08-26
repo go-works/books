@@ -36,6 +36,9 @@ var (
 	// url or id of the page to rebuild
 	flgNoUpdateOutput bool
 
+	flgReportExternalLinks bool
+	flgReportStackOverflowLinks bool
+
 	soUserIDToNameMap map[int]string
 	googleAnalytics   template.HTML
 	doMinify          bool
@@ -97,6 +100,8 @@ func parseFlags() {
 	flag.BoolVar(&flgNoUpdateOutput, "no-update-output", false, "if true, will disable updating ouput files in cache")
 	flag.BoolVar(&flgDisableNotionCache, "no-cache", false, "if true, disables cache for notion")
 	flag.BoolVar(&flgNoDownload, "no-download", false, "if true, will not download pages from notion")
+	flag.BoolVar(&flgReportExternalLinks, "report-external-links", false, "if true, shows external links for all pages")
+	flag.BoolVar(&flgReportStackOverflowLinks, "report-so-links", false, "if true, shows links to stackoverflow.com")
 	flag.Parse()
 
 	if flgAnalytics != "" {
@@ -243,11 +248,11 @@ func genBooks(books []*Book) {
 	copyToWwwAsSha1MaybeMust("index.css")
 	copyToWwwAsSha1MaybeMust("app.js")
 	copyToWwwAsSha1MaybeMust("favicon.ico")
-	genIndex(books, nil)
-	genIndexGrid(books, nil)
+	_ = genIndex(books, nil)
+	_ = genIndexGrid(books, nil)
 	gen404TopLevel()
-	genAbout(nil)
-	genFeedback(nil)
+	_ = genAbout(nil)
+	_ = genFeedback(nil)
 
 	if true {
 		// parallel
@@ -356,6 +361,11 @@ func main() {
 	initMinify()
 	loadSOUserMappingsMust()
 
+	if flgReportExternalLinks || flgReportStackOverflowLinks {
+		reportExternalLinks()
+		return
+	}
+
 	client := &notionapi.Client{
 		AuthToken: notionAuthToken,
 	}
@@ -407,7 +417,7 @@ func main() {
 		startPreviewOnDemand(books)
 		return
 	}
-	
+
 	if flgPreviewStatic {
 		startPreviewStatic()
 	}

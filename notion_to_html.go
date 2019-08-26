@@ -30,6 +30,7 @@ func areNotionIDsEqual(id1, id2 string) bool {
 	id2 = toNoDashID(id2)
 	return id1 == id2
 }
+
 func (c *Converter) reportIfInvalidLink(uri string, extractedID string) {
 	pageID := c.page.getID()
 	log("Found invalid link '%s' (id: '%s') in page https://notion.so/%s\n", uri, extractedID, pageID)
