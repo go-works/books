@@ -36,7 +36,7 @@ var (
 	// url or id of the page to rebuild
 	flgNoUpdateOutput bool
 
-	flgReportExternalLinks bool
+	flgReportExternalLinks      bool
 	flgReportStackOverflowLinks bool
 
 	soUserIDToNameMap map[int]string
@@ -395,15 +395,18 @@ func main() {
 			}
 		}
 	}
-
 	for _, book := range books {
 		initBook(book)
 		downloadBook(client, book)
 		loadSoContributorsMust(book)
 	}
+	log("Downloaded %d pages, %d from cache, in %s\n", nTotalDownloaded, nTotalFromCache, time.Since(timeStart))
 
-	log("Downloaded %d pages, got %d from cache\n", nTotalDownloaded, nTotalFromCache)
-	log("Download time: %s\n", time.Since(timeStart))
+	if flgPreviewOnDemand {
+		log("Time: %s\n", time.Since(timeStart))
+		startPreviewOnDemand(books)
+		return
+	}
 
 	genStartTime := time.Now()
 	genBooks(books)
@@ -411,12 +414,6 @@ func main() {
 	genNetlifyRedirects(books)
 	printAndClearErrors()
 	log("Gen time: %s, total time: %s\n", time.Since(genStartTime), time.Since(timeStart))
-
-	if flgPreviewOnDemand {
-		log("Time: %s\n", time.Since(timeStart))
-		startPreviewOnDemand(books)
-		return
-	}
 
 	if flgPreviewStatic {
 		startPreviewStatic()
