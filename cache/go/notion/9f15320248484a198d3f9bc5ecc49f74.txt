@@ -1,4 +1,4 @@
-1304 1565593465819 httpcache-v1
+1153 1566920190471 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+110
@@ -10,7 +10,7 @@ Body:+110
     }
   ]
 }
-Response:+1104
+Response:+954
 {
   "results": [
     {
@@ -18,12 +18,9 @@ Response:+1104
       "value": {
         "alive": true,
         "content": [
-          "24ed835a-69a2-4cc7-9019-74aa2aad09e5",
-          "40b83579-6086-4ed5-be9b-9f095f9734f5",
-          "2124f1c0-54c5-4802-995c-ea5eb0945472",
-          "61e82a52-b2f1-45ff-99d9-ddfc01c981c1",
           "c014c029-0917-4c28-9536-8faa7d3bea8e",
-          "029c780e-9df1-4d2b-b448-fc9c83efcb04"
+          "029c780e-9df1-4d2b-b448-fc9c83efcb04",
+          "d465652e-d4b1-4aa0-9a2f-c3896d24693a"
         ],
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
         "created_time": 1532156128164,
@@ -34,7 +31,7 @@ Response:+1104
         "id": "9f153202-4848-4a19-8d3f-9bc5ecc49f74",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1532208330557,
+        "last_edited_time": 1566920100000,
         "parent_id": "fc416b38-f6f3-41bf-a311-bf6c575c73a1",
         "parent_table": "block",
         "properties": {
@@ -45,12 +42,12 @@ Response:+1104
           ]
         },
         "type": "page",
-        "version": 25
+        "version": 34
       }
     }
   ]
 }
-13446 1565593465820 httpcache-v1
+11124 1566920190472 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+152
@@ -63,7 +60,7 @@ Body:+152
   "pageId": "9f153202-4848-4a19-8d3f-9bc5ecc49f74",
   "verticalColumns": false
 }
-Response:+13205
+Response:+10883
 {
   "cursor": {
     "stack": []
@@ -79,7 +76,7 @@ Response:+13205
           "id": "029c780e-9df1-4d2b-b448-fc9c83efcb04",
           "ignore_block_count": true,
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1532208312390,
+          "last_edited_time": 1566920100000,
           "parent_id": "9f153202-4848-4a19-8d3f-9bc5ecc49f74",
           "parent_table": "block",
           "properties": {
@@ -90,56 +87,12 @@ Response:+13205
             ],
             "title": [
               [
-                "package main\n\nimport (\n    \"log\"\n    \"fmt\"\n    \"database/sql\"\n    _ \"github.com/go-sql-driver/mysql\"\n)\n\nfunc main() {\n    dsn := \"mysql_username:CHANGEME@tcp(localhost:3306)/dbname\"\n\n    db, err := sql.Open(\"mysql\", dsn)\n    if err != nil {\n        log.Fatal(err)\n    }\n    defer sql.Close()\n\n    rows, err := db.Query(\"select id, first_name from user limit 10\")\n    if err != nil {\n        log.Fatal(err)\n    }\n    defer rows.Close()\n\n    for rows.Next() {\n        var id int\n        var username string\n        if err := rows.Scan(\u0026id, \u0026username); err != nil {\n            log.Fatal(err)\n        }\n        fmt.Printf(\"%d-%s\\n\", id, username)\n    }\n}"
+                "package main\n\nimport (\n\t\"database/sql\"\n\t\"fmt\"\n\t\"log\"\n\n\t_ \"github.com/go-sql-driver/mysql\"\n)\n\nfunc main() {\n\tdsn := \"mysql_username:CHANGEME@tcp(localhost:3306)/dbname\"\n\n\tdb, err := sql.Open(\"mysql\", dsn)\n\tif err != nil {\n\t\tlog.Fatal(err)\n\t}\n\tdefer db.Close()\n\n\trows, err := db.Query(\"select id, first_name from user limit 10\")\n\tif err != nil {\n\t\tlog.Fatal(err)\n\t}\n\tdefer rows.Close()\n\n\tfor rows.Next() {\n\t\tvar id int\n\t\tvar username string\n\t\tif err := rows.Scan(\u0026id, \u0026username); err != nil {\n\t\t\tlog.Fatal(err)\n\t\t}\n\t\tfmt.Printf(\"%d-%s\\n\", id, username)\n\t}\n}"
               ]
             ]
           },
           "type": "code",
-          "version": 3
-        }
-      },
-      "2124f1c0-54c5-4802-995c-ea5eb0945472": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1532208318357,
-          "id": "2124f1c0-54c5-4802-995c-ea5eb0945472",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1532208322710,
-          "parent_id": "9f153202-4848-4a19-8d3f-9bc5ecc49f74",
-          "parent_table": "block",
-          "properties": {
-            "title": [
-              [
-                "$SOId: 4169"
-              ]
-            ]
-          },
-          "type": "text",
-          "version": 12
-        }
-      },
-      "24ed835a-69a2-4cc7-9019-74aa2aad09e5": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1532208315424,
-          "id": "24ed835a-69a2-4cc7-9019-74aa2aad09e5",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1532208324390,
-          "parent_id": "9f153202-4848-4a19-8d3f-9bc5ecc49f74",
-          "parent_table": "block",
-          "properties": {
-            "title": [
-              [
-                "$Id: 195"
-              ]
-            ]
-          },
-          "type": "text",
-          "version": 12
+          "version": 10
         }
       },
       "2cab1ed2-b7a4-4584-b56b-0d3ca9b80185": {
@@ -250,54 +203,14 @@ Response:+13205
           "version": 1668
         }
       },
-      "40b83579-6086-4ed5-be9b-9f095f9734f5": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1532208316981,
-          "id": "40b83579-6086-4ed5-be9b-9f095f9734f5",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1532208323741,
-          "parent_id": "9f153202-4848-4a19-8d3f-9bc5ecc49f74",
-          "parent_table": "block",
-          "properties": {
-            "title": [
-              [
-                "$Score: 0"
-              ]
-            ]
-          },
-          "type": "text",
-          "version": 12
-        }
-      },
-      "61e82a52-b2f1-45ff-99d9-ddfc01c981c1": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1532208321470,
-          "id": "61e82a52-b2f1-45ff-99d9-ddfc01c981c1",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1532208321470,
-          "parent_id": "9f153202-4848-4a19-8d3f-9bc5ecc49f74",
-          "parent_table": "block",
-          "type": "text",
-          "version": 4
-        }
-      },
       "9f153202-4848-4a19-8d3f-9bc5ecc49f74": {
         "role": "comment_only",
         "value": {
           "alive": true,
           "content": [
-            "24ed835a-69a2-4cc7-9019-74aa2aad09e5",
-            "40b83579-6086-4ed5-be9b-9f095f9734f5",
-            "2124f1c0-54c5-4802-995c-ea5eb0945472",
-            "61e82a52-b2f1-45ff-99d9-ddfc01c981c1",
             "c014c029-0917-4c28-9536-8faa7d3bea8e",
-            "029c780e-9df1-4d2b-b448-fc9c83efcb04"
+            "029c780e-9df1-4d2b-b448-fc9c83efcb04",
+            "d465652e-d4b1-4aa0-9a2f-c3896d24693a"
           ],
           "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
           "created_time": 1532156128164,
@@ -308,7 +221,7 @@ Response:+13205
           "id": "9f153202-4848-4a19-8d3f-9bc5ecc49f74",
           "ignore_block_count": true,
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1532208330557,
+          "last_edited_time": 1566920100000,
           "parent_id": "fc416b38-f6f3-41bf-a311-bf6c575c73a1",
           "parent_table": "block",
           "properties": {
@@ -319,7 +232,7 @@ Response:+13205
             ]
           },
           "type": "page",
-          "version": 25
+          "version": 34
         }
       },
       "c014c029-0917-4c28-9536-8faa7d3bea8e": {
@@ -353,6 +266,21 @@ Response:+13205
           },
           "type": "text",
           "version": 12
+        }
+      },
+      "d465652e-d4b1-4aa0-9a2f-c3896d24693a": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1566920100000,
+          "id": "d465652e-d4b1-4aa0-9a2f-c3896d24693a",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1566920100000,
+          "parent_id": "9f153202-4848-4a19-8d3f-9bc5ecc49f74",
+          "parent_table": "block",
+          "type": "text",
+          "version": 3
         }
       },
       "fc416b38-f6f3-41bf-a311-bf6c575c73a1": {
@@ -406,7 +334,7 @@ Response:+13205
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 179
+          "version": 182
         }
       }
     },
