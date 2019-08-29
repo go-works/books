@@ -121,7 +121,7 @@ func createFileManager(startDir string) (*FileManager, error) {
 	var fm FileManager
 	def := declarative.MainWindow{
 		AssignTo: &fm.window,
-		Title:    "File Manageer",
+		Title:    "File Manager",
 		MinSize:  declarative.Size{Width: 240, Height: 200},
 		Size:     declarative.Size{Width: 320, Height: 400},
 		Layout:   declarative.VBox{},
