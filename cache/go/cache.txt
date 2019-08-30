@@ -18999,3 +18999,157 @@ exit status 2
 66 1566838282448 glotid
 Sha1: 496a6c861e662aae32448a51afd441bca25f9de3
 GlotID: ffebkir13n
+1026 1567124881973 glotoutput
+Sha1: e41f4d5373a787303deae7c228e6890fb1667b9f
+Lang: Go
+FileName: main.go
+CodeFull:+469
+// :glot, :name main.go
+package main
+
+import (
+	"bytes"
+	"fmt"
+	"io/ioutil"
+	"log"
+	"os"
+)
+
+func main() {
+	// :show start
+	path := "main.go"
+	f, err := os.Open(path)
+	if err != nil {
+		log.Fatalf("os.Open() failed with %s\n", err)
+	}
+	defer f.Close()
+
+	d, err := ioutil.ReadAll(f)
+	if err != nil {
+		log.Fatalf("ioutil.ReadAll() failed with '%s'\n", err)
+	}
+
+	lines := bytes.Split(d, []byte{'\n'})
+	fmt.Printf("File %s has %d lines\n", path, len(lines))
+	// :show end
+}
+CodeToRun:+415
+package main
+
+import (
+	"bytes"
+	"fmt"
+	"io/ioutil"
+	"log"
+	"os"
+)
+
+func main() {
+	path := "main.go"
+	f, err := os.Open(path)
+	if err != nil {
+		log.Fatalf("os.Open() failed with %s\n", err)
+	}
+	defer f.Close()
+
+	d, err := ioutil.ReadAll(f)
+	if err != nil {
+		log.Fatalf("ioutil.ReadAll() failed with '%s'\n", err)
+	}
+
+	lines := bytes.Split(d, []byte{'\n'})
+	fmt.Printf("File %s has %d lines\n", path, len(lines))
+}
+Output:+26
+File main.go has 26 lines
+66 1567124882864 glotid
+Sha1: e41f4d5373a787303deae7c228e6890fb1667b9f
+GlotID: ffhz8d8ly2
+1532 1567124884409 glotoutput
+Sha1: c4fd7202d14e12aca90d9eeace155e4c6439309a
+Lang: Go
+FileName: main.go
+CodeFull:+722
+// :glot, :name main.go
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"log"
+	"os"
+)
+
+// :show start
+
+// ReadLines reads all lines from a file
+func ReadLines(filePath string) ([]string, error) {
+	file, err := os.OpenFile(filePath, os.O_RDONLY, 0666)
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
+	scanner := bufio.NewScanner(file)
+	res := make([]string, 0)
+	for scanner.Scan() {
+		line := scanner.Text()
+		res = append(res, line)
+	}
+	if err = scanner.Err(); err != nil {
+		return nil, err
+	}
+	return res, nil
+}
+
+func main() {
+	path := "main.go"
+	lines, err := ReadLines(path)
+	if err != nil {
+		log.Fatalf("ReadLines failed with '%s'\n", err)
+	}
+	fmt.Printf("File %s has %d lines\n", path, len(lines))
+}
+
+// :show end
+CodeToRun:+669
+package main
+
+import (
+	"bufio"
+	"fmt"
+	"log"
+	"os"
+)
+
+// ReadLines reads all lines from a file
+func ReadLines(filePath string) ([]string, error) {
+	file, err := os.OpenFile(filePath, os.O_RDONLY, 0666)
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
+	scanner := bufio.NewScanner(file)
+	res := make([]string, 0)
+	for scanner.Scan() {
+		line := scanner.Text()
+		res = append(res, line)
+	}
+	if err = scanner.Err(); err != nil {
+		return nil, err
+	}
+	return res, nil
+}
+
+func main() {
+	path := "main.go"
+	lines, err := ReadLines(path)
+	if err != nil {
+		log.Fatalf("ReadLines failed with '%s'\n", err)
+	}
+	fmt.Printf("File %s has %d lines\n", path, len(lines))
+}
+Output:+26
+File main.go has 36 lines
+66 1567124884585 glotid
+Sha1: c4fd7202d14e12aca90d9eeace155e4c6439309a
+GlotID: ffhz8e9hem

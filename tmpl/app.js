@@ -1007,7 +1007,7 @@ function showcontact() {
   el.style.display = "block";
   el = document.getElementById("contact-page-url");
   var uri = window.location.href;
-  uri = uri.replace("#", "");
+  //uri = uri.replace("#", "");
   el.value = uri;
   el = document.getElementById("msg-for-chris");
   el.focus();

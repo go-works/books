@@ -1,4 +1,4 @@
-1609 1565593414890 httpcache-v1
+1509 1567113112737 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+110
@@ -10,7 +10,7 @@ Body:+110
     }
   ]
 }
-Response:+1409
+Response:+1309
 {
   "results": [
     {
@@ -18,8 +18,6 @@ Response:+1409
       "value": {
         "alive": true,
         "content": [
-          "f2b84753-c723-4e4c-b4d5-5c77e586ff4c",
-          "36885361-ad15-4df7-a77a-d3bfb7d7f86d",
           "680f9052-5347-4d29-beaf-21adaf104e4a",
           "a7fde6bb-4e8a-4722-99fd-c11e42ae2914",
           "9c401bfb-b926-4fcd-b013-61884f054df3",
@@ -40,7 +38,7 @@ Response:+1409
         "id": "2a9fdaa5-4d98-484d-ae42-6ccd2011b988",
         "ignore_block_count": true,
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1552281900000,
+        "last_edited_time": 1567025340000,
         "parent_id": "7a55634f-b819-4a85-bcc6-036eeba61b39",
         "parent_table": "block",
         "properties": {
@@ -51,12 +49,12 @@ Response:+1409
           ]
         },
         "type": "page",
-        "version": 45
+        "version": 52
       }
     }
   ]
 }
-20021 1565593414893 httpcache-v1
+21392 1567113112738 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+152
@@ -69,7 +67,7 @@ Body:+152
   "pageId": "2a9fdaa5-4d98-484d-ae42-6ccd2011b988",
   "verticalColumns": false
 }
-Response:+19780
+Response:+21151
 {
   "cursor": {
     "stack": []
@@ -149,8 +147,6 @@ Response:+19780
         "value": {
           "alive": true,
           "content": [
-            "f2b84753-c723-4e4c-b4d5-5c77e586ff4c",
-            "36885361-ad15-4df7-a77a-d3bfb7d7f86d",
             "680f9052-5347-4d29-beaf-21adaf104e4a",
             "a7fde6bb-4e8a-4722-99fd-c11e42ae2914",
             "9c401bfb-b926-4fcd-b013-61884f054df3",
@@ -171,7 +167,7 @@ Response:+19780
           "id": "2a9fdaa5-4d98-484d-ae42-6ccd2011b988",
           "ignore_block_count": true,
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1552281900000,
+          "last_edited_time": 1567025340000,
           "parent_id": "7a55634f-b819-4a85-bcc6-036eeba61b39",
           "parent_table": "block",
           "properties": {
@@ -182,7 +178,7 @@ Response:+19780
             ]
           },
           "type": "page",
-          "version": 45
+          "version": 52
         }
       },
       "2cab1ed2-b7a4-4584-b56b-0d3ca9b80185": {
@@ -293,37 +289,18 @@ Response:+19780
           "version": 1668
         }
       },
-      "36885361-ad15-4df7-a77a-d3bfb7d7f86d": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1532206436821,
-          "id": "36885361-ad15-4df7-a77a-d3bfb7d7f86d",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1532236751380,
-          "parent_id": "2a9fdaa5-4d98-484d-ae42-6ccd2011b988",
-          "parent_table": "block",
-          "properties": {
-            "title": [
-              [
-                "$SOId: 801000of"
-              ]
-            ]
-          },
-          "type": "text",
-          "version": 12
-        }
-      },
       "59b4d289-377b-4d98-9047-941a04204e81": {
         "role": "comment_only",
         "value": {
           "alive": true,
           "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
           "created_time": 1552281927495,
+          "discussions": [
+            "7652dfd2-0a19-4e0e-b746-70cc73a3b0a9"
+          ],
           "id": "59b4d289-377b-4d98-9047-941a04204e81",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1552281900000,
+          "last_edited_time": 1567025340000,
           "parent_id": "2a9fdaa5-4d98-484d-ae42-6ccd2011b988",
           "parent_table": "block",
           "properties": {
@@ -334,12 +311,24 @@ Response:+19780
             ],
             "title": [
               [
-                "// :glot, :name main.go\npackage main\n\nimport (\n\t\"bufio\"\n\t\"fmt\"\n\t\"log\"\n\t\"os\"\n)\n\n// :show start\n\n// ReadLines reads all lines from a file\nfunc ReadLines(filePath string) ([]string, error) {\n\tfile, err := os.OpenFile(filePath, os.O_RDONLY, 0666)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\tdefer file.Close()\n\tscanner := bufio.NewScanner(file)\n\tres := make([]string, 0)\n\tfor scanner.Scan() {\n\t\tline := scanner.Bytes()\n\t\tres = append(res, string(line))\n\t}\n\tif err = scanner.Err(); err != nil {\n\t\treturn nil, err\n\t}\n\treturn res, nil\n}\n\nfunc main() {\n\tpath := \"main.go\"\n\tlines, err := ReadLines(path)\n\tif err != nil {\n\t\tlog.Fatalf(\"ReadLines failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"File %s has %d lines\\n\", path, len(lines))\n}\n\n// :show end"
+                "// :glot, :name main.go\npackage main\n\nimport (\n\t\"bufio\"\n\t\"fmt\"\n\t\"log\"\n\t\"os\"\n)\n\n// :show start\n\n// ReadLines reads all lines from a file\nfunc ReadLines(filePath string) ([]string, error) {\n\tfile, err := os.OpenFile(filePath, os.O_RDONLY, 0666)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\tdefer file.Close()\n\tscanner := bufio.NewScanner(file)\n\tres := make([]string, 0)\n\t"
+              ],
+              [
+                "for scanner.Scan() {\n\t\tline := scanner.Text()\n\t\tres = append(res, line)",
+                [
+                  [
+                    "m",
+                    "7652dfd2-0a19-4e0e-b746-70cc73a3b0a9"
+                  ]
+                ]
+              ],
+              [
+                "\n\t}\n\tif err = scanner.Err(); err != nil {\n\t\treturn nil, err\n\t}\n\treturn res, nil\n}\n\nfunc main() {\n\tpath := \"main.go\"\n\tlines, err := ReadLines(path)\n\tif err != nil {\n\t\tlog.Fatalf(\"ReadLines failed with '%s'\\n\", err)\n\t}\n\tfmt.Printf(\"File %s has %d lines\\n\", path, len(lines))\n}\n\n// :show end"
               ]
             ]
           },
           "type": "code",
-          "version": 32
+          "version": 76
         }
       },
       "680f9052-5347-4d29-beaf-21adaf104e4a": {
@@ -369,9 +358,6 @@ Response:+19780
         "value": {
           "alive": true,
           "content": [
-            "2c4dd486-07d3-4c64-94c8-b0a197d35e67",
-            "b27f8c2c-067b-4910-bfc3-53482e2a35cb",
-            "6b796187-dbbd-43d5-aa73-13793ed2b3fc",
             "613ca276-0f27-4b1c-8689-92f9324bd466",
             "6f0c0062-d1a3-4497-8185-3ab56dc1741f",
             "e1b80ed4-680d-4139-b16d-95da5c4ee81b",
@@ -392,18 +378,18 @@ Response:+19780
           "id": "7a55634f-b819-4a85-bcc6-036eeba61b39",
           "ignore_block_count": true,
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1552283340000,
+          "last_edited_time": 1567013040000,
           "parent_id": "2cab1ed2-b7a4-4584-b56b-0d3ca9b80185",
           "parent_table": "block",
           "properties": {
             "title": [
               [
-                "Working with files and I/O"
+                "Files and I/O"
               ]
             ]
           },
           "type": "page",
-          "version": 115
+          "version": 124
         }
       },
       "9c401bfb-b926-4fcd-b013-61884f054df3": {
@@ -578,27 +564,89 @@ Response:+19780
           "type": "code",
           "version": 3
         }
-      },
-      "f2b84753-c723-4e4c-b4d5-5c77e586ff4c": {
+      }
+    },
+    "comment": {
+      "2041cf67-d9f3-4a14-815c-502173cde104": {
         "role": "comment_only",
         "value": {
           "alive": true,
           "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1532206435032,
-          "id": "f2b84753-c723-4e4c-b4d5-5c77e586ff4c",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1532236749976,
-          "parent_id": "2a9fdaa5-4d98-484d-ae42-6ccd2011b988",
-          "parent_table": "block",
-          "properties": {
-            "title": [
+          "created_time": 1567025340000,
+          "id": "2041cf67-d9f3-4a14-815c-502173cde104",
+          "last_edited_time": 1567025340000,
+          "parent_id": "7652dfd2-0a19-4e0e-b746-70cc73a3b0a9",
+          "parent_table": "discussion",
+          "text": [
+            [
+              "good point, fixed"
+            ]
+          ],
+          "version": 2
+        }
+      },
+      "5046b88b-30d2-4268-8d1f-b4298c209188": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "02bbc6df-b452-4715-8e93-1d235d6490df",
+          "created_time": 1567024860000,
+          "id": "5046b88b-30d2-4268-8d1f-b4298c209188",
+          "last_edited_time": 1567024860000,
+          "parent_id": "7652dfd2-0a19-4e0e-b746-70cc73a3b0a9",
+          "parent_table": "discussion",
+          "text": [
+            [
+              "scanner.Text  since the section title says \"line by line\"?"
+            ]
+          ],
+          "version": 2
+        }
+      },
+      "ede76932-2304-42b9-a3f5-b959073d7fcd": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "02bbc6df-b452-4715-8e93-1d235d6490df",
+          "created_time": 1567024740000,
+          "id": "ede76932-2304-42b9-a3f5-b959073d7fcd",
+          "last_edited_time": 1567024740000,
+          "parent_id": "7652dfd2-0a19-4e0e-b746-70cc73a3b0a9",
+          "parent_table": "discussion",
+          "text": [
+            [
+              "Unless there was deliberate intent to work at the byte level, would it be clearer to use"
+            ]
+          ],
+          "version": 2
+        }
+      }
+    },
+    "discussion": {
+      "7652dfd2-0a19-4e0e-b746-70cc73a3b0a9": {
+        "role": "comment_only",
+        "value": {
+          "comments": [
+            "ede76932-2304-42b9-a3f5-b959073d7fcd",
+            "5046b88b-30d2-4268-8d1f-b4298c209188",
+            "2041cf67-d9f3-4a14-815c-502173cde104"
+          ],
+          "context": [
+            [
+              "for scanner.Scan() {\n\t\tline := scanner.Bytes()\n\t\tres = append(res, string(line))",
               [
-                "$Id: 160"
+                [
+                  "m",
+                  "7652dfd2-0a19-4e0e-b746-70cc73a3b0a9"
+                ]
               ]
             ]
-          },
-          "type": "text",
-          "version": 12
+          ],
+          "id": "7652dfd2-0a19-4e0e-b746-70cc73a3b0a9",
+          "parent_id": "59b4d289-377b-4d98-9047-941a04204e81",
+          "parent_table": "block",
+          "resolved": true,
+          "version": 4
         }
       }
     },
@@ -614,7 +662,7 @@ Response:+19780
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 179
+          "version": 182
         }
       }
     },
