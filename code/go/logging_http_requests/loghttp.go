@@ -16,7 +16,7 @@ var (
 	httpLogSiser     *siser.Writer
 )
 
-// LogReqInfo describes info about HTTP request
+// HTTPReqInfo describes info about HTTP request
 type HTTPReqInfo struct {
 	// GET etc.
 	method  string
@@ -28,9 +28,7 @@ type HTTPReqInfo struct {
 	// number of bytes of the response sent
 	size int64
 	// how long did it take to
-	duration time.Duration
-	// from cookie
-	user      string
+	duration  time.Duration
 	userAgent string
 }
 
@@ -74,12 +72,12 @@ func skipHTTPRequestLogging(ri *HTTPReqInfo) bool {
 	if ri.url == "/favicon.png" {
 		return true
 	}
-	if strings.HasSuffix(ri.url, ".css") {
+
+	if ri.url == "/favicon.ico" {
 		return true
 	}
-	// those are image etc. files linked from individual pages
-	// we care about page views so they don't give us useful information
-	if strings.HasPrefix(ri.url, "/file/") {
+
+	if strings.HasSuffix(ri.url, ".css") {
 		return true
 	}
 	return false
@@ -102,9 +100,6 @@ func logHTTPReq(ri *HTTPReqInfo) {
 	rec.Append("size", strconv.FormatInt(ri.size, 10))
 	durMs := ri.duration / time.Millisecond
 	rec.Append("duration", strconv.FormatInt(int64(durMs), 10))
-	if ri.user != "" {
-		rec.Append("user", ri.user)
-	}
 	rec.Append("ua", ri.userAgent)
 
 	muLogHTTP.Lock()
