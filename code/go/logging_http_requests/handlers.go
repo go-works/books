@@ -74,6 +74,8 @@ func logRequestHandler(h http.Handler) http.Handler {
 
 		ri.ipaddr = requestGetRemoteAddress(r)
 
+		// this runs handler h and captures information about
+		// HTTP request
 		m := httpsnoop.CaptureMetrics(h, w, r)
 
 		ri.code = m.Code
