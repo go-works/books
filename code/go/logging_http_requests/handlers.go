@@ -63,8 +63,6 @@ func logRequestHandler(h http.Handler) http.Handler {
 			return
 		}
 
-		timeStart := time.Now()
-
 		ri := &HTTPReqInfo{
 			method:    r.Method,
 			url:       r.URL.String(),
@@ -80,7 +78,7 @@ func logRequestHandler(h http.Handler) http.Handler {
 
 		ri.code = m.Code
 		ri.size = m.Written
-		ri.duration = time.Since(timeStart)
+		ri.duration = m.Duration
 		logHTTPReq(ri)
 	}
 	return http.HandlerFunc(fn)
