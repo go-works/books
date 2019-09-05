@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"strings"
 	"time"
+
+	"github.com/felixge/httpsnoop"
 )
 
 // simplest possible server that returns url as plain text
@@ -72,11 +74,10 @@ func logRequestHandler(h http.Handler) http.Handler {
 
 		ri.ipaddr = requestGetRemoteAddress(r)
 
-		w2 := NewRecordingResponseWriter(w)
-		h.ServeHTTP(w2, r)
+		m := httpsnoop.CaptureMetrics(h, w, r)
 
-		ri.code = w2.Code
-		ri.size = w2.BytesWritten
+		ri.code = m.Code
+		ri.size = m.Written
 		ri.duration = time.Since(timeStart)
 		logHTTPReq(ri)
 	}
