@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/kjk/u"
 	"html/template"
 	"io/ioutil"
 	"path/filepath"
+
+	"github.com/kjk/u"
 )
 
 // Book represents a book
@@ -13,7 +14,7 @@ type Book struct {
 	Title     string // "Go", "jQuery" etcc
 	TitleLong string // "Essential Go", "Essential jQuery" etc.
 
-	// used by page index. defaults to: "<b>${TitleLong}</b> is a free book about ${Title} programming langauge."
+	// used by page index. defaults to: "<b>${TitleLong}</b> is a free book about ${Title} programming language."
 	summary string
 
 	NotionStartPageID string
@@ -85,7 +86,7 @@ func (b *Book) URL() string {
 
 func (b *Book) Summary() template.HTML {
 	if b.summary == "" {
-		b.summary = fmt.Sprintf("<b>%s</b> is a free book about %s programming langauge.", b.TitleLong, b.Title)
+		b.summary = fmt.Sprintf("<b>%s</b> is a free book about %s programming language.", b.TitleLong, b.Title)
 	}
 	return template.HTML(b.summary)
 }
