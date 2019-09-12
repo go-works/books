@@ -124,7 +124,7 @@ func (c *Converter) genSourceFile(sf *SourceFile) {
 		}
 		info.PlaygroundURI = sf.PlaygroundURI
 		s := fixupHTMLCodeBlock(string(d), &info)
-		c.converter.WriteString(s)
+		c.converter.Printf(s)
 	}
 
 	output := sf.Output()
@@ -136,7 +136,7 @@ func (c *Converter) genSourceFile(sf *SourceFile) {
 			Lang: "output",
 		}
 		s := fixupHTMLCodeBlock(string(d), &info)
-		c.converter.WriteString(s)
+		c.converter.Printf(s)
 	}
 }
 
@@ -206,7 +206,7 @@ func (c *Converter) RenderCode(block *notionapi.Block) bool {
 		var info CodeBlockInfo
 		// TODO: set Lang, GitHubURI and PlaygroundURI
 		s := fixupHTMLCodeBlock(string(d), &info)
-		c.converter.WriteString(s)
+		c.converter.Printf(s)
 	}
 	return true
 }
