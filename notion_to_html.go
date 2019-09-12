@@ -6,8 +6,8 @@ import (
 	"html"
 	"strings"
 
+	"github.com/essentialbooks/books/tohtml"
 	"github.com/kjk/notionapi"
-	"github.com/kjk/notionapi/tohtml"
 )
 
 /*
