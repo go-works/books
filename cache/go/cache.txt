@@ -19497,3 +19497,420 @@ Output:+655
 66 1567878922461 glotid
 Sha1: fa5772cb945767a0ca25c624d8ef95d0b7a2fec4
 GlotID: ffrlmsxij5
+1905 1568911972748 glotoutput
+Sha1: 89c9439c74bd8d90bc444fdcd3f93ccc9d94723d
+Lang: Go
+FileName: main.go
+CodeFull:+889
+// :glot
+package main
+
+import (
+    "encoding/gob"
+    "os"
+    "log"
+    "fmt"
+)
+
+// :show start
+type User struct {
+    Username string
+    Password string
+}
+
+func writeToGob(path string, user *User) error {
+    file, err := os.Create(path)
+    if err != nil {
+        return err
+    }
+
+    encoder := gob.NewEncoder(file)
+
+    err = encoder.Encode(user)
+    if err != nil {
+        file.Close()
+        return err
+    }
+
+    return file.Close()
+}
+
+func main() {
+     user := User{
+        Username: "Angus",
+        Password: "1234",
+    }
+    path := "user.gob"
+    err := writeToGob(path, &user)
+    if err != nil {
+        log.Fatalf("writeToGob() failed with '%s'\n", err)
+    }
+    st, err := os.Stat(path)
+    if err != nil {
+        log.Fatalf("os.Stat() failed with '%s'\n", err)
+    }
+    fmt.Printf("Wrote user struct to file '%s' of size %d\n", path, st.Size())
+}
+// :show end
+CodeToRun:+852
+package main
+
+import (
+    "encoding/gob"
+    "os"
+    "log"
+    "fmt"
+)
+
+type User struct {
+    Username string
+    Password string
+}
+
+func writeToGob(path string, user *User) error {
+    file, err := os.Create(path)
+    if err != nil {
+        return err
+    }
+
+    encoder := gob.NewEncoder(file)
+
+    err = encoder.Encode(user)
+    if err != nil {
+        file.Close()
+        return err
+    }
+
+    return file.Close()
+}
+
+func main() {
+     user := User{
+        Username: "Angus",
+        Password: "1234",
+    }
+    path := "user.gob"
+    err := writeToGob(path, &user)
+    if err != nil {
+        log.Fatalf("writeToGob() failed with '%s'\n", err)
+    }
+    st, err := os.Stat(path)
+    if err != nil {
+        log.Fatalf("os.Stat() failed with '%s'\n", err)
+    }
+    fmt.Printf("Wrote user struct to file '%s' of size %d\n", path, st.Size())
+}
+Output:+48
+Wrote user struct to file 'user.gob' of size 62
+66 1568911973717 glotid
+Sha1: 89c9439c74bd8d90bc444fdcd3f93ccc9d94723d
+GlotID: fg4s7l08l4
+2985 1568913279645 glotoutput
+Sha1: e1e266b4e6b03633d5077674558c10cd89c34a91
+Lang: Go
+FileName: main.go
+CodeFull:+1398
+// :glot
+package main
+
+import (
+    "encoding/gob"
+    "os"
+    "log"
+    "fmt"
+)
+
+// :show start
+type User struct {
+    Username string
+    Password string
+}
+// :show end
+
+// :show start
+func writeToGob(path string, user *User) error {
+    file, err := os.Create(path)
+    if err != nil {
+        return err
+    }
+
+    encoder := gob.NewEncoder(file)
+
+    err = encoder.Encode(user)
+    if err != nil {
+        file.Close()
+        return err
+    }
+
+    return file.Close()
+}
+
+func write(path string, user *User) {
+    err := writeToGob(path, user)
+    if err != nil {
+        log.Fatalf("writeToGob() failed with '%s'\n", err)
+    }
+    st, err := os.Stat(path)
+    if err != nil {
+        log.Fatalf("os.Stat() failed with '%s'\n", err)
+    }
+    fmt.Printf("Wrote user struct to file '%s' of size %d.\n", path, st.Size())
+}
+
+func read(path string) {
+    user := User{}
+    file, err := os.Open(path)
+    if err != nil {
+        log.Fatalf("os.Open('%s') failed with '%s'\n", path, err)
+    }
+    defer file.Close()
+
+    decoder := gob.NewDecoder(file)
+    err = decoder.Decode(&user)
+    if err != nil {
+        log.Fatalf("decoder.Decode() failed with '%s'\n", err)
+    }
+    fmt.Printf("\nRead from '%s' user:\n%#v\n", path, user)    
+}
+
+func main() {
+     user := User{
+        Username: "Angus",
+        Password: "1234",
+    }
+    path := "user.gob"
+    write(path, &user)
+    read(path)
+}
+CodeToRun:+1346
+package main
+
+import (
+    "encoding/gob"
+    "os"
+    "log"
+    "fmt"
+)
+
+type User struct {
+    Username string
+    Password string
+}
+
+func writeToGob(path string, user *User) error {
+    file, err := os.Create(path)
+    if err != nil {
+        return err
+    }
+
+    encoder := gob.NewEncoder(file)
+
+    err = encoder.Encode(user)
+    if err != nil {
+        file.Close()
+        return err
+    }
+
+    return file.Close()
+}
+
+func write(path string, user *User) {
+    err := writeToGob(path, user)
+    if err != nil {
+        log.Fatalf("writeToGob() failed with '%s'\n", err)
+    }
+    st, err := os.Stat(path)
+    if err != nil {
+        log.Fatalf("os.Stat() failed with '%s'\n", err)
+    }
+    fmt.Printf("Wrote user struct to file '%s' of size %d.\n", path, st.Size())
+}
+
+func read(path string) {
+    user := User{}
+    file, err := os.Open(path)
+    if err != nil {
+        log.Fatalf("os.Open('%s') failed with '%s'\n", path, err)
+    }
+    defer file.Close()
+
+    decoder := gob.NewDecoder(file)
+    err = decoder.Decode(&user)
+    if err != nil {
+        log.Fatalf("decoder.Decode() failed with '%s'\n", err)
+    }
+    fmt.Printf("\nRead from '%s' user:\n%#v\n", path, user)    
+}
+
+func main() {
+     user := User{
+        Username: "Angus",
+        Password: "1234",
+    }
+    path := "user.gob"
+    write(path, &user)
+    read(path)
+}
+Output:+122
+Wrote user struct to file 'user.gob' of size 62.
+
+Read from 'user.gob' user:
+main.User{Username:"Angus", Password:"1234"}
+66 1568913280741 glotid
+Sha1: e1e266b4e6b03633d5077674558c10cd89c34a91
+GlotID: fg4st75m4w
+2998 1568913332281 glotoutput
+Sha1: 9ae97ec3cc30f47a3fb8620b08a2c40863e76ad2
+Lang: Go
+FileName: main.go
+CodeFull:+1411
+// :glot
+package main
+
+import (
+    "encoding/gob"
+    "os"
+    "log"
+    "fmt"
+)
+
+// :show start
+type User struct {
+    Username string
+    Password string
+}
+// :show end
+
+// :show start
+func writeToGob(path string, user *User) error {
+    file, err := os.Create(path)
+    if err != nil {
+        return err
+    }
+
+    encoder := gob.NewEncoder(file)
+
+    err = encoder.Encode(user)
+    if err != nil {
+        file.Close()
+        return err
+    }
+
+    return file.Close()
+}
+
+func write(path string, user *User) {
+    err := writeToGob(path, user)
+    if err != nil {
+        log.Fatalf("writeToGob() failed with '%s'\n", err)
+    }
+    st, err := os.Stat(path)
+    if err != nil {
+        log.Fatalf("os.Stat() failed with '%s'\n", err)
+    }
+    fmt.Printf("Wrote user struct to file '%s' of size %d.\n", path, st.Size())
+}
+
+func read(path string) {
+    user := User{}
+    file, err := os.Open(path)
+    if err != nil {
+        log.Fatalf("os.Open('%s') failed with '%s'\n", path, err)
+    }
+    defer file.Close()
+
+    decoder := gob.NewDecoder(file)
+    err = decoder.Decode(&user)
+    if err != nil {
+        log.Fatalf("decoder.Decode() failed with '%s'\n", err)
+    }
+    fmt.Printf("\nRead from '%s' user:\n%#v\n", path, user)    
+}
+
+func main() {
+     user := User{
+        Username: "Angus",
+        Password: "1234",
+    }
+    path := "user.gob"
+    write(path, &user)
+    read(path)
+}
+// :show end
+CodeToRun:+1346
+package main
+
+import (
+    "encoding/gob"
+    "os"
+    "log"
+    "fmt"
+)
+
+type User struct {
+    Username string
+    Password string
+}
+
+func writeToGob(path string, user *User) error {
+    file, err := os.Create(path)
+    if err != nil {
+        return err
+    }
+
+    encoder := gob.NewEncoder(file)
+
+    err = encoder.Encode(user)
+    if err != nil {
+        file.Close()
+        return err
+    }
+
+    return file.Close()
+}
+
+func write(path string, user *User) {
+    err := writeToGob(path, user)
+    if err != nil {
+        log.Fatalf("writeToGob() failed with '%s'\n", err)
+    }
+    st, err := os.Stat(path)
+    if err != nil {
+        log.Fatalf("os.Stat() failed with '%s'\n", err)
+    }
+    fmt.Printf("Wrote user struct to file '%s' of size %d.\n", path, st.Size())
+}
+
+func read(path string) {
+    user := User{}
+    file, err := os.Open(path)
+    if err != nil {
+        log.Fatalf("os.Open('%s') failed with '%s'\n", path, err)
+    }
+    defer file.Close()
+
+    decoder := gob.NewDecoder(file)
+    err = decoder.Decode(&user)
+    if err != nil {
+        log.Fatalf("decoder.Decode() failed with '%s'\n", err)
+    }
+    fmt.Printf("\nRead from '%s' user:\n%#v\n", path, user)    
+}
+
+func main() {
+     user := User{
+        Username: "Angus",
+        Password: "1234",
+    }
+    path := "user.gob"
+    write(path, &user)
+    read(path)
+}
+Output:+122
+Wrote user struct to file 'user.gob' of size 62.
+
+Read from 'user.gob' user:
+main.User{Username:"Angus", Password:"1234"}
+66 1568913332936 glotid
+Sha1: 9ae97ec3cc30f47a3fb8620b08a2c40863e76ad2
+GlotID: fg4su28chw
