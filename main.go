@@ -349,7 +349,7 @@ func main() {
 	parseFlags()
 
 	if false {
-		testHili()
+		testHang()
 		return
 	}
 	adHoc()
