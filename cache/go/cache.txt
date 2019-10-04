@@ -19914,3 +19914,113 @@ main.User{Username:"Angus", Password:"1234"}
 66 1568913332936 glotid
 Sha1: 9ae97ec3cc30f47a3fb8620b08a2c40863e76ad2
 GlotID: fg4su28chw
+2068 1570212518921 glotoutput
+Sha1: b4ee3f0146c694620583c6b582ee4bd1b20f5c4e
+Lang: Go
+FileName: main.go
+CodeFull:+901
+// :glot
+package main
+
+import (
+    "fmt"
+)
+
+// :show start
+type User1 struct {
+    Name  string
+    Email string
+}
+
+type User2 struct {
+    Name  string
+    Email string
+}
+
+// String satisfies the fmt.Stringer interface
+// Defining it on type User2 makes it available on *User2 as well
+func (u User2) String() string {
+    return fmt.Sprintf("%s <%s>", u.Name, u.Email)
+}
+
+func main() {
+    u1 := &User1{
+        Name:  "John Doe",
+        Email: "johndoe@example.com",
+    }
+
+    fmt.Printf("u1: type: %T, value: %s\n\n", u1, u1)
+
+    u2 := User2{
+        Name:  "John Doe",
+        Email: "johndoe@example.com",
+    }
+
+    fmt.Printf("u2: type:  %T, value: %s\n\n", u2, u2)
+
+		// method define on type User2 is also available on type *User2
+    u3 := &User2{
+        Name:  "John Doe",
+        Email: "johndoe@example.com",
+    }
+
+    fmt.Printf("u3: type: %T, value: %s\n", u3, u3)
+
+}
+// :show end
+CodeToRun:+864
+package main
+
+import (
+    "fmt"
+)
+
+type User1 struct {
+    Name  string
+    Email string
+}
+
+type User2 struct {
+    Name  string
+    Email string
+}
+
+// String satisfies the fmt.Stringer interface
+// Defining it on type User2 makes it available on *User2 as well
+func (u User2) String() string {
+    return fmt.Sprintf("%s <%s>", u.Name, u.Email)
+}
+
+func main() {
+    u1 := &User1{
+        Name:  "John Doe",
+        Email: "johndoe@example.com",
+    }
+
+    fmt.Printf("u1: type: %T, value: %s\n\n", u1, u1)
+
+    u2 := User2{
+        Name:  "John Doe",
+        Email: "johndoe@example.com",
+    }
+
+    fmt.Printf("u2: type:  %T, value: %s\n\n", u2, u2)
+
+		// method define on type User2 is also available on type *User2
+    u3 := &User2{
+        Name:  "John Doe",
+        Email: "johndoe@example.com",
+    }
+
+    fmt.Printf("u3: type: %T, value: %s\n", u3, u3)
+
+}
+Output:+186
+u1: type: *main.User1, value: &{John Doe johndoe@example.com}
+
+u2: type:  main.User2, value: John Doe <johndoe@example.com>
+
+u3: type: *main.User2, value: John Doe <johndoe@example.com>
+66 1570212519982 glotid
+Sha1: b4ee3f0146c694620583c6b582ee4bd1b20f5c4e
+GlotID: fgldo8n7el
