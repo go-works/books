@@ -1,9 +1,12 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"path"
+	"time"
 
 	"github.com/alecthomas/chroma"
 	"github.com/alecthomas/chroma/formatters/html"
@@ -83,6 +86,13 @@ func fixupHTMLCodeBlock(htmlCode string, info *CodeBlockInfo) string {
 
 // based on https://github.com/alecthomas/chroma/blob/master/quick/quick.go
 func htmlHighlight(w io.Writer, source, lang, defaultLang string) error {
+	reportOvertime := func() {
+		fmt.Printf("Too long processing lang: %s, defaultLang: %s, source:\n%s\n\n", lang, defaultLang, source)
+		ioutil.WriteFile("hili_test_case.txt", []byte(source), 0644)
+		panic("failed to hilight")
+	}
+	time.AfterFunc(time.Second*15, reportOvertime)
+
 	if lang == "" {
 		lang = defaultLang
 	}
@@ -100,4 +110,37 @@ func htmlHighlight(w io.Writer, source, lang, defaultLang string) error {
 		return err
 	}
 	return htmlFormatter.Format(w, highlightStyle, it)
+}
+
+func testHili() {
+	s := `package main
+
+import (
+	"fmt"
+	"math"
+)
+
+const s string = "constant"
+
+func main() {
+	fmt.Println(s) // constant
+
+	// A const statement can appear anywhere a var statement can.
+	const n = 10
+	fmt.Println(n)                           // 10
+	fmt.Printf("n=%d is of type %T\n", n, n) // n=10 is of type int
+
+	const m float64 = 4.3
+	fmt.Println(m) // 4.3
+
+	// An untyped constant takes the type needed by its context.
+	// For example, here math.Sin expects a float64.
+	const x = 10
+	fmt.Println(math.Sin(x)) // -0.5440211108893699
+}
+`
+	for i := 0; i < 1024*22; i++ {
+		var buf bytes.Buffer
+		htmlHighlight(&buf, s, "Go", "")
+	}
 }

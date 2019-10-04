@@ -254,7 +254,7 @@ func genBooks(books []*Book) {
 	_ = genAbout(nil)
 	_ = genFeedback(nil)
 
-	if true {
+	if false {
 		// parallel
 		n := runtime.NumCPU()
 		sem := make(chan bool, n)
@@ -348,6 +348,10 @@ func main() {
 
 	parseFlags()
 
+	if false {
+		testHili()
+		return
+	}
 	adHoc()
 
 	notionapi.LogFunc = log
