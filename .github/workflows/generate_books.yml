@@ -1,0 +1,24 @@
+# sanity check: build the program and rebuild all books
+name: Generate books
+on: [push, pull_request]
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Go 1.13
+        uses: actions/setup-go@v1
+        with:
+          go-version: 1.13
+
+      - name: Check out source code
+        uses: actions/checkout@v1
+
+      - name: build the program
+        run: go build -o gen-books
+
+      - name: generate books
+        run: ./gen-books -no-update-output -analytics UA-113489735-1
+
+      # - name: install netlifyctl
+      #   run: npm install netlify-cli -g
