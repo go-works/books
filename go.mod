@@ -2,7 +2,7 @@ module github.com/essentialbooks/books
 
 require (
 	github.com/alecthomas/assert v0.0.0-20170929043011-405dbfeb8e38
-	github.com/alecthomas/chroma v0.6.6
+	github.com/alecthomas/chroma v0.6.7
 	github.com/dlclark/regexp2 v1.1.8 // indirect
 	github.com/google/shlex v0.0.0-20181106134648-c34317bd91bf
 	github.com/kjk/notionapi v0.0.0-20191004010239-d8ac7870e3c8
