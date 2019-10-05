@@ -3,15 +3,14 @@ package main
 import (
 	"bytes"
 	"fmt"
-	"io"
-	"io/ioutil"
-	"path"
-	"time"
-
 	"github.com/alecthomas/chroma"
 	"github.com/alecthomas/chroma/formatters/html"
 	"github.com/alecthomas/chroma/lexers"
 	"github.com/alecthomas/chroma/styles"
+	"io"
+	"io/ioutil"
+	"path"
+	"time"
 )
 
 var (
@@ -85,14 +84,6 @@ func fixupHTMLCodeBlock(htmlCode string, info *CodeBlockInfo) string {
 
 // based on https://github.com/alecthomas/chroma/blob/master/quick/quick.go
 func htmlHighlight2(w io.Writer, source, lang, defaultLang string) error {
-	reportOvertime := func() {
-		ioutil.WriteFile("hili_hang.txt", []byte(source), 0644)
-		fmt.Printf("Too long processing lang: %s, defaultLang: %s, source:\n%s\n\n", lang, defaultLang, source)
-		panic("timeout")
-	}
-	timer := time.AfterFunc(time.Second*15, reportOvertime)
-	defer timer.Stop()
-
 	if lang == "" {
 		lang = defaultLang
 	}
@@ -112,16 +103,24 @@ func htmlHighlight2(w io.Writer, source, lang, defaultLang string) error {
 	return htmlFormatter.Format(w, highlightStyle, it)
 }
 
-func htmlHighlight(w io.Writer, source, lang, defaultLang string) (err error) {
-	defer func() {
-		if err2 := recover(); err2 != nil {
-			// there was panic due to a timeout
-			err = nil
-		}
+func htmlHighlight(w io.Writer, source, lang, defaultLang string) error {
+	ch := make(chan error, 1)
+	go func() {
+		err := htmlHighlight2(w, source, lang, defaultLang)
+		ch <- err
 	}()
-	return htmlHighlight2(w, source, lang, defaultLang)
-}
+	reportOvertime := func() {
+		ioutil.WriteFile("hili_hang.txt", []byte(source), 0644)
+		fmt.Printf("Too long processing lang: %s, defaultLang: %s, source:\n%s\n\n", lang, defaultLang, source)
+		ch <- nil
+	}
+	timer := time.AfterFunc(time.Second*5, reportOvertime)
+	defer timer.Stop()
 
+	err := <- ch
+	return err
+
+}
 
 func testHang() {
 	//d, err := ioutil.ReadFile("hili_hang.txt")
