@@ -119,7 +119,7 @@ func htmlHighlight(w io.Writer, source, lang, defaultLang string) (err error) {
 			err = nil
 		}
 	}()
-	return htmlHighlight(w, source, lang, defaultLang)
+	return htmlHighlight2(w, source, lang, defaultLang)
 }
 
 
