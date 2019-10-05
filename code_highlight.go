@@ -17,8 +17,6 @@ import (
 var (
 	htmlFormatter  *html.Formatter
 	highlightStyle *chroma.Style
-
-	newFormatter bool = false
 )
 
 // CodeBlockInfo represents info about code snippet
@@ -86,22 +84,14 @@ func fixupHTMLCodeBlock(htmlCode string, info *CodeBlockInfo) string {
 }
 
 // based on https://github.com/alecthomas/chroma/blob/master/quick/quick.go
-func htmlHighlight(w io.Writer, source, lang, defaultLang string) error {
+func htmlHighlight2(w io.Writer, source, lang, defaultLang string) error {
 	reportOvertime := func() {
-		ioutil.WriteFile("hili_test_case.txt", []byte(source), 0644)
+		ioutil.WriteFile("hili_hang.txt", []byte(source), 0644)
 		fmt.Printf("Too long processing lang: %s, defaultLang: %s, source:\n%s\n\n", lang, defaultLang, source)
 		panic("timeout")
 	}
 	timer := time.AfterFunc(time.Second*15, reportOvertime)
 	defer timer.Stop()
-
-	if newFormatter {
-		htmlFormatter = html.New(html.WithClasses(), html.TabWidth(2))
-		panicIf(htmlFormatter == nil, "couldn't create html formatter")
-		styleName := "monokailight"
-		highlightStyle = styles.Get(styleName)
-		panicIf(highlightStyle == nil, "didn't find style '%s'", styleName)
-	}
 
 	if lang == "" {
 		lang = defaultLang
@@ -122,12 +112,30 @@ func htmlHighlight(w io.Writer, source, lang, defaultLang string) error {
 	return htmlFormatter.Format(w, highlightStyle, it)
 }
 
+func htmlHighlight(w io.Writer, source, lang, defaultLang string) (err error) {
+	defer func() {
+		if err2 := recover(); err2 != nil {
+			// there was panic due to a timeout
+			err = nil
+		}
+	}()
+	return htmlHighlight(w, source, lang, defaultLang)
+}
+
+
 func testHang() {
-	d, err := ioutil.ReadFile("hili_test_case.txt")
-	must(err)
+	//d, err := ioutil.ReadFile("hili_hang.txt")
+	//must(err)
+	// s := string(d)
+	s := `// 64-bit floats have 53 digits of precision, including the whole-number-part.
+double a =     0011111110111001100110011001100110011001100110011001100110011010; // imperfect representation of 0.1
+double b =     0011111111001001100110011001100110011001100110011001100110011010; // imperfect representation of 0.2
+double c =     0011111111010011001100110011001100110011001100110011001100110011; // imperfect representation of 0.3
+double a + b = 0011111111010011001100110011001100110011001100110011001100110100; // Note that this is not quite equal to the "canonical" 0.3!a
+`
 
 	for i := 0; i < 1024*32; i++ {
 		var buf bytes.Buffer
-		htmlHighlight(&buf, string(d), "Go", "")
+		htmlHighlight(&buf, s, "C++", "")
 	}
 }
