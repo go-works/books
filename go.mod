@@ -5,7 +5,7 @@ require (
 	github.com/alecthomas/chroma v0.6.7
 	github.com/dlclark/regexp2 v1.1.8 // indirect
 	github.com/google/shlex v0.0.0-20181106134648-c34317bd91bf
-	github.com/kjk/notionapi v0.0.0-20191004010239-d8ac7870e3c8
+	github.com/kjk/notionapi v0.0.0-20191009064007-fa1a46b66458
 	github.com/kjk/siser v0.0.0-20190801014033-b3367920d7f2
 	github.com/kjk/u v0.0.0-20191009041548-f0e4511189a3
 	github.com/kjk/wc v0.0.0-20191007092037-4ea3cd49e6d0
