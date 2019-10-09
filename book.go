@@ -41,7 +41,7 @@ type Book struct {
 
 // CacheDir returns a cache dir for this book
 func (b *Book) CacheDir() string {
-	panicIf(b.Dir == "", "b.Dir should not be empty")
+	u.PanicIf(b.Dir == "", "b.Dir should not be empty")
 	return filepath.Join("cache", b.Dir)
 }
 
@@ -103,13 +103,13 @@ func (b *Book) ShareOnTwitterText() string {
 
 // CoverURL returns url to cover image
 func (b *Book) CoverURL() string {
-	panicIf(b.CoverImageName == "")
+	u.PanicIf(b.CoverImageName == "")
 	return fmt.Sprintf("/covers/%s", b.CoverImageName)
 }
 
 // CoverSmallURL returns url to small cover image
 func (b *Book) CoverSmallURL() string {
-	panicIf(b.CoverImageName == "")
+	u.PanicIf(b.CoverImageName == "")
 	return fmt.Sprintf("/covers_small/%s", b.CoverImageName)
 }
 
@@ -120,7 +120,7 @@ func (b *Book) CoverFullURL() string {
 
 // CoverTwitterFullURL returns a URL for the cover including host
 func (b *Book) CoverTwitterFullURL() string {
-	panicIf(b.CoverImageName == "")
+	u.PanicIf(b.CoverImageName == "")
 	coverURL := fmt.Sprintf("/covers/twitter/%s", b.CoverImageName)
 	return urlJoin(siteBaseURL, coverURL)
 }

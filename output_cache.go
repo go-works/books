@@ -81,7 +81,7 @@ var allowedLanguages = map[string]bool{
 }
 
 func updateGlotID(cache *Cache, sf *SourceFile) error {
-	panicIf(!sf.Directive.Glot)
+	u.PanicIf(!sf.Directive.Glot)
 
 	// we don't want it
 	if sf.Directive.NoPlayground {
@@ -152,7 +152,7 @@ func updateGlotOutput(cache *Cache, sf *SourceFile) error {
 	rsp, err := glotRun(req)
 	if err != nil {
 		log("glotRun() failed. Page: %s\n", sf.NotionOriginURL)
-		panicIfErr(err)
+		u.Must(err)
 	}
 	s := rsp.Stdout + rsp.Stderr
 	if rsp.Error != "" {

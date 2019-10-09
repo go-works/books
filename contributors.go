@@ -39,7 +39,7 @@ func loadSoContributorsMust(book *Book) {
 
 	log("loadSoContributorsMust: book.Dir: %s, path: %s\n", book.Dir, path)
 	lines, err := common.ReadFileAsLines(path)
-	panicIfErr(err)
+	u.Must(err)
 	var contributors []SoContributor
 	for _, line := range lines {
 		id, err := strconv.Atoi(line)

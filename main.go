@@ -26,6 +26,7 @@ import (
 var (
 	flgAnalytics       string
 	flgPreviewStatic   bool
+	flgWc              bool
 	flgPreviewOnDemand bool
 	flgAllBooks        bool
 	// if true, disables downloading pages
@@ -102,6 +103,7 @@ func parseFlags() {
 	flag.BoolVar(&flgNoDownload, "no-download", false, "if true, will not download pages from notion")
 	flag.BoolVar(&flgReportExternalLinks, "report-external-links", false, "if true, shows external links for all pages")
 	flag.BoolVar(&flgReportStackOverflowLinks, "report-so-links", false, "if true, shows links to stackoverflow.com")
+	flag.BoolVar(&flgWc, "wc", false, "wc -l")
 	flag.Parse()
 
 	if flgAnalytics != "" {
@@ -215,11 +217,11 @@ func copyToWwwAsSha1MaybeMust(srcName string) {
 	case "favicon.ico":
 		dstPtr = &pathFaviconICO
 	default:
-		panicIf(true, "unknown srcName '%s'", srcName)
+		u.PanicIf(true, "unknown srcName '%s'", srcName)
 	}
 	src := filepath.Join("tmpl", srcName)
 	d, err := ioutil.ReadFile(src)
-	panicIfErr(err)
+	u.Must(err)
 
 	if doMinify && minifyType != "" {
 		d2, err := minifier.Bytes(minifyType, d)
@@ -234,7 +236,7 @@ func copyToWwwAsSha1MaybeMust(srcName string) {
 	name := nameToSha1Name(srcName, sha1Hex)
 	dst := filepath.Join("www", "s", name)
 	err = ioutil.WriteFile(dst, d, 0644)
-	panicIfErr(err)
+	u.Must(err)
 	*dstPtr = filepath.ToSlash(dst[len("www"):])
 	fmt.Printf("Copied %s => %s\n", src, dst)
 }
@@ -354,6 +356,10 @@ func main() {
 	}
 	adHoc()
 
+	if flgWc {
+		doLineCount()
+		return
+	}
 	notionapi.LogFunc = log
 
 	_ = os.RemoveAll("www")

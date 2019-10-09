@@ -35,9 +35,9 @@ func getGoPlaygroundShareID(d []byte) (string, error) {
 func testGetGoPlaygroundShareIDAndExit() {
 	path := "books/go/0230-mutex/rwlock.go"
 	d, err := common.ReadFileNormalized(path)
-	panicIfErr(err)
+	u.Must(err)
 	shareID, err := getGoPlaygroundShareID(d)
-	panicIfErr(err)
+	u.Must(err)
 	fmt.Printf("share id: '%s'\n", shareID)
 	os.Exit(0)
 }

@@ -63,8 +63,8 @@ func (c *GlotOutput) Sha1() string {
 }
 
 func (c *Cache) saveGlotOutput(code *GlotOutput) {
-	panicIf(code.CodeFull == "")
-	panicIf(c.sha1ToGlotOutput[code.Sha1()] != nil)
+	u.PanicIf(code.CodeFull == "")
+	u.PanicIf(c.sha1ToGlotOutput[code.Sha1()] != nil)
 	rec := &siser.Record{
 		Name: recNameGlotOutput,
 	}
@@ -83,35 +83,35 @@ func (c *Cache) saveGlotOutput(code *GlotOutput) {
 }
 
 func (c *Cache) loadGlotOutput(rec *siser.Record) {
-	panicIf(rec.Name != recNameGlotOutput)
+	u.PanicIf(rec.Name != recNameGlotOutput)
 	sha1, ok := rec.Get("Sha1")
-	panicIf(!ok || sha1 == "")
-	panicIf(c.sha1ToGlotOutput[sha1] != nil)
+	u.PanicIf(!ok || sha1 == "")
+	u.PanicIf(c.sha1ToGlotOutput[sha1] != nil)
 
 	o := &GlotOutput{}
 	o.Lang, ok = rec.Get("Lang")
-	panicIf(!ok)
+	u.PanicIf(!ok)
 	o.FileName, ok = rec.Get("FileName")
-	panicIf(!ok)
+	u.PanicIf(!ok)
 	o.CodeFull, ok = rec.Get("CodeFull")
-	panicIf(!ok)
+	u.PanicIf(!ok)
 	o.CodeToRun, ok = rec.Get("CodeToRun")
-	panicIf(!ok)
+	u.PanicIf(!ok)
 	o.RunCmd, ok = rec.Get("RunCmd")
 	o.Output, ok = rec.Get("Output")
-	panicIf(!ok)
+	u.PanicIf(!ok)
 
-	panicIf(o.CodeFull == "")
-	panicIf(sha1 != o.Sha1(), "sha1 != code.Sha1() (%s != %s)", sha1, o.Sha1())
+	u.PanicIf(o.CodeFull == "")
+	u.PanicIf(sha1 != o.Sha1(), "sha1 != code.Sha1() (%s != %s)", sha1, o.Sha1())
 	c.sha1ToGlotOutput[sha1] = o
 }
 
 func (c *Cache) saveGlotID(sha1, glotID string) {
-	panicIf(c.sha1ToGlotID[sha1] != "")
+	u.PanicIf(c.sha1ToGlotID[sha1] != "")
 	rec := &siser.Record{
 		Name: recNameGlotID,
 	}
-	panicIf(sha1 == "")
+	u.PanicIf(sha1 == "")
 	rec.Append("Sha1", sha1)
 	rec.Append("GlotID", glotID)
 	err := c.saveRecord(rec)
@@ -120,13 +120,13 @@ func (c *Cache) saveGlotID(sha1, glotID string) {
 }
 
 func (c *Cache) loadGlotID(rec *siser.Record) {
-	panicIf(rec.Name != recNameGlotID)
+	u.PanicIf(rec.Name != recNameGlotID)
 	sha1, ok := rec.Get("Sha1")
-	panicIf(!ok || sha1 == "")
-	panicIf(c.sha1ToGlotID[sha1] != "")
+	u.PanicIf(!ok || sha1 == "")
+	u.PanicIf(c.sha1ToGlotID[sha1] != "")
 
 	glotid, ok := rec.Get("GlotID")
-	panicIf(!ok)
+	u.PanicIf(!ok)
 	c.sha1ToGlotID[sha1] = glotid
 }
 

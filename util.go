@@ -33,12 +33,6 @@ func must(err error, args ...interface{}) {
 	panic(s + " err: " + err.Error())
 }
 
-func panicIfErr(err error) {
-	if err != nil {
-		panic(err.Error())
-	}
-}
-
 func panicMsg(format string, args ...interface{}) {
 	s := fmt.Sprintf(format, args...)
 	fmt.Printf("%s\n", s)
@@ -56,22 +50,6 @@ func FmtArgs(args ...interface{}) string {
 		return format
 	}
 	return fmt.Sprintf(format, args[1:]...)
-}
-
-func panicWithMsg(defaultMsg string, args ...interface{}) {
-	s := FmtArgs(args...)
-	if s == "" {
-		s = defaultMsg
-	}
-	fmt.Printf("%s\n", s)
-	panic(s)
-}
-
-func panicIf(cond bool, args ...interface{}) {
-	if !cond {
-		return
-	}
-	panicWithMsg("PanicIf: condition failed", args...)
 }
 
 func logIfError(err error) {
@@ -146,7 +124,7 @@ func maybePanicIfErr(err error) {
 		return
 	}
 	if !softErrorMode {
-		panicIfErr(err)
+		u.Must(err)
 	}
 	delayedErrors = append(delayedErrors, err.Error())
 }
@@ -228,7 +206,7 @@ func isDirectory(path string) bool {
 
 func createDirMust(dir string) {
 	err := os.MkdirAll(dir, 0755)
-	panicIfErr(err)
+	u.Must(err)
 }
 
 func copyFile(dst, src string) error {
@@ -248,7 +226,7 @@ func copyFile(dst, src string) error {
 
 func copyFileMust(dst, src string) {
 	err := copyFile(dst, src)
-	panicIfErr(err)
+	u.Must(err)
 }
 
 func copyFilesRecur(dstDir, srcDir string, shouldCopyFunc func(path string) bool) {

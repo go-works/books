@@ -8,6 +8,7 @@ import (
 
 	"github.com/essentialbooks/books/tohtml"
 	"github.com/kjk/notionapi"
+	"github.com/kjk/u"
 )
 
 /*
@@ -99,7 +100,7 @@ func (c *Converter) RenderEmbed(block *notionapi.Block) bool {
 		c.genReplitEmbed(block)
 		return true
 	}
-	panicIf(true, "unsupported embed %s", uri)
+	u.PanicIf(true, "unsupported embed %s", uri)
 	return false
 }
 
@@ -175,7 +176,7 @@ func (c *Converter) RenderCode(block *notionapi.Block) bool {
 	if err != nil {
 		log("genBlock: setSourceFileData() failed with '%s'\n", err)
 		log("page: %s\n", sf.NotionOriginURL)
-		//panicIfErr(err)
+		//u.Must(err)
 	}
 
 	if sf.Directive.Glot || sf.Directive.GoPlayground {
@@ -190,7 +191,7 @@ func (c *Converter) RenderCode(block *notionapi.Block) bool {
 	err = getOutputCached(c.book.cache, sf)
 	if err != nil {
 		log("getOutputCached() failed.\nsf.CodeToRun():\n%s\n", sf.CodeToRun)
-		panicIfErr(err)
+		u.Must(err)
 	}
 	c.genSourceFile(sf)
 
@@ -279,7 +280,7 @@ func (c *Converter) RenderPage(block *notionapi.Block) bool {
 
 // In notion I want to have @TODO lines that are not rendered in html output
 func isBlockTextTodo(block *notionapi.Block) bool {
-	panicIf(block.Type != notionapi.BlockText, "only supported on '%s' block, called on '%s' block", notionapi.BlockText, block.Type)
+	u.PanicIf(block.Type != notionapi.BlockText, "only supported on '%s' block, called on '%s' block", notionapi.BlockText, block.Type)
 	blocks := block.InlineContent
 	if len(blocks) == 0 {
 		return false
@@ -295,7 +296,7 @@ func isBlockTextTodo(block *notionapi.Block) bool {
 }
 
 func isBlockTextEmpty(block *notionapi.Block) bool {
-	panicIf(block.Type != notionapi.BlockText, "only supported on '%s' block, called on '%s' block", notionapi.BlockText, block.Type)
+	u.PanicIf(block.Type != notionapi.BlockText, "only supported on '%s' block, called on '%s' block", notionapi.BlockText, block.Type)
 	blocks := block.InlineContent
 	if len(blocks) == 0 {
 		return true

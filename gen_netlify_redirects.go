@@ -5,6 +5,8 @@ import (
 	"io/ioutil"
 	"path/filepath"
 	"strings"
+
+	"github.com/kjk/u"
 )
 
 const (
@@ -23,7 +25,7 @@ const (
 func genNetlifyHeaders() {
 	path := filepath.Join("www", "_headers")
 	err := ioutil.WriteFile(path, []byte(netlifyHeaders), 0644)
-	panicIfErr(err)
+	u.Must(err)
 }
 
 // TODO: this should be in 404.html for each book
@@ -45,5 +47,5 @@ func genNetlifyRedirects(books []*Book) {
 	s := strings.Join(a, "\n")
 	path := filepath.Join("www", "_redirects")
 	err := ioutil.WriteFile(path, []byte(s), 0644)
-	panicIfErr(err)
+	u.Must(err)
 }

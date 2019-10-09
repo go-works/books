@@ -10,6 +10,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/kjk/u"
 	"github.com/kylelemons/godebug/pretty"
 )
 
@@ -190,7 +191,7 @@ func glotGetLangs() []*glotLang {
 		return gGlotLangs
 	}
 	err := json.Unmarshal([]byte(glotLangsJSON), &gGlotLangs)
-	panicIfErr(err)
+	u.Must(err)
 	return gGlotLangs
 }
 
@@ -397,7 +398,7 @@ func main() {
 }
 	`
 	res, err := glotGetSnippedID([]byte(s), "foo", "foo.go", "go")
-	panicIfErr(err)
+	u.Must(err)
 	fmt.Printf("share id: '%s', url: %s\n", res.ID, res.URL)
 	os.Exit(0)
 }

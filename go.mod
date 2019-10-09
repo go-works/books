@@ -7,9 +7,10 @@ require (
 	github.com/google/shlex v0.0.0-20181106134648-c34317bd91bf
 	github.com/kjk/notionapi v0.0.0-20191004010239-d8ac7870e3c8
 	github.com/kjk/siser v0.0.0-20190801014033-b3367920d7f2
-	github.com/kjk/u v0.0.0-20170711051841-93181be023c9
+	github.com/kjk/u v0.0.0-20191009001534-839812ee87de
+	github.com/kjk/wc v0.0.0-20191007092037-4ea3cd49e6d0
 	github.com/kylelemons/godebug v1.1.0
-	github.com/stretchr/testify v1.3.0
+	github.com/stretchr/testify v1.4.0
 	github.com/tdewolff/minify v2.3.6+incompatible
 	github.com/tdewolff/parse v2.3.4+incompatible // indirect
 	github.com/tdewolff/test v1.0.3 // indirect

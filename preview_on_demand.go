@@ -12,6 +12,7 @@ import (
 	"time"
 
 	"github.com/kjk/notionapi"
+	"github.com/kjk/u"
 )
 
 var (
@@ -234,7 +235,7 @@ func startPreviewOnDemand(books []*Book) {
 		if err == http.ErrServerClosed {
 			err = nil
 		}
-		panicIfErr(err)
+		u.Must(err)
 		fmt.Printf("HTTP server shutdown gracefully\n")
 	}()
 	fmt.Printf("Started listening on %s, %d books\n", httpSrv.Addr, len(books))
