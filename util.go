@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -138,40 +137,6 @@ func nameToSha1Name(name, sha1Hex string) string {
 	n := len(name)
 	s := name[:n-len(ext)]
 	return s + "-" + sha1Hex[:8] + ext
-}
-
-func createDirMust(dir string) {
-	err := os.MkdirAll(dir, 0755)
-	u.Must(err)
-}
-
-func copyFilesRecur(dstDir, srcDir string, shouldCopyFunc func(path string) bool) {
-	createDirMust(dstDir)
-	fileInfos, err := ioutil.ReadDir(srcDir)
-	u.PanicIfErr(err)
-	for _, fi := range fileInfos {
-		name := fi.Name()
-		if fi.IsDir() {
-			dst := filepath.Join(dstDir, name)
-			src := filepath.Join(srcDir, name)
-			copyFilesRecur(dst, src, shouldCopyFunc)
-			continue
-		}
-
-		src := filepath.Join(srcDir, name)
-		dst := filepath.Join(dstDir, name)
-		shouldCopy := true
-		if shouldCopyFunc != nil {
-			shouldCopy = shouldCopyFunc(src)
-		}
-		if !shouldCopy {
-			continue
-		}
-		if u.PathExists(dst) {
-			continue
-		}
-		u.CopyFileMust(dst, src)
-	}
 }
 
 func urlJoin(s1, s2 string) string {

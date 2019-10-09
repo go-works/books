@@ -108,7 +108,7 @@ func getCoversListMust(dir string) []string {
 func genTwitterImagesAndExit() {
 	srcDir := "covers"
 	dstDir := filepath.Join(srcDir, "twitter")
-	createDirMust(dstDir)
+	u.CreateDirMust(dstDir)
 	covers := getCoversListMust(srcDir)
 	existingImages := getExistingImagesMust(dstDir)
 	// fmt.Printf("covers: %v\n", covers)
@@ -155,7 +155,7 @@ func genSmallCoverImage(img image.Image) *image.RGBA {
 func genSmallCoversAndExit() {
 	srcDir := "covers"
 	dstDir := filepath.Join(srcDir, "covers_small")
-	createDirMust(dstDir)
+	u.CreateDirMust(dstDir)
 	covers := getCoversListMust(srcDir)
 	existingImages := getExistingImagesMust(dstDir)
 	// fmt.Printf("covers: %v\n", covers)

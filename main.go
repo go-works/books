@@ -193,10 +193,10 @@ func shouldCopyImage(path string) bool {
 func copyCoversMust() {
 	srcDir := "covers"
 	dstDir := filepath.Join("www", "covers")
-	copyFilesRecur(dstDir, srcDir, shouldCopyImage)
+	u.CopyDirRecurMust(dstDir, srcDir, shouldCopyImage)
 	dstDir = filepath.Join("www", "covers_small")
 	srcDir = filepath.Join("covers", "covers_small")
-	copyFilesRecur(dstDir, srcDir, shouldCopyImage)
+	u.CopyDirRecurMust(dstDir, srcDir, shouldCopyImage)
 }
 
 // copy from tmpl to www, optimize if possible, add
@@ -297,8 +297,8 @@ func initMinify() {
 func initBook(book *Book) {
 	var err error
 
-	createDirMust(book.OutputCacheDir())
-	createDirMust(book.NotionCacheDir())
+	u.CreateDirMust(book.OutputCacheDir())
+	u.CreateDirMust(book.NotionCacheDir())
 
 	if false {
 		loadCache("cache/go/cache.txt")
@@ -363,8 +363,8 @@ func main() {
 	notionapi.LogFunc = log
 
 	_ = os.RemoveAll("www")
-	createDirMust(filepath.Join("www", "s"))
-	createDirMust("log")
+	u.CreateDirMust(filepath.Join("www", "s"))
+	u.CreateDirMust("log")
 
 	timeStart := time.Now()
 
