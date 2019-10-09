@@ -60,6 +60,8 @@ type Page struct {
 	// TODO: those should come from notion_cache and downloaded during download
 	// step to notion_cache
 	images []string
+
+	blockCodeToSourceFile map[string]*SourceFile
 }
 
 var knownMetaKeys = map[string]bool{
@@ -347,4 +349,5 @@ func bookFromPages(book *Book) {
 	u.PanicIf(page.Root().Type != notionapi.BlockPage, "start block is of type '%s' and not '%s'", page.Root().Type, notionapi.BlockPage)
 	book.TitleLong = page.Root().Title
 	book.RootPage = bookPageFromNotionPage(book, page)
+	evalCodeSnippets(book)
 }

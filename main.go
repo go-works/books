@@ -349,7 +349,7 @@ func isPreview() bool {
 }
 
 func main() {
-	openLog()
+	closeLog := openLog()
 	defer closeLog()
 
 	parseFlags()

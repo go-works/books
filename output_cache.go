@@ -164,7 +164,7 @@ func updateGlotOutput(cache *Cache, sf *SourceFile) error {
 	sf.GlotOutput = s
 	log("Got glot output (%d bytes) for %s from %s\n", len(sf.GlotOutput), sf.SnippetName, sf.NotionOriginURL)
 
-	o = &GlotOutput{
+	o = &EvalOutput{
 		Lang:      sf.Lang,
 		FileName:  f.Name,
 		CodeFull:  sf.CodeFull,
@@ -188,7 +188,7 @@ func getOutputCached(cache *Cache, sf *SourceFile) error {
 	// even better
 	if sf.Directive.NoOutput {
 		if sf.Directive.Glot {
-			// if running on , we want to execute even if
+			// if running on glot, we want to execute even if
 			// we don't show the output (to check syntax errors)
 		} else {
 			return nil

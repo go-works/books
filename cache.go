@@ -19,7 +19,7 @@ type Cache struct {
 	// path of the cache file
 	path string
 
-	sha1ToGlotOutput map[string]*GlotOutput
+	sha1ToGlotOutput map[string]*EvalOutput
 	// id of glot.id code snippet for this code, if exists
 	sha1ToGlotID map[string]string
 	// id of https://goplay.space snippet for this code, if exists
@@ -29,7 +29,7 @@ type Cache struct {
 func NewCache(path string) *Cache {
 	return &Cache{
 		path:             path,
-		sha1ToGlotOutput: map[string]*GlotOutput{},
+		sha1ToGlotOutput: map[string]*EvalOutput{},
 		sha1ToGlotID:     map[string]string{},
 		sha1ToGoPlayID:   map[string]string{},
 	}
@@ -43,7 +43,7 @@ func (c *Cache) saveRecord(rec *siser.Record) error {
 	return err
 }
 
-type GlotOutput struct {
+type EvalOutput struct {
 	Lang      string
 	FileName  string
 	CodeFull  string
@@ -55,14 +55,14 @@ type GlotOutput struct {
 	sha1 string
 }
 
-func (c *GlotOutput) Sha1() string {
+func (c *EvalOutput) Sha1() string {
 	if c.sha1 == "" {
 		c.sha1 = u.Sha1HexOfBytes([]byte(c.CodeFull))
 	}
 	return c.sha1
 }
 
-func (c *Cache) saveGlotOutput(code *GlotOutput) {
+func (c *Cache) saveGlotOutput(code *EvalOutput) {
 	u.PanicIf(code.CodeFull == "")
 	u.PanicIf(c.sha1ToGlotOutput[code.Sha1()] != nil)
 	rec := &siser.Record{
@@ -88,7 +88,7 @@ func (c *Cache) loadGlotOutput(rec *siser.Record) {
 	u.PanicIf(!ok || sha1 == "")
 	u.PanicIf(c.sha1ToGlotOutput[sha1] != nil)
 
-	o := &GlotOutput{}
+	o := &EvalOutput{}
 	o.Lang, ok = rec.Get("Lang")
 	u.PanicIf(!ok)
 	o.FileName, ok = rec.Get("FileName")

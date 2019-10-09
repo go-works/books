@@ -6,6 +6,13 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strings"
+
+	"github.com/kjk/u"
+)
+
+var (
+	evalGoServer = "https://eval-fx3tj6qpka-uc.a.run.app"
 )
 
 type File struct {
@@ -16,9 +23,8 @@ type File struct {
 type Eval struct {
 	Files    []File `json:"files"`
 	Language string `json:"lang"`
-	// TODO: implement me
-	Command string `json:"command,omitempty"`
-	Stdin   string `json:"stdin,omitempty"`
+	Command  string `json:"command,omitempty"`
+	Stdin    string `json:"stdin,omitempty"`
 }
 
 type EvalResponse struct {
@@ -28,10 +34,12 @@ type EvalResponse struct {
 	DurationMS float64 `json:"durationms"`
 }
 
+// http://localhost:8533
+
 func evalGo(e *Eval) (*EvalResponse, error) {
 	d, err := json.Marshal(e)
 	must(err)
-	uri := "http://localhost:8533/eval"
+	uri := evalGoServer + "/eval"
 	body := bytes.NewReader(d)
 	req, err := http.NewRequest("POST", uri, body)
 	if err != nil {
@@ -44,7 +52,7 @@ func evalGo(e *Eval) (*EvalResponse, error) {
 	if rsp.StatusCode != 200 {
 		return nil, fmt.Errorf("request failed with '%s'", rsp.Status)
 	}
-	defer rsp.Body.Close()
+	defer u.FileClose(rsp.Body)
 	d, err = ioutil.ReadAll(rsp.Body)
 	must(err)
 	var res EvalResponse
@@ -53,6 +61,71 @@ func evalGo(e *Eval) (*EvalResponse, error) {
 	return &res, nil
 }
 
-func testEval(s string) {
+func getFirstLines(s string, n int) string {
+	lines := dataToLines([]byte(s))
+	if len(lines) > n {
+		lines = lines[:n]
+	}
+	return strings.Join(lines, "\n")
+}
 
+func dbgEval(e *Eval) {
+	for _, f := range e.Files {
+		name := "no name"
+		if f.Name != "" {
+			name = f.Name
+		}
+		//s := getFirstLines(f.Content, 5)
+		s := f.Content
+		logf("File: '%s', Content:\n%s\n", name, s)
+	}
+
+	if e.Command != "" {
+		logf("Command: '%s'\n", e.Command)
+	}
+}
+
+func dbgEvalResponse(r *EvalResponse) {
+	logf("\nEvalResponse:\n")
+	if r.Stdout != "" {
+		logf("Stdout:\n%s\n", r.Stdout)
+	}
+	if r.Stderr != "" {
+		logf("Stderr:\n%s\n", r.Stderr)
+	}
+	if r.Error != "" {
+		logf("Error:\n%s\n", r.Error)
+	}
+	logf("DurationMS: %.2f\n\n", r.DurationMS)
+}
+
+var (
+	nEvaled = 0
+)
+
+func evalSourceFile(sf *SourceFile) {
+	if nEvaled > 5 {
+		return
+	}
+	nEvaled++
+	lang := strings.ToLower(sf.Lang)
+	s := sf.CodeToRun
+	f1 := File{
+		Name:    sf.FileName,
+		Content: s,
+	}
+	e := &Eval{
+		Language: lang,
+		Files:    []File{f1},
+	}
+	logf("---------------------------\n")
+	dbgEval(e)
+	if lang != "go" {
+		log("skipping language '%s'\n", lang)
+		return
+	}
+	res, err := evalGo(e)
+	must(err)
+	logf("-----\n")
+	dbgEvalResponse(res)
 }
