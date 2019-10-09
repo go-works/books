@@ -7,6 +7,7 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
+	"runtime/pprof"
 	"strings"
 	"sync"
 	"time"
@@ -41,6 +42,7 @@ var (
 
 	flgReportExternalLinks      bool
 	flgReportStackOverflowLinks bool
+	flgProfile                  bool
 
 	soUserIDToNameMap map[int]string
 	googleAnalytics   template.HTML
@@ -108,6 +110,7 @@ func parseFlags() {
 	flag.BoolVar(&flgWc, "wc", false, "wc -l")
 	flag.BoolVar(&flgDownload, "dl", false, "download a given book, 'all' for all books")
 	flag.BoolVar(&flgGen, "gen", false, "generate html for the book")
+	flag.BoolVar(&flgProfile, "prof", false, "write cpu profile")
 	flag.Parse()
 
 	if flgAnalytics != "" {
@@ -384,6 +387,22 @@ func main() {
 	if !valid {
 		flag.Usage()
 		return
+	}
+
+	if flgProfile {
+		profileName := "bookgen.prof"
+		f, err := os.Create(profileName)
+		must(err)
+		err = pprof.StartCPUProfile(f)
+		must(err)
+		defer func() {
+			u.FileClose(f)
+			log("CPU profile saved to a file '%s'\n", profileName)
+		}()
+		defer func() {
+			pprof.StopCPUProfile()
+			logf("stopped cpu profile\n")
+		}()
 	}
 
 	client := &notionapi.Client{

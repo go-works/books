@@ -1,3 +1,6 @@
 #!/bin/bash
 
-go run . $@
+go build -o bookgen
+./bookgen $@
+rm -rf bookgen
+
