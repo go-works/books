@@ -2,12 +2,13 @@ package main
 
 import (
 	"bytes"
-	"fmt"
 	"html"
 	"strings"
 
 	"github.com/essentialbooks/books/tohtml"
 	"github.com/kjk/notionapi"
+
+	//"github.com/kjk/notionapi/tohtml"
 	"github.com/kjk/u"
 )
 
@@ -181,10 +182,7 @@ func (c *Converter) RenderCode(block *notionapi.Block) bool {
 // TODO: download images locally like blog
 func (c *Converter) RenderImage(block *notionapi.Block) bool {
 	link := block.ImageURL
-	cls := "img"
-	attrs := []string{"class", cls, "src", link}
-	c.converter.WriteElement(block, "img", attrs, "", true)
-	c.converter.WriteElement(block, "img", attrs, "", false)
+	c.converter.Printf(`<img class="img" src="%s">`, link)
 	return true
 }
 
@@ -203,11 +201,9 @@ func (c *Converter) RenderPage(block *notionapi.Block) bool {
 
 	url, title := c.getURLAndTitleForBlock(block)
 	title = html.EscapeString(title)
-	content := fmt.Sprintf(`<a href="%s">%s</a>`, url, title)
-	attrs := []string{"class", cls}
-	title = html.EscapeString(title)
-	c.converter.WriteElement(block, "div", attrs, content, true)
-	c.converter.WriteElement(block, "div", attrs, content, false)
+	c.converter.Printf(`<div class="%s">
+<a href="%s">%s</a>
+</div>`, cls, url, title)
 	return true
 }
 
@@ -261,9 +257,9 @@ func (c *Converter) RenderText(block *notionapi.Block) bool {
 	}
 
 	// TODO: convert to div
-	c.converter.WriteElement(block, "p", nil, "", true)
+	c.converter.Printf(`<p>`)
 	c.converter.RenderChildren(block)
-	c.converter.WriteElement(block, "p", nil, "", false)
+	c.converter.Printf(`</p>`)
 	return true
 }
 
@@ -285,7 +281,14 @@ func (c *Converter) blockRenderOverride(block *notionapi.Block) bool {
 
 // Gen returns generated HTML
 func (c *Converter) Gen() []byte {
-	inner := string(c.converter.ToHTML())
+	/*
+		// using notionapi/tohtml converter
+		inner, err := c.converter.ToHTML()
+		must(err)
+	*/
+
+	// using our tohtml converter
+	inner := c.converter.ToHTML()
 
 	rootPage := c.page.NotionPage.Root()
 	f := rootPage.FormatPage()
@@ -295,7 +298,7 @@ func (c *Converter) Gen() []byte {
 	if isMono {
 		s += `<div style="font-family: monospace">`
 	}
-	s += inner
+	s += string(inner)
 	if isMono {
 		s += `</div>`
 	}
