@@ -483,11 +483,11 @@ func writeBookAsMarkdown(docTag *DocTag, bookName string) {
 	bookNameSafe := common.MakeURLSafe(bookName)
 	bookTopDir := filepath.Join("books", bookNameSafe)
 	bookTopDirFmt := filepath.Join("books", bookNameSafe+"_fmt")
-	if pathExists(bookTopDir) {
+	if u.PathExists(bookTopDir) {
 		fmt.Printf("Book '%s' has already been imported.\nTo re-import, delete directory '%s'\n", bookName, bookTopDir)
 		os.Exit(1)
 	}
-	if pathExists(bookTopDirFmt) {
+	if u.PathExists(bookTopDirFmt) {
 		fmt.Printf("Book '%s' has already been imported.\nTo re-import, delete directory '%s'\n", bookName, bookTopDirFmt)
 		os.Exit(1)
 	}

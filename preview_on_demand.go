@@ -26,7 +26,7 @@ func tryPrefixInDir(uri string, prefix string, dir string) string {
 	uri = strings.TrimPrefix(uri, prefix)
 	name := filepath.FromSlash(uri)
 	path := filepath.Join(dir, name)
-	if fileExists(path) {
+	if u.FileExists(path) {
 		return path
 	}
 	//fmt.Printf("tried path: '%s', name: '%s', uri: '%s'\n", path, name, uri)
@@ -239,7 +239,7 @@ func startPreviewOnDemand(books []*Book) {
 		fmt.Printf("HTTP server shutdown gracefully\n")
 	}()
 	fmt.Printf("Started listening on %s, %d books\n", httpSrv.Addr, len(books))
-	openBrowser("http://" + httpSrv.Addr)
+	u.OpenBrowser("http://" + httpSrv.Addr)
 
 	c := make(chan os.Signal, 2)
 	signal.Notify(c, os.Interrupt /* SIGINT */, syscall.SIGTERM)
