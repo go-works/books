@@ -28,9 +28,11 @@ var (
 	flgPreviewStatic   bool
 	flgWc              bool
 	flgPreviewOnDemand bool
+	flgGen             bool
 	flgAllBooks        bool
 	// if true, disables downloading pages
 	flgNoDownload bool
+	flgDownload   bool
 	// if true, disables notion cache, forcing re-download of notion page
 	// even if cached verison on disk exits
 	flgDisableNotionCache bool
@@ -104,6 +106,8 @@ func parseFlags() {
 	flag.BoolVar(&flgReportExternalLinks, "report-external-links", false, "if true, shows external links for all pages")
 	flag.BoolVar(&flgReportStackOverflowLinks, "report-so-links", false, "if true, shows links to stackoverflow.com")
 	flag.BoolVar(&flgWc, "wc", false, "wc -l")
+	flag.BoolVar(&flgDownload, "dl", false, "download a given book, 'all' for all books")
+	flag.BoolVar(&flgGen, "gen", false, "generate html for the book")
 	flag.Parse()
 
 	if flgAnalytics != "" {
@@ -162,7 +166,7 @@ func downloadBook(c *notionapi.Client, book *Book) {
 	must(err)
 	d := caching_downloader.New(dirCache, c)
 	d.EventObserver = eventObserver
-	d.RedownloadNewerVersions = true
+	d.RedownloadNewerVersions = flgDownload
 	d.NoReadCache = flgDisableNotionCache
 
 	startPageID := book.NotionStartPageID
@@ -376,6 +380,12 @@ func main() {
 		return
 	}
 
+	valid := flgDownload || flgPreviewOnDemand || flgPreviewStatic || flgGen
+	if !valid {
+		flag.Usage()
+		return
+	}
+
 	client := &notionapi.Client{
 		AuthToken: notionAuthToken,
 	}
@@ -405,6 +415,7 @@ func main() {
 			}
 		}
 	}
+
 	for _, book := range books {
 		initBook(book)
 		downloadBook(client, book)
@@ -418,12 +429,14 @@ func main() {
 		return
 	}
 
-	genStartTime := time.Now()
-	genBooks(books)
-	genNetlifyHeaders()
-	genNetlifyRedirects(books)
-	printAndClearErrors()
-	log("Gen time: %s, total time: %s\n", time.Since(genStartTime), time.Since(timeStart))
+	if flgGen || flgPreviewStatic {
+		genStartTime := time.Now()
+		genBooks(books)
+		genNetlifyHeaders()
+		genNetlifyRedirects(books)
+		printAndClearErrors()
+		log("Gen time: %s, total time: %s\n", time.Since(genStartTime), time.Since(timeStart))
+	}
 
 	if flgPreviewStatic {
 		startPreviewStatic()

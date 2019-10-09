@@ -10,19 +10,8 @@ import (
 	"github.com/kjk/u"
 )
 
-func must(err error, args ...interface{}) {
-	if err == nil {
-		return
-	}
-	if len(args) == 0 {
-		panic(err)
-	}
-	s := args[0].(string)
-	if len(args) > 1 {
-		args = args[1:]
-		s = fmt.Sprintf(s, args)
-	}
-	panic(s + " err: " + err.Error())
+func must(err error) {
+	u.Must(err)
 }
 
 func logIfError(err error) {
