@@ -11,11 +11,13 @@
   </div>
 
   <div class="content">
-    {{$currChapterNo:=.CurrentChapterNo}}
     <div class="article">
       <div class="article-top-hdr">
         <span>
-          <a href="{{.Book.URL}}">{{.Book.Title}}</a>
+          {{ range .Breadcrumbs }}
+            <a href="{{.URL}}">{{.Title}}</a>
+            <span class="breadcrumb-sep"></span>
+          {{ end }}
         </span>
 
         <span class="article-contribute">
@@ -25,7 +27,7 @@
 
       <h1 class="title">{{.Title}}</h1>
 
-      {{.HTML}}
+      {{ .HTML }}
 
       <div class="forum-link">
         Found a mistake? Have a question or improvement idea?
@@ -86,6 +88,7 @@
         <div class="toc-header">Table Of Contents</div>
 
         <div class="chapters-toc">
+          {{$currChapterNo:=.CurrentChapterNo}}
           {{range $idx, $page := .Book.Chapters}} {{if eq $currChapterNo $idx}}
           <div class="chapters-toc-item">
             <span class="chap-no">{{inc $idx}}</span>

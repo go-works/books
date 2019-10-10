@@ -197,24 +197,39 @@ func genAbout(w io.Writer) error {
 	return execTemplate("about.tmpl.html", d, path, w)
 }
 
+type Breadcrumb struct {
+	URL   string
+	Title string
+}
+
 // TODO: consolidate chapter/article html
 func genArticle(book *Book, page *Page, currChapNo int, currArticleNo int, w io.Writer) error {
 	if w == nil {
 		addSitemapURL(page.CanonnicalURL())
 	}
 
+	bc1 := Breadcrumb{
+		URL:   book.URL(),
+		Title: book.Title,
+	}
+	bc2 := Breadcrumb{
+		URL:   page.Parent.URL(),
+		Title: page.Parent.Title,
+	}
 	d := struct {
 		PageCommon
 		*Page
 		CurrentChapterNo int
 		CurrentArticleNo int
 		Description      string
+		Breadcrumbs      []Breadcrumb
 	}{
 		PageCommon:       getPageCommon(),
 		Page:             page,
 		CurrentChapterNo: currChapNo,
 		CurrentArticleNo: currArticleNo,
 		Description:      page.Title,
+		Breadcrumbs:      []Breadcrumb{bc1, bc2},
 	}
 
 	path := page.destFilePath()
@@ -233,17 +248,23 @@ func genChapter(book *Book, page *Page, currNo int, w io.Writer) error {
 		}
 	}
 
+	bc1 := Breadcrumb{
+		URL:   book.URL(),
+		Title: book.Title,
+	}
 	path := page.destFilePath()
 	d := struct {
 		PageCommon
 		*Page
 		CurrentChapterNo int
 		Description      string
+		Breadcrumbs      []Breadcrumb
 	}{
 		PageCommon:       getPageCommon(),
 		Page:             page,
 		CurrentChapterNo: currNo,
 		Description:      page.Title,
+		Breadcrumbs:      []Breadcrumb{bc1},
 	}
 	err := execTemplate("chapter.tmpl.html", d, path, w)
 	if err != nil {
