@@ -122,7 +122,7 @@ func gen404TopLevel() {
 		PageCommon: getPageCommon(),
 	}
 	path := filepath.Join(destDir, "404.html")
-	execTemplateToFileMaybeMust("404.tmpl.html", d, path)
+	_ = execTemplateToFileMaybeMust("404.tmpl.html", d, path)
 }
 
 func splitBooks(books []*Book) ([]*Book, []*Book) {
@@ -145,7 +145,7 @@ func execTemplate(tmplName string, d interface{}, path string, w io.Writer) erro
 	}
 
 	// this code path is for generating static files
-	execTemplateToFileMaybeMust(tmplName, d, path)
+	_ = execTemplateToFileMaybeMust(tmplName, d, path)
 	return nil
 }
 
@@ -208,11 +208,13 @@ func genArticle(book *Book, page *Page, currChapNo int, currArticleNo int, w io.
 		*Page
 		CurrentChapterNo int
 		CurrentArticleNo int
+		Description      string
 	}{
 		PageCommon:       getPageCommon(),
 		Page:             page,
 		CurrentChapterNo: currChapNo,
 		CurrentArticleNo: currArticleNo,
+		Description:      page.Title,
 	}
 
 	path := page.destFilePath()
@@ -227,7 +229,7 @@ func genChapter(book *Book, page *Page, currNo int, w io.Writer) error {
 	if w == nil {
 		addSitemapURL(page.CanonnicalURL())
 		for i, article := range page.Pages {
-			genArticle(book, article, currNo, i, nil)
+			_ = genArticle(book, article, currNo, i, nil)
 		}
 	}
 
@@ -236,10 +238,12 @@ func genChapter(book *Book, page *Page, currNo int, w io.Writer) error {
 		PageCommon
 		*Page
 		CurrentChapterNo int
+		Description      string
 	}{
 		PageCommon:       getPageCommon(),
 		Page:             page,
 		CurrentChapterNo: currNo,
+		Description:      page.Title,
 	}
 	err := execTemplate("chapter.tmpl.html", d, path, w)
 	if err != nil {
@@ -249,7 +253,7 @@ func genChapter(book *Book, page *Page, currNo int, w io.Writer) error {
 	for _, imagePath := range page.images {
 		imageName := filepath.Base(imagePath)
 		dst := page.destImagePath(imageName)
-		copyFileMaybeMust(dst, imagePath)
+		_ = copyFileMaybeMust(dst, imagePath)
 	}
 	return nil
 }
@@ -317,15 +321,15 @@ func genBook(book *Book) {
 		return
 	}
 
-	genBookIndex(book, nil)
+	_ = genBookIndex(book, nil)
 
 	// TODO: per-book 404 should link to top of book, not top of website
-	genBook404(book, nil)
+	_ = genBook404(book, nil)
 
 	addSitemapURL(book.CanonnicalURL())
 
 	for i, chapter := range book.Chapters() {
-		genChapter(book, chapter, i, nil)
+		_ = genChapter(book, chapter, i, nil)
 	}
 
 	fmt.Printf("Generated book '%s' in %s\n", book.Title, time.Since(timeStart))

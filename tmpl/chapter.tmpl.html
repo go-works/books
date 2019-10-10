@@ -1,38 +1,11 @@
 <!doctype html>
 <html lang="en">
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="referrer" content="always">
-
-  <meta name="twitter:card" value="summary">
-  <meta name="twitter:site" content="@kjk">
-  <meta name="twitter:title" content="{{.Title}}">
-  <!-- do something else for description -->
-  <meta name="twitter:description" content="{{.Book.TitleLong}} is a free programming book about {{.Book.Title}}">
-  <meta name="twitter:creator" content="@kjk">
-  <meta name="twitter:image" content="{{.Book.CoverTwitterFullURL}}">
-  <!-- do something else for title -->
-  <meta property="og:title" content="{{.Title}}">
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="{{.CanonnicalURL}}" />
-  <!-- do something else for description -->
-  <meta property="og:description" content="{{.Title}}">
-  <meta property="og:image" content="{{.Book.CoverTwitterFullURL}}">
-
-  <title>{{.Title}}</title>
-  <meta name="description" content="{{.Title}}">
-
-  <link rel="icon" href="{{.PathFaviconICO}}">
-  <link href="{{.PathMainCSS}}" rel="stylesheet"> {{ .Analytics }}
-  <script src="{{.Book.AppJSURL}}" defer></script>
-</head>
+{{ template "head.tmpl.html" . }}
 
 <body class="page">
   {{ template "icons.tmpl.html" . }}
 
-  {{$currChapterNo:=.CurrentChapterNo}}
   <header class="page__header">
     <div class="page__header__left">
       <a id="link-home" href="/">
@@ -52,6 +25,7 @@
   </div>
 
   <div class="content">
+    {{$currChapterNo:=.CurrentChapterNo}}
     <div class="article">
       <div class="article-top-hdr">
         <span>
@@ -142,23 +116,7 @@
     </div>
   </div>
 
-  <footer class="page__footer">
-    <div class="page__footer__left">
-      Maintained by
-      <a href="https://blog.kowalczyk.info" target="_blank">Krzysztof Kowalczyk</a>
-    </div>
-    <div class="share-me">
-      <a href="https://twitter.com/intent/tweet?text={{.Book.ShareOnTwitterText}}&url={{.Book.CanonnicalURL}}&via=kjk">Share
-        <b>{{.Book.TitleLong}}</b> on&nbsp;
-        <svg class="icon-twitter">
-          <use xlink:href="#icon-twitter"></use>
-        </svg>
-      </a>
-    </div>
-    <div class="page__footer__right">
-      <!-- right side. Used to be 'edit github' url -->
-    </div>
-  </footer>
+  {{ template "footer.tmpl.html" . }}
 
   <!-- absolutely positioned elements -->
   <div id="search-results-window">
