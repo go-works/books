@@ -101,24 +101,23 @@ func extractIDFromURL(s string) string {
 }
 
 func maybeGenBookChapter(w http.ResponseWriter, r *http.Request, book *Book, id string) bool {
-	for i, chapter := range book.Chapters() {
+	for _, chapter := range book.Chapters() {
 		chapID := toNoDashID(chapter.NotionID)
 		if chapID == id {
 			page := chapter
 			html := notionToHTML(page, book)
 			page.BodyHTML = template.HTML(string(html))
-			err := genChapter(book, chapter, i, w)
+			err := genPage(book, chapter, w)
 			logIfError(err)
 			return true
 		}
-		for j, article := range chapter.Pages {
+		for _, article := range chapter.Pages {
 			pageID := toNoDashID(article.NotionID)
 			if id == pageID {
 				page := article
 				html := notionToHTML(page, book)
 				page.BodyHTML = template.HTML(string(html))
-				currNo := i
-				err := genArticle(book, article, currNo, j, w)
+				err := genPage(book, article, w)
 				logIfError(err)
 				return true
 			}

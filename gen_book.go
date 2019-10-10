@@ -244,7 +244,7 @@ func buildCreadcumb(book *Book, page *Page, d *PageData) {
 	page = page.Parent
 
 	var a []Breadcrumb
-	for page != nil {
+	for page != nil && page.Parent != nil {
 		b := Breadcrumb{
 			Title: page.Title,
 			URL:   page.URL(),
@@ -268,10 +268,12 @@ func buildCreadcumb(book *Book, page *Page, d *PageData) {
 	d.Breadcrumbs = a
 }
 
-// TODO: consolidate chapter/article html
-func genArticle(book *Book, page *Page, currChapNo int, currArticleNo int, w io.Writer) error {
+func genPage(book *Book, page *Page, w io.Writer) error {
 	if w == nil {
 		addSitemapURL(page.CanonnicalURL())
+		for _, article := range page.Pages {
+			_ = genPage(book, article, nil)
+		}
 	}
 
 	d := PageData{
@@ -281,15 +283,21 @@ func genArticle(book *Book, page *Page, currChapNo int, currArticleNo int, w io.
 	}
 	buildCreadcumb(book, page, &d)
 
+	isChapter := book.RootPage == page.Parent
 	mt := MiniTOCEntry{
 		Title:      d.Page.Parent.Title + "/",
 		URL:        d.Page.Parent.URL(),
-		IsSelected: false,
+		IsSelected: isChapter,
 		Indent:     0,
 	}
+
 	d.MiniTOC = append(d.MiniTOC, mt)
-	for idx, p := range d.Siblings() {
-		isSelected := (idx == currArticleNo)
+	pages := d.Siblings()
+	if isChapter {
+		pages = page.Pages
+	}
+	for _, p := range pages {
+		isSelected := (p == page)
 		mt = MiniTOCEntry{
 			Title:      p.Title,
 			URL:        p.URL(),
@@ -305,54 +313,12 @@ func genArticle(book *Book, page *Page, currChapNo int, currArticleNo int, w io.
 	if err != nil {
 		fmt.Printf("Failed to minify page %s in book %s\n", page.NotionID, book.Title)
 	}
-	return err
-}
-
-func genChapter(book *Book, page *Page, currNo int, w io.Writer) error {
-	if w == nil {
-		addSitemapURL(page.CanonnicalURL())
-		for i, article := range page.Pages {
-			_ = genArticle(book, article, currNo, i, nil)
-		}
-	}
-
-	d := PageData{
-		PageCommon:  getPageCommon(),
-		Page:        page,
-		Description: page.Title,
-	}
-	buildCreadcumb(book, page, &d)
-
-	mt := MiniTOCEntry{
-		Title:      d.Title,
-		URL:        d.URL(),
-		IsSelected: true,
-		Indent:     0,
-	}
-	d.MiniTOC = append(d.MiniTOC, mt)
-	for _, p := range d.Pages {
-		mt = MiniTOCEntry{
-			Title:      p.Title,
-			URL:        p.URL(),
-			IsSelected: false,
-			Indent:     1,
-		}
-		d.MiniTOC = append(d.MiniTOC, mt)
-	}
-
-	buildTOC(book, page, &d)
-
-	path := page.destFilePath()
-	err := execTemplate("page.tmpl.html", d, path, w)
-	if err != nil {
-		return err
-	}
 	for _, imagePath := range page.images {
 		imageName := filepath.Base(imagePath)
 		dst := page.destImagePath(imageName)
 		_ = copyFileMaybeMust(dst, imagePath)
 	}
-	return nil
+	return err
 }
 
 func buildIDToPage(book *Book) {
@@ -425,8 +391,8 @@ func genBook(book *Book) {
 
 	addSitemapURL(book.CanonnicalURL())
 
-	for i, chapter := range book.Chapters() {
-		_ = genChapter(book, chapter, i, nil)
+	for _, chapter := range book.Chapters() {
+		_ = genPage(book, chapter, nil)
 	}
 
 	fmt.Printf("Generated book '%s' in %s\n", book.Title, time.Since(timeStart))
