@@ -219,33 +219,67 @@ type TOCEntry struct {
 	URL        string
 }
 
+type PageData struct {
+	PageCommon
+	*Page
+	Description string
+	Breadcrumbs []Breadcrumb
+	MiniTOC     []MiniTOCEntry
+	TOC         []TOCEntry
+}
+
+func buildTOC(book *Book, page *Page, d *PageData) {
+	for i, p := range book.Chapters() {
+		e := TOCEntry{
+			Title:      p.Title,
+			URL:        p.URL(),
+			No:         i + 1,
+			IsSelected: (p == page),
+		}
+		d.TOC = append(d.TOC, e)
+	}
+}
+
+func buildCreadcumb(book *Book, page *Page, d *PageData) {
+	page = page.Parent
+
+	var a []Breadcrumb
+	for page != nil {
+		b := Breadcrumb{
+			Title: page.Title,
+			URL:   page.URL(),
+		}
+		a = append(a, b)
+		page = page.Parent
+	}
+
+	b := Breadcrumb{
+		Title: book.Title,
+		URL:   book.URL(),
+	}
+	a = append(a, b)
+
+	// they were added in reverse order
+	n := len(a)
+	for i := 0; i < n/2; i++ {
+		end := n - 1 - i
+		a[i], a[end] = a[end], a[i]
+	}
+	d.Breadcrumbs = a
+}
+
 // TODO: consolidate chapter/article html
 func genArticle(book *Book, page *Page, currChapNo int, currArticleNo int, w io.Writer) error {
 	if w == nil {
 		addSitemapURL(page.CanonnicalURL())
 	}
 
-	bc1 := Breadcrumb{
-		Title: book.Title,
-		URL:   book.URL(),
-	}
-	bc2 := Breadcrumb{
-		Title: page.Parent.Title,
-		URL:   page.Parent.URL(),
-	}
-	d := struct {
-		PageCommon
-		*Page
-		Description string
-		Breadcrumbs []Breadcrumb
-		MiniTOC     []MiniTOCEntry
-		TOC         []TOCEntry
-	}{
+	d := PageData{
 		PageCommon:  getPageCommon(),
 		Page:        page,
 		Description: page.Title,
-		Breadcrumbs: []Breadcrumb{bc1, bc2},
 	}
+	buildCreadcumb(book, page, &d)
 
 	mt := MiniTOCEntry{
 		Title:      d.Page.Parent.Title + "/",
@@ -264,16 +298,7 @@ func genArticle(book *Book, page *Page, currChapNo int, currArticleNo int, w io.
 		}
 		d.MiniTOC = append(d.MiniTOC, mt)
 	}
-
-	for i, p := range book.Chapters() {
-		e := TOCEntry{
-			No:         i + 1,
-			IsSelected: (i == currChapNo),
-			Title:      p.Title,
-			URL:        p.URL(),
-		}
-		d.TOC = append(d.TOC, e)
-	}
+	buildTOC(book, page, &d)
 
 	path := page.destFilePath()
 	err := execTemplate("page.tmpl.html", d, path, w)
@@ -291,23 +316,13 @@ func genChapter(book *Book, page *Page, currNo int, w io.Writer) error {
 		}
 	}
 
-	bc1 := Breadcrumb{
-		Title: book.Title + "/",
-		URL:   book.URL(),
-	}
-	d := struct {
-		PageCommon
-		*Page
-		Description string
-		Breadcrumbs []Breadcrumb
-		MiniTOC     []MiniTOCEntry
-		TOC         []TOCEntry
-	}{
+	d := PageData{
 		PageCommon:  getPageCommon(),
 		Page:        page,
 		Description: page.Title,
-		Breadcrumbs: []Breadcrumb{bc1},
 	}
+	buildCreadcumb(book, page, &d)
+
 	mt := MiniTOCEntry{
 		Title:      d.Title,
 		URL:        d.URL(),
@@ -325,15 +340,7 @@ func genChapter(book *Book, page *Page, currNo int, w io.Writer) error {
 		d.MiniTOC = append(d.MiniTOC, mt)
 	}
 
-	for i, p := range book.Chapters() {
-		e := TOCEntry{
-			Title:      p.Title,
-			URL:        p.URL(),
-			No:         i + 1,
-			IsSelected: (i == currNo),
-		}
-		d.TOC = append(d.TOC, e)
-	}
+	buildTOC(book, page, &d)
 
 	path := page.destFilePath()
 	err := execTemplate("page.tmpl.html", d, path, w)
