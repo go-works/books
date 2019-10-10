@@ -1,0 +1,22 @@
+<div class="chapter-toc-wrapper">
+  <hr class="toc-sep">
+
+  <div class="toc-header">Table Of Contents</div>
+
+  <div class="chapters-toc">
+    {{ $currChapterNo := .CurrentChapterNo }}
+    {{ range $idx, $page := .Book.Chapters }}
+      {{ if eq $currChapterNo $idx }}
+        <div class="chapters-toc-item">
+          <span class="chap-no">{{ inc $idx }}</span>
+          <span class="is-current">{{ $page.Title }}</span>
+        </div>
+      {{ else }}
+        <div class="chapters-toc-item">
+          <span class="chap-no">{{ inc $idx }}</span>
+          <a href="{{ $page.URL }}">{{ $page.Title }}</a>
+        </div>
+      {{ end }}
+    {{ end }}
+  </div>
+</div>

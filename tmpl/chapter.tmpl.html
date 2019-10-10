@@ -7,8 +7,7 @@
   {{ template "icons.tmpl.html" . }}
   {{ template "header.tmpl.html" . }}
 
-  <div id="toc">
-  </div>
+  <div id="toc"></div>
 
   <div class="content">
     <div class="article">
@@ -40,40 +39,13 @@
         </div>
       </div>
 
-      <div class="chapter-toc-wrapper">
-        <hr class="toc-sep">
+      {{ tamplate "toc.chapters.tmpl.html" . }}
 
-        <div class="toc-header">Table Of Contents</div>
-
-        <div class="chapters-toc">
-          {{$currChapterNo:=.CurrentChapterNo}}
-          {{range $idx, $page := .Book.Chapters}} {{if eq $currChapterNo $idx}}
-          <div class="chapters-toc-item">
-            <span class="chap-no">{{inc $idx}}</span>
-            <span class="is-current">{{.Title}}</span>
-          </div>
-          {{else}}
-            <div class="chapters-toc-item">
-              <span class="chap-no">{{inc $idx}}</span>
-              <a href="{{.URL}}">{{.Title}}</a>
-            </div>
-            {{end}} {{end}}
-        </div>
-      </div>
     </div>
   </div>
 
   {{ template "footer.tmpl.html" . }}
+  {{ template "search.results.tmpl.html" . }}
 
-  <!-- absolutely positioned elements -->
-  <div id="search-results-window">
-    <div id="search-results">
-    </div>
-    <div id="search-results-help">
-      &nbsp;&nbsp;&uarr; &darr; to navigate &nbsp;&nbsp;&nbsp; &crarr; to select &nbsp;&nbsp;&nbsp; Esc to close
-    </div>
-  </div>
-  <div id="blur-overlay"></div>
 </body>
-
 </html>
