@@ -202,6 +202,23 @@ type Breadcrumb struct {
 	Title string
 }
 
+// describes TOC entry shown at the bottom of the page
+type MiniTOCEntry struct {
+	IsSelected bool
+	Title      string
+	URL        string
+	Indent     int
+}
+
+// TOCEntry describes entry of TOC chapters
+// shown at the bottom of the page
+type TOCEntry struct {
+	No         int
+	IsSelected bool
+	Title      string
+	URL        string
+}
+
 // TODO: consolidate chapter/article html
 func genArticle(book *Book, page *Page, currChapNo int, currArticleNo int, w io.Writer) error {
 	if w == nil {
@@ -219,19 +236,40 @@ func genArticle(book *Book, page *Page, currChapNo int, currArticleNo int, w io.
 	d := struct {
 		PageCommon
 		*Page
-		CurrentChapterNo int
-		CurrentArticleNo int
-		Description      string
-		Breadcrumbs      []Breadcrumb
+		Description string
+		Breadcrumbs []Breadcrumb
+		MiniTOC     []MiniTOCEntry
+		TOC         []TOCEntry
 	}{
-		PageCommon:       getPageCommon(),
-		Page:             page,
-		CurrentChapterNo: currChapNo,
-		CurrentArticleNo: currArticleNo,
-		Description:      page.Title,
-		Breadcrumbs:      []Breadcrumb{bc1, bc2},
+		PageCommon:  getPageCommon(),
+		Page:        page,
+		Description: page.Title,
+		Breadcrumbs: []Breadcrumb{bc1, bc2},
 	}
-
+	for i, p := range book.Chapters() {
+		e := TOCEntry{
+			No:         i + 1,
+			IsSelected: (i == currChapNo),
+			Title:      p.Title,
+			URL:        p.URL(),
+		}
+		d.TOC = append(d.TOC, e)
+	}
+	mt := MiniTOCEntry{
+		Title: d.Page.Title,
+		URL:   d.Page.URL(),
+	}
+	d.MiniTOC = append(d.MiniTOC, mt)
+	for idx, p := range d.Siblings() {
+		isSelected := (idx == currArticleNo)
+		mt = MiniTOCEntry{
+			IsSelected: isSelected,
+			Title:      p.Title,
+			URL:        p.URL(),
+			Indent:     1,
+		}
+		d.MiniTOC = append(d.MiniTOC, mt)
+	}
 	path := page.destFilePath()
 	err := execTemplate("article.tmpl.html", d, path, w)
 	if err != nil {
@@ -256,21 +294,44 @@ func genChapter(book *Book, page *Page, currNo int, w io.Writer) error {
 	d := struct {
 		PageCommon
 		*Page
-		CurrentChapterNo int
-		Description      string
-		Breadcrumbs      []Breadcrumb
+		Description string
+		Breadcrumbs []Breadcrumb
+		MiniTOC     []MiniTOCEntry
+		TOC         []TOCEntry
 	}{
-		PageCommon:       getPageCommon(),
-		Page:             page,
-		CurrentChapterNo: currNo,
-		Description:      page.Title,
-		Breadcrumbs:      []Breadcrumb{bc1},
+		PageCommon:  getPageCommon(),
+		Page:        page,
+		Description: page.Title,
+		Breadcrumbs: []Breadcrumb{bc1},
+	}
+	for i, p := range book.Chapters() {
+		e := TOCEntry{
+			No:         i + 1,
+			IsSelected: (i == currNo),
+			Title:      p.Title,
+			URL:        p.URL(),
+		}
+		d.TOC = append(d.TOC, e)
+	}
+	mt := MiniTOCEntry{
+		IsSelected: true,
+		Title:      d.Title,
+		URL:        d.URL(),
+	}
+	d.MiniTOC = append(d.MiniTOC, mt)
+	for _, p := range d.Pages {
+		mt = MiniTOCEntry{
+			IsSelected: false,
+			Title:      p.Title,
+			URL:        p.URL(),
+			Indent:     1,
+		}
+		d.MiniTOC = append(d.MiniTOC, mt)
 	}
 	err := execTemplate("chapter.tmpl.html", d, path, w)
 	if err != nil {
 		return err
 	}
-
 	for _, imagePath := range page.images {
 		imageName := filepath.Base(imagePath)
 		dst := page.destImagePath(imageName)

@@ -20,25 +20,8 @@
 
       <div class="article-bottom-sep"></div>
 
-      <div class="chapter-toc">
-        <div>
-          <a href="{{.Parent.URL}}">{{.Parent.Title}}/</a>
-        </div>
-        <div style="padding-left: 16px">
-          {{$currArticleNo:=.CurrentArticleNo}}
-          {{range $idx, $page := .Siblings}} {{if eq $idx $currArticleNo}}
-          <div>
-            <span class="is-current">{{$page.Title}}</span>
-          </div>
-          {{else}}
-            <div>
-              <a href="{{$page.URL}}">{{$page.Title}}</a>
-            </div>
-            {{end}} {{end}}
-        </div>
-      </div>
-
-    {{ template "toc.chapters.tmpl.html" . }}
+      {{ template "toc.mini.tmpl.html" . }}
+      {{ template "toc.chapters.tmpl.html" . }}
 
     </div>
   </div>
