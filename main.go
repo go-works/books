@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"runtime"
 	"runtime/pprof"
@@ -43,6 +44,8 @@ var (
 	flgReportExternalLinks      bool
 	flgReportStackOverflowLinks bool
 	flgProfile                  bool
+	flgDeployDraft              bool
+	flgDeployProd               bool
 
 	soUserIDToNameMap map[int]string
 	googleAnalytics   template.HTML
@@ -111,6 +114,8 @@ func parseFlags() {
 	flag.BoolVar(&flgDownload, "dl", false, "download a given book, 'all' for all books")
 	flag.BoolVar(&flgGen, "gen", false, "generate html for the book")
 	flag.BoolVar(&flgProfile, "prof", false, "write cpu profile")
+	flag.BoolVar(&flgDeployDraft, "deploy-draft", false, "deploy to netlify as draft")
+	flag.BoolVar(&flgDeployProd, "deploy-prod", false, "deploy to netlify production")
 	flag.Parse()
 
 	if flgAnalytics != "" {
@@ -383,6 +388,11 @@ func main() {
 		return
 	}
 
+	if flgDeployDraft || flgDeployProd {
+		flgAllBooks = true
+		flgGen = true
+	}
+
 	valid := flgDownload || flgPreviewOnDemand || flgPreviewStatic || flgGen
 	if !valid {
 		flag.Usage()
@@ -444,19 +454,37 @@ func main() {
 	}
 	log("Downloaded %d pages, %d from cache, in %s\n", nTotalDownloaded, nTotalFromCache, time.Since(timeStart))
 
-	if flgPreviewOnDemand {
-		log("Time: %s\n", time.Since(timeStart))
-		startPreviewOnDemand(books)
-		return
-	}
-
 	if flgGen || flgPreviewStatic {
+		os.RemoveAll("www")
+		os.MkdirAll(filepath.Join("www", "s"), 0755)
 		genStartTime := time.Now()
 		genBooks(books)
 		genNetlifyHeaders()
 		genNetlifyRedirects(books)
 		printAndClearErrors()
 		log("Gen time: %s, total time: %s\n", time.Since(genStartTime), time.Since(timeStart))
+	}
+
+	if flgDeployDraft {
+		cmd := exec.Command("netlify", "deploy", "--dir=www", "--site=7df32685-1421-41cf-937a-a92fde6725f4", "--open")
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+		u.RunCmdMust(cmd)
+		return
+	}
+
+	if flgDeployProd {
+		cmd := exec.Command("netlify", "deploy", "--prod", "--dir=www", "--site=7df32685-1421-41cf-937a-a92fde6725f4", "--open")
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+		u.RunCmdMust(cmd)
+		return
+	}
+
+	if flgPreviewOnDemand {
+		log("Time: %s\n", time.Since(timeStart))
+		startPreviewOnDemand(books)
+		return
 	}
 
 	if flgPreviewStatic {
