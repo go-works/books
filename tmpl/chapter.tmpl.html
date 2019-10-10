@@ -12,20 +12,7 @@
 
   <div class="content">
     <div class="article">
-      <div class="article-top-hdr">
-        <span>
-          {{ range .Breadcrumbs }}
-            <a href="{{.URL}}">{{.Title}}</a>
-            <span class="breadcrumb-sep"></span>
-          {{ end }}
-        </span>
-
-        <span class="article-contribute">
-          <a class="edit-link" href="{{.NotionURL}}" rel="nofollow" target="_blank">suggest change</a>
-        </span>
-      </div>
-
-      <h1 class="title">{{.Title}}</h1>
+      {{ template "top.hdr.tmpl.html" . }}
 
       {{ .HTML }}
 
@@ -34,30 +21,7 @@
         <a href="#" onclick="showcontact(); return false;">Let me know</a>.
       </div>
 
-      <form name="essentialbooks-feedback" netlify id="contact-form">
-        <p>
-          <div class="contact-light">Feedback about page:</div>
-          <input type="text" name="page-url" id="contact-page-url" readonly />
-        </p>
-        <p>
-          <div class="contact-light">Feedback:</div>
-          <textarea name="message" id="msg-for-chris"></textarea>
-          <div class="contact-light">Optional: your email if you want me to get back to you: </div>
-          <input type="email" name="email" />
-        </p>
-        <p>
-          <button type="submit" class="contact-btn">
-            Send Feedback
-          </button>
-          <button class="contact-btn" style="float: right;" onclick="hidecontact(); return false;">
-            Cancel
-          </button>
-        </p>
-        <p>
-          <div data-netlify-recaptcha></div>
-        </p>
-      </form>
-
+      {{ template "contact.form.tmpl.html" . }}
 
       <div class="article-bottom-sep"></div>
 
@@ -70,9 +34,6 @@
         <div style="padding-left: 16px">
           {{range .Pages}}
           <div>
-            <!--
-              <span class="chap-no"></span>
-            -->
             <a href="{{.URL}}">{{.Title}}</a>
           </div>
           {{end}}
@@ -82,9 +43,6 @@
       <div class="chapter-toc-wrapper">
         <hr class="toc-sep">
 
-        <!--
-          <div class="toc-header">{{.Book.TitleLong}}</div>
-        -->
         <div class="toc-header">Table Of Contents</div>
 
         <div class="chapters-toc">
