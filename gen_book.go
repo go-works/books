@@ -226,12 +226,12 @@ func genArticle(book *Book, page *Page, currChapNo int, currArticleNo int, w io.
 	}
 
 	bc1 := Breadcrumb{
-		URL:   book.URL(),
 		Title: book.Title,
+		URL:   book.URL(),
 	}
 	bc2 := Breadcrumb{
-		URL:   page.Parent.URL(),
 		Title: page.Parent.Title,
+		URL:   page.Parent.URL(),
 	}
 	d := struct {
 		PageCommon
@@ -246,6 +246,25 @@ func genArticle(book *Book, page *Page, currChapNo int, currArticleNo int, w io.
 		Description: page.Title,
 		Breadcrumbs: []Breadcrumb{bc1, bc2},
 	}
+
+	mt := MiniTOCEntry{
+		Title:      d.Page.Parent.Title + "/",
+		URL:        d.Page.Parent.URL(),
+		IsSelected: false,
+		Indent:     0,
+	}
+	d.MiniTOC = append(d.MiniTOC, mt)
+	for idx, p := range d.Siblings() {
+		isSelected := (idx == currArticleNo)
+		mt = MiniTOCEntry{
+			Title:      p.Title,
+			URL:        p.URL(),
+			IsSelected: isSelected,
+			Indent:     1,
+		}
+		d.MiniTOC = append(d.MiniTOC, mt)
+	}
+
 	for i, p := range book.Chapters() {
 		e := TOCEntry{
 			No:         i + 1,
@@ -255,23 +274,9 @@ func genArticle(book *Book, page *Page, currChapNo int, currArticleNo int, w io.
 		}
 		d.TOC = append(d.TOC, e)
 	}
-	mt := MiniTOCEntry{
-		Title: d.Page.Title,
-		URL:   d.Page.URL(),
-	}
-	d.MiniTOC = append(d.MiniTOC, mt)
-	for idx, p := range d.Siblings() {
-		isSelected := (idx == currArticleNo)
-		mt = MiniTOCEntry{
-			IsSelected: isSelected,
-			Title:      p.Title,
-			URL:        p.URL(),
-			Indent:     1,
-		}
-		d.MiniTOC = append(d.MiniTOC, mt)
-	}
+
 	path := page.destFilePath()
-	err := execTemplate("article.tmpl.html", d, path, w)
+	err := execTemplate("page.tmpl.html", d, path, w)
 	if err != nil {
 		fmt.Printf("Failed to minify page %s in book %s\n", page.NotionID, book.Title)
 	}
@@ -287,10 +292,9 @@ func genChapter(book *Book, page *Page, currNo int, w io.Writer) error {
 	}
 
 	bc1 := Breadcrumb{
+		Title: book.Title + "/",
 		URL:   book.URL(),
-		Title: book.Title,
 	}
-	path := page.destFilePath()
 	d := struct {
 		PageCommon
 		*Page
@@ -304,31 +308,35 @@ func genChapter(book *Book, page *Page, currNo int, w io.Writer) error {
 		Description: page.Title,
 		Breadcrumbs: []Breadcrumb{bc1},
 	}
-	for i, p := range book.Chapters() {
-		e := TOCEntry{
-			No:         i + 1,
-			IsSelected: (i == currNo),
-			Title:      p.Title,
-			URL:        p.URL(),
-		}
-		d.TOC = append(d.TOC, e)
-	}
 	mt := MiniTOCEntry{
-		IsSelected: true,
 		Title:      d.Title,
 		URL:        d.URL(),
+		IsSelected: true,
+		Indent:     0,
 	}
 	d.MiniTOC = append(d.MiniTOC, mt)
 	for _, p := range d.Pages {
 		mt = MiniTOCEntry{
-			IsSelected: false,
 			Title:      p.Title,
 			URL:        p.URL(),
+			IsSelected: false,
 			Indent:     1,
 		}
 		d.MiniTOC = append(d.MiniTOC, mt)
 	}
-	err := execTemplate("chapter.tmpl.html", d, path, w)
+
+	for i, p := range book.Chapters() {
+		e := TOCEntry{
+			Title:      p.Title,
+			URL:        p.URL(),
+			No:         i + 1,
+			IsSelected: (i == currNo),
+		}
+		d.TOC = append(d.TOC, e)
+	}
+
+	path := page.destFilePath()
+	err := execTemplate("page.tmpl.html", d, path, w)
 	if err != nil {
 		return err
 	}
