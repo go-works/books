@@ -1,8 +1,10 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"strconv"
 	"strings"
@@ -260,4 +262,44 @@ func openForAppend(path string) *os.File {
 	f, err := os.OpenFile(path, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	must(err)
 	return f
+}
+
+// for dev, rebuilds in background
+func launchRollup(ctx context.Context) func() {
+	path := filepath.Join("node_modules", ".bin", "rollup")
+	if !u.FileExists(path) {
+		// assume it's because node_modules doesn't exist, so install deps
+		//cmd := exec.Command("npm", "install")
+		cmd := exec.Command("yarn", "install")
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+		logf("Running: '%s'\n", cmd.String())
+		err := cmd.Run()
+		must(err)
+	}
+	cmd := exec.Command(path, "-c", "-w")
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	logf("Running: '%s'\n", cmd.String())
+	err := cmd.Start()
+	must(err)
+	return func() {
+		_ = cmd.Process.Kill()
+		logf("Killed rollup\n")
+	}
+}
+
+func buildFrontend() {
+	{
+		os.Remove("package-lock.json")
+		os.RemoveAll("node_modules")
+		cmd := exec.Command("yarn", "install")
+		u.RunCmdMust(cmd)
+	}
+	// could also be
+	// .\node_modules\.bin\rollup -c
+	{
+		cmd := exec.Command("yarn", "build-dev")
+		u.RunCmdMust(cmd)
+	}
 }

@@ -389,6 +389,8 @@ func main() {
 		return
 	}
 
+	buildFrontend()
+
 	if flgProfile {
 		profileName := "bookgen.prof"
 		f, err := os.Create(profileName)
