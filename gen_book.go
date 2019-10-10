@@ -17,84 +17,56 @@ const (
 	tmplDir = "tmpl"
 )
 
-var ( // directory where generated .html files for books are
-	destEssentialDir = filepath.Join(destDir, "essential")
-	pathAppJS        = "/s/app.js"
-	pathMainCSS      = "/s/main.css"
-	pathIndexCSS     = "/s/index.css"
-	pathFaviconICO   = "/s/favicon.ico"
-)
-
-var (
-	templateNames = []string{
-		"index.tmpl.html",
-		"index2.tmpl.html",
-		"index-grid.tmpl.html",
-		"book_index.tmpl.html",
-		"chapter.tmpl.html",
-		"article.tmpl.html",
-		"about.tmpl.html",
-		"feedback.tmpl.html",
-		"404.tmpl.html",
-	}
-	templates = make([]*template.Template, len(templateNames))
-
+const (
 	gitHubBaseURL = "https://github.com/essentialbooks/books"
 	notionBaseURL = "https://notion.so/"
 	siteBaseURL   = "https://www.programming-books.io"
 )
 
-func tmplPath(name string) string {
-	return filepath.Join(tmplDir, name)
-}
+var (
+	pathAppJS      = "/s/app.js"
+	pathMainCSS    = "/s/main.css"
+	pathIndexCSS   = "/s/index.css"
+	pathFaviconICO = "/s/favicon.ico"
+)
 
 var (
+	// directory where generated .html files for books are
+	destEssentialDir = filepath.Join(destDir, "essential")
+
+	templates *template.Template
+
 	funcMap = template.FuncMap{
-		// The name "inc" is what the function will be called in the template text.
-		"inc": func(i int) int {
-			return i + 1
-		},
+		"inc": tmplInc,
 	}
 )
 
-func loadTemplateHelperMaybeMust(name string, ref **template.Template) *template.Template {
-	res := *ref
-	if res != nil {
-		return res
-	}
-	path := tmplPath(name)
-	//fmt.Printf("loadTemplateHelperMust: %s\n", path)
-	t, err := template.New(name).Funcs(funcMap).ParseFiles(path)
-	maybePanicIfErr(err)
-	if err != nil {
-		return nil
-	}
-	*ref = t
-	return t
+func tmplInc(i int) int {
+	return i + 1
 }
 
-func loadTemplateMaybeMust(name string) *template.Template {
-	var ref **template.Template
-	for i, tmplName := range templateNames {
-		if tmplName == name {
-			ref = &templates[i]
-			break
-		}
+func loadTemplatesMust() *template.Template {
+	// we reload templates in preview mode
+	if templates != nil && !flgPreviewOnDemand {
+		return templates
 	}
-	if ref == nil {
-		logFatal("unknown template '%s'\n", name)
-	}
-	return loadTemplateHelperMaybeMust(name, ref)
+	pattern := filepath.Join("tmpl", "*.tmpl.html")
+	var err error
+	templates, err = template.New("").Funcs(funcMap).ParseGlob(pattern)
+	//templates, err = template.ParseGlob(pattern)
+	must(err)
+	templates.Funcs(funcMap)
+	return templates
 }
 
 func execTemplateToFileSilentMaybeMust(name string, data interface{}, path string) error {
 	var errToReturn error
-	tmpl := loadTemplateMaybeMust(name)
+	tmpl := loadTemplatesMust()
 	if tmpl == nil {
 		return nil
 	}
 	var buf bytes.Buffer
-	err := tmpl.Execute(&buf, data)
+	err := tmpl.ExecuteTemplate(&buf, name, data)
 	maybePanicIfErr(err)
 
 	d := buf.Bytes()
@@ -118,17 +90,9 @@ func execTemplateToFileMaybeMust(name string, data interface{}, path string) err
 	return execTemplateToFileSilentMaybeMust(name, data, path)
 }
 
-func loadTemplate(name string) (*template.Template, error) {
-	path := tmplPath(name)
-	return template.New(name).Funcs(funcMap).ParseFiles(path)
-}
-
 func execTemplateToWriter(name string, data interface{}, w io.Writer) error {
-	tmpl, err := loadTemplate(name)
-	if err != nil {
-		return err
-	}
-	return tmpl.Execute(w, data)
+	tmpl := loadTemplatesMust()
+	return tmpl.ExecuteTemplate(w, name, data)
 }
 
 // PageCommon is a common information for most pages

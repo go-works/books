@@ -202,8 +202,9 @@ func (c *Converter) RenderPage(block *notionapi.Block) bool {
 	url, title := c.getURLAndTitleForBlock(block)
 	title = html.EscapeString(title)
 	c.converter.Printf(`<div class="%s">
-<a href="%s">%s</a>
-</div>`, cls, url, title)
+<a href="%s">%s</a>`, cls, url, title)
+	c.converter.RenderChildren(block)
+	c.converter.Printf("`</div>")
 	return true
 }
 
@@ -258,6 +259,7 @@ func (c *Converter) RenderText(block *notionapi.Block) bool {
 
 	// TODO: convert to div
 	c.converter.Printf(`<p>`)
+	c.converter.RenderInlines(block.InlineContent)
 	c.converter.RenderChildren(block)
 	c.converter.Printf(`</p>`)
 	return true
