@@ -408,7 +408,7 @@ func main() {
 		err = pprof.StartCPUProfile(f)
 		must(err)
 		defer func() {
-			u.FileClose(f)
+			u.CloseNoError(f)
 			log("CPU profile saved to a file '%s'\n", profileName)
 		}()
 		defer func() {

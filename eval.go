@@ -52,7 +52,7 @@ func evalGo(e *Eval) (*EvalResponse, error) {
 	if rsp.StatusCode != 200 {
 		return nil, fmt.Errorf("request failed with '%s'", rsp.Status)
 	}
-	defer u.FileClose(rsp.Body)
+	defer u.CloseNoError(rsp.Body)
 	d, err = ioutil.ReadAll(rsp.Body)
 	must(err)
 	var res EvalResponse
