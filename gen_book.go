@@ -8,7 +8,10 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"strings"
 	"time"
+
+	"github.com/kjk/u"
 )
 
 const (
@@ -24,24 +27,64 @@ const (
 )
 
 var (
-	pathAppJS      = "/s/app.js"
-	pathMainCSS    = "/s/main.css"
-	pathIndexCSS   = "/s/index.css"
-	pathFaviconICO = "/s/favicon.ico"
-)
-
-var (
 	// directory where generated .html files for books are
 	destEssentialDir = filepath.Join(destDir, "essential")
 
 	templates *template.Template
 
 	funcMap = template.FuncMap{
-		"inc": tmplInc,
+		"inc":      funcInc,
+		"optimize": funcOptimizeAsset,
 	}
 )
 
-func tmplInc(i int) int {
+var (
+	// sha1 of original content to url of optimized
+	// content
+	hashToOptimizedURL = map[string]string{}
+)
+
+func funcOptimizeAsset(url string) string {
+	// url is like /s/app.js which we convert to a file
+	// tmpl/app.js
+	name := strings.TrimPrefix(url, "/s/")
+	srcPath := filepath.Join("tmpl", name)
+	d, err := ioutil.ReadFile(srcPath)
+	u.Must(err)
+	srcSha1Hex := u.Sha1HexOfBytes(d)
+	if newURL := hashToOptimizedURL[srcSha1Hex]; newURL != "" {
+		return newURL
+	}
+	minifyType := ""
+	ext := strings.ToLower(filepath.Ext(name))
+	switch ext {
+	case ".css":
+		minifyType = "text/css"
+	case ".js":
+		minifyType = "text/javascript"
+	}
+
+	if doMinify && minifyType != "" {
+		d2, err := minifier.Bytes(minifyType, d)
+		maybePanicIfErr(err)
+		if err == nil {
+			fmt.Printf("Compressed %s from %d => %d (saved %d)\n", srcPath, len(d), len(d2), len(d)-len(d2))
+			d = d2
+		}
+	}
+
+	dstSha1Hex := u.Sha1HexOfBytes(d)
+	dstName := nameToSha1Name(name, dstSha1Hex)
+	dstPath := filepath.Join("www", "s", dstName)
+	dstURL := "/s/" + dstName
+	err = ioutil.WriteFile(dstPath, d, 0644)
+	u.Must(err)
+	fmt.Printf("Copied %s => %s\n", srcPath, dstPath)
+	hashToOptimizedURL[srcSha1Hex] = dstURL
+	return dstURL
+}
+
+func funcInc(i int) int {
 	return i + 1
 }
 
@@ -97,20 +140,12 @@ func execTemplateToWriter(name string, data interface{}, w io.Writer) error {
 
 // PageCommon is a common information for most pages
 type PageCommon struct {
-	Analytics      template.HTML
-	PathAppJS      string
-	PathMainCSS    string
-	PathIndexCSS   string
-	PathFaviconICO string
+	Analytics template.HTML
 }
 
 func getPageCommon() PageCommon {
 	return PageCommon{
-		Analytics:      googleAnalytics,
-		PathAppJS:      pathAppJS,
-		PathMainCSS:    pathMainCSS,
-		PathIndexCSS:   pathIndexCSS,
-		PathFaviconICO: pathFaviconICO,
+		Analytics: googleAnalytics,
 	}
 }
 
