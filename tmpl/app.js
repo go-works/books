@@ -11,7 +11,7 @@ var currentSearchTerm = "";
 // polyfil for Object.is
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
 if (!Object.is) {
-  Object.is = function(x, y) {
+  Object.is = function (x, y) {
     // SameValue algorithm
     if (x === y) {
       // Steps 1-5, 7-10
@@ -732,6 +732,9 @@ function locationHashChanged(e) {
 
 // returns id of selected toc item or ""
 function createTOC() {
+  if (true) {
+    return;
+  }
   selectedTocItemIdx = -1;
   var el = document.getElementById("toc");
   var html = buildTOCHTML();
@@ -743,6 +746,9 @@ function createTOC() {
 }
 
 function recreateTOC() {
+  if (true) {
+    return;
+  }
   var el = document.getElementById("toc");
   var scrollTop = el.scrollTop;
   createTOC();
@@ -924,7 +930,7 @@ function doSearch(searchTerm) {
 // debouncer(fn)
 function makeDebouncer(timeInMs) {
   let interval;
-  return function(f) {
+  return function (f) {
     clearTimeout(interval);
     interval = setTimeout(() => {
       interval = null;
@@ -1201,8 +1207,8 @@ function start() {
     } else {
       console.log(
         "tried to scroll toc item to non-existent element with id: '" +
-          tocItemElementID +
-          "'"
+        tocItemElementID +
+        "'"
       );
     }
   }

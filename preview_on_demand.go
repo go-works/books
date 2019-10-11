@@ -211,10 +211,8 @@ func makeHTTPServerOnDemand() *http.Server {
 }
 
 func startPreviewOnDemand(books []*Book) {
-
-	// because of genBookTOCSearchMust()
-	os.RemoveAll("www")
-	os.MkdirAll(filepath.Join("www", "s"), 0755)
+	killRollup := launchRollup(nil)
+	defer killRollup()
 
 	for _, book := range books {
 		buildIDToPage(book)

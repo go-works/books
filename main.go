@@ -352,6 +352,12 @@ func main() {
 		return
 	}
 
+	if flgGen {
+		os.RemoveAll("www")
+		os.MkdirAll(filepath.Join("www", "s"), 0755)
+		os.MkdirAll(filepath.Join("www", "gen"), 0755)
+	}
+
 	buildFrontend()
 
 	if flgProfile {
@@ -408,8 +414,6 @@ func main() {
 	log("Downloaded %d pages, %d from cache, in %s\n", nTotalDownloaded, nTotalFromCache, time.Since(timeStart))
 
 	if flgGen || flgPreviewStatic {
-		os.RemoveAll("www")
-		os.MkdirAll(filepath.Join("www", "s"), 0755)
 		genStartTime := time.Now()
 		genBooks(books)
 		genNetlifyHeaders()

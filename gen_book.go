@@ -28,7 +28,7 @@ const (
 
 var (
 	// directory where generated .html files for books are
-	destEssentialDir = filepath.Join(destDir, "essential")
+	destEssentialDir = filepath.Join("www", "essential")
 
 	templates *template.Template
 
@@ -50,6 +50,11 @@ func funcOptimizeAsset(url string) string {
 	name := strings.TrimPrefix(url, "/s/")
 	srcPath := filepath.Join("tmpl", name)
 	d, err := ioutil.ReadFile(srcPath)
+	if err != nil {
+		// for bundle.js and bundle.css
+		srcPath = filepath.Join("www", "gen", name)
+		d, err = ioutil.ReadFile(srcPath)
+	}
 	u.Must(err)
 	srcSha1Hex := u.Sha1HexOfBytes(d)
 	if newURL := hashToOptimizedURL[srcSha1Hex]; newURL != "" {
