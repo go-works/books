@@ -1,6 +1,5 @@
 // we're applying react-like state => UI
 var currentState = {
-  searchInputFocused: false,
   searchResults: [],
   // index within searchResults array, -1 means not selected
   selectedSearchResultIdx: -1
@@ -274,57 +273,12 @@ function a(uri, txt, opt) {
   return inTag("a", txt, opt);
 }
 
-var rebuildUITimer = null;
-function triggerUIRebuild() {
-  rebuildUITimer = null;
-  rebuildUIFromState();
-}
-
-function requestRebuildUI(now) {
-  // collapse multiple requests into one
-  if (rebuildUITimer != null) {
-    return;
-  }
-  if (now) {
-    triggerUIRebuild();
-  } else {
-    rebuildUITimer = window.requestAnimationFrame(triggerUIRebuild);
-  }
-}
-
 function setState(newState, now = false) {
-  var vOld, vNew;
-  var stateChanged = false;
-  for (var k in newState) {
-    vOld = currentState[k];
-    vNew = newState[k];
-    currentState[k] = vNew;
-    if (!stateChanged && !Object.is(vOld, vNew)) {
-      stateChanged = true;
-    }
-  }
-  if (stateChanged) {
-    requestRebuildUI(now);
-  }
 }
 
 function isChapterOrArticleURL(s) {
   var isChapterOrArticle = s.indexOf("#") === -1;
   return isChapterOrArticle;
-}
-
-function getLocationLastElement() {
-  var loc = window.location.pathname;
-  var parts = loc.split("/");
-  var lastIdx = parts.length - 1;
-  return parts[lastIdx];
-}
-
-function getLocationLastElementWithHash() {
-  var loc = window.location.pathname;
-  var parts = loc.split("/");
-  var lastIdx = parts.length - 1;
-  return parts[lastIdx] + window.location.hash;
 }
 
 function navigateToSearchResult(idx) {
@@ -343,7 +297,6 @@ function navigateToSearchResult(idx) {
     parts.push(uri);
   }
   loc = parts.join("/");
-  clearSearchResults();
   window.location = loc;
 }
 
@@ -412,48 +365,7 @@ function getArticlePath(tocItem, term) {
   return parentTitle + " / " + title;
 }
 
-var searchInOpt = {
-  cls: "in"
-};
 
-/* results is array of items:
-{
-  tocItem: [],
-  term: "",
-  match: [[idx, len], ...],
-}
-*/
-function buildResultsHTML(results, selectedIdx) {
-  var a = [];
-  var n = results.length;
-  for (var i = 0; i < n; i++) {
-    var r = results[i];
-    var tocItem = r.tocItem;
-    var term = r.term;
-    var matches = r.match;
-
-    var html = hilightSearchResult(term, matches);
-    // TODO: get multi-level path (e.g. for 'json' where in Refelection / Uses for reflection chapter)
-    var inTxt = getArticlePath(tocItem, term);
-    if (!inTxt) {
-      inTxt = getParentTitle(tocItem);
-    }
-    if (inTxt) {
-      html += " " + inTagRaw("span", inTxt, searchInOpt);
-    }
-
-    var opt = {
-      id: "search-result-no-" + i,
-      classes: ["search-result"]
-    };
-    if (i == selectedIdx) {
-      opt.classes.push("search-result-selected");
-    }
-    var s = div(html, opt);
-    a.push(s);
-  }
-  return a.join("\n");
-}
 
 // https://github.com/Treora/scroll-into-view/blob/master/polyfill.js
 // TODO: passing options = { center: true } doesn't work
@@ -503,108 +415,6 @@ function scrollElementIntoView(el, options) {
   }
 }
 
-function rebuildSearchResultsUI() {
-  var html;
-  var results = currentState.searchResults;
-  var selectedIdx = currentState.selectedSearchResultIdx;
-  var searchWindow = document.getElementById("search-results-window");
-  var blurOverlay = document.getElementById("blur-overlay");
-  var searchResults = document.getElementById("search-results");
-  if (results.length == 0) {
-    if (currentSearchTerm == "") {
-      searchWindow.style.display = "none";
-      blurOverlay.style.display = "none";
-    } else {
-      searchWindow.style.display = "block";
-      blurOverlay.style.display = "block";
-      html =
-        "<div class='no-search-results'>No search results for '" +
-        currentSearchTerm +
-        "'</div>";
-      searchResults.innerHTML = html;
-    }
-    return;
-  }
-  searchWindow.style.display = "block";
-  blurOverlay.style.display = "block";
-  html = buildResultsHTML(results, selectedIdx);
-  searchResults.innerHTML = html;
-
-  // ensure element is scrolled into view
-  window.requestAnimationFrame(() => {
-    if (selectedIdx < 0) {
-      return;
-    }
-    var id = "search-result-no-" + selectedIdx;
-    var el = document.getElementById(id);
-    scrollElementIntoView(el, true);
-  });
-}
-
-
-function setIsExpandedUpwards(i) {
-  var tocItem = gBookToc[i];
-  tocItemSetIsExpanded(tocItem, true);
-  tocItem = tocItemParent(tocItem);
-  while (tocItem != null) {
-    tocItemSetIsExpanded(tocItem, true);
-    tocItem = tocItemParent(tocItem);
-  }
-}
-
-function setTocExpandedForCurrentURL() {
-  var currURI = getLocationLastElementWithHash();
-  var n = gBookToc.length;
-  var tocItem, uri;
-  for (var i = 0; i < n; i++) {
-    tocItem = gBookToc[i];
-    uri = tocItemURL(tocItem);
-    if (uri === currURI) {
-      setIsExpandedUpwards(i);
-      return;
-    }
-  }
-}
-
-
-function getSearchInputElement() {
-  return document.getElementById("search-input");
-}
-
-function setSearchInputFocus() {
-  var el = getSearchInputElement();
-  var wantsFocus = currentState.searchInputFocused;
-  var isFocused = document.activeElement === el;
-  //console.log("wantsFocus:", wantsFocus, "isFocused:", isFocused);
-  if (!wantsFocus) {
-    el.value = "";
-  }
-  if (isFocused == wantsFocus) {
-    return;
-  }
-  el.value = "";
-  if (wantsFocus) {
-    el.focus();
-  } else {
-    el.blur();
-    clearSearchResults();
-  }
-}
-
-function rebuildUIFromState() {
-  setSearchInputFocus();
-  rebuildSearchResultsUI();
-}
-
-function clearSearchResults() {
-  currentSearchTerm = "";
-  setState({
-    searchResults: [],
-    selectedSearchResultIdx: -1
-  });
-}
-
-var maxSearchResults = 25;
 
 // el is [idx, len]
 // sort by idx.
@@ -616,122 +426,6 @@ function sortSearchByIdx(el1, el2) {
     res = el2[1] - el1[1];
   }
   return res;
-}
-
-// [[idx, len], ...]
-// sort by idx, if there is an overlap, drop overlapped elements
-function sortSearchMatches(a) {
-  if (a.length < 2) {
-    return a;
-  }
-  a.sort(sortSearchByIdx);
-  var lastIdx = a[0][0] + a[0][1]; // start + len
-  var n = a.length;
-  var res = [a[0]];
-  for (var i = 1; i < n; i++) {
-    var el = a[i];
-    var idx = el[0];
-    var len = el[1];
-    if (idx >= lastIdx) {
-      res.push(el);
-      lastIdx = idx + len;
-    }
-  }
-  return a;
-}
-
-// searches s for toFind and toFindArr.
-// returns null if no match
-// returns array of [idx, len] position in $s where $toFind or $toFindArr matches
-function searchMatch(s, toFind, toFindArr) {
-  s = s.toLowerCase();
-
-  // try exact match
-  var idx = s.indexOf(toFind);
-  if (idx != -1) {
-    return [[idx, toFind.length]];
-  }
-
-  // now see if matches for search for AND of components in toFindArr
-  if (!toFindArr) {
-    return null;
-  }
-
-  var n = toFindArr.length;
-  var res = Array(n);
-  for (var i = 0; i < n; i++) {
-    toFind = toFindArr[i];
-    idx = s.indexOf(toFind);
-    if (idx == -1) {
-      return null;
-    }
-    res[i] = [idx, toFind.length];
-  }
-  return sortSearchMatches(res);
-}
-
-/*
-returns null if no match
-returns: {
-  term: "",
-  match: [[idx, len], ...]
-}
-*/
-function searchMatchMulti(toSearchArr, toFind) {
-  var toFindArr = toFind.split(" ").filter(notEmptyString);
-  var n = toSearchArr.length;
-  for (var i = 0; i < n; i++) {
-    var toSearch = toSearchArr[i];
-    var match = searchMatch(toSearch, toFind, toFindArr);
-    if (match) {
-      return {
-        term: toSearch,
-        match: match,
-        tocItem: null // will be filled later
-      };
-    }
-  }
-  return null;
-}
-
-function notEmptyString(s) {
-  return s.length > 0;
-}
-
-// if search term is multiple words like "blank id",
-// we search for both the exact match and if we match all
-// terms ("blank", "id") separately
-function doSearch(searchTerm) {
-  searchTerm = searchTerm.trim();
-  if (searchTerm == currentSearchTerm) {
-    return;
-  }
-  searchTerm = searchTerm.toLowerCase();
-  currentSearchTerm = searchTerm;
-  if (searchTerm.length == 0) {
-    clearSearchResults();
-    return;
-  }
-
-  // console.log("search for:", searchTerm);
-  var a = gBookToc; // loaded via toc_search.js, generated in gen_book_toc_search.go
-  var n = a.length;
-  var res = [];
-  for (var i = 0; i < n && res.length < maxSearchResults; i++) {
-    var tocItem = a[i];
-    var searchable = tocItemSearchable(tocItem);
-    var match = searchMatchMulti(searchable, searchTerm);
-    if (!match) {
-      continue;
-    }
-    match.tocItem = tocItem;
-    res.push(match);
-  }
-  // console.log("search results:", res);
-  setState({
-    searchResults: res,
-    selectedSearchResultIdx: 0
-  });
 }
 
 // returns a debouncer function. Usage:
@@ -750,7 +444,7 @@ function makeDebouncer(timeInMs) {
 }
 
 // TODO: maybe just use debouncer from https://gist.github.com/nmsdvid/8807205
-// and do addEventListener("input", debounce(onSearchInputChanged, 250, false))
+// and do "add"EventListener("input", debounce(onSearchInputChanged, 250, false))
 var searchInputDebouncer = makeDebouncer(250);
 
 function extractIntID(id) {
@@ -821,18 +515,15 @@ function onClick(ev) {
     return;
   }
 
-  // possibly dismiss search results
   setState({
     selectedSearchResultIdx: -1
   });
 }
 
 function dismissSearch() {
-  clearSearchResults();
   setState(
     {
       selectedSearchResultIdx: -1,
-      searchInputFocused: false
     },
     true
   );
@@ -861,13 +552,6 @@ function onEnter(ev) {
   navigateToSearchResult(selIdx);
 }
 
-function onKeySlash(ev) {
-  setState({
-    searchInputFocused: true
-  });
-  //ev.preventDefault();
-}
-
 function onEscape(ev) {
   dismissSearch();
   ev.preventDefault();
@@ -893,16 +577,6 @@ function onUpDown(ev) {
 
 function onKeyDown(ev) {
   // console.log(ev);
-  if (ev.key == "/") {
-    onKeySlash(ev);
-    return;
-  }
-
-  // Esc is Edge
-  if (ev.key == "Escape" || ev.key == "Esc") {
-    onEscape(ev);
-    return;
-  }
 
   if (ev.key == "Enter") {
     onEnter(ev);
@@ -926,42 +600,16 @@ function onSearchInputChanged(ev) {
   searchInputDebouncer(fn);
 }
 
-function onSearchInputFocus(ev) {
-  setState({
-    searchInputFocused: true
-  });
-  ev.preventDefault();
-}
-
-function onSearchInputBlur(ev) {
-  var el = ev.target;
-  //console.log("onSearchInputBlur, ev:", ev, "el:", el);
-  setState({
-    searchInputFocused: false
-  });
-}
-
 function start() {
   //console.log("started");
 
   document.addEventListener("keydown", onKeyDown);
-
-  var el = getSearchInputElement();
-  el.addEventListener("input", onSearchInputChanged);
-  el.addEventListener("focus", onSearchInputFocus);
-  el.addEventListener("blur", onSearchInputBlur);
-
   document.addEventListener("mousemove", onMouseMove);
   document.addEventListener("mousedown", onMouseDown);
   document.addEventListener("click", onClick);
 
-  var uri = getLocationLastElement();
-  if (!isChapterOrArticleURL(uri)) {
-    return;
-  }
   // if this is chapter or article, we generate toc
   /*
-  setTocExpandedForCurrentURL();
   var scrollTop = scrollPosGet() || -1;
   if (scrollTop >= 0) {
     //console.log("scrollTop:", scrollTop);

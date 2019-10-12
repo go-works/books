@@ -40,7 +40,6 @@ function setIsExpandedUpwards(idx) {
 }
 
 export function setTocExpandedForCurrentURL() {
-  // console.log("setTocExpandedForCurrentURL");
   tocItemIdxExpanded = [];
   const currURI = getLocationLastElementWithHash();
   const n = gBookToc.length;

@@ -34,17 +34,25 @@
   <script>
     function onLoad() {
       gTocItems = gBookToc;
+      gBookTitle = "{{ .Book.TitleLong }}";
       const opts = {
         target: document.getElementById("toc"),
         props: {
           parentIdx: -1,
           level: 0,
-        }
-      }
-      // console.log("gBookToc:", gBookToc);
+        },
+      };
+      // console.log("gBookToc:", gBookToc3);
       new app.toc(opts);
-    }
 
+      const opts2 = {
+        target: document.getElementById("search-parent"),
+        props: {
+          bookTitle: gBookTitle,
+        },
+      };
+      new app.searchInput(opts2);
+    }
     document.addEventListener('DOMContentLoaded', onLoad);
   </script>
 </head>
