@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"path/filepath"
 
+	"github.com/kjk/notionapi"
 	"github.com/kjk/u"
 )
 
@@ -189,4 +190,35 @@ func updateBookAppJS(book *Book) {
 	}
 	book.AppJSURL = "/s/" + name
 	log("Created %s\n", dst)
+}
+
+func calcPageHeadings(page *Page) {
+	var headings []*HeadingInfo
+	cb := func(block *notionapi.Block) {
+		isHeader := false
+		switch block.Type {
+		case notionapi.BlockHeader, notionapi.BlockSubHeader, notionapi.BlockSubSubHeader:
+			isHeader = true
+		}
+		if !isHeader {
+			return
+		}
+		id := notionapi.ToNoDashID(block.ID)
+		s := getInlinesPlain(block.InlineContent)
+		h := &HeadingInfo{
+			Text: s,
+			ID:   id,
+		}
+		headings = append(headings, h)
+	}
+	blocks := []*notionapi.Block{page.NotionPage.Root()}
+	notionapi.ForEachBlock(blocks, cb)
+	page.Headings = headings
+}
+
+func calcBookPageHeadings(book *Book) {
+	pages := book.GetAllPages()
+	for _, p := range pages {
+		calcPageHeadings(p)
+	}
 }

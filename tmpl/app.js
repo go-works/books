@@ -46,18 +46,6 @@ function storeGet(key) {
 var keyScrollPos = "scrollPos";
 var keyIndexView = "indexView";
 
-function scrollPosSet(pos) {
-  storeSet(keyScrollPos, pos);
-}
-
-function scrollPosGet(pos) {
-  return storeGet(keyScrollPos);
-}
-
-function scrollPosClear() {
-  storeClear(keyScrollPos);
-}
-
 function viewSet(view) {
   storeSet(keyIndexView, view);
 }
@@ -68,14 +56,6 @@ function viewGet() {
 
 function viewClear() {
   storeClear(keyIndexView);
-}
-
-function navigateToURL(targetEl) {
-  //console.log("nav:", targetEl);
-  var el = document.getElementById("toc");
-  //console.log("el:", el);
-  //console.log("scrollTop:", el.scrollTop);
-  scrollPosSet(el.scrollTop);
 }
 
 // rv = rememberView but short because it's part of url
@@ -561,135 +541,6 @@ function rebuildSearchResultsUI() {
   });
 }
 
-function getItemsIdxForParent(parentIdx) {
-  var res = [];
-  var n = gBookToc.length;
-  for (var i = 0; i < n; i++) {
-    var tocItem = gBookToc[i];
-    if (tocItemParentIdx(tocItem) == parentIdx) {
-      res.push(i);
-    }
-  }
-  return res;
-}
-
-function emptyArrow() {
-  return '<div class="toc-nav-empty-arrow"></div>';
-}
-function expandedSvgArrow() {
-  return '<svg class="arrow"><use xlink:href="#arrow-expanded"></use></svg>';
-}
-
-function notExpandedSvgArrow() {
-  return '<svg class="arrow"><use xlink:href="#arrow-not-expanded"></use></svg>';
-}
-
-var aOpt = {
-  cls: "toc-link",
-  onclick: "navigateToURL(this)"
-};
-
-function genTocExpanded(tocItem, tocItemIdx, level, isCurrent) {
-  var titleHTML = escapeHTML(tocItemTitle(tocItem));
-  var uri = tocItemURL(tocItem);
-  var divInner = expandedSvgArrow() + a(uri, titleHTML, aOpt);
-  var opt = {
-    classes: ["toc-item", "lvl" + level],
-    id: "ti-" + tocItemIdx
-  };
-  if (isCurrent) {
-    opt.classes.push("bold");
-  }
-  var html = div(divInner, opt);
-  return html;
-}
-
-function genTocNotExpanded(tocItem, tocItemIdx, level) {
-  var titleHTML = escapeHTML(tocItemTitle(tocItem));
-  var uri = tocItemURL(tocItem);
-  var divInner = notExpandedSvgArrow() + a(uri, titleHTML, aOpt);
-  var opt = {
-    classes: ["toc-item", "lvl" + level],
-    id: "ti-" + tocItemIdx
-  };
-  var html = div(divInner, opt);
-  return html;
-}
-
-function genTocNoChildren(tocItem, tocItemIdx, level, isCurrent) {
-  var uri = tocItemURL(tocItem);
-  if (uri.indexOf("#") != -1) {
-    var parent = tocItemParent(tocItem);
-    var isChapter = tocItemIsRoot(parent);
-    var hasChildren = tocItemHasChildren(parent);
-    var onlyArticleChildren = tocItemHasArticleChildren(parent);
-    if (isChapter && hasChildren && onlyArticleChildren) {
-      level += 1;
-    }
-  }
-
-  var opt = {
-    classes: ["toc-item", "lvl" + level],
-    id: "ti-" + tocItemIdx
-  };
-  var titleHTML = escapeHTML(tocItemTitle(tocItem));
-  if (isCurrent) {
-    var divInner = emptyArrow() + div(titleHTML);
-    // div(emptyArrow() + emptyArrow()
-    opt.classes.push("bold");
-    var html = div(divInner, opt);
-    console.log("html:", html);
-    return html;
-  }
-  var divInner = emptyArrow() + a(uri, titleHTML, aOpt);
-  var html = div(divInner, opt);
-  return html;
-}
-
-var selectedTocItemIdx = -1;
-
-function buildTOCHTMLLevel(level, parentIdx) {
-  var opt = {};
-  var tocItemIdx, tocItem, el;
-  var itemsIdx = getItemsIdxForParent(parentIdx);
-  if (itemsIdx.length == 0) {
-    return "";
-  }
-  var currURI = getLocationLastElementWithHash();
-  //console.log("currURI:", currURI);
-  var html = "";
-  var n = itemsIdx.length;
-  for (var i = 0; i < n; i++) {
-    tocItemIdx = itemsIdx[i];
-    tocItem = gBookToc[tocItemIdx];
-
-    var uri = tocItemURL(tocItem);
-    var isCurrent = currURI === uri;
-    if (isCurrent) {
-      selectedTocItemIdx = tocItemIdx;
-    }
-    if (!tocItemHasChildren(tocItem)) {
-      el = genTocNoChildren(tocItem, tocItemIdx, level, isCurrent);
-    } else {
-      if (tocItemIsExpanded(tocItem)) {
-        el = genTocExpanded(tocItem, tocItemIdx, level, isCurrent);
-      } else {
-        el = genTocNotExpanded(tocItem, tocItemIdx, level);
-      }
-    }
-    html += el;
-
-    if (tocItemIsExpanded(tocItem)) {
-      var htmlChild = buildTOCHTMLLevel(level + 1, tocItemIdx);
-      html += htmlChild;
-    }
-  }
-  return html;
-}
-
-function buildTOCHTML() {
-  return buildTOCHTMLLevel(0, -1);
-}
 
 function setIsExpandedUpwards(i) {
   var tocItem = gBookToc[i];
@@ -698,15 +549,6 @@ function setIsExpandedUpwards(i) {
   while (tocItem != null) {
     tocItemSetIsExpanded(tocItem, true);
     tocItem = tocItemParent(tocItem);
-  }
-}
-
-function tocUnexpandAll() {
-  var tocItem;
-  var n = gBookToc.length;
-  for (var i = 0; i < n; i++) {
-    tocItem = gBookToc[i];
-    tocItemSetIsExpanded(tocItem, false);
   }
 }
 
@@ -725,35 +567,7 @@ function setTocExpandedForCurrentURL() {
 }
 
 function locationHashChanged(e) {
-  tocUnexpandAll();
   setTocExpandedForCurrentURL();
-  recreateTOC();
-}
-
-// returns id of selected toc item or ""
-function createTOC() {
-  if (true) {
-    return;
-  }
-  selectedTocItemIdx = -1;
-  var el = document.getElementById("toc");
-  var html = buildTOCHTML();
-  el.innerHTML = html;
-  if (selectedTocItemIdx === -1) {
-    return "";
-  }
-  return "ti-" + selectedTocItemIdx;
-}
-
-function recreateTOC() {
-  if (true) {
-    return;
-  }
-  var el = document.getElementById("toc");
-  var scrollTop = el.scrollTop;
-  createTOC();
-  el = document.getElementById("toc");
-  el.scrollTop = scrollTop;
 }
 
 function getSearchInputElement() {
@@ -781,7 +595,6 @@ function setSearchInputFocus() {
 }
 
 function rebuildUIFromState() {
-  //console.log("rebuildUIFromState");
   setSearchInputFocus();
   rebuildSearchResultsUI();
 }
@@ -960,23 +773,6 @@ function getIdxFromSearchResultElementId(id) {
   return extractIntID(id);
 }
 
-function toggleTocItem(idx) {
-  //console.log("toggleTocItem:", idx);
-  var tocItem = gBookToc[idx];
-  var isExpanded = tocItemIsExpanded(tocItem);
-  tocItemSetIsExpanded(tocItem, !isExpanded);
-  recreateTOC();
-}
-
-function getTocItemFromElementId(id) {
-  if (!id) {
-    return -1;
-  }
-  if (!id.startsWith("ti-")) {
-    return -1;
-  }
-  return extractIntID(id);
-}
 
 // If we clicked on search result list, navigate to that result.
 function trySearchResultNavigate(el) {
@@ -986,21 +782,6 @@ function trySearchResultNavigate(el) {
     var idx = getIdxFromSearchResultElementId(el.id);
     if (idx >= 0) {
       navigateToSearchResult(idx);
-      return true;
-    }
-    el = el.parentNode;
-  }
-  return false;
-}
-
-// If we clicked on toc item, collapse or expand it.
-function tryToggleTocItem(el) {
-  // Since a child element might be clicked, we need to traverse up until
-  // we find desired parent or top of document.
-  while (el) {
-    var idx = getTocItemFromElementId(el.id);
-    if (idx >= 0) {
-      toggleTocItem(idx);
       return true;
     }
     el = el.parentNode;
@@ -1018,6 +799,7 @@ function showcontact() {
   el = document.getElementById("msg-for-chris");
   el.focus();
 }
+
 function hidecontact() {
   var el = document.getElementById("contact-form");
   el.style.display = "none";
@@ -1042,9 +824,6 @@ function onClick(ev) {
     return;
   }
 
-  if (tryToggleTocItem(el)) {
-    return;
-  }
   // possibly dismiss search results
   setState({
     selectedSearchResultIdx: -1
@@ -1185,13 +964,8 @@ function start() {
   }
   // if this is chapter or article, we generate toc
   window.onhashchange = locationHashChanged;
-  tocUnexpandAll();
+  /*
   setTocExpandedForCurrentURL();
-  var tocItemElementID = createTOC();
-  // ensure that the slected toc item is visible
-  if (tocItemElementID === "") {
-    return;
-  }
   var scrollTop = scrollPosGet() || -1;
   if (scrollTop >= 0) {
     //console.log("scrollTop:", scrollTop);
@@ -1200,6 +974,8 @@ function start() {
     scrollPosClear();
     return;
   }
+  */
+  /*
   function makeTocVisible() {
     var el = document.getElementById(tocItemElementID);
     if (el) {
@@ -1213,6 +989,7 @@ function start() {
     }
   }
   window.requestAnimationFrame(makeTocVisible);
+  */
 }
 
 // pageId looks like "5ab3b56329c44058b5b24d3f364183ce"

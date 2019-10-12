@@ -48,6 +48,13 @@ func getFileForURL(uri string) string {
 		}
 	}
 	{
+		dir := filepath.Join("www", "gen")
+		path := tryPrefixInDir(uri, "/s/", dir)
+		if path != "" {
+			return path
+		}
+	}
+	{
 		dir := filepath.Join("covers", "covers_small")
 		path := tryPrefixInDir(uri, "/covers_small/", dir)
 		if path != "" {

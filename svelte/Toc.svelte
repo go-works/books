@@ -1,9 +1,22 @@
 <script>
   import TocItem from "./TocItem.svelte";
+  import { item } from "./item.js";
+  import {
+    getLocationLastElementWithHash,
+    setTocExpandedForCurrentURL
+  } from "./util.js";
 
-  export let toc = [];
+  export let parentIdx = -1;
+  export let level = 0;
+  const children = item.childrenForParentIdx(parentIdx);
+
+  if (parentIdx === -1) {
+    const loc = getLocationLastElementWithHash();
+    // console.log(`loc: ${loc}`);
+    setTocExpandedForCurrentURL();
+  }
 </script>
 
-{#each toc as tocItem}
-  <TocItem item={tocItem} level={0} />
+{#each children as itemIdx}
+  <TocItem {itemIdx} {level} />
 {/each}

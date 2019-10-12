@@ -256,7 +256,11 @@ func initMinify() {
 		KeepDocumentTags: true,
 		KeepEndTags:      true,
 	})
-	doMinify = !flgPreviewStatic
+
+	doMinify = true
+	if flgPreviewOnDemand || flgPreviewStatic {
+		doMinify = false
+	}
 }
 
 func initBook(book *Book) {
@@ -410,6 +414,7 @@ func main() {
 		initBook(book)
 		downloadBook(client, book)
 		loadSoContributorsMust(book)
+		calcBookPageHeadings(book)
 	}
 	log("Downloaded %d pages, %d from cache, in %s\n", nTotalDownloaded, nTotalFromCache, time.Since(timeStart))
 

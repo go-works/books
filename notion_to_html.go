@@ -333,28 +333,6 @@ func notionToHTML(page *Page, book *Book) []byte {
 	r.RewriteURL = res.rewriteURL
 	res.converter = r
 
-	var headings []*HeadingInfo
-	cb := func(block *notionapi.Block) {
-		isHeader := false
-		switch block.Type {
-		case notionapi.BlockHeader, notionapi.BlockSubHeader, notionapi.BlockSubSubHeader:
-			isHeader = true
-		}
-		if !isHeader {
-			return
-		}
-		id := notionapi.ToNoDashID(block.ID)
-		s := getInlinesPlain(block.InlineContent)
-		h := &HeadingInfo{
-			Text: s,
-			ID:   id,
-		}
-		headings = append(headings, h)
-	}
-	blocks := []*notionapi.Block{page.NotionPage.Root()}
-	notionapi.ForEachBlock(blocks, cb)
-	page.Headings = headings
-
 	html := res.Gen()
 
 	return html

@@ -1,87 +1,67 @@
 <script>
-  export let item = [];
+  import Toc from "./Toc.svelte";
+  import { item } from "./item.js";
+  import { scrollPosSet, currentlySelectedIdx } from "./store.js";
+  import { isTocItemExpanded } from "./util.js";
+
+  export let itemIdx = -1;
   export let level = 0;
 
-  var itemIdxIsExpanded = 0;
-  var itemIdxURL = 1;
-  var itemIdxParent = 2;
-  var itemIdxFirstChild = 3;
-  var itemIdxTitle = 4;
-  var itemIdxFirstSynonym = 5;
+  const loc = getLocationLastElementWithHash();
 
-  function tocItemIsExpanded(item) {
-    return item[itemIdxIsExpanded];
-  }
+  const tocItem = gTocItems[itemIdx];
+  const title = item.title(tocItem);
+  const url = item.url(tocItem);
+  const hasChildren = item.hasChildren(tocItem);
 
-  function tocItemSetIsExpanded(item, isExpanded) {
-    item[itemIdxIsExpanded] = isExpanded;
-  }
+  // let isExpanded = loc.startsWith(url);
+  let isExpanded = isTocItemExpanded(itemIdx);
 
-  function tocItemURL(item) {
-    while (item) {
-      var uri = item[itemIdxURL];
-      if (uri != "") {
-        return uri;
-      }
-      item = tocItemParent(item);
-    }
-    return "";
+  if (isExpanded) {
+    // console.log(`loc: ${loc}, url: ${url}`);
   }
 
-  function tocItemFirstChildIdx(item) {
-    return item[itemIdxFirstChild];
+  let isSelected = url === loc;
+
+  currentlySelectedIdx.subscribe(idx => {
+    isSelected = idx == itemIdx;
+  });
+
+  function toggleExpand() {
+    isExpanded = !isExpanded;
+    // console.log("toogleExpand(): ", isExpanded);
   }
 
-  function tocItemHasChildren(item) {
-    return tocItemFirstChildIdx(item) != -1;
-  }
-
-  function tocItemParent(item) {
-    var idx = tocItemParentIdx(item);
-    if (idx == -1) {
-      return null;
-    }
-    return gBookToc[idx];
-  }
-
-  function tocItemIsRoot(item) {
-    return tocItemParentIdx(item) == -1;
-  }
-
-  function tocItemParentIdx(item) {
-    return item[itemIdxParent];
-  }
-
-  function tocItemTitle(item) {
-    return item[itemIdxTitle];
-  }
-
-  // all searchable items: title + search synonyms
-  function tocItemSearchable(item) {
-    return item.slice(itemIdxTitle);
-  }
-  function title() {
-    return tocItemTitle(item);
-  }
-  function hasChildren() {
-    return tocItemHasChildren(item);
-  }
-  function isExpanded() {
-    return false;
+  function linkClicked() {
+    // console.log("link clicked");
+    var el = document.getElementById("toc");
+    //console.log("el:", el);
+    //console.log("scrollTop:", el.scrollTop);
+    scrollPosSet(el.scrollTop);
+    currentlySelectedIdx.set(itemIdx);
   }
 </script>
 
-<div class="toc-item lvl{level}" id="ti-10">
-  {#if hasChildren()}
+<div class="toc-item lvl{level}">
+  {#if !hasChildren}
     <div class="toc-nav-empty-arrow" />
-  {:else if isExpanded()}
-    <svg class="arrow">
+  {:else if isExpanded}
+    <svg class="arrow" on:click={toggleExpand}>
       <use xlink:href="#arrow-expanded" />
     </svg>
   {:else}
-    <svg class="arrow">
+    <svg class="arrow" on:click={toggleExpand}>
       <use xlink:href="#arrow-not-expanded" />
     </svg>
   {/if}
-  {title()}
+
+  {#if isSelected}
+    <b>{title}</b>
+  {:else}
+    <a class="toc-link" {title} href={url} on:click={linkClicked}>{title}</a>
+  {/if}
 </div>
+
+{#if hasChildren && isExpanded}
+  <Toc parentIdx={itemIdx} level={level + 1} />
+{/if}
