@@ -11,6 +11,7 @@
   const children = item.childrenForParentIdx(parentIdx);
 
   if (parentIdx === -1) {
+    // initial setup
     const loc = getLocationLastElementWithHash();
     // console.log(`loc: ${loc}`);
     setTocExpandedForCurrentURL();
