@@ -14,6 +14,7 @@
     const loc = getLocationLastElementWithHash();
     // console.log(`loc: ${loc}`);
     setTocExpandedForCurrentURL();
+    window.onhashchange = setTocExpandedForCurrentURL;
   }
 </script>
 

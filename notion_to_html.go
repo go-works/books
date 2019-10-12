@@ -329,6 +329,7 @@ func notionToHTML(page *Page, book *Book) []byte {
 
 	r := tohtml.NewConverter(page.NotionPage)
 	notionapi.PanicOnFailures = true
+	r.AddHeaderAnchor = true
 	r.RenderBlockOverride = res.blockRenderOverride
 	r.RewriteURL = res.rewriteURL
 	res.converter = r

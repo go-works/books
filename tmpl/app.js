@@ -566,9 +566,6 @@ function setTocExpandedForCurrentURL() {
   }
 }
 
-function locationHashChanged(e) {
-  setTocExpandedForCurrentURL();
-}
 
 function getSearchInputElement() {
   return document.getElementById("search-input");
@@ -963,7 +960,6 @@ function start() {
     return;
   }
   // if this is chapter or article, we generate toc
-  window.onhashchange = locationHashChanged;
   /*
   setTocExpandedForCurrentURL();
   var scrollTop = scrollPosGet() || -1;
