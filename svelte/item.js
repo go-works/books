@@ -4,8 +4,6 @@ const idxFirstChildIdx = 2;
 const idxTitle = 3;
 const idxFirstSynonym = 4;
 
-// TODO: replace references to gBookToc with gTocItems
-
 // index of the parent in the array of all items
 function parentIdx(item) {
   return item[idxParentIdx];

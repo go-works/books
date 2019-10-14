@@ -10,7 +10,7 @@ import (
 /*
 Generates a javascript file that looks like:
 
-gBookToc = [
+gTocItems = [
 	[${chapter or aticle id}, ${parentIdx}, ${childIdx}, ${title}, ${synonym 1}, ${synonym 2}, ...],
 ];
 
@@ -97,7 +97,7 @@ func genBookTOCSearchMust(book *Book) {
 		d, err = json.MarshalIndent(toc, "", "  ")
 	}
 	u.PanicIfErr(err)
-	s := "gBookToc = " + string(d) + ";"
+	s := "gTocItems = " + string(d) + ";"
 	book.tocData = []byte(s)
 
 	updateBookAppJS(book)
