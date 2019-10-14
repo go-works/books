@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"html/template"
+	"io"
 	"net/http"
 	"os"
 	"os/signal"
@@ -97,6 +98,17 @@ func findPreviewBook(name string) *Book {
 	return nil
 }
 
+func serveBook404(book *Book, w io.Writer) error {
+	data := struct {
+		PageCommon
+		Book *Book
+	}{
+		PageCommon: getPageCommon(),
+		Book:       book,
+	}
+	return execTemplateToWriter("404.tmpl.html", data, w)
+}
+
 func extractIDFromURL(s string) string {
 	parts := strings.Split(s, "-")
 	lastIdx := len(parts) - 1
@@ -142,7 +154,7 @@ func handleBook(w http.ResponseWriter, r *http.Request) {
 	book := findPreviewBook(bookName)
 	if book == nil {
 		fmt.Printf("handleBook: didn't find book for '%s'\n", r.URL.Path)
-		serve404(w, r)
+		serveBook404(nil, w)
 		return
 	}
 	if len(rest) == 0 {
@@ -153,9 +165,8 @@ func handleBook(w http.ResponseWriter, r *http.Request) {
 	if maybeGenBookChapter(w, r, book, pageID) {
 		return
 	}
-	fmt.Printf("handleBook: not yet implemted ur: '%s', rest: '%s', pageID: '%s'\n", r.URL.Path, rest, pageID)
-	// TODO: more
-	serve404(w, r)
+	fmt.Printf("handleBook: not yet implemted url: '%s', rest: '%s', pageID: '%s'\n", r.URL.Path, rest, pageID)
+	serveBook404(book, w)
 }
 
 func handleIndexOnDemand(w http.ResponseWriter, r *http.Request) {
@@ -199,7 +210,8 @@ func handleIndexOnDemand(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	serve404(w, r)
+	logf("handleIndexOnDemand: calling serveBook404\n")
+	serveBook404(nil, w)
 }
 
 // https://blog.gopheracademy.com/advent-2016/exposing-go-on-the-internet/

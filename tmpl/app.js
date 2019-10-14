@@ -117,9 +117,6 @@ function hidecontact() {
   el.style.display = "none";
 }
 
-function start() {
-}
-
 function updateLinkHome() {
   var view = viewGet();
   if (!view) {
@@ -139,11 +136,6 @@ function updateLinkHome() {
     //console.log("update home url to:", uri);
     el.href = uri;
   }
-}
-
-function doAppPage() {
-  // we don't want this in e.g. about page
-  document.addEventListener("DOMContentLoaded", start);
 }
 
 function doIndexPage() {
@@ -171,22 +163,7 @@ var loc = window.location.pathname;
 var isAppPage = loc.indexOf("essential/") != -1;
 var isIndexPage = loc === "/" || loc === "/index-grid";
 
-function httpsRedirect() {
-  if (window.location.protocol !== "http:") {
-    return;
-  }
-  if (window.location.hostname !== "www.programming-books.io") {
-    return;
-  }
-  var uri = window.location.toString();
-  uri = uri.replace("http://", "https://");
-  window.location = uri;
-}
-
 if (isIndexPage) {
   doIndexPage();
-} else if (isAppPage) {
-  doAppPage();
+  updateLinkHome();
 }
-updateLinkHome();
-httpsRedirect();

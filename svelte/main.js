@@ -49,10 +49,23 @@ function do404() {
   }
 }
 
+function httpsMaybeRedirect() {
+  if (window.location.protocol !== "http:") {
+    return;
+  }
+  if (window.location.hostname !== "www.programming-books.io") {
+    return;
+  }
+  var uri = window.location.toString();
+  uri = uri.replace("http://", "https://");
+  window.location = uri;
+}
+
 const app = {
   toc: Toc,
   searchInput: SearchInput,
   do404: do404,
+  httpsMaybeRedirect: httpsMaybeRedirect,
 };
 
 export default app;
