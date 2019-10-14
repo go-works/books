@@ -46,7 +46,7 @@ function httpsMaybeRedirect() {
   window.location = uri;
 }
 
-function showcontact() {
+function showContact() {
   var el = document.getElementById("contact-form");
   el.style.display = "block";
   el = document.getElementById("contact-page-url");
@@ -57,13 +57,13 @@ function showcontact() {
   el.focus();
 }
 
-function hidecontact() {
+function hideContact() {
   var el = document.getElementById("contact-form");
   el.style.display = "none";
 }
 
-window.showcontact = showcontact;
-window.hidecontact = hidecontact;
+window.showContact = showContact;
+window.hideContact = hideContact;
 
 // rv = rememberView but short because it's part of url
 function rv(view) {

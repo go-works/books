@@ -1,0 +1,16 @@
+<script>
+  function onLoad() {
+    gBookTitle = "{{ .Book.TitleLong }}";
+
+    app.httpsMaybeRedirect();
+
+    const opts = {
+      target: document.getElementById("search-parent"),
+      props: {
+        bookTitle: gBookTitle,
+      },
+    };
+    new app.searchInput(opts);
+  }
+  document.addEventListener('DOMContentLoaded', onLoad);
+</script>
