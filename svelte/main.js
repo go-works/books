@@ -1,22 +1,7 @@
 import Toc from "./Toc.svelte";
 import SearchInput from "./SearchInput.svelte";
 import { item } from "./item.js";
-
-// polyfil for Object.is
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
-if (!Object.is) {
-  Object.is = function (x, y) {
-    // SameValue algorithm
-    if (x === y) {
-      // Steps 1-5, 7-10
-      // Steps 6.b-6.e: +0 != -0
-      return x !== 0 || 1 / x === 1 / y;
-    } else {
-      // Step 6.a: NaN == NaN
-      return x !== x && y !== y;
-    }
-  };
-}
+import { viewGet, viewSet, viewClear } from "./store.js";
 
 // pageId looks like "5ab3b56329c44058b5b24d3f364183ce"
 // find full url of the page matching this pageId
@@ -80,11 +65,68 @@ function hidecontact() {
 window.showcontact = showcontact;
 window.hidecontact = hidecontact;
 
+// rv = rememberView but short because it's part of url
+function rv(view) {
+  //console.log("rv:", view);
+  viewSet(view);
+}
+window.rv = rv;
+
 const app = {
   toc: Toc,
   searchInput: SearchInput,
   do404: do404,
   httpsMaybeRedirect: httpsMaybeRedirect,
 };
+
+function updateLinkHome() {
+  var view = viewGet();
+  if (!view) {
+    return;
+  }
+  var uri = "/";
+  if (view === "list") {
+    // do nothing
+  } else if (view == "grid") {
+    uri = "/index-grid";
+  } else {
+    console.log("unknown view:", view);
+    viewClear();
+  }
+  var el = document.getElementById("link-home");
+  if (el && el.href) {
+    //console.log("update home url to:", uri);
+    el.href = uri;
+  }
+}
+
+function doIndexPage() {
+  var view = viewGet();
+  var loc = window.location.pathname;
+  //console.log("doIndexPage(): view:", view, "loc:", loc);
+  if (!view) {
+    return;
+  }
+  if (view === "list") {
+    if (loc === "/index-grid") {
+      window.location = "/";
+    }
+  } else if (view === "grid") {
+    if (loc === "/") {
+      window.location = "/index-grid";
+    }
+  } else {
+    console.log("Unknown view:", view);
+  }
+}
+
+// we don't want to run javascript on about etc. pages
+var loc = window.location.pathname;
+var isIndexPage = loc === "/" || loc === "/index-grid";
+
+if (isIndexPage) {
+  doIndexPage();
+  updateLinkHome();
+}
 
 export default app;

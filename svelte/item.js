@@ -40,7 +40,7 @@ function url(item) {
 
 // all searchable items: title + search synonyms
 function searchable(item) {
-  return item.slice(itemIdxTitle);
+  return item.slice(idxTitle);
 }
 
 function isRoot(item) {
@@ -93,13 +93,13 @@ function hasArticleChildren(item) {
     return false;
   }
   var item = gTocItems[idx];
-  var parentIdx = item[itemIdxParent];
+  var parentIdx = item[idxParentIdx];
   while (idx < gTocItems.length) {
     item = gTocItems[idx];
-    if (parentIdx != item[itemIdxParent]) {
+    if (parentIdx != item[idxParentIdx]) {
       return false;
     }
-    var uri = item[itemIdxURL];
+    var uri = item[idxURL];
     if (uri.indexOf("#") === -1) {
       return true;
     }

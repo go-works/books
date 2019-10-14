@@ -25,27 +25,20 @@
   <meta name="description" content="'{{.Book.TitleLong}}' is a free programming book about {{.Book.Title}}" />
 
   <link rel="icon" href="{{ optimize "/s/favicon.ico" }}" />
-  <link href="{{ optimize "/s/main.css" }}" rel="stylesheet" />
+  <link href="{{ optimize "/s/main.css" }}" rel="stylesheet">
+  <link href="{{ optimize "/s/bundle.css" }}" rel="stylesheet">
+
   {{ .Analytics }}
   <script src="{{.Book.AppJSURL}}" defer></script>
+  <script src="{{ optimize "/s/bundle.js" }}" defer></script>
 </head>
+
+{{ template "book_index.js.tmpl.html" . }}
 
 <body class="body-book-index">
   {{ template "icons.tmpl.html" . }}
 
-  <header id="header">
-    <div id="header-left">
-      <a id="link-home" href="/">
-        <svg class="icon-home">
-          <use xlink:href="#icon-home"></use>
-        </svg>&nbsp;Essential Books</a>
-    </div>
-
-    <div id="header-center" id="search-parent">
-      <input id="search-input" placeholder="Search {{.Book.TitleLong}}. Tip: press '/'." />
-    </div>
-    <div id="header-right"></div>
-  </header>
+  {{ template "header.tmpl.html" . }}
 
   <div id="content-book-index">
     <div id="book-cover-summary">
