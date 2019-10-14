@@ -242,14 +242,6 @@ type Breadcrumb struct {
 	Title string
 }
 
-// describes TOC entry shown at the bottom of the page
-type MiniTOCEntry struct {
-	IsSelected bool
-	Title      string
-	URL        string
-	Indent     int
-}
-
 // TOCEntry describes entry of TOC chapters
 // shown at the bottom of the page
 type TOCEntry struct {
@@ -264,7 +256,6 @@ type PageData struct {
 	*Page
 	Description string
 	Breadcrumbs []Breadcrumb
-	MiniTOC     []MiniTOCEntry
 	TOC         []TOCEntry
 }
 
@@ -323,29 +314,6 @@ func genPage(book *Book, page *Page, w io.Writer) error {
 	}
 	buildCreadcumb(book, page, &d)
 
-	isChapter := book.RootPage == page.Parent
-	mt := MiniTOCEntry{
-		Title:      d.Page.Parent.Title + "/",
-		URL:        d.Page.Parent.URL(),
-		IsSelected: isChapter,
-		Indent:     0,
-	}
-
-	d.MiniTOC = append(d.MiniTOC, mt)
-	pages := d.Siblings()
-	if isChapter {
-		pages = page.Pages
-	}
-	for _, p := range pages {
-		isSelected := (p == page)
-		mt = MiniTOCEntry{
-			Title:      p.Title,
-			URL:        p.URL(),
-			IsSelected: isSelected,
-			Indent:     1,
-		}
-		d.MiniTOC = append(d.MiniTOC, mt)
-	}
 	buildTOC(book, page, &d)
 
 	path := page.destFilePath()

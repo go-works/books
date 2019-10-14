@@ -48,10 +48,6 @@ function title(item) {
   return item[idxTitle];
 }
 
-function firstSynonym(item) {
-  return item[idxFirstSynonym];
-}
-
 const parentIdxToChildren = {};
 
 const emptyArray = [];
@@ -76,10 +72,6 @@ function childrenForParentIdx(parentIdx, firstChildIdx = 0) {
   }
   parentIdxToChildren[parentIdx] = res;
   return res;
-}
-
-function children(item) {
-  return childrenForParentIdx(item[idxParentIdx], item[idxFirstChildIdx]);
 }
 
 // returns true if has children and some of them articles
@@ -110,8 +102,6 @@ export const item = {
   parentIdx: parentIdx,
   parent: parent,
   title: title,
-  firstSynonym: firstSynonym,
-  children: children,
   childrenForParentIdx: childrenForParentIdx,
   hasChildren: hasChildren,
   searchable: searchable,

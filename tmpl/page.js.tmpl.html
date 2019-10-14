@@ -2,9 +2,9 @@
   function onLoad() {
     gBookTitle = "{{ .Book.TitleLong }}";
 
-    app.httpsMaybeRedirect();
+    httpsMaybeRedirect();
 
-    const opts = {
+    let opts = {
       target: document.getElementById("toc"),
       props: {
         parentIdx: -1,
@@ -13,13 +13,18 @@
     };
     new app.toc(opts);
 
-    const opts2 = {
+    opts = {
       target: document.getElementById("search-parent"),
       props: {
         bookTitle: gBookTitle,
       },
     };
-    new app.searchInput(opts2);
+    new app.searchInput(opts);
+
+    opts = {
+      target: document.getElementById("toc-mini"),
+    }
+    new app.pageTocMini(opts);
   }
   document.addEventListener('DOMContentLoaded', onLoad);
 </script>

@@ -1,5 +1,6 @@
 import Toc from "./Toc.svelte";
 import SearchInput from "./SearchInput.svelte";
+import PageTocMini from "./PageTocMini.svelte";
 import { item } from "./item.js";
 import { viewGet, viewSet, viewClear } from "./store.js";
 
@@ -46,6 +47,8 @@ function httpsMaybeRedirect() {
   window.location = uri;
 }
 
+window.httpsMaybeRedirect = httpsMaybeRedirect;
+
 function showContact() {
   var el = document.getElementById("contact-form");
   el.style.display = "block";
@@ -76,7 +79,7 @@ const app = {
   toc: Toc,
   searchInput: SearchInput,
   do404: do404,
-  httpsMaybeRedirect: httpsMaybeRedirect,
+  pageTocMini: PageTocMini,
 };
 
 function updateLinkHome() {

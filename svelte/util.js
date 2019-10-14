@@ -38,8 +38,7 @@ function setIsExpandedUpwards(idx) {
   }
 }
 
-export function setTocExpandedForCurrentURL() {
-  tocItemIdxExpanded = [];
+export function findTocIdxForCurrentURL() {
   const currURI = getLocationLastElementWithHash();
   const n = gTocItems.length;
   let tocItem, uri;
@@ -47,12 +46,22 @@ export function setTocExpandedForCurrentURL() {
     tocItem = gTocItems[idx];
     uri = item.url(tocItem);
     if (uri === currURI) {
-      currentlySelectedIdx.set(idx);
-      setIsExpandedUpwards(idx);
       return idx;
     }
   }
-  return 0;
+  return -1;
+}
+
+export function setTocExpandedForCurrentURL() {
+  tocItemIdxExpanded = [];
+  const idx = findTocIdxForCurrentURL();
+  if (idx == -1) {
+    return 0;
+  }
+
+  currentlySelectedIdx.set(idx);
+  setIsExpandedUpwards(idx);
+  return idx;
 }
 
 // return true if this is Esc key event
