@@ -16,6 +16,7 @@
       isSelected: isSelected
     };
   }
+
   function getChildrenForIdx(idx) {
     const it = gTocItems[idx];
     const allChildren = item.childrenForParentIdx(idx);
@@ -37,7 +38,9 @@
     tocItems = getChildrenForIdx(idx);
     if (tocItems.length === 1) {
       idx = item.parentIdx(gTocItems[idx]);
-      tocItems = getChildrenForIdx(idx);
+      if (idx != -1) {
+        tocItems = getChildrenForIdx(idx);
+      }
     }
   }
 

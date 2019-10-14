@@ -1,6 +1,7 @@
 import Toc from "./Toc.svelte";
 import SearchInput from "./SearchInput.svelte";
 import PageTocMini from "./PageTocMini.svelte";
+import BookToc from "./BookToc.svelte";
 import { item } from "./item.js";
 import { viewGet, viewSet, viewClear } from "./store.js";
 
@@ -34,6 +35,7 @@ function do404() {
     window.location.pathname = loc;
   }
 }
+window.do404 = do404;
 
 function httpsMaybeRedirect() {
   if (window.location.protocol !== "http:") {
@@ -80,6 +82,7 @@ const app = {
   searchInput: SearchInput,
   do404: do404,
   pageTocMini: PageTocMini,
+  bookToc: BookToc,
 };
 
 function updateLinkHome() {

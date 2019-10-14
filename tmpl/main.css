@@ -69,49 +69,46 @@ h1 svg:hover, h2 svg:hover, h3 svg:hover {
   max-width: fit-content;
 }
 
-#book-index-toc-chapters-short {
+/* hide by default, show when small width */
+#chapter-toc-wrapper {
+  display: none;
   font-size: 0.9em;
-  columns: 3;
-
-  margin-left: 16px;
-  margin-right: 16px;
 }
 
-@media (min-width: 1601px) {
-  #book-index-toc-chapters-short {
-    columns: 6;
+@media screen and (max-width: 780px) {
+  #chapter-toc-wrapper {
+    display: block;
   }
 }
 
-@media (max-width: 1600px) {
-  #book-index-toc-chapters-short {
-    columns: 5;
-  }
+/* dim toc on a book chapter page, to de-emphasize it 
+  visually, until user hovers over the element */
+#chapter-toc-wrapper {
+  filter: opacity(0.6);
 }
 
-@media (max-width: 1280px) {
-  #book-index-toc-chapters-short {
-    columns: 4;
-  }
+#chapter-toc-wrapper:hover {
+  filter: opacity(1);
+}
+  
+  
+#chapter-toc-wrapper hr {
+    border: 1px solid rgba(1, 1, 1, 0.1);
+    border-style: dashed;
+    margin-top: 24px;
+    margin-bottom: 8px;
 }
 
-@media (max-width: 960px) {
-  #book-index-toc-chapters-short {
-    columns: 3;
-  }
+#chapter-toc-wrapper div.hdr {
+  margin-top: 16px;
+  padding-bottom: 8px;
+  font-size: 1em;
+  font-weight: bold;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: fit-content;
 }
 
-@media (max-width: 640px) {
-  #book-index-toc-chapters-short {
-    columns: 2;
-  }
-}
-
-@media (max-width: 320px) {
-  #book-index-toc-chapters-short {
-    columns: 1;
-  }
-}
 
 #header,
 #footer {
@@ -125,6 +122,14 @@ h1 svg:hover, h2 svg:hover, h3 svg:hover {
 #footer {
   font-size: 0.8em;
   padding: 4px 16px;
+}
+
+#book-toc {
+  font-size: 0.9em;
+
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-bottom: 16px;
 }
 
 #header-left,
@@ -248,10 +253,6 @@ h1 svg:hover, h2 svg:hover, h3 svg:hover {
   padding: 0px 16px;
 }
 
-/* hide by default, show when small width */
-.chapter-toc-wrapper {
-  display: none;
-}
 
 .bold {
   font-weight: bold;
@@ -275,9 +276,6 @@ h1 svg:hover, h2 svg:hover, h3 svg:hover {
     display: none;
   }
 
-  .chapter-toc-wrapper {
-    display: block;
-  }
 }
 
 .page__header__center {
@@ -414,16 +412,6 @@ setting class on h* elements */
   color: gray;
 }
 
-.chap-no {
-  color: lightslategray;
-  display: inline-block;
-  width: 2em;
-}
-
-.is-current {
-  font-weight: bold;
-}
-
 .book-name {
   padding-right: 32px;
   padding-left: 0px;
@@ -441,16 +429,6 @@ table.book-list th {
 
 .toc-article {
   padding-left: 1em;
-}
-
-.toc-header {
-  margin-top: 16px;
-  padding-bottom: 8px;
-  font-size: 1em;
-  font-weight: bold;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: fit-content;
 }
 
 a {
@@ -572,12 +550,6 @@ h1.title {
   margin-top: 10px;
 }
 
-hr.toc-sep {
-  border: 1px solid rgba(1, 1, 1, 0.1);
-  border-style: dashed;
-  margin-top: 24px;
-  margin-bottom: 8px;
-}
 
 /* add visual indication that this is the end of the article */
 .article-bottom-sep {
@@ -622,12 +594,6 @@ hr.notion-divider {
   border-top: 1px solid #eee;
 }
 
-.chapters-toc {
-  /* font-size: 0.8em; */
-  columns: 6; /* for sizes over 1200px */
-  font-size: 0.8em;
-}
-
 .view-switch {
   margin-top: 8px;
   margin-bottom: 8px;
@@ -641,36 +607,6 @@ hr.notion-divider {
   min-width: 50%;
 }
 
-/* TODO: possibly tweak those breakpoints e.g. add a column every 240px? */
-@media (max-width: 1600px) {
-  .chapters-toc {
-    columns: 5;
-  }
-}
-
-@media (max-width: 1280px) {
-  .chapters-toc {
-    columns: 4;
-  }
-}
-
-@media (max-width: 960px) {
-  .chapters-toc {
-    columns: 3;
-  }
-}
-
-@media (max-width: 640px) {
-  .chapters-toc {
-    columns: 2;
-  }
-}
-
-@media (max-width: 320px) {
-  .chapters-toc {
-    columns: 1;
-  }
-}
 
 .page-404 {
   background: #eee;
@@ -711,16 +647,6 @@ hr.notion-divider {
 
 .hcenter {
   text-align: center;
-}
-
-/* dim toc on a book chapter page, to de-emphasize it visually, until user
-   hovers over the element */
-.chapter-toc-wrapper {
-  filter: opacity(0.6);
-}
-
-.chapter-toc-wrapper:hover {
-  filter: opacity(1);
 }
 
 #msg-for-chris {

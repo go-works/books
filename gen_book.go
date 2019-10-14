@@ -242,33 +242,11 @@ type Breadcrumb struct {
 	Title string
 }
 
-// TOCEntry describes entry of TOC chapters
-// shown at the bottom of the page
-type TOCEntry struct {
-	No         int
-	IsSelected bool
-	Title      string
-	URL        string
-}
-
 type PageData struct {
 	PageCommon
 	*Page
 	Description string
 	Breadcrumbs []Breadcrumb
-	TOC         []TOCEntry
-}
-
-func buildTOC(book *Book, page *Page, d *PageData) {
-	for i, p := range book.Chapters() {
-		e := TOCEntry{
-			Title:      p.Title,
-			URL:        p.URL(),
-			No:         i + 1,
-			IsSelected: (p == page),
-		}
-		d.TOC = append(d.TOC, e)
-	}
 }
 
 func buildCreadcumb(book *Book, page *Page, d *PageData) {
@@ -313,8 +291,6 @@ func genPage(book *Book, page *Page, w io.Writer) error {
 		Description: page.Title,
 	}
 	buildCreadcumb(book, page, &d)
-
-	buildTOC(book, page, &d)
 
 	path := page.destFilePath()
 	err := execTemplate("page.tmpl.html", d, path, w)
