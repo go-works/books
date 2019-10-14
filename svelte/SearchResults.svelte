@@ -18,6 +18,7 @@
   export let searchTerm = "";
 
   let selectedElement;
+  let ignoreNextMouseEnter = false;
 
   $: selectedElementChanged(selectedElement);
 
@@ -180,6 +181,9 @@
       selectedIdx = lastIdx;
     }
     // console.log("newSelected", selectedIdx);
+    // changing selected element triggers mouseenter
+    // on the element so we have to supress it
+    ignoreNextMouseEnter = true;
     ev.stopPropagation();
   }
 
@@ -187,10 +191,17 @@
     // console.log("clicked:", idx);
     navigateToSearchResult(idx);
   }
+  function mouseEnter(idx) {
+    if (ignoreNextMouseEnter) {
+      ignoreNextMouseEnter = false;
+      return;
+    }
+    selectedIdx = idx;
+  }
 </script>
 
 <style>
-  .search-results-window {
+  .wrapper {
     position: fixed;
     top: 28px;
     width: 74vw;
@@ -204,7 +215,7 @@
     background-color: white;
   }
 
-  .search-results {
+  .results {
     max-height: 70vh;
     padding: 4px 8px;
     line-height: 1.3em;
@@ -213,22 +224,19 @@
     overflow-x: hidden;
   }
 
-  .search-result:hover {
-    background-color: #eeeeee;
-  }
-
-  .search-results-help {
+  .help {
     color: #717274;
     background-color: #f9f9f9;
     padding: 8px 8px;
     font-size: 0.7em;
+    padding-left: 10px;
   }
 
-  .search-result-selected {
+  .selected {
     background-color: #eeeeee;
   }
 
-  .no-search-results {
+  .no-results {
     padding-top: 48px;
     padding-bottom: 48px;
     margin-left: auto;
@@ -237,8 +245,14 @@
     text-align: center;
   }
 
+  .in {
+    color: gray;
+    font-size: 0.8em;
+    float: right;
+  }
+
   @media screen and (max-width: 500px) {
-    .search-results-window {
+    .wrapper {
       width: 90vw;
       left: 5vw; /* (100 - 90) / 2 */
       right: 5vw;
@@ -246,7 +260,7 @@
 
     /* leave space for a on-screen keyboard. Tested on
      Android Pixel device */
-    .search-results {
+    .results {
       max-height: 70vh;
     }
   }
@@ -264,30 +278,32 @@
 </style>
 
 <Overlay>
-  <div class="search-results-window">
-    <div class="search-results">
+  <div class="wrapper">
+    <div class="results">
       {#if results.length === 0}
-        <div class="no-search-results">No search results for {searchTerm}</div>
+        <div class="no-results">No search results for {searchTerm}</div>
       {/if}
       {#each results as r, idx (r.term)}
         {#if idx === selectedIdx}
           <div
             bind:this={selectedElement}
             on:click={() => clicked(idx)}
-            class="search-result search-result-selected">
+            class="selected">
             {@html hiliHTML(idx)}
             <span class="in">{getWhere(idx)}</span>
           </div>
         {:else}
-          <div class="search-result" on:click={() => clicked(idx)}>
+          <div
+            on:click={() => clicked(idx)}
+            on:mouseenter={() => mouseEnter(idx)}>
             {@html hiliHTML(idx)}
             <span class="in">{getWhere(idx)}</span>
           </div>
         {/if}
       {/each}
     </div>
-    <div class="search-results-help">
-      &nbsp;&nbsp;&uarr; &darr; to navigate &nbsp;&nbsp;&nbsp; &crarr; to select
+    <div class="help">
+      &uarr; &darr; to navigate &nbsp;&nbsp;&nbsp; &crarr; to select
       &nbsp;&nbsp;&nbsp; Esc to close
     </div>
   </div>
