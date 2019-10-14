@@ -1,9 +1,8 @@
-//export const idxIsExpanded = 0;
-const idxURL = 1;
-const idxParentIdx = 2;
-const idxFirstChildIdx = 3;
-const idxTitle = 4;
-const idxFirstSynonym = 5;
+const idxURL = 0;
+const idxParentIdx = 1;
+const idxFirstChildIdx = 2;
+const idxTitle = 3;
+const idxFirstSynonym = 4;
 
 // TODO: replace references to gBookToc with gTocItems
 

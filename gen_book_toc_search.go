@@ -11,7 +11,7 @@ import (
 Generates a javascript file that looks like:
 
 gBookToc = [
-	[${is_expanded}, ${chapter or aticle id}, ${parentIdx}, ${childIdx}, ${title}, ${synonym 1}, ${synonym 2}, ...],
+	[${chapter or aticle id}, ${parentIdx}, ${childIdx}, ${title}, ${synonym 1}, ${synonym 2}, ...],
 ];
 
 It's saved in wwww/essential/${bookname}/toc_search.js
@@ -25,12 +25,11 @@ but show the original. That avoids lowercasing during search.
 */
 
 const (
-	// itemIdxIsExpanded   = 0
-	itemIdxURL          = 1
-	itemIdxParent       = 2
-	itemIdxFirstChild   = 3
-	itemIdxTitle        = 4
-	itemIdxFirstSynonym = 5
+	itemIdxURL          = 0
+	itemIdxParent       = 1
+	itemIdxFirstChild   = 2
+	itemIdxTitle        = 3
+	itemIdxFirstSynonym = 4
 )
 
 // TODO: make it recursive and with arbitrary nesting
@@ -39,7 +38,7 @@ func genBookTOCSearchMust(book *Book) {
 	for _, chapter := range book.Chapters() {
 		title := strings.TrimSpace(chapter.Title)
 		uri := chapter.URLLastPath()
-		tocItem := []interface{}{false, uri, -1, -1, title}
+		tocItem := []interface{}{uri, -1, -1, title}
 		toc = append(toc, tocItem)
 		chapIdx := len(toc) - 1
 		u.PanicIf(chapIdx < 0)
@@ -51,14 +50,14 @@ func genBookTOCSearchMust(book *Book) {
 			if len(id) > 0 {
 				id = uri + "#" + id
 			}
-			tocItem = []interface{}{false, id, chapIdx, -1, title}
+			tocItem = []interface{}{id, chapIdx, -1, title}
 			toc = append(toc, tocItem)
 		}
 
 		for _, article := range chapter.Pages {
 			title := strings.TrimSpace(article.Title)
 			uri := article.URLLastPath()
-			tocItem = []interface{}{false, uri, chapIdx, -1, title}
+			tocItem = []interface{}{uri, chapIdx, -1, title}
 			for _, syn := range article.getSearch() {
 				tocItem = append(tocItem, syn)
 			}
@@ -72,7 +71,7 @@ func genBookTOCSearchMust(book *Book) {
 				if len(id) > 0 {
 					id = uri + "#" + id
 				}
-				tocItem = []interface{}{false, id, articleIdx, -1, title}
+				tocItem = []interface{}{id, articleIdx, -1, title}
 				toc = append(toc, tocItem)
 			}
 		}
