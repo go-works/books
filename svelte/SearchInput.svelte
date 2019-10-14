@@ -1,14 +1,18 @@
 <script>
   import { onMount, onDestroy } from "svelte";
   import { search } from "./search.js";
+  import { isEsc, makeDebouncer } from "./util.js";
+  import SearchResults from "./SearchResults.svelte";
 
   export let bookTitle = "";
-  let inputSearchTerm = "";
+  let searchTerm = "";
   let input;
+  let results = [];
 
-  console.log("SearchInput");
+  // Maybe: use debouncer from https://gist.github.com/nmsdvid/8807205
+  const debouncer = makeDebouncer(250);
 
-  $: doSearch(inputSearchTerm);
+  $: searchTermChanged(searchTerm);
 
   function onKeyDown(ev) {
     if (ev.key == "/") {
@@ -17,12 +21,17 @@
       return;
     }
 
-    // Esc is Edge
-    if (ev.key == "Escape" || ev.key == "Esc") {
-      inputSearchTerm = "";
+    if (isEsc(ev)) {
+      searchTerm = "";
       input.blur();
+      results = [];
       return;
     }
+  }
+
+  function searchTermChanged(s) {
+    const fn = doSearch.bind(this, s);
+    debouncer(fn);
   }
 
   onMount(() => {
@@ -33,27 +42,23 @@
     document.removeEventListener("keydown", onKeyDown);
   });
 
-  function doSearch(searchTerm) {
-    // TODO: debounce search
-    searchTerm = searchTerm.trim().toLowerCase();
-    if (searchTerm.length == 0) {
+  function doSearch(s) {
+    s = s.trim().toLowerCase();
+    if (s.length == 0) {
+      results = [];
       return;
     }
-    console.log(`doSearch: '${searchTerm}'`);
-    const res = search(searchTerm);
-    console.log("res:", res);
+    // console.log(`doSearch: '${s}'`);
+    const res = search(s);
+    results = res;
+    // console.log("results:", results);
   }
 
-  /*
-function doSearch(searchTerm) {
-
-// console.log("search results:", res);
-  setState({
-    searchResults: res,
-    selectedSearchResultIdx: 0
-  });
-}
-*/
+  function didDismiss() {
+    // console.log("didDismiss");
+    searchTerm = "";
+    results = [];
+  }
 </script>
 
 <style>
@@ -95,5 +100,9 @@ function doSearch(searchTerm) {
 
 <input
   placeholder="Search '{bookTitle}' Tip: press '/'."
-  bind:value={inputSearchTerm}
+  bind:value={searchTerm}
   bind:this={input} />
+
+{#if results.length > 0}
+  <SearchResults on:wantDismiss={didDismiss} {searchTerm} {results} />
+{/if}

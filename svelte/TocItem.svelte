@@ -2,7 +2,7 @@
   import Toc from "./Toc.svelte";
   import { item } from "./item.js";
   import { scrollPosSet, currentlySelectedIdx } from "./store.js";
-  import { isTocItemExpanded } from "./util.js";
+  import { isTocItemExpanded, getLocationLastElementWithHash } from "./util.js";
 
   export let itemIdx = -1;
   export let level = 0;
