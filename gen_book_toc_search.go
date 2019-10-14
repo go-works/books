@@ -25,7 +25,7 @@ but show the original. That avoids lowercasing during search.
 */
 
 const (
-	itemIdxIsExpanded   = 0
+	// itemIdxIsExpanded   = 0
 	itemIdxURL          = 1
 	itemIdxParent       = 2
 	itemIdxFirstChild   = 3

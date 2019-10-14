@@ -46,7 +46,7 @@ export function setTocExpandedForCurrentURL() {
   let tocItem, uri;
   for (let idx = 0; idx < n; idx++) {
     tocItem = gBookToc[idx];
-    uri = tocItemURL(tocItem);
+    uri = item.url(tocItem);
     if (uri === currURI) {
       currentlySelectedIdx.set(idx);
       setIsExpandedUpwards(idx);

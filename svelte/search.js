@@ -2,6 +2,18 @@ import { item } from "./item.js";
 
 const maxSearchResults = 25;
 
+// el is [idx, len]
+// sort by idx.
+// if idx is the same, sort by reverse len
+// (i.e. bigger len is first)
+function sortSearchByIdx(el1, el2) {
+	var res = el1[0] - el2[0];
+	if (res == 0) {
+		res = el2[1] - el1[1];
+	}
+	return res;
+}
+
 // [[idx, len], ...]
 // sort by idx, if there is an overlap, drop overlapped elements
 function sortSearchMatches(a) {

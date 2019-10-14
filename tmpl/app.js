@@ -1,27 +1,3 @@
-// we're applying react-like state => UI
-var currentState = {
-  searchResults: [],
-  // index within searchResults array, -1 means not selected
-  selectedSearchResultIdx: -1
-};
-
-var currentSearchTerm = "";
-
-// polyfil for Object.is
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
-if (!Object.is) {
-  Object.is = function (x, y) {
-    // SameValue algorithm
-    if (x === y) {
-      // Steps 1-5, 7-10
-      // Steps 6.b-6.e: +0 != -0
-      return x !== 0 || 1 / x === 1 / y;
-    } else {
-      // Step 6.a: NaN == NaN
-      return x !== x && y !== y;
-    }
-  };
-}
 
 function storeSet(key, val) {
   if (window.localStorage) {
@@ -67,31 +43,11 @@ function rv(view) {
 // 	[${chapter or aticle url}, ${parentIdx}, ${title}, ${synonim 1}, ${synonim 2}, ...],
 // as generated in gen_book_toc_search.go and stored in books/${book}/toc_search.js
 
-var itemIdxIsExpanded = 0;
 var itemIdxURL = 1;
 var itemIdxParent = 2;
 var itemIdxFirstChild = 3;
 var itemIdxTitle = 4;
 var itemIdxFirstSynonym = 5;
-
-function tocItemIsExpanded(item) {
-  return item[itemIdxIsExpanded];
-}
-
-function tocItemSetIsExpanded(item, isExpanded) {
-  item[itemIdxIsExpanded] = isExpanded;
-}
-
-function tocItemURL(item) {
-  while (item) {
-    var uri = item[itemIdxURL];
-    if (uri != "") {
-      return uri;
-    }
-    item = tocItemParent(item);
-  }
-  return "";
-}
 
 function tocItemFirstChildIdx(item) {
   return item[itemIdxFirstChild];
@@ -132,10 +88,6 @@ function tocItemParent(item) {
   return gBookToc[idx];
 }
 
-function tocItemIsRoot(item) {
-  return tocItemParentIdx(item) == -1;
-}
-
 function tocItemParentIdx(item) {
   return item[itemIdxParent];
 }
@@ -147,21 +99,6 @@ function tocItemTitle(item) {
 // all searchable items: title + search synonyms
 function tocItemSearchable(item) {
   return item.slice(itemIdxTitle);
-}
-
-function setState(newState, now = false) {
-}
-
-// el is [idx, len]
-// sort by idx.
-// if idx is the same, sort by reverse len
-// (i.e. bigger len is first)
-function sortSearchByIdx(el1, el2) {
-  var res = el1[0] - el2[0];
-  if (res == 0) {
-    res = el2[1] - el1[1];
-  }
-  return res;
 }
 
 function showcontact() {
@@ -180,60 +117,8 @@ function hidecontact() {
   el.style.display = "none";
 }
 
-// have to do navigation in onMouseDown because when done in onClick,
-// the blur event from input element swallows following onclick, so
-// I had to click twice on search result
-function onMouseDown(ev) {
-}
-
-function onClick(ev) {
-  var el = ev.target;
-  //console.log("onClick ev:", ev, "el:", el);
-
-  setState({
-    selectedSearchResultIdx: -1
-  });
-}
-
-function dismissSearch() {
-  setState(
-    {
-      selectedSearchResultIdx: -1,
-    },
-    true
-  );
-}
-
-// when we're over elements with id "search-result-no-${id}", set this one
-// as selected element
-function onMouseMove(ev) {
-}
-
-function onEnter(ev) {
-}
-
-function onEscape(ev) {
-}
-
-function onUpDown(ev) {
-}
-
-function onKeyDown(ev) {
-}
-
-function onSearchInputChanged(ev) {
-  var s = ev.target.value;
-  var fn = doSearch.bind(this, s);
-  searchInputDebouncer(fn);
-}
-
 function start() {
   //console.log("started");
-
-  document.addEventListener("keydown", onKeyDown);
-  document.addEventListener("mousemove", onMouseMove);
-  document.addEventListener("mousedown", onMouseDown);
-  document.addEventListener("click", onClick);
 
   // if this is chapter or article, we generate toc
   /*
@@ -263,21 +148,6 @@ function start() {
   */
 }
 
-// pageId looks like "5ab3b56329c44058b5b24d3f364183ce"
-// find full url of the page matching this pageId
-function findURLWithPageId(pageId) {
-  var n = gBookToc.length;
-  for (var i = 0; i < n; i++) {
-    var tocItem = gBookToc[i];
-    var uri = tocItemURL(tocItem);
-    // uri looks like "go-get-5ab3b56329c44058b5b24d3f364183ce"
-    if (uri.endsWith(pageId)) {
-      return uri;
-    }
-  }
-  return "";
-}
-
 function updateLinkHome() {
   var view = viewGet();
   if (!view) {
@@ -299,21 +169,7 @@ function updateLinkHome() {
   }
 }
 
-function do404() {
-  var loc = window.location.pathname;
-  var locParts = loc.split("/");
-  var lastIdx = locParts.length - 1;
-  var uri = locParts[lastIdx];
-  // redirect ${garbage}-${id} => ${correct url}-${id}
-  var parts = uri.split("-");
-  var pageId = parts[parts.length - 1];
-  var fullURL = findURLWithPageId(pageId);
-  if (fullURL != "") {
-    locParts[lastIdx] = fullURL;
-    var loc = locParts.join("/");
-    window.location.pathname = loc;
-  }
-}
+
 
 function doAppPage() {
   // we don't want this in e.g. about page
@@ -357,9 +213,7 @@ function httpsRedirect() {
   window.location = uri;
 }
 
-if (window.g_is_404) {
-  do404();
-} else if (isIndexPage) {
+if (isIndexPage) {
   doIndexPage();
 } else if (isAppPage) {
   doAppPage();

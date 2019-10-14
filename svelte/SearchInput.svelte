@@ -14,7 +14,7 @@
 
   $: searchTermChanged(searchTerm);
 
-  function onKeyDown(ev) {
+  function keyDown(ev) {
     if (ev.key == "/") {
       input.focus();
       ev.preventDefault();
@@ -35,11 +35,11 @@
   }
 
   onMount(() => {
-    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("keydown", keyDown);
   });
 
   onDestroy(() => {
-    document.removeEventListener("keydown", onKeyDown);
+    document.removeEventListener("keydown", keyDown);
   });
 
   function doSearch(s) {

@@ -35,6 +35,12 @@
     function onLoad() {
       gTocItems = gBookToc;
       gBookTitle = "{{ .Book.TitleLong }}";
+
+      if (window.g_is_404) {
+        app.do404();
+        return;
+      }
+
       const opts = {
         target: document.getElementById("toc"),
         props: {
