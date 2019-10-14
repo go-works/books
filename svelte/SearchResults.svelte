@@ -1,6 +1,12 @@
 <script>
   import Overlay from "./Overlay.svelte";
-  import { onMount, onDestroy, createEventDispatcher } from "svelte";
+  import {
+    afterUpdate,
+    beforeUpdate,
+    onMount,
+    onDestroy,
+    createEventDispatcher
+  } from "svelte";
   import { isEnter, isNavUp, isNavDown } from "./util.js";
   import { item } from "./item.js";
 
@@ -11,6 +17,7 @@
       tocItem: [],
       term: "",
       match: [[idx, len], ...],
+      id: int,
     }
   */
   export let results = [];
@@ -19,6 +26,7 @@
 
   let selectedElement;
   let ignoreNextMouseEnter = false;
+  let prevResulutsCount = 0;
 
   $: selectedElementChanged(selectedElement);
 
@@ -31,9 +39,31 @@
     el.scrollIntoView(false);
   }
 
+  // TODO: I don't quite understand when beforeUpdate / afterUpdate
+  // are called. Maybe just clamp selectedIdx to be within
+  // results in afterUpdate
+  beforeUpdate(() => {
+    //console.log("before:", prevResulutsCount);
+    if (results.length !== prevResulutsCount) {
+      selectedIdx = 0;
+      prevResulutsCount = results.length;
+    }
+  });
+
+  afterUpdate(() => {
+    // reset which item is selected when the number
+    // of search results changes
+    console.log("after:", results.length);
+    if (results.length !== prevResulutsCount) {
+      selectedIdx = 0;
+      prevResulutsCount = results.length;
+    }
+  });
+
   // must add them globally to be called even when search
   // input field has focus
   onMount(() => {
+    console.log("SearchResults term:", searchTerm, "results:", results.length);
     document.addEventListener("keydown", keyDown);
   });
 
@@ -172,6 +202,10 @@
     if (n === 0) {
       return;
     }
+
+    ev.stopPropagation();
+    ev.preventDefault();
+
     selectedIdx += n;
     if (selectedIdx < 0) {
       selectedIdx = 0;
@@ -184,7 +218,6 @@
     // changing selected element triggers mouseenter
     // on the element so we have to supress it
     ignoreNextMouseEnter = true;
-    ev.stopPropagation();
   }
 
   function clicked(idx) {
@@ -281,26 +314,27 @@
   <div class="wrapper">
     <div class="results">
       {#if results.length === 0}
-        <div class="no-results">No search results for {searchTerm}</div>
+        <div class="no-results">No search results for '{searchTerm}'</div>
+      {:else}
+        {#each results as r, idx (r.id)}
+          {#if idx === selectedIdx}
+            <div
+              bind:this={selectedElement}
+              on:click={() => clicked(idx)}
+              class="selected">
+              {@html hiliHTML(idx)}
+              <span class="in">{getWhere(idx)}</span>
+            </div>
+          {:else}
+            <div
+              on:click={() => clicked(idx)}
+              on:mouseenter={() => mouseEnter(idx)}>
+              {@html hiliHTML(idx)}
+              <span class="in">{getWhere(idx)}</span>
+            </div>
+          {/if}
+        {/each}
       {/if}
-      {#each results as r, idx (r.term)}
-        {#if idx === selectedIdx}
-          <div
-            bind:this={selectedElement}
-            on:click={() => clicked(idx)}
-            class="selected">
-            {@html hiliHTML(idx)}
-            <span class="in">{getWhere(idx)}</span>
-          </div>
-        {:else}
-          <div
-            on:click={() => clicked(idx)}
-            on:mouseenter={() => mouseEnter(idx)}>
-            {@html hiliHTML(idx)}
-            <span class="in">{getWhere(idx)}</span>
-          </div>
-        {/if}
-      {/each}
     </div>
     <div class="help">
       &uarr; &darr; to navigate &nbsp;&nbsp;&nbsp; &crarr; to select

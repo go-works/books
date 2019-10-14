@@ -110,6 +110,7 @@ export function search(searchTerm) {
 			continue;
 		}
 		match.tocItem = tocItem;
+		match.id = i;
 		res.push(match);
 	}
 	return res;

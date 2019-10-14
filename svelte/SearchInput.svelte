@@ -8,11 +8,13 @@
   let searchTerm = "";
   let input;
   let results = [];
+  let showResults = false;
 
   // Maybe: use debouncer from https://gist.github.com/nmsdvid/8807205
   const debouncer = makeDebouncer(250);
 
   $: searchTermChanged(searchTerm);
+  $: showResults = searchTerm !== "";
 
   function keyDown(ev) {
     if (ev.key == "/") {
@@ -103,6 +105,10 @@
   bind:value={searchTerm}
   bind:this={input} />
 
-{#if results.length > 0}
-  <SearchResults on:wantDismiss={didDismiss} {searchTerm} {results} />
+{#if showResults}
+  <SearchResults
+    on:wantDismiss={didDismiss}
+    {searchTerm}
+    {results}
+    selectedIdx={0} />
 {/if}
