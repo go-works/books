@@ -101,21 +101,7 @@ function tocItemSearchable(item) {
   return item.slice(itemIdxTitle);
 }
 
-function showcontact() {
-  var el = document.getElementById("contact-form");
-  el.style.display = "block";
-  el = document.getElementById("contact-page-url");
-  var uri = window.location.href;
-  //uri = uri.replace("#", "");
-  el.value = uri;
-  el = document.getElementById("msg-for-chris");
-  el.focus();
-}
 
-function hidecontact() {
-  var el = document.getElementById("contact-form");
-  el.style.display = "none";
-}
 
 function updateLinkHome() {
   var view = viewGet();

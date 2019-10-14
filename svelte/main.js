@@ -61,6 +61,25 @@ function httpsMaybeRedirect() {
   window.location = uri;
 }
 
+function showcontact() {
+  var el = document.getElementById("contact-form");
+  el.style.display = "block";
+  el = document.getElementById("contact-page-url");
+  var uri = window.location.href;
+  //uri = uri.replace("#", "");
+  el.value = uri;
+  el = document.getElementById("msg-for-chris");
+  el.focus();
+}
+
+function hidecontact() {
+  var el = document.getElementById("contact-form");
+  el.style.display = "none";
+}
+
+window.showcontact = showcontact;
+window.hidecontact = hidecontact;
+
 const app = {
   toc: Toc,
   searchInput: SearchInput,
