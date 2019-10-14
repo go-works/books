@@ -1,11 +1,12 @@
 
 import { writable } from 'svelte/store';
 
+// idx of currently selected toc item. there is only one.
+// we use global variable so that all TocItem instances
+// can set their state based on this
 export const currentlySelectedIdx = writable(-1);
 
-// currentlySelectedIdx.subscribe(v => {
-//     console.log("currentlySelectedIdx:", v);
-// })
+export const tocItemIdxToScroll = writable(-1);
 
 export function storeSet(key, val) {
     if (window.localStorage) {

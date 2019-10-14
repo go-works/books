@@ -1,11 +1,16 @@
 <script>
   import Toc from "./Toc.svelte";
   import { item } from "./item.js";
-  import { scrollPosSet, currentlySelectedIdx } from "./store.js";
+  import {
+    scrollPosSet,
+    currentlySelectedIdx,
+    tocItemIdxToScroll
+  } from "./store.js";
   import { isTocItemExpanded, getLocationLastElementWithHash } from "./util.js";
 
   export let itemIdx = -1;
   export let level = 0;
+  let element;
 
   const loc = getLocationLastElementWithHash();
 
@@ -27,22 +32,28 @@
     isSelected = idx == itemIdx;
   });
 
+  tocItemIdxToScroll.subscribe(idx => {
+    if (idx === itemIdx) {
+      console.log("tocItemIdxToScroll: idx", idx);
+      element.scrollIntoView(true);
+      tocItemIdxToScroll.set(-2);
+    }
+  });
+
   function toggleExpand() {
     isExpanded = !isExpanded;
     // console.log("toogleExpand(): ", isExpanded);
   }
 
   function linkClicked() {
-    // console.log("link clicked");
     var el = document.getElementById("toc");
-    //console.log("el:", el);
-    //console.log("scrollTop:", el.scrollTop);
     scrollPosSet(el.scrollTop);
     currentlySelectedIdx.set(itemIdx);
+    // console.log("TocItem.linkClicked, scrollTop:", el.scrollTop);
   }
 </script>
 
-<div class="toc-item lvl{level}">
+<div bind:this={element} class="toc-item lvl{level}">
   {#if !hasChildren}
     <div class="toc-nav-empty-arrow" />
   {:else if isExpanded}

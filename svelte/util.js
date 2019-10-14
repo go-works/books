@@ -29,14 +29,13 @@ export function isTocItemExpanded(idx) {
 }
 
 function setIsExpandedUpwards(idx) {
-  if (idx === -1) {
-    return;
-  }
   const tocItem = gBookToc[idx];
   tocItemIdxExpanded.push(idx);
   // console.log(`idx: ${idx}, title: ${tocItem[4]}`)
-  idx = item.parentIdx(tocItem);
-  setIsExpandedUpwards(idx);
+  const newIdx = item.parentIdx(tocItem);
+  if (newIdx != -1) {
+    setIsExpandedUpwards(newIdx);
+  }
 }
 
 export function setTocExpandedForCurrentURL() {
@@ -50,9 +49,10 @@ export function setTocExpandedForCurrentURL() {
     if (uri === currURI) {
       currentlySelectedIdx.set(idx);
       setIsExpandedUpwards(idx);
-      return;
+      return idx;
     }
   }
+  return 0;
 }
 
 // return true if this is Esc key event

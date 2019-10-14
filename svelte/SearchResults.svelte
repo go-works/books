@@ -1,12 +1,7 @@
 <script>
   import Overlay from "./Overlay.svelte";
   import { onMount, onDestroy, createEventDispatcher } from "svelte";
-  import {
-    isEnter,
-    isNavUp,
-    isNavDown,
-    scrollElementIntoView
-  } from "./util.js";
+  import { isEnter, isNavUp, isNavDown } from "./util.js";
   import { item } from "./item.js";
 
   const dispatch = createEventDispatcher();

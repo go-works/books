@@ -118,34 +118,6 @@ function hidecontact() {
 }
 
 function start() {
-  //console.log("started");
-
-  // if this is chapter or article, we generate toc
-  /*
-  var scrollTop = scrollPosGet() || -1;
-  if (scrollTop >= 0) {
-    //console.log("scrollTop:", scrollTop);
-    var el = document.getElementById("toc");
-    el.scrollTop = scrollTop;
-    scrollPosClear();
-    return;
-  }
-  */
-  /*
-  function makeTocVisible() {
-    var el = document.getElementById(tocItemElementID);
-    if (el) {
-      scrollElementIntoView(el, true);
-    } else {
-      console.log(
-        "tried to scroll toc item to non-existent element with id: '" +
-        tocItemElementID +
-        "'"
-      );
-    }
-  }
-  window.requestAnimationFrame(makeTocVisible);
-  */
 }
 
 function updateLinkHome() {
@@ -168,8 +140,6 @@ function updateLinkHome() {
     el.href = uri;
   }
 }
-
-
 
 function doAppPage() {
   // we don't want this in e.g. about page
