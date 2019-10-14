@@ -42,6 +42,9 @@
         tocItems = getChildrenForIdx(idx);
       }
     }
+    if (tocItems.length === 1) {
+      tocItems = [];
+    }
   }
 
   calcTocItems();

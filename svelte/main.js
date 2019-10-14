@@ -1,6 +1,6 @@
 import Toc from "./Toc.svelte";
 import SearchInput from "./SearchInput.svelte";
-import PageTocMini from "./PageTocMini.svelte";
+import PageToc from "./PageToc.svelte";
 import BookToc from "./BookToc.svelte";
 import { item } from "./item.js";
 import { viewGet, viewSet, viewClear } from "./store.js";
@@ -80,8 +80,7 @@ window.rv = rv;
 const app = {
   toc: Toc,
   searchInput: SearchInput,
-  do404: do404,
-  pageTocMini: PageTocMini,
+  pageToc: PageToc,
   bookToc: BookToc,
 };
 
