@@ -34,7 +34,7 @@
 
   tocItemIdxToScroll.subscribe(idx => {
     if (idx === itemIdx) {
-      console.log("tocItemIdxToScroll: idx", idx);
+      // console.log("tocItemIdxToScroll: idx", idx);
       element.scrollIntoView(true);
       tocItemIdxToScroll.set(-2);
     }
@@ -51,6 +51,20 @@
     currentlySelectedIdx.set(itemIdx);
     // console.log("TocItem.linkClicked, scrollTop:", el.scrollTop);
   }
+
+  // TODO: less level
+  /*  
+  var uri = tocItemURL(tocItem);
+  if (uri.indexOf("#") != -1) {
+    var parent = tocItemParent(tocItem);
+    var isChapter = tocItemIsRoot(parent);
+    var hasChildren = tocItemHasChildren(parent);
+    var onlyArticleChildren = tocItemHasArticleChildren(parent);
+    if (isChapter && hasChildren && onlyArticleChildren) {
+      level += 1;
+    }
+  }
+  */
 </script>
 
 <div bind:this={element} class="toc-item lvl{level}">

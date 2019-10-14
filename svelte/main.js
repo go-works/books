@@ -21,9 +21,9 @@ if (!Object.is) {
 // pageId looks like "5ab3b56329c44058b5b24d3f364183ce"
 // find full url of the page matching this pageId
 function findURLWithPageId(pageId) {
-  var n = gBookToc.length;
+  var n = gTocItems.length;
   for (var i = 0; i < n; i++) {
-    var tocItem = gBookToc[i];
+    var tocItem = gTocItems[i];
     var uri = item.url(tocItem);
     // uri looks like "go-get-5ab3b56329c44058b5b24d3f364183ce"
     if (uri.endsWith(pageId)) {

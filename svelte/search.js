@@ -99,7 +99,7 @@ function searchMatchMulti(toSearchArr, toFind) {
 // terms ("blank", "id") separately
 export function search(searchTerm) {
 	// console.log("search for:", searchTerm);
-	const a = gBookToc; // loaded via toc_search.js, generated in gen_book_toc_search.go
+	const a = gTocItems; // loaded via toc_search.js, generated in gen_book_toc_search.go
 	const n = a.length;
 	const res = [];
 	for (let i = 0; i < n && res.length < maxSearchResults; i++) {

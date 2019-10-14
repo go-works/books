@@ -9,7 +9,7 @@ const idxFirstSynonym = 5;
 
 // index of the parent in the array of all items
 function parentIdx(item) {
-  return item[itemIdxParent];
+  return item[idxParentIdx];
 }
 
 function hasChildren(item) {
@@ -33,7 +33,7 @@ function url(item) {
     if (uri != "") {
       return uri;
     }
-    item = tocItemParent(item);
+    item = parent(item);
   }
   return "";
 }
@@ -44,7 +44,7 @@ function searchable(item) {
 }
 
 function isRoot(item) {
-  return tocItemParentIdx(item) == -1;
+  return parentIdx(item) == -1;
 }
 
 function title(item) {
@@ -85,6 +85,29 @@ function children(item) {
   return childrenForParentIdx(item[idxParentIdx], item[idxFirstChildIdx]);
 }
 
+// returns true if has children and some of them articles
+// (as opposed to children that are headers within articles)
+function hasArticleChildren(item) {
+  const idx = item[idxFirstChildIdx];
+  if (idx == -1) {
+    return false;
+  }
+  var item = gTocItems[idx];
+  var parentIdx = item[itemIdxParent];
+  while (idx < gTocItems.length) {
+    item = gTocItems[idx];
+    if (parentIdx != item[itemIdxParent]) {
+      return false;
+    }
+    var uri = item[itemIdxURL];
+    if (uri.indexOf("#") === -1) {
+      return true;
+    }
+    idx += 1;
+  }
+  return false;
+}
+
 export const item = {
   url: url,
   parentIdx: parentIdx,
@@ -96,4 +119,5 @@ export const item = {
   hasChildren: hasChildren,
   searchable: searchable,
   isRoot: isRoot,
+  hasArticleChildren: hasArticleChildren,
 }

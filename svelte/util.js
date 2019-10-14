@@ -29,7 +29,7 @@ export function isTocItemExpanded(idx) {
 }
 
 function setIsExpandedUpwards(idx) {
-  const tocItem = gBookToc[idx];
+  const tocItem = gTocItems[idx];
   tocItemIdxExpanded.push(idx);
   // console.log(`idx: ${idx}, title: ${tocItem[4]}`)
   const newIdx = item.parentIdx(tocItem);
@@ -41,10 +41,10 @@ function setIsExpandedUpwards(idx) {
 export function setTocExpandedForCurrentURL() {
   tocItemIdxExpanded = [];
   const currURI = getLocationLastElementWithHash();
-  const n = gBookToc.length;
+  const n = gTocItems.length;
   let tocItem, uri;
   for (let idx = 0; idx < n; idx++) {
-    tocItem = gBookToc[idx];
+    tocItem = gTocItems[idx];
     uri = item.url(tocItem);
     if (uri === currURI) {
       currentlySelectedIdx.set(idx);

@@ -42,14 +42,14 @@
 
   function getParentTitle(tocItem) {
     var res = "";
-    var parent = tocItemParent(tocItem);
+    var parent = item.parent(tocItem);
     while (parent) {
-      var s = tocItemTitle(parent);
+      var s = item.title(parent);
       if (res) {
         s = s + " / ";
       }
       res = s + res;
-      parent = tocItemParent(parent);
+      parent = item.parent(parent);
     }
     return res;
   }
@@ -67,7 +67,7 @@
     if (!isMatchSynonym(tocItem, term)) {
       return null;
     }
-    var title = tocItemTitle(tocItem);
+    var title = item.title(tocItem);
     var parentTitle = getParentTitle(tocItem);
     if (parentTitle == "") {
       return title;
