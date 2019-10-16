@@ -53,7 +53,7 @@
   afterUpdate(() => {
     // reset which item is selected when the number
     // of search results changes
-    console.log("after:", results.length);
+    // console.log("after:", results.length);
     if (results.length !== prevResulutsCount) {
       selectedIdx = 0;
       prevResulutsCount = results.length;
@@ -63,7 +63,7 @@
   // must add them globally to be called even when search
   // input field has focus
   onMount(() => {
-    console.log("SearchResults term:", searchTerm, "results:", results.length);
+    // console.log("SearchResults term:", searchTerm, "results:", results.length);
     document.addEventListener("keydown", keyDown);
   });
 
