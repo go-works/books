@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"strings"
 
+	"github.com/kjk/notionapi"
 	"github.com/kjk/u"
 )
 
@@ -48,7 +49,7 @@ func genBookTOCSearchMust(book *Book) {
 			title := heading.Text
 			id := heading.ID
 			if len(id) > 0 {
-				id = uri + "#" + id
+				id = uri + "#" + notionapi.ToDashID(id)
 			}
 			tocItem = []interface{}{id, chapIdx, -1, title}
 			toc = append(toc, tocItem)
@@ -69,7 +70,7 @@ func genBookTOCSearchMust(book *Book) {
 				title := heading.Text
 				id := heading.ID
 				if len(id) > 0 {
-					id = uri + "#" + id
+					id = uri + "#" + notionapi.ToDashID(id)
 				}
 				tocItem = []interface{}{id, articleIdx, -1, title}
 				toc = append(toc, tocItem)
