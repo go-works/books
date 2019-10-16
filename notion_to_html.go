@@ -5,10 +5,9 @@ import (
 	"html"
 	"strings"
 
-	"github.com/essentialbooks/books/tohtml"
 	"github.com/kjk/notionapi"
+	"github.com/kjk/notionapi/tohtml"
 
-	// "github.com/kjk/notionapi/tohtml"
 	"github.com/kjk/u"
 )
 
@@ -283,12 +282,8 @@ func (c *Converter) blockRenderOverride(block *notionapi.Block) bool {
 
 // Gen returns generated HTML
 func (c *Converter) Gen() []byte {
-	// using notionapi/tohtml converter
-	// inner, err := c.converter.ToHTML()
-	// must(err)
-
-	// using our tohtml converter
-	inner := c.converter.ToHTML()
+	inner, err := c.converter.ToHTML()
+	must(err)
 
 	rootPage := c.page.NotionPage.Root()
 	f := rootPage.FormatPage()
@@ -327,7 +322,7 @@ func notionToHTML(page *Page, book *Book) []byte {
 
 	r := tohtml.NewConverter(page.NotionPage)
 	notionapi.PanicOnFailures = true
-	//r.AddHeaderAnchor = true
+	r.AddHeaderAnchor = true
 	r.RenderBlockOverride = res.blockRenderOverride
 	r.RewriteURL = res.rewriteURL
 	res.converter = r
