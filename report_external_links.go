@@ -14,7 +14,7 @@ func isNotionURL(uri string) bool {
 }
 
 func isStackOverflowURL(uri string) bool {
-	return strings.Contains(uri, "stackoverflow.com/")
+	return strings.Contains(uri, "stackoverflow.com/") && !strings.Contains(uri, "/users/")
 }
 
 func reportExternalLinksInPage(page *notionapi.Page) {

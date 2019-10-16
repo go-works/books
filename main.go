@@ -25,27 +25,6 @@ import (
 )
 
 var (
-	flgAnalytics       string
-	flgPreviewStatic   bool
-	flgWc              bool
-	flgPreviewOnDemand bool
-	flgGen             bool
-	flgAllBooks        bool
-	// if true, disables downloading pages
-	flgNoDownload bool
-	flgDownload   bool
-	// if true, disables notion cache, forcing re-download of notion page
-	// even if cached verison on disk exits
-	flgDisableNotionCache bool
-	// url or id of the page to rebuild
-	flgNoUpdateOutput bool
-
-	flgReportExternalLinks      bool
-	flgReportStackOverflowLinks bool
-	flgProfile                  bool
-	flgDeployDraft              bool
-	flgDeployProd               bool
-
 	soUserIDToNameMap map[int]string
 	googleAnalytics   template.HTML
 	doMinify          bool
@@ -98,45 +77,6 @@ var (
 	}
 	allBooks = append(booksMain, booksUnpublished...)
 )
-
-func parseFlags() {
-	flag.StringVar(&flgAnalytics, "analytics", "", "google analytics code")
-	flag.BoolVar(&flgPreviewStatic, "preview-static", false, "if true starts web server for previewing locally generated static html")
-	flag.BoolVar(&flgPreviewOnDemand, "preview-on-demand", false, "if true will start web server for previewing the book locally")
-	flag.BoolVar(&flgAllBooks, "all-books", false, "if true will do all books")
-	flag.BoolVar(&flgNoUpdateOutput, "no-update-output", false, "if true, will disable updating ouput files in cache")
-	flag.BoolVar(&flgDisableNotionCache, "no-cache", false, "if true, disables cache for notion")
-	flag.BoolVar(&flgNoDownload, "no-download", false, "if true, will not download pages from notion")
-	flag.BoolVar(&flgReportExternalLinks, "report-external-links", false, "if true, shows external links for all pages")
-	flag.BoolVar(&flgReportStackOverflowLinks, "report-so-links", false, "if true, shows links to stackoverflow.com")
-	flag.BoolVar(&flgWc, "wc", false, "wc -l")
-	flag.BoolVar(&flgDownload, "dl", false, "download a given book, 'all' for all books")
-	flag.BoolVar(&flgGen, "gen", false, "generate html for the book")
-	flag.BoolVar(&flgProfile, "prof", false, "write cpu profile")
-	flag.BoolVar(&flgDeployDraft, "deploy-draft", false, "deploy to netlify as draft")
-	flag.BoolVar(&flgDeployProd, "deploy-prod", false, "deploy to netlify production")
-	flag.Parse()
-
-	if flgAnalytics != "" {
-		googleAnalyticsTmpl := `<script async src="https://www.googletagmanager.com/gtag/js?id=%s"></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-			gtag('config', '%s')
-		</script>
-	`
-		s := fmt.Sprintf(googleAnalyticsTmpl, flgAnalytics, flgAnalytics)
-		googleAnalytics = template.HTML(s)
-	}
-
-	notionAuthToken = os.Getenv("NOTION_TOKEN")
-	if notionAuthToken != "" {
-		fmt.Printf("NOTION_TOKEN provided, can write back\n")
-	} else {
-		fmt.Printf("NOTION_TOKEN not provided, read only\n")
-	}
-}
 
 var (
 	nProcessed            = 0
@@ -313,11 +253,74 @@ func isPreview() bool {
 	return flgPreviewStatic || flgPreviewOnDemand
 }
 
+var (
+	// url or id of the page to rebuild
+	flgNoUpdateOutput bool
+	// if true, disables notion cache, forcing re-download of notion page
+	// even if cached verison on disk exits
+	flgDisableNotionCache       bool
+	flgDownload                 bool
+	flgPreviewStatic            bool
+	flgPreviewOnDemand          bool
+	flgReportStackOverflowLinks bool
+)
+
 func main() {
 	closeLog := openLog()
 	defer closeLog()
 
-	parseFlags()
+	var (
+		flgAnalytics string
+		flgWc        bool
+		flgGen       bool
+		flgAllBooks  bool
+		// if true, disables downloading pages
+		flgNoDownload bool
+
+		flgReportExternalLinks bool
+		flgProfile             bool
+		flgDeployDraft         bool
+		flgDeployProd          bool
+	)
+
+	{
+		flag.StringVar(&flgAnalytics, "analytics", "", "google analytics code")
+		flag.BoolVar(&flgPreviewStatic, "preview-static", false, "if true starts web server for previewing locally generated static html")
+		flag.BoolVar(&flgPreviewOnDemand, "preview-on-demand", false, "if true will start web server for previewing the book locally")
+		flag.BoolVar(&flgAllBooks, "all-books", false, "if true will do all books")
+		flag.BoolVar(&flgNoUpdateOutput, "no-update-output", false, "if true, will disable updating ouput files in cache")
+		flag.BoolVar(&flgDisableNotionCache, "no-cache", false, "if true, disables cache for notion")
+		flag.BoolVar(&flgNoDownload, "no-download", false, "if true, will not download pages from notion")
+		flag.BoolVar(&flgReportExternalLinks, "report-external-links", false, "if true, shows external links for all pages")
+		flag.BoolVar(&flgReportStackOverflowLinks, "report-so-links", false, "if true, shows links to stackoverflow.com")
+		flag.BoolVar(&flgWc, "wc", false, "wc -l")
+		flag.BoolVar(&flgDownload, "dl", false, "download a given book, 'all' for all books")
+		flag.BoolVar(&flgGen, "gen", false, "generate html for the book")
+		flag.BoolVar(&flgProfile, "prof", false, "write cpu profile")
+		flag.BoolVar(&flgDeployDraft, "deploy-draft", false, "deploy to netlify as draft")
+		flag.BoolVar(&flgDeployProd, "deploy-prod", false, "deploy to netlify production")
+		flag.Parse()
+
+		if flgAnalytics != "" {
+			googleAnalyticsTmpl := `<script async src="https://www.googletagmanager.com/gtag/js?id=%s"></script>
+			<script>
+				window.dataLayer = window.dataLayer || [];
+				function gtag(){dataLayer.push(arguments);}
+				gtag('js', new Date());
+				gtag('config', '%s')
+			</script>
+		`
+			s := fmt.Sprintf(googleAnalyticsTmpl, flgAnalytics, flgAnalytics)
+			googleAnalytics = template.HTML(s)
+		}
+
+		notionAuthToken = os.Getenv("NOTION_TOKEN")
+		if notionAuthToken != "" {
+			fmt.Printf("NOTION_TOKEN provided, can write back\n")
+		} else {
+			fmt.Printf("NOTION_TOKEN not provided, read only\n")
+		}
+	}
 
 	if false {
 		testHang()
