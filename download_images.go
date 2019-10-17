@@ -123,6 +123,9 @@ func downloadAndRememberImage(page *Page, imgDir, link string) {
 }
 
 func downloadImages(book *Book, page *Page) {
+	if flgNoDownload {
+		return
+	}
 	imgDir := filepath.Join(book.NotionCacheDir(), "img")
 
 	handleImage := func(block *notionapi.Block) {

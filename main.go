@@ -125,7 +125,7 @@ func downloadBook(book *Book) {
 	must(err)
 	d := caching_downloader.New(dirCache, book.client)
 	d.EventObserver = eventObserver
-	d.RedownloadNewerVersions = flgDownload
+	d.RedownloadNewerVersions = !flgNoDownload
 	d.NoReadCache = flgDisableNotionCache
 
 	startPageID := book.NotionStartPageID
@@ -264,10 +264,11 @@ var (
 	// if true, disables notion cache, forcing re-download of notion page
 	// even if cached verison on disk exits
 	flgDisableNotionCache       bool
-	flgDownload                 bool
 	flgPreviewStatic            bool
 	flgPreviewOnDemand          bool
 	flgReportStackOverflowLinks bool
+	// if true, disables downloading pages
+	flgNoDownload bool
 )
 
 func main() {
@@ -276,8 +277,6 @@ func main() {
 		flgWc        bool
 		flgGen       bool
 		flgAllBooks  bool
-		// if true, disables downloading pages
-		flgNoDownload bool
 
 		flgReportExternalLinks bool
 		flgProfile             bool
@@ -296,7 +295,6 @@ func main() {
 		flag.BoolVar(&flgReportExternalLinks, "report-external-links", false, "if true, shows external links for all pages")
 		flag.BoolVar(&flgReportStackOverflowLinks, "report-so-links", false, "if true, shows links to stackoverflow.com")
 		flag.BoolVar(&flgWc, "wc", false, "wc -l")
-		flag.BoolVar(&flgDownload, "dl", false, "download a given book, 'all' for all books")
 		flag.BoolVar(&flgGen, "gen", false, "generate html for the book")
 		flag.BoolVar(&flgProfile, "prof", false, "write cpu profile")
 		flag.BoolVar(&flgDeployDraft, "deploy-draft", false, "deploy to netlify as draft")
@@ -361,7 +359,7 @@ func main() {
 		flgGen = true
 	}
 
-	valid := flgDownload || flgPreviewOnDemand || flgPreviewStatic || flgGen
+	valid := flgPreviewOnDemand || flgPreviewStatic || flgGen
 	if !valid {
 		flag.Usage()
 		return

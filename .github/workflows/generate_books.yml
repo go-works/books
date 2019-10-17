@@ -14,11 +14,8 @@ jobs:
       - name: Check out source code
         uses: actions/checkout@v1
 
-      - name: build the program
-        run: go build -o gen-books
-
       - name: generate books
-        run: ./gen-books -no-update-output -analytics UA-113489735-1
+        run: go run . -no-update-output -no-download -analytics UA-113489735-1 -gen
 
       # - name: install netlifyctl
       #   run: npm install netlify-cli -g
