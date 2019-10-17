@@ -161,6 +161,6 @@ func loadCache(path string) *Cache {
 		nRecords++
 	}
 	must(r.Err())
-	fmt.Printf(" got %d cache records\n", nRecords)
+	logf(" got %d cache records\n", nRecords)
 	return c
 }

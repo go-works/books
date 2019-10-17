@@ -36,6 +36,7 @@ type Book struct {
 	// e.g. "Python.png"
 	CoverImageName string
 
+	client *notionapi.Client
 	// cache related
 	cache *Cache
 }

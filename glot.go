@@ -274,7 +274,7 @@ func glotHTTPPostJSON(uri string, reqIn interface{}, rspOut interface{}) error {
 	}
 	d, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		fmt.Printf("glotHTTPPostJSON: ioutil.ReadAll() failed with '%s'\n", err)
+		logf("glotHTTPPostJSON: ioutil.ReadAll() failed with '%s'\n", err)
 		return err
 	}
 
@@ -286,12 +286,12 @@ func glotHTTPPostJSON(uri string, reqIn interface{}, rspOut interface{}) error {
 	// it might be a valid program that doesn't print anything to stdout
 	// in which case trying to decode empty string as JSON will fail
 	if resp.StatusCode == http.StatusNoContent {
-		fmt.Printf("glotHTTPPostJSON: got 204 No Content\n")
+		logf("glotHTTPPostJSON: got 204 No Content\n")
 		if _, ok := reqIn.(*glotRunRequest); ok {
 			if req, ok := reqIn.(*glotRunRequest); ok {
 				for _, f := range req.Files {
-					fmt.Printf("Name: %s\n", f.Name)
-					fmt.Printf("Content:\n%s\n", f.Content)
+					logf("Name: %s\n", f.Name)
+					logf("Content:\n%s\n", f.Content)
 				}
 			}
 			// allow Unmarshal to work (and set everything to default empty fields)
@@ -303,14 +303,14 @@ func glotHTTPPostJSON(uri string, reqIn interface{}, rspOut interface{}) error {
 	if err != nil {
 		if req, ok := reqIn.(*glotRunRequest); ok {
 			for _, f := range req.Files {
-				fmt.Printf("Name: %s\n", f.Name)
-				fmt.Printf("Content:\n%s\n", f.Content)
+				logf("Name: %s\n", f.Name)
+				logf("Content:\n%s\n", f.Content)
 			}
 		}
 
-		fmt.Printf("glotHTTPPostJSON: json.Unmarshal() failed with '%s' on:\n%s\n", err, string(d))
-		fmt.Printf("   uri: '%s', input type: %T, output type: %T\n", uri, reqIn, rspOut)
-		fmt.Printf("   status code: %d, status: '%s'\n", resp.StatusCode, resp.Status)
+		logf("glotHTTPPostJSON: json.Unmarshal() failed with '%s' on:\n%s\n", err, string(d))
+		logf("   uri: '%s', input type: %T, output type: %T\n", uri, reqIn, rspOut)
+		logf("   status code: %d, status: '%s'\n", resp.StatusCode, resp.Status)
 		return err
 	}
 	return nil

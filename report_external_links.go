@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"sort"
 	"strings"
 
@@ -17,7 +16,7 @@ func isStackOverflowURL(uri string) bool {
 	return strings.Contains(uri, "stackoverflow.com/") && !strings.Contains(uri, "/users/")
 }
 
-func reportExternalLinksInPage(page *notionapi.Page) {
+func reportExternalLinksInPage(page *notionapi.Page) error {
 	links := map[string]struct{}{}
 	rememberLink := func(uri string) {
 		if isNotionURL(uri) {
@@ -45,18 +44,19 @@ func reportExternalLinksInPage(page *notionapi.Page) {
 	}
 	page.ForEachBlock(findLinks)
 	if len(links) == 0 {
-		return
+		return nil
 	}
 	id := toNoDashID(page.ID)
-	fmt.Printf("  page https://www.notion.so/%s has %d links\n", id, len(links))
+	logf("  page https://www.notion.so/%s has %d links\n", id, len(links))
 	var a []string
 	for uri := range links {
 		a = append(a, uri)
 	}
 	sort.Strings(a)
 	for _, uri := range a {
-		fmt.Printf("    %s\n", uri)
+		logf("    %s\n", uri)
 	}
+	return nil
 }
 
 func reportExternalLinksInBook(book *Book) {
@@ -74,13 +74,10 @@ func reportExternalLinksInBook(book *Book) {
 	nProcessed = 0
 	nNotionPagesFromCache = 0
 	nDownloadedPages = 0
-	pages, err := d.DownloadPagesRecursively(startPageID)
+	pages, err := d.DownloadPagesRecursively(startPageID, reportExternalLinksInPage)
 	must(err)
-	log("Book %s, %d pages, downloaded: %d, from cache: %d\n", book.Title, len(book.idToPage), nDownloadedPages, nNotionPagesFromCache)
-
-	for _, page := range pages {
-		reportExternalLinksInPage(page)
-	}
+	nPages := len(pages)
+	log("Book %s, %d pages, downloaded: %d, from cache: %d\n", book.Title, nPages, nDownloadedPages, nNotionPagesFromCache)
 }
 
 func reportExternalLinks() {

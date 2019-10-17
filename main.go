@@ -102,32 +102,36 @@ func eventObserver(ev interface{}) {
 	}
 }
 
-func downloadBook(c *notionapi.Client, book *Book) {
+func (book *Book) afterPageDownload(page *notionapi.Page) error {
+	id := toNoDashID(page.ID)
+	p := &Page{
+		NotionPage: page,
+	}
+	book.idToPage[id] = p
+	downloadImages(book, p)
+	return nil
+}
+
+func downloadBook(book *Book) {
 	log("Loading %s...\n", book.Title)
 	nProcessed = 0
 	nNotionPagesFromCache = 0
 	nDownloadedPages = 0
 
+	book.client = newNotionClient()
 	cacheDir := book.NotionCacheDir()
 	dirCache, err := caching_downloader.NewDirectoryCache(cacheDir)
 	must(err)
-	d := caching_downloader.New(dirCache, c)
+	d := caching_downloader.New(dirCache, book.client)
 	d.EventObserver = eventObserver
 	d.RedownloadNewerVersions = flgDownload
 	d.NoReadCache = flgDisableNotionCache
 
 	startPageID := book.NotionStartPageID
-	pages, err := d.DownloadPagesRecursively(startPageID)
+	pages, err := d.DownloadPagesRecursively(startPageID, book.afterPageDownload)
 	must(err)
-	for _, page := range pages {
-		id := toNoDashID(page.ID)
-		page := &Page{
-			NotionPage: page,
-		}
-		book.idToPage[id] = page
-	}
-
-	log("Got %d pages for %s, downloaded: %d, from cache: %d\n", len(book.idToPage), book.Title, nDownloadedPages, nNotionPagesFromCache)
+	nPages := len(pages)
+	log("Got %d pages for %s, downloaded: %d, from cache: %d\n", nPages, book.Title, nDownloadedPages, nNotionPagesFromCache)
 	bookFromPages(book)
 }
 
@@ -182,7 +186,7 @@ func genBooks(books []*Book) {
 		}
 	}
 	writeSitemap()
-	fmt.Printf("Finished generating all books in %s\n", time.Since(timeStart))
+	logf("Finished generating all books in %s\n", time.Since(timeStart))
 }
 
 func initMinify() {
@@ -316,9 +320,9 @@ func main() {
 
 		notionAuthToken = os.Getenv("NOTION_TOKEN")
 		if notionAuthToken != "" {
-			fmt.Printf("NOTION_TOKEN provided, can write back\n")
+			logf("NOTION_TOKEN provided, can write back\n")
 		} else {
-			fmt.Printf("NOTION_TOKEN not provided, read only\n")
+			logf("NOTION_TOKEN not provided, read only\n")
 		}
 	}
 
@@ -383,10 +387,6 @@ func main() {
 		}()
 	}
 
-	client := &notionapi.Client{
-		AuthToken: notionAuthToken,
-	}
-
 	books := booksMain
 	if flgAllBooks {
 		books = allBooks
@@ -415,7 +415,7 @@ func main() {
 
 	for _, book := range books {
 		initBook(book)
-		downloadBook(client, book)
+		downloadBook(book)
 		loadSoContributorsMust(book)
 		calcBookPageHeadings(book)
 	}
@@ -455,4 +455,12 @@ func main() {
 	if flgPreviewStatic {
 		startPreviewStatic()
 	}
+}
+
+func newNotionClient() *notionapi.Client {
+	client := &notionapi.Client{
+		AuthToken: notionAuthToken,
+	}
+	client.Logger = logFile
+	return client
 }

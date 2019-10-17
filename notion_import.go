@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/kjk/notionapi"
 )
 
@@ -28,10 +26,10 @@ func updateFormatIfNeeded(page *notionapi.Page) bool {
 	if len(args) == 0 {
 		return false
 	}
-	fmt.Printf("  updating format to %v\n", args)
+	logf("  updating format to %v\n", args)
 	err := page.SetFormat(args)
 	if err != nil {
-		fmt.Printf("updateFormatIfNeeded: page.SetFormat() failed with '%s'\n", err)
+		logf("updateFormatIfNeeded: page.SetFormat() failed with '%s'\n", err)
 	}
 	return true
 }
@@ -45,10 +43,10 @@ func updateTitleIfNeeded(page *notionapi.Page) bool {
 	if newTitle == page.Root().Title {
 		return false
 	}
-	fmt.Printf("  updating title to '%s'\n", newTitle)
+	logf("  updating title to '%s'\n", newTitle)
 	err := page.SetTitle(newTitle)
 	if err != nil {
-		fmt.Printf("updateTitleIfNeeded: page.SetTitle() failed with '%s'\n", err)
+		logf("updateTitleIfNeeded: page.SetTitle() failed with '%s'\n", err)
 	}
 	return true
 }

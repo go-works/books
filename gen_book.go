@@ -2,7 +2,6 @@ package main
 
 import (
 	"bytes"
-	"fmt"
 	"html/template"
 	"io"
 	"io/ioutil"
@@ -73,7 +72,7 @@ func funcOptimizeAsset(url string) string {
 		d2, err := minifier.Bytes(minifyType, d)
 		maybePanicIfErr(err)
 		if err == nil {
-			fmt.Printf("Compressed %s from %d => %d (saved %d)\n", srcPath, len(d), len(d2), len(d)-len(d2))
+			logf("Compressed %s from %d => %d (saved %d)\n", srcPath, len(d), len(d2), len(d)-len(d2))
 			d = d2
 		}
 	}
@@ -84,7 +83,7 @@ func funcOptimizeAsset(url string) string {
 	dstURL := "/s/" + dstName
 	err = ioutil.WriteFile(dstPath, d, 0644)
 	u.Must(err)
-	fmt.Printf("Copied %s => %s\n", srcPath, dstPath)
+	logf("Copied %s => %s\n", srcPath, dstPath)
 	hashToOptimizedURL[srcSha1Hex] = dstURL
 	return dstURL
 }
@@ -295,7 +294,7 @@ func genPage(book *Book, page *Page, w io.Writer) error {
 	path := page.destFilePath()
 	err := execTemplate("page.tmpl.html", d, path, w)
 	if err != nil {
-		fmt.Printf("Failed to minify page %s in book %s\n", page.NotionID, book.Title)
+		logf("Failed to minify page %s in book %s\n", page.NotionID, book.Title)
 	}
 	for _, imagePath := range page.images {
 		imageName := filepath.Base(imagePath)
@@ -322,7 +321,7 @@ func bookPagesToHTML(book *Book) {
 		page.BodyHTML = template.HTML(string(html))
 		nProcessed++
 	}
-	fmt.Printf("bookPagesToHTML: processed %d pages for book %s\n", nProcessed, book.TitleLong)
+	logf("bookPagesToHTML: processed %d pages for book %s\n", nProcessed, book.TitleLong)
 }
 
 func genBookIndex(book *Book, w io.Writer) error {
@@ -379,5 +378,5 @@ func genBook(book *Book) {
 		_ = genPage(book, chapter, nil)
 	}
 
-	fmt.Printf("Generated book '%s' in %s\n", book.Title, time.Since(timeStart))
+	logf("Generated book '%s' in %s\n", book.Title, time.Since(timeStart))
 }

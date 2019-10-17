@@ -27,6 +27,17 @@ type MetaValue struct {
 	Value string
 }
 
+// ImageMapping keeps track of rewritten image urls (locally cached
+// images in notion)
+type ImageMapping struct {
+	// this is Block.Source from image block
+	link string
+	// this is path on the disk
+	path string
+	// this is relative url of the image on disk
+	relativeURL string
+}
+
 // Page represents a single page in a book
 type Page struct {
 	NotionPage *notionapi.Page
@@ -48,6 +59,7 @@ type Page struct {
 
 	// extracted from embed blocks
 	SourceFiles []*SourceFile
+	Images      []*ImageMapping
 
 	BodyHTML template.HTML
 
@@ -118,14 +130,6 @@ func (p *Page) getSearch() []string {
 
 func (p *Page) isDraft() bool {
 	return p.hasMeta("draft")
-}
-
-// Siblings returns siblings of the page, to easily generate toc
-func (p *Page) Siblings() []*Page {
-	if p.Parent == nil {
-		return nil
-	}
-	return p.Parent.Pages
 }
 
 // Body is a temporary alias for BodyHTML
@@ -303,11 +307,15 @@ func extractMeta(p *Page) {
 		toRemove[idx] = true
 		if !isKnownMeta(mv.Key) {
 			uri := "https://notion.so/" + toNoDashID(page.ID)
-			fmt.Printf("Unknown meta value '%s' = '%s' in page %s\n", mv.Key, mv.Value, uri)
+			logf("Unknown meta value '%s' = '%s' in page %s\n", mv.Key, mv.Value, uri)
 		}
 		p.Metadata = append(p.Metadata, mv)
 	}
 	removeBlocks(page, toRemove)
+}
+
+func normalizeID(id string) string {
+	return notionapi.ToNoDashID(id)
 }
 
 // recursively build a Page for each notionapi.Page by extracting

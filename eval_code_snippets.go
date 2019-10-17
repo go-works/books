@@ -29,8 +29,8 @@ func setDefaultFileNameFromLanguage(sf *SourceFile) error {
 	case "cpp", "cplusplus", "c++":
 		ext = ".cpp"
 	default:
-		fmt.Printf("detectFileNameFromLanguage: lang '%s' is not supported\n", sf.Lang)
-		fmt.Printf("Notion page: %s\n", sf.NotionOriginURL)
+		logf("detectFileNameFromLanguage: lang '%s' is not supported\n", sf.Lang)
+		logf("Notion page: %s\n", sf.NotionOriginURL)
 		panic("")
 	}
 	sf.Directive.FileName = "main" + ext
@@ -63,7 +63,7 @@ func evalCodeSnippetsForPage(page *Page) {
 			if len(lines) > 0 {
 				firstLine = lines[0]
 			}
-			fmt.Printf("Page: %s\n  %s\n", page.Title, firstLine)
+			logf("Page: %s\n  %s\n", page.Title, firstLine)
 		}
 
 		//lang := getLangFromFileExt(filepath.Ext(path))
