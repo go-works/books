@@ -351,7 +351,7 @@ func genBook404(book *Book, w io.Writer) error {
 }
 
 func genBook(book *Book) {
-	log("Started genering book %s\n", book.Title)
+	logf("Started genering book %s\n", book.Title)
 	timeStart := time.Now()
 
 	buildIDToPage(book)

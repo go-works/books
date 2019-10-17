@@ -77,11 +77,11 @@ func reportExternalLinksInBook(book *Book) {
 	pages, err := d.DownloadPagesRecursively(startPageID, reportExternalLinksInPage)
 	must(err)
 	nPages := len(pages)
-	log("Book %s, %d pages, downloaded: %d, from cache: %d\n", book.Title, nPages, nDownloadedPages, nNotionPagesFromCache)
+	logf("Book %s, %d pages, downloaded: %d, from cache: %d\n", book.Title, nPages, nDownloadedPages, nNotionPagesFromCache)
 }
 
 func reportExternalLinks() {
-	log("starting reportExternalLinks()\n")
+	logf("starting reportExternalLinks()\n")
 	for _, b := range booksMain {
 		reportExternalLinksInBook(b)
 	}

@@ -142,7 +142,7 @@ func updateGlotOutput(cache *Cache, sf *SourceFile) error {
 		Content: sf.CodeToRun,
 	}
 	if sf.Directive.RunCmd != "" {
-		log("  run command: %s\n", sf.Directive.RunCmd)
+		logf("  run command: %s\n", sf.Directive.RunCmd)
 	}
 	req := &glotRunRequest{
 		Command:  sf.Directive.RunCmd,
@@ -151,18 +151,18 @@ func updateGlotOutput(cache *Cache, sf *SourceFile) error {
 	}
 	rsp, err := glotRun(req)
 	if err != nil {
-		log("glotRun() failed. Page: %s\n", sf.NotionOriginURL)
+		logf("glotRun() failed. Page: %s\n", sf.NotionOriginURL)
 		u.Must(err)
 	}
 	s := rsp.Stdout + rsp.Stderr
 	if rsp.Error != "" {
 		if !sf.Directive.AllowError {
-			log("glotRun() %s from %s failed with '%s' and sf.Directive.AllowError is false\n", sf.SnippetName, sf.NotionOriginURL, rsp.Error)
+			logf("glotRun() %s from %s failed with '%s' and sf.Directive.AllowError is false\n", sf.SnippetName, sf.NotionOriginURL, rsp.Error)
 			return errors.New(rsp.Stderr)
 		}
 	}
 	sf.GlotOutput = s
-	log("Got glot output (%d bytes) for %s from %s\n", len(sf.GlotOutput), sf.SnippetName, sf.NotionOriginURL)
+	logf("Got glot output (%d bytes) for %s from %s\n", len(sf.GlotOutput), sf.SnippetName, sf.NotionOriginURL)
 
 	o = &EvalOutput{
 		Lang:      sf.Lang,
@@ -214,7 +214,7 @@ func getOutputCached(cache *Cache, sf *SourceFile) error {
 		s, err := getOutput(path, sf.Directive.RunCmd)
 		if err != nil {
 			if !sf.Directive.AllowError {
-				log("getOutput('%s'), got error:\n%s\n", path, s)
+				logf("getOutput('%s'), got error:\n%s\n", path, s)
 				return err
 			}
 			err = nil

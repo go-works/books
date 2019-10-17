@@ -176,7 +176,7 @@ func updateBookAppJS(book *Book) {
 		d2, err := minifier.Bytes("text/javascript", d)
 		maybePanicIfErr(err)
 		if err == nil {
-			log("Minified %s from %d => %d (saved %d)\n", srcName, len(d), len(d2), len(d)-len(d2))
+			logf("Minified %s from %d => %d (saved %d)\n", srcName, len(d), len(d2), len(d)-len(d2))
 			d = d2
 		}
 	}
@@ -190,7 +190,7 @@ func updateBookAppJS(book *Book) {
 		return
 	}
 	book.AppJSURL = "/s/" + name
-	log("Created %s\n", dst)
+	logf("Created %s\n", dst)
 }
 
 func calcPageHeadings(page *Page) {

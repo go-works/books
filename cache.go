@@ -131,7 +131,7 @@ func (c *Cache) loadGlotID(rec *siser.Record) {
 }
 
 func loadCache(path string) *Cache {
-	log("loadCache: %s\n", path)
+	logf("loadCache: %s\n", path)
 	dir := filepath.Dir(path)
 	// the directory must exist
 	_, err := os.Stat(dir)
@@ -142,7 +142,7 @@ func loadCache(path string) *Cache {
 	f, err := os.Open(path)
 	if err != nil {
 		// it's ok if file doesn't exist
-		log("  cache file %s doesn't exist\n", path)
+		logf("  cache file %s doesn't exist\n", path)
 		return c
 	}
 	defer u.CloseNoError(f)

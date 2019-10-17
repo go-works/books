@@ -51,13 +51,17 @@ func sha1OfLink(link string) string {
 	return fmt.Sprintf("%x", h.Sum(nil))
 }
 
-var imgFiles []os.FileInfo
+var (
+	dirToImgFiles = map[string][]os.FileInfo{}
+)
 
 // checks if an image corresponding to this sha1 is present
 // (same name after removing extension)
 func findImageInDir(imgDir string, sha1 string) string {
-	if len(imgFiles) == 0 {
+	imgFiles := dirToImgFiles[imgDir]
+	if imgFiles == nil {
 		imgFiles, _ = ioutil.ReadDir(imgDir)
+		dirToImgFiles[imgDir] = imgFiles
 	}
 	for _, fi := range imgFiles {
 		if strings.HasPrefix(fi.Name(), sha1) {

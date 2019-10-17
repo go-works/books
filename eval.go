@@ -121,7 +121,7 @@ func evalSourceFile(sf *SourceFile) {
 	logf("---------------------------\n")
 	dbgEval(e)
 	if lang != "go" {
-		log("skipping language '%s'\n", lang)
+		logf("skipping language '%s'\n", lang)
 		return
 	}
 	res, err := evalGo(e)

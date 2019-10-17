@@ -34,13 +34,13 @@ func areNotionIDsEqual(id1, id2 string) bool {
 
 func (c *Converter) reportIfInvalidLink(uri string, extractedID string) {
 	pageID := c.page.getID()
-	log("Found invalid link '%s' (id: '%s') in page https://notion.so/%s\n", uri, extractedID, pageID)
+	logf("Found invalid link '%s' (id: '%s') in page https://notion.so/%s\n", uri, extractedID, pageID)
 	if extractedID == "" {
 		return
 	}
 	page := findPageByID(c.book, extractedID)
 	if page != nil {
-		log(" strange, we actually found it via findPageByID()\n")
+		logf(" strange, we actually found it via findPageByID()\n")
 	}
 }
 
@@ -71,7 +71,7 @@ func (c *Converter) getURLAndTitleForBlock(block *notionapi.Block) (string, stri
 	page := c.book.idToPage[id]
 	if page == nil {
 		title := cleanTitle(block.Title)
-		log("No article for id %s %s\n", id, title)
+		logf("No article for id %s %s\n", id, title)
 		url := "/article/" + id + "/" + urlify(title)
 		return url, title
 	}
@@ -107,8 +107,8 @@ func (c *Converter) RenderEmbed(block *notionapi.Block) bool {
 func (c *Converter) genReplitEmbed(block *notionapi.Block) {
 	uri := block.FormatEmbed().DisplaySource
 	uri = strings.Replace(uri, "?lite=true", "", -1)
-	log("Page: https://notion.so/%s\n", c.page.NotionID)
-	log("  Replit: %s\n", uri)
+	logf("Page: https://notion.so/%s\n", c.page.NotionID)
+	logf("  Replit: %s\n", uri)
 	panic("we no longer use replit")
 }
 
@@ -147,7 +147,7 @@ func (c *Converter) genGitEmbed(block *notionapi.Block) {
 	// currently we only handle source code file embeds but might handle
 	// others (graphs etc.)
 	if f == nil {
-		log("genEmbed: didn't find source file for url %s\n", uri)
+		logf("genEmbed: didn't find source file for url %s\n", uri)
 		return
 	}
 

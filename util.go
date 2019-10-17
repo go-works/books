@@ -16,6 +16,13 @@ func must(err error) {
 	u.Must(err)
 }
 
+func fmtSmart(format string, args ...interface{}) string {
+	if len(args) == 0 {
+		return format
+	}
+	return fmt.Sprintf(format, args...)
+}
+
 func fmtArgs(args ...interface{}) string {
 	if len(args) == 0 {
 		return ""

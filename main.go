@@ -87,18 +87,18 @@ var (
 func eventObserver(ev interface{}) {
 	switch v := ev.(type) {
 	case *caching_downloader.EventError:
-		log(v.Error)
+		logf(v.Error)
 	case *caching_downloader.EventDidDownload:
 		nProcessed++
 		nDownloadedPages++
-		log("%03d '%s' : downloaded in %s\n", nProcessed, v.PageID, v.Duration)
+		logf("%03d '%s' : downloaded in %s\n", nProcessed, v.PageID, v.Duration)
 	case *caching_downloader.EventDidReadFromCache:
 		nProcessed++
 		nNotionPagesFromCache++
 		// TODO: only verbose
-		//log("%03d '%s' : read from cache in %s\n", nProcessed, v.PageID, v.Duration)
+		//logf("%03d '%s' : read from cache in %s\n", nProcessed, v.PageID, v.Duration)
 	case *caching_downloader.EventGotVersions:
-		log("downloaded info about %d versions in %s\n", v.Count, v.Duration)
+		logf("downloaded info about %d versions in %s\n", v.Count, v.Duration)
 	}
 }
 
@@ -114,7 +114,7 @@ func (book *Book) afterPageDownload(page *notionapi.Page) error {
 }
 
 func downloadBook(book *Book) {
-	log("Loading %s...\n", book.Title)
+	logf("Loading %s...\n", book.Title)
 	nProcessed = 0
 	nNotionPagesFromCache = 0
 	nDownloadedPages = 0
@@ -132,7 +132,7 @@ func downloadBook(book *Book) {
 	pages, err := d.DownloadPagesRecursively(startPageID, book.afterPageDownload)
 	must(err)
 	nPages := len(pages)
-	log("Got %d pages for %s, downloaded: %d, from cache: %d\n", nPages, book.Title, nDownloadedPages, nNotionPagesFromCache)
+	logf("Got %d pages for %s, downloaded: %d, from cache: %d\n", nPages, book.Title, nDownloadedPages, nNotionPagesFromCache)
 	bookFromPages(book)
 }
 
@@ -337,7 +337,7 @@ func main() {
 		doLineCount()
 		return
 	}
-	notionapi.LogFunc = log
+	notionapi.LogFunc = logf
 
 	_ = os.RemoveAll("www")
 	u.CreateDirMust(filepath.Join("www", "s"))
@@ -380,7 +380,7 @@ func main() {
 		must(err)
 		defer func() {
 			u.CloseNoError(f)
-			log("CPU profile saved to a file '%s'\n", profileName)
+			logf("CPU profile saved to a file '%s'\n", profileName)
 		}()
 		defer func() {
 			pprof.StopCPUProfile()
@@ -391,25 +391,25 @@ func main() {
 	books := booksMain
 	if flgAllBooks {
 		books = allBooks
-		log("Downloading all books\n")
+		logf("Downloading all books\n")
 	} else {
 		if len(flag.Args()) > 0 {
 			var newBooks []*Book
 			for _, name := range flag.Args() {
 				book := findBook(name)
 				if book == nil {
-					log("Didn't find book named '%s'\n", name)
+					logf("Didn't find book named '%s'\n", name)
 					continue
 				}
 				newBooks = append(newBooks, book)
 			}
 			if len(newBooks) > 0 {
 				books = newBooks
-				log("Downloading %d books", len(books))
+				logf("Downloading %d books", len(books))
 				for _, b := range books {
-					log(" %s", b.Title)
+					logf(" %s", b.Title)
 				}
-				log("\n")
+				logf("\n")
 			}
 		}
 	}
@@ -420,7 +420,7 @@ func main() {
 		loadSoContributorsMust(book)
 		calcBookPageHeadings(book)
 	}
-	log("Downloaded %d pages, %d from cache, in %s\n", nTotalDownloaded, nTotalFromCache, time.Since(timeStart))
+	logf("Downloaded %d pages, %d from cache, in %s\n", nTotalDownloaded, nTotalFromCache, time.Since(timeStart))
 
 	if flgGen || flgPreviewStatic {
 		genStartTime := time.Now()
@@ -428,7 +428,7 @@ func main() {
 		genNetlifyHeaders()
 		genNetlifyRedirects(books)
 		printAndClearErrors()
-		log("Gen time: %s, total time: %s\n", time.Since(genStartTime), time.Since(timeStart))
+		logf("Gen time: %s, total time: %s\n", time.Since(genStartTime), time.Since(timeStart))
 	}
 
 	if flgDeployDraft {
@@ -448,7 +448,7 @@ func main() {
 	}
 
 	if flgPreviewOnDemand {
-		log("Time: %s\n", time.Since(timeStart))
+		logf("Time: %s\n", time.Since(timeStart))
 		startPreviewOnDemand(books)
 		return
 	}
@@ -462,6 +462,6 @@ func newNotionClient() *notionapi.Client {
 	client := &notionapi.Client{
 		AuthToken: notionAuthToken,
 	}
-	client.Logger = logFile
+	// client.Logger = logFile
 	return client
 }

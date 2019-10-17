@@ -3,8 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-
-	"github.com/kjk/u"
 )
 
 var (
@@ -21,30 +19,27 @@ func openLog() func() {
 	}
 }
 
-func log(format string, args ...interface{}) {
-	s := fmt.Sprintf(format, args...)
+func logf(format string, args ...interface{}) {
+	s := fmtSmart(format, args...)
+	fmt.Print(s)
 	if logFile != nil {
 		_, _ = fmt.Fprint(logFile, s)
 	}
-	fmt.Print(s)
 }
 
 func logVerbose(format string, args ...interface{}) {
-	s := fmt.Sprintf(format, args...)
-	if logFile != nil {
-		_, _ = fmt.Fprint(logFile, s)
+	if logFile == nil {
+		return
 	}
+	s := fmtSmart(format, args...)
+	_, _ = fmt.Fprintf(logFile, s)
 }
 
-func logFatal(format string, args ...interface{}) {
-	s := fmt.Sprintf(format, args...)
-	if logFile != nil {
-		_, _ = fmt.Fprint(logFile, s)
-	}
+func logFatalf(format string, args ...interface{}) {
+	s := fmtSmart(format, args...)
 	fmt.Print(s)
+	if logFile != nil {
+		_, _ = fmt.Fprint(logFile, s)
+	}
 	os.Exit(1)
-}
-
-func logf(format string, args ...interface{}) {
-	u.Logf(format, args...)
 }

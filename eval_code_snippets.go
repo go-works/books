@@ -84,8 +84,8 @@ func evalCodeSnippetsForPage(page *Page) {
 		data := []byte(block.Code)
 		err := setSourceFileData(sf, data)
 		if err != nil {
-			log("genBlock: setSourceFileData() failed with '%s'\n", err)
-			log("page: %s\n", sf.NotionOriginURL)
+			logf("genBlock: setSourceFileData() failed with '%s'\n", err)
+			logf("page: %s\n", sf.NotionOriginURL)
 			//u.Must(err)
 		}
 
@@ -105,7 +105,7 @@ func evalCodeSnippetsForPage(page *Page) {
 		setDefaultFileNameFromLanguage(sf)
 		err = getOutputCached(book.cache, sf)
 		if err != nil {
-			log("getOutputCached() failed.\nsf.CodeToRun():\n%s\n", sf.CodeToRun)
+			logf("getOutputCached() failed.\nsf.CodeToRun():\n%s\n", sf.CodeToRun)
 			u.Must(err)
 		}
 		page.blockCodeToSourceFile[block.ID] = sf
