@@ -271,9 +271,6 @@ var (
 )
 
 func main() {
-	closeLog := openLog()
-	defer closeLog()
-
 	var (
 		flgAnalytics string
 		flgWc        bool
@@ -318,13 +315,6 @@ func main() {
 			s := fmt.Sprintf(googleAnalyticsTmpl, flgAnalytics, flgAnalytics)
 			googleAnalytics = template.HTML(s)
 		}
-
-		notionAuthToken = os.Getenv("NOTION_TOKEN")
-		if notionAuthToken != "" {
-			logf("NOTION_TOKEN provided, can write back\n")
-		} else {
-			logf("NOTION_TOKEN not provided, read only\n")
-		}
 	}
 
 	if false {
@@ -337,6 +327,19 @@ func main() {
 		doLineCount()
 		return
 	}
+
+	closeLog := openLog()
+	defer closeLog()
+
+	{
+		notionAuthToken = os.Getenv("NOTION_TOKEN")
+		if notionAuthToken != "" {
+			logf("NOTION_TOKEN provided, can write back\n")
+		} else {
+			logf("NOTION_TOKEN not provided, read only\n")
+		}
+	}
+
 	notionapi.LogFunc = logf
 
 	_ = os.RemoveAll("www")
