@@ -25,8 +25,7 @@ type Book struct {
 
 	idToPage map[string]*Page
 
-	Dir            string // directory name for the book e.g. "go"
-	SoContributors []SoContributor
+	Dir string // directory name for the book e.g. "go"
 
 	// generated toc javascript data
 	tocData []byte
@@ -70,16 +69,6 @@ func (b *Book) SourceDir() string {
 // this is where html etc. files for a book end up
 func (b *Book) destDir() string {
 	return filepath.Join(destEssentialDir, b.Dir)
-}
-
-// ContributorCount returns number of contributors
-func (b *Book) ContributorCount() int {
-	return len(b.SoContributors)
-}
-
-// ContributorsURL returns url of the chapter that lists contributors
-func (b *Book) ContributorsURL() string {
-	return b.URL() + "/9999-contributors"
 }
 
 // URL returns url of the book, used in index.tmpl.html

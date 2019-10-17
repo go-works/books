@@ -346,7 +346,6 @@ func genBook(book *Book) {
 	timeStart := time.Now()
 
 	copyImages(book)
-	genContributorsPage(book)
 	bookPagesToHTML(book)
 
 	genBookTOCSearchMust(book)

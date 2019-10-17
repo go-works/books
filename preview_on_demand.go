@@ -234,8 +234,6 @@ func startPreviewOnDemand(books []*Book) {
 	defer killRollup()
 
 	for _, book := range books {
-		genContributorsPage(book)
-
 		// TODO: this generates js files in /www/s/app-${book.Dir}-${sha1}.js
 		genBookTOCSearchMust(book)
 	}

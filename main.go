@@ -261,8 +261,8 @@ func main() {
 
 	{
 		flag.StringVar(&flgAnalytics, "analytics", "", "google analytics code")
-		flag.BoolVar(&flgPreviewStatic, "preview-static", false, "if true starts web server for previewing locally generated static html")
-		flag.BoolVar(&flgPreviewOnDemand, "preview-on-demand", false, "if true will start web server for previewing the book locally")
+		flag.BoolVar(&flgPreviewStatic, "preview-static", false, "generate static files and preview with custom web server")
+		flag.BoolVar(&flgPreviewOnDemand, "preview", false, "preview on demand with custom web server")
 		flag.BoolVar(&flgAllBooks, "all-books", false, "if true will do all books")
 		flag.BoolVar(&flgNoUpdateOutput, "no-update-output", false, "if true, will disable updating ouput files in cache")
 		flag.BoolVar(&flgDisableNotionCache, "no-cache", false, "if true, disables cache for notion")
@@ -393,7 +393,6 @@ func main() {
 	for _, book := range books {
 		initBook(book)
 		downloadBook(book)
-		loadSoContributorsMust(book)
 	}
 	logf("Downloaded %d pages, %d from cache, in %s\n", nTotalDownloaded, nTotalFromCache, time.Since(timeStart))
 
