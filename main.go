@@ -123,6 +123,9 @@ func copyCoversMust() {
 
 func copyImages(book *Book) {
 	src := filepath.Join(book.NotionCacheDir(), "img")
+	if !u.DirExists(src) {
+		return
+	}
 	dst := filepath.Join(book.destDir(), "img")
 	u.DirCopyRecurMust(dst, src, nil)
 }
