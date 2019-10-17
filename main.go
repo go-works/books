@@ -102,40 +102,6 @@ func eventObserver(ev interface{}) {
 	}
 }
 
-func (book *Book) afterPageDownload(page *notionapi.Page) error {
-	id := toNoDashID(page.ID)
-	p := &Page{
-		NotionPage: page,
-		NotionID:   id,
-	}
-	book.idToPage[id] = p
-	downloadImages(book, p)
-	return nil
-}
-
-func downloadBook(book *Book) {
-	logf("Loading %s...\n", book.Title)
-	nProcessed = 0
-	nNotionPagesFromCache = 0
-	nDownloadedPages = 0
-
-	book.client = newNotionClient()
-	cacheDir := book.NotionCacheDir()
-	dirCache, err := caching_downloader.NewDirectoryCache(cacheDir)
-	must(err)
-	d := caching_downloader.New(dirCache, book.client)
-	d.EventObserver = eventObserver
-	d.RedownloadNewerVersions = !flgNoDownload
-	d.NoReadCache = flgDisableNotionCache
-
-	startPageID := book.NotionStartPageID
-	pages, err := d.DownloadPagesRecursively(startPageID, book.afterPageDownload)
-	must(err)
-	nPages := len(pages)
-	logf("Got %d pages for %s, downloaded: %d, from cache: %d\n", nPages, book.Title, nDownloadedPages, nNotionPagesFromCache)
-	bookFromPages(book)
-}
-
 func loadSOUserMappingsMust() {
 	path := filepath.Join("stack-overflow-docs-dump", "users.json.gz")
 	err := common.JSONDecodeGzipped(path, &soUserIDToNameMap)
@@ -149,10 +115,16 @@ func shouldCopyImage(path string) bool {
 func copyCoversMust() {
 	srcDir := "covers"
 	dstDir := filepath.Join("www", "covers")
-	u.CopyDirRecurMust(dstDir, srcDir, shouldCopyImage)
+	u.DirCopyRecurMust(dstDir, srcDir, shouldCopyImage)
 	dstDir = filepath.Join("www", "covers_small")
 	srcDir = filepath.Join("covers", "covers_small")
-	u.CopyDirRecurMust(dstDir, srcDir, shouldCopyImage)
+	u.DirCopyRecurMust(dstDir, srcDir, shouldCopyImage)
+}
+
+func copyImages(book *Book) {
+	src := filepath.Join(book.NotionCacheDir(), "img")
+	dst := filepath.Join(book.destDir(), "img")
+	u.DirCopyRecurMust(dst, src, nil)
 }
 
 func genBooks(books []*Book) {
@@ -419,7 +391,6 @@ func main() {
 		initBook(book)
 		downloadBook(book)
 		loadSoContributorsMust(book)
-		calcBookPageHeadings(book)
 	}
 	logf("Downloaded %d pages, %d from cache, in %s\n", nTotalDownloaded, nTotalFromCache, time.Since(timeStart))
 

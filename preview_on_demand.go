@@ -165,7 +165,7 @@ func handleBook(w http.ResponseWriter, r *http.Request) {
 	if maybeGenBookChapter(w, r, book, pageID) {
 		return
 	}
-	fmt.Printf("handleBook: not yet implemted url: '%s', rest: '%s', pageID: '%s'\n", r.URL.Path, rest, pageID)
+	fmt.Printf("handleBook: not yet implemented url: '%s', rest: '%s', pageID: '%s'\n", r.URL.Path, rest, pageID)
 	serveBook404(book, w)
 }
 
@@ -234,7 +234,6 @@ func startPreviewOnDemand(books []*Book) {
 	defer killRollup()
 
 	for _, book := range books {
-		buildIDToPage(book)
 		genContributorsPage(book)
 
 		// TODO: this generates js files in /www/s/app-${book.Dir}-${sha1}.js

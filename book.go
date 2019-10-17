@@ -7,6 +7,7 @@ import (
 	"path/filepath"
 
 	"github.com/kjk/notionapi"
+	"github.com/kjk/notionapi/caching_downloader"
 	"github.com/kjk/u"
 )
 
@@ -217,9 +218,38 @@ func calcPageHeadings(page *Page) {
 	page.Headings = headings
 }
 
-func calcBookPageHeadings(book *Book) {
-	pages := book.GetAllPages()
-	for _, p := range pages {
-		calcPageHeadings(p)
+func (book *Book) afterPageDownload(page *notionapi.Page) error {
+	id := toNoDashID(page.ID)
+	p := &Page{
+		NotionPage: page,
+		NotionID:   id,
+		Book:       book,
 	}
+	book.idToPage[id] = p
+	downloadImages(book, p)
+	calcPageHeadings(p)
+	return nil
+}
+
+func downloadBook(book *Book) {
+	logf("Loading %s...\n", book.Title)
+	nProcessed = 0
+	nNotionPagesFromCache = 0
+	nDownloadedPages = 0
+
+	book.client = newNotionClient()
+	cacheDir := book.NotionCacheDir()
+	dirCache, err := caching_downloader.NewDirectoryCache(cacheDir)
+	must(err)
+	d := caching_downloader.New(dirCache, book.client)
+	d.EventObserver = eventObserver
+	d.RedownloadNewerVersions = !flgNoDownload
+	d.NoReadCache = flgDisableNotionCache
+
+	startPageID := book.NotionStartPageID
+	pages, err := d.DownloadPagesRecursively(startPageID, book.afterPageDownload)
+	must(err)
+	nPages := len(pages)
+	logf("Got %d pages for %s, downloaded: %d, from cache: %d\n", nPages, book.Title, nDownloadedPages, nNotionPagesFromCache)
+	bookFromPages(book)
 }

@@ -304,15 +304,6 @@ func genPage(book *Book, page *Page, w io.Writer) error {
 	return err
 }
 
-func buildIDToPage(book *Book) {
-	pages := book.GetAllPages()
-	for _, page := range pages {
-		id := toNoDashID(page.NotionPage.ID)
-		book.idToPage[id] = page
-		page.Book = book
-	}
-}
-
 func bookPagesToHTML(book *Book) {
 	nProcessed := 0
 	pages := book.GetAllPages()
@@ -354,7 +345,7 @@ func genBook(book *Book) {
 	logf("Started genering book %s\n", book.Title)
 	timeStart := time.Now()
 
-	buildIDToPage(book)
+	copyImages(book)
 	genContributorsPage(book)
 	bookPagesToHTML(book)
 

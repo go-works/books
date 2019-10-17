@@ -89,6 +89,20 @@ func findPageByID(book *Book, id string) *Page {
 	return nil
 }
 
+func findImageMapping(images []*ImageMapping, link string) *ImageMapping {
+	for _, im := range images {
+		if im.link == link {
+			return im
+		}
+	}
+	logf("Didn't find image with link '%s'\n", link)
+	logf("Available images:\n")
+	for _, im := range images {
+		logf("  link: %s, relativeURL: %s, path: %s\n", im.link, im.relativeURL, im.path)
+	}
+	return nil
+}
+
 // RenderEmbed renders BlockEmbed
 func (c *Converter) RenderEmbed(block *notionapi.Block) bool {
 	uri := block.FormatEmbed().DisplaySource
@@ -181,6 +195,10 @@ func (c *Converter) RenderCode(block *notionapi.Block) bool {
 // TODO: download images locally like blog
 func (c *Converter) RenderImage(block *notionapi.Block) bool {
 	link := block.ImageURL
+	im := findImageMapping(c.page.Images, block.Source)
+	if im != nil {
+		link = im.relativeURL
+	}
 	c.converter.Printf(`<img class="img" src="%s">`, link)
 	return true
 }
