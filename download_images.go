@@ -9,6 +9,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/kjk/u"
+
 	"github.com/kjk/notionapi"
 )
 
@@ -36,7 +38,6 @@ func guessExt(fileName string, contentType string) string {
 func downloadImage(c *notionapi.Client, uri string) ([]byte, string, error) {
 	img, err := c.DownloadFile(uri)
 	if err != nil {
-		logf("\n  failed with %s\n", err)
 		return nil, "", err
 	}
 	ext := guessExt(uri, img.Header.Get("Content-Type"))
@@ -68,13 +69,10 @@ func findImageInDir(imgDir string, sha1 string) string {
 
 // return path of cached image on disk
 func downloadAndCacheImage(c *notionapi.Client, imgDir string, uri string) (string, error) {
-	sha := sha1OfLink(uri)
-
-	//ext := strings.ToLower(filepath.Ext(uri))
-
 	err := os.MkdirAll(imgDir, 0755)
 	must(err)
 
+	sha := sha1OfLink(uri)
 	cachedPath := findImageInDir(imgDir, sha)
 	if cachedPath != "" {
 		logf("Image %s already downloaded as %s\n", uri, cachedPath)
@@ -83,16 +81,15 @@ func downloadAndCacheImage(c *notionapi.Client, imgDir string, uri string) (stri
 
 	timeStart := time.Now()
 	logf("Downloading %s ... ", uri)
-
 	imgData, ext, err := downloadImage(c, uri)
-	must(err)
+	if err != nil {
+		logf("\n  Failed with %s\n", err)
+		return err
+	}
 
 	cachedPath = filepath.Join(imgDir, sha+ext)
 
-	err = ioutil.WriteFile(cachedPath, imgData, 0644)
-	if err != nil {
-		return "", err
-	}
+	u.WriteFileMust(cachedPath, imgData)
 	logf("finished in %s.\nWrote as '%s'\n", time.Since(timeStart), cachedPath)
 
 	return cachedPath, nil
