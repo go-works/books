@@ -314,26 +314,15 @@ func extractMeta(p *Page) {
 	removeBlocks(page, toRemove)
 }
 
-func normalizeID(id string) string {
-	return notionapi.ToNoDashID(id)
-}
-
 // recursively build a Page for each notionapi.Page by extracting
 // information from notionapi.Page
 func bookPageFromNotionPage(book *Book, page *notionapi.Page) *Page {
 	id := toNoDashID(page.ID)
-	res := book.idToPage[id]
-	if res == nil {
-		res = &Page{
-			NotionPage: page,
-		}
-		book.idToPage[id] = res
-	}
-	res.NotionPage = page
-	res.NotionID = notionapi.ToNoDashID(id)
-	res.Title = cleanTitle(page.Root().Title)
+	p := book.idToPage[id]
+	panicIf(p == nil)
+	p.Title = cleanTitle(page.Root().Title)
 
-	extractMeta(res)
+	extractMeta(p)
 
 	subPages := getSubPages(page, book.idToPage)
 
@@ -346,9 +335,9 @@ func bookPageFromNotionPage(book *Book, page *notionapi.Page) *Page {
 			continue
 		}
 		bookPage.Book = book
-		res.Pages = append(res.Pages, bookPage)
+		p.Pages = append(p.Pages, bookPage)
 	}
-	return res
+	return p
 }
 
 func bookFromPages(book *Book) {

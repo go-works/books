@@ -84,7 +84,7 @@ func downloadAndCacheImage(c *notionapi.Client, imgDir string, uri string) (stri
 	imgData, ext, err := downloadImage(c, uri)
 	if err != nil {
 		logf("\n  Failed with %s\n", err)
-		return err
+		return "", err
 	}
 
 	cachedPath = filepath.Join(imgDir, sha+ext)
@@ -96,10 +96,16 @@ func downloadAndCacheImage(c *notionapi.Client, imgDir string, uri string) (stri
 }
 
 func downloadAndRememberImage(page *Page, imgDir, link string) {
+	if !isFullURL(link) {
+		id := toNoDashID(page.NotionID)
+		logf("downloadAndRememberImage(): skipping '%s' from https://notion.so/%s because not a valid url\n", link, id)
+		return
+	}
+
 	client := newNotionClient()
 	path, err := downloadAndCacheImage(client, imgDir, link)
 	if err != nil {
-		id := normalizeID(page.NotionID)
+		id := toNoDashID(page.NotionID)
 		logf("downloadAndCacheImage('%s') from page https://notion.so/%s failed with '%s'\n", link, id, err)
 		must(err)
 	}

@@ -106,6 +106,7 @@ func (book *Book) afterPageDownload(page *notionapi.Page) error {
 	id := toNoDashID(page.ID)
 	p := &Page{
 		NotionPage: page,
+		NotionID:   id,
 	}
 	book.idToPage[id] = p
 	downloadImages(book, p)
