@@ -6,7 +6,7 @@ import (
 	"github.com/kjk/u"
 )
 
-var srcFiles = u.MakeAllowedFileFilterForExts(".go", ".js", ".html", ".css")
+var srcFiles = u.MakeAllowedFileFilterForExts(".go", ".js", ".html", ".css", ".svelte")
 var excludeDirs = u.MakeExcludeDirsFilter("books", ".vscode", ".github", ".idea", "cache", "code", "covers", "log", "mdfmt", "node_modules", "pkg", "essential", "s")
 var allFiles = u.MakeFilterAnd(srcFiles, excludeDirs)
 
