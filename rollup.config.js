@@ -12,7 +12,7 @@ if (isDev == "true") {
 }
 
 export default {
-  input: "svelte/main.js",
+  input: "fe/main.js",
   output: {
     sourcemap: true,
     format: "iife",

@@ -16,16 +16,15 @@ import (
 const (
 	// top-level directory where .html files are generated
 	destDir = "www"
-	tmplDir = "tmpl"
-)
 
-const (
 	gitHubBaseURL = "https://github.com/essentialbooks/books"
 	notionBaseURL = "https://notion.so/"
 	siteBaseURL   = "https://www.programming-books.io"
 )
 
 var (
+	tmplDir = filepath.Join("fe", "tmpl")
+
 	// directory where generated .html files for books are
 	destEssentialDir = filepath.Join("www", "essential")
 
@@ -47,7 +46,7 @@ func funcOptimizeAsset(url string) string {
 	// url is like /s/app.js which we convert to a file
 	// tmpl/app.js
 	name := strings.TrimPrefix(url, "/s/")
-	srcPath := filepath.Join("tmpl", name)
+	srcPath := filepath.Join("fe", "tmpl", name)
 	d, err := ioutil.ReadFile(srcPath)
 	if err != nil {
 		// for bundle.js and bundle.css
@@ -97,7 +96,7 @@ func loadTemplatesMust() *template.Template {
 	if templates != nil && !flgPreviewOnDemand {
 		return templates
 	}
-	pattern := filepath.Join("tmpl", "*.tmpl.html")
+	pattern := filepath.Join("fe", "tmpl", "*.tmpl.html")
 	var err error
 	templates, err = template.New("").Funcs(funcMap).ParseGlob(pattern)
 	//templates, err = template.ParseGlob(pattern)
