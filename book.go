@@ -215,6 +215,7 @@ func (book *Book) afterPageDownload(page *notionapi.Page) error {
 		Book:       book,
 	}
 	book.idToPage[id] = p
+	evalCodeSnippetsForPage(p)
 	downloadImages(book, p)
 	calcPageHeadings(p)
 	return nil
