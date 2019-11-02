@@ -1,8 +1,9 @@
 <script>
   import { onMount, onDestroy } from "svelte";
   import { search } from "./search.js";
-  import { isEsc, makeDebouncer } from "./util.js";
+  import { makeDebouncer } from "./util.js";
   import SearchResults from "./SearchResults.svelte";
+  import { isEsc } from "./keys.js";
 
   export let bookTitle = "";
   let searchTerm = "";
@@ -56,7 +57,7 @@
     // console.log("results:", results);
   }
 
-  function didDismiss() {
+  function ondismiss() {
     // console.log("didDismiss");
     searchTerm = "";
     results = [];
@@ -106,9 +107,5 @@
   bind:this={input} />
 
 {#if showResults}
-  <SearchResults
-    on:wantDismiss={didDismiss}
-    {searchTerm}
-    {results}
-    selectedIdx={0} />
+  <SearchResults {ondismiss} {searchTerm} {results} selectedIdx={0} />
 {/if}

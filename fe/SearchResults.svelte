@@ -1,17 +1,14 @@
 <script>
   import Overlay from "./Overlay.svelte";
-  import {
-    afterUpdate,
-    beforeUpdate,
-    onMount,
-    onDestroy,
-    createEventDispatcher
-  } from "svelte";
-  import { isEnter, isNavUp, isNavDown } from "./util.js";
+  import { afterUpdate, beforeUpdate, onMount, onDestroy } from "svelte";
+  import { isEnter, isNavUp, isNavDown } from "./keys.js";
   import { item } from "./item.js";
+  import { scrollintoview } from "./actions/scrollintoview.js";
 
-  const dispatch = createEventDispatcher();
-
+  export let ondismiss = null; // function
+  if (!ondismiss) {
+    throw new Error("ondimiss property is requred");
+  }
   /* results is array of items:
     {
       tocItem: [],
@@ -24,20 +21,8 @@
   export let selectedIdx = 0;
   export let searchTerm = "";
 
-  let selectedElement;
   let ignoreNextMouseEnter = false;
   let prevResulutsCount = 0;
-
-  $: selectedElementChanged(selectedElement);
-
-  function selectedElementChanged(el) {
-    if (!el) {
-      return;
-    }
-    // TODO: test on Safari
-    // https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView
-    el.scrollIntoView(false);
-  }
 
   // TODO: I don't quite understand when beforeUpdate / afterUpdate
   // are called. Maybe just clamp selectedIdx to be within
@@ -178,7 +163,7 @@
     }
     loc = parts.join("/");
     window.location = loc;
-    dispatch("wantDismiss");
+    ondismiss();
   }
 
   function dir(ev) {
@@ -224,6 +209,7 @@
     // console.log("clicked:", idx);
     navigateToSearchResult(idx);
   }
+
   function mouseEnter(idx) {
     if (ignoreNextMouseEnter) {
       ignoreNextMouseEnter = false;
@@ -310,7 +296,7 @@
   }
 </style>
 
-<Overlay>
+<Overlay {ondismiss} dismissWithEsc={true}>
   <div class="wrapper">
     <div class="results">
       {#if results.length === 0}
@@ -319,7 +305,7 @@
         {#each results as r, idx (r.id)}
           {#if idx === selectedIdx}
             <div
-              bind:this={selectedElement}
+              use:scrollintoview
               on:click={() => clicked(idx)}
               class="selected">
               {@html hiliHTML(idx)}
