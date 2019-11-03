@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
-	"path"
 	"time"
 
 	"github.com/alecthomas/chroma"
@@ -23,7 +22,6 @@ var (
 // CodeBlockInfo represents info about code snippet
 type CodeBlockInfo struct {
 	Lang          string
-	GitHubURI     string
 	PlaygroundURI string
 }
 
@@ -42,16 +40,6 @@ func fixupHTMLCodeBlock(htmlCode string, info *CodeBlockInfo) string {
 		classLang = " lang-" + info.Lang
 	}
 
-	if info.GitHubURI == "" && info.PlaygroundURI == "" {
-		html := fmt.Sprintf(`
-<div class="code-box%s">
-	<div>
-		%s
-	</div>
-</div>`, classLang, htmlCode)
-		return html
-	}
-
 	playgroundPart := ""
 	if info.PlaygroundURI != "" {
 		playgroundPart = fmt.Sprintf(`
@@ -61,16 +49,6 @@ func fixupHTMLCodeBlock(htmlCode string, info *CodeBlockInfo) string {
 `, info.PlaygroundURI)
 	}
 
-	gitHubPart := ""
-	if info.GitHubURI != "" {
-		// gitHubLoc is sth. like github.com/essentialbooks/books/books/go/main.go
-		fileName := path.Base(info.GitHubURI)
-		gitHubPart = fmt.Sprintf(`
-<div class="code-box-github">
-	<a href="%s" target="_blank">%s</a>
-</div>`, info.GitHubURI, fileName)
-	}
-
 	html := fmt.Sprintf(`
 <div class="code-box%s">
 	<div>
@@ -78,9 +56,8 @@ func fixupHTMLCodeBlock(htmlCode string, info *CodeBlockInfo) string {
 	</div>
 	<div class="code-box-nav">
 		%s
-		%s
 	</div>
-</div>`, classLang, htmlCode, playgroundPart, gitHubPart)
+</div>`, classLang, htmlCode, playgroundPart)
 	return html
 }
 

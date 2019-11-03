@@ -134,8 +134,7 @@ func (c *Converter) genSourceFile(sf *SourceFile) {
 		htmlHighlight(&tmp, string(code), lang, "")
 		d := tmp.Bytes()
 		info := CodeBlockInfo{
-			Lang:      sf.Lang,
-			GitHubURI: sf.GitHubURL,
+			Lang: sf.Lang,
 		}
 		info.PlaygroundURI = sf.PlaygroundURI
 		s := fixupHTMLCodeBlock(string(d), &info)
@@ -184,7 +183,7 @@ func (c *Converter) RenderCode(block *notionapi.Block) bool {
 		htmlHighlight(&tmp, string(block.Code), block.CodeLanguage, "")
 		d := tmp.Bytes()
 		var info CodeBlockInfo
-		// TODO: set Lang, GitHubURI and PlaygroundURI
+		// TODO: set Lang and PlaygroundURI
 		s := fixupHTMLCodeBlock(string(d), &info)
 		c.converter.Printf(s)
 	}

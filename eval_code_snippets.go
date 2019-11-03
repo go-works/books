@@ -135,13 +135,11 @@ func evalCodeSnippetsForPage(page *Page) {
 		}
 
 		//lang := getLangFromFileExt(filepath.Ext(path))
-		//gitHubURL := getGitHubPathForFile(path)
 		lang := block.CodeLanguage
 		sf := &SourceFile{
 			NotionOriginURL: fmt.Sprintf("https://notion.so/%s", toNoDashID(page.NotionID)),
 			//Path:      path,
 			//FileName:  name,
-			//GitHubURL: gitHubURL,
 		}
 		sf.Lang = lang
 		sf.SnippetName = page.PageTitle()

@@ -42,8 +42,6 @@ type SourceFile struct {
 
 	SnippetName string
 
-	// URL on GitHub for this file
-	GitHubURL string
 	// language of the file, detected from name
 	Lang string
 
@@ -244,27 +242,6 @@ func removeAnnotationLines(lines []string) []string {
 		res = append(res, l)
 	}
 	return res
-}
-
-// convert local path like books/go/foo.go into path to the file in a github repo
-func getGitHubPathForFile(path string) string {
-	return "https://github.com/essentialbooks/books/blob/master/" + toUnixPath(path)
-}
-
-func setGoPlaygroundID(b *Book, sf *SourceFile) error {
-	if sf.Lang != "go" {
-		return nil
-	}
-	if sf.Directive.NoPlayground {
-		return nil
-	}
-	id, err := getSha1ToGoPlaygroundIDCached(b, sf.CodeToRun)
-	if err != nil {
-		return err
-	}
-	sf.GoPlaygroundID = id
-	sf.PlaygroundURI = "https://goplay.space/#" + sf.GoPlaygroundID
-	return nil
 }
 
 func setSourceFileData(sf *SourceFile, data []byte) error {

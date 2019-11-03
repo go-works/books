@@ -13,6 +13,8 @@ import (
 const (
 	recNameGlotOutput = "glotoutput"
 	recNameGlotID     = "glotid"
+	recNameGist       = "gist"       // content of the gist
+	recNameGistOutput = "gistoutput" // result of evaluating the gist
 )
 
 type Cache struct {
@@ -22,8 +24,6 @@ type Cache struct {
 	sha1ToGlotOutput map[string]*EvalOutput
 	// id of glot.id code snippet for this code, if exists
 	sha1ToGlotID map[string]string
-	// id of https://goplay.space snippet for this code, if exists
-	sha1ToGoPlayID map[string]string
 }
 
 func NewCache(path string) *Cache {
@@ -31,7 +31,6 @@ func NewCache(path string) *Cache {
 		path:             path,
 		sha1ToGlotOutput: map[string]*EvalOutput{},
 		sha1ToGlotID:     map[string]string{},
-		sha1ToGoPlayID:   map[string]string{},
 	}
 }
 
