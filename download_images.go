@@ -79,7 +79,7 @@ func downloadAndCacheImage(c *notionapi.Client, imgDir string, uri string) (stri
 	sha := sha1OfLink(uri)
 	cachedPath := findImageInDir(imgDir, sha)
 	if cachedPath != "" {
-		logf("Image %s already downloaded as %s\n", uri, cachedPath)
+		logVerbose("Image %s already downloaded as %s\n", uri, cachedPath)
 		return cachedPath, nil
 	}
 

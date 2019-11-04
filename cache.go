@@ -35,6 +35,7 @@ func NewCache(path string) *Cache {
 		path:                 path,
 		sha1ToGlotOutput:     map[string]*EvalOutput{},
 		sha1ToGlotID:         map[string]string{},
+		gistIDToGist:         map[string]string{},
 		gistSha1ToGistOutput: map[string]string{},
 	}
 }
@@ -66,7 +67,7 @@ func recGetMust(rec *siser.Record, name string) string {
 }
 
 func recGetMustNonEmpty(rec *siser.Record, name string) string {
-	v, ok := rec.Get("Sha1")
+	v, ok := rec.Get(name)
 	u.PanicIf(!ok || v == "")
 	return v
 }

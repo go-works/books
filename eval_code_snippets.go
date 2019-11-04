@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/kjk/u"
 
@@ -79,6 +81,136 @@ func parseCodeEvalInfo(s string) *CodeEvalInfo {
 	return res
 }
 
+func gistDownloadCached(cache *Cache, gistID string) string {
+	gist := cache.gistIDToGist[gistID]
+	if gist != "" && !flgGistRedownload {
+		logVerbose("got gist '%s' from cache\n", gistID)
+		return gist
+	}
+	timeStart := time.Now()
+	newGist := gistDownload(gistID)
+	logf("downloaded gist '%s' in %s\n", gistID, time.Since(timeStart))
+	if newGist == gist {
+		panicIf(!flgGistRedownload)
+		return newGist
+	}
+	cache.saveGist(gistID, newGist)
+	return newGist
+}
+
+func langFromFileName(name string) string {
+	ext := strings.ToLower(filepath.Ext(name))
+	switch ext {
+	case ".go":
+		return "go"
+	default:
+		panic(fmt.Sprintf("Unsupported extensions '%s'", ext))
+	}
+
+}
+func langFromGist(gist *Gist) string {
+	var currLang string
+	for _, f := range gist.Files {
+		lang := langFromFileName(f.Filename)
+		if lang == "" {
+			continue
+		}
+		if currLang == "" {
+			currLang = lang
+			continue
+		}
+		panicIf(lang != currLang, "lang:")
+	}
+	panicIf(currLang == "")
+	return currLang
+}
+
+func getEvalResponseString(resp *EvalResponse) string {
+	return resp.Stdout + resp.Stderr + resp.Error
+}
+
+func evalGist(gistStr string) (*EvalResponse, string) {
+	gist := gistDecode(gistStr)
+	panicIf(gist.Truncated) // TODO: implement if needed
+	var files []File
+	for name, gf := range gist.Files {
+		// logf("  file: '%s'\n", name)
+		panicIf(gf.Truncated)
+		f := File{
+			Name:    name,
+			Content: gf.Content,
+		}
+		files = append(files, f)
+	}
+
+	lang := langFromGist(gist)
+	// TODO: set the language based on files or what Gist sets
+	e := &Eval{
+		Language: lang,
+		Files:    files,
+	}
+	resp, err := evalGo(e)
+	must(err)
+	out := getEvalResponseString(resp)
+	// logf("Eval response:\n%s\n", out)
+	return resp, out
+}
+
+func evalCached(cache *Cache, gist string) string {
+	sha1 := u.Sha1HexOfBytes([]byte(gist))
+	out := cache.gistSha1ToGistOutput[sha1]
+	if out != "" {
+		return out
+	}
+	_, out = evalGist(gist)
+	cache.saveGistOutput(gist, out)
+	return out
+}
+
+func getGistFile(gist *Gist) *GistFile {
+	// TODO: support multiple files
+	panicIf(len(gist.Files) != 1, "TODO: only supporting a single file for now")
+	for _, f := range gist.Files {
+		panicIf(f.Truncated)
+		return f
+	}
+	panic("not reachable")
+}
+
+func evalCodeEval(page *Page, block *notionapi.Block, gistInfo string) {
+	info := parseCodeEvalInfo(gistInfo)
+	gistStr := gistDownloadCached(page.Book.cache, info.GistID)
+	logf("got gist '%s'\n", info.GistID)
+
+	evalCached(page.Book.cache, gistStr)
+	gist := gistDecode(gistStr)
+	panicIf(gist.Truncated) // TODO: implement if needed
+	gistFile := getGistFile(gist)
+	lang := langFromGist(gist)
+	sf := &SourceFile{
+		NotionOriginURL: fmt.Sprintf("https://notion.so/%s", toNoDashID(page.NotionID)),
+		//Path:      path,
+		FileName: gistFile.Filename,
+		Lang:     lang,
+	}
+
+	sf.SnippetName = page.PageTitle()
+	if sf.SnippetName == "" {
+		sf.SnippetName = "untitled"
+	}
+
+	sf.PlaygroundURI = "https://codeeval.dev/gist/" + info.GistID
+
+	data := []byte(gistFile.Content)
+	err := setSourceFileData(sf, data)
+	must(err)
+
+	if page.blockCodeToSourceFile == nil {
+		page.blockCodeToSourceFile = map[string]*SourceFile{}
+	}
+	page.blockCodeToSourceFile[block.ID] = sf
+}
+
 func evalCodeSnippetsForPage(page *Page) {
 	book := page.Book
 	// can happen for draft pages
@@ -89,11 +221,10 @@ func evalCodeSnippetsForPage(page *Page) {
 		panicIf(block.Type != notionapi.BlockText)
 		ts := block.GetTitle()
 		s := notionapi.TextSpansToString(ts)
-		if strings.Contains(s, "https://codeeval.dev") {
-			//logf("found it: %s\n", s)
-			//os.Exit(1)
-			// TODO: eval it
+		if !strings.Contains(s, "https://codeeval.dev/gist/") {
+			return
 		}
+		evalCodeEval(page, block, s)
 	}
 
 	fnEmbed := func(block *notionapi.Block) {
@@ -118,10 +249,6 @@ func evalCodeSnippetsForPage(page *Page) {
 
 		if block.Type != notionapi.BlockCode {
 			return
-		}
-
-		if page.blockCodeToSourceFile == nil {
-			page.blockCodeToSourceFile = map[string]*SourceFile{}
 		}
 
 		if false {
@@ -173,6 +300,10 @@ func evalCodeSnippetsForPage(page *Page) {
 		if err != nil {
 			logf("getOutputCached() failed.\nsf.CodeToRun():\n%s\n", sf.CodeToRun)
 			u.Must(err)
+		}
+
+		if page.blockCodeToSourceFile == nil {
+			page.blockCodeToSourceFile = map[string]*SourceFile{}
 		}
 		page.blockCodeToSourceFile[block.ID] = sf
 	}

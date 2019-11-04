@@ -104,20 +104,26 @@ func findImageMapping(images []*ImageMapping, link string) *ImageMapping {
 }
 
 // RenderEmbed renders BlockEmbed
+// TODO: also check for
+// sf := c.page.blockCodeToSourceFile[block.ID]
+// c.genSourceFile(sf)
 func (c *Converter) RenderEmbed(block *notionapi.Block) bool {
 	uri := block.FormatEmbed().DisplaySource
 	if strings.Contains(uri, "onlinetool.io/") {
+		panic("not supported anymore")
 		c.genGitEmbed(block)
 		return true
 	}
 	if strings.Contains(uri, "repl.it/") {
-		c.genReplitEmbed(block)
+		panic("not supported anymore")
+		//c.genReplitEmbed(block)
 		return true
 	}
 	u.PanicIf(true, "unsupported embed %s", uri)
 	return false
 }
 
+/*
 func (c *Converter) genReplitEmbed(block *notionapi.Block) {
 	uri := block.FormatEmbed().DisplaySource
 	uri = strings.Replace(uri, "?lite=true", "", -1)
@@ -125,6 +131,7 @@ func (c *Converter) genReplitEmbed(block *notionapi.Block) {
 	logf("  Replit: %s\n", uri)
 	panic("we no longer use replit")
 }
+*/
 
 func (c *Converter) genSourceFile(sf *SourceFile) {
 	{
@@ -261,6 +268,12 @@ func (c *Converter) isFirstBlock() bool {
 
 // RenderText renders BlockText
 func (c *Converter) RenderText(block *notionapi.Block) bool {
+	sf := c.page.blockCodeToSourceFile[block.ID]
+	if sf != nil {
+		c.genSourceFile(sf)
+		return true
+	}
+
 	if isBlockTextTodo(block) {
 		return true
 	}

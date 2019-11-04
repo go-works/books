@@ -235,7 +235,8 @@ var (
 	flgPreviewOnDemand          bool
 	flgReportStackOverflowLinks bool
 	// if true, disables downloading pages
-	flgNoDownload bool
+	flgNoDownload     bool
+	flgGistRedownload bool
 )
 
 func main() {
@@ -265,6 +266,7 @@ func main() {
 		flag.BoolVar(&flgGen, "gen", false, "generate html for the book")
 		flag.BoolVar(&flgProfile, "prof", false, "write cpu profile")
 		flag.BoolVar(&flgDeployDraft, "deploy-draft", false, "deploy to netlify as draft")
+		flag.BoolVar(&flgGistRedownload, "gist-redownload", false, "redownload gist even if we have it")
 		flag.BoolVar(&flgDeployProd, "deploy-prod", false, "deploy to netlify production")
 		flag.Parse()
 
