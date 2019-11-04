@@ -160,7 +160,7 @@ func evalCodeSnippetsForPage(page *Page) {
 			evalSourceFile(sf)
 		}
 
-		if sf.Directive.Glot || sf.Directive.GoPlayground {
+		if sf.Directive.Glot {
 			// for those we respect no output/no playground
 		} else {
 			// for embedded code blocks by default we don't set playground

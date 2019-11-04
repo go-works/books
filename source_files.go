@@ -21,9 +21,8 @@ type FileDirective struct {
 	NoPlayground bool   // no playground
 	RunCmd       string // :run ${cmd}
 
-	Glot         bool // :glot, use glot.io to execute the code snippet
-	GoPlayground bool // :goplay, use go playground to execute the snippet
-	DoOutput     bool // :output
+	Glot     bool // :glot, use glot.io to execute the code snippet
+	DoOutput bool // :output
 }
 
 // SourceFile represents source file. It comes from a code block in
@@ -45,8 +44,6 @@ type SourceFile struct {
 	// language of the file, detected from name
 	Lang string
 
-	// for Go files, this is playground id
-	GoPlaygroundID string
 	// for some files, this is glot.io snippet id
 	GlotPlaygroundID string
 
@@ -128,7 +125,7 @@ func parseFileDirective(res *FileDirective, line string) (bool, error) {
 		} else if s == "output" {
 			res.DoOutput = true
 		} else if s == "goplay" {
-			res.GoPlayground = true
+			panic("found goplay")
 		} else if s == "no output" || s == "nooutput" {
 			res.NoOutput = true
 		} else if s == "no playground" || s == "noplayground" {
