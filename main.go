@@ -14,7 +14,6 @@ import (
 
 	"html/template"
 
-	"github.com/essentialbooks/books/pkg/common"
 	"github.com/kjk/notionapi"
 	"github.com/kjk/notionapi/caching_downloader"
 	"github.com/kjk/u"
@@ -25,10 +24,9 @@ import (
 )
 
 var (
-	soUserIDToNameMap map[int]string
-	googleAnalytics   template.HTML
-	doMinify          bool
-	minifier          *minify.M
+	googleAnalytics template.HTML
+	doMinify        bool
+	minifier        *minify.M
 
 	notionAuthToken string
 
@@ -100,12 +98,6 @@ func eventObserver(ev interface{}) {
 	case *caching_downloader.EventGotVersions:
 		logf("downloaded info about %d versions in %s\n", v.Count, v.Duration)
 	}
-}
-
-func loadSOUserMappingsMust() {
-	path := filepath.Join("stack-overflow-docs-dump", "users.json.gz")
-	err := common.JSONDecodeGzipped(path, &soUserIDToNameMap)
-	u.PanicIfErr(err)
 }
 
 func shouldCopyImage(path string) bool {
@@ -322,7 +314,6 @@ func main() {
 	timeStart := time.Now()
 
 	initMinify()
-	loadSOUserMappingsMust()
 
 	if flgReportExternalLinks || flgReportStackOverflowLinks {
 		reportExternalLinks()
