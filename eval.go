@@ -98,34 +98,3 @@ func dbgEvalResponse(r *EvalResponse) {
 	}
 	logf("DurationMS: %.2f\n\n", r.DurationMS)
 }
-
-var (
-	nEvaled = 0
-)
-
-func evalSourceFile(sf *SourceFile) {
-	if nEvaled > 5 {
-		return
-	}
-	nEvaled++
-	lang := strings.ToLower(sf.Lang)
-	s := sf.CodeToRun
-	f1 := File{
-		Name:    sf.FileName,
-		Content: s,
-	}
-	e := &Eval{
-		Language: lang,
-		Files:    []File{f1},
-	}
-	logf("---------------------------\n")
-	dbgEval(e)
-	if lang != "go" {
-		logf("skipping language '%s'\n", lang)
-		return
-	}
-	res, err := evalGo(e)
-	must(err)
-	logf("-----\n")
-	dbgEvalResponse(res)
-}

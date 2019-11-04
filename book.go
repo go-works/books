@@ -39,6 +39,8 @@ type Book struct {
 	client *notionapi.Client
 	// cache related
 	cache *Cache
+
+	nGlotRemaining int
 }
 
 // CacheDir returns a cache dir for this book
@@ -242,4 +244,5 @@ func downloadBook(book *Book) {
 	nPages := len(pages)
 	logf("Got %d pages for %s, downloaded: %d, from cache: %d\n", nPages, book.Title, nDownloadedPages, nNotionPagesFromCache)
 	bookFromPages(book)
+	logf("Remaining glot: %d\n", book.nGlotRemaining)
 }
