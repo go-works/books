@@ -182,7 +182,7 @@ func evalCodeEval(page *Page, block *notionapi.Block, gistInfo string) {
 	gistStr := gistDownloadCached(page.Book.cache, info.GistID)
 	logf("got gist '%s'\n", info.GistID)
 
-	evalCached(page.Book.cache, gistStr)
+	output := evalCached(page.Book.cache, gistStr)
 	gist := gistDecode(gistStr)
 	panicIf(gist.Truncated) // TODO: implement if needed
 	gistFile := getGistFile(gist)
@@ -190,8 +190,9 @@ func evalCodeEval(page *Page, block *notionapi.Block, gistInfo string) {
 	sf := &SourceFile{
 		NotionOriginURL: fmt.Sprintf("https://notion.so/%s", toNoDashID(page.NotionID)),
 		//Path:      path,
-		FileName: gistFile.Filename,
-		Lang:     lang,
+		FileName:   gistFile.Filename,
+		Lang:       lang,
+		GlotOutput: output,
 	}
 
 	sf.SnippetName = page.PageTitle()
