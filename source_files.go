@@ -20,6 +20,7 @@ type FileDirective struct {
 	LineLimit    int    // limit ${n}
 	NoPlayground bool   // no playground
 	RunCmd       string // :run ${cmd}
+	Collection   string // collection
 
 	Glot     bool // :glot, use glot.io to execute the code snippet
 	DoOutput bool // :output
@@ -157,6 +158,9 @@ func parseFileDirective(res *FileDirective, line string) (bool, error) {
 			rest := strings.TrimSpace(strings.TrimPrefix(s, "run "))
 			res.RunCmd = rest
 			// fmt.Printf("  run:: '%s'\n", res.RunCmd)
+		} else if strings.HasPrefix(s, "collection ") {
+			rest := strings.TrimSpace(strings.TrimPrefix(s, "collection "))
+			res.Collection = rest
 		} else {
 			// if started with ":" we assume it was meant to be a directive
 			// but there was a typo

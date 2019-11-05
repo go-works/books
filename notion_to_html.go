@@ -111,13 +111,13 @@ func (c *Converter) RenderEmbed(block *notionapi.Block) bool {
 	uri := block.FormatEmbed().DisplaySource
 	if strings.Contains(uri, "onlinetool.io/") {
 		panic("not supported anymore")
-		c.genGitEmbed(block)
-		return true
+		//c.genGitEmbed(block)
+		//return true
 	}
 	if strings.Contains(uri, "repl.it/") {
 		panic("not supported anymore")
 		//c.genReplitEmbed(block)
-		return true
+		//return true
 	}
 	u.PanicIf(true, "unsupported embed %s", uri)
 	return false

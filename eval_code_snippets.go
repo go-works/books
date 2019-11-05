@@ -287,7 +287,7 @@ func evalCodeSnippetsForPage(page *Page) {
 			logVerbose("!code glot %s\n", sf.NotionOriginURL)
 			// for those we respect no output/no playground
 		} else {
-			logVerbose("!code no glot %s\n", sf.NotionOriginURL)
+			//logVerbose("!code no glot %s\n", sf.NotionOriginURL)
 			// for embedded code blocks by default we don't set playground
 			// or output unless explicitly asked for
 			sf.Directive.NoPlayground = true
