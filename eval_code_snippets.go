@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"path/filepath"
 	"strings"
 	"time"
@@ -329,6 +328,9 @@ var (
 )
 
 func createGistFromGlot(sf *SourceFile) {
+	if nGistsCreated == 14 {
+		return
+	}
 	description := "example for " + sf.NotionOriginURL
 	newGist := &GistCreate{
 		Description: description,
@@ -345,7 +347,4 @@ func createGistFromGlot(sf *SourceFile) {
 	codeEvalURL := "https://codeeval.dev/gist/" + gist.ID
 	logf("Created a gist %s\n%s\n\n", sf.NotionOriginURL, codeEvalURL)
 	nGistsCreated++
-	if nGistsCreated == 14 {
-		os.Exit(0)
-	}
 }
