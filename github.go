@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"net/http"
+	"os"
 
 	"github.com/kjk/u"
 )
@@ -87,9 +88,23 @@ func gistDecode(s string) *Gist {
 	return &res
 }
 
+var (
+	didNotifyUsingToken bool
+)
+
 func githubGet(endpoint string) string {
 	uri := githubServer + endpoint
-	resp, err := http.Get(uri)
+	req, err := http.NewRequest(http.MethodGet, uri, nil)
+	must(err)
+	token := os.Getenv("GITHUB_TOKEN")
+	if token != "" {
+		if !didNotifyUsingToken {
+			logf("GITHUB_TOKEN set, using it for GitHub API requests\n")
+			didNotifyUsingToken = true
+		}
+		req.Header.Set("Authorization", "token "+token)
+	}
+	resp, err := http.DefaultClient.Do(req)
 	must(err)
 	panicIf(resp.StatusCode != http.StatusOK, "http.Get('%s') failed with '%s'", uri, resp.Status)
 	defer u.CloseNoError(resp.Body)

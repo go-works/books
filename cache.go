@@ -61,7 +61,7 @@ type EvalOutput struct {
 }
 
 func recGetMust(rec *siser.Record, name string) string {
-	v, ok := rec.Get("Sha1")
+	v, ok := rec.Get(name)
 	u.PanicIf(!ok)
 	return v
 }
@@ -168,7 +168,8 @@ func (c *Cache) saveGistOutput(gist, output string) {
 	rec := &siser.Record{
 		Name: recNameGistOutput,
 	}
-	u.PanicIf(output == "")
+	//TODO: probably remove, it's ok to have no output
+	//u.PanicIf(output == "")
 	rec.Append("Gist", gist)
 	rec.Append("GistOutput", output)
 	err := c.saveRecord(rec)
@@ -179,7 +180,7 @@ func (c *Cache) saveGistOutput(gist, output string) {
 
 func (c *Cache) loadGistOutput(rec *siser.Record) {
 	gist := recGetMustNonEmpty(rec, "Gist")
-	output := recGetMustNonEmpty(rec, "GistOutput")
+	output := recGetMust(rec, "GistOutput")
 	sha1 := u.Sha1HexOfBytes([]byte(gist))
 	c.gistSha1ToGistOutput[sha1] = output
 }

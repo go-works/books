@@ -178,7 +178,6 @@ func initMinify() {
 func initBook(book *Book) {
 	var err error
 
-	u.CreateDirMust(book.OutputCacheDir())
 	u.CreateDirMust(book.NotionCacheDir())
 
 	if false {
@@ -241,10 +240,11 @@ var (
 
 func main() {
 	var (
-		flgAnalytics string
-		flgWc        bool
-		flgGen       bool
-		flgAllBooks  bool
+		flgAnalytics    string
+		flgWc           bool
+		flgGen          bool
+		flgAllBooks     bool
+		flgDownloadGist string
 
 		flgReportExternalLinks bool
 		flgProfile             bool
@@ -268,6 +268,7 @@ func main() {
 		flag.BoolVar(&flgDeployDraft, "deploy-draft", false, "deploy to netlify as draft")
 		flag.BoolVar(&flgGistRedownload, "gist-redownload", false, "redownload gist even if we have it")
 		flag.BoolVar(&flgDeployProd, "deploy-prod", false, "deploy to netlify production")
+		flag.StringVar(&flgDownloadGist, "download-gist", "", "id of the gist to (re)download. Must also provide a book")
 		flag.Parse()
 
 		if flgAnalytics != "" {
@@ -319,6 +320,11 @@ func main() {
 
 	if flgReportExternalLinks || flgReportStackOverflowLinks {
 		reportExternalLinks()
+		return
+	}
+
+	if flgDownloadGist != "" {
+		downloadSingleGist(flgDownloadGist)
 		return
 	}
 
@@ -431,4 +437,22 @@ func newNotionClient() *notionapi.Client {
 	}
 	// client.Logger = logFile
 	return client
+}
+
+// download a single gist and store in the cache for a given book
+func downloadSingleGist(gistID string) {
+	// must have 1 remaining arg that is book name
+	restArgs := flag.Args()
+	if len(restArgs) != 0 {
+		logf("-download-gist expects a name of a single book to use for cache\n")
+		logf("remaining args are: '%#v'\n", restArgs)
+	}
+	bookName := restArgs[0]
+	logf("Downloading gist '%s' and storing in the cache for the book '%s'\n", gistID, bookName)
+	path := filepath.Join("cache", bookName, "cache.txt")
+	cache := loadCache(path)
+	gistStr := gistDownload(gistID)
+	//gist := gistDecode(gistStr)
+	cache.saveGist(gistID, gistStr)
+	logf("Saved a gist\n")
 }
