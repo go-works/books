@@ -335,6 +335,7 @@ func createGistFromGlot(sf *SourceFile) {
 	fileName := fileNameFromSourceFile(sf)
 	if fileName == "" {
 		logf("createGistFromGlot: unsupported language '%s'\n", sf.Lang)
+		return
 	}
 
 	description := "example for " + sf.NotionOriginURL
