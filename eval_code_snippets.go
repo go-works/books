@@ -319,7 +319,6 @@ func fileNameFromSourceFile(sf *SourceFile) string {
 	case "go":
 		return "main.go"
 	}
-	panicIf(true, "Unknown lang '%s' in:\n%#v\n", lang, sf)
 	return ""
 }
 
@@ -331,13 +330,19 @@ func createGistFromGlot(sf *SourceFile) {
 	if nGistsCreated == 14 {
 		return
 	}
+
+	// TODO: support more languages, like C++
+	fileName := fileNameFromSourceFile(sf)
+	if fileName == "" {
+		logf("createGistFromGlot: unsupported language '%s'\n", sf.Lang)
+	}
+
 	description := "example for " + sf.NotionOriginURL
 	newGist := &GistCreate{
 		Description: description,
 		Public:      true,
 		Files:       map[string]*GistNewFile{},
 	}
-	fileName := fileNameFromSourceFile(sf)
 	file := &GistNewFile{
 		Content: sf.CodeFull,
 	}
