@@ -84,12 +84,12 @@ func parseCodeEvalInfo(s string) *CodeEvalInfo {
 func gistDownloadCached(cache *Cache, gistID string) string {
 	gist := cache.gistIDToGist[gistID]
 	if gist != "" && !flgGistRedownload {
-		logVerbose("got gist '%s' from cache\n", gistID)
+		logVerbose("gist '%s': got from cache\n", gistID)
 		return gist
 	}
 	timeStart := time.Now()
 	newGist := gistDownload(gistID)
-	logf("downloaded gist '%s' in %s\n", gistID, time.Since(timeStart))
+	logf("gist '%s': downloaded in %s\n", gistID, time.Since(timeStart))
 	if newGist == gist {
 		panicIf(!flgGistRedownload)
 		return newGist
@@ -180,7 +180,6 @@ func getGistFile(gist *Gist) *GistFile {
 func evalCodeEval(page *Page, block *notionapi.Block, gistInfo string) {
 	info := parseCodeEvalInfo(gistInfo)
 	gistStr := gistDownloadCached(page.Book.cache, info.GistID)
-	logf("got gist '%s'\n", info.GistID)
 
 	output := evalCached(page.Book.cache, gistStr)
 	gist := gistDecode(gistStr)
