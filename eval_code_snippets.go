@@ -343,9 +343,9 @@ func createGistFromGlot(sf *SourceFile) {
 	gist := createGistMust(newGist)
 	//gistURL := "https://gist.github.com/" + gist.ID
 	codeEvalURL := "https://codeeval.dev/gist/" + gist.ID
-	logf("Created a gist %s\n%s\n%s\n\n", gist.ID, sf.NotionOriginURL, codeEvalURL)
+	logf("Created a gist %s\n%s\n\n", sf.NotionOriginURL, codeEvalURL)
 	nGistsCreated++
-	if nGistsCreated == 10 {
+	if nGistsCreated == 14 {
 		os.Exit(0)
 	}
 }
