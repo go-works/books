@@ -451,8 +451,7 @@ func downloadSingleGist(gistID string) {
 	logf("Downloading gist '%s' and storing in the cache for the book '%s'\n", gistID, bookName)
 	path := filepath.Join("cache", bookName, "cache.txt")
 	cache := loadCache(path)
-	gistStr := gistDownload(gistID)
-	//gist := gistDecode(gistStr)
-	cache.saveGist(gistID, gistStr)
+	gist := gistDownloadMust(gistID)
+	cache.saveGist(gistID, gist.Raw)
 	logf("Saved a gist\n")
 }

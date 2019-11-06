@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"path/filepath"
 	"strings"
 	"time"
@@ -88,14 +89,14 @@ func gistDownloadCached(cache *Cache, gistID string) string {
 		return gist
 	}
 	timeStart := time.Now()
-	newGist := gistDownload(gistID)
+	newGist := gistDownloadMust(gistID)
 	logf("gist '%s': downloaded in %s\n", gistID, time.Since(timeStart))
-	if newGist == gist {
+	if newGist.Raw == gist {
 		panicIf(!flgGistRedownload)
-		return newGist
+		return newGist.Raw
 	}
-	cache.saveGist(gistID, newGist)
-	return newGist
+	cache.saveGist(gistID, newGist.Raw)
+	return newGist.Raw
 }
 
 func langFromFileName(name string) string {
@@ -285,6 +286,7 @@ func evalCodeSnippetsForPage(page *Page) {
 		if sf.Directive.Glot {
 			book.nGlotRemaining++
 			logVerbose("!code glot %s\n", sf.NotionOriginURL)
+			createGistFromGlot(sf)
 			// for those we respect no output/no playground
 		} else {
 			//logVerbose("!code no glot %s\n", sf.NotionOriginURL)
@@ -309,10 +311,41 @@ func evalCodeSnippetsForPage(page *Page) {
 	page.NotionPage.ForEachBlock(fn)
 }
 
-/*
-func evalCodeSnippets(book *Book) {
-	for _, page := range book.idToPage {
-		evalCodeSnippetsForPage(page)
+func fileNameFromSourceFile(sf *SourceFile) string {
+	if sf.FileName != "" {
+		return sf.FileName
+	}
+	lang := strings.ToLower(sf.Lang)
+	switch lang {
+	case "go":
+		return "main.go"
+	}
+	panicIf(true, "Unknown lang '%s' in:\n%#v\n", lang, sf)
+	return ""
+}
+
+var (
+	nGistsCreated int
+)
+
+func createGistFromGlot(sf *SourceFile) {
+	description := "example for " + sf.NotionOriginURL
+	newGist := &GistCreate{
+		Description: description,
+		Public:      true,
+		Files:       map[string]*GistNewFile{},
+	}
+	fileName := fileNameFromSourceFile(sf)
+	file := &GistNewFile{
+		Content: sf.CodeFull,
+	}
+	newGist.Files[fileName] = file
+	gist := createGistMust(newGist)
+	gistURL := "https://gist.github.com/" + gist.ID
+	codeEvalURL := "https://codeeval.dev/gist/" + gist.ID
+	logf("Created a gist %s\n%s\n%s\n%s\n\n", gist.ID, gistURL, codeEvalURL, sf.NotionOriginURL)
+	nGistsCreated++
+	if nGistsCreated == 5 {
+		os.Exit(0)
 	}
 }
-*/
