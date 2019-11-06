@@ -341,11 +341,11 @@ func createGistFromGlot(sf *SourceFile) {
 	}
 	newGist.Files[fileName] = file
 	gist := createGistMust(newGist)
-	gistURL := "https://gist.github.com/" + gist.ID
+	//gistURL := "https://gist.github.com/" + gist.ID
 	codeEvalURL := "https://codeeval.dev/gist/" + gist.ID
-	logf("Created a gist %s\n%s\n%s\n%s\n\n", gist.ID, gistURL, codeEvalURL, sf.NotionOriginURL)
+	logf("Created a gist %s\n%s\n%s\n\n", gist.ID, sf.NotionOriginURL, codeEvalURL)
 	nGistsCreated++
-	if nGistsCreated == 5 {
+	if nGistsCreated == 10 {
 		os.Exit(0)
 	}
 }
