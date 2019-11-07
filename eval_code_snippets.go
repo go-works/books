@@ -318,6 +318,8 @@ func fileNameFromSourceFile(sf *SourceFile) string {
 	switch lang {
 	case "go":
 		return "main.go"
+	case "cpp":
+		return "main.cpp"
 	}
 	return ""
 }

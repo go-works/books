@@ -300,7 +300,10 @@ func main() {
 	defer closeLog()
 
 	{
-		notionAuthToken = os.Getenv("NOTION_TOKEN")
+		//notionAuthToken = os.Getenv("NOTION_TOKEN")
+		// we don't need authentication and the result change
+		// in authenticated vs. non-authenticated state
+		notionAuthToken = ""
 		if notionAuthToken != "" {
 			logf("NOTION_TOKEN provided, can write back\n")
 		} else {
