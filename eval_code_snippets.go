@@ -103,6 +103,8 @@ func langFromFileName(name string) string {
 	switch ext {
 	case ".go":
 		return "go"
+	case ".cpp":
+		return "gcc"
 	default:
 		panic(fmt.Sprintf("Unsupported extensions '%s'", ext))
 	}
@@ -318,7 +320,7 @@ func fileNameFromSourceFile(sf *SourceFile) string {
 	switch lang {
 	case "go":
 		return "main.go"
-	case "cpp":
+	case "cpp", "c++":
 		return "main.cpp"
 	}
 	return ""
