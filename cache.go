@@ -21,9 +21,6 @@ type Cache struct {
 	// path of the cache file
 	path string
 
-	sha1ToGlotOutput map[string]*EvalOutput
-	// id of glot.id code snippet for this code, if exists
-	sha1ToGlotID map[string]string
 	// id of the gist to gist content. Might be outdated if
 	// gist changes
 	gistIDToGist         map[string]string
@@ -33,8 +30,6 @@ type Cache struct {
 func NewCache(path string) *Cache {
 	return &Cache{
 		path:                 path,
-		sha1ToGlotOutput:     map[string]*EvalOutput{},
-		sha1ToGlotID:         map[string]string{},
 		gistIDToGist:         map[string]string{},
 		gistSha1ToGistOutput: map[string]string{},
 	}
@@ -77,72 +72,6 @@ func (c *EvalOutput) Sha1() string {
 		c.sha1 = u.Sha1HexOfBytes([]byte(c.CodeFull))
 	}
 	return c.sha1
-}
-
-func (c *Cache) saveGlotOutput(code *EvalOutput) {
-	u.PanicIf(code.CodeFull == "")
-	u.PanicIf(c.sha1ToGlotOutput[code.Sha1()] != nil)
-	rec := &siser.Record{
-		Name: recNameGlotOutput,
-	}
-	rec.Append("Sha1", code.Sha1())
-	rec.Append("Lang", code.Lang)
-	rec.Append("FileName", code.FileName)
-	rec.Append("CodeFull", code.CodeFull)
-	rec.Append("CodeToRun", code.CodeToRun)
-	if code.RunCmd != "" {
-		rec.Append("RunCmd", code.RunCmd)
-	}
-	rec.Append("Output", code.Output)
-	err := c.saveRecord(rec)
-	must(err)
-	c.sha1ToGlotOutput[code.Sha1()] = code
-}
-
-func (c *Cache) loadGlotOutput(rec *siser.Record) {
-	u.PanicIf(rec.Name != recNameGlotOutput)
-	sha1, ok := rec.Get("Sha1")
-	u.PanicIf(!ok || sha1 == "")
-	u.PanicIf(c.sha1ToGlotOutput[sha1] != nil)
-
-	o := &EvalOutput{}
-	o.Lang, ok = rec.Get("Lang")
-	u.PanicIf(!ok)
-	o.FileName, ok = rec.Get("FileName")
-	u.PanicIf(!ok)
-	o.CodeFull, ok = rec.Get("CodeFull")
-	u.PanicIf(!ok)
-	o.CodeToRun, ok = rec.Get("CodeToRun")
-	u.PanicIf(!ok)
-	o.RunCmd, ok = rec.Get("RunCmd")
-	o.Output, ok = rec.Get("Output")
-	u.PanicIf(!ok)
-
-	u.PanicIf(o.CodeFull == "")
-	u.PanicIf(sha1 != o.Sha1(), "sha1 != code.Sha1() (%s != %s)", sha1, o.Sha1())
-	c.sha1ToGlotOutput[sha1] = o
-}
-
-func (c *Cache) saveGlotID(sha1, glotID string) {
-	u.PanicIf(c.sha1ToGlotID[sha1] != "")
-	rec := &siser.Record{
-		Name: recNameGlotID,
-	}
-	u.PanicIf(sha1 == "")
-	rec.Append("Sha1", sha1)
-	rec.Append("GlotID", glotID)
-	err := c.saveRecord(rec)
-	must(err)
-	c.sha1ToGlotID[sha1] = glotID
-}
-
-func (c *Cache) loadGlotID(rec *siser.Record) {
-	u.PanicIf(rec.Name != recNameGlotID)
-	sha1 := recGetMustNonEmpty(rec, "Sha1")
-	u.PanicIf(c.sha1ToGlotID[sha1] != "")
-
-	glotid := recGetMustNonEmpty(rec, "GlotID")
-	c.sha1ToGlotID[sha1] = glotid
 }
 
 func (c *Cache) saveGist(gistID, gist string) {
@@ -208,9 +137,9 @@ func loadCache(path string) *Cache {
 		rec := r.Record
 		switch rec.Name {
 		case recNameGlotOutput:
-			c.loadGlotOutput(rec)
+			// not used anymore
 		case recNameGlotID:
-			c.loadGlotID(rec)
+			// not used anymore
 		case recNameGist:
 			c.loadGist(rec)
 		case recNameGistOutput:

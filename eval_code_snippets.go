@@ -287,7 +287,6 @@ func evalCodeSnippetsForPage(page *Page) {
 		}
 
 		if sf.Directive.Glot {
-			book.nGlotRemaining++
 			logVerbose("!code glot %s\n", sf.NotionOriginURL)
 			createGistFromGlot(sf)
 			// for those we respect no output/no playground
@@ -314,51 +313,24 @@ func evalCodeSnippetsForPage(page *Page) {
 	page.NotionPage.ForEachBlock(fn)
 }
 
-func fileNameFromSourceFile(sf *SourceFile) string {
-	if sf.FileName != "" {
-		return sf.FileName
-	}
-	lang := strings.ToLower(sf.Lang)
-	switch lang {
-	case "go":
-		return "main.go"
-	case "cpp", "c++":
-		return "main.cpp"
-	case "javascript":
-		return "index.js"
-	}
-	return ""
-}
-
-var (
-	nGistsCreated int
-)
-
+// TODO: we might do some re-use
 func createGistFromGlot(sf *SourceFile) {
-	if nGistsCreated == 14 {
-		return
-	}
+	panic("shouldn't happen anymore")
 
-	// TODO: support more languages, like C++
-	fileName := fileNameFromSourceFile(sf)
-	if fileName == "" {
-		logf("createGistFromGlot: unsupported language '%s'\n", sf.Lang)
-		return
-	}
-
-	description := "example for " + sf.NotionOriginURL
-	newGist := &GistCreate{
-		Description: description,
-		Public:      true,
-		Files:       map[string]*GistNewFile{},
-	}
-	file := &GistNewFile{
-		Content: sf.CodeFull,
-	}
-	newGist.Files[fileName] = file
-	gist := createGistMust(newGist)
-	//gistURL := "https://gist.github.com/" + gist.ID
-	codeEvalURL := "https://codeeval.dev/gist/" + gist.ID
-	logf("Created a gist %s\n%s\n\n", sf.NotionOriginURL, codeEvalURL)
-	nGistsCreated++
+	/*
+		description := "example for " + sf.NotionOriginURL
+		newGist := &GistCreate{
+			Description: description,
+			Public:      true,
+			Files:       map[string]*GistNewFile{},
+		}
+		file := &GistNewFile{
+			Content: sf.CodeFull,
+		}
+		newGist.Files[fileName] = file
+		gist := createGistMust(newGist)
+		//gistURL := "https://gist.github.com/" + gist.ID
+		codeEvalURL := "https://codeeval.dev/gist/" + gist.ID
+		logf("Created a gist %s\n%s\n\n", sf.NotionOriginURL, codeEvalURL)
+	*/
 }

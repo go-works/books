@@ -204,13 +204,6 @@ func findBook(id string) *Book {
 }
 
 func adHoc() {
-	if false {
-		glotRunTestAndExit()
-	}
-	if false {
-		glotGetSnippedIDTestAndExit()
-	}
-
 	// only needs to be run when we add new covers
 	if false {
 		genTwitterImagesAndExit()
