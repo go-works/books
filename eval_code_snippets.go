@@ -298,11 +298,6 @@ func evalCodeSnippetsForPage(page *Page) {
 			sf.Directive.NoOutput = true
 		}
 		setDefaultFileNameFromLanguage(sf)
-		err = getOutputCached(book.cache, sf)
-		if err != nil {
-			logf("getOutputCached() failed.\nsf.CodeToRun():\n%s\n", sf.CodeToRun)
-			u.Must(err)
-		}
 
 		if page.blockCodeToSourceFile == nil {
 			page.blockCodeToSourceFile = map[string]*SourceFile{}
