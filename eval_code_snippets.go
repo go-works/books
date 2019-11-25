@@ -103,7 +103,7 @@ func langFromFileName(name string) string {
 	switch ext {
 	case ".go":
 		return "go"
-	case ".cpp":
+	case ".cpp", ".cc", ".cxx", ".c":
 		return "gcc"
 	case ".js":
 		return "node"
