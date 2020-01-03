@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -280,8 +279,7 @@ func main() {
 			</script>
 
 		`
-			s := fmt.Sprintf(googleAnalyticsTmpl, flgAnalytics, flgAnalytics)
-			googleAnalytics = template.HTML(s)
+			googleAnalytics = template.HTML(googleAnalyticsTmpl)
 		}
 	}
 
