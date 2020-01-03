@@ -233,7 +233,7 @@ var (
 
 func main() {
 	var (
-		flgAnalytics    string
+		flgAnalytics    bool
 		flgWc           bool
 		flgGen          bool
 		flgAllBooks     bool
@@ -246,7 +246,7 @@ func main() {
 	)
 
 	{
-		flag.StringVar(&flgAnalytics, "analytics", "", "google analytics code")
+		flag.BoolVar(&flgAnalytics, "analytics", false, "add google analytics code")
 		flag.BoolVar(&flgPreviewStatic, "preview-static", false, "generate static files and preview with custom web server")
 		flag.BoolVar(&flgPreviewOnDemand, "preview", false, "preview on demand with custom web server")
 		flag.BoolVar(&flgAllBooks, "all-books", false, "if true will do all books")
@@ -264,14 +264,21 @@ func main() {
 		flag.StringVar(&flgDownloadGist, "download-gist", "", "id of the gist to (re)download. Must also provide a book")
 		flag.Parse()
 
-		if flgAnalytics != "" {
-			googleAnalyticsTmpl := `<script async src="https://www.googletagmanager.com/gtag/js?id=%s"></script>
+		if flgDeployProd {
+			flgAnalytics = true
+		}
+
+		if flgAnalytics {
+			googleAnalyticsTmpl := `
+			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113489735-1"></script>
 			<script>
 				window.dataLayer = window.dataLayer || [];
 				function gtag(){dataLayer.push(arguments);}
 				gtag('js', new Date());
-				gtag('config', '%s')
+
+				gtag('config', 'UA-113489735-1');
 			</script>
+
 		`
 			s := fmt.Sprintf(googleAnalyticsTmpl, flgAnalytics, flgAnalytics)
 			googleAnalytics = template.HTML(s)
