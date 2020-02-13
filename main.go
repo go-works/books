@@ -57,13 +57,13 @@ var (
 		bookGit,
 		bookPHP,
 		bookRuby,
+		bookNETFramework,
 		bookNode,
 		bookDart,
 		bookTypeScript,
 		bookSwift,
 	}
 	booksUnpublished = []*Book{
-		bookNETFramework,
 		bookAlgorithm,
 		bookC,
 		bookObjectiveC,
