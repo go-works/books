@@ -1,5 +1,3 @@
-import axios, { AxiosRequestConfig } from "axios";
-
 export interface NotionMeta {
   slug?: string;
   date?: string;
@@ -477,26 +475,24 @@ export default function notionLoader(debug = true): NotionLoader {
         verticalColumns: false,
       };
 
-      const options: AxiosRequestConfig = {
+      const options: RequestInit = {
         method: "POST",
         headers: {
           "content-type": "application/json",
           credentials: "include",
-          headers: {
-            accept: "*/*",
-            "accept-language": "en-US,en;q=0.9,fr;q=0.8",
-          },
+          accept: "*/*",
+          "accept-language": "en-US,en;q=0.9,fr;q=0.8",
         },
-        data: JSON.stringify(data, null, 0),
-        url: urlLoadPageChunk,
+        body: JSON.stringify(data, null, 0),
       };
       if (debug) {
         // reporter.info(
         //   `retrieving notion data: ${JSON.stringify(options, null, "")}`
         // );
       }
-      return axios(options)
-        .then(function (response) {
+      // TODO: convert to await
+      return fetch(urlLoadPageChunk, options)
+        .then(function (response: Response) {
           if (response.status !== 200) {
             // reporter.error(
             //   `error retrieving data from notion. status=${response.status}`
@@ -513,10 +509,9 @@ export default function notionLoader(debug = true): NotionLoader {
             // reporter.info(`response is: ${data}`);
           }
           // we parse the blocks
-          recordMapToBlocks(
-            (response && response.data && response.data.recordMap) || {},
-            _blocks
-          );
+          response.json().then(function (data: any) {
+            recordMapToBlocks((data && data.recordMap) || {}, _blocks);
+          });
         })
         .catch(function (error) {
           //   reporter.error(`Error retrieving data: ${error}`);
@@ -529,6 +524,7 @@ export default function notionLoader(debug = true): NotionLoader {
           }
         });
     },
+
     downloadImages(
       images: NotionLoaderImageInformation[]
     ): Promise<NotionLoaderImageResult[]> {
@@ -549,23 +545,20 @@ export default function notionLoader(debug = true): NotionLoader {
         urls,
       };
 
-      const options: AxiosRequestConfig = {
+      const options: RequestInit = {
         method: "POST",
         headers: {
           "content-type": "application/json",
           credentials: "include",
-          headers: {
-            accept: "*/*",
-            "accept-language": "en-US,en;q=0.9,fr;q=0.8",
-          },
+          accept: "*/*",
+          "accept-language": "en-US,en;q=0.9,fr;q=0.8",
         },
-        data: JSON.stringify(dataForUrls, null, 0),
-        url: urlGetSignedFileUrls,
+        body: JSON.stringify(dataForUrls, null, 0),
       };
 
       const result: NotionLoaderImageResult[] = [];
 
-      return axios(options)
+      return fetch(urlGetSignedFileUrls, options)
         .then(function (response) {
           if (response.status !== 200) {
             // reporter.error(
@@ -580,16 +573,15 @@ export default function notionLoader(debug = true): NotionLoader {
             //     })
             //   );
             // }
-            (
-              (response &&
-                response.data &&
-                (response.data.signedUrls as string[])) ||
-              ([] as string[])
-            ).forEach((signedUrl, index) => {
-              result.push({
-                imageUrl: images[index].imageUrl,
-                contentId: images[index].contentId,
-                signedImageUrl: signedUrl,
+            response.json().then(function (data: any) {
+              const arr: string[] =
+                (data && (data.signedUrls as string[])) || ([] as string[]);
+              arr.forEach((signedUrl, index) => {
+                result.push({
+                  imageUrl: images[index].imageUrl,
+                  contentId: images[index].contentId,
+                  signedImageUrl: signedUrl,
+                });
               });
             });
           }
