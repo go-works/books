@@ -20,7 +20,7 @@ function len(s: string): number {
 const dashIDLen = len("2131b10c-ebf6-4938-a127-7089ff02dbe4");
 const noDashIDLen = len("2131b10cebf64938a1277089ff02dbe4");
 
-function toDashID(id: string): string {
+export function toDashID(id: string): string {
   const s: string = id.replace("-", "");
   if (len(s) != noDashIDLen) {
     return id;

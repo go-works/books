@@ -1,3 +1,5 @@
+import { toDashID } from './notionapi.ts';
+
 export interface NotionMeta {
   slug?: string;
   date?: string;
@@ -466,7 +468,8 @@ export function notionLoader(debug = true): NotionLoader {
     loadPage: async (pageId: string): Promise<void> => {
       const urlLoadPageChunk = "https://www.notion.so/api/v3/loadPageChunk";
 
-      const data = {
+      pageId = toDashID(pageId);
+      const postData = {
         pageId: pageId,
         limit: 100000,
         cursor: { stack: [] },
@@ -482,46 +485,20 @@ export function notionLoader(debug = true): NotionLoader {
           accept: "*/*",
           "accept-language": "en-US,en;q=0.9,fr;q=0.8",
         },
-        body: JSON.stringify(data, null, 0),
+        body: JSON.stringify(postData, null, 0),
       };
-      if (debug) {
-        // reporter.info(
-        //   `retrieving notion data: ${JSON.stringify(options, null, "")}`
+      const response = await fetch(urlLoadPageChunk, options);
+      if (response.status !== 200) {
+        // reporter.error(
+        //   `error retrieving data from notion. status=${response.status}`
         // );
+        throw new Error(
+          `Error retrieving data - status: ${response.status}`
+        );
       }
-      // TODO: convert to await
-      return fetch(urlLoadPageChunk, options)
-        .then(function (response: Response) {
-          if (response.status !== 200) {
-            // reporter.error(
-            //   `error retrieving data from notion. status=${response.status}`
-            // );
-            throw new Error(
-              `Error retrieving data - status: ${response.status}`
-            );
-          }
-          if (debug) {
-            // const data = util.inspect(response.data, {
-            //   colors: true,
-            //   depth: null,
-            // });
-            // reporter.info(`response is: ${data}`);
-          }
-          // we parse the blocks
-          response.json().then(function (data: any) {
-            recordMapToBlocks((data && data.recordMap) || {}, _blocks);
-          });
-        })
-        .catch(function (error) {
-          //   reporter.error(`Error retrieving data: ${error}`);
-          throw error;
-        })
-        .finally(function () {
-          if (debug) {
-            console.log("DONE");
-            console.log(options);
-          }
-        });
+      const data: any = await response.json()
+      console.log("data:", data);
+      recordMapToBlocks((data && data.recordMap) || {}, _blocks);
     },
 
     downloadImages(
