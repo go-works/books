@@ -443,9 +443,9 @@ export class NotionLoader {
   }
 
   getBlocks(copyTo: NotionPageBlock[], pageId: string): void {
-    this._blocks
-      .filter((b) => b.blockId !== pageId)
-      .forEach((b) => copyTo.push(b));
+    for (let b of this._blocks) {
+      if (b.blockId == pageId) { copyTo.push(b); }
+    }
   }
 
   reset(): void {
