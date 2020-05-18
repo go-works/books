@@ -278,7 +278,7 @@ function get(o: object, path: string, defaultValue: string): string {
     return defaultValue;
   }
   const parts = path.split(".");
-  let co = o;
+  let co: any = o;
   for (let key of parts) {
     co = co[key];
     if (!co) {
@@ -363,7 +363,6 @@ function getAttributeAsString(
   return att.value;
 }
 
-// loads a gatsby page
 export async function loadPage(
   pageId: string,
   rootPageId: string,
@@ -460,7 +459,7 @@ interface NotionApiDownloadInfo {
   };
 }
 
-export default function notionLoader(debug = true): NotionLoader {
+export function notionLoader(debug = true): NotionLoader {
   let _blocks: NotionPageBlock[] = [];
 
   return {
