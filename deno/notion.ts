@@ -1,5 +1,9 @@
 import { toDashID } from './notionapi.ts';
 
+const notionHost = "https://www.notion.so";
+const urlGetSignedFileUrls = notionHost + "/api/v3/getSignedFileUrls";
+const urlLoadPageChunk = notionHost + "/api/v3/loadPageChunk";
+
 export interface NotionMeta {
   slug?: string;
   date?: string;
@@ -72,17 +76,6 @@ export interface Json {
 }
 export type JsonArray = Array<JsonTypes>;
 
-/*
-// plugin configuration data
-export interface NotionsoPluginOptions extends PluginOptions {
-  rootPageUrl: string;
-  name: string;
-  tokenv2?: string;
-  downloadLocal: boolean;
-  debug?: boolean;
-}
-*/
-
 export interface NotionLoaderImageInformation {
   imageUrl: string;
   contentId: string;
@@ -92,16 +85,6 @@ export interface NotionLoaderImageResult {
   imageUrl: string;
   contentId: string;
   signedImageUrl: string;
-}
-
-export interface NotionLoader {
-  loadPage(pageId: string): Promise<void>;
-  downloadImages(
-    images: NotionLoaderImageInformation[]
-  ): Promise<NotionLoaderImageResult[]>;
-  getBlockById(blockId: string): NotionPageBlock | undefined;
-  getBlocks(copyTo: NotionPageBlock[], pageId: string): void;
-  reset(): void;
 }
 
 export function extractPageIdFromPublicUrl(url: string): string | null {
@@ -365,6 +348,111 @@ function getAttributeAsString(
   return att.value;
 }
 
+interface NotionApiDownloadInfo {
+  url: string;
+  permissionRecord: {
+    table: string;
+    id: string;
+  };
+}
+
+export class NotionLoader {
+  _blocks: NotionPageBlock[] = [];
+
+  async loadPage(pageId: string): Promise<void> {
+    pageId = toDashID(pageId);
+    const postData = {
+      pageId: pageId,
+      limit: 100000,
+      cursor: { stack: [] },
+      chunkNumber: 0,
+      verticalColumns: false,
+    };
+
+    const options: RequestInit = {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        credentials: "include",
+        accept: "*/*",
+        "accept-language": "en-US,en;q=0.9,fr;q=0.8",
+      },
+      body: JSON.stringify(postData, null, 0),
+    };
+    const response = await fetch(urlLoadPageChunk, options);
+    if (response.status !== 200) {
+      // reporter.error(
+      //   `error retrieving data from notion. status=${response.status}`
+      // );
+      throw new Error(
+        `Error retrieving data - status: ${response.status}`
+      );
+    }
+    const data: any = await response.json()
+    console.log("data:", data);
+    recordMapToBlocks((data && data.recordMap) || {}, this._blocks);
+  }
+
+  async downloadImages(images: NotionLoaderImageInformation[]): Promise<NotionLoaderImageResult[]> {
+    const urls: NotionApiDownloadInfo[] = [];
+    images.forEach((image) => {
+      urls.push({
+        url: image.imageUrl,
+        permissionRecord: {
+          table: "block",
+          id: image.contentId,
+        },
+      });
+    });
+
+    const dataForUrls = {
+      urls,
+    };
+
+    const options: RequestInit = {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        credentials: "include",
+        accept: "*/*",
+        "accept-language": "en-US,en;q=0.9,fr;q=0.8",
+      },
+      body: JSON.stringify(dataForUrls, null, 0),
+    };
+
+    const result: NotionLoaderImageResult[] = [];
+    const response = await fetch(urlGetSignedFileUrls, options);
+    if (response.status !== 200) {
+      return Promise.resolve(result);
+    }
+    const data: any = response.json();
+    const arr: string[] = (data && (data.signedUrls as string[])) || ([] as string[]);
+    for (let i = 0; i < arr.length; i++) {
+      const signedUrl = arr[i];
+      result.push({
+        imageUrl: images[i].imageUrl,
+        contentId: images[i].contentId,
+        signedImageUrl: signedUrl,
+      });
+    }
+    return Promise.resolve(result);
+  }
+
+  getBlockById(blockId: string): NotionPageBlock | undefined {
+    return this._blocks.find((b) => b.blockId === blockId);
+  }
+
+  getBlocks(copyTo: NotionPageBlock[], pageId: string): void {
+    this._blocks
+      .filter((b) => b.blockId !== pageId)
+      .forEach((b) => copyTo.push(b));
+  }
+
+  reset(): void {
+    this._blocks = [];
+  }
+}
+
 export async function loadPage(
   pageId: string,
   rootPageId: string,
@@ -453,112 +541,3 @@ export async function loadPage(
   return item;
 }
 
-interface NotionApiDownloadInfo {
-  url: string;
-  permissionRecord: {
-    table: string;
-    id: string;
-  };
-}
-
-export function notionLoader(debug = true): NotionLoader {
-  let _blocks: NotionPageBlock[] = [];
-
-  return {
-    loadPage: async (pageId: string): Promise<void> => {
-      const urlLoadPageChunk = "https://www.notion.so/api/v3/loadPageChunk";
-
-      pageId = toDashID(pageId);
-      const postData = {
-        pageId: pageId,
-        limit: 100000,
-        cursor: { stack: [] },
-        chunkNumber: 0,
-        verticalColumns: false,
-      };
-
-      const options: RequestInit = {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          credentials: "include",
-          accept: "*/*",
-          "accept-language": "en-US,en;q=0.9,fr;q=0.8",
-        },
-        body: JSON.stringify(postData, null, 0),
-      };
-      const response = await fetch(urlLoadPageChunk, options);
-      if (response.status !== 200) {
-        // reporter.error(
-        //   `error retrieving data from notion. status=${response.status}`
-        // );
-        throw new Error(
-          `Error retrieving data - status: ${response.status}`
-        );
-      }
-      const data: any = await response.json()
-      console.log("data:", data);
-      recordMapToBlocks((data && data.recordMap) || {}, _blocks);
-    },
-
-    downloadImages: async function (
-      images: NotionLoaderImageInformation[]
-    ): Promise<NotionLoaderImageResult[]> {
-      const urlGetSignedFileUrls =
-        "https://www.notion.so/api/v3/getSignedFileUrls";
-      const urls: NotionApiDownloadInfo[] = [];
-      images.forEach((image) => {
-        urls.push({
-          url: image.imageUrl,
-          permissionRecord: {
-            table: "block",
-            id: image.contentId,
-          },
-        });
-      });
-
-      const dataForUrls = {
-        urls,
-      };
-
-      const options: RequestInit = {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-          credentials: "include",
-          accept: "*/*",
-          "accept-language": "en-US,en;q=0.9,fr;q=0.8",
-        },
-        body: JSON.stringify(dataForUrls, null, 0),
-      };
-
-      const result: NotionLoaderImageResult[] = [];
-      const response = await fetch(urlGetSignedFileUrls, options);
-      if (response.status !== 200) {
-        return Promise.resolve(result);
-      }
-      const data: any = response.json();
-      const arr: string[] = (data && (data.signedUrls as string[])) || ([] as string[]);
-      for (let i = 0; i < arr.length; i++) {
-        const signedUrl = arr[i];
-        result.push({
-          imageUrl: images[i].imageUrl,
-          contentId: images[i].contentId,
-          signedImageUrl: signedUrl,
-        });
-      }
-      return Promise.resolve(result);
-    },
-    getBlockById(blockId: string): NotionPageBlock | undefined {
-      return _blocks.find((b) => b.blockId === blockId);
-    },
-    getBlocks(copyTo: NotionPageBlock[], pageId: string): void {
-      _blocks
-        .filter((b) => b.blockId !== pageId)
-        .forEach((b) => copyTo.push(b));
-    },
-    reset(): void {
-      _blocks = [];
-    },
-  };
-}
