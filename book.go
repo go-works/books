@@ -5,8 +5,9 @@ import (
 	"html/template"
 	"io/ioutil"
 	"path/filepath"
-	"sync"
 
+	"github.com/kjk/notionapi"
+	"github.com/kjk/notionapi/caching_downloader"
 	"github.com/kjk/u"
 )
 
@@ -15,7 +16,7 @@ type Book struct {
 	Title     string // "Go", "jQuery" etcc
 	TitleLong string // "Essential Go", "Essential jQuery" etc.
 
-	// used by page index. defaults to: "<b>${TitleLong}</b> is a free book about ${Title} programming langauge."
+	// used by page index. defaults to: "<b>${TitleLong}</b> is a free book about ${Title} programming language."
 	summary string
 
 	NotionStartPageID string
@@ -24,11 +25,7 @@ type Book struct {
 
 	idToPage map[string]*Page
 
-	Dir            string // directory name for the book e.g. "go"
-	SoContributors []SoContributor
-
-	defaultLang string // default programming language for programming examples
-	knownUrls   []string
+	Dir string // directory name for the book e.g. "go"
 
 	// generated toc javascript data
 	tocData []byte
@@ -39,23 +36,15 @@ type Book struct {
 	// e.g. "Python.png"
 	CoverImageName string
 
+	client *notionapi.Client
 	// cache related
 	cache *Cache
-
-	// for concurrency
-	sem chan bool
-	wg  sync.WaitGroup
 }
 
 // CacheDir returns a cache dir for this book
 func (b *Book) CacheDir() string {
-	panicIf(b.Dir == "", "b.Dir should not be empty")
+	u.PanicIf(b.Dir == "", "b.Dir should not be empty")
 	return filepath.Join("cache", b.Dir)
-}
-
-// OutputCacheDir returns output cache dir for this book
-func (b *Book) OutputCacheDir() string {
-	return filepath.Join(b.CacheDir(), "output")
 }
 
 // NotionCacheDir returns output cache dir for this book
@@ -67,24 +56,9 @@ func (b *Book) cachePath() string {
 	return filepath.Join(b.CacheDir(), "cache.txt")
 }
 
-// SourceDir is where source files for a given book are
-func (b *Book) SourceDir() string {
-	return filepath.Join("books", b.Dir)
-}
-
 // this is where html etc. files for a book end up
 func (b *Book) destDir() string {
 	return filepath.Join(destEssentialDir, b.Dir)
-}
-
-// ContributorCount returns number of contributors
-func (b *Book) ContributorCount() int {
-	return len(b.SoContributors)
-}
-
-// ContributorsURL returns url of the chapter that lists contributors
-func (b *Book) ContributorsURL() string {
-	return b.URL() + "/9999-contributors"
 }
 
 // URL returns url of the book, used in index.tmpl.html
@@ -94,7 +68,7 @@ func (b *Book) URL() string {
 
 func (b *Book) Summary() template.HTML {
 	if b.summary == "" {
-		b.summary = fmt.Sprintf("<b>%s</b> is a free book about %s programming langauge.", b.TitleLong, b.Title)
+		b.summary = fmt.Sprintf("<b>%s</b> is a free book about %s programming language.", b.TitleLong, b.Title)
 	}
 	return template.HTML(b.summary)
 }
@@ -111,13 +85,13 @@ func (b *Book) ShareOnTwitterText() string {
 
 // CoverURL returns url to cover image
 func (b *Book) CoverURL() string {
-	panicIf(b.CoverImageName == "")
+	u.PanicIf(b.CoverImageName == "")
 	return fmt.Sprintf("/covers/%s", b.CoverImageName)
 }
 
 // CoverSmallURL returns url to small cover image
 func (b *Book) CoverSmallURL() string {
-	panicIf(b.CoverImageName == "")
+	u.PanicIf(b.CoverImageName == "")
 	return fmt.Sprintf("/covers_small/%s", b.CoverImageName)
 }
 
@@ -128,7 +102,7 @@ func (b *Book) CoverFullURL() string {
 
 // CoverTwitterFullURL returns a URL for the cover including host
 func (b *Book) CoverTwitterFullURL() string {
-	panicIf(b.CoverImageName == "")
+	u.PanicIf(b.CoverImageName == "")
 	coverURL := fmt.Sprintf("/covers/twitter/%s", b.CoverImageName)
 	return urlJoin(siteBaseURL, coverURL)
 }
@@ -177,30 +151,85 @@ func (b *Book) ChaptersCount() int {
 
 func updateBookAppJS(book *Book) {
 	srcName := fmt.Sprintf("app-%s.js", book.Dir)
-	path := filepath.Join("tmpl", "app.js")
-	d, err := ioutil.ReadFile(path)
-	maybePanicIfErr(err)
-	if err != nil {
-		return
-	}
+	d := book.tocData
 	if doMinify {
 		d2, err := minifier.Bytes("text/javascript", d)
 		maybePanicIfErr(err)
 		if err == nil {
-			log("Minified %s from %d => %d (saved %d)\n", srcName, len(d), len(d2), len(d)-len(d2))
+			logf("Minified %s from %d => %d (saved %d)\n", srcName, len(d), len(d2), len(d)-len(d2))
 			d = d2
 		}
 	}
 
-	d = append(book.tocData, d...)
 	sha1Hex := u.Sha1HexOfBytes(d)
 	name := nameToSha1Name(srcName, sha1Hex)
 	dst := filepath.Join("www", "s", name)
-	err = ioutil.WriteFile(dst, d, 0644)
+	err := ioutil.WriteFile(dst, d, 0644)
 	maybePanicIfErr(err)
 	if err != nil {
 		return
 	}
 	book.AppJSURL = "/s/" + name
-	log("Created %s\n", dst)
+	logf("Created %s\n", dst)
+}
+
+func calcPageHeadings(page *Page) {
+	var headings []*HeadingInfo
+	cb := func(block *notionapi.Block) {
+		isHeader := false
+		switch block.Type {
+		case notionapi.BlockHeader, notionapi.BlockSubHeader, notionapi.BlockSubSubHeader:
+			isHeader = true
+		}
+		if !isHeader {
+			return
+		}
+		id := notionapi.ToNoDashID(block.ID)
+		s := getInlinesPlain(block.InlineContent)
+		h := &HeadingInfo{
+			Text: s,
+			ID:   id,
+		}
+		headings = append(headings, h)
+	}
+	blocks := []*notionapi.Block{page.NotionPage.Root()}
+	notionapi.ForEachBlock(blocks, cb)
+	page.Headings = headings
+}
+
+func (book *Book) afterPageDownload(page *notionapi.Page) error {
+	id := toNoDashID(page.ID)
+	p := &Page{
+		NotionPage: page,
+		NotionID:   id,
+		Book:       book,
+	}
+	book.idToPage[id] = p
+	evalCodeSnippetsForPage(p)
+	downloadImages(book, p)
+	calcPageHeadings(p)
+	return nil
+}
+
+func downloadBook(book *Book) {
+	logf("Loading %s...\n", book.Title)
+	nProcessed = 0
+	nNotionPagesFromCache = 0
+	nDownloadedPages = 0
+
+	book.client = newNotionClient()
+	cacheDir := book.NotionCacheDir()
+	dirCache, err := caching_downloader.NewDirectoryCache(cacheDir)
+	must(err)
+	d := caching_downloader.New(dirCache, book.client)
+	d.EventObserver = eventObserver
+	d.RedownloadNewerVersions = !flgNoDownload
+	d.NoReadCache = flgDisableNotionCache
+
+	startPageID := book.NotionStartPageID
+	pages, err := d.DownloadPagesRecursively(startPageID, book.afterPageDownload)
+	must(err)
+	nPages := len(pages)
+	logf("Got %d pages for %s, downloaded: %d, from cache: %d\n", nPages, book.Title, nDownloadedPages, nNotionPagesFromCache)
+	bookFromPages(book)
 }

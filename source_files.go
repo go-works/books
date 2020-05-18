@@ -20,10 +20,10 @@ type FileDirective struct {
 	LineLimit    int    // limit ${n}
 	NoPlayground bool   // no playground
 	RunCmd       string // :run ${cmd}
+	Collection   string // collection
 
-	Glot         bool // :glot, use glot.io to execute the code snippet
-	GoPlayground bool // :goplay, use go playground to execute the snippet
-	DoOutput     bool // :output
+	Glot     bool // :glot, use glot.io to execute the code snippet
+	DoOutput bool // :output
 }
 
 // SourceFile represents source file. It comes from a code block in
@@ -42,13 +42,9 @@ type SourceFile struct {
 
 	SnippetName string
 
-	// URL on GitHub for this file
-	GitHubURL string
 	// language of the file, detected from name
 	Lang string
 
-	// for Go files, this is playground id
-	GoPlaygroundID string
 	// for some files, this is glot.io snippet id
 	GlotPlaygroundID string
 
@@ -76,10 +72,15 @@ type SourceFile struct {
 	GlotOutput string
 }
 
+// Output returns the output of the execution of the code snippet
 func (f *SourceFile) Output() string {
+	if f.Directive.NoOutput {
+		return ""
+	}
 	return f.GlotOutput
 }
 
+// Sha1 returns sha1 (in hex) of the code snippet
 func (f *SourceFile) Sha1() string {
 	return u.Sha1HexOfBytes([]byte(f.CodeFull))
 }
@@ -125,12 +126,12 @@ func parseFileDirective(res *FileDirective, line string) (bool, error) {
 		} else if s == "output" {
 			res.DoOutput = true
 		} else if s == "goplay" {
-			res.GoPlayground = true
+			panic("found goplay")
 		} else if s == "no output" || s == "nooutput" {
 			res.NoOutput = true
 		} else if s == "no playground" || s == "noplayground" {
 			res.NoPlayground = true
-		} else if s == "allow error" || s == "allow_error" {
+		} else if s == "allow error" || s == "allow_error" || s == "allowerror" {
 			res.AllowError = true
 		} else if strings.HasPrefix(s, "name ") {
 			// expect: name foo.txt
@@ -157,6 +158,9 @@ func parseFileDirective(res *FileDirective, line string) (bool, error) {
 			rest := strings.TrimSpace(strings.TrimPrefix(s, "run "))
 			res.RunCmd = rest
 			// fmt.Printf("  run:: '%s'\n", res.RunCmd)
+		} else if strings.HasPrefix(s, "collection ") {
+			rest := strings.TrimSpace(strings.TrimPrefix(s, "collection "))
+			res.Collection = rest
 		} else {
 			// if started with ":" we assume it was meant to be a directive
 			// but there was a typo
@@ -239,27 +243,6 @@ func removeAnnotationLines(lines []string) []string {
 		res = append(res, l)
 	}
 	return res
-}
-
-// convert local path like books/go/foo.go into path to the file in a github repo
-func getGitHubPathForFile(path string) string {
-	return "https://github.com/essentialbooks/books/blob/master/" + toUnixPath(path)
-}
-
-func setGoPlaygroundID(b *Book, sf *SourceFile) error {
-	if sf.Lang != "go" {
-		return nil
-	}
-	if sf.Directive.NoPlayground {
-		return nil
-	}
-	id, err := getSha1ToGoPlaygroundIDCached(b, sf.CodeToRun)
-	if err != nil {
-		return err
-	}
-	sf.GoPlaygroundID = id
-	sf.PlaygroundURI = "https://goplay.space/#" + sf.GoPlaygroundID
-	return nil
 }
 
 func setSourceFileData(sf *SourceFile, data []byte) error {

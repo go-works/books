@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"image"
 	"image/png"
 	"io/ioutil"
@@ -43,7 +42,7 @@ func optiImageMust(path string) {
 func saveImageAsPNGAndOptimize(path string, img image.Image) {
 	saveImageAsPNGMust(path, img)
 	optiImageMust(path)
-	fmt.Printf("Saved and optimized '%s'\n", path)
+	logf("Saved and optimized '%s'\n", path)
 }
 
 func getSubimage(img image.Image, r image.Rectangle) image.Image {
@@ -69,7 +68,7 @@ func genTwitterImage(img image.Image) image.Image {
 
 func printImageInfo(path string, img image.Image) {
 	r := img.Bounds()
-	fmt.Printf("%s: %v %T\n", path, r, img)
+	logf("%s: %v %T\n", path, r, img)
 }
 
 func getExistingImagesMust(dir string) map[string]bool {
@@ -108,14 +107,14 @@ func getCoversListMust(dir string) []string {
 func genTwitterImagesAndExit() {
 	srcDir := "covers"
 	dstDir := filepath.Join(srcDir, "twitter")
-	createDirMust(dstDir)
+	u.CreateDirMust(dstDir)
 	covers := getCoversListMust(srcDir)
 	existingImages := getExistingImagesMust(dstDir)
-	// fmt.Printf("covers: %v\n", covers)
+	// logf("covers: %v\n", covers)
 	for _, coverName := range covers {
 		dstPath := filepath.Join(dstDir, coverName)
 		if _, ok := existingImages[coverName]; false && ok {
-			fmt.Printf("%s already exists as %s\n", coverName, dstPath)
+			logf("%s already exists as %s\n", coverName, dstPath)
 			continue
 		}
 		path := filepath.Join(srcDir, coverName)
@@ -155,14 +154,14 @@ func genSmallCoverImage(img image.Image) *image.RGBA {
 func genSmallCoversAndExit() {
 	srcDir := "covers"
 	dstDir := filepath.Join(srcDir, "covers_small")
-	createDirMust(dstDir)
+	u.CreateDirMust(dstDir)
 	covers := getCoversListMust(srcDir)
 	existingImages := getExistingImagesMust(dstDir)
-	// fmt.Printf("covers: %v\n", covers)
+	// logf("covers: %v\n", covers)
 	for _, coverName := range covers {
 		dstPath := filepath.Join(dstDir, coverName)
 		if _, ok := existingImages[coverName]; false && ok {
-			fmt.Printf("%s already exists as %s\n", coverName, dstPath)
+			logf("%s already exists as %s\n", coverName, dstPath)
 			continue
 		}
 		path := filepath.Join(srcDir, coverName)

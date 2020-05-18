@@ -2,18 +2,19 @@ package main
 
 import (
 	"flag"
-	"fmt"
-	"io/ioutil"
 	"os"
+	"os/exec"
 	"path/filepath"
 	"runtime"
+	"runtime/pprof"
 	"strings"
+	"sync"
 	"time"
 
 	"html/template"
 
-	"github.com/essentialbooks/books/pkg/common"
 	"github.com/kjk/notionapi"
+	"github.com/kjk/notionapi/caching_downloader"
 	"github.com/kjk/u"
 	"github.com/tdewolff/minify"
 	"github.com/tdewolff/minify/css"
@@ -22,22 +23,9 @@ import (
 )
 
 var (
-	flgAnalytics       string
-	flgPreviewStatic   bool
-	flgPreviewOnDemand bool
-	flgAllBooks        bool
-	// if true, disables downloading pages
-	flgNoDownload bool
-	// if true, disables notion cache, forcing re-download of notion page
-	// even if cached verison on disk exits
-	flgDisableNotionCache bool
-	// url or id of the page to rebuild
-	flgNoUpdateOutput bool
-
-	soUserIDToNameMap map[int]string
-	googleAnalytics   template.HTML
-	doMinify          bool
-	minifier          *minify.M
+	googleAnalytics template.HTML
+	doMinify        bool
+	minifier        *minify.M
 
 	notionAuthToken string
 
@@ -69,13 +57,13 @@ var (
 		bookGit,
 		bookPHP,
 		bookRuby,
+		bookNETFramework,
 		bookNode,
 		bookDart,
 		bookTypeScript,
 		bookSwift,
 	}
 	booksUnpublished = []*Book{
-		bookNETFramework,
 		bookAlgorithm,
 		bookC,
 		bookObjectiveC,
@@ -87,60 +75,28 @@ var (
 	allBooks = append(booksMain, booksUnpublished...)
 )
 
-func parseFlags() {
-	flag.StringVar(&flgAnalytics, "analytics", "", "google analytics code")
-	flag.BoolVar(&flgPreviewStatic, "preview-static", false, "if true starts web server for previewing locally generated static html")
-	flag.BoolVar(&flgPreviewOnDemand, "preview-on-demand", false, "if true will start web server for previewing the book locally")
-	flag.BoolVar(&flgAllBooks, "all-books", false, "if true will do all books")
-	flag.BoolVar(&flgNoUpdateOutput, "no-update-output", false, "if true, will disable updating ouput files in cache")
-	flag.BoolVar(&flgDisableNotionCache, "no-cache", false, "if true, disables cache for notion")
-	flag.BoolVar(&flgNoDownload, "no-download", false, "if true, will not download pages from notion")
-	flag.Parse()
+var (
+	nProcessed            = 0
+	nNotionPagesFromCache = 0
+	nDownloadedPages      = 0
+)
 
-	if flgAnalytics != "" {
-		googleAnalyticsTmpl := `<script async src="https://www.googletagmanager.com/gtag/js?id=%s"></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-			gtag('config', '%s')
-		</script>
-	`
-		s := fmt.Sprintf(googleAnalyticsTmpl, flgAnalytics, flgAnalytics)
-		googleAnalytics = template.HTML(s)
+func eventObserver(ev interface{}) {
+	switch v := ev.(type) {
+	case *caching_downloader.EventError:
+		logf(v.Error)
+	case *caching_downloader.EventDidDownload:
+		nProcessed++
+		nDownloadedPages++
+		logf("%03d '%s' : downloaded in %s\n", nProcessed, v.PageID, v.Duration)
+	case *caching_downloader.EventDidReadFromCache:
+		nProcessed++
+		nNotionPagesFromCache++
+		// TODO: only verbose
+		//logf("%03d '%s' : read from cache in %s\n", nProcessed, v.PageID, v.Duration)
+	case *caching_downloader.EventGotVersions:
+		logf("downloaded info about %d versions in %s\n", v.Count, v.Duration)
 	}
-
-	notionAuthToken = os.Getenv("NOTION_TOKEN")
-	if notionAuthToken != "" {
-		fmt.Printf("NOTION_TOKEN provided, can write back\n")
-	} else {
-		fmt.Printf("NOTION_TOKEN not provided, read only\n")
-	}
-}
-
-func downloadBook(c *notionapi.Client, book *Book) {
-	log("Loading %s...", book.Title)
-	pages := loadPagesFromDisk(book.NotionCacheDir())
-	for _, notionPage := range pages {
-		id := toNoDashID(notionPage.ID)
-		page := book.idToPage[id]
-		if page == nil {
-			page = &Page{
-				NotionPage: notionPage,
-			}
-			book.idToPage[id] = page
-		}
-	}
-	checkIfPagesAreOutdated(c, book.idToPage)
-	loadNotionPages(c, book)
-	log("Got %d pages for %s\n", len(book.idToPage), book.Title)
-	bookFromPages(book)
-}
-
-func loadSOUserMappingsMust() {
-	path := filepath.Join("stack-overflow-docs-dump", "users.json.gz")
-	err := common.JSONDecodeGzipped(path, &soUserIDToNameMap)
-	u.PanicIfErr(err)
 }
 
 func shouldCopyImage(path string) bool {
@@ -150,61 +106,19 @@ func shouldCopyImage(path string) bool {
 func copyCoversMust() {
 	srcDir := "covers"
 	dstDir := filepath.Join("www", "covers")
-	copyFilesRecur(dstDir, srcDir, shouldCopyImage)
+	u.DirCopyRecurMust(dstDir, srcDir, shouldCopyImage)
 	dstDir = filepath.Join("www", "covers_small")
 	srcDir = filepath.Join("covers", "covers_small")
-	copyFilesRecur(dstDir, srcDir, shouldCopyImage)
+	u.DirCopyRecurMust(dstDir, srcDir, shouldCopyImage)
 }
 
-func getAlmostMaxProcs() int {
-	// leave some juice for other programs
-	nProcs := runtime.NumCPU() - 2
-	if nProcs < 1 {
-		return 1
+func copyImages(book *Book) {
+	src := filepath.Join(book.NotionCacheDir(), "img")
+	if !u.DirExists(src) {
+		return
 	}
-	return nProcs
-}
-
-// copy from tmpl to www, optimize if possible, add
-// sha1 of the content as part of the name
-func copyToWwwAsSha1MaybeMust(srcName string) {
-	var dstPtr *string
-	minifyType := ""
-	switch srcName {
-	case "main.css":
-		dstPtr = &pathMainCSS
-		minifyType = "text/css"
-	case "index.css":
-		dstPtr = &pathIndexCSS
-		minifyType = "text/css"
-	case "app.js":
-		dstPtr = &pathAppJS
-		minifyType = "text/javascript"
-	case "favicon.ico":
-		dstPtr = &pathFaviconICO
-	default:
-		panicIf(true, "unknown srcName '%s'", srcName)
-	}
-	src := filepath.Join("tmpl", srcName)
-	d, err := ioutil.ReadFile(src)
-	panicIfErr(err)
-
-	if doMinify && minifyType != "" {
-		d2, err := minifier.Bytes(minifyType, d)
-		maybePanicIfErr(err)
-		if err == nil {
-			fmt.Printf("Compressed %s from %d => %d (saved %d)\n", srcName, len(d), len(d2), len(d)-len(d2))
-			d = d2
-		}
-	}
-
-	sha1Hex := u.Sha1HexOfBytes(d)
-	name := nameToSha1Name(srcName, sha1Hex)
-	dst := filepath.Join("www", "s", name)
-	err = ioutil.WriteFile(dst, d, 0644)
-	panicIfErr(err)
-	*dstPtr = filepath.ToSlash(dst[len("www"):])
-	fmt.Printf("Copied %s => %s\n", src, dst)
+	dst := filepath.Join(book.destDir(), "img")
+	u.DirCopyRecurMust(dst, src, nil)
 }
 
 func genBooks(books []*Book) {
@@ -212,21 +126,34 @@ func genBooks(books []*Book) {
 	clearSitemapURLS()
 	copyCoversMust()
 
-	copyToWwwAsSha1MaybeMust("main.css")
-	copyToWwwAsSha1MaybeMust("index.css")
-	copyToWwwAsSha1MaybeMust("app.js")
-	copyToWwwAsSha1MaybeMust("favicon.ico")
-	genIndex(books, nil)
-	genIndexGrid(books, nil)
+	_ = genIndex(books, nil)
+	_ = genIndexGrid(books, nil)
 	gen404TopLevel()
-	genAbout(nil)
-	genFeedback(nil)
+	_ = genAbout(nil)
+	_ = genFeedback(nil)
 
-	for _, book := range books {
-		genBook(book)
+	if false {
+		// parallel
+		n := runtime.NumCPU()
+		sem := make(chan bool, n)
+		var wd sync.WaitGroup
+		for _, book := range books {
+			wd.Add(1)
+			go func(b *Book) {
+				sem <- true
+				genBook(b)
+				<-sem
+				wd.Done()
+			}(book)
+		}
+		wd.Wait()
+	} else {
+		for _, book := range books {
+			genBook(book)
+		}
 	}
 	writeSitemap()
-	fmt.Printf("Finished generating all books in %s\n", time.Since(timeStart))
+	logf("Finished generating all books in %s\n", time.Since(timeStart))
 }
 
 func initMinify() {
@@ -240,54 +167,17 @@ func initMinify() {
 		KeepDocumentTags: true,
 		KeepEndTags:      true,
 	})
-	doMinify = !flgPreviewStatic
-}
 
-func isNotionCachedInDir(dir string, id string) bool {
-	id = toNoDashID(id)
-	files, err := ioutil.ReadDir(dir)
-	panicIfErr(err)
-	for _, fi := range files {
-		name := fi.Name()
-		if strings.HasPrefix(name, id) {
-			return true
-		}
+	doMinify = true
+	if flgPreviewOnDemand || flgPreviewStatic {
+		doMinify = false
 	}
-	return false
-}
-
-func findBookFromCachedPageID(id string) *Book {
-	files, err := ioutil.ReadDir("cache")
-	panicIfErr(err)
-	for _, book := range allBooks {
-		if book.NotionStartPageID == id {
-			return book
-		}
-	}
-
-	for _, fi := range files {
-		if !fi.IsDir() {
-			continue
-		}
-		dir := fi.Name()
-		book := findBook(dir)
-		panicIf(book == nil, "didn't find book for dir '%s'", dir)
-		if isNotionCachedInDir(filepath.Join("cache", dir, "notion"), id) {
-			return book
-		}
-	}
-	return nil
-}
-
-func isReplitURL(uri string) bool {
-	return strings.Contains(uri, "repl.it/")
 }
 
 func initBook(book *Book) {
 	var err error
 
-	createDirMust(book.OutputCacheDir())
-	createDirMust(book.NotionCacheDir())
+	u.CreateDirMust(book.NotionCacheDir())
 
 	if false {
 		loadCache("cache/go/cache.txt")
@@ -313,80 +203,256 @@ func findBook(id string) *Book {
 }
 
 func adHoc() {
-	// glotRunTestAndExit()
-	// glotGetSnippedIDTestAndExit()
-
 	// only needs to be run when we add new covers
-	// genTwitterImagesAndExit()
-	// genSmallCoversAndExit()
+	if false {
+		genTwitterImagesAndExit()
+	}
+	if false {
+		genSmallCoversAndExit()
+	}
 }
 
 func isPreview() bool {
 	return flgPreviewStatic || flgPreviewOnDemand
 }
 
+var (
+	// url or id of the page to rebuild
+	flgNoUpdateOutput bool
+	// if true, disables notion cache, forcing re-download of notion page
+	// even if cached verison on disk exits
+	flgDisableNotionCache       bool
+	flgPreviewStatic            bool
+	flgPreviewOnDemand          bool
+	flgReportStackOverflowLinks bool
+	// if true, disables downloading pages
+	flgNoDownload     bool
+	flgGistRedownload bool
+)
+
 func main() {
-	openLog()
-	defer closeLog()
+	var (
+		flgAnalytics    bool
+		flgWc           bool
+		flgGen          bool
+		flgAllBooks     bool
+		flgDownloadGist string
 
-	parseFlags()
+		flgReportExternalLinks bool
+		flgProfile             bool
+		flgDeployDraft         bool
+		flgDeployProd          bool
+	)
 
+	{
+		flag.BoolVar(&flgAnalytics, "analytics", false, "add google analytics code")
+		flag.BoolVar(&flgPreviewStatic, "preview-static", false, "generate static files and preview with custom web server")
+		flag.BoolVar(&flgPreviewOnDemand, "preview", false, "preview on demand with custom web server")
+		flag.BoolVar(&flgAllBooks, "all-books", false, "if true will do all books")
+		flag.BoolVar(&flgNoUpdateOutput, "no-update-output", false, "if true, will disable updating ouput files in cache")
+		flag.BoolVar(&flgDisableNotionCache, "no-cache", false, "if true, disables cache for notion")
+		flag.BoolVar(&flgNoDownload, "no-download", false, "if true, will not download pages from notion")
+		flag.BoolVar(&flgReportExternalLinks, "report-external-links", false, "if true, shows external links for all pages")
+		flag.BoolVar(&flgReportStackOverflowLinks, "report-so-links", false, "if true, shows links to stackoverflow.com")
+		flag.BoolVar(&flgWc, "wc", false, "wc -l")
+		flag.BoolVar(&flgGen, "gen", false, "generate html for the book")
+		flag.BoolVar(&flgProfile, "prof", false, "write cpu profile")
+		flag.BoolVar(&flgDeployDraft, "deploy-draft", false, "deploy to netlify as draft")
+		flag.BoolVar(&flgGistRedownload, "gist-redownload", false, "redownload gist even if we have it")
+		flag.BoolVar(&flgDeployProd, "deploy-prod", false, "deploy to netlify production")
+		flag.StringVar(&flgDownloadGist, "download-gist", "", "id of the gist to (re)download. Must also provide a book")
+		flag.Parse()
+
+		if flgDeployProd {
+			flgAnalytics = true
+		}
+
+		if flgAnalytics {
+			googleAnalyticsTmpl := `
+			<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113489735-1"></script>
+			<script>
+				window.dataLayer = window.dataLayer || [];
+				function gtag(){dataLayer.push(arguments);}
+				gtag('js', new Date());
+
+				gtag('config', 'UA-113489735-1');
+			</script>
+
+		`
+			googleAnalytics = template.HTML(googleAnalyticsTmpl)
+		}
+	}
+
+	if false {
+		testHang()
+		return
+	}
 	adHoc()
 
-	notionapi.LogFunc = log
+	if flgWc {
+		doLineCount()
+		return
+	}
 
-	os.RemoveAll("www")
-	createDirMust(filepath.Join("www", "s"))
-	createDirMust("log")
+	closeLog := openLog()
+	defer closeLog()
+
+	{
+		//notionAuthToken = os.Getenv("NOTION_TOKEN")
+		// we don't need authentication and the result change
+		// in authenticated vs. non-authenticated state
+		notionAuthToken = ""
+		if notionAuthToken != "" {
+			logf("NOTION_TOKEN provided, can write back\n")
+		} else {
+			logf("NOTION_TOKEN not provided, read only\n")
+		}
+	}
+
+	notionapi.LogFunc = logf
+
+	_ = os.RemoveAll("www")
+	u.CreateDirMust(filepath.Join("www", "s"))
+	u.CreateDirMust("log")
+
+	timeStart := time.Now()
 
 	initMinify()
-	loadSOUserMappingsMust()
 
-	client := &notionapi.Client{
-		AuthToken: notionAuthToken,
+	if flgReportExternalLinks || flgReportStackOverflowLinks {
+		reportExternalLinks()
+		return
+	}
+
+	if flgDownloadGist != "" {
+		downloadSingleGist(flgDownloadGist)
+		return
+	}
+
+	if flgDeployDraft || flgDeployProd {
+		flgAllBooks = true
+		flgGen = true
+	}
+
+	valid := flgPreviewOnDemand || flgPreviewStatic || flgGen
+	if !valid {
+		flag.Usage()
+		return
+	}
+
+	if flgGen {
+		os.RemoveAll("www")
+		os.MkdirAll(filepath.Join("www", "s"), 0755)
+		os.MkdirAll(filepath.Join("www", "gen"), 0755)
+	}
+
+	buildFrontend()
+
+	if flgProfile {
+		profileName := "bookgen.prof"
+		f, err := os.Create(profileName)
+		must(err)
+		err = pprof.StartCPUProfile(f)
+		must(err)
+		defer func() {
+			u.CloseNoError(f)
+			logf("CPU profile saved to a file '%s'\n", profileName)
+		}()
+		defer func() {
+			pprof.StopCPUProfile()
+			logf("stopped cpu profile\n")
+		}()
 	}
 
 	books := booksMain
 	if flgAllBooks {
 		books = allBooks
-		log("Downloading all books\n")
+		logf("Downloading all books\n")
 	} else {
 		if len(flag.Args()) > 0 {
 			var newBooks []*Book
 			for _, name := range flag.Args() {
 				book := findBook(name)
 				if book == nil {
-					log("Didn't find book named '%s'\n", name)
+					logf("Didn't find book named '%s'\n", name)
 					continue
 				}
 				newBooks = append(newBooks, book)
 			}
 			if len(newBooks) > 0 {
 				books = newBooks
-				log("Downloading %d books %#v\n", len(books), books)
+				logf("Downloading %d books", len(books))
+				for _, b := range books {
+					logf(" %s", b.Title)
+				}
+				logf("\n")
 			}
 		}
 	}
 
 	for _, book := range books {
 		initBook(book)
-		downloadBook(client, book)
-		loadSoContributorsMust(book)
+		downloadBook(book)
+	}
+	logf("Downloaded %d pages, %d from cache, in %s\n", nTotalDownloaded, nTotalFromCache, time.Since(timeStart))
+
+	if flgGen || flgPreviewStatic {
+		genStartTime := time.Now()
+		genBooks(books)
+		genNetlifyHeaders()
+		genNetlifyRedirects(books)
+		printAndClearErrors()
+		logf("Gen time: %s, total time: %s\n", time.Since(genStartTime), time.Since(timeStart))
 	}
 
-	log("Downloaded %d pages, got %d from cache\n", nTotalDownloaded, nTotalFromCache)
+	if flgDeployDraft {
+		cmd := exec.Command("netlify", "deploy", "--dir=www", "--site=7df32685-1421-41cf-937a-a92fde6725f4", "--open")
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+		u.RunCmdMust(cmd)
+		return
+	}
+
+	if flgDeployProd {
+		cmd := exec.Command("netlify", "deploy", "--prod", "--dir=www", "--site=7df32685-1421-41cf-937a-a92fde6725f4", "--open")
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+		u.RunCmdMust(cmd)
+		return
+	}
 
 	if flgPreviewOnDemand {
+		logf("Time: %s\n", time.Since(timeStart))
 		startPreviewOnDemand(books)
 		return
 	}
 
-	genBooks(books)
-	genNetlifyHeaders()
-	genNetlifyRedirects(books)
-	printAndClearErrors()
-
 	if flgPreviewStatic {
 		startPreviewStatic()
 	}
+}
+
+func newNotionClient() *notionapi.Client {
+	client := &notionapi.Client{
+		AuthToken: notionAuthToken,
+	}
+	// client.Logger = logFile
+	return client
+}
+
+// download a single gist and store in the cache for a given book
+func downloadSingleGist(gistID string) {
+	// must have 1 remaining arg that is book name
+	restArgs := flag.Args()
+	if len(restArgs) != 0 {
+		logf("-download-gist expects a name of a single book to use for cache\n")
+		logf("remaining args are: '%#v'\n", restArgs)
+	}
+	bookName := restArgs[0]
+	logf("Downloading gist '%s' and storing in the cache for the book '%s'\n", gistID, bookName)
+	path := filepath.Join("cache", bookName, "cache.txt")
+	cache := loadCache(path)
+	gist := gistDownloadMust(gistID)
+	cache.saveGist(gistID, gist.Raw)
+	logf("Saved a gist\n")
 }

@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/kjk/notionapi"
+	"github.com/kjk/u"
 )
 
 // HeadingInfo describes header/sub header
@@ -26,10 +27,20 @@ type MetaValue struct {
 	Value string
 }
 
+// ImageMapping keeps track of rewritten image urls (locally cached
+// images in notion)
+type ImageMapping struct {
+	// this is Block.Source from image block
+	link string
+	// this is path on the disk
+	path string
+	// this is relative url of the image on disk
+	relativeURL string
+}
+
 // Page represents a single page in a book
 type Page struct {
-	NotionPage     *notionapi.Page
-	IsPageOutdated bool
+	NotionPage *notionapi.Page
 
 	Title string
 	// reference to parent page, nil if top-level page
@@ -38,7 +49,7 @@ type Page struct {
 	Book *Book
 
 	// meta information extracted from page blocks
-	NotionID string
+	NotionID string // notion id in no-dash format
 
 	// for legacy pages this is an id. Might be used for redirects
 	//ID              string
@@ -48,6 +59,7 @@ type Page struct {
 
 	// extracted from embed blocks
 	SourceFiles []*SourceFile
+	Images      []*ImageMapping
 
 	BodyHTML template.HTML
 
@@ -60,6 +72,8 @@ type Page struct {
 	// TODO: those should come from notion_cache and downloaded during download
 	// step to notion_cache
 	images []string
+
+	blockCodeToSourceFile map[string]*SourceFile
 }
 
 var knownMetaKeys = map[string]bool{
@@ -99,7 +113,7 @@ func (p *Page) hasMeta(key string) bool {
 }
 
 func (p *Page) getID() string {
-	return p.findMeta("id")
+	return p.NotionID
 }
 
 func (p *Page) getSearch() []string {
@@ -116,14 +130,6 @@ func (p *Page) getSearch() []string {
 
 func (p *Page) isDraft() bool {
 	return p.hasMeta("draft")
-}
-
-// Siblings returns siblings of the page, to easily generate toc
-func (p *Page) Siblings() []*Page {
-	if p.Parent == nil {
-		return nil
-	}
-	return p.Parent.Pages
 }
 
 // Body is a temporary alias for BodyHTML
@@ -201,14 +207,14 @@ func findSourceFileForEmbedURL(page *Page, uri string) *SourceFile {
 func getSubPages(page *notionapi.Page, pageIDToPage map[string]*Page) []*notionapi.Page {
 	var res []*notionapi.Page
 	toRemove := map[int]bool{}
-	for idx, block := range page.Root.Content {
+	for idx, block := range page.Root().Content {
 		if block.Type != notionapi.BlockPage {
 			continue
 		}
 		toRemove[idx] = true
 		id := toNoDashID(block.ID)
 		subPage := pageIDToPage[id]
-		panicIf(subPage == nil, "no sub page for id %s", id)
+		u.PanicIf(subPage == nil, "no sub page for id %s", id)
 		res = append(res, subPage.NotionPage)
 	}
 	removeBlocks(page, toRemove)
@@ -264,7 +270,7 @@ func removeBlocks(page *notionapi.Page, toRemove map[int]bool) {
 		return
 	}
 
-	blocks := page.Root.Content
+	blocks := page.Root().Content
 	n := 0
 	for i, el := range blocks {
 		if toRemove[i] {
@@ -273,9 +279,9 @@ func removeBlocks(page *notionapi.Page, toRemove map[int]bool) {
 		blocks[n] = el
 		n++
 	}
-	page.Root.Content = blocks[:n]
+	page.Root().Content = blocks[:n]
 
-	ids := page.Root.ContentIDs
+	ids := page.Root().ContentIDs
 	n = 0
 	for i, el := range ids {
 		if toRemove[i] {
@@ -284,7 +290,7 @@ func removeBlocks(page *notionapi.Page, toRemove map[int]bool) {
 		ids[n] = el
 		n++
 	}
-	page.Root.ContentIDs = ids
+	page.Root().ContentIDs = ids
 }
 
 // extracts PageMeta and updates Block.Content to remove the blocks that
@@ -292,16 +298,16 @@ func removeBlocks(page *notionapi.Page, toRemove map[int]bool) {
 func extractMeta(p *Page) {
 	page := p.NotionPage
 	toRemove := map[int]bool{}
-	for idx, block := range page.Root.Content {
+	for idx, block := range page.Root().Content {
 		mv := extractMetaValueFromBlock(block)
 		if mv == nil {
 			break
 		}
-		page.Root.Content[idx] = nil
+		page.Root().Content[idx] = nil
 		toRemove[idx] = true
 		if !isKnownMeta(mv.Key) {
 			uri := "https://notion.so/" + toNoDashID(page.ID)
-			fmt.Printf("Unknown meta value '%s' = '%s' in page %s\n", mv.Key, mv.Value, uri)
+			logf("Unknown meta value '%s' = '%s' in page %s\n", mv.Key, mv.Value, uri)
 		}
 		p.Metadata = append(p.Metadata, mv)
 	}
@@ -312,18 +318,11 @@ func extractMeta(p *Page) {
 // information from notionapi.Page
 func bookPageFromNotionPage(book *Book, page *notionapi.Page) *Page {
 	id := toNoDashID(page.ID)
-	res := book.idToPage[id]
-	if res == nil {
-		res = &Page{
-			NotionPage: page,
-		}
-		book.idToPage[id] = res
-	}
-	res.NotionPage = page
-	res.NotionID = id
-	res.Title = cleanTitle(page.Root.Title)
+	p := book.idToPage[id]
+	panicIf(p == nil)
+	p.Title = cleanTitle(page.Root().Title)
 
-	extractMeta(res)
+	extractMeta(p)
 
 	subPages := getSubPages(page, book.idToPage)
 
@@ -336,15 +335,16 @@ func bookPageFromNotionPage(book *Book, page *notionapi.Page) *Page {
 			continue
 		}
 		bookPage.Book = book
-		res.Pages = append(res.Pages, bookPage)
+		p.Pages = append(p.Pages, bookPage)
 	}
-	return res
+	return p
 }
 
 func bookFromPages(book *Book) {
 	startPageID := book.NotionStartPageID
 	page := book.idToPage[startPageID].NotionPage
-	panicIf(page.Root.Type != notionapi.BlockPage, "start block is of type '%s' and not '%s'", page.Root.Type, notionapi.BlockPage)
-	book.TitleLong = page.Root.Title
+	u.PanicIf(page.Root().Type != notionapi.BlockPage, "start block is of type '%s' and not '%s'", page.Root().Type, notionapi.BlockPage)
+	book.TitleLong = page.Root().Title
 	book.RootPage = bookPageFromNotionPage(book, page)
+	//evalCodeSnippets(book)
 }

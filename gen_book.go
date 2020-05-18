@@ -2,103 +2,117 @@ package main
 
 import (
 	"bytes"
-	"fmt"
 	"html/template"
 	"io"
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"strings"
 	"time"
+
+	"github.com/kjk/u"
 )
 
 const (
 	// top-level directory where .html files are generated
 	destDir = "www"
-	tmplDir = "tmpl"
-)
-
-var ( // directory where generated .html files for books are
-	destEssentialDir = filepath.Join(destDir, "essential")
-	pathAppJS        = "/s/app.js"
-	pathMainCSS      = "/s/main.css"
-	pathIndexCSS     = "/s/index.css"
-	pathFaviconICO   = "/s/favicon.ico"
-)
-
-var (
-	templateNames = []string{
-		"index.tmpl.html",
-		"index2.tmpl.html",
-		"index-grid.tmpl.html",
-		"book_index.tmpl.html",
-		"chapter.tmpl.html",
-		"article.tmpl.html",
-		"about.tmpl.html",
-		"feedback.tmpl.html",
-		"404.tmpl.html",
-	}
-	templates = make([]*template.Template, len(templateNames))
 
 	gitHubBaseURL = "https://github.com/essentialbooks/books"
 	notionBaseURL = "https://notion.so/"
 	siteBaseURL   = "https://www.programming-books.io"
 )
 
-func unloadTemplates() {
-	templates = make([]*template.Template, len(templateNames))
-}
-
-func tmplPath(name string) string {
-	return filepath.Join(tmplDir, name)
-}
-
 var (
+	tmplDir = filepath.Join("fe", "tmpl")
+
+	// directory where generated .html files for books are
+	destEssentialDir = filepath.Join("www", "essential")
+
+	templates *template.Template
+
 	funcMap = template.FuncMap{
-		// The name "inc" is what the function will be called in the template text.
-		"inc": func(i int) int {
-			return i + 1
-		},
+		"inc":      funcInc,
+		"optimize": funcOptimizeAsset,
 	}
 )
 
-func loadTemplateHelperMaybeMust(name string, ref **template.Template) *template.Template {
-	res := *ref
-	if res != nil {
-		return res
-	}
-	path := tmplPath(name)
-	//fmt.Printf("loadTemplateHelperMust: %s\n", path)
-	t, err := template.New(name).Funcs(funcMap).ParseFiles(path)
-	maybePanicIfErr(err)
-	if err != nil {
-		return nil
-	}
-	*ref = t
-	return t
-}
+var (
+	// sha1 of original content to url of optimized
+	// content
+	hashToOptimizedURL = map[string]string{}
+)
 
-func loadTemplateMaybeMust(name string) *template.Template {
-	var ref **template.Template
-	for i, tmplName := range templateNames {
-		if tmplName == name {
-			ref = &templates[i]
-			break
+func funcOptimizeAsset(url string) string {
+	// url is like /s/app.js which we convert to a file
+	// tmpl/app.js
+	name := strings.TrimPrefix(url, "/s/")
+	srcPath := filepath.Join("fe", "tmpl", name)
+	d, err := ioutil.ReadFile(srcPath)
+	if err != nil {
+		// for bundle.js and bundle.css
+		srcPath = filepath.Join("www", "gen", name)
+		d, err = ioutil.ReadFile(srcPath)
+	}
+	u.Must(err)
+	srcSha1Hex := u.Sha1HexOfBytes(d)
+	if newURL := hashToOptimizedURL[srcSha1Hex]; newURL != "" {
+		return newURL
+	}
+	minifyType := ""
+	ext := strings.ToLower(filepath.Ext(name))
+	switch ext {
+	case ".css":
+		minifyType = "text/css"
+	case ".js":
+		minifyType = "text/javascript"
+	}
+
+	if doMinify && minifyType != "" {
+		d2, err := minifier.Bytes(minifyType, d)
+		maybePanicIfErr(err)
+		if err == nil {
+			logf("Compressed %s from %d => %d (saved %d)\n", srcPath, len(d), len(d2), len(d)-len(d2))
+			d = d2
 		}
 	}
-	if ref == nil {
-		logFatal("unknown template '%s'\n", name)
+
+	dstSha1Hex := u.Sha1HexOfBytes(d)
+	dstName := nameToSha1Name(name, dstSha1Hex)
+	dstPath := filepath.Join("www", "s", dstName)
+	dstURL := "/s/" + dstName
+	err = ioutil.WriteFile(dstPath, d, 0644)
+	u.Must(err)
+	logf("Copied %s => %s\n", srcPath, dstPath)
+	hashToOptimizedURL[srcSha1Hex] = dstURL
+	return dstURL
+}
+
+func funcInc(i int) int {
+	return i + 1
+}
+
+func loadTemplatesMust() *template.Template {
+	// we reload templates in preview mode
+	if templates != nil && !flgPreviewOnDemand {
+		return templates
 	}
-	return loadTemplateHelperMaybeMust(name, ref)
+	pattern := filepath.Join("fe", "tmpl", "*.tmpl.html")
+	var err error
+	templates, err = template.New("").Funcs(funcMap).ParseGlob(pattern)
+	//templates, err = template.ParseGlob(pattern)
+	must(err)
+	templates.Funcs(funcMap)
+	return templates
 }
 
 func execTemplateToFileSilentMaybeMust(name string, data interface{}, path string) error {
 	var errToReturn error
-	tmpl := loadTemplateMaybeMust(name)
+	tmpl := loadTemplatesMust()
 	if tmpl == nil {
 		return nil
 	}
 	var buf bytes.Buffer
-	err := tmpl.Execute(&buf, data)
+	err := tmpl.ExecuteTemplate(&buf, name, data)
 	maybePanicIfErr(err)
 
 	d := buf.Bytes()
@@ -122,35 +136,19 @@ func execTemplateToFileMaybeMust(name string, data interface{}, path string) err
 	return execTemplateToFileSilentMaybeMust(name, data, path)
 }
 
-func loadTemplate(name string) (*template.Template, error) {
-	path := tmplPath(name)
-	return template.New(name).Funcs(funcMap).ParseFiles(path)
-}
-
 func execTemplateToWriter(name string, data interface{}, w io.Writer) error {
-	tmpl, err := loadTemplate(name)
-	if err != nil {
-		return err
-	}
-	return tmpl.Execute(w, data)
+	tmpl := loadTemplatesMust()
+	return tmpl.ExecuteTemplate(w, name, data)
 }
 
 // PageCommon is a common information for most pages
 type PageCommon struct {
-	Analytics      template.HTML
-	PathAppJS      string
-	PathMainCSS    string
-	PathIndexCSS   string
-	PathFaviconICO string
+	Analytics template.HTML
 }
 
 func getPageCommon() PageCommon {
 	return PageCommon{
-		Analytics:      googleAnalytics,
-		PathAppJS:      pathAppJS,
-		PathMainCSS:    pathMainCSS,
-		PathIndexCSS:   pathIndexCSS,
-		PathFaviconICO: pathFaviconICO,
+		Analytics: googleAnalytics,
 	}
 }
 
@@ -162,7 +160,7 @@ func gen404TopLevel() {
 		PageCommon: getPageCommon(),
 	}
 	path := filepath.Join(destDir, "404.html")
-	execTemplateToFileMaybeMust("404.tmpl.html", d, path)
+	_ = execTemplateToFileMaybeMust("404.tmpl.html", d, path)
 }
 
 func splitBooks(books []*Book) ([]*Book, []*Book) {
@@ -185,7 +183,7 @@ func execTemplate(tmplName string, d interface{}, path string, w io.Writer) erro
 	}
 
 	// this code path is for generating static files
-	execTemplateToFileMaybeMust(tmplName, d, path)
+	_ = execTemplateToFileMaybeMust(tmplName, d, path)
 	return nil
 }
 
@@ -237,70 +235,72 @@ func genAbout(w io.Writer) error {
 	return execTemplate("about.tmpl.html", d, path, w)
 }
 
-// TODO: consolidate chapter/article html
-func genArticle(book *Book, page *Page, currChapNo int, currArticleNo int, w io.Writer) error {
-	if w == nil {
-		addSitemapURL(page.CanonnicalURL())
-	}
-
-	d := struct {
-		PageCommon
-		*Page
-		CurrentChapterNo int
-		CurrentArticleNo int
-	}{
-		PageCommon:       getPageCommon(),
-		Page:             page,
-		CurrentChapterNo: currChapNo,
-		CurrentArticleNo: currArticleNo,
-	}
-
-	path := page.destFilePath()
-	err := execTemplate("article.tmpl.html", d, path, w)
-	if err != nil {
-		fmt.Printf("Failed to minify page %s in book %s\n", page.NotionID, book.Title)
-	}
-	return err
+type Breadcrumb struct {
+	URL   string
+	Title string
 }
 
-func genChapter(book *Book, page *Page, currNo int, w io.Writer) error {
+type PageData struct {
+	PageCommon
+	*Page
+	Description string
+	Breadcrumbs []Breadcrumb
+}
+
+func buildCreadcumb(book *Book, page *Page, d *PageData) {
+	page = page.Parent
+
+	var a []Breadcrumb
+	for page != nil && page.Parent != nil {
+		b := Breadcrumb{
+			Title: page.Title,
+			URL:   page.URL(),
+		}
+		a = append(a, b)
+		page = page.Parent
+	}
+
+	b := Breadcrumb{
+		Title: book.Title,
+		URL:   book.URL(),
+	}
+	a = append(a, b)
+
+	// they were added in reverse order
+	n := len(a)
+	for i := 0; i < n/2; i++ {
+		end := n - 1 - i
+		a[i], a[end] = a[end], a[i]
+	}
+	d.Breadcrumbs = a
+}
+
+func genPage(book *Book, page *Page, w io.Writer) error {
 	if w == nil {
 		addSitemapURL(page.CanonnicalURL())
-		for i, article := range page.Pages {
-			genArticle(book, article, currNo, i, nil)
+		for _, article := range page.Pages {
+			_ = genPage(book, article, nil)
 		}
 	}
 
-	path := page.destFilePath()
-	d := struct {
-		PageCommon
-		*Page
-		CurrentChapterNo int
-	}{
-		PageCommon:       getPageCommon(),
-		Page:             page,
-		CurrentChapterNo: currNo,
+	d := PageData{
+		PageCommon:  getPageCommon(),
+		Page:        page,
+		Description: page.Title,
 	}
-	err := execTemplate("chapter.tmpl.html", d, path, w)
-	if err != nil {
-		return err
-	}
+	buildCreadcumb(book, page, &d)
 
+	path := page.destFilePath()
+	err := execTemplate("page.tmpl.html", d, path, w)
+	if err != nil {
+		logf("Failed to minify page %s in book %s\n", page.NotionID, book.Title)
+	}
 	for _, imagePath := range page.images {
 		imageName := filepath.Base(imagePath)
 		dst := page.destImagePath(imageName)
-		copyFileMaybeMust(dst, imagePath)
+		_ = copyFileMaybeMust(dst, imagePath)
 	}
-	return nil
-}
-
-func buildIDToPage(book *Book) {
-	pages := book.GetAllPages()
-	for _, page := range pages {
-		id := toNoDashID(page.NotionPage.ID)
-		book.idToPage[id] = page
-		page.Book = book
-	}
+	return err
 }
 
 func bookPagesToHTML(book *Book) {
@@ -311,20 +311,7 @@ func bookPagesToHTML(book *Book) {
 		page.BodyHTML = template.HTML(string(html))
 		nProcessed++
 	}
-	fmt.Printf("bookPagesToHTML: processed %d pages for book %s\n", nProcessed, book.TitleLong)
-}
-
-func bookPageToHTML(book *Book, id string) {
-	pages := book.GetAllPages()
-	for _, page := range pages {
-		if page.NotionID == id {
-			fmt.Printf("bookPageToHTML: processed page %s for book %s\n", id, book.TitleLong)
-			html := notionToHTML(page, book)
-			page.BodyHTML = template.HTML(string(html))
-			return
-		}
-	}
-	fmt.Printf("bookPageToHTML: didn't find page '%s' for book %s\n", id, book.TitleLong)
+	logf("bookPagesToHTML: processed %d pages for book %s\n", nProcessed, book.TitleLong)
 }
 
 func genBookIndex(book *Book, w io.Writer) error {
@@ -354,11 +341,10 @@ func genBook404(book *Book, w io.Writer) error {
 }
 
 func genBook(book *Book) {
-	log("Started genering book %s\n", book.Title)
+	logf("Started genering book %s\n", book.Title)
 	timeStart := time.Now()
 
-	buildIDToPage(book)
-	genContributorsPage(book)
+	copyImages(book)
 	bookPagesToHTML(book)
 
 	genBookTOCSearchMust(book)
@@ -370,16 +356,16 @@ func genBook(book *Book) {
 		return
 	}
 
-	genBookIndex(book, nil)
+	_ = genBookIndex(book, nil)
 
 	// TODO: per-book 404 should link to top of book, not top of website
-	genBook404(book, nil)
+	_ = genBook404(book, nil)
 
 	addSitemapURL(book.CanonnicalURL())
 
-	for i, chapter := range book.Chapters() {
-		genChapter(book, chapter, i, nil)
+	for _, chapter := range book.Chapters() {
+		_ = genPage(book, chapter, nil)
 	}
 
-	fmt.Printf("Generated book '%s' in %s\n", book.Title, time.Since(timeStart))
+	logf("Generated book '%s' in %s\n", book.Title, time.Since(timeStart))
 }

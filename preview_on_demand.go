@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"html/template"
+	"io"
 	"net/http"
 	"os"
 	"os/signal"
@@ -12,6 +13,7 @@ import (
 	"time"
 
 	"github.com/kjk/notionapi"
+	"github.com/kjk/u"
 )
 
 var (
@@ -25,7 +27,7 @@ func tryPrefixInDir(uri string, prefix string, dir string) string {
 	uri = strings.TrimPrefix(uri, prefix)
 	name := filepath.FromSlash(uri)
 	path := filepath.Join(dir, name)
-	if fileExists(path) {
+	if u.FileExists(path) {
 		return path
 	}
 	//fmt.Printf("tried path: '%s', name: '%s', uri: '%s'\n", path, name, uri)
@@ -41,6 +43,13 @@ func getFileForURL(uri string) string {
 	}
 	{
 		dir := filepath.Join("www", "s")
+		path := tryPrefixInDir(uri, "/s/", dir)
+		if path != "" {
+			return path
+		}
+	}
+	{
+		dir := filepath.Join("www", "gen")
 		path := tryPrefixInDir(uri, "/s/", dir)
 		if path != "" {
 			return path
@@ -89,6 +98,17 @@ func findPreviewBook(name string) *Book {
 	return nil
 }
 
+func serveBook404(book *Book, w io.Writer) error {
+	data := struct {
+		PageCommon
+		Book *Book
+	}{
+		PageCommon: getPageCommon(),
+		Book:       book,
+	}
+	return execTemplateToWriter("404.tmpl.html", data, w)
+}
+
 func extractIDFromURL(s string) string {
 	parts := strings.Split(s, "-")
 	lastIdx := len(parts) - 1
@@ -100,24 +120,23 @@ func extractIDFromURL(s string) string {
 }
 
 func maybeGenBookChapter(w http.ResponseWriter, r *http.Request, book *Book, id string) bool {
-	for i, chapter := range book.Chapters() {
+	for _, chapter := range book.Chapters() {
 		chapID := toNoDashID(chapter.NotionID)
 		if chapID == id {
 			page := chapter
 			html := notionToHTML(page, book)
 			page.BodyHTML = template.HTML(string(html))
-			err := genChapter(book, chapter, i, w)
+			err := genPage(book, chapter, w)
 			logIfError(err)
 			return true
 		}
-		for j, article := range chapter.Pages {
+		for _, article := range chapter.Pages {
 			pageID := toNoDashID(article.NotionID)
 			if id == pageID {
 				page := article
 				html := notionToHTML(page, book)
 				page.BodyHTML = template.HTML(string(html))
-				currNo := i
-				err := genArticle(book, article, currNo, j, w)
+				err := genPage(book, article, w)
 				logIfError(err)
 				return true
 			}
@@ -135,7 +154,7 @@ func handleBook(w http.ResponseWriter, r *http.Request) {
 	book := findPreviewBook(bookName)
 	if book == nil {
 		fmt.Printf("handleBook: didn't find book for '%s'\n", r.URL.Path)
-		serve404(w, r)
+		serveBook404(nil, w)
 		return
 	}
 	if len(rest) == 0 {
@@ -146,9 +165,8 @@ func handleBook(w http.ResponseWriter, r *http.Request) {
 	if maybeGenBookChapter(w, r, book, pageID) {
 		return
 	}
-	fmt.Printf("handleBook: not yet implemted ur: '%s', rest: '%s', pageID: '%s'\n", r.URL.Path, rest, pageID)
-	// TODO: more
-	serve404(w, r)
+	fmt.Printf("handleBook: not yet implemented url: '%s', rest: '%s', pageID: '%s'\n", r.URL.Path, rest, pageID)
+	serveBook404(book, w)
 }
 
 func handleIndexOnDemand(w http.ResponseWriter, r *http.Request) {
@@ -192,7 +210,8 @@ func handleIndexOnDemand(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	serve404(w, r)
+	logf("handleIndexOnDemand: calling serveBook404\n")
+	serveBook404(nil, w)
 }
 
 // https://blog.gopheracademy.com/advent-2016/exposing-go-on-the-internet/
@@ -211,15 +230,10 @@ func makeHTTPServerOnDemand() *http.Server {
 }
 
 func startPreviewOnDemand(books []*Book) {
-
-	// because of genBookTOCSearchMust()
-	os.RemoveAll("www")
-	os.MkdirAll(filepath.Join("www", "s"), 0755)
+	killRollup := launchRollup(nil)
+	defer killRollup()
 
 	for _, book := range books {
-		buildIDToPage(book)
-		genContributorsPage(book)
-
 		// TODO: this generates js files in /www/s/app-${book.Dir}-${sha1}.js
 		genBookTOCSearchMust(book)
 	}
@@ -234,11 +248,11 @@ func startPreviewOnDemand(books []*Book) {
 		if err == http.ErrServerClosed {
 			err = nil
 		}
-		panicIfErr(err)
+		u.Must(err)
 		fmt.Printf("HTTP server shutdown gracefully\n")
 	}()
 	fmt.Printf("Started listening on %s, %d books\n", httpSrv.Addr, len(books))
-	openBrowser("http://" + httpSrv.Addr)
+	u.OpenBrowser("http://" + httpSrv.Addr)
 
 	c := make(chan os.Signal, 2)
 	signal.Notify(c, os.Interrupt /* SIGINT */, syscall.SIGTERM)

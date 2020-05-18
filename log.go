@@ -9,40 +9,37 @@ var (
 	logFile *os.File
 )
 
-func openLog() {
+func openLog() func() {
 	var err error
 	logFile, err = os.Create("log.txt")
 	must(err)
+	return func() {
+		_ = logFile.Close()
+		logFile = nil
+	}
 }
 
-func closeLog() {
-	if logFile == nil {
-		return
-	}
-	logFile.Close()
-	logFile = nil
-}
-
-func log(format string, args ...interface{}) {
-	s := fmt.Sprintf(format, args...)
-	if logFile != nil {
-		fmt.Fprint(logFile, s)
-	}
+func logf(format string, args ...interface{}) {
+	s := fmtSmart(format, args...)
 	fmt.Print(s)
+	if logFile != nil {
+		_, _ = fmt.Fprint(logFile, s)
+	}
 }
 
 func logVerbose(format string, args ...interface{}) {
-	s := fmt.Sprintf(format, args...)
-	if logFile != nil {
-		fmt.Fprint(logFile, s)
+	if logFile == nil {
+		return
 	}
+	s := fmtSmart(format, args...)
+	_, _ = fmt.Fprintf(logFile, s)
 }
 
-func logFatal(format string, args ...interface{}) {
-	s := fmt.Sprintf(format, args...)
-	if logFile != nil {
-		fmt.Fprint(logFile, s)
-	}
+func logFatalf(format string, args ...interface{}) {
+	s := fmtSmart(format, args...)
 	fmt.Print(s)
+	if logFile != nil {
+		_, _ = fmt.Fprint(logFile, s)
+	}
 	os.Exit(1)
 }

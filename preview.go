@@ -10,15 +10,17 @@ import (
 	"strings"
 	"syscall"
 	"time"
+
+	"github.com/kjk/u"
 )
 
 func fileForURI(uri string) string {
 	path := filepath.Join("www", uri)
-	if fileExists(path) {
+	if u.FileExists(path) {
 		return path
 	}
 	path = path + ".html"
-	if fileExists(path) {
+	if u.FileExists(path) {
 		return path
 	}
 	return ""
@@ -31,7 +33,7 @@ func serve404(w http.ResponseWriter, r *http.Request) {
 	if len(parts) > 2 && parts[0] == "essential" {
 		bookName := parts[1]
 		maybePath := filepath.Join("www", "essential", bookName, "404.html")
-		if fileExists(maybePath) {
+		if u.FileExists(maybePath) {
 			fmt.Printf("'%s' exists\n", maybePath)
 			path = maybePath
 		} else {
@@ -92,11 +94,11 @@ func startPreviewStatic() {
 		if err == http.ErrServerClosed {
 			err = nil
 		}
-		panicIfErr(err)
+		u.Must(err)
 		fmt.Printf("HTTP server shutdown gracefully\n")
 	}()
 	fmt.Printf("Started listening on %s\n", httpSrv.Addr)
-	openBrowser("http://" + httpSrv.Addr)
+	u.OpenBrowser("http://" + httpSrv.Addr)
 
 	c := make(chan os.Signal, 2)
 	signal.Notify(c, os.Interrupt /* SIGINT */, syscall.SIGTERM)

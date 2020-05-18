@@ -1,53 +1,29 @@
 package main
 
 import (
-	"archive/zip"
-	"bytes"
+	"context"
 	"fmt"
-	"io"
-	"io/ioutil"
-	"net/http"
 	"os"
 	"os/exec"
 	"path/filepath"
-	"runtime"
 	"strconv"
 	"strings"
-	"time"
 
 	"github.com/kjk/u"
 )
 
-func must(err error, args ...interface{}) {
-	if err == nil {
-		return
-	}
+func must(err error) {
+	u.Must(err)
+}
+
+func fmtSmart(format string, args ...interface{}) string {
 	if len(args) == 0 {
-		panic(err)
+		return format
 	}
-	s := args[0].(string)
-	if len(args) > 1 {
-		args = args[1:]
-		s = fmt.Sprintf(s, args)
-	}
-	panic(s + " err: " + err.Error())
+	return fmt.Sprintf(format, args...)
 }
 
-func panicIfErr(err error) {
-	if err != nil {
-		panic(err.Error())
-	}
-}
-
-func panicMsg(format string, args ...interface{}) {
-	s := fmt.Sprintf(format, args...)
-	fmt.Printf("%s\n", s)
-	panic(s)
-}
-
-// FmtArgs formats args as a string. First argument should be format string
-// and the rest are arguments to the format
-func FmtArgs(args ...interface{}) string {
+func fmtArgs(args ...interface{}) string {
 	if len(args) == 0 {
 		return ""
 	}
@@ -58,20 +34,14 @@ func FmtArgs(args ...interface{}) string {
 	return fmt.Sprintf(format, args[1:]...)
 }
 
-func panicWithMsg(defaultMsg string, args ...interface{}) {
-	s := FmtArgs(args...)
-	if s == "" {
-		s = defaultMsg
-	}
-	fmt.Printf("%s\n", s)
-	panic(s)
-}
-
 func panicIf(cond bool, args ...interface{}) {
 	if !cond {
 		return
 	}
-	panicWithMsg("PanicIf: condition failed", args...)
+	if len(args) == 0 {
+		panic("condition failed")
+	}
+	panic(fmtArgs(args...))
 }
 
 func logIfError(err error) {
@@ -146,7 +116,7 @@ func maybePanicIfErr(err error) {
 		return
 	}
 	if !softErrorMode {
-		panicIfErr(err)
+		u.Must(err)
 	}
 	delayedErrors = append(delayedErrors, err.Error())
 }
@@ -175,7 +145,7 @@ func createDirForFileMaybeMust(path string) {
 
 func copyFileMaybeMust(dst, src string) error {
 	createDirForFileMaybeMust(dst)
-	err := copyFile(dst, src)
+	err := u.CopyFile(dst, src)
 	maybePanicIfErr(err)
 	return err
 }
@@ -188,120 +158,6 @@ func nameToSha1Name(name, sha1Hex string) string {
 	return s + "-" + sha1Hex[:8] + ext
 }
 
-func openBrowser(url string) {
-	var err error
-	switch runtime.GOOS {
-	case "linux":
-		err = exec.Command("xdg-open", url).Start()
-	case "windows":
-		err = exec.Command("rundll32", "url.dll,FileProtocolHandler", url).Start()
-	case "darwin":
-		err = exec.Command("open", url).Start()
-	default:
-		err = fmt.Errorf("unsupported platform")
-	}
-	if err != nil {
-		logFatal("%s", err)
-	}
-}
-
-func fileExists(path string) bool {
-	st, err := os.Stat(path)
-	if err != nil {
-		return false
-	}
-	return st.Mode().IsRegular()
-}
-
-func pathExists(path string) bool {
-	_, err := os.Stat(path)
-	return err == nil
-}
-
-func isDirectory(path string) bool {
-	stat, err := os.Stat(path)
-	if err != nil {
-		return false
-	}
-	return stat.IsDir()
-}
-
-func createDirMust(dir string) {
-	err := os.MkdirAll(dir, 0755)
-	panicIfErr(err)
-}
-
-func copyFile(dst, src string) error {
-	fin, err := os.Open(src)
-	if err != nil {
-		return err
-	}
-	defer fin.Close()
-	fout, err := os.Create(dst)
-	if err != nil {
-		return err
-	}
-	defer fout.Close()
-	_, err = io.Copy(fout, fin)
-	return err
-}
-
-func copyFileMust(dst, src string) {
-	err := copyFile(dst, src)
-	panicIfErr(err)
-}
-
-func copyFilesRecur(dstDir, srcDir string, shouldCopyFunc func(path string) bool) {
-	createDirMust(dstDir)
-	fileInfos, err := ioutil.ReadDir(srcDir)
-	u.PanicIfErr(err)
-	for _, fi := range fileInfos {
-		name := fi.Name()
-		if fi.IsDir() {
-			dst := filepath.Join(dstDir, name)
-			src := filepath.Join(srcDir, name)
-			copyFilesRecur(dst, src, shouldCopyFunc)
-			continue
-		}
-
-		src := filepath.Join(srcDir, name)
-		dst := filepath.Join(dstDir, name)
-		shouldCopy := true
-		if shouldCopyFunc != nil {
-			shouldCopy = shouldCopyFunc(src)
-		}
-		if !shouldCopy {
-			continue
-		}
-		if pathExists(dst) {
-			continue
-		}
-		copyFileMust(dst, src)
-	}
-}
-
-func getDirsRecur(dir string) ([]string, error) {
-	toVisit := []string{dir}
-	idx := 0
-	for idx < len(toVisit) {
-		dir = toVisit[idx]
-		idx++
-		fileInfos, err := ioutil.ReadDir(dir)
-		if err != nil {
-			return nil, err
-		}
-		for _, fi := range fileInfos {
-			if !fi.IsDir() {
-				continue
-			}
-			path := filepath.Join(dir, fi.Name())
-			toVisit = append(toVisit, path)
-		}
-	}
-	return toVisit, nil
-}
-
-// "foo" + "bar" = "foo/bar", only one "/"
 func urlJoin(s1, s2 string) string {
 	if strings.HasSuffix(s1, "/") {
 		if strings.HasPrefix(s2, "/") {
@@ -436,52 +292,42 @@ func openForAppend(path string) *os.File {
 	return f
 }
 
-// appends a line to a file
-func appendToFile(path string, s string) error {
-	f, err := os.OpenFile(path, os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0644)
-	if err != nil {
-		return err
+// for dev, rebuilds in background
+func launchRollup(ctx context.Context) func() {
+	path := filepath.Join("node_modules", ".bin", "rollup")
+	if !u.FileExists(path) {
+		// assume it's because node_modules doesn't exist, so install deps
+		//cmd := exec.Command("npm", "install")
+		cmd := exec.Command("yarn", "install")
+		cmd.Stdout = os.Stdout
+		cmd.Stderr = os.Stderr
+		logf("Running: '%s'\n", cmd.String())
+		err := cmd.Run()
+		must(err)
 	}
-	_, err = f.WriteString(s)
-	if err != nil {
-		f.Close()
-		return err
+	cmd := exec.Command(path, "-c", "-w")
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	logf("Running: '%s'\n", cmd.String())
+	err := cmd.Start()
+	must(err)
+	return func() {
+		_ = cmd.Process.Kill()
+		logf("Killed rollup\n")
 	}
-	return f.Close()
 }
 
-func httpGet(uri string) ([]byte, error) {
-	hc := &http.Client{
-		Timeout: 15 * time.Second,
+func buildFrontend() {
+	{
+		os.Remove("package-lock.json")
+		os.RemoveAll("node_modules")
+		cmd := exec.Command("yarn", "install")
+		u.RunCmdMust(cmd)
 	}
-	resp, err := hc.Get(uri)
-	if err != nil {
-		return nil, err
+	// could also be
+	// .\node_modules\.bin\rollup -c
+	{
+		cmd := exec.Command("yarn", "build-dev")
+		u.RunCmdMust(cmd)
 	}
-	defer resp.Body.Close()
-
-	if resp.StatusCode != http.StatusOK {
-		d, _ := ioutil.ReadAll(resp.Body)
-		return nil, fmt.Errorf("Request was '%s' (%d) and not OK (200). Body:\n%s\nurl: %s", resp.Status, resp.StatusCode, string(d), uri)
-	}
-	d, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return nil, err
-	}
-	return d, nil
-}
-
-func unzipFileAsData(f *zip.File) ([]byte, error) {
-	r, err := f.Open()
-	if err != nil {
-		return nil, err
-	}
-	defer r.Close()
-
-	var buf bytes.Buffer
-	_, err = io.Copy(&buf, r)
-	if err != nil {
-		return nil, err
-	}
-	return buf.Bytes(), nil
 }
