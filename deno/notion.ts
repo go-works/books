@@ -501,7 +501,7 @@ export function notionLoader(debug = true): NotionLoader {
       recordMapToBlocks((data && data.recordMap) || {}, _blocks);
     },
 
-    downloadImages(
+    downloadImages: async function (
       images: NotionLoaderImageInformation[]
     ): Promise<NotionLoaderImageResult[]> {
       const urlGetSignedFileUrls =
@@ -533,41 +533,21 @@ export function notionLoader(debug = true): NotionLoader {
       };
 
       const result: NotionLoaderImageResult[] = [];
-
-      return fetch(urlGetSignedFileUrls, options)
-        .then(function (response) {
-          if (response.status !== 200) {
-            // reporter.error(
-            //   `Error retrieving images ${images} , status is: ${response.status}`
-            // );
-          } else {
-            // if (debug) {
-            //   console.log(
-            //     util.inspect(response.data, {
-            //       colors: true,
-            //       depth: null,
-            //     })
-            //   );
-            // }
-            response.json().then(function (data: any) {
-              const arr: string[] =
-                (data && (data.signedUrls as string[])) || ([] as string[]);
-              arr.forEach((signedUrl, index) => {
-                result.push({
-                  imageUrl: images[index].imageUrl,
-                  contentId: images[index].contentId,
-                  signedImageUrl: signedUrl,
-                });
-              });
-            });
-          }
-          return result;
-        })
-        .catch(function (error) {
-          console.log("Error:");
-          console.log(error);
-          return result;
+      const response = await fetch(urlGetSignedFileUrls, options);
+      if (response.status !== 200) {
+        return Promise.resolve(result);
+      }
+      const data: any = response.json();
+      const arr: string[] = (data && (data.signedUrls as string[])) || ([] as string[]);
+      for (let i = 0; i < arr.length; i++) {
+        const signedUrl = arr[i];
+        result.push({
+          imageUrl: images[i].imageUrl,
+          contentId: images[i].contentId,
+          signedImageUrl: signedUrl,
         });
+      }
+      return Promise.resolve(result);
     },
     getBlockById(blockId: string): NotionPageBlock | undefined {
       return _blocks.find((b) => b.blockId === blockId);
